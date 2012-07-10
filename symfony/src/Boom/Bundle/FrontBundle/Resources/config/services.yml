@@ -1,0 +1,7 @@
+parameters:
+#    boom_front.example.class: Boom\Bundle\FrontBundle\Example
+
+services:
+#    boom_front.example:
+#        class: %boom_front.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

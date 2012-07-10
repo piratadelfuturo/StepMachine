@@ -1,0 +1,3 @@
+BoomFrontBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: BoomFrontBundle:Default:index }
