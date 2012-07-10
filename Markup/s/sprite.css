@@ -1,0 +1,104 @@
+.boom_03 {
+  background: url(../images/sprite.png) -80px -112px no-repeat;
+  display: block;
+  width: 65px;
+  height: 26px;
+}
+
+.boom_07 {
+  background: url(../images/sprite.png) 0px 0px no-repeat;
+  display: block;
+  width: 280px;
+  height: 110px;
+}
+
+.boom_11 {
+  background: url(../images/sprite.png) -147px -112px no-repeat;
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+
+.boom_15 {
+  background: url(../images/sprite.png) -191px -112px no-repeat;
+  display: block;
+  width: 10px;
+  height: 12px;
+}
+
+.boom_19 {
+  background: url(../images/sprite.png) -227px -187px no-repeat;
+  display: block;
+  width: 30px;
+  height: 29px;
+}
+
+.boom_22 {
+  background: url(../images/sprite.png) -80px -140px no-repeat;
+  display: block;
+  width: 42px;
+  height: 28px;
+}
+
+.boom_27 {
+  background: url(../images/sprite.png) -171px -112px no-repeat;
+  display: block;
+  width: 18px;
+  height: 16px;
+}
+
+.boom_31 {
+  background: url(../images/sprite.png) 0px -112px no-repeat;
+  display: block;
+  width: 38px;
+  height: 73px;
+}
+
+.boom_34 {
+  background: url(../images/sprite.png) -40px -112px no-repeat;
+  display: block;
+  width: 38px;
+  height: 73px;
+}
+
+.boom_39 {
+  background: url(../images/sprite.png) -196px -187px no-repeat;
+  display: block;
+  width: 29px;
+  height: 31px;
+}
+
+.boom_43 {
+  background: url(../images/sprite.png) -164px -187px no-repeat;
+  display: block;
+  width: 30px;
+  height: 40px;
+}
+
+.boom_47 {
+  background: url(../images/sprite.png) -110px -187px no-repeat;
+  display: block;
+  width: 52px;
+  height: 58px;
+}
+
+.boom_50 {
+  background: url(../images/sprite.png) 0px -187px no-repeat;
+  display: block;
+  width: 53px;
+  height: 59px;
+}
+
+.boom_52 {
+  background: url(../images/sprite.png) -55px -187px no-repeat;
+  display: block;
+  width: 53px;
+  height: 59px;
+}
+
+.src {
+  background: url(../images/sprite.png) -124px -140px no-repeat;
+  display: block;
+  width: 21px;
+  height: 19px;
+}
