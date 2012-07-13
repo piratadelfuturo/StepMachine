@@ -65,3 +65,13 @@ Warning - 2012-07-12 06:18:31 --> Fuel\Core\Fuel::init - The configured locale e
 Error - 2012-07-12 06:18:31 --> Error - The requested view could not be found: block/index in /Users/daniel/Sites/sevenboom/Src/fuelphp/fuel/core/classes/view.php on line 381
 Warning - 2012-07-12 06:19:19 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
 Warning - 2012-07-12 06:20:05 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:06 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:07 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:07 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:07 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:07 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:08 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:08 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:14:19 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 17:25:20 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.
+Warning - 2012-07-12 18:31:07 --> Fuel\Core\Fuel::init - The configured locale es_MX is not installed on your system.

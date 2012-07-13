@@ -34,7 +34,7 @@ body {
 }
 
 .sm-flag{
-  background: url('../images/cat_flags.png') no-repeat 0 0;
+  background: url('/assets/img/cat_flags.png') no-repeat 0 0;
   width: 142px;
   display:block;
   line-height: 19px;
@@ -69,7 +69,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
 }
 .title-flag h3 span{
-  background:url('../images/boom_39.png') no-repeat;
+  background:url('/assets/img/boom_39.png') no-repeat;
   padding-left: 50px;
   margin-left: 35px;
 }
@@ -181,7 +181,7 @@ header{position:relative;}
   border: none;
   text-indent: -9999px;
   cursor: pointer;
-  background: url(../images/sprite.png) -124px -140px no-repeat;
+  background: url(/assets/img/sprite.png) -124px -140px no-repeat;
   overflow: hidden;
   outline: none;
 }
@@ -197,7 +197,7 @@ header{position:relative;}
 
 #mini-nav a span {
   text-indent: -9999px;
-  background: url(../images/sprite.png) -80px -112px no-repeat;
+  background: url(/assets/img/sprite.png) -80px -112px no-repeat;
   display: inline-block;
   width: 65px;
   height: 26px;
@@ -276,7 +276,7 @@ header{position:relative;}
 }
 
 h1 a {
-  background: url(../images/sprite.png) 0px 0px no-repeat;
+  background: url(/assets/img/sprite.png) 0px 0px no-repeat;
   display: block;
   width: 280px;
   height: 110px;
@@ -404,16 +404,22 @@ h1 a {
   font: 19px 'Proxima', sans-serif;
   color:#FFF;
   line-height:48px;
-  background:url('../images/boom_11.png') no-repeat 109px 17px , url('../images/flag_showhide.png');
+  background:url('/assets/img/boom_11.png') no-repeat 109px 17px , url('/assets/img/flag_showhide.png');
   z-index: 1;
   text-indent: 28px;
 }
 
 /* USER MENU */
+#usr-cnt, #usm-pro, #rt-cont{
+    border-style:solid;
+    border-color: #e7e7e7;
+}
+
 #usr-cnt{
   width:1024px;
   display: inline-block;
   margin-top: -20px;
+  border-width: 0px 0px 1px 0px;
 }
 
 #usm-pro{
@@ -425,17 +431,18 @@ h1 a {
    /* fallback (Opera) */
   background: #e7e7e7;
   /* Mozilla: */
-  background: -moz-linear-gradient(top, #e7e7e7, #FFF);
+  background: -moz-linear-gradient(top, #FFF, #e7e7e7);
   /* Chrome, Safari:*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#e7e7e7));
+  background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#FFF));
     /* MSIE */
-  filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#e7e7e7', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e7e7e7', EndColorStr='#FFFFFF', GradientType=0);
+  border-width: 0px 0px 0px 1px;
 }
 
 .usm-info{
-  height:150px;
+  height:145px;
   border-bottom: 1px solid #dfdfdf;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 .usm-info h3{
@@ -444,24 +451,29 @@ h1 a {
   color:#373535;  
 }
 .usm-info h3 span{
-  padding-left:10px;
   color:#f47735;
 }
+
 .usm-info .usr-pic{
   display: block;
   width: 150px;
   height: 150px;
   overflow: hidden;
   border: 3px solid #FFF;
-  margin-top:-25px;
+  margin-top:-35px;
   float:left;
   margin-right: 9px;
   position: relative;
 }
 
+.usm-info .usr-data{
+    float:left;
+    width:185px;
+}
+
 #filter{
   border-bottom: 1px solid #DFDFDF;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   position: relative;
 }
 
@@ -491,7 +503,7 @@ h1 a {
 }
 
 #usm-pro #filter li, #rt-cont .boom-li .sm-flag{
-  background: url('../images/cat_flags.png') no-repeat 30px 0;
+  background: url('/assets/img/cat_flags.png') no-repeat 30px 0;
 }
 
 #usm-pro #filter .sexo{background-position:30px 0;}
@@ -522,28 +534,26 @@ h1 a {
   cursor: pointer;
 }
 #usm-pro #filter li input[type='checkbox']+label{
-  background: url(../images/sprite-chckbx.png) no-repeat 0 -17px;
+  background: url(/assets/img/sprite-chckbx.png) no-repeat 0 -17px;
   height: 19px;
   display: block;
   line-height: 19px;
 }
 
 #usm-pro #filter li input[type='checkbox']:checked + label {
-  background: url(../images/sprite-chckbx.png) no-repeat 0 0;
+  background: url(/assets/img/sprite-chckbx.png) no-repeat 0 0;
   height: 19px;
   display: block;
   line-height: 19px;
 }
-
-
 
 #usm-pro #filter li label{
   padding-left:30px;
 }
 
 #usm-pro #filter .ver-moar{
-  right:44px;
-  bottom:30px;
+  right:40px;
+  bottom:15px;
 }
 #usm-pro .boomers{
   position:relative;
@@ -565,8 +575,10 @@ h1 a {
 }
 
 #usm-pro .boomers .ver-moar{
-  bottom:0;
-  right:0;
+  /*bottom:0;
+  right:0; */
+  float:right;
+  position: relative;
 }
 
 
@@ -576,15 +588,16 @@ h1 a {
   float: left;
   position:relative;
   padding: 0 22px 0 30px;
-  margin-left: 12px;
+  margin-left: 10px;
   /* fallback (Opera) */
   background: #e7e7e7;
   /* Mozilla: */
-  background: -moz-linear-gradient(top, #e7e7e7, #FFF);
+  background: -moz-linear-gradient(top, #FFF, #e7e7e7);
   /* Chrome, Safari:*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#e7e7e7));
+  background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#FFF));
     /* MSIE */
-  filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#FFFFFF', EndColorStr='#e7e7e7', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#e7e7e7', EndColorStr='#FFFFFF', GradientType=0);
+  border-width: 0px 1px 0px 0px;
 }
 
 #rt-cont .boom-li span.sm-flag{
@@ -619,9 +632,6 @@ h1 a {
   color:#fff;
 }
 
-#rt-cont .ver-moar{
-  right:26px;
-}
 .boom-li{
   margin: 20px 0;
 }
@@ -643,13 +653,18 @@ h1 a {
 }
 
 .boom-li .boom-info .boom-moar{
-  background: url('../images/boom_15.png') no-repeat right center;
+  background: url('/assets/img/boom_15.png') no-repeat right center;
   height: 13px;
   float: left;
   width: 80px;
 }
 .boom-moar{
   font-weight:bold;
+}
+
+.boom-pub{
+    height:115px;
+    
 }
   
 .boom-pub, .boom-pub a{
@@ -666,12 +681,29 @@ h1 a {
   display: inline;
 }
 
+.ver-mas-block{
+    clear:both;
+    overflow: hidden ;
+    position: relative;
+    border-width: 1px 0px 0px;
+    border-style: solid;
+    border-color: #DFDFDF;
+    margin: 20px 0px 0px;
+    padding: 5px 0px 0px;
+}
+
+#rt-cont .ver-moar{
+    position: relative;
+    float:right;
+}
+
+
 .ver-moar{
   width:95px;
   font:200 14px 'Proxima', sans-serif;
   position:absolute;
   text-transform:uppercase;
-  background:url('../images/boom_15.png') no-repeat right center;
+  background:url('/assets/img/boom_15.png') no-repeat right center;
   height: 16px;
 }
 
@@ -679,7 +711,7 @@ h1 a {
   width:125px;
   font:200 14px 'Proxima', sans-serif;
   text-transform:uppercase;
-  background:url('../images/boom_15.png') no-repeat right center;
+  background:url('/assets/img/boom_15.png') no-repeat right center;
   height: 20px;
   float:left;
 }
@@ -696,7 +728,7 @@ h1 a {
   width:38px;
   height:74px;
   display:block;
-  background:url('../images/boom_31.png');
+  background:url('/assets/img/boom_31.png');
   position:absolute;
   top:159px;
   left:0;
@@ -708,7 +740,7 @@ h1 a {
   width:38px;
   height:74px;
   display:block;
-  background:url('../images/boom_34.png');
+  background:url('/assets/img/boom_34.png');
   position:absolute;
   top:156px;
   right:0;
@@ -797,7 +829,7 @@ h1 a {
   display:block;  
 }
 .boomer h3 span, .top-semanal h3 span{
-  background:url('../images/boom_39.png') no-repeat;
+  background:url('/assets/img/boom_39.png') no-repeat;
   padding-left: 50px;
 }
 
@@ -856,7 +888,7 @@ h1 a {
 #booms-container .list-grid span.moar{
   width:159px;
   height:180px;
-  background: url('../images/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
+  background: url('/assets/img/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
   font: 21px 'Museo500';
   color:#373535;
   text-transform: uppercase;
@@ -866,7 +898,7 @@ h1 a {
   margin-left: 5px;
 }
 #booms-container .list-grid span.moar:hover{
-  background: url('../images/boom_43.png') no-repeat center 87px, #EAEAEA;
+  background: url('/assets/img/boom_43.png') no-repeat center 87px, #EAEAEA;
 }
 #booms-container .list-grid .sm-flag{
   position: absolute;
@@ -963,7 +995,7 @@ aside .sb-bloque{
   left: 0;
 }
 .tw-wdgt h3 span, .fb-wdgt h3 span{
-  background: url('../images/fb-wdgt.png') no-repeat left center;
+  background: url('/assets/img/fb-wdgt.png') no-repeat left center;
   height: 45px;
   width: 150px;
   display: block;
@@ -971,7 +1003,7 @@ aside .sb-bloque{
   text-indent: 200px;
 }
 .tw-wdgt h3 span{
-  background: url('../images/tw-wdgt.png') no-repeat left center;
+  background: url('/assets/img/tw-wdgt.png') no-repeat left center;
 }
 
 .colab-wdgt ul{
@@ -1028,7 +1060,7 @@ aside .sb-bloque{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
 }
 .colab-wdgt .ver-all p{
-  background: url('../images/boom_verall.png') no-repeat 290px center;
+  background: url('/assets/img/boom_verall.png') no-repeat 290px center;
   padding-right: 20px;
 }
 
@@ -1154,9 +1186,9 @@ footer{
   right: 10px;
   content: '';
 }
-#f-cont li.about h3:after{background: url('../images/boom_47.png') no-repeat;}
-#f-cont li.contact h3:after{background: url('../images/boom_50.png') no-repeat;}
-#f-cont li.newsletter h3:after{background: url('../images/boom_52.png') no-repeat;}
+#f-cont li.about h3:after{background: url('/assets/img/boom_47.png') no-repeat;}
+#f-cont li.contact h3:after{background: url('/assets/img/boom_50.png') no-repeat;}
+#f-cont li.newsletter h3:after{background: url('/assets/img/boom_52.png') no-repeat;}
 
 
 #f-cont li h3 a{
@@ -1182,12 +1214,12 @@ footer{
   left: 45px;
 }
 #fb-btn{
-  background:url('../images/fb-footer.png') no-repeat;
+  background:url('/assets/img/fb-footer.png') no-repeat;
   border-right:1px solid #FFF;  
 }
 #f-cont #tw-btn{
   width:100px;  
-  background:url('../images/tw-footer.png') no-repeat;
+  background:url('/assets/img/tw-footer.png') no-repeat;
   left: 140px;
 }
 
