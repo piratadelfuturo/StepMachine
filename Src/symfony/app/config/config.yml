@@ -4,9 +4,8 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
+    #translator:      { fallback: %locale% }
     secret:          %secret%
-    charset:         UTF-8
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_parameters: %kernel.debug%
@@ -15,8 +14,8 @@ framework:
     validation:      { enable_annotations: true }
     templating:      { engines: ['php','twig'] } #assets_version: SomeVersionScheme
     default_locale:  %locale%
-    session:
-        auto_start:     true
+    trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    session:         ~
 
 # Twig Configuration
 twig:
@@ -26,8 +25,10 @@ twig:
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
-    use_controller: false
-    bundles:        [ ]
+    use_controller:
+        enabled:  %kernel.debug%
+        profiler: false
+    bundles: [BoomBackBundle,BoomFrontBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

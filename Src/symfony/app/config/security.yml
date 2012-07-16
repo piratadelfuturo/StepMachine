@@ -21,23 +21,41 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
+        admin_login:
+            pattern:  ^/admin/login$
             security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
+        boom_login:
+            pattern:  ^/login$
+            security: false          
+        admin_area:
+            pattern:    ^/admin/
+            form_login: ~
+            logout: ~            
+            #    check_path: /admin/login_check
+            #    login_path: /admin/login
+            #logout:
+            #    path:   /admin/logout
+            #    target: /admin/
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+        boom_area:
+            pattern:    ^/
+            form_login: ~
+            logout: ~            
+            form_login:
+                check_path: /boomer/login_check
+                login_path: /login
+            anonymous: ~
+
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - path: ^/admin/login
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+        - path: ^/login
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+        - path: ^/
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+        - path: ^/_internal/secure
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
+          ip: 127.0.0.1

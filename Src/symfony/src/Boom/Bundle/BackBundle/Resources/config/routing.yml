@@ -1,3 +1,9 @@
+BoomBackBundle_login:
+    pattern:  /login
+    defaults: { _controller: BoomBackBundle:Auth:login }
+
+
 BoomBackBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BoomBackBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: BoomBackBundle:Default:dashboard }
+
