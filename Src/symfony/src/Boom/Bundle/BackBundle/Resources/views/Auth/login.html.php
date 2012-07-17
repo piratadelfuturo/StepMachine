@@ -3,7 +3,7 @@
 <?php if ($error): ?>
     <div><?php echo $error->getMessage() ?></div>
 <?php endif; ?>
-<form action="<?php echo $view['router']->generate('login_check') ?>" method="post" id="loginform">
+<form action="<?php echo $view['router']->generate('BoomBackBundle_login_check') ?>" method="post" id="loginform">
     <fieldset>
         <section><label for="username">Username</label>
             <div><input type="text" id="username" name="_username" value="<?php echo $last_username ?>" autofocus></div>

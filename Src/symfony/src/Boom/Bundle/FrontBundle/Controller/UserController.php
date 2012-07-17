@@ -12,4 +12,19 @@ class UserController extends Controller
                 'BoomFrontBundle:User:widget/userBlock.html.php'
                 );
     }
+    
+    
+    public function indexAction(){
+        
+        $data = array();
+        
+        
+        return $this->render(
+                'BoomFrontBundle:User:index.html.php',
+                array(
+                    'data' => $data
+                )
+                );        
+    }
+    
 }

@@ -1,5 +1,5 @@
 {
-    "hash": "ab7ccf177098603cace942212179431f",
+    "hash": "ef4768dd0121d04797f96669afd991d7",
     "packages": [
         {
             "package": "doctrine/common",
@@ -22,6 +22,24 @@
             "version": "2.2.x-dev",
             "source-reference": "5d2a3bcb3b467f41ee58575764f3ba84937f76e4",
             "commit-date": "1341676080"
+        },
+        {
+            "package": "facebook/php-sdk",
+            "version": "dev-master",
+            "source-reference": "21321ffe121f62f7f7ff1068c42e693f07be912c",
+            "commit-date": "1341949782"
+        },
+        {
+            "package": "friendsofsymfony/facebook-bundle",
+            "version": "dev-master",
+            "source-reference": "2492024a5778f82bc24c96e6022aedf3be0df65b",
+            "commit-date": "1342339065"
+        },
+        {
+            "package": "friendsofsymfony/user-bundle",
+            "version": "dev-master",
+            "source-reference": "080bb9c1a15bcd52166796d4254f24df74b7b796",
+            "commit-date": "1342480671"
         },
         {
             "package": "jms/aop-bundle",
@@ -98,13 +116,13 @@
         {
             "package": "symfony/monolog-bundle",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA2",
+            "source-reference": "v2.1.0-BETA3",
             "commit-date": "1341078487"
         },
         {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA2",
+            "source-reference": "v2.1.0-BETA3",
             "commit-date": "1341509614"
         },
         {
@@ -116,8 +134,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA3",
-            "commit-date": "1342375577"
+            "source-reference": "151b79a6ce3f459e2fa8815cd9f2786eef750993",
+            "commit-date": "1342376835"
         },
         {
             "package": "twig/extensions",
@@ -134,13 +152,11 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "17e2c36a58c4b17a58a3befa783d16ac19776df5",
-            "commit-date": "1342275003"
+            "source-reference": "d45664045194ef62573c153c424508527105041e",
+            "commit-date": "1342424564"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
@@ -153,6 +169,7 @@
         "symfony/monolog-bundle": 20,
         "sensio/distribution-bundle": 20,
         "sensio/framework-extra-bundle": 20,
-        "sensio/generator-bundle": 20
+        "sensio/generator-bundle": 20,
+        "friendsofsymfony/facebook-bundle": 20
     }
 }

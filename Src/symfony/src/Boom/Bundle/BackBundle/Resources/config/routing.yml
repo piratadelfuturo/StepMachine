@@ -2,6 +2,13 @@ BoomBackBundle_login:
     pattern:  /login
     defaults: { _controller: BoomBackBundle:Auth:login }
 
+BoomBackBundle_logout:
+    pattern:  /logout
+    defaults: { _controller: BoomBackBundle:Auth:login }
+
+
+BoomBackBundle_login_check:
+    pattern:   /login_check
 
 BoomBackBundle_homepage:
     pattern:  /

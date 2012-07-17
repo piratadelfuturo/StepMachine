@@ -2,9 +2,15 @@ BoomFrontBundle_login:
     pattern:  /login
     defaults: { _controller: BoomFrontBundle:Auth:login }
 
+BoomFrontBundle_logout:
+    pattern:  /logout
+
 BoomFrontBundle_login_check:
     pattern:   /login_check
 
+BoomFrontBundle_boomer_page:
+    pattern:   /boomer
+    defaults: { _controller: BoomFrontBundle:User:index }
 
 BoomFrontBundle_homepage:
     pattern:  /
