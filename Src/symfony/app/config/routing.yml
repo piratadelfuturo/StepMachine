@@ -1,12 +1,12 @@
-BoomFrontBundle:
+# Internal routing configuration to handle ESI
+_internal:
+    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+    prefix:   /_internal
+
+_boom:
     resource: "@BoomFrontBundle/Resources/config/routing.yml"
     prefix:   /
-
-BoomBackBundle:
+    
+_boom_admin:
     resource: "@BoomBackBundle/Resources/config/routing.yml"
     prefix:   /admin/
-
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal

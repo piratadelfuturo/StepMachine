@@ -7,9 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     public function indexAction($name = 'juanis')
-    {
-        
-        
+    {        
         
         return $this->render(
                 'BoomFrontBundle:Default:index.html.php',
@@ -18,4 +16,10 @@ class DefaultController extends Controller
                     )
                 );
     }
+    
+    public function bigTopBlockAction(){
+        return $this->render(
+                'BoomFrontBundle:Default:blocks/bigTop.html.php');
+    }
+    
 }

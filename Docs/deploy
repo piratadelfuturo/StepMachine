@@ -1,0 +1,3 @@
+To install assets(js/css/etc) in the public folder do the following:
+
+php app/console assets:install --symlink web/

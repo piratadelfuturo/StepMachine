@@ -2,14 +2,17 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_name:     sevenboom
+    database_user:     sevenboom
+    database_password: sevenboom
 
     mailer_transport:  smtp
     mailer_host:       localhost
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    locale:            es
+    secret:            ava134ASbtger42223
+    
+    facebook_app_id:     422049887838436
+    facebook_app_secret: cff909c9775314e75f2109850b132e20
