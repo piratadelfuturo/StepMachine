@@ -1,16 +1,16 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php $view->extend('BoomFrontBundle::layout.html.php') ?>
+<?php $view['slots']->output('top_two_col',''); ?>
+<div id="booms-container">
+<?php $view['slots']->output('_content') ?>
+</div>
+<aside>
+    <div class="banner1 sb-bloque">
+        BANNER
+    </div>
+    <?php echo $view['actions']->render('BoomFrontBundle:Widget:facebook'); ?>
+    <div class="tw-wdgt sb-bloque">
+        <h3><span>twitter</span></h3>
+    </div>
+    <?php echo $view['actions']->render('BoomFrontBundle:Widget:collaborators'); ?>
+    <?php echo $view['actions']->render('BoomFrontBundle:Widget:daily'); ?>
+</aside>

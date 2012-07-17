@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity name="Category">
+    <many-to-many field="booms" mapped-by="categories" target-entity="Boom" />
+</entity>

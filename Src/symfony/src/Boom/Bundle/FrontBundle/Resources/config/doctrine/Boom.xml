@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Boom\FrontBundle\Entity\Boom" table="boom">
+        <indexes>
+            <index columns="id"/>
+            <index columns="slug"/>
+        </indexes>
+        
+        
+        
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="slug" column="slug" type="string" length="140" />
+        <field name="title" column="slug" type="string" length="140" />
+        <field name="summary" column="summary" type="text" />
+        <field name="dateCreated" column="date_created" type="datetime" />
+        <field name="datePublished" column="date_published" type="datetime" nullable="true" version="true" />
+        <field name="nsfw" column="nsfw" type="boolean" />
+
+        <many-to-one field="image" target-entity="Image" />
+
+        <many-to-one field="user" target-entity="User" />
+
+        <one-to-many field="children" target-entity="Boom" mapped-by="parent"/>
+
+        <many-to-one field="parent" target-entity="Boom" inversed-by="children" />
+        
+        <one-to-many field="categories" target-entity="Category" />
+
+        <many-to-many field="categories" target-entity="Category" inversed-by="booms">
+            <join-table name="booms_categories">
+                <join-columns>
+                    <join-column name="boom_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="category_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="tags" target-entity="Tag" inversed-by="booms">
+            <join-table name="booms_tags">
+                <join-columns>
+                    <join-column name="boom_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="tag_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        
+        <one-to-many field="elements" target-entity="Boomelement" mapped-by="boom" />
+        
+    </entity>
+
+</doctrine-mapping>
