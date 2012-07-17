@@ -284,11 +284,11 @@ h1 a {
 }
 
 #hd-mn nav {
-  float: right;
   display: block;
   position: relative;
   padding: 0 285px 0 24px;
   top: -40px;
+  right: -327px;
   width: 370px;
   height: 40px;
   font: 16px 'Proxima', sans-serif;
@@ -418,7 +418,6 @@ h1 a {
 #usr-cnt{
   width:1024px;
   display: inline-block;
-  margin-top: -20px;
   border-width: 0px 0px 1px 0px;
 }
 
@@ -640,7 +639,7 @@ h1 a {
   float:left;
 }
 
-.boom-info{
+li.boom .boom-info{
   width:350px;
   height: 95px;
   margin: 5px 20px 0 20px;
@@ -758,11 +757,13 @@ h1 a {
   float:left;
 }
 
-#main-car .active h2{
-  margin: 87px 42px 18px;
+#main-car .active h2, #cat-car .active h2{
   font: 37px 'Museo500';
   color:#231f20;
   letter-spacing: -2px;
+}
+#main-car .active h2{
+  margin: 87px 42px 18px;
 }
 #main-car .active p{
   margin: 0 42px;
@@ -1313,3 +1314,22 @@ footer p{
   letter-spacing: 1px;
   display: inline-block;
 }
+
+/* CATEGORIA interior */
+#cat-car{
+  margin:0;
+}
+#cat-car ul{
+  border:none;
+  padding:0;
+  width: 680px;
+  margin-bottom:10px;
+}
+#cat-car li .boom-info{
+  margin: 0 12px;
+}
+#cat-car li .boom-info h2{
+  margin:5px 0;
+}
+#cat-car li .boom-info p, #cat-car li .boom-info date{color: #828282;}
+
