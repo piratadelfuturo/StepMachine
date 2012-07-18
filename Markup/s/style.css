@@ -762,7 +762,7 @@ h1 a {
   float:left;
 }
 
-#main-car .active h2, #cat-car .active h4{
+#main-car .active h2, #cat-car .active h2, #single-boom .boom-info h2{
   font: 37px 'Museo500';
   color:#231f20;
   letter-spacing: -2px;
@@ -1060,7 +1060,7 @@ aside .sb-bloque{
   display: inline-block;
 }
 .colab-wdgt ul li{
-  width:320px;
+  width: 318px;
   margin-left: -10px;
   float:left;
   padding:10px 0;
@@ -1128,7 +1128,7 @@ aside .sb-bloque{
 }
 .diarios li{
   display: inline-block;
-  width:308px;
+  width:306px;
   padding:10px 0 10px 8px;
   margin-left: -8px;
 }
@@ -1383,10 +1383,10 @@ footer p{
   width: 680px;
   margin-bottom:10px;
 }
-#cat-car li .boom-info{
+#cat-car li .boom-info, #single-boom .boom-info{
   margin: 0 12px;
 }
-#cat-car li .boom-info h4{
+#cat-car li .boom-info h2{
   margin:5px 0;
 }
 #cat-car li .boom-info p, #cat-car li .boom-info date{color: #828282;}
@@ -1551,3 +1551,38 @@ footer p{
 #container.category .boomer .list .moar:hover{
   background: url('/assets/img/boom_43.png') no-repeat 390px 5px, #EAEAEA;
 }
+
+/* INTERIOR BOOOOOOM */
+#container.interior-boom #booms-container{
+  width:680px;
+}
+#single-boom{position:relative;}
+#single-boom .title-flag{
+  width:196px;
+  background: url('../images/cat_flags_l.png') no-repeat 0 -144px;
+  border:none;
+  height: 35px;
+  line-height: 35px;
+  position:absolute;
+  top:320px;
+}
+#single-boom.sexo .title-flag{background-position:0 0;}
+#single-boom.tecnologia .title-flag{background-position: 0 -36px;}
+#single-boom.musica .title-flag{background-position: 0 -72px;}
+#single-boom.cine .title-flag{background-position: 0 -108px;}
+#single-boom.lucky .title-flag{background-position: 0 -144px;}
+
+#single-boom .title-flag span:before{
+  border:none;
+}
+#single-boom date{
+  line-height:25px;
+}
+#single-boom p{
+  color: #828282;
+}
+
+#container.interior-boom aside{width:330px;}
+#container.interior-boom aside .sb-bloque{width:308px;}
+#container.interior-boom aside .colab-wdgt ul li{width: 328px;}
+#container.interior-boom aside .diarios ul li {width: 317px;}
