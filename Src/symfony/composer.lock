@@ -1,5 +1,5 @@
 {
-    "hash": "ef4768dd0121d04797f96669afd991d7",
+    "hash": "1a52ba535daf5207da3a408d7f502f85",
     "packages": [
         {
             "package": "doctrine/common",
@@ -26,8 +26,8 @@
         {
             "package": "facebook/php-sdk",
             "version": "dev-master",
-            "source-reference": "21321ffe121f62f7f7ff1068c42e693f07be912c",
-            "commit-date": "1341949782"
+            "source-reference": "5e14dc3729ba52bd4ee188ffc202611250b2e8f8",
+            "commit-date": "1342487814"
         },
         {
             "package": "friendsofsymfony/facebook-bundle",
@@ -38,8 +38,14 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "080bb9c1a15bcd52166796d4254f24df74b7b796",
-            "commit-date": "1342480671"
+            "source-reference": "341967051bf08776517deecbe01ae8ce2f5ec9fc",
+            "commit-date": "1342615978"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "source-reference": "3c7d023861649e413eb0ccdc7afcfd6a3168ccb4",
+            "commit-date": "1342635074"
         },
         {
             "package": "jms/aop-bundle",
@@ -134,8 +140,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "151b79a6ce3f459e2fa8815cd9f2786eef750993",
-            "commit-date": "1342376835"
+            "source-reference": "f53c4ba1e53f7a36fc24f2bfb7ce78723c0b6569",
+            "commit-date": "1342634181"
         },
         {
             "package": "twig/extensions",
@@ -152,8 +158,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "d45664045194ef62573c153c424508527105041e",
-            "commit-date": "1342424564"
+            "source-reference": "b9ce6063824c15376b781327d3bb432ed5f81b16",
+            "commit-date": "1342645648"
         }
     ],
     "packages-dev": null,
@@ -170,6 +176,7 @@
         "sensio/distribution-bundle": 20,
         "sensio/framework-extra-bundle": 20,
         "sensio/generator-bundle": 20,
-        "friendsofsymfony/facebook-bundle": 20
+        "friendsofsymfony/facebook-bundle": 20,
+        "gedmo/doctrine-extensions": 20
     }
 }

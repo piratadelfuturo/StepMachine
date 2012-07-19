@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Boom\FrontBundle\Entity\Image" table="image">
+        
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        
+        <field name="title"  type="string" length="140" />
+        <field name="description" type="text" />
+        <field name="path" type="string" length="255"/>        
+        <field name="url" type="text" />        
+        
+        <many-to-one target-entity="User" field="user">
+            <join-column name="user_id" nullable="false" >            
+        </join-column>
+        
+        <one-to-many field="booms" target-entity="Boom" mapped-by="image" />
+        
+        <one-to-many field="boomelements" target-entity="Boomelement" mapped-by="image" />
+
+        <many-to-many field="galleries" inversed-by="images">
+            <join-table name="images_galleries">
+                <join-columns>
+                    <join-column name="image_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="gallery_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+                
+    </entity>
+</doctrine-mapping>

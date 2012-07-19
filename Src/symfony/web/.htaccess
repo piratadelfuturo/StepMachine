@@ -1,10 +1,18 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    #<IfModule mod_vhost_alias.c>
-    #    RewriteBase /
-    #</IfModule>
+    <IfModule mod_vhost_alias.c>
+        RewriteBase /
+    </IfModule>
+    
+    php_value memory_limit 128M
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{HTTP_HOST} =sb2.here
+    RewriteRule ^(.*)$ app.php [QSA,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app_dev.php [QSA,L]
+
+
 </IfModule>

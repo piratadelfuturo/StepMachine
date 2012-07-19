@@ -1,0 +1,7 @@
+parameters:
+#    boom_library.example.class: Boom\Bundle\LibraryBundle\Example
+
+services:
+#    boom_library.example:
+#        class: %boom_library.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

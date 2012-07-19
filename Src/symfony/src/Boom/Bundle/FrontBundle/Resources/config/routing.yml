@@ -8,10 +8,10 @@ BoomFrontBundle_logout:
 BoomFrontBundle_login_check:
     pattern:   /login_check
 
-BoomFrontBundle_boomer_page:
-    pattern:   /boomer
-    defaults: { _controller: BoomFrontBundle:User:index }
-
 BoomFrontBundle_homepage:
     pattern:  /
     defaults: { _controller: BoomFrontBundle:Default:index }
+
+BoomFrontBundle_boom:
+    resource: "@BoomFrontBundle/Resources/config/routing/boom.yml"
+    prefix:   /boom
