@@ -23,7 +23,7 @@ class BoomController extends Controller
 
         $entities = $em->getRepository('BoomLibraryBundle:Boom')->findAll();
 
-        return $this->render('BoomFrontBundle:Boom:index.html.twig', array(
+        return $this->render('BoomFrontBundle:Boom:index.html.php', array(
             'entities' => $entities,
         ));
     }
@@ -181,4 +181,5 @@ class BoomController extends Controller
             ->getForm()
         ;
     }
+    
 }

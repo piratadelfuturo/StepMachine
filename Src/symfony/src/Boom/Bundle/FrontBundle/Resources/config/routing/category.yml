@@ -1,0 +1,5 @@
+category:
+    pattern:  /{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:Category:index",page: 1 }
+    requirements:
+      page: \d+

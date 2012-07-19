@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
+        "symfony/symfony": "v2.1.0-BETA3",
         "doctrine/orm": "2.2.*",
         "doctrine/doctrine-bundle": "dev-master",
         "twig/extensions": "dev-master",
@@ -22,7 +22,7 @@
         "jms/di-extra-bundle": "1.0.*",
         "friendsofsymfony/facebook-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "*",
-        "gedmo/doctrine-extensions":      "master-dev"
+        "gedmo/doctrine-extensions":      "v2.3.2"
     },
     "scripts": {
         "post-install-cmd": [

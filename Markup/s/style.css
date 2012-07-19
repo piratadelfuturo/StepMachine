@@ -34,7 +34,7 @@ body {
 }
 
 .sm-flag{
-  background: url('/assets/img/cat_flags.png') no-repeat 0 0;
+  background: url('../images/cat_flags.png') no-repeat 0 0;
   width: 142px;
   display:block;
   line-height: 19px;
@@ -69,7 +69,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
 }
 .title-flag h3 span{
-  background:url('/assets/img/boom_39.png') no-repeat;
+  background:url('../images/boom_39.png') no-repeat;
   padding-left: 50px;
   margin-left: 35px;
 }
@@ -181,7 +181,7 @@ header{position:relative;}
   border: none;
   text-indent: -9999px;
   cursor: pointer;
-  background: url(/assets/img/sprite.png) -124px -140px no-repeat;
+  background: url(../images/sprite.png) -124px -140px no-repeat;
   overflow: hidden;
   outline: none;
 }
@@ -197,7 +197,7 @@ header{position:relative;}
 
 #mini-nav a span {
   text-indent: -9999px;
-  background: url(/assets/img/sprite.png) -80px -112px no-repeat;
+  background: url(../images/sprite.png) -80px -112px no-repeat;
   display: inline-block;
   width: 65px;
   height: 26px;
@@ -276,7 +276,7 @@ header{position:relative;}
 }
 
 h1 a {
-  background: url(/assets/img/sprite.png) 0px 0px no-repeat;
+  background: url(../images/sprite.png) 0px 0px no-repeat;
   display: block;
   width: 280px;
   height: 110px;
@@ -404,7 +404,7 @@ h1 a {
   font: 19px 'Proxima', sans-serif;
   color:#FFF;
   line-height:48px;
-  background:url('/assets/img/boom_11.png') no-repeat 109px 17px , url('/assets/img/flag_showhide.png');
+  background:url('../images/boom_11.png') no-repeat 109px 17px , url('../images/flag_showhide.png');
   z-index: 1;
   text-indent: 28px;
 }
@@ -505,7 +505,7 @@ h1 a {
 }
 
 #usm-pro #filter li, #rt-cont .boom-li .sm-flag{
-  background: url('/assets/img/cat_flags.png') no-repeat 30px 0;
+  background: url('../images/cat_flags.png') no-repeat 30px 0;
 }
 
 #usm-pro #filter .sexo{background-position:30px 0;}
@@ -536,14 +536,14 @@ h1 a {
   cursor: pointer;
 }
 #usm-pro #filter li input[type='checkbox']+label{
-  background: url(/assets/img/sprite-chckbx.png) no-repeat 0 -17px;
+  background: url(../images/sprite-chckbx.png) no-repeat 0 -17px;
   height: 19px;
   display: block;
   line-height: 19px;
 }
 
 #usm-pro #filter li input[type='checkbox']:checked + label {
-  background: url(/assets/img/sprite-chckbx.png) no-repeat 0 0;
+  background: url(../images/sprite-chckbx.png) no-repeat 0 0;
   height: 19px;
   display: block;
   line-height: 19px;
@@ -657,7 +657,7 @@ h1 a {
 }
 
 .boom-li .boom-info .boom-moar{
-  background: url('/assets/img/boom_15.png') no-repeat right center;
+  background: url('../images/boom_15.png') no-repeat right center;
   height: 13px;
   float: left;
   width: 80px;
@@ -707,7 +707,7 @@ h1 a {
   font:200 14px 'Proxima', sans-serif;
   position:absolute;
   text-transform:uppercase;
-  background:url('/assets/img/boom_15.png') no-repeat right center;
+  background:url('../images/boom_15.png') no-repeat right center;
   height: 16px;
 }
 
@@ -715,7 +715,7 @@ h1 a {
   width:125px;
   font:200 14px 'Proxima', sans-serif;
   text-transform:uppercase;
-  background:url('/assets/img/boom_15.png') no-repeat right center;
+  background:url('../images/boom_15.png') no-repeat right center;
   height: 20px;
   float:left;
 }
@@ -732,7 +732,7 @@ h1 a {
   width:38px;
   height:74px;
   display:block;
-  background:url('/assets/img/boom_31.png');
+  background:url('../images/boom_31.png');
   position:absolute;
   top:159px;
   left:0;
@@ -744,7 +744,7 @@ h1 a {
   width:38px;
   height:74px;
   display:block;
-  background:url('/assets/img/boom_34.png');
+  background:url('../images/boom_34.png');
   position:absolute;
   top:156px;
   right:0;
@@ -835,7 +835,7 @@ h1 a {
   display:block;  
 }
 .boomer h3 span, .top-semanal h3 span{
-  background:url('/assets/img/boom_39.png') no-repeat;
+  background:url('../images/boom_39.png') no-repeat;
   padding-left: 50px;
 }
 
@@ -895,7 +895,7 @@ h1 a {
 #booms-container .list-grid span.moar{
   width:159px;
   height:180px;
-  background: url('/assets/img/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
+  background: url('../images/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
   font: 21px 'Museo500';
   color:#373535;
   text-transform: uppercase;
@@ -905,7 +905,7 @@ h1 a {
   margin-left: 5px;
 }
 #booms-container .list-grid span.moar:hover{
-  background: url('/assets/img/boom_43.png') no-repeat center 87px, #EAEAEA;
+  background: url('../images/boom_43.png') no-repeat center 87px, #EAEAEA;
 }
 #booms-container .list-grid .sm-flag{
   position: absolute;
@@ -1044,7 +1044,7 @@ aside .sb-bloque{
   left: 0;
 }
 .tw-wdgt h3 span, .fb-wdgt h3 span{
-  background: url('/assets/img/fb-wdgt.png') no-repeat left center;
+  background: url('../images/fb-wdgt.png') no-repeat left center;
   height: 45px;
   width: 150px;
   display: block;
@@ -1052,7 +1052,7 @@ aside .sb-bloque{
   text-indent: 200px;
 }
 .tw-wdgt h3 span{
-  background: url('/assets/img/tw-wdgt.png') no-repeat left center;
+  background: url('../images/tw-wdgt.png') no-repeat left center;
 }
 
 .colab-wdgt ul{
@@ -1109,7 +1109,7 @@ aside .sb-bloque{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
 }
 .colab-wdgt .ver-all p{
-  background: url('/assets/img/boom_verall.png') no-repeat 290px center;
+  background: url('../images/boom_verall.png') no-repeat 290px center;
   padding-right: 20px;
 }
 
@@ -1235,9 +1235,9 @@ footer{
   right: 10px;
   content: '';
 }
-#f-cont li.about h3:after{background: url('/assets/img/boom_47.png') no-repeat;}
-#f-cont li.contact h3:after{background: url('/assets/img/boom_50.png') no-repeat;}
-#f-cont li.newsletter h3:after{background: url('/assets/img/boom_52.png') no-repeat;}
+#f-cont li.about h3:after{background: url('../images/boom_47.png') no-repeat;}
+#f-cont li.contact h3:after{background: url('../images/boom_50.png') no-repeat;}
+#f-cont li.newsletter h3:after{background: url('../images/boom_52.png') no-repeat;}
 
 
 #f-cont li h3 a{
@@ -1263,12 +1263,12 @@ footer{
   left: 45px;
 }
 #fb-btn{
-  background:url('/assets/img/fb-footer.png') no-repeat;
+  background:url('../images/fb-footer.png') no-repeat;
   border-right:1px solid #FFF;  
 }
 #f-cont #tw-btn{
   width:100px;  
-  background:url('/assets/img/tw-footer.png') no-repeat;
+  background:url('../images/tw-footer.png') no-repeat;
   left: 140px;
 }
 
@@ -1539,7 +1539,7 @@ footer p{
   width:663px;
   height:50px;
   display: block;
-  background: url('/assets/img/boom_rightarrow.png') no-repeat 390px 5px, #EAEAEA;
+  background: url('../images/boom_rightarrow.png') no-repeat 390px 5px, #EAEAEA;
   text-align: center;
   font: 21px 'Museo500';
   line-height: 55px;
@@ -1549,7 +1549,7 @@ footer p{
   margin-bottom:10px;
 }
 #container.category .boomer .list .moar:hover{
-  background: url('/assets/img/boom_43.png') no-repeat 390px 5px, #EAEAEA;
+  background: url('../images/boom_43.png') no-repeat 390px 5px, #EAEAEA;
 }
 
 /* INTERIOR BOOOOOOM */
@@ -1559,7 +1559,7 @@ footer p{
 #single-boom{position:relative;}
 #single-boom .title-flag{
   width:196px;
-  background: url('../images/cat_flags_l.png') no-repeat 0 -144px;
+  background: url('../imagess/cat_flags_l.png') no-repeat 0 -144px;
   border:none;
   height: 35px;
   line-height: 35px;

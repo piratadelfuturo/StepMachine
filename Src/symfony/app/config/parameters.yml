@@ -12,7 +12,7 @@ parameters:
     mailer_password:   ~
 
     locale:            es
-    secret:            ava134ASbtger42223
+    secret:            d2658bb5196a82ca502e1ca2dcf49745b5fec314
     
     facebook_app_id:     422049887838436
     facebook_app_secret: cff909c9775314e75f2109850b132e20

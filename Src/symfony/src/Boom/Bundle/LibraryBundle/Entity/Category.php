@@ -35,7 +35,11 @@ class Category {
     
     /**
      * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
-     **/
+     * @ORM\JoinTable(name="booms_categories",
+     *      inverseJoinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     *      )
+     */
     protected $booms;    
 
     public function __construct()
