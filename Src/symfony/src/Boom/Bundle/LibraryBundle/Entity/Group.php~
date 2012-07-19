@@ -1,0 +1,127 @@
+<?php
+
+namespace Boom\Bundle\FrontBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="group") 
+ */
+class Group {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=140)
+     */
+    protected $name;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $role;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
+     **/
+    protected $users;
+    
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Group
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set role
+     *
+     * @param integer $role
+     * @return Group
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return integer 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Add users
+     *
+     * @param Boom\Bundle\FrontBundle\Entity\Boom $users
+     * @return Group
+     */
+    public function addUser(\Boom\Bundle\FrontBundle\Entity\Boom $users)
+    {
+        $this->users[] = $users;
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param <variableType$users
+     */
+    public function removeUser(\Boom\Bundle\FrontBundle\Entity\Boom $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+}
