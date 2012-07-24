@@ -5,8 +5,6 @@
         RewriteBase /
     </IfModule>
     
-    php_value memory_limit 128M
-
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{HTTP_HOST} =sb2.here
     RewriteRule ^(.*)$ app.php [QSA,L]

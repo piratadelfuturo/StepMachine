@@ -11,7 +11,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            es
+    locale:            es_LA
     secret:            d2658bb5196a82ca502e1ca2dcf49745b5fec314
     
     facebook_app_id:     422049887838436

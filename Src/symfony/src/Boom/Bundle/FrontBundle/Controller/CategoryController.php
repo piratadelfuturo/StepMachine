@@ -23,8 +23,9 @@ class CategoryController extends Controller {
 
         $category = $em->getRepository('BoomLibraryBundle:Category')->findOneBySlug($slug);
 
-        $latest = $em->getRepository('BoomLibraryBundle:Boom')->findByCategories($category);
+        //$latest = $em->getRepository('BoomLibraryBundle:Boom')->findByCategories($category);
         
+        $latest = array();
         
         
         return $this->render('BoomFrontBundle:Category:index.html.php',

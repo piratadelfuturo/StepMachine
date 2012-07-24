@@ -25,27 +25,33 @@
     </div>
     <p id="copyright">Copyright © 2012 · All Rights Reserved · info@7boom.mx</p>
     <script type="text/javascript">
-        function goLogIn(){
-            window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check') ?>";
-        }
-
-        function onFbInit() {
+        (function(window){        
+        window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK')? 'true':'false'; ?>;                
+        
+        window.onFbInit = function(response) {
             if (typeof(FB) != 'undefined' && FB != null ) {
+                FB.getLoginStatus(function(response){});
+                
+                FB.logout(function(response) {
+                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
+                });
+                
                 FB.Event.subscribe('auth.statusChange', function(response) {
-                    if (response.session || response.authResponse) {
-                        setTimeout(goLogIn, 500);
+                    if (!response.session || !response.authResponse) {
+                        var FBLogin = function(){
+                            var resp = response;
+                            if(resp.status == 'connected' && window.FBLogin == false){
+                                window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb') ?>";
+                            }
+                        }
+                        setTimeout( FBLogin , 500);                        
                     } else {
                         window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
                     }
                 });
-            }
-        }
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=181161491932933";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+            }                        
+           }
+        })(window);
+        
     </script>
 </footer>

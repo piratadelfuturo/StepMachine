@@ -720,7 +720,7 @@ h1 a {
   float:left;
 }
 
-/*END USER BOX*/
+/*END USER BOX /assets/img */
 
 /* MAIN CAR */
 #main-car{
@@ -728,7 +728,7 @@ h1 a {
   position:relative;
 }
 
-#main-car .prev{
+#main-car .prev, #cat-car .prev{
   width:38px;
   height:74px;
   display:block;
@@ -740,7 +740,7 @@ h1 a {
   text-indent:100px;
 }
 
-#main-car .next{
+#main-car .next, #cat-car .next{
   width:38px;
   height:74px;
   display:block;
@@ -1367,6 +1367,7 @@ footer p{
 #cat-car{
   margin:0;
   width: 680px;
+  position:relative;
 }
 #cat-car .title-flag{
   height: 45px;
@@ -1376,6 +1377,9 @@ footer p{
 #cat-car .title-flag span::before {
   border-top: 23px solid transparent;
   border-bottom: 23px solid transparent;
+}
+#cat-car .next, #cat-car .prev{
+  top:207px;
 }
 #cat-car ul{
   border:none;
@@ -1586,3 +1590,83 @@ footer p{
 #container.interior-boom aside .sb-bloque{width:308px;}
 #container.interior-boom aside .colab-wdgt ul li{width: 328px;}
 #container.interior-boom aside .diarios ul li {width: 317px;}
+
+#single-boom .social{
+  border: 1px solid #DFDFDF;
+  border-left:none;
+  border-right:none;
+  margin-bottom:10px;
+  font: 12px 'Museo500', sans-serif;
+  text-transform:uppercase;
+  padding: 0 15px;
+}
+#single-boom .social span{
+  display: inline-block;
+  overflow: hidden;
+  height: 30px;
+  line-height: 29px;
+  margin:5px 0;
+}
+#single-boom .social .btn-fb, #single-boom .social .btn-tw, #single-boom .social .btn-fav{
+
+  background: url('../images/sprite_redes.png') no-repeat 0 0;
+  text-indent:50px;
+  line-height: 30px;
+  margin:0 5px;
+}
+
+#single-boom .social .btn-fb{
+  width: 30px;
+  height:30px;
+}
+#single-boom .social .btn-fb:hover{
+  background-position:0 -31px;
+}
+#single-boom .social .btn-tw{
+  width:42px;
+  height:30px;  
+  background-position: -31px 0;
+}
+#single-boom .social .btn-tw:hover{
+  background-position: -31px -32px;
+}
+
+#single-boom .social .btn-fav{
+  width: 30px;
+  height: 30px;
+  background-position: -78px 0;
+}
+#single-boom .social .btn-fav:hover{
+  background-position: -78px -31px;
+}
+#single-boom .social .fav{
+  float:right;
+  border-left:1px solid #dfdfdf;
+  padding-left: 10px;
+}
+#single-boom .autor{
+  position:relative;
+  height:85px;
+  margin-bottom: 10px;
+}
+#single-boom .autor img, #single-boom .autor h3, #single-boom .autor p{
+  display:block;
+}
+#single-boom .autor img{
+  float: left;
+  margin-right:10px;
+}
+#single-boom .autor span{
+  position:absolute;
+  bottom:0;
+  width:535px;
+}
+#single-boom .autor h3{
+  font: 16px 'Museo500', sans-serif;
+  color: #828282;
+}
+#single-boom .autor .ver-moar, #single-boom .autor p{
+  font: 13px 'Museo500', sans-serif;  
+}
+#single-boom .autor .ver-moar{text-indent:5px;}
+

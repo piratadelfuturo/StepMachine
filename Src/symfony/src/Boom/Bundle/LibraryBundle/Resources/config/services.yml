@@ -1,7 +1,28 @@
 parameters:
-#    boom_library.example.class: Boom\Bundle\LibraryBundle\Example
+    boom_library.facebook.user.class: Boom\Bundle\LibraryBundle\Security\User\Provider\FacebookProvider
+    boom_library.twitter.user.class: Boom\Bundle\LibraryBundle\Security\User\Provider\TwitterProvider
+    boom_library.social.user.class: Boom\Bundle\LibraryBundle\Security\User\Provider\SocialProvider
 
 services:
-#    boom_library.example:
-#        class: %boom_library.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    boom_library.facebook.user:
+        class: %boom_library.facebook.user.class%
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"
+            container: "@service_container"
+    #boom_library.twitter.user:
+    #    class: %boom_library.twitter.user.class%
+    #    arguments:
+    #        twitter_oauth: "@fos_twitter.api"
+    #        userManager: "@fos_user.user_manager"
+    #        validator: "@validator"
+    #        session: "@session"
+    #boom_library.social.user:
+    #    class: %boom_library.social.user.class%
+    #    arguments:
+    #        facebook: "@fos_facebook.api"
+    #        twitter_oauth: "@fos_twitter.api"
+    #        userManager: "@fos_user.user_manager"
+    #        validator: "@validator"
+    #        session: "@session"

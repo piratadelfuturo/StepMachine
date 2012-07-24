@@ -7,7 +7,7 @@
     <div class="banner1 sb-bloque">
         BANNER
     </div>
-    <?php echo $view['actions']->render('BoomFrontBundle:Widget:facebook'); ?>
+    <?php echo $view->render('BoomFrontBundle:Widget:facebook.html.php'); ?>
     <div class="tw-wdgt sb-bloque">
         <h3><span>twitter</span></h3>
     </div>

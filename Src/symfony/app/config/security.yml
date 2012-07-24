@@ -4,13 +4,22 @@ jms_security_extra:
 
 security:
     encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
         Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
+        ROLE_TWITTER:     [IS_AUTHENTICATED_REMEMBERED, ROLE_USER, ROLE_SOCIAL]
+        ROLE_FACEBOOK:    [IS_AUTHENTICATED_REMEMBERED, ROLE_USER, ROLE_SOCIAL]
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        fos_facebook_provider:
+            id: boom_library.facebook.user
+        #fos_twitter_provider:
+        #    id: boom_library.twitter.user
+        fos_userbundle_provider:
+            id: fos_user.user_provider.username
         in_memory:
             memory:
                 users:
@@ -38,21 +47,26 @@ security:
                 default_target_path: /admin
         boom_area:
             pattern:    ^/
-            #logout:
-            #    path: /logout
-            #    target: /
+            remember_me:
+              key:      "%secret%"
+              lifetime: 3600
+              path:     /
+              domain: ~
             #form_login:
             #    check_path: /boomer/login_check
             #    login_path: /login
             #    default_target_path: /boomer
-            anonymous: ~            
             fos_facebook:
                 app_url: "http://apps.facebook.com/echo_mx/"
                 server_url: "http://sb.here/"
-                login_path: /login
-                check_path: /login_check
+                check_path: /login_check_fb
+                login_path: /login_fb
                 default_target_path: /
+                provider: fos_facebook_provider
+            anonymous: true            
             logout:
+                path: /logout
+                target: /
                 handlers: ["fos_facebook.logout_handler"]
     access_control:
         - path: ^/_internal/secure
@@ -67,4 +81,4 @@ security:
         - path: ^/boomer
           roles: IS_AUTHENTICATED_FULLY
         - path: ^/
-          roles: IS_AUTHENTICATED_ANONYMOUSLY
+          roles: [IS_AUTHENTICATED_ANONYMOUSLY]
