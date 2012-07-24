@@ -9,7 +9,7 @@ class UserController extends Controller
     {        
         
         return $this->render(
-                'BoomFrontBundle:User:widget/userBlock.html.php'
+                'BoomFrontBundle:User:blocks/header.html.php'
                 );
     }
     

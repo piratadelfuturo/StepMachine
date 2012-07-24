@@ -1,16 +1,17 @@
 <?php
 
 namespace Boom\Bundle\LibraryBundle\Entity;
-   
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user") 
+ * @ORM\Table(name="bm_user") 
  */
-class User {
+class User extends BaseUser {
 
     /**
      * @ORM\Id
@@ -18,277 +19,99 @@ class User {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-       
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255)
+     */
+    protected $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255)
+     */
+    protected $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebookId", type="string", length=255)
+     */
+    protected $facebookId;
+
     /**
      * @ORM\Column(type="string", length=140)
      */
-    protected $facebook_id; 
-    
-    /**
-     * @ORM\Column(type="string", length=140)
-     */    
     protected $nickname;
-    
+
     /**
      * @ORM\Column(type="string", length=140)
-     */    
+     */
     protected $name;
-    
-    /**
-     * @ORM\Column(type="string", length=140)
-     */    
-    protected $email;
-    
+
     /**
      * @ORM\Column(type="text", length=140)
-     */    
+     */
     protected $bio;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
-     **/
+     * */
     protected $booms;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
-     **/
+     * */
     protected $images;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user")
-     **/
+     * */
     protected $galleries;
-    
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="Level", inversedBy="users")
-     * @ORM\JoinTable(name="users_levels")
-     **/
-    protected $levels;
-    
-    public function __construct()
-    {
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="bm_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+
+    public function __construct() {
+        parent::__construct();
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
         $this->levels = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
+
+
+    public function serialize() {
+        return serialize(array($this->facebookId, parent::serialize()));
+    }
+
+    public function unserialize($data) {
+        list($this->facebookId, $parentData) = unserialize($data);
+        parent::unserialize($parentData);
     }
 
     /**
-     * Set facebook_id
-     *
-     * @param string $facebookId
-     * @return User
+     * @param Array
      */
-    public function setFacebookId($facebookId)
-    {
-        $this->facebook_id = $facebookId;
-        return $this;
+    public function setFBData($fbdata) {
+        if (isset($fbdata['id'])) {
+            $this->setFacebookId($fbdata['id']);
+            $this->addRole('ROLE_FACEBOOK');
+        }
+        if (isset($fbdata['first_name'])) {
+            $this->setName($fbdata['first_name']);
+        }
+        if (isset($fbdata['email'])) {
+            $this->setEmail($fbdata['email']);
+        }
     }
-
-    /**
-     * Get facebook_id
-     *
-     * @return string 
-     */
-    public function getFacebookId()
-    {
-        return $this->facebook_id;
-    }
-
-    /**
-     * Set nickname
-     *
-     * @param string $nickname
-     * @return User
-     */
-    public function setNickname($nickname)
-    {
-        $this->nickname = $nickname;
-        return $this;
-    }
-
-    /**
-     * Get nickname
-     *
-     * @return string 
-     */
-    public function getNickname()
-    {
-        return $this->nickname;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set bio
-     *
-     * @param text $bio
-     * @return User
-     */
-    public function setBio($bio)
-    {
-        $this->bio = $bio;
-        return $this;
-    }
-
-    /**
-     * Get bio
-     *
-     * @return text 
-     */
-    public function getBio()
-    {
-        return $this->bio;
-    }
-
-    /**
-     * Add booms
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Boom $booms
-     * @return User
-     */
-    public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
-        $this->booms[] = $booms;
-        return $this;
-    }
-
-    /**
-     * Remove booms
-     *
-     * @param <variableType$booms
-     */
-    public function removeBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
-        $this->booms->removeElement($booms);
-    }
-
-    /**
-     * Get booms
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getBooms()
-    {
-        return $this->booms;
-    }
-
-    /**
-     * Add images
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Image $images
-     * @return User
-     */
-    public function addImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
-        $this->images[] = $images;
-        return $this;
-    }
-
-    /**
-     * Remove images
-     *
-     * @param <variableType$images
-     */
-    public function removeImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
-        $this->images->removeElement($images);
-    }
-
-    /**
-     * Get images
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * Add galleries
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Gallery $galleries
-     * @return User
-     */
-    public function addGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
-        $this->galleries[] = $galleries;
-        return $this;
-    }
-
-    /**
-     * Remove galleries
-     *
-     * @param <variableType$galleries
-     */
-    public function removeGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
-        $this->galleries->removeElement($galleries);
-    }
-
-    /**
-     * Get galleries
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getGalleries()
-    {
-        return $this->galleries;
-    }
-
 
 }

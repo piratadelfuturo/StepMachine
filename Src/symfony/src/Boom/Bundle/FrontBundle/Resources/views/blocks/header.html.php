@@ -5,8 +5,16 @@
         <li><a href="#">CREA TU <span>boom</span></a></li>
     </ul>
     <div id="tb-rb">
-        <a href="#" >Bienvenido <span>Vato</span></a>
-        <?php echo $view['facebook']->loginButton(array('autologoutlink' => true)) ?>
+        <!--<a href="#" >Bienvenido <span>Vato</span></a> -->
+        <div style="overflow: hidden;" >
+            <?php echo $view['facebook']->loginButton(
+                    array(
+                        'autologoutlink' => true,
+                        'size' => 'large'
+                        ),
+                    'BoomFrontBundle::blocks/facebook/loginButton.html.php'
+                    ) ?>
+        </div>
         <form>
             <input type="submit" name="sbm-src" value="Buscar"  />
             <input type="text" name="src-box"/>

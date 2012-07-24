@@ -19,7 +19,9 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
+            //new FOS\TwitterBundle\FOSTwitterBundle(),
             new Boom\Bundle\LibraryBundle\BoomLibraryBundle(),
             new Boom\Bundle\FrontBundle\BoomFrontBundle(),
             new Boom\Bundle\BackBundle\BoomBackBundle()

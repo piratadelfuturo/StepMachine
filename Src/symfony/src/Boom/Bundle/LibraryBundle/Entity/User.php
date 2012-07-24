@@ -1,16 +1,17 @@
 <?php
 
 namespace Boom\Bundle\LibraryBundle\Entity;
-   
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user") 
+ * @ORM\Table(name="bm_user") 
  */
-class User {
+class User extends BaseUser {
 
     /**
      * @ORM\Id
@@ -18,92 +19,177 @@ class User {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-       
+
     /**
-     * @ORM\Column(type="string", length=140)
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255 , nullable=true)
      */
-    protected $facebook_id; 
-    
+    protected $firstname;
+
     /**
-     * @ORM\Column(type="string", length=140)
-     */    
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     */
+    protected $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
+     */
+    protected $facebookId;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="twitterId", type="string", length=255, nullable=true)
+     */
+    protected $twitterId;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="twitter_username", type="string", length=255, nullable=true)
+     */
+    protected $twitter_username;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     protected $nickname;
-    
+
     /**
-     * @ORM\Column(type="string", length=140)
-     */    
+     * @ORM\Column(type="string", length=140,nullable=true)
+     */
     protected $name;
-    
+
     /**
-     * @ORM\Column(type="string", length=140)
-     */    
-    protected $email;
-    
-    /**
-     * @ORM\Column(type="text", length=140)
-     */    
+     * @ORM\Column(type="text", length=140,nullable=true)
+     */
     protected $bio;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
-     **/
+     * */
     protected $booms;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
-     **/
+     * */
     protected $images;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user")
-     **/
+     * */
     protected $galleries;
-    
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="Level", inversedBy="users")
-     * @ORM\JoinTable(name="users_levels")
-     **/
-    protected $levels;
-    
-    public function __construct()
-    {
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="bm_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+
+    public function __construct() {
+        parent::__construct();
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->levels = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
+    public function serialize() {
+        return serialize(array($this->facebookId, $this->twitterId, parent::serialize()));
+    }
+
+    public function unserialize($data) {
+        list($this->facebookId, $this->twitterId, $parentData) = unserialize($data);
+        parent::unserialize($parentData);
+    }
+
+    /**
+     * @param Array
+     */
+    public function setFBData($fbdata) {
+        if (isset($fbdata['id'])) {
+            $this->setFacebookId($fbdata['id']);
+        }
+        if (isset($fbdata['first_name'])) {
+            $this->setFirstname($fbdata['first_name']);
+        }
+        if (isset($fbdata['last_name'])) {
+            $this->setLastname($fbdata['last_name']);
+        }
+
+        if ($this->getUsername() == null || $this->getUsername() == '') {
+            //$this->setUsername($fbdata['username']);
+        }
+
+        if (isset($fbdata['email'])) {
+            //$this->setEmail($fbdata['email']);
+        }
+    }
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
-     * Set facebook_id
+     * Set firstname
      *
-     * @param string $facebookId
+     * @param string $firstname
      * @return User
      */
-    public function setFacebookId($facebookId)
-    {
-        $this->facebook_id = $facebookId;
+    public function setFirstname($firstname) {
+        $this->firstname = $firstname;
         return $this;
     }
 
     /**
-     * Get facebook_id
+     * Get firstname
      *
      * @return string 
      */
-    public function getFacebookId()
-    {
-        return $this->facebook_id;
+    public function getFirstname() {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return User
+     */
+    public function setLastname($lastname) {
+        $this->lastname = $lastname;
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname() {
+        return $this->lastname;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return string 
+     */
+    public function getFacebookId() {
+        return $this->facebookId;
     }
 
     /**
@@ -112,8 +198,7 @@ class User {
      * @param string $nickname
      * @return User
      */
-    public function setNickname($nickname)
-    {
+    public function setNickname($nickname) {
         $this->nickname = $nickname;
         return $this;
     }
@@ -123,8 +208,7 @@ class User {
      *
      * @return string 
      */
-    public function getNickname()
-    {
+    public function getNickname() {
         return $this->nickname;
     }
 
@@ -134,8 +218,7 @@ class User {
      * @param string $name
      * @return User
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
         return $this;
     }
@@ -145,31 +228,8 @@ class User {
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -178,8 +238,7 @@ class User {
      * @param text $bio
      * @return User
      */
-    public function setBio($bio)
-    {
+    public function setBio($bio) {
         $this->bio = $bio;
         return $this;
     }
@@ -189,8 +248,7 @@ class User {
      *
      * @return text 
      */
-    public function getBio()
-    {
+    public function getBio() {
         return $this->bio;
     }
 
@@ -200,8 +258,7 @@ class User {
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $booms
      * @return User
      */
-    public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
+    public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms) {
         $this->booms[] = $booms;
         return $this;
     }
@@ -211,8 +268,7 @@ class User {
      *
      * @param <variableType$booms
      */
-    public function removeBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
+    public function removeBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms) {
         $this->booms->removeElement($booms);
     }
 
@@ -221,8 +277,7 @@ class User {
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getBooms()
-    {
+    public function getBooms() {
         return $this->booms;
     }
 
@@ -232,8 +287,7 @@ class User {
      * @param Boom\Bundle\LibraryBundle\Entity\Image $images
      * @return User
      */
-    public function addImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
+    public function addImage(\Boom\Bundle\LibraryBundle\Entity\Image $images) {
         $this->images[] = $images;
         return $this;
     }
@@ -243,8 +297,7 @@ class User {
      *
      * @param <variableType$images
      */
-    public function removeImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
+    public function removeImage(\Boom\Bundle\LibraryBundle\Entity\Image $images) {
         $this->images->removeElement($images);
     }
 
@@ -253,8 +306,7 @@ class User {
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getImages()
-    {
+    public function getImages() {
         return $this->images;
     }
 
@@ -264,8 +316,7 @@ class User {
      * @param Boom\Bundle\LibraryBundle\Entity\Gallery $galleries
      * @return User
      */
-    public function addGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
+    public function addGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries) {
         $this->galleries[] = $galleries;
         return $this;
     }
@@ -275,8 +326,7 @@ class User {
      *
      * @param <variableType$galleries
      */
-    public function removeGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
+    public function removeGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries) {
         $this->galleries->removeElement($galleries);
     }
 
@@ -285,42 +335,107 @@ class User {
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getGalleries()
-    {
+    public function getGalleries() {
         return $this->galleries;
     }
 
-
-
     /**
-     * Add levels
+     * Add groups
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\Level $levels
+     * @param Boom\Bundle\LibraryBundle\Entity\Group $groups
      * @return User
      */
-    public function addLevel(\Boom\Bundle\LibraryBundle\Entity\Level $levels)
-    {
-        $this->levels[] = $levels;
+    public function addGroup(GroupInterface $groups) {
+        $this->groups[] = $groups;
         return $this;
     }
 
     /**
-     * Remove levels
+     * Remove groups
      *
-     * @param <variableType$levels
+     * @param <variableType$groups
      */
-    public function removeLevel(\Boom\Bundle\LibraryBundle\Entity\Level $levels)
-    {
-        $this->levels->removeElement($levels);
+    public function removeGroup(GroupInterface $groups) {
+        $this->groups->removeElement($groups);
     }
 
     /**
-     * Get levels
+     * Get groups
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getLevels()
-    {
-        return $this->levels;
+    public function getGroups() {
+        return $this->groups;
     }
+
+    /**
+     * Get the full name of the user (first + last name)
+     * @return string
+     */
+    public function getFullName() {
+        return $this->getFirstName() . ' ' . $this->getLastname();
+    }
+
+    /**
+     * @param string $facebookId
+     * @return void
+     */
+    public function setFacebookId($facebookId) {
+        $this->facebookId = $facebookId;
+        $this->salt = '';
+    }
+
+    /**
+     * Set twitterID
+     *
+     * @param string $twitterID
+     */
+    public function setTwitterId($twitterId) {
+        $this->twitterId = $twitterId;
+        $this->salt = '';
+    }
+
+    /**
+     * Get twitterID
+     *
+     * @return string 
+     */
+    public function getTwitterId() {
+        return $this->twitterId;
+    }
+
+    /**
+     * Set twitter_username
+     *
+     * @param string $twitterUsername
+     */
+    public function setTwitterUsername($twitterUsername) {
+        $this->twitter_username = $twitterUsername;
+    }
+
+    /**
+     * Get twitter_username
+     *
+     * @return string 
+     */
+    public function getTwitterUsername() {
+        return $this->twitter_username;
+    }
+
+    public function setTwitterData(array $info) {
+
+        $username = $info->screen_name;
+        $bmUsername = $this->getUsername();
+
+        $user->setTwitterID($info->id);
+        $user->setTwitterUsername($username);
+        //$user->setEmail('');
+
+        if (is_null($bmUsername) || empty($bmUsername)) {
+            $this->setUsername($username);
+        }
+
+        //$user->setFirstname($info->name);
+    }
+
 }
