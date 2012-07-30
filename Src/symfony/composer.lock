@@ -1,5 +1,5 @@
 {
-    "hash": "82b2f00f353e57cda1001eef206baa20",
+    "hash": "0952e63c07e6598e5b3012edce390b4e",
     "packages": [
         {
             "package": "doctrine/common",
@@ -14,14 +14,14 @@
         {
             "package": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "source-reference": "c9ea46d1f0c48bb88bb87b44214fe44e03c0c692",
-            "commit-date": "1341405737"
+            "source-reference": "62134e6a8dd3f330131ee6a970f0cee1d7760c1d",
+            "commit-date": "1343203511"
         },
         {
             "package": "doctrine/orm",
             "version": "2.2.x-dev",
-            "source-reference": "5d2a3bcb3b467f41ee58575764f3ba84937f76e4",
-            "commit-date": "1341676080"
+            "source-reference": "7d343302a8f886be9cfb2a9c8345a95740dcfde9",
+            "commit-date": "1343560954"
         },
         {
             "package": "facebook/php-sdk",
@@ -34,6 +34,12 @@
             "version": "dev-master",
             "source-reference": "2492024a5778f82bc24c96e6022aedf3be0df65b",
             "commit-date": "1342339065"
+        },
+        {
+            "package": "friendsofsymfony/jsrouting-bundle",
+            "version": "dev-master",
+            "source-reference": "69a8b5cb437ce415a72ad12274bb59a06b2c0cf5",
+            "commit-date": "1343207051"
         },
         {
             "package": "friendsofsymfony/twitter-bundle",
@@ -50,8 +56,8 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "9898253452a37733d278af6fc595b059327c4218",
-            "commit-date": "1342872222"
+            "source-reference": "ad263cf7112bd1f725db407266874f390a73917e",
+            "commit-date": "1343504231"
         },
         {
             "package": "jms/aop-bundle",
@@ -104,14 +110,14 @@
         {
             "package": "sensio/framework-extra-bundle",
             "version": "dev-master",
-            "source-reference": "e9ac8f1a911ed29e30296c7f1549f53d4c94eddf",
-            "commit-date": "1342084432"
+            "source-reference": "a0d76a65aeb70be6f25754a4482e84a9a28fb614",
+            "commit-date": "1343456386"
         },
         {
             "package": "sensio/generator-bundle",
             "version": "dev-master",
-            "source-reference": "c17dbddefe517e3adfcbeaa1ab7cef3e572d29c6",
-            "commit-date": "1342195488"
+            "source-reference": "4436c2e24301123fb413baf3f78cd93bbc016c07",
+            "commit-date": "1343291371"
         },
         {
             "package": "swiftmailer/swiftmailer",
@@ -128,8 +134,8 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "source-reference": "e5e9a56a872d9e1f305d14cd8296bf77888388af",
-            "commit-date": "1342820047"
+            "source-reference": "a5daf7ca4588f88105c808de9a28ba1e66bfa082",
+            "commit-date": "1343161458"
         },
         {
             "package": "symfony/monolog-bundle",
@@ -162,8 +168,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "657de7bdeb680815e0df95f63da9f81e1533d2ea",
-            "commit-date": "1342953178"
+            "source-reference": "51c866f415bbee670cd9ba13591307bce8dabdca",
+            "commit-date": "1343464333"
         }
     ],
     "packages-dev": null,
@@ -182,6 +188,7 @@
         "sensio/generator-bundle": 20,
         "friendsofsymfony/facebook-bundle": 20,
         "friendsofsymfony/twitter-bundle": 20,
-        "gedmo/doctrine-extensions": 20
+        "gedmo/doctrine-extensions": 20,
+        "friendsofsymfony/jsrouting-bundle": 20
     }
 }

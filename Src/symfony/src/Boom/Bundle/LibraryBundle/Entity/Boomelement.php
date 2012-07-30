@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="boomelement")
  */
-class Boomelement {
+class Boomelement extends DomainObject{
 
     /**
      * @ORM\Id
@@ -16,17 +16,17 @@ class Boomelement {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=140)
      */
-    protected $title;
-    
+    public $title;
+
     /**
      * @ORM\Column(type="text")
      */
     protected $content;
-    
+
     /**
      * @ORM\Column(type="integer")
      */
@@ -44,12 +44,12 @@ class Boomelement {
      **/
     protected $image;
 
-    
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ class Boomelement {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -93,7 +93,7 @@ class Boomelement {
     /**
      * Get content
      *
-     * @return text 
+     * @return text
      */
     public function getContent()
     {
@@ -115,7 +115,7 @@ class Boomelement {
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -137,7 +137,7 @@ class Boomelement {
     /**
      * Get boom
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\Boom 
+     * @return Boom\Bundle\LibraryBundle\Entity\Boom
      */
     public function getBoom()
     {
@@ -159,7 +159,7 @@ class Boomelement {
     /**
      * Get image
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\Image 
+     * @return Boom\Bundle\LibraryBundle\Entity\Image
      */
     public function getImage()
     {

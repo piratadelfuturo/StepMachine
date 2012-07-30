@@ -49,12 +49,12 @@ $.fn.wl_Widget = function (method) {
 						'class': 'icon i_' + _opts.icon
 					}).appendTo($handle);
 				}
-				
+
 				//if sortable add a class
 				if (_opts.sortable) {
 					$widget.addClass('sortable');
 				}
-				
+
 				//if collapsible
 				if(_opts.collapsible){
 					//add the collapse button
@@ -62,22 +62,22 @@ $.fn.wl_Widget = function (method) {
 						'class': 'collapse',
 						'title': _opts.text.collapse
 					}).appendTo($handle);
-				
+
 					//collapse if set
 					if (_opts.collapsed) {
 						$content.hide();
 						$widget.addClass('collapsed');
 						$handle.find('a.collapse').attr('title',_opts.text.expand);
 					}
-					
-					
+
+
 					//handle the collapse button (touchstart is required for iOS devices)
 					$handle.delegate('a.collapse', 'click.wl_Widget touchstart.wl_Widget', function (event) {
 						var _opts = $widget.data('wl_Widget') || _opts,
 							_content = $widget.find('div').eq(0);
-						
+
 						if (_content.is(':hidden')) {
-							
+
 							//expand hidden content
 							_content.slideDown(100, function () {
 								$widget.removeClass('collapsed').data('wl_Widget').collapsed = false;
@@ -86,12 +86,12 @@ $.fn.wl_Widget = function (method) {
 								_opts.onExpand.call($widget[0]);
 								//save
 								$.fn.wl_Widget.methods.save();
-								
+
 								//trigger resize for some plugins
 								$(window).resize();
 							});
 						} else {
-							
+
 							//hide content
 							$content.slideUp(100, function () {
 								$widget.addClass('collapsed').data('wl_Widget').collapsed = true;
@@ -103,24 +103,24 @@ $.fn.wl_Widget = function (method) {
 							});
 						}
 						return false;
-						
+
 					//doublclick is equal to collapse button
 					}).bind('dblclick', function () {
 						$handle.find('a.collapse').trigger('click');
 						return false;
 					});
-				
+
 				}
-				
+
 				//handle the reload button (touchstart is required for iOS devices)
 				$handle.delegate('a.reload', 'click.wl_Widget touchstart.wl_Widget', function (event) {
 					var _opts = $widget.data('wl_Widget') || _opts,
 						_content = $widget.find('div').eq(0);
-						
+
 					$widget.addClass('loading');
 					//set height to prevent "jumping"
 					_content.height($content.height());
-					
+
 					//removeContent and replace it with a loading information
 					if (_opts.removeContent) {
 						_content.html(_opts.text.loading);
@@ -128,12 +128,12 @@ $.fn.wl_Widget = function (method) {
 					_content.load(_opts.load, function (response, status, xhr) {
 						$widget.removeClass('loading');
 						_content.height('auto');
-						
+
 						//error occured
 						if (status == "error") {
 							_content.html(xhr.status + " " + xhr.statusText);
 						}
-						
+
 						//autoreload is set
 						if (_opts.reload) {
 							clearTimeout($widget.data('wl_Widget').timeout);
@@ -143,7 +143,7 @@ $.fn.wl_Widget = function (method) {
 						}
 					});
 					return false;
-					
+
 				});
 
 				//prevent other anochrs to bubble up the DOM
@@ -163,10 +163,10 @@ $.fn.wl_Widget = function (method) {
 				}
 			});
 
-			
+
 			//Handling sortable and restoring positions
-			
-			
+
+
 			var $maincontent = $('#content');
 
 			//save the total count of widgets
@@ -184,18 +184,18 @@ $.fn.wl_Widget = function (method) {
 
 				//get data from the storage
 				var wl_Store = new $.wl_Store('wl_' + location.pathname.toString());
-				
+
 				//iterate thru the containers
 				$container.each(function (i, cont) {
 					var widgets = wl_Store.get('widgets_' + i),
 						$cont = $(this);
 					if (!widgets) return false;
-					
+
 					//iterate thru the widgets from the container id i
 					$.each(widgets, function (widget, options) {
 
 						var _widget = $('#' + widget);
-						
+
 
 						//widget should be collpased
 						(options.collapsed && _widget.data('wl_Widget').collapsible) ? _widget.addClass('collapsed').find('div').eq(0).hide().data('wl_Widget', {
@@ -217,8 +217,8 @@ $.fn.wl_Widget = function (method) {
 						}
 					});
 				});
-				
-				
+
+
 				//use jQuery UI sortable plugin for the widget sortable function
 				$container.sortable({
 					items: $container.find('div.widget.sortable'),
@@ -279,11 +279,11 @@ $.fn.wl_Widget.methods = {
 
 		var $containers = $('div.widgets'),
 			wl_Store = new $.wl_Store('wl_' + location.pathname.toString());
-			
+
 		//iterate thru the containers
 		$containers.each(function (containerid, e) {
 			var _widgets = {};
-			
+
 			//get info from all widgets from that container
 			$(this).find('div.widget').each(function (pos, e) {
 				var _t = $(this);
@@ -292,7 +292,7 @@ $.fn.wl_Widget.methods = {
 					collapsed: _t.find('div').eq(0).is(':hidden')
 				};
 			});
-			
+
 			//store the info
 			wl_Store.save('widgets_' + containerid, _widgets);
 		});

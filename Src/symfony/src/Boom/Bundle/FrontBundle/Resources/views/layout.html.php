@@ -3,7 +3,10 @@
       xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>7boom</title>
+  <title>7boom - <?php $view['slots']->output('title', 'likes your luck') ?></title>
+  
+  <meta name="description" content="<?php $view['slots']->output('description', 'likes your luck') ?>">
+  
   <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" /> 
   
   <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boomfront/css/webfonts.css');?>">

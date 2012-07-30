@@ -24,8 +24,14 @@ class BoomType extends AbstractType {
                 'image', 'file', array(
             'required' => false
         ));
-        
-        
+        $builder->add(
+                'elements',
+                'collection',
+                array(
+                    'type' => new BoomelementType()
+                    )
+                );
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

@@ -23,7 +23,6 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
 
     firewalls:
@@ -38,6 +37,7 @@ security:
             anonymous: ~
         admin_area:
             pattern:    ^/admin
+            provider: in_memory
             logout:
                 path: /admin/logout
                 target: /admin/login
@@ -63,7 +63,7 @@ security:
                 login_path: /login_fb
                 default_target_path: /
                 provider: fos_facebook_provider
-            anonymous: true            
+            anonymous: true
             logout:
                 path: /logout
                 target: /

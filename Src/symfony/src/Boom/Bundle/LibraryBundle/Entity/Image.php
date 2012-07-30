@@ -8,8 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="image")
+ * @ORM\HasLifecycleCallbacks
  */
-class Image {
+class Image extends DomainObject {
 
     /**
      * @ORM\Id
@@ -60,21 +61,20 @@ class Image {
      * @ORM\ManyToMany(targetEntity="Gallery", mappedBy="images")
      */
     protected $galleries;
+    protected $file;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->boomelements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -84,8 +84,7 @@ class Image {
      * @param string $title
      * @return Image
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
         return $this;
     }
@@ -93,10 +92,9 @@ class Image {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -106,8 +104,7 @@ class Image {
      * @param text $description
      * @return Image
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
         return $this;
     }
@@ -115,10 +112,9 @@ class Image {
     /**
      * Get description
      *
-     * @return text 
+     * @return text
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -128,8 +124,7 @@ class Image {
      * @param string $path
      * @return Image
      */
-    public function setPath($path)
-    {
+    public function setPath($path) {
         $this->path = $path;
         return $this;
     }
@@ -137,10 +132,9 @@ class Image {
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
@@ -150,8 +144,7 @@ class Image {
      * @param string $url
      * @return Image
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url) {
         $this->url = $url;
         return $this;
     }
@@ -159,10 +152,9 @@ class Image {
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -172,8 +164,7 @@ class Image {
      * @param Boom\Bundle\LibraryBundle\Entity\User $user
      * @return Image
      */
-    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null)
-    {
+    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null) {
         $this->user = $user;
         return $this;
     }
@@ -181,10 +172,9 @@ class Image {
     /**
      * Get user
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\User 
+     * @return Boom\Bundle\LibraryBundle\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -194,8 +184,7 @@ class Image {
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $booms
      * @return Image
      */
-    public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
+    public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms) {
         $this->booms[] = $booms;
         return $this;
     }
@@ -205,18 +194,16 @@ class Image {
      *
      * @param <variableType$booms
      */
-    public function removeBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
-    {
+    public function removeBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms) {
         $this->booms->removeElement($booms);
     }
 
     /**
      * Get booms
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
-    public function getBooms()
-    {
+    public function getBooms() {
         return $this->booms;
     }
 
@@ -226,8 +213,7 @@ class Image {
      * @param Boom\Bundle\LibraryBundle\Entity\Boomelement $boomelements
      * @return Image
      */
-    public function addBoomelement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $boomelements)
-    {
+    public function addBoomelement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $boomelements) {
         $this->boomelements[] = $boomelements;
         return $this;
     }
@@ -237,18 +223,16 @@ class Image {
      *
      * @param <variableType$boomelements
      */
-    public function removeBoomelement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $boomelements)
-    {
+    public function removeBoomelement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $boomelements) {
         $this->boomelements->removeElement($boomelements);
     }
 
     /**
      * Get boomelements
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
-    public function getBoomelements()
-    {
+    public function getBoomelements() {
         return $this->boomelements;
     }
 
@@ -258,8 +242,7 @@ class Image {
      * @param Boom\Bundle\LibraryBundle\Entity\Gallery $galleries
      * @return Image
      */
-    public function addGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
+    public function addGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries) {
         $this->galleries[] = $galleries;
         return $this;
     }
@@ -269,18 +252,80 @@ class Image {
      *
      * @param <variableType$galleries
      */
-    public function removeGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries)
-    {
+    public function removeGallerie(\Boom\Bundle\LibraryBundle\Entity\Gallery $galleries) {
         $this->galleries->removeElement($galleries);
     }
 
     /**
      * Get galleries
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
-    public function getGalleries()
-    {
+    public function getGalleries() {
         return $this->galleries;
     }
+
+    public function getAbsolutePath() {
+        return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getWebPath() {
+        return null === $this->path ? null : $this->getUploadDir() . '/' . $this->path;
+    }
+
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir() {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $this->path = uniqid().'.'.$this->file->guessExtension();
+        }
+    }
+
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        // the file property can be empty if the field is not required
+        if (null === $this->file) {
+            return;
+        }
+
+        // we use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+        // move takes the target directory and then the target filename to move to
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // set the path property to the filename where you'ved saved the file
+        $this->path = $this->file->getClientOriginalName();
+
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
 }

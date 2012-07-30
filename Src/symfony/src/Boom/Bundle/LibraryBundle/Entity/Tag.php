@@ -6,42 +6,42 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tag") 
+ * @ORM\Table(name="tag")
  */
-class Tag {
+class Tag extends DomainObject{
 
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;    
-   
+    protected $id;
+
     /**
      * @ORM\Column(type="string", length=140)
-     */    
+     */
     protected $slug;
-    
+
     /**
      * @ORM\Column(type="string", length=140)
      */
     protected $name;
-    
-    
+
+
     /**
      * @ORM\ManyToMany(targetEntity="Boom", mappedBy="tags")
      **/
     protected $booms;
-    
+
     public function __construct()
     {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -63,7 +63,7 @@ class Tag {
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -85,7 +85,7 @@ class Tag {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -117,7 +117,7 @@ class Tag {
     /**
      * Get booms
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBooms()
     {

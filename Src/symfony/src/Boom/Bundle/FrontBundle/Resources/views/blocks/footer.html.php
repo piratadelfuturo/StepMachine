@@ -25,32 +25,42 @@
     </div>
     <p id="copyright">Copyright © 2012 · All Rights Reserved · info@7boom.mx</p>
     <script type="text/javascript">
-        (function(window){        
-        window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK')? 'true':'false'; ?>;                
+        (function(window){
+            
+            var logout = function(response,FBLogin){
+                if((response.status == 'unknown' || response == true ) && FBLogin == true){
+                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";                                
+                }
+
+            }
         
-        window.onFbInit = function(response) {
-            if (typeof(FB) != 'undefined' && FB != null ) {
-                FB.getLoginStatus(function(response){});
+            window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK') ? 'true' : 'false'; ?>;                
+        
+            window.onFbInit = function(response) {
+                if (typeof(FB) != 'undefined' && FB != null ) {
+                    FB.getLoginStatus(function(response){
+                        //if(console&&response)console.log('init1',response,window.FBLogin);
+                        logout(response,window.FBLogin);
+                    });
                 
-                FB.logout(function(response) {
-                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
-                });
                 
-                FB.Event.subscribe('auth.statusChange', function(response) {
-                    if (!response.session || !response.authResponse) {
-                        var FBLogin = function(){
-                            var resp = response;
-                            if(resp.status == 'connected' && window.FBLogin == false){
-                                window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb') ?>";
+                    FB.Event.subscribe('auth.statusChange', function(response) {
+                        //if(console&&response)console.log('status',response,window.FBLogin);
+                        if (!response.session || !response.authResponse) {
+                            var FBLogin = function(){
+                                if(response.status == 'connected' && window.FBLogin == false){
+                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb') ?>";
+                                }else{
+                                    logout(response,window.FBLogin);
+                                }
                             }
+                            setTimeout( FBLogin , 500);                        
+                        } else {
+                            logout(true,true);
                         }
-                        setTimeout( FBLogin , 500);                        
-                    } else {
-                        window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
-                    }
-                });
-            }                        
-           }
+                    });
+                }                        
+            }
         })(window);
         
     </script>

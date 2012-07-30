@@ -7,19 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\BoomRepository")
  * @ORM\Table(name="boom")
  */
-class Boom
+class Boom extends DomainObject
 {
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=140, unique=true)
      */
@@ -49,19 +49,19 @@ class Boom
     /**
      * @ORM\Column(type="boolean")
      */
-    protected $nsfw = false;
+    protected $nsfw;
 
     /**
      * @ORM\ManyToOne(targetEntity="Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
-     **/    
+     **/
     protected $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", fetch="LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
-     **/    
-    protected $user;    
+     **/
+    protected $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Boom", inversedBy="children")
@@ -73,14 +73,14 @@ class Boom
      * @ORM\OneToMany(targetEntity="Boom", mappedBy="parent")
      **/
     protected $children;
-      
-    
+
+
     /**
-     * @ORM\ManyToMany(targetEntity="Category")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="categories")
      * @ORM\JoinTable(name="booms_categories",
      *      joinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )     
+     *      )
      */
     protected $categories;
 
@@ -89,25 +89,26 @@ class Boom
      * @ORM\JoinTable(name="booms_tags")
      **/
     protected $tags;
-        
+
     /**
      * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"remove"})
      **/
     protected $elements;
-    
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->elements = new ArrayCollection();
-    }    
-      
+        $this->nsfw = false;
+    }
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -129,7 +130,7 @@ class Boom
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -151,7 +152,7 @@ class Boom
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -173,7 +174,7 @@ class Boom
     /**
      * Get summary
      *
-     * @return text 
+     * @return text
      */
     public function getSummary()
     {
@@ -195,7 +196,7 @@ class Boom
     /**
      * Get date_created
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDateCreated()
     {
@@ -217,7 +218,7 @@ class Boom
     /**
      * Get date_published
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDatePublished()
     {
@@ -239,7 +240,7 @@ class Boom
     /**
      * Get nsfw
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNsfw()
     {
@@ -261,7 +262,7 @@ class Boom
     /**
      * Get image
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\Image 
+     * @return Boom\Bundle\LibraryBundle\Entity\Image
      */
     public function getImage()
     {
@@ -283,7 +284,7 @@ class Boom
     /**
      * Get user
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\User 
+     * @return Boom\Bundle\LibraryBundle\Entity\User
      */
     public function getUser()
     {
@@ -296,7 +297,7 @@ class Boom
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $parent
      * @return Boom
      */
-    public function setParent(\Boom\Bundle\LibraryBundle\Entity\Boom $parent = null)
+    public function setParent(Boom $parent = null)
     {
         $this->parent = $parent;
         return $this;
@@ -305,7 +306,7 @@ class Boom
     /**
      * Get parent
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\Boom 
+     * @return Boom\Bundle\LibraryBundle\Entity\Boom
      */
     public function getParent()
     {
@@ -337,7 +338,7 @@ class Boom
     /**
      * Get children
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -369,7 +370,7 @@ class Boom
     /**
      * Get categories
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -401,14 +402,14 @@ class Boom
     /**
      * Get elements
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getElements()
     {
         return $this->elements;
     }
-    
-    
+
+
 
     /**
      * Add tags
@@ -435,14 +436,14 @@ class Boom
     /**
      * Get tags
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
         return $this->tags;
     }
-    
-    
+
+
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         /*$metadata->addPropertyConstraint(
@@ -451,5 +452,5 @@ class Boom
             'message' => 'Choose a valid gender.',
         )));*/
     }
-    
+
 }

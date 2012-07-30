@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="gallery") 
+ * @ORM\Table(name="gallery")
  */
-class Gallery {
+class Gallery extends DomainObject{
 
     /**
      * @ORM\Id
@@ -44,11 +44,11 @@ class Gallery {
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,7 +70,7 @@ class Gallery {
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -102,7 +102,7 @@ class Gallery {
     /**
      * Get images
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getImages()
     {
@@ -124,7 +124,7 @@ class Gallery {
     /**
      * Get user
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\User 
+     * @return Boom\Bundle\LibraryBundle\Entity\User
      */
     public function getUser()
     {

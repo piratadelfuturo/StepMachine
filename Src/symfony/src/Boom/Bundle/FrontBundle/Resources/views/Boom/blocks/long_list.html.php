@@ -1,69 +1,21 @@
 <div class="boomer ultimos">
         <h3 class="title-flag"><span>ultimos</span></h3>
         <ul class="list">
-          <li class="boom">
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">              
-              <span class="sm-flag cine">cine</span>
-              <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
-            </div>
-            </li>
+          <?php foreach($list as $element): ?>
             <li class="boom">
-            <img src="http://placehold.it/158x90">
+            <img src="<?php echo $element['image_path'] ?>">
             <div class="boom-info">              
-              <span class="sm-flag sexo">sexo</span>
-              <p class="boom-ti">Los 7 Lorem Ipsum más famosos de la vida, Lorem ipsum dolor sit</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
-            </div>
-          </li>
-          <li class="boom">
-              <img src="http://placehold.it/158x90">
-              <div class="boom-info">              
-                <span class="sm-flag lucky">lucky 7</span>
-                <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-                <a href="#" class="boom-moar">Por Juan Pérez.</a>
-                <date>22 de enero 2011</date>
-              </div>
-          </li>
-          <li class="boom">
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">
-              <span class="sm-flag sexo">sexo</span>
-              <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
-            </div>
-          </li>
-          <li class="boom">
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">
-              <span class="sm-flag musica">música</span>
-              <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
-            </div>
-          </li>
-           <li class="boom">
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">              
-              <span class="sm-flag sexo">sexo</span>
-              <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
+              <span class="sm-flag <?php echo $element['category_slug'] ?>"><?php echo $view->escape($element['category_name']) ?></span>
+              <p class="boom-ti"><?php echo $view->escape($element['boom_title']); ?></p>
+              <a href="#" class="boom-moar">
+                  <?php echo $view->escape(
+                          !empty($element['user_nickname']) || is_null($element['user_nickname']) ? $element['user_username'] : $element['user_nickname']
+                          ) ?>
+              </a>
+              <date><?php echo $view->escape($element['boom_date_created']->format('D, d M y')) ?></date>
             </div>
             </li>
-          <li class="boom">
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">
-              <span class="sm-flag tecnologia">tecnologia</span>
-              <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-              <a href="#" class="boom-moar">Por Juan Pérez.</a>
-              <date>22 de enero 2011</date>
-            </div>
-          </li>
+         <?php endforeach; ?>
           <a href="#"><span class="moar">ver más</span></a>
         </ul>
       </div>

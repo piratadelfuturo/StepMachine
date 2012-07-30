@@ -56,7 +56,7 @@ html,body,div,span,applet,object,iframe,input,h1,h2,h3,h4,h5,h6,p,blockquote,pre
 /* Font Declaration
 /*----------------------------------------------------------------------*/
 
-html, textarea, input, input[type=submit], button, a.btn, span, div.alert p, header{ 
+html, textarea, input, input[type=submit], button, a.btn, span, div.alert p, header{
 	font-family:'PT Sans', sans-serif;
 }
 code, pre{
@@ -70,7 +70,7 @@ blockquote{
 /* General Section
 /*----------------------------------------------------------------------*/
 
-html, body, textarea, input { 
+html, body, textarea, input {
 	font-size:12px;
 	-webkit-text-size-adjust:none;
 }
@@ -147,7 +147,7 @@ li{
 	margin-left:18px;
 }
 
-hr { 
+hr {
 	display:block;
 	height:0px;
 	line-height:0px;
@@ -280,7 +280,7 @@ header{
 	border:0;
 	-webkit-border-top-left-radius:4px; -moz-border-radius-topleft:4px; border-top-left-radius:4px;
 	background:url(images/logo.png) left center no-repeat;
-	
+
 }
 #logo, #logo a{
 	font-weight:700;
@@ -857,8 +857,8 @@ div.alert a{
 
 
 button, a.btn, .button,
-.dataTables_paginate span.paginate_button,
-.dataTables_paginate span.paginate_active{
+.dataTables_paginate .paginate_button,
+.dataTables_paginate .paginate_active{
 	border:1px solid;
 	position:relative;
 	padding:9px 12px;
@@ -919,7 +919,7 @@ a.btn{
 button:hover, a.btn:hover, .button:hover{
 }
 button:active, a.btn:active, .button:active,
-.dataTables_paginate span.paginate_active{
+.dataTables_paginate .paginate_active{
 	top:1px;
 }
 
@@ -936,7 +936,7 @@ pre{
 	white-space:-moz-pre-wrap;
 	white-space:-pre-wrap;
 	white-space:-o-pre-wrap;
-	word-wrap:break-word; 
+	word-wrap:break-word;
 	padding:12px 15px;
 	line-height:18px;
 }
@@ -1193,13 +1193,13 @@ input.color{
 
 .jquery-checkbox, .jquery-checkbox span  { display: inline; font-size: 16px; line-height: 16px; cursor: pointer;}
 
-.jquery-checkbox span.checkboxplaceholder { 
+.jquery-checkbox span.checkboxplaceholder {
 	vertical-align:baseline;
 	padding:2px 12px 0px;
 	line-height:8px;
 	background-repeat:no-repeat;
 }
-.jquery-checkbox span.checkboxplaceholder { 
+.jquery-checkbox span.checkboxplaceholder {
 	background-image:url(dark/images/checkbox.png);
 }
 .jquery-checkbox.checkbox span.checkboxplaceholder{
@@ -1610,7 +1610,7 @@ div.comboselectbox div.comboselectbuttons a.removeall{
 /*----------------------------------------------------------------------*/
 
 footer{
-	
+
 }
 /*----------------------------------------------------------------------*/
 /* width
@@ -1961,7 +1961,7 @@ body#error #content h2{
 		background-repeat:no-repeat;
 		background-position:center center;
 	}
-	
+
 	#header ul#headernav li ul{
 		position:absolute;
 		right:0;
@@ -1975,14 +1975,14 @@ body#error #content h2{
 		margin:0;
 		border-bottom:0;
 		border-top:0;
-		
+
 	}
 	#header ul#headernav li ul li a{
-		padding:10px;	
+		padding:10px;
 	}
 	#header ul#headernav li ul li:last-child{
 		border-bottom:1px solid;
-		
+
 	}
 	#header ul#headernav li ul span{
 		right:5px;
@@ -2007,7 +2007,7 @@ body#error #content h2{
 		font-size:12px;
 		padding:5px;
 	}
-	
+
 	.g1,.g2,.g3,.g4,.g5,.g6 {
 		padding:0;
 		width:48.0%;
@@ -2019,7 +2019,7 @@ body#error #content h2{
 	#header ul li ul li,#header ul li ul li a, #header ul#headernav li ul li ul{
 		-webkit-border-radius:0; -moz-border-radius:0; border-radius:0;
 	}
-	
+
 	#header ul li ul li:last-child,#header ul li ul li:last-child a{
 		-webkit-border-bottom-left-radius:4px; -moz-border-radius-bottomleft:4px; border-bottom-left-radius:4px;
 	}
@@ -2062,7 +2062,7 @@ body#error #content h2{
 	.g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10,.g11,.g12 {
 		width:98%;
 	}
-	
+
 }
 @media screen and (max-width:800px) and (min-width:481px) {
 	nav{
@@ -2081,7 +2081,7 @@ body#error #content h2{
 	#content{
 		padding:15px 0 15px 160px;
 	}
-	
+
 }
 
 /* iPhone and real small devicces */
@@ -2191,7 +2191,7 @@ body#error #content h2{
 		height:20px;
 		text-indent:0;
 	}
-	
+
 	#content{
 		padding:0;
 	}
@@ -2310,3 +2310,11 @@ body#error #content h2{
 	border-radius:4px !important;
 }
 
+
+/*----------------------------------------------------------------------*/
+/* Boombox rules
+/*----------------------------------------------------------------------*/
+
+form fieldset fieldset{
+    margin: 5px;
+}

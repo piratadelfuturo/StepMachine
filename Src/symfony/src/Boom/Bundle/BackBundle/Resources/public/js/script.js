@@ -1,42 +1,42 @@
 $(document).ready(function() {
-						   
-	
+
+
 	//for Caching
 	var $content = $('#content');
-	
+
 		/*----------------------------------------------------------------------*/
 		/* preload images
 		/*----------------------------------------------------------------------*/
-		
+
 		//$.preload();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Widgets
 		/*----------------------------------------------------------------------*/
-		
-		$content.find('div.widgets').wl_Widget();
+
+		//$content.find('div.widgets').wl_Widget();
 		/*----------------------------------------------------------------------*/
 		/* All Form Plugins
 		/*----------------------------------------------------------------------*/
-		
+
 		//Integers and decimals
 		$content.find('input[type=number].integer').wl_Number();
 		$content.find('input[type=number].decimal').wl_Number({decimals:2,step:0.5});
-		
+
 		//Date and Time fields
 		$content.find('input.date, div.date').wl_Date();
 		$content.find('input.time').wl_Time();
-		
+
 		//Autocompletes (source is required)
 		$content.find('input.autocomplete').wl_Autocomplete({
 			source: ["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"]
 		});
-		
+
 		//Elastic textareas (autogrow)
 		$content.find('textarea[data-autogrow]').elastic();
 		//WYSIWYG Editor
 		$content.find('textarea.html').wl_Editor();
-		
+
 		//Validation
 		$content.find('input[data-regex]').wl_Valid();
 		$content.find('input[type=email]').wl_Mail();
@@ -48,44 +48,44 @@ $(document).ready(function() {
 		//Password and Color
 		$content.find('input[type=password]').wl_Password();
 		$content.find('input.color').wl_Color();
-		
+
 		//Sliders
 		$content.find('div.slider').wl_Slider();
-		
+
 		//Multiselects
 		$content.find('select[multiple]').wl_Multiselect();
-		
+
 		//The Form is called for the demo with options on line 497
 		//$content.find('form').wl_Form();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Alert boxes
 		/*----------------------------------------------------------------------*/
-		
+
 		$content.find('div.alert').wl_Alert();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Breadcrumb
 		/*----------------------------------------------------------------------*/
-		
+
 		$content.find('ul.breadcrumb').wl_Breadcrumb();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* datatable plugin
 		/*----------------------------------------------------------------------*/
-		
-		$content.find("table.datatable").dataTable({
-			"sPaginationType": "full_numbers"
-		});
-		
+
+		//$content.find("table.datatable").dataTable({
+		//	"sPaginationType": "full_numbers"
+		//});
+
 		/*----------------------------------------------------------------------*/
 		/* uniform plugin && checkbox plugin (since 1.3.2)
 		/* uniform plugin causes some issues on checkboxes and radios
 		/*----------------------------------------------------------------------*/
-		
+
 		$("select, input[type=file]").not('select[multiple]').uniform();
 		$('input:checkbox, input:radio').checkbox();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Charts
 		/*----------------------------------------------------------------------*/
@@ -95,17 +95,17 @@ $(document).ready(function() {
 				$.msg("value is "+value+" from "+legend+" at "+label+" ("+id+")",{header:'Custom Callback'});
 			}
 		});
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Fileexplorer
 		/*----------------------------------------------------------------------*/
 
 		$content.find('div.fileexplorer').wl_Fileexplorer();
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Calendar (read http://arshaw.com/fullcalendar/docs/ for more info!)
 		/*----------------------------------------------------------------------*/
-		
+
 		$content.find('div.calendar').wl_Calendar({
 			eventSources: [
 					{
@@ -134,25 +134,25 @@ $(document).ready(function() {
 						editable:true,
 						color: '#a2e8a2',     // an option!
 						textColor: '#ffffff' // an option!
-					}		
+					}
 					// any other event sources...
-			
+
 				]
 			});
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Gallery
 		/*----------------------------------------------------------------------*/
-		
+
 		//defined for the demo on line 518
 		//$content.find('ul.gallery').wl_Gallery();
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Tipsy Tooltip
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		$content.find('input[title]').tipsy({
 			gravity: function(){return ($(this).data('tooltip-gravity') || config.tooltip.gravity); },
 			fade: config.tooltip.fade,
@@ -160,33 +160,33 @@ $(document).ready(function() {
 			color: config.tooltip.color,
 			offset: config.tooltip.offset
 		});
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Accordions
 		/*----------------------------------------------------------------------*/
-		
+
 		$content.find('div.accordion').accordion({
 				collapsible:true,
 				autoHeight:false
 		});
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Tabs
 		/*----------------------------------------------------------------------*/
-		
+
 		$content.find('div.tab').tabs({
 				fx: {
 					opacity: 'toggle',
 					duration: 'fast'
-				}	  
+				}
 		});
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Navigation Stuff
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		//Top Pageoptions
 		$('#wl_config').click(function(){
 			var $pageoptions = $('#pageoptions');
@@ -199,32 +199,32 @@ $(document).ready(function() {
 			}
 			return false;
 		});
-		
-		
+
+
 		//Header navigation for smaller screens
 		var $headernav = $('ul#headernav');
-		
+
 		$headernav.bind('click',function(){
 			//if(window.innerWidth > 800) return false;
 			var ul = $headernav.find('ul').eq(0);
 			(ul.is(':hidden')) ? ul.addClass('shown') : ul.removeClass('shown');
 		});
-		
+
 		$headernav.find('ul > li').bind('click',function(event){
 			event.stopPropagation();
 			var children = $(this).children('ul');
-			
+
 			if(children.length){
 				(children.is(':hidden')) ? children.addClass('shown') : children.removeClass('shown');
 				return false;
 			}
 		});
-		
-		//Search Field Stuff		
+
+		//Search Field Stuff
 		var $searchform = $('#searchform'),
 			$searchfield = $('#search'),
 			livesearch = true;
-		
+
 		$searchfield
 			.bind({
 				'focus.wl': function(){
@@ -235,45 +235,45 @@ $(document).ready(function() {
 					if(livesearch)$searchboxresult.fadeOut();
 				}
 		});
-			
+
 		//livesearch is active
 		if(livesearch){
-			
+
 			$searchfield.attr('placeholder','Live Search');
-			
+
 			var $searchboxresult = $('#searchboxresult'),
 				searchdelay = 800,  //delay of search in milliseconds (prevent flooding)
 				searchminimum = 3, //minimum of letter when search should start
 				searchtimeout, searchterm, resulttitle;
-			
+
 			//insert the container if missing
 			if(!$searchboxresult.length) $searchboxresult = $('<div id="searchboxresult"></div>').insertAfter('#searchbox');
-			
+
 			//bind the key event
 			$searchfield
 				.bind({
 					'keyup.wl': function(event){
-						
+
 						//do nothing if the term hasn't change
 						if(searchterm == $searchfield.val()) return false;
-						
+
 						//the current search value
 						searchterm = $searchfield.val();
-						
+
 						//clear the old timeout and start a new one
 						clearTimeout(searchtimeout);
-						
+
 						//stop if term is too short
 						if(searchterm.length < searchminimum){
 							$searchboxresult.fadeOut();
 							$searchfield.removeClass('load');
 							return false;
 						}
-						
-	
+
+
 						searchtimeout = setTimeout(function(){
 							$searchfield.addClass('load');
-							
+
 							//get results with ajax
 							$.post("search.php", { term: searchterm },
 							 function(data){
@@ -283,9 +283,9 @@ $(document).ready(function() {
 									$searchboxresult.fadeOut();
 									return false;
 								}
-								
+
 								var count = data.length, html = '';
-								
+
 								//we have results
 								if(count){
 									for(var i = 0; i< count; i++){
@@ -297,34 +297,34 @@ $(document).ready(function() {
 										html += '<li><a href="'+data[i].href+'" '+resulttitle+'>';
 										if(data[i].img) html += '<img src="'+data[i].img+'" width="50">';
 										html += ''+data[i].text+'</a></li>';
-									}	
+									}
 								//no result to this search term
 								}else{
 									html += '<li><a class="noresult">Nothing found for<br>"'+searchterm+'"</a></li>';
 								}
-								
+
 								//insert it and show
 								$searchboxresult.html(html).fadeIn();
-								
+
 							}, "json");
-	
+
 						},searchdelay);
 					}
 				});
 		}
-			
+
 		$searchform
 			.bind('submit.wl',function(){
-				//do something on submit				
+				//do something on submit
 				var query = $searchfield.val();
 			});
-			
-		
-			
-		
-		//Main Navigation		
+
+
+
+
+		//Main Navigation
 		var $nav = $('#nav');
-			
+
 		$nav.delegate('li','click.wl', function(event){
 			var _this = $(this),
 				_parent = _this.parent(),
@@ -335,12 +335,12 @@ $(document).ready(function() {
 			_this.find('a').eq(0).addClass('active');
 			event.stopPropagation();
 		});
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Helpers
 		/*----------------------------------------------------------------------*/
-		
-		//placholder in inputs is not implemented well in all browsers, so we need to trick this		
+
+		//placholder in inputs is not implemented well in all browsers, so we need to trick this
 		$("[placeholder]").bind('focus.placeholder',function() {
 			var el = $(this);
 			if (el.val() == el.attr("placeholder") && !el.data('uservalue')) {
@@ -354,7 +354,7 @@ $(document).ready(function() {
 				el.val(el.attr("placeholder"));
 				el.data("uservalue",false);
 			}else{
-			
+
 			}
 		}).bind('keyup.placeholder',function() {
 			var el = $(this);
@@ -365,34 +365,34 @@ $(document).ready(function() {
 			}
 		}).trigger('blur.placeholder');
 
-		
-		
+
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 /* 		Following code is for the Demonstration only!
 /*		Get inspired and use it further or just remove it!
 /*-----------------------------------------------------------------------------------------------------------------------------*/
-		
-		
-		
-		
+
+
+
+
 		/*----------------------------------------------------------------------*/
 		/* Callback for Slider
 		/*----------------------------------------------------------------------*/
 			$content.find('div.slider#slider_callback').wl_Slider({
 				onSlide:function(value){
 					$('#slider_callback_bar').width(value+'%').text(value);
-				}													  
+				}
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-		
-		
-		
+
+
+
 		/*----------------------------------------------------------------------*/
 		/* Rangeslider area how to
 		/* http://revaxarts-themes.com/whitelabel/doc-sliders.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$content.find('div.slider#slider_mousewheel').wl_Slider({
 				onSlide:function(values){
 					var _this = $('#slider_mousewheel'),
@@ -402,21 +402,21 @@ $(document).ready(function() {
 						value = _h1.left+(_h2.left-_h1.left)/2-_this.offset().left+5;
 					$('#slider_mousewheel_left').width(value);
 					$('#slider_mousewheel_right').width(_this.width()-value);
-				}													  
+				}
 			});
 			$('#slider_mousewheel_left, #slider_mousewheel_right').bind('mousewheel',function(event,delta){
 				event.preventDefault();
-				$.alert('Use the Slider above!\nThis is just for visualisation');														
+				$.alert('Use the Slider above!\nThis is just for visualisation');
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Button to clear localStorage
 		/* http://revaxarts-themes.com/whitelabel/widgets.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$content.find('.clearLocalStorage').bind('click',function(){
 				var wl_Store = new $.wl_Store();
 				if(wl_Store.flush()){
@@ -424,14 +424,14 @@ $(document).ready(function() {
 				};
 				return false;
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-		
+
 		/*----------------------------------------------------------------------*/
 		/* needed for the Store Documentation
 		/* http://revaxarts-themes.com/whitelabel/doc-store.html
 		/*----------------------------------------------------------------------*/
-			
+
 			$content.find('#save_store').bind('click',function(){
 				$.prompt('Storing some values?','This text is for the storage',function(value){
 					var wl_Store = new $.wl_Store('doc-store');
@@ -442,7 +442,7 @@ $(document).ready(function() {
 					}
 				});
 			});
-			
+
 			$content.find('#restore_store').bind('click',function(){
 				var wl_Store = new $.wl_Store('doc-store');
 				var value = wl_Store.get('testvalue');
@@ -452,14 +452,14 @@ $(document).ready(function() {
 					$.alert('No value is set!');
 				}
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-		
+
 		/*----------------------------------------------------------------------*/
 		/* Confirm Box for the Form Filler
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$('#formfiller').click(function(){
 				var _this = this;
 				$.confirm('To fill a form with your data you have to add a query string to the location.\nhttp://domain.tld/path?key=value&key2=value2',function(){
@@ -467,12 +467,12 @@ $(document).ready(function() {
 				});
 				return false;
 			});
-			
+
 		/*----------------------------------------------------------------------*/
 		/* Toggle to nativ/ajax submit
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$('#formsubmitswitcher').click(function(){
 				var _this = $(this);
 				if(_this.text() == 'send form natively'){
@@ -486,7 +486,7 @@ $(document).ready(function() {
 				}
 				return false;
 			});
-					
+
 		/*----------------------------------------------------------------------*/
 
 
@@ -494,7 +494,7 @@ $(document).ready(function() {
 		/* add some Callbacks to the Form
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
-			
+
 			$content.find('form').wl_Form({
 				onSuccess: function(data, status){
 					if(window.console){
@@ -507,14 +507,14 @@ $(document).ready(function() {
 					$.msg("Callback on Error\nError Status: "+status+"\nError Msg: "+error);
 				}
 			});
-		
-		
-		
+
+
+
 		/*----------------------------------------------------------------------*/
 		/* Gallery with some custom callbacks
 		/* http://revaxarts-themes.com/whitelabel/gallery.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$content.find('ul.gallery').wl_Gallery({
 				onEdit: function(el, href, title){
 					if(href){
@@ -522,27 +522,27 @@ $(document).ready(function() {
 							window.open('http://pixlr.com/editor/?referrer=whitelabel&image='+escape(href)+'&title='+escape(title)+'');
 						});
 					}
-				},									   
+				},
 				onDelete: function(el, href, title){
 					if(href){
 						$.confirm('Do you really like to delete this?',function(){
 							el.fadeOut();
 						});
 					}
-				},									   
+				},
 				onMove: function(el, href, title, newOrder){
-				}									   
-			
+				}
+
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Message trigger buttons
 		/* http://revaxarts-themes.com/whitelabel/dialogs_and_buttons.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$('#message').click(function(){
 				$.msg("This is a simple Message");
 			});
@@ -557,34 +557,34 @@ $(document).ready(function() {
 			});
 			$('#message_methods').click(function(){
 				var m = $.msg("This message can be accessed via public methods",{sticky:true});
-				
+
 				//do some action with a delay
 				setTimeout(function(){
-					if(m)m.setHeader('Set a Header');				
+					if(m)m.setHeader('Set a Header');
 				},3000);
 				setTimeout(function(){
-					if(m)m.setBody('Set a custom Body');				
+					if(m)m.setBody('Set a custom Body');
 				},5000);
 				setTimeout(function(){
-					if(m)m.setBody('..and close it with an optional callback function');				
+					if(m)m.setBody('..and close it with an optional callback function');
 				},8000);
 				setTimeout(function(){
 					if(m)m.close(function(){
-						$.alert('This is the Callback function');				  
+						$.alert('This is the Callback function');
 					});
 				},12000);
 			});
-			
+
 
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Dialog trigger buttons
 		/* http://revaxarts-themes.com/whitelabel/dialogs_and_buttons.html
 		/*----------------------------------------------------------------------*/
-		
-			
+
+
 			$('#dialog').click(function(){
 				$.alert("This is a simple Message");
 			});
@@ -616,32 +616,32 @@ $(document).ready(function() {
 			});
 			$('#dialog_methods').click(function(){
 				var a = $.alert("This message can be accessed via public methods");
-				
+
 				//do some action with a delay
 				setTimeout(function(){
-					if(a)a.setHeader('Set a Header');				
+					if(a)a.setHeader('Set a Header');
 				},3000);
 				setTimeout(function(){
-					if(a)a.setBody('Set a custom Body');				
+					if(a)a.setBody('Set a custom Body');
 				},5000);
 				setTimeout(function(){
-					if(a)a.setBody('..and close it with an optional callback function');				
+					if(a)a.setBody('..and close it with an optional callback function');
 				},8000);
 				setTimeout(function(){
 					if(a)a.close(function(){
-						$.msg('This is the Callback function');				  
+						$.msg('This is the Callback function');
 					});
 				},12000);
 			});
-			
+
 		/*----------------------------------------------------------------------*/
-		
-		
+
+
 		/*----------------------------------------------------------------------*/
 		/* Breadcrumb Demos
 		/* http://revaxarts-themes.com/whitelabel/breadcrumb.html
 		/*----------------------------------------------------------------------*/
-		
+
 			$('#enablebreadcrumb').click(function(){
 				$('ul.breadcrumb').eq(4).wl_Breadcrumb('enable');
 				$.msg('enabled!');
@@ -650,32 +650,32 @@ $(document).ready(function() {
 				$('ul.breadcrumb').eq(4).wl_Breadcrumb('disable');
 				$.msg('disabled!');
 			});
-			
+
 			$('ul.breadcrumb').eq(5).wl_Breadcrumb({
 				onChange:function(element,id){
 					$.msg(element.text()+' with id '+id);
 				}
 			});
-		
+
 		/*----------------------------------------------------------------------*/
-	
+
 		/*----------------------------------------------------------------------*/
 		/* Helps to make current section active in the Mainbar
 		/*----------------------------------------------------------------------*/
-			
+
 			var loc = location.pathname.replace(/\/([^.]+)\//g,'');
 			var current = $nav.find('a[href="'+loc+'"]');
-			
+
 			if(current.parent().parent().is('#nav')){
 				current.addClass('active');
 			}else{
 				current.parent().parent().parent().find('a').eq(0).addClass('active').next().show();
 				current.addClass('active');
-	
+
 			}
 
 
-		
+
 		/*----------------------------------------------------------------------*/
 
 });

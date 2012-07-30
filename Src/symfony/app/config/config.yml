@@ -21,6 +21,8 @@ fos_user:
     db_driver: orm
     firewall_name: boom_area
     user_class: Boom\Bundle\LibraryBundle\Entity\User
+    template:
+        engine: php
     group:
         group_class: Boom\Bundle\LibraryBundle\Entity\Group
 fos_facebook:

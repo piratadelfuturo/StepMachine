@@ -11,29 +11,29 @@ use Boom\Bundle\LibraryBundle\Entity\Category;
  *
  */
 class CategoryController extends Controller {
-    
-    
+
     /**
      * Lists all Boom entities.
      *
      */
-    public function indexAction($slug,$page)
-    {
+    public function indexAction($slug, $page) {
         $em = $this->getDoctrine()->getManager();
 
-        $category = $em->getRepository('BoomLibraryBundle:Category')->findOneBySlug($slug);
+        $catRepo = $em->getRepository('BoomLibraryBundle:Category');
+        $thisCategory = $catRepo->findOneBySlug($slug);
+        
+        if (is_null($thisCategory) || $thisCategory == false) {
+            throw $this->createNotFoundException('Categoria no existente');
+        }
 
-        //$latest = $em->getRepository('BoomLibraryBundle:Boom')->findByCategories($category);
+        $latest = $catRepo->findBoomsByCategory($thisCategory,'date_created','DESC',14);
         
-        $latest = array();
-        
-        
-        return $this->render('BoomFrontBundle:Category:index.html.php',
-                array(
-            'latest' => $latest
-        ));
+
+        return $this->render('BoomFrontBundle:Category:index.html.php', array(
+                    'top' => $top, 
+                    'latest' => $latest,
+                    'categoryName' => $thisCategory->getName()
+                ));
     }
 
-    
-    
 }

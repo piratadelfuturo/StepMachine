@@ -6,10 +6,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="category") 
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="category")
  */
-class Category {
+class Category extends DomainObject{
 
     /**
      * @ORM\Id
@@ -17,7 +17,7 @@ class Category {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=140)
      */
@@ -32,25 +32,21 @@ class Category {
      * @ORM\Column(type="integer")
      */
     protected $position;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
-     * @ORM\JoinTable(name="booms_categories",
-     *      inverseJoinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")},
-     *      joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )
      */
-    protected $booms;    
+    protected $booms;
 
     public function __construct()
     {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -72,7 +68,7 @@ class Category {
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -94,7 +90,7 @@ class Category {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -116,14 +112,14 @@ class Category {
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
         return $this->position;
     }
 
-    
+
 
     /**
      * Add booms
@@ -150,7 +146,7 @@ class Category {
     /**
      * Get booms
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBooms()
     {

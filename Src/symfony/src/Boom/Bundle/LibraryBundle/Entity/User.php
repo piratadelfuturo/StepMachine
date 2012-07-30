@@ -9,9 +9,12 @@ use FOS\UserBundle\Model\GroupInterface;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="bm_user") 
+ * @ORM\Table(name="bm_user")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"user" = "User", "admin" = "Admin"})
  */
-class User extends BaseUser {
+class User extends BaseUser implements \ArrayAccess {
 
     /**
      * @ORM\Id
@@ -37,20 +40,20 @@ class User extends BaseUser {
     /**
      * @var string
      *
-     * @ORM\Column(name="facebookId", type="string", length=255, nullable=true)
+     * @ORM\Column(name="facebookId", type="string", length=255, nullable=true, unique=true)
      */
     protected $facebookId;
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="twitterId", type="string", length=255, nullable=true)
+     *
+     * @ORM\Column(name="twitterId", type="string", length=255, nullable=true, unique=true)
      */
     protected $twitterId;
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="twitter_username", type="string", length=255, nullable=true)
      */
     protected $twitter_username;
@@ -61,7 +64,7 @@ class User extends BaseUser {
     protected $nickname;
 
     /**
-     * @ORM\Column(type="string", length=140,nullable=true)
+     * @ORM\Column(type="string", length=140,nullable=true,unique=true)
      */
     protected $name;
 
@@ -103,11 +106,20 @@ class User extends BaseUser {
     }
 
     public function serialize() {
-        return serialize(array($this->facebookId, $this->twitterId, parent::serialize()));
+        return serialize(
+                        array(
+                            $this->facebookId,
+                            $this->twitterId,
+                            parent::serialize()
+                        )
+        );
     }
 
     public function unserialize($data) {
-        list($this->facebookId, $this->twitterId, $parentData) = unserialize($data);
+        list(
+                $this->facebookId,
+                $this->twitterId,
+                $parentData) = unserialize($data);
         parent::unserialize($parentData);
     }
 
@@ -137,7 +149,7 @@ class User extends BaseUser {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId() {
         return $this->id;
@@ -157,7 +169,7 @@ class User extends BaseUser {
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname() {
         return $this->firstname;
@@ -177,7 +189,7 @@ class User extends BaseUser {
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname() {
         return $this->lastname;
@@ -186,7 +198,7 @@ class User extends BaseUser {
     /**
      * Get facebookId
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookId() {
         return $this->facebookId;
@@ -206,7 +218,7 @@ class User extends BaseUser {
     /**
      * Get nickname
      *
-     * @return string 
+     * @return string
      */
     public function getNickname() {
         return $this->nickname;
@@ -226,7 +238,7 @@ class User extends BaseUser {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName() {
         return $this->name;
@@ -246,7 +258,7 @@ class User extends BaseUser {
     /**
      * Get bio
      *
-     * @return text 
+     * @return text
      */
     public function getBio() {
         return $this->bio;
@@ -275,7 +287,7 @@ class User extends BaseUser {
     /**
      * Get booms
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getBooms() {
         return $this->booms;
@@ -304,7 +316,7 @@ class User extends BaseUser {
     /**
      * Get images
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getImages() {
         return $this->images;
@@ -333,7 +345,7 @@ class User extends BaseUser {
     /**
      * Get galleries
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getGalleries() {
         return $this->galleries;
@@ -362,7 +374,7 @@ class User extends BaseUser {
     /**
      * Get groups
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getGroups() {
         return $this->groups;
@@ -398,7 +410,7 @@ class User extends BaseUser {
     /**
      * Get twitterID
      *
-     * @return string 
+     * @return string
      */
     public function getTwitterId() {
         return $this->twitterId;
@@ -416,7 +428,7 @@ class User extends BaseUser {
     /**
      * Get twitter_username
      *
-     * @return string 
+     * @return string
      */
     public function getTwitterUsername() {
         return $this->twitter_username;
@@ -437,5 +449,26 @@ class User extends BaseUser {
 
         //$user->setFirstname($info->name);
     }
+
+    public function offsetExists($offset) {
+        // In this example we say that exists means it is not null
+        $value = $this->{"get$offset"}();
+        return $value !== null;
+    }
+
+    public function offsetSet($offset, $value) {
+        //$this->{"set$offset"}($value);
+        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+    }
+
+    public function offsetGet($offset) {
+        return $this->{"get$offset"}();
+    }
+
+    public function offsetUnset($offset) {
+        //$this->{"set$offset"}(null);
+        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+    }
+
 
 }
