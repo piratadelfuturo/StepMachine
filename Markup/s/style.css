@@ -2032,7 +2032,7 @@ footer p{
   margin: 10px 0;
 }
 .sb-boomer ul{
-  padding:10px;
+  padding: 5px 10px;
   border: 1px solid #DFDFDF;
 }
 .sb-boomer li{
@@ -2064,6 +2064,7 @@ fo{display:inline-block;}
 .sb-boomer .boom-info{
   width: 181px;
   margin-left: 3px;
+  display: inline-block;
 }
 .sb-boomer .boom-ti{
   font:bold 14px 'Helvetica';
@@ -2073,51 +2074,30 @@ fo{display:inline-block;}
 }
 /* MODALBOX */
 #modalbox{display:none;}
-.blockUI{
+.blockMsg{
   width:566px;
   z-index: 1011;
   position: fixed;
-  padding: 50px;
+  padding: 50px 25px 20px;
   margin: 0px;
-  top: 40%;
-  left: 35%;
   cursor:default !important;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
   background:#FFF;
 }
-.blockUI .botones .orange-btn{
-  background: #faa635; /* Old browsers */
-  text-align:center;
-  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYTYzNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMzUzNDQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top,  #faa635 0%, #e35344 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faa635), color-stop(100%,#e35344)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #faa635 0%,#e35344 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #faa635 0%,#e35344 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #faa635 0%,#e35344 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #faa635 0%,#e35344 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
-}
-.box-content{
-  font: 15px 'Museo500', sans-serif;
-  color: #5B5C5E;
-  margin-top: 28px;
-}
 
-/*  LOGIN INFO  */
-#login-info{
-  background:#FFF;
-}
-#login-info h4{
+.blockMsg h4{
   font: 26px 'Proxima', sans-serif;
   text-transform:uppercase;
   color:#5b5b5c;
   border-bottom:1px dashed #bbbdbd;
   padding-bottom: 3px;
+  margin-bottom: 28px;
 }
-#login-info .boom-logo{
+.blockMsg h5{
+}
+.blockMsg .boom-logo{
   background: url('../images/logo_sm.png');
   width: 107px;
   height: 66px;
@@ -2128,3 +2108,125 @@ fo{display:inline-block;}
   margin: 0 8px 5px 0;
 }
 
+.blockMsg .botones, .blockMsg .guardado{
+  text-align:center;
+border-bottom: 1px dashed #BBBDBD;
+  
+}
+.blockMsg .botones .orange-btn{
+  background: #faa635; /* Old browsers */
+  text-align:center;
+  font: 18px 'Proxima', sans-serif;
+  text-transform:uppercase;
+  color:#FFF;
+  background:url('../images/bg_btn.png');
+  display: inline-block;
+  line-height: 48px;
+  padding: 0 5px;
+  position:relative;
+  margin:25px 23px;
+}
+.blockMsg .botones .orange-btn:before{
+  background: url('../images/ba_btn.png') no-repeat;
+  position: absolute;
+  right: -22px;
+  width: 23px;
+  height: 48px;
+  content: '';
+}
+.blockMsg .botones .orange-btn:after{
+  background: url('../images/ba_btn.png') -23px 0 no-repeat;
+position: absolute;
+left: -22px;
+width: 23px;
+height: 48px;
+content: '';
+}
+
+.box-content{
+  font: 15px 'Museo500', sans-serif;
+  color: #5B5C5E;
+}
+.box-content h5{
+  color:#e55641;
+  font: 18px 'Museo500', sans-serif;
+}
+.box-content h5, .box-content p{
+  margin:10px 0;
+}
+.blockMsg .cls-btn{
+  position:absolute;
+  top: 35px;
+  right: 45px;
+  font: 18px 'Proxima', sans-serif;
+  text-transform: uppercase;
+  color: #5B5B5C;
+  background:url('../images/cls_btn.png');
+  background: url('../images/cls_btn.png') no-repeat;
+  line-height: 15px;
+  padding-left: 19px;
+}
+
+/*  LOGIN INFO  */
+#login-info .botones h5{
+  font: 22px 'Museo500', sans-serif;
+  color:#5b5b5c;
+  text-transform:uppercase;
+}
+#login-info .botones p{
+    font: 20px 'Museo500', sans-serif;
+    color:#5b5b5c;
+}
+#login-info .botones .tw-btn, #login-info .botones .fb-btn{
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background: url('../images/redes_gris.png');
+  line-height: 36px;
+  text-indent: -9999px;
+  margin:10px 15px 0;
+}
+
+#login-info .botones .fb-btn{
+  width:35px;
+  background-position:-36px 0;
+}
+
+/*  boom guardado */
+.blockMsg .guardado{
+  font: 24px 'Museo500', sans-serif;
+  text-transform:uppercase;
+  color:#5b5b5c;
+  padding: 100px 0 120px;
+  border-bottom: 1px dashed #BBBDBD;
+}
+.blockMsg .guardado h5{
+  font: 24px 'Museo500', sans-serif;  
+  color:#f57b20;
+}
+
+/*  social share  */
+#social-share .share{
+  font: 20px 'Museo500', sans-serif;
+  text-transform:uppercase;
+  border-right:1px dashed #BBBDBD;;
+  width: 270px;
+  padding-right:30px;
+  display: inline-block;
+}
+#social-share .share .compartelo{
+  font: 20px 'Proxima', sans-serif;
+}
+#social-share .share .tw-btn, #social-share .share .fb-btn{
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  background: url('../images/redes_gris.png');
+  line-height: 36px;
+  text-indent: -9999px;
+  margin:10px 5px 0;
+}
+#social-share .share .fb-btn{
+   width:35px;
+  background-position:-36px 0;
+}

@@ -1,7 +1,30 @@
 $(document).ready(function() { 
-  $.blockUI.defaults.css = {};
+  $.blockUI.defaults.css = {
+    top:  ($(window).height() - 600 ) /2 + 'px',
+    left: ($(window).width() - 566) /2 + 'px',
+    cursor:'default'
+  };
+  $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
+  $('.cls-btn').attr('title','Cerrar').click($.unblockUI);
   $('#login-1').click(function() { 
-      $.blockUI({ message: $('#login-info') });
-      $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
-  }); 
+      $.blockUI({ 
+        message: $('#login-info')
+      });
+  });
+  $('#saved-boom').click(function() { 
+      $.blockUI({ 
+        message: $('#boom-saved')
+      });
+  });
+  $('#login-2').click(function() { 
+      $.blockUI({ 
+        message: $('#login-info2')
+      });
+  });
+  $('#socialshare').click(function() { 
+      $.blockUI({ 
+        message: $('#social-share')
+      });
+  });
+
 }); 
