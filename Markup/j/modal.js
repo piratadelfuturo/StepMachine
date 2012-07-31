@@ -5,7 +5,10 @@ $(document).ready(function() {
     cursor:'default'
   };
   $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
-  $('.cls-btn').attr('title','Cerrar').click($.unblockUI);
+  $('.cls-btn').attr('title','Cerrar').click(function(){
+    $.unblockUI();
+    return false;
+  });
   $('#login-1').click(function() { 
       $.blockUI({ 
         message: $('#login-info')
@@ -20,6 +23,7 @@ $(document).ready(function() {
       $.blockUI({ 
         message: $('#login-info2')
       });
+      return false;
   });
   $('#socialshare').click(function() { 
       $.blockUI({ 
