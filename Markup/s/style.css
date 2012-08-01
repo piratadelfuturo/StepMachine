@@ -2301,5 +2301,78 @@ content: '';
 #social-share .comment .limpiar{
   margin:0 18px 0 25px;
 }
+/*    LISTAS RECOMENDADOS / BOOMS DE USUARIOS   */
+#container.lista-boom .boomer .boom{
+  margin-bottom:8px;
+}
+#container.lista-boom .boomer .pags{
+  margin-top: 20px;
+}
+.lista-boom span.tecnologia
+.lista-boom span.sexo{background-position:0px 0;}
+.lista-boom span.tecnologia{background-position:0px -20px;}
+.lista-boom span.musica{background-position:0px -40px;}
+.lista-boom span.cine{background-position:0px -60px;}
+.lista-boom span.lucky{background-position:0px -80px;}
 
+#container.lista-boom .boomer ul.paginador{
+  border:none;
+  border-top:1px solid #DFDFDF;
+  padding-top:10px;
+  text-align: center;
+}
+
+.paginador li{
+  display:inline-block;
+  margin-right:-3px;
+  height: 80px;
+}
+.paginador li span{
+  display:block;
+  width:23px;
+  height:33px;
+  text-align:center;
+  font: 14px 'Proxima', sans-serif;
+  position:relative;
+}
+.paginador li span:before{
+  content:' ';
+  display:block;
+  width:23px;
+  height:47px;
+  background:url('../images/pagin.png') no-repeat;
+  padding-top: 6px;
+}
+.paginador li .pagina-prev{
+  width: 50px;
+  text-indent:-9999px;}
+.paginador li .pagina-prev:before{
+  background-position:-110px 0;
+  width:100px;
+}
+.paginador li .pagina-next{
+  width: 50px; 
+  text-indent:-9999px;}
+.paginador li .pagina-next:before{
+  background-position: -46px 0;
+  width: 64px;
+}
+
+.paginador li .even:before{
+  background-position: -23px 0;
+}
+.paginador li .on{
+  color:#ef4d30;
+}
+.paginador li .on:after,.paginador li:hover .pagina:after{
+  content: ' ';
+  display: inline-block;
+  background: #EF4D30;
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 26px;
+  right: 7px;
+  border-radius: 50%;
+}
 
