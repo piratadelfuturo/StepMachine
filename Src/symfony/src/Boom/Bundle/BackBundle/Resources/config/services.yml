@@ -1,7 +1,8 @@
 parameters:
-#    boom_back.example.class: Boom\Bundle\BackBundle\Example
+    boom_back.image_type.class: Boom\Bundle\BackBundle\Form\Type\ImageType
 
 services:
-#    boom_back.example:
-#        class: %boom_back.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    form.type.image:
+        class: %boom_back.image_type.class%
+        tags:
+            - { name: form.type, alias: image }

@@ -4,11 +4,15 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\ExecutionContext;
 
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\BoomRepository")
  * @ORM\Table(name="boom")
+ * @ORM\HasLifecycleCallbacks
  */
 class Boom extends DomainObject
 {
@@ -21,6 +25,7 @@ class Boom extends DomainObject
     protected $id;
 
     /**
+     * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=140, unique=true)
      */
     protected $slug;
@@ -42,7 +47,6 @@ class Boom extends DomainObject
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @ORM\Version
      */
     protected $date_published;
 
@@ -91,7 +95,8 @@ class Boom extends DomainObject
     protected $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"persist","remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
      **/
     protected $elements;
 
@@ -123,7 +128,9 @@ class Boom extends DomainObject
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        if(empty($this->slug) || is_null($this->slug)){
+            $this->slug = $slug;
+        }
         return $this;
     }
 
@@ -319,9 +326,9 @@ class Boom extends DomainObject
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $children
      * @return Boom
      */
-    public function addChildren(\Boom\Bundle\LibraryBundle\Entity\Boom $children)
+    public function addChild(\Boom\Bundle\LibraryBundle\Entity\Boom $child)
     {
-        $this->children[] = $children;
+        $this->children[] = $child;
         return $this;
     }
 
@@ -330,9 +337,9 @@ class Boom extends DomainObject
      *
      * @param <variableType$children
      */
-    public function removeChildren(\Boom\Bundle\LibraryBundle\Entity\Boom $children)
+    public function removeChild(\Boom\Bundle\LibraryBundle\Entity\Boom $child)
     {
-        $this->children->removeElement($children);
+        $this->children->removeElement($child);
     }
 
     /**
@@ -346,14 +353,26 @@ class Boom extends DomainObject
     }
 
     /**
+     * Set children
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function setChildren(\Doctrine\Common\Collections\Collection $children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+
+    /**
      * Add categories
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $categories
+     * @param Boom\Bundle\LibraryBundle\Entity\Category $category
      * @return Boom
      */
-    public function addCategorie(\Boom\Bundle\LibraryBundle\Entity\Category $categories)
+    public function addCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
         return $this;
     }
 
@@ -362,9 +381,9 @@ class Boom extends DomainObject
      *
      * @param <variableType$categories
      */
-    public function removeCategorie(\Boom\Bundle\LibraryBundle\Entity\Category $categories)
+    public function removeCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category)
     {
-        $this->categories->removeElement($categories);
+        $this->categories->removeElement($category);
     }
 
     /**
@@ -378,6 +397,19 @@ class Boom extends DomainObject
     }
 
     /**
+     * Set categories
+     *
+     * @return Boom
+     */
+
+    public function setCategories(\Doctrine\Common\Collections\Collection $categories)
+    {
+        $this->categories = $categories;
+        return $this;
+    }
+
+
+    /**
      * Add elements
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Boomelement $elements
@@ -385,7 +417,11 @@ class Boom extends DomainObject
      */
     public function addElement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $elements)
     {
+
         $this->elements[] = $elements;
+        if($elements->getBoom() == null || $elements->getBoom() !== $this){
+            $elements->setBoom($this);
+        }
         return $this;
     }
 
@@ -397,6 +433,7 @@ class Boom extends DomainObject
     public function removeElement(\Boom\Bundle\LibraryBundle\Entity\Boomelement $elements)
     {
         $this->elements->removeElement($elements);
+        $elements->setBoom();
     }
 
     /**
@@ -407,6 +444,18 @@ class Boom extends DomainObject
     public function getElements()
     {
         return $this->elements;
+    }
+
+
+    /**
+     * Set elements
+     *
+     * @return Boom
+     */
+    public function setElements(\Doctrine\Common\Collections\Collection $elements)
+    {
+        $this->elements = $elements;
+        return $this;
     }
 
 
@@ -443,14 +492,39 @@ class Boom extends DomainObject
         return $this->tags;
     }
 
-
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    /**
+     * Set tags
+     *
+     * @return Boom
+     */
+    public function setTags(\Doctrine\Common\Collections\Collection $tags)
     {
-        /*$metadata->addPropertyConstraint(
-          'nsfw', new Choice(array(
-            'choices' => array('male', 'female'),
-            'message' => 'Choose a valid gender.',
-        )));*/
+        $this->tags = $tags;
+        return $this;
     }
+
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist(){
+        $this->setDateCreated(new \DateTime());
+        $this->setDatePublished(new \DateTime());
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function preUpdate(){
+        $this->setDatePublished(new \DateTime());
+    }
+
+    public function hasCategories(ExecutionContext $context){
+        if($this->getCategories()->count() == 0){
+            $context->addViolationAtSubPath('categories','No categories selected');
+        }
+
+    }
+
 
 }

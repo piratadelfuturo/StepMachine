@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\ImageRepository")
  * @ORM\Table(name="image")
  * @ORM\HasLifecycleCallbacks
  */
@@ -61,6 +61,14 @@ class Image extends DomainObject {
      * @ORM\ManyToMany(targetEntity="Gallery", mappedBy="images")
      */
     protected $galleries;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $date_created;
+
+
     protected $file;
 
     public function __construct() {
@@ -328,4 +336,26 @@ class Image extends DomainObject {
         }
     }
 
+
+    /**
+     * Set date_created
+     *
+     * @param datetime $dateCreated
+     * @return Image
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->date_created = $dateCreated;
+        return $this;
+    }
+
+    /**
+     * Get date_created
+     *
+     * @return datetime 
+     */
+    public function getDateCreated()
+    {
+        return $this->date_created;
+    }
 }

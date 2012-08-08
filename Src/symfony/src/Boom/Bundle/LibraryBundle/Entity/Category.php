@@ -4,6 +4,8 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\CategoryRepository")
@@ -19,6 +21,7 @@ class Category extends DomainObject{
     protected $id;
 
     /**
+     * @Gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=140)
      */
     protected $slug;
@@ -29,6 +32,7 @@ class Category extends DomainObject{
     protected $name;
 
     /**
+     * @Gedmo\SortablePosition
      * @ORM\Column(type="integer")
      */
     protected $position;
@@ -61,6 +65,9 @@ class Category extends DomainObject{
      */
     public function setSlug($slug)
     {
+        if(empty($this->slug) || is_null($this->slug)){
+            $this->slug = $slug;
+        }
         $this->slug = $slug;
         return $this;
     }

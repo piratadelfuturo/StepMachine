@@ -3,14 +3,12 @@
 namespace Boom\Bundle\BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\ORM\Query;
+//use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Boom\Bundle\LibraryBundle\Form\BoomType;
-use Boom\Bundle\LibraryBundle\Form\BoomelementType;
-use Boom\Bundle\LibraryBundle\Entity\Boom;
-use Boom\Bundle\LibraryBundle\Entity\Boomelement;
-
+use Boom\Bundle\BackBundle\Form\BoomType;
+use Boom\Bundle\BackBundle\Form\BoomelementType;
+use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 
 class BoomController extends Controller {
 
@@ -18,7 +16,6 @@ class BoomController extends Controller {
      * Lists all Boom entities.
      *
      */
-
     public function indexAction(Request $request) {
 
         if ($request->getRequestFormat() == 'html') {
@@ -32,25 +29,40 @@ class BoomController extends Controller {
          */
         $columns = array(
             'id',
+            'title',
+            'slug',
+            array(
+                'categories' => array(
+                    'name categories'
+                )
+            ),
+            'date_created',
+            'nsfw',
             array(
                 'user' => array(
                     'username'
                 )
             ),
-            'title',
-            'date_created',
-            'nsfw',
-            'id actionId'
+            'id action_id'
         );
         $get['columns'] = $columns;
 
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
-        $query = $repo->ajaxTable($get, true);
-        $rResult = $query->getArrayResult();
+        $result = $repo->ajaxTable($get, true);
+        $rResult = $result['query']->getArrayResult();
+        $rResult = array_map(function($value) {
+                    $value = array_map(function($value) {
+                                if ($value instanceof \DateTime) {
+                                    $value = $value->format(\DateTime::RFC2822);
+                                }
+                                return $value;
+                            }, $value);
+                    return $value;
+                }, $rResult);
 
         /* Data set length after filtering */
-        $iFilteredTotal = count($rResult);
+        $iFilteredTotal = $result['total'];
 
 
         if (!empty($rResult)) {
@@ -62,7 +74,7 @@ class BoomController extends Controller {
          */
         $output = array(
             "sEcho" => intval(isset($get['sEcho']) ? $get['sEcho'] : NULL),
-            "iTotalRecords" => $repo->getCount(),
+            "iTotalRecords" => (int) $repo->getCount(),
             "iTotalDisplayRecords" => $iFilteredTotal,
             "aaData" => array()
         );
@@ -116,15 +128,16 @@ class BoomController extends Controller {
      *
      */
     public function newAction() {
-        $entity = new Boom();
 
-        for($i=1;$i<=7;$i++){
-            $element = new Boomelement();
+        $entity = new BoomEntity\Boom();
+        for ($i = 1; $i <= 7; $i++) {
+            $element = new BoomEntity\Boomelement();
             $element->setPosition($i);
             $entity->addElement($element);
         }
-
         $form = $this->createForm(new BoomType(), $entity);
+
+
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
@@ -136,18 +149,29 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $entity = new Boom();
+        $form = $this->createForm(new BoomType());
         $request = $this->getRequest();
-        $form = $this->createForm(new BoomType(), $entity);
-        $form->bindRequest($request);
-
+        $form->bind($request);
+        $entity = $form->getData();
+        $currentUser = $this->get('security.context')->getToken();
+        if ($currentUser instanceof BoomEntity\User) {
+            $entity->setUser($sessionToken->getUser());
+        }
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $em->flush();
 
-            return $this->redirect($this->generateUrl('boom_show', array('id' => $entity->getId())));
+            return $this->redirect(
+                            $this->generateUrl(
+                                    'BoomBackBundle_boom_show', array(
+                                'id' => $entity->getId()
+                                    )
+                            )
+            );
         }
+
 
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
                     'entity' => $entity,
@@ -197,16 +221,16 @@ class BoomController extends Controller {
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('boom_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('BoomBackBundle_boom_edit', array('id' => $id)));
         }
 
-        return $this->render('BoomBackBundle:Boom:edit.html.twig', array(
+        return $this->render('BoomBackBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),

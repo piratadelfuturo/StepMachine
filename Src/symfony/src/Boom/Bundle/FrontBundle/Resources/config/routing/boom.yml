@@ -1,30 +1,30 @@
-boom:
+BoomFrontBundle_boom_show:
+    pattern:  /{slug}
+    defaults: { _controller: "BoomFrontBundle:Boom:show" }
+
+BoomFrontBundle_boom_index:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:Boom:index" }
 
-boom_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "BoomFrontBundle:Boom:show" }
-
-boom_new:
+BoomFrontBundle_boom_new:
     pattern:  /new
     defaults: { _controller: "BoomFrontBundle:Boom:new" }
 
-boom_create:
+BoomFrontBundle_boom_create:
     pattern:  /create
     defaults: { _controller: "BoomFrontBundle:Boom:create" }
     requirements: { _method: post }
 
-boom_edit:
+BoomFrontBundle_boom_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "BoomFrontBundle:Boom:edit" }
 
-boom_update:
+BoomFrontBundle_boom_update:
     pattern:  /{id}/update
     defaults: { _controller: "BoomFrontBundle:Boom:update" }
     requirements: { _method: post }
 
-boom_delete:
+BoomFrontBundle_boom_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "BoomFrontBundle:Boom:delete" }
     requirements: { _method: post }

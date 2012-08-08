@@ -1,8 +1,11 @@
 BoomBackBundle_boom_index:
-    pattern:  /list.{_format}
+    pattern:  .{_format}
     defaults: { _controller: "BoomBackBundle:Boom:index", _format: html }
     requirements:
       _format: html|json
+    options:
+      expose: true
+
 
 BoomBackBundle_boom_show:
     pattern:  /{id}/show
@@ -10,14 +13,15 @@ BoomBackBundle_boom_show:
     options:
         expose: true
 
+BoomBackBundle_boom_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Boom:create" }
+    requirements: { _method: post }
+
 BoomBackBundle_boom_new:
     pattern:  /new
     defaults: { _controller: "BoomBackBundle:Boom:new" }
-
-BoomBackBundle_boom_create:
-    pattern:  /create
-    defaults: { _controller: "BoomBackBundle:Boom:create" }
-    requirements: { _method: post }
+    requirements: { _method: get }
 
 BoomBackBundle_boom_edit:
     pattern:  /{id}/edit

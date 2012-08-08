@@ -15,6 +15,6 @@ BoomFrontBundle_boom:
     resource: "@BoomFrontBundle/Resources/config/routing/boom.yml"
     prefix:   /boom
 
-BoomFrontBundle_boom:
+BoomFrontBundle_category:
     resource: "@BoomFrontBundle/Resources/config/routing/category.yml"
     prefix:   /cat

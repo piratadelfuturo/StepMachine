@@ -12,9 +12,37 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\Boomelement;
 
 
-class BoomController extends Controller {
+class ImageController extends Controller {
+
+
+    public function indexAction(Request $request){
+
+
+        $get = $request->query->all();
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Image');
+        $query = $repo->ajaxTable($get, true);
+        $result = $query->getResult(Query::HYDRATE_ARRAY);
+
+        if ($request->getRequestFormat() == 'json') {
+            $response = new Response(json_encode($result));
+            $response->headers->set('Content-Type', 'application/json');
+        }else{
+            $response = $this->render(
+                    'BoomBackBundle:Image:index.html.php',
+                    array(
+                        'result' => $result
+                    )
+                    );
+
+        }
+
+        return $response;
+
+
+    }
 
 
 
-    
 }

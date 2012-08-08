@@ -3,6 +3,7 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -18,21 +19,23 @@ class Boomelement extends DomainObject{
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=140)
+     * @ORM\Column(type="string", length=140, nullable=true)
      */
     public $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
 
     /**
+     * @Gedmo\SortablePosition
      * @ORM\Column(type="integer")
      */
     protected $position;
 
     /**
+     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Boom", inversedBy="elements")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      **/
@@ -40,7 +43,7 @@ class Boomelement extends DomainObject{
 
     /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="image")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      **/
     protected $image;
 
@@ -131,6 +134,11 @@ class Boomelement extends DomainObject{
     public function setBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $boom = null)
     {
         $this->boom = $boom;
+        //var_dump($boom);
+        if($boom !== $this->boom){
+            $boom->addElement($this);
+        }
+
         return $this;
     }
 

@@ -1,0 +1,41 @@
+BoomBackBundle_category_index:
+    pattern:  .{_format}
+    defaults: { _controller: "BoomBackBundle:Category:index", _format: html }
+    options:
+        expose: true
+    requirements:
+      _format: html|json
+
+BoomBackBundle_category_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:Category:show" }
+    options:
+        expose: true
+
+BoomBackBundle_category_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Category:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_category_new:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Category:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_category_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Category:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_category_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Category:update" }
+    requirements: { _method: post }
+
+BoomBackBundle_category_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BoomBackBundle:Category:delete" }
+    requirements: { _method: post }
+    options:
+        expose: true
