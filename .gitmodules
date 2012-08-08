@@ -1,0 +1,3 @@
+[submodule "Src/symfony/src/FM/BbCodeBundle"]
+	path = Src/symfony/src/FM/BbCodeBundle
+	url = git@github.com:piratadelfuturo/FMBbCodeBundle.git
