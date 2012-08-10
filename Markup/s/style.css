@@ -2390,3 +2390,89 @@ content: '';
   border-right:1px solid #ededed;
 }
 
+/*  User site */
+#usr-site{
+  width: 670px;
+  float: left;
+  position: relative;  
+}
+#tusitio-bar{
+  background: #464545;
+  position: relative;
+  padding-left: 25px;
+  line-height: 37px;
+  display: block;
+  height: 44px;
+}
+#tusitio-bar:before{
+  content: ' ';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 13px solid white;
+  left: 0;
+}
+#tusitio-bar h3,
+#creatuboom h3{
+  font: 23px 'Proxima', sans-serif;
+  color:#FFF;
+  text-transform:uppercase;
+  line-height: 44px;
+  display: inline-block;
+}
+#tusitio-bar ul{
+  float: right;
+display: inline-block;
+line-height: 44px;
+}
+#tusitio-bar li{
+  display: inline-block;
+  border-left: 1px solid #939393;
+  height: 24px;
+  line-height: 30px;
+  padding: 4px 20px 0;
+  font: 15px 'Proxima', sans-serif;
+}
+#tusitio-bar li{
+  color:#FFF;
+}
+
+#creatuboom{
+  display: block;
+  background: #464545;
+  margin-top: 2px;
+  padding-left: 25px;
+}
+#creatuboom h3{
+  line-height: 31px;
+}
+.comocrear{
+  width: 98PX;
+  height: 49px;
+  display: block;
+  font: 13px 'Proxima', sans-serif;
+  color: white;
+  background: url('../images/flag_showhide.png');
+  z-index: 1;
+  text-transform: uppercase;
+  padding: 8px 9px 0 31px;
+  text-align: center;
+  line-height: 15px;
+  position: absolute;
+  top: 55px;
+  right: -9px;
+}
+
+/* FORM BOOM  */
+#form-boom{
+  border:1px solid #dfdfdf;
+  padding: 25px 10px 10px;
+}
+#form-boom h3{
+  text-transform:uppercase;
+  font: 16px 'Museo500', sans-serif;
+  color:#2d2c2c;
+}
