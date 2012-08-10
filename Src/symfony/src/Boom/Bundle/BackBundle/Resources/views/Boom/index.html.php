@@ -1,16 +1,17 @@
 <?php $view->extend('BoomBackBundle::layout.html.php') ?>
 <div class="g12">
-    <h1>DataTable</h1>
-
+    <h1>Booms</h1>
     <table id="boomTable" class="datatable">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>User</th>
-                <th>Title</th>
-                <th>Date created</th>
+                <th>Nombre</th>
+                <th>URL</th>
+                <th>Categorías</th>
+                <th>Fecha</th>
                 <th>NSFW</th>
-                <th>Acciones</th>
+                <th>Usuario</th>
+                <th style="width:160px">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -42,17 +43,29 @@
                 "bServerSide": true,
                 "bDeferRender": true,
                 "sPaginationType": "full_numbers",
+                "aaSorting": [[0,'desc'], [4,'desc']],
                 "iDisplayStart": 0,
                 "iDisplayLength": 10,
-                "sAjaxSource": '<?php echo $view['router']->generate('BoomBackBundle_boom_index', array('_format' => 'json')) ?>',
+                "sAjaxSource": Routing.generate('BoomBackBundle_boom_index', {  _format: 'json'}),
                 "aoColumns": [
                     null,
                     null,
                     null,
                     null,
+                    {
+                        "sName": "date_created",
+                        "bSearchable": false,
+                        "bSortable": true,
+                        "fnCreatedCell": function (nTd,val)
+                        {
+                            var date = new Date(val);
+                            $(nTd).empty().text(date.toLocaleString());
+                        }
+                    },
+                    null,
                     null,
                     {     // fifth column (Edit link)
-                        "sName": "actionId",
+                        "sName": "action_id",
                         "bSearchable": false,
                         "bSortable": false,
                         "fnCreatedCell": function (nTd,val)

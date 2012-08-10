@@ -1,31 +1,27 @@
 <?php $view->extend('BoomBackBundle::layout.html.php') ?>
 <?php $view['form']->setTheme($edit_form, array('BoomBackBundle:Form')) ?>
-<form action="<?php echo $view['router']->generate('BoomBackBundle_boom_update', array('id' => $entity['id'])) ?>" method="post" <?php echo $view['form']->enctype($edit_form) ?> >
+<?php
+echo $view->render(
+        'BoomBackBundle:Boom:form/fullForm.html.php', array(
+    'form_url' => $view['router']->generate('BoomBackBundle_boom_update', array('id' => $entity['id'])),
+    'form_enctype' => $view['form']->enctype($edit_form),
+    'form' => $edit_form,
+    'form_title' => 'Editar Boom'
+        )
+);
+?>
+
+
+<form action="<?php $view['router']->generate('BoomBackBundle_boom_delete', array('id' => $entity['id'])) ?>" method="post">
+    <?php echo $view['form']->widget($delete_form) ?>
     <fieldset>
-        <label>Boom edit</label>
-        <?php echo $view['form']->row($edit_form['title'],array('label' =>'Título')) ?>
-        <?php echo $view['form']->row($edit_form['summary'],array('label'=>'Resumen')) ?>
-        <?php echo $view['form']->row($edit_form['image'],array('label'=>'Imagen')) ?>
-            <?php //echo $view['form']->row($edit_form['categories'],array('label'=>'Categorías')) ?>
+        <label>Eliminar</label>
         <section>
             <div>
-                <button class="submit" type="submit" >Guardar</button>
+                <button type="submit">Aceptar</button>
             </div>
         </section>
     </fieldset>
 </form>
 
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('boom') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <form action="<?php $view['router']->generate('BoomBackBundle_boom_delete', array('id' => $entity['id'])) ?>" method="post">
-            <?php echo $view['form']->widget($delete_form) ?>
-            <button type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+<script type="text/javascript" src="<?php echo $view['assets']->getUrl('/bundles/boomback/public/js/Bundle/Boom/form.js') ?>"></script>

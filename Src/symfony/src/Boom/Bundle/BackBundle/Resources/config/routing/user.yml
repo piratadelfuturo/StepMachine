@@ -1,0 +1,42 @@
+BoomBackBundle_user_index:
+    pattern:  .{_format}
+    defaults: { _controller: "BoomBackBundle:User:index", _format: html }
+    requirements:
+      _format: html|json
+    options:
+      expose: true
+
+
+BoomBackBundle_user_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:User:show" }
+    options:
+        expose: true
+
+#BoomBackBundle_user_create:
+#    pattern:  /new
+#    defaults: { _controller: "BoomBackBundle:User:create" }
+#    requirements: { _method: post }
+
+#BoomBackBundle_user_new:
+#    pattern:  /new
+#    defaults: { _controller: "BoomBackBundle:User:new" }
+#    requirements: { _method: get }
+
+BoomBackBundle_user_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:User:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_user_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:User:update" }
+    requirements: { _method: post }
+
+#BoomBackBundle_user_delete:
+#    pattern:  /{id}/delete
+#    defaults: { _controller: "BoomBackBundle:User:delete" }
+#    requirements: { _method: post }
+#    options:
+#        expose: true

@@ -29,14 +29,17 @@
         <script type="text/javascript" src="<?php echo $view['router']->generate('fos_js_routing_js', array('callback' => 'fos.Router.setData')) ?>"></script>
 
         <!-- Use Google CDN for jQuery and jQuery UI -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script> -->
 
         <!-- Loading JS Files this way is not recommended! Merge them but keep their order -->
 
         <!-- some basic functions -->
         <?php
         $js = array(
+            'js/lib/jquery-1.7.2.min.js',
+            'js/lib/jquery-ui-1.8.22.custom.min.js',
+            //'js/lib/tiny_mce/jquery.tinymce.js',
             'js/functions.js',
             'js/plugins.js',
             'js/editor.js',
@@ -88,6 +91,6 @@
                 <?php $view['slots']->output('_content') ?>
             </div>
         </section>
-        <footer>Copyright by revaxarts.com 2012</footer>
+        <footer>brutalcontent.com 2012</footer>
     </body>
 </html>

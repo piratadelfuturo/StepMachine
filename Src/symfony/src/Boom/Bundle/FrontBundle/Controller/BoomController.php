@@ -32,21 +32,18 @@ class BoomController extends Controller
      * Finds and displays a Boom entity.
      *
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->find($id);
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('BoomFrontBundle:Boom:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render('BoomFrontBundle:Boom:show.html.php', array(
+            'entity'      => $entity));
     }
 
     /**
@@ -181,5 +178,5 @@ class BoomController extends Controller
             ->getForm()
         ;
     }
-    
+
 }

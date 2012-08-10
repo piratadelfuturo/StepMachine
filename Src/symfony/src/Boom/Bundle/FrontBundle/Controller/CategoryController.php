@@ -21,18 +21,18 @@ class CategoryController extends Controller {
 
         $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $thisCategory = $catRepo->findOneBySlug($slug);
-        
+
         if (is_null($thisCategory) || $thisCategory == false) {
             throw $this->createNotFoundException('Categoria no existente');
         }
 
         $latest = $catRepo->findBoomsByCategory($thisCategory,'date_created','DESC',14);
-        
+
 
         return $this->render('BoomFrontBundle:Category:index.html.php', array(
-                    'top' => $top, 
+                    //'top' => $top,
                     'latest' => $latest,
-                    'categoryName' => $thisCategory->getName()
+                    'category' => $thisCategory
                 ));
     }
 

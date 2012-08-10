@@ -1,7 +1,7 @@
 <div id="cat-car">
         <a href="#" class="car-btn prev">prev</a>
         <a href="#" class="car-btn next">next</a>
-        <h3 class="title-flag"><span>cine</span></h3>
+        <h3 class="title-flag"><span><?php echo $view->escape($category['name']) ?></span></h3>
         <ul>
           <li class="active">
             <img src="http://placehold.it/680x382">

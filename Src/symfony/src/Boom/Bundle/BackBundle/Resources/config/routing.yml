@@ -38,3 +38,15 @@ BoomBackBundle_homepage:
 BoomBackBundle_boom:
     resource: "@BoomBackBundle/Resources/config/routing/boom.yml"
     prefix: /boom
+
+BoomBackBundle_category:
+    resource: "@BoomBackBundle/Resources/config/routing/category.yml"
+    prefix: /category
+
+BoomBackBundle_user:
+    resource: "@BoomBackBundle/Resources/config/routing/user.yml"
+    prefix: /user
+
+BoomBackBundle_image:
+    resource: "@BoomBackBundle/Resources/config/routing/image.yml"
+    prefix: /image

@@ -4,6 +4,7 @@
 <?php $view['slots']->output('_content') ?>
 </div>
 <aside>
+    <?php $view['slots']->output('sidebar_top') ?>
     <div class="banner1 sb-bloque">
         BANNER
     </div>
