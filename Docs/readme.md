@@ -11,7 +11,7 @@ $ rm -rf app/cache/*
 $ rm -rf app/logs/*
 
 4. Cambiar los permisos a la carpeta de cache y logs:
-$ sudo chmod +a "www-data allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+$ sudo chmod +a "_www allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
 $ sudo chmod +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
 
 5. Crear la base de datos y usuario que vienen descritos en el archivo
