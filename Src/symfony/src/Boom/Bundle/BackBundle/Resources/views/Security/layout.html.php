@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>White Label | Login</title>
+        <title>Boombox | Login</title>
 
         <meta name="description" content="">
         <meta name="author" content="revaxarts.com">
@@ -19,12 +19,12 @@
         <!-- Google Font and style definitions -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold">
 
-        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boomback/css/style.css') ?>">       
-	<link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boomback/css/light/theme.css') ?>" id="themestyle">        
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boomback/css/style.css') ?>">
+	<link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boomback/css/light/theme.css') ?>" id="themestyle">
 
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boombackbundle/css/ie.css') ?>">       
+        <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('/bundles/boombackbundle/css/ie.css') ?>">
         <![endif]-->
 
         <!-- Use Google CDN for jQuery and jQuery UI -->

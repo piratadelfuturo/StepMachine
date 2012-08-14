@@ -8,7 +8,7 @@ abstract class DomainObject implements \ArrayAccess
     public function offsetExists($offset) {
         // In this example we say that exists means it is not null
         $value = $this->{"get$offset"}();
-        return $value !== null;
+        return !is_null($value);
     }
 
     public function offsetSet($offset, $value) {

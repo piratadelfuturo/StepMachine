@@ -3,6 +3,7 @@
 namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use FOS\UserBundle\Model\GroupInterface;
@@ -10,9 +11,6 @@ use FOS\UserBundle\Model\GroupInterface;
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\UserRepository")
  * @ORM\Table(name="bm_user")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"user" = "User", "admin" = "Admin"})
  */
 class User extends BaseUser implements \ArrayAccess {
 
@@ -73,6 +71,18 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $bio;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     * */
+    protected $booomelementranks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="boom", cascade={"all"}, orphanRemoval=true)
+     * */
+    protected $activities;
+
+
     /**
      * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
      * */
@@ -97,12 +107,29 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $groups;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers")
+     * @ORM\JoinTable(name="follow",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="follow_user_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $following;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
+     */
+    protected $followers;
+
     public function __construct() {
         parent::__construct();
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->following = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->followers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function serialize() {
@@ -449,6 +476,43 @@ class User extends BaseUser implements \ArrayAccess {
 
         //$user->setFirstname($info->name);
     }
+
+    public function setFollowers(\Doctrine\Common\Collections\Collection $followers){
+        $this->followers = $followers;
+        return $this;
+    }
+
+    public function getFollowers(){
+        return $this->followers;
+    }
+
+    public function addFollower(User $follower){
+        $this->followers[] = $follower;
+        return $this;
+
+    }
+
+    public function removeFollower(User $follower){
+        $this->followers->removeElement($follower);
+    }
+
+    public function setFollowing(\Doctrine\Common\Collections\Collection $following){
+        $this->following = $following;
+        return $this;
+    }
+
+    public function getFollowing(){
+        return $this->following;
+    }
+
+    public function addFollowing(User $following){
+        $this->following[] = $following;
+    }
+
+    public function removeFollowing(User $following){
+        $this->following->removeElement($following);
+    }
+
 
     public function offsetExists($offset) {
         // In this example we say that exists means it is not null

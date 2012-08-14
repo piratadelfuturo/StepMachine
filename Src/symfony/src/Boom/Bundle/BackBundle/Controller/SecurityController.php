@@ -42,7 +42,7 @@ class SecurityController extends FOSSecurityController
 
         $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
 
-        return $this->container->get('templating')->renderResponse('BoomBackBundle:Security:login.html.'.$this->container->getParameter('fos_user.template.engine'), array(
+        return $this->container->get('templating')->renderResponse('BoomBackBundle:Security:login.html.php', array(
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,

@@ -70,7 +70,7 @@
                 }else{
                     $openTab.show(0,function(){
                         $closeTab.hide(0,function(){
-                        counter.count();
+                            counter.count();
                         });
                         counter.count();
                     });
@@ -95,7 +95,7 @@
                 if(animated){
                     $openTab.fadeOut('slow',function(){
                         $closeTab.fadeIn('slow',function(){
-                        counter.count();
+                            counter.count();
                         });
                         counter.count();
                     });
@@ -105,7 +105,7 @@
                 }else{
                     $openTab.hide(0,function(){
                         $closeTab.show(0,function(){
-                        counter.count();
+                            counter.count();
                         });
                         counter.count();
                     });

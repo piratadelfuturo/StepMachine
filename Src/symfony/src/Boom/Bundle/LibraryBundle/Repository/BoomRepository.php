@@ -2,10 +2,9 @@
 
 namespace Boom\Bundle\LibraryBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
+use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-class BoomRepository extends EntityRepository {
+class BoomRepository extends NestedTreeRepository {
 
     /**
      * @param array $get

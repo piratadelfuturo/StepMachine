@@ -37,14 +37,25 @@ class Category extends DomainObject{
      */
     protected $position;
 
+    /*
+     * @ORM\Column(type="boolean")
+     */
+    protected $featured;
+
     /**
      * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
      */
     protected $booms;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="main_category" )
+     */
+    protected $main_booms;
+
     public function __construct()
     {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->featured = false;
     }
 
     /**
@@ -124,6 +135,28 @@ class Category extends DomainObject{
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set featured
+     *
+     * @param integer $featured
+     * @return Category
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+        return $this;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return integer
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
     }
 
 

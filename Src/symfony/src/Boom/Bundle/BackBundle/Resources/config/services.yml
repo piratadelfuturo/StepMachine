@@ -1,8 +1,15 @@
 parameters:
     boom_back.image_type.class: Boom\Bundle\BackBundle\Form\Type\ImageType
+    boom_back.user_provider.admin.class: Boom\Bundle\BackBundle\Security\AdminProvider
 
 services:
     form.type.image:
         class: %boom_back.image_type.class%
         tags:
             - { name: form.type, alias: image }
+    boom_back.user_provider.admin:
+        class: %boom_back.user_provider.admin.class%
+        arguments:
+          userManager:  "@fos_user.user_manager"
+          #validator:    "@validator"
+          #container:    "@service_container"

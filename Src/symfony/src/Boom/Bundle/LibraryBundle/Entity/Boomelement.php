@@ -21,7 +21,7 @@ class Boomelement extends DomainObject{
     /**
      * @ORM\Column(type="string", length=140, nullable=true)
      */
-    public $title;
+    protected $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -35,19 +35,27 @@ class Boomelement extends DomainObject{
     protected $position;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $community_position;
+
+    /**
      * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Boom", inversedBy="elements")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=false)
      **/
     protected $boom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="image")
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="boomelements")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      **/
     protected $image;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="boomelement", cascade={"all"}, orphanRemoval=true)
+     **/
+    protected $boomelementranks;
 
     /**
      * Get id
@@ -172,5 +180,65 @@ class Boomelement extends DomainObject{
     public function getImage()
     {
         return $this->image;
+    }
+
+
+    public function __construct()
+    {
+        $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set community_position
+     *
+     * @param integer $communityPosition
+     * @return Boomelement
+     */
+    public function setCommunityPosition($communityPosition)
+    {
+        $this->community_position = (int) $communityPosition;
+        return $this;
+    }
+
+    /**
+     * Get community_position
+     *
+     * @return integer
+     */
+    public function getCommunityPosition()
+    {
+        return $this->community_position;
+    }
+
+    /**
+     * Add boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     * @return Boomelement
+     */
+    public function addBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks[] = $boomelementranks;
+        return $this;
+    }
+
+    /**
+     * Remove boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     */
+    public function removeBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks->removeElement($boomelementranks);
+    }
+
+    /**
+     * Get boomelementranks
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getBoomelementranks()
+    {
+        return $this->boomelementranks;
     }
 }
