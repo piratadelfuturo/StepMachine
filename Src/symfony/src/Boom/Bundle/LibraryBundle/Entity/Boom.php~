@@ -120,6 +120,22 @@ class Boom extends DomainObject {
     protected $booomelementranks;
 
     /**
+    *@ORM\ManyToMany(targetEntity="User", mappedBy="favorites")
+    */
+    protected $favorite_users;
+
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $featured;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="boom", cascade={"all"}, orphanRemoval=true)
+     * */
+    protected $activities;
+
+    /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
@@ -164,6 +180,7 @@ class Boom extends DomainObject {
         $this->nsfw = false;
         $this->reply_enabled = false;
         $this->status = self::STATUS_DRAFT;
+        $this->featured = false;
     }
 
     /**
@@ -685,25 +702,6 @@ class Boom extends DomainObject {
         return $this->status;
     }
 
-    /**
-     * Add categories
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $categories
-     * @return Boom
-     */
-    public function addCategorie(\Boom\Bundle\LibraryBundle\Entity\Category $categories) {
-        $this->categories[] = $categories;
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $categories
-     */
-    public function removeCategorie(\Boom\Bundle\LibraryBundle\Entity\Category $categories) {
-        $this->categories->removeElement($categories);
-    }
 
     /**
      * Add booomelementranks
@@ -757,4 +755,28 @@ class Boom extends DomainObject {
         return self::$_StatusEnumFieldValues;
     }
 
+
+    /**
+     * Set main_category
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Category $mainCategory
+     * @return Boom
+     */
+    public function setMainCategory(\Boom\Bundle\LibraryBundle\Entity\Category $mainCategory)
+    {
+        $this->main_category = $mainCategory;
+        return $this;
+    }
+
+    /**
+     * Get main_category
+     *
+     * @return Boom\Bundle\LibraryBundle\Entity\Category
+     */
+    public function getMainCategory()
+    {
+        return $this->main_category;
+    }
+
+    
 }

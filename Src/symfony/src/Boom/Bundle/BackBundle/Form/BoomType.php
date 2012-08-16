@@ -9,8 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class BoomType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
         $builder
-                ->add('slug', 'text', array('read_only' => false))
                 ->add('title')
                 ->add('summary')
                 ->add('date_published',null,array(
@@ -60,7 +60,7 @@ class BoomType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_librarybundle_boomtype';
+        return 'boom_bundle_backbundle_boomtype';
     }
 
 }

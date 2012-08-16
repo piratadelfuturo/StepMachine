@@ -31,7 +31,7 @@ class ImageType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_librarybundle_imagetype';
+        return 'boom_bundle_backbundle_imagetype';
     }
 
 }

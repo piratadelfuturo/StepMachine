@@ -22,7 +22,7 @@ class CategoryType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_librarybundle_categorytype';
+        return 'boom_bundle_backbundle_categorytype';
     }
 
 }

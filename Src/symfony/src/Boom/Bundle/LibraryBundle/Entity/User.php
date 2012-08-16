@@ -75,13 +75,12 @@ class User extends BaseUser implements \ArrayAccess {
     /**
      * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      * */
-    protected $booomelementranks;
+    protected $boomelementranks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Activity", mappedBy="boom", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="user", cascade={"all"}, orphanRemoval=true)
      * */
     protected $activities;
-
 
     /**
      * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
@@ -107,6 +106,15 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $groups;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Boom", inversedBy="favorite_users")
+     * @ORM\JoinTable(name="bm_user_favorite_boom",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")}
+     * )
+     */
+    protected $favorites;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="followers")
@@ -116,6 +124,7 @@ class User extends BaseUser implements \ArrayAccess {
      *      )
      */
     protected $following;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
@@ -130,6 +139,9 @@ class User extends BaseUser implements \ArrayAccess {
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->following = new \Doctrine\Common\Collections\ArrayCollection();
         $this->followers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function serialize() {
@@ -148,6 +160,15 @@ class User extends BaseUser implements \ArrayAccess {
                 $this->twitterId,
                 $parentData) = unserialize($data);
         parent::unserialize($parentData);
+    }
+
+    public function setAdmin($admin = false){
+        $this->setSuperAdmin((bool) $admin);
+        return $this;
+    }
+
+    public function getAdmin($admin = false){
+        return (bool) $this->isSuperAdmin();
     }
 
     /**
@@ -535,4 +556,111 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
 
+
+    /**
+     * Add boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     * @return User
+     */
+    public function addBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks[] = $boomelementranks;
+        return $this;
+    }
+
+    /**
+     * Remove boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     */
+    public function removeBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks->removeElement($boomelementranks);
+    }
+
+    /**
+     * Get boomelementranks
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getBoomelementranks()
+    {
+        return $this->boomelementranks;
+    }
+
+    /**
+     * Add activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     * @return User
+     */
+    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Set activities
+     *
+     */
+    public function setActivities(\Doctrine\Common\Collections\Collection $activities)
+    {
+        $this->activities = $activities;
+        return $this;
+    }
+
+
+    /**
+     * Add favorites
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
+     * @return User
+     */
+    public function addFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
+    {
+        $this->favorites[] = $favorites;
+        return $this;
+    }
+
+    /**
+     * Remove favorites
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
+     */
+    public function removeFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
+    {
+        $this->favorites->removeElement($favorites);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
 }

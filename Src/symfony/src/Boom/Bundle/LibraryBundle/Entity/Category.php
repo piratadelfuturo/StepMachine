@@ -192,4 +192,36 @@ class Category extends DomainObject{
     {
         return $this->booms;
     }
+
+    /**
+     * Add main_booms
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms
+     * @return Category
+     */
+    public function addMainBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms)
+    {
+        $this->main_booms[] = $mainBooms;
+        return $this;
+    }
+
+    /**
+     * Remove main_booms
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms
+     */
+    public function removeMainBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms)
+    {
+        $this->main_booms->removeElement($mainBooms);
+    }
+
+    /**
+     * Get main_booms
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMainBooms()
+    {
+        return $this->main_booms;
+    }
 }

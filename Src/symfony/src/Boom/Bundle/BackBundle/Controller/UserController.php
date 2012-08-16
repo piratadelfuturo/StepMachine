@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
+use Boom\Bundle\BackBundle\Form\UserType;
+
 
 class UserController extends Controller {
 
@@ -14,7 +16,7 @@ class UserController extends Controller {
      *
      */
     public function indexAction(Request $request) {
-        if ($request->getRequestFormat() == 'html') {
+        if ($request->getRequestFormat() == 'html' && !$request->isXmlHttpRequest()) {
             return $this->render('BoomBackBundle:User:index.html.php');
         }
 
@@ -175,20 +177,18 @@ class UserController extends Controller {
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
+        $repo = $em->getRepository('BoomLibraryBundle:User');
         $entity = $repo->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Boom entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new UserType(), $entity);
 
-        return $this->render('BoomBackBundle:Category:edit.html.php', array(
+        return $this->render('BoomBackBundle:User:edit.html.php', array(
                     'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    'edit_form' => $editForm->createView()
                 ));
     }
 
@@ -199,14 +199,14 @@ class UserController extends Controller {
     public function updateAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
+        $entity = $em->getRepository('BoomLibraryBundle:User')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Category.');
+            throw $this->createNotFoundException('Unable to find User.');
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
+
+        $editForm = $this->createForm(new UserType(), $entity);
 
         $request = $this->getRequest();
 
@@ -216,13 +216,12 @@ class UserController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('BoomBackBundle_category_index'));
+            return $this->redirect($this->generateUrl('BoomBackBundle_user_index'));
         }
 
-        return $this->render('BoomBackBundle:Category:edit.html.twig', array(
+        return $this->render('BoomBackBundle:User:edit.html.twig', array(
                     'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    'edit_form' => $editForm->createView()
                 ));
     }
 

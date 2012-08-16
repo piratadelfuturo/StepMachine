@@ -120,6 +120,17 @@ class Boom extends DomainObject {
     protected $booomelementranks;
 
     /**
+    *@ORM\ManyToMany(targetEntity="User", mappedBy="favorites")
+    */
+    protected $favorite_users;
+
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $featured;
+
+    /**
      * @ORM\OneToMany(targetEntity="Activity", mappedBy="boom", cascade={"all"}, orphanRemoval=true)
      * */
     protected $activities;
@@ -169,6 +180,7 @@ class Boom extends DomainObject {
         $this->nsfw = false;
         $this->reply_enabled = false;
         $this->status = self::STATUS_DRAFT;
+        $this->featured = false;
     }
 
     /**
@@ -765,4 +777,121 @@ class Boom extends DomainObject {
     {
         return $this->main_category;
     }
+
+
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     * @return Boom
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+        return $this;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
+    }
+
+
+    /**
+     * Add favorite_users
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers
+     * @return Boom
+     */
+    public function addFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers)
+    {
+        $this->favorite_users[] = $favoriteUsers;
+        return $this;
+    }
+
+    /**
+     * Remove favorite_users
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers
+     */
+    public function removeFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers)
+    {
+        $this->favorite_users->removeElement($favoriteUsers);
+    }
+
+    /**
+     * Get favorite_users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFavoriteUsers()
+    {
+        return $this->favorite_users;
+    }
+
+    /**
+     * Set favorite_users
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function setFavoriteUsers(\Doctrine\Common\Collections\Collection $favorite_users)
+    {
+        array_map(array($this,'addFavoriteUsers'),$favorite_users);
+        //$this->favorite_users = $favorite_users;
+        return $this;
+    }
+
+
+
+    /**
+     * Add activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     * @return Boom
+     */
+    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Set activities
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function setActivities(\Doctrine\Common\Collections\Collection $activities)
+    {
+        array_map(array($this,'addActivities'), $activities);
+        //$this->activities = $activities;
+        return $this;
+    }
+
+
 }
