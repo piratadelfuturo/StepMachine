@@ -1,2 +1,5 @@
 .DS_Store
 Src/symfony/composer.lock
+Src/symfony/web/content/*
+Src/symfony/web/content/img/*
+Src/symfony/web/content/user/*

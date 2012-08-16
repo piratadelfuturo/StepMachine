@@ -25,6 +25,14 @@ fos_user:
         engine: twig
     group:
         group_class: Boom\Bundle\LibraryBundle\Entity\Group
+    from_email:
+        address:        admin@7boom.mx
+        sender_name:    7Boom Admin
+    registration:
+        confirmation:
+            enabled:    true
+    service:
+        mailer: fos_user.mailer.default
 fos_facebook:
       file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
       alias:  facebook

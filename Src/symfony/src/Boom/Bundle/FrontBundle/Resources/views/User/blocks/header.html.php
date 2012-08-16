@@ -1,3 +1,9 @@
+<?php
+if ($view['security']->isGranted('ROLE_USER') == true):
+    $user = $app->getUser();
+endif;
+?>
+
 <div id="usr-cnt">
     <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
         <a href="#" class="mostrar">
@@ -12,7 +18,7 @@
                     <li>
                         <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
                             Bienvenido <a href="#">
-                                <?php echo $app->getUser()->getUsername() ?>
+                                <?php echo $view->escape($user['username']); ?>
                             </a>
                         <?php endif; ?>
                     </li>
@@ -44,7 +50,7 @@
                             <img src="http://placehold.it/150x150" id="user-img"/>
                         </div>
                         <div class="usr-data">
-                            <h3>¡Bienvenido...</br><span>Vato!</span></h3>
+                            <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
                             <a href="#" class="ver">Ver perfil</a>
                             <a href="#" class="ver">Cambiar foto</a>
                         </div>
@@ -75,26 +81,21 @@
                         </ul>
                         <a href="#" class="ver-moar">Ver todas</a>
                     </div>
+                    <?php $followings = $user['following']->slice(0, 12); ?>
                     <div class="boomers">
-                        <p>Boomers que sigues:</p>
-                        <ul>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                            <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
-                        </ul>
-                        <div class="ver-mas-block">
-                            <a class="ver-moar" href="#">Ver Todos</a>
+                        <?php if (count($followings) > 0): ?>
+                            <p>Boomers que sigues:</p>
+                            <ul>
+                                <?php foreach ($followings as $following): ?>
+                                    <li><a href="#"><span><img src="http://placehold.it/40x40" alt="placeholder"/></span></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <div class="ver-mas-block">
+                                <a class="ver-moar" href="#">Ver Todos</a>
+                            </div>
                         </div>
-                    </div>
+
+                    <?php endif; ?>
                 </div>
                 <div id="rt-cont">
                     <ul>

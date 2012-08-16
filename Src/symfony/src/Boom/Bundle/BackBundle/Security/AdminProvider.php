@@ -89,7 +89,7 @@ class AdminProvider implements UserProviderInterface
     protected function findUser($username)
     {
         $user = $this->userManager->findUserByUsername($username);
-        if(!$user->hasRole('ROLE_SUPER_ADMIN')){
+        if(!$user->hasRole('ROLE_SUPER_ADMIN') && $user->getPassword() == ''){
             $user = null;
         }
 

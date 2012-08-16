@@ -28,7 +28,7 @@
     );
 ?>
 <div id="hd-mn" class="gradient">
-    <h1><a href="#">7Boom</a></h1>
+    <h1><a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a></h1>
     <div id="link-block">
         <div id="top-bar" class="gradient">
             <ul id="mini-nav">

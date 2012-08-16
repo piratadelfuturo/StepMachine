@@ -11,6 +11,7 @@ use FOS\UserBundle\Model\GroupInterface;
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\UserRepository")
  * @ORM\Table(name="bm_user")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser implements \ArrayAccess {
 
@@ -73,27 +74,27 @@ class User extends BaseUser implements \ArrayAccess {
 
 
     /**
-     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      * */
     protected $boomelementranks;
 
     /**
-     * @ORM\OneToMany(targetEntity="Activity", mappedBy="user", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      * */
     protected $activities;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $booms;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $galleries;
 
@@ -107,7 +108,7 @@ class User extends BaseUser implements \ArrayAccess {
     protected $groups;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Boom", inversedBy="favorite_users")
+     * @ORM\ManyToMany(targetEntity="Boom", inversedBy="favorite_users", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="bm_user_favorite_boom",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")}
@@ -117,7 +118,7 @@ class User extends BaseUser implements \ArrayAccess {
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="follow",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="follow_user_id", referencedColumnName="id")}
@@ -127,9 +128,12 @@ class User extends BaseUser implements \ArrayAccess {
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="following")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="following", fetch="EXTRA_LAZY")
      */
     protected $followers;
+
+
+    protected $profile_image;
 
     public function __construct() {
         parent::__construct();
@@ -662,5 +666,51 @@ class User extends BaseUser implements \ArrayAccess {
     public function getFavorites()
     {
         return $this->favorites;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->profile_image) {
+            $this->path = $this->profile_image->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
+        $this->file->move($this->getUploadRootDir(), $this->id.'.'.$this->file->guessExtension());
+
+        unset($this->file);
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+        protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
     }
 }
