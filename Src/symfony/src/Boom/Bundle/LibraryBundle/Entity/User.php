@@ -3,6 +3,7 @@
 namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use FOS\UserBundle\Model\GroupInterface;
@@ -10,9 +11,7 @@ use FOS\UserBundle\Model\GroupInterface;
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\UserRepository")
  * @ORM\Table(name="bm_user")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"user" = "User", "admin" = "Admin"})
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser implements \ArrayAccess {
 
@@ -73,18 +72,29 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $bio;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
+     * */
+    protected $boomelementranks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
+     * */
+    protected $activities;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $booms;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Gallery", mappedBy="user",fetch="EXTRA_LAZY")
      * */
     protected $galleries;
 
@@ -97,12 +107,45 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $groups;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Boom", inversedBy="favorite_users", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="bm_user_favorite_boom",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")}
+     * )
+     */
+    protected $favorites;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers", fetch="EXTRA_LAZY")
+     * @ORM\JoinTable(name="follow",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="follow_user_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $following;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="following", fetch="EXTRA_LAZY")
+     */
+    protected $followers;
+
+
+    protected $profile_image;
+
     public function __construct() {
         parent::__construct();
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->following = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->followers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function serialize() {
@@ -121,6 +164,15 @@ class User extends BaseUser implements \ArrayAccess {
                 $this->twitterId,
                 $parentData) = unserialize($data);
         parent::unserialize($parentData);
+    }
+
+    public function setAdmin($admin = false){
+        $this->setSuperAdmin((bool) $admin);
+        return $this;
+    }
+
+    public function getAdmin($admin = false){
+        return (bool) $this->isSuperAdmin();
     }
 
     /**
@@ -450,6 +502,43 @@ class User extends BaseUser implements \ArrayAccess {
         //$user->setFirstname($info->name);
     }
 
+    public function setFollowers(\Doctrine\Common\Collections\Collection $followers){
+        $this->followers = $followers;
+        return $this;
+    }
+
+    public function getFollowers(){
+        return $this->followers;
+    }
+
+    public function addFollower(User $follower){
+        $this->followers[] = $follower;
+        return $this;
+
+    }
+
+    public function removeFollower(User $follower){
+        $this->followers->removeElement($follower);
+    }
+
+    public function setFollowing(\Doctrine\Common\Collections\Collection $following){
+        $this->following = $following;
+        return $this;
+    }
+
+    public function getFollowing(){
+        return $this->following;
+    }
+
+    public function addFollowing(User $following){
+        $this->following[] = $following;
+    }
+
+    public function removeFollowing(User $following){
+        $this->following->removeElement($following);
+    }
+
+
     public function offsetExists($offset) {
         // In this example we say that exists means it is not null
         $value = $this->{"get$offset"}();
@@ -471,4 +560,157 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
 
+
+    /**
+     * Add boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     * @return User
+     */
+    public function addBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks[] = $boomelementranks;
+        return $this;
+    }
+
+    /**
+     * Remove boomelementranks
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
+     */
+    public function removeBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
+    {
+        $this->boomelementranks->removeElement($boomelementranks);
+    }
+
+    /**
+     * Get boomelementranks
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getBoomelementranks()
+    {
+        return $this->boomelementranks;
+    }
+
+    /**
+     * Add activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     * @return User
+     */
+    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Set activities
+     *
+     */
+    public function setActivities(\Doctrine\Common\Collections\Collection $activities)
+    {
+        $this->activities = $activities;
+        return $this;
+    }
+
+
+    /**
+     * Add favorites
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
+     * @return User
+     */
+    public function addFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
+    {
+        $this->favorites[] = $favorites;
+        return $this;
+    }
+
+    /**
+     * Remove favorites
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
+     */
+    public function removeFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
+    {
+        $this->favorites->removeElement($favorites);
+    }
+
+    /**
+     * Get favorites
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getFavorites()
+    {
+        return $this->favorites;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->profile_image) {
+            $this->path = $this->profile_image->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
+        $this->file->move($this->getUploadRootDir(), $this->id.'.'.$this->file->guessExtension());
+
+        unset($this->file);
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+        protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
+    }
 }

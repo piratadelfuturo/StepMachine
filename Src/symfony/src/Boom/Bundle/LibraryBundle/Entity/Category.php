@@ -37,14 +37,25 @@ class Category extends DomainObject{
      */
     protected $position;
 
+    /*
+     * @ORM\Column(type="boolean")
+     */
+    protected $featured;
+
     /**
      * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
      */
     protected $booms;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="main_category" )
+     */
+    protected $main_booms;
+
     public function __construct()
     {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->featured = false;
     }
 
     /**
@@ -126,6 +137,28 @@ class Category extends DomainObject{
         return $this->position;
     }
 
+    /**
+     * Set featured
+     *
+     * @param integer $featured
+     * @return Category
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+        return $this;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return integer
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
+    }
+
 
 
     /**
@@ -158,5 +191,37 @@ class Category extends DomainObject{
     public function getBooms()
     {
         return $this->booms;
+    }
+
+    /**
+     * Add main_booms
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms
+     * @return Category
+     */
+    public function addMainBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms)
+    {
+        $this->main_booms[] = $mainBooms;
+        return $this;
+    }
+
+    /**
+     * Remove main_booms
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms
+     */
+    public function removeMainBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $mainBooms)
+    {
+        $this->main_booms->removeElement($mainBooms);
+    }
+
+    /**
+     * Get main_booms
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMainBooms()
+    {
+        return $this->main_booms;
     }
 }

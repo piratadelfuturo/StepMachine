@@ -25,6 +25,6 @@ class BoomelementType extends AbstractType
 
     public function getName()
     {
-        return 'boom_bundle_librarybundle_boomelementtype';
+        return 'boom_bundle_backbundle_boomelementtype';
     }
 }

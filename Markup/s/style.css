@@ -2471,7 +2471,7 @@ line-height: 44px;
   border:1px solid #dfdfdf;
   padding: 25px 10px 10px;
 }
-#form-boom h3{
+#form-boom label{
   text-transform:uppercase;
   font: 16px 'Museo500', sans-serif;
   color:#2d2c2c;

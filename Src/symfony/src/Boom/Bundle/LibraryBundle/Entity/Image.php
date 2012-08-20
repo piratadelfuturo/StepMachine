@@ -40,7 +40,7 @@ class Image extends DomainObject {
     protected $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="images" , fetch="LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * */
     protected $user;
@@ -71,10 +71,16 @@ class Image extends DomainObject {
 
     protected $file;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $nsfw;
+
     public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->boomelements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->nsfw = false;
     }
 
     /**
@@ -352,7 +358,7 @@ class Image extends DomainObject {
     /**
      * Get date_created
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDateCreated()
     {

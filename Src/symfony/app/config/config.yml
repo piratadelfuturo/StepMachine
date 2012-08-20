@@ -22,9 +22,17 @@ fos_user:
     firewall_name: boom_area
     user_class: Boom\Bundle\LibraryBundle\Entity\User
     template:
-        engine: php
+        engine: twig
     group:
         group_class: Boom\Bundle\LibraryBundle\Entity\Group
+    from_email:
+        address:        admin@7boom.mx
+        sender_name:    7Boom Admin
+    registration:
+        confirmation:
+            enabled:    true
+    service:
+        mailer: fos_user.mailer.default
 fos_facebook:
       file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
       alias:  facebook
@@ -75,6 +83,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+          datetime: Boom\Bundle\LibraryBundle\Doctrine\Extensions\DBAL\Types\UTCDateTimeType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%

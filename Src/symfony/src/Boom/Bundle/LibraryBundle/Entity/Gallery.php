@@ -25,6 +25,18 @@ class Gallery extends DomainObject{
     protected $title;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $nsfw;
+
+
+    /**
      *
      * @ORM\ManyToMany(targetEntity="Image", inversedBy="galleries")
      * @ORM\JoinTable(name="galleries_images",
@@ -35,7 +47,7 @@ class Gallery extends DomainObject{
     protected $images;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="galleries")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * */
     protected $user;

@@ -3,9 +3,16 @@
       xmlns:og="http://opengraphprotocol.org/schema/">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>7boom - <?php $view['slots']->output('title', '') ?></title>
+        <?php
+            $title = $view['slots']->get('title', null);
+        ?>
+        <title>7boom <?php echo $title !== null ?'- '.$title : '';?></title>
 
-        <meta name="description" content="<?php $view['slots']->output('description', '') ?>">
+        <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
+        <?php $canonical_url = $view['slots']->get('canonical_url',null); ?>
+        <?php if($canonical_url !== null):?>
+            <link rel="canonical" href="<?php echo $canonical_url ?>"/>
+        <?php endif;?>
 
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
 
@@ -18,8 +25,8 @@
         <![endif]-->
 
         <!-- Use Google CDN for jQuery and jQuery UI -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.7.2.min.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-ui-1.8.22.custom.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.cookie.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.blockUI.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/plugins.js') ?>"></script>

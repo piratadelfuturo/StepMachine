@@ -3,10 +3,14 @@ _internal:
     resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
     prefix:   /_internal
 
-_boom:
+BoomFrontBundle:
     resource: "@BoomFrontBundle/Resources/config/routing.yml"
     prefix:   /
-    
-_boom_admin:
+
+BoomUserBundle:
+    resource: "@BoomUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BoombackBundle:
     resource: "@BoomBackBundle/Resources/config/routing.yml"
     prefix:   /admin/
