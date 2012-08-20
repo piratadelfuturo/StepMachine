@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use FOS\UserBundle\Model\GroupInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
 
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\UserRepository")
@@ -14,6 +16,11 @@ use FOS\UserBundle\Model\GroupInterface;
  * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser implements \ArrayAccess {
+
+
+    const IMAGE_PATH = 0;
+    const IMAGE_FACEBOOK = 1;
+    const IMAGE_TWITTER = 2;
 
     /**
      * @ORM\Id
@@ -132,6 +139,16 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $followers;
 
+    /**
+     * @ORM\Column(type="text", length=140,nullable=true)
+     */
+    protected $image_path;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $image_option;
+
 
     protected $profile_image;
 
@@ -146,6 +163,7 @@ class User extends BaseUser implements \ArrayAccess {
         $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
         $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setImageOption(self::IMAGE_PATH);
     }
 
     public function serialize() {
@@ -165,6 +183,43 @@ class User extends BaseUser implements \ArrayAccess {
                 $parentData) = unserialize($data);
         parent::unserialize($parentData);
     }
+
+    public function setImagePath( $path ){
+        $this->setImageOption(self::IMAGE_PATH);
+        $this->image_path = $path;
+        return $this;
+    }
+
+    public function getImagePath( ){
+        return $this->image_path;
+    }
+
+    public function setImageOption($option){
+        switch($option){
+            case($option == self::IMAGE_FACEBOOK):
+                if(!empty($this->facebookId)){
+                    $this->image_path = "http://graph.facebook.com/{$this->facebookId}/picture?type=large";
+                    $this->image_option = $option;
+                }
+            break;
+            case($option == self::IMAGE_TWITTER):
+                if(!empty($this->facebookId)){
+                    $this->image_path = "https://api.twitter.com/1/users/profile_image?screen_name={$this->twitterId}&size=bigger ";
+                    $this->image_option = $option;
+                }
+            break;
+            case(self::IMAGE_PATH):
+                $this->image_option = $option;
+            break;
+        }
+
+        return $this;
+    }
+
+    public function getImageOption($option){
+        $this->image_option = $option;
+    }
+
 
     public function setAdmin($admin = false){
         $this->setSuperAdmin((bool) $admin);
@@ -668,15 +723,23 @@ class User extends BaseUser implements \ArrayAccess {
         return $this->favorites;
     }
 
+    public function getProfileImage(){
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(Symfony\Component\HttpFoundation\File\File $profile_image){
+        $this->profile_image = $profile_image;
+        return $this;
+    }
+
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
     public function preUpload()
     {
-        if (null !== $this->profile_image) {
-            $this->path = $this->profile_image->guessExtension();
-        }
+
     }
 
     /**
@@ -685,32 +748,33 @@ class User extends BaseUser implements \ArrayAccess {
      */
     public function upload()
     {
-        if (null === $this->file) {
+        $image = $this->getProfileImage();
+        if (null === $image) {
             return;
         }
 
         // you must throw an exception here if the file cannot be moved
         // so that the entity is not persisted to the database
         // which the UploadedFile move() method does
-        $this->file->move($this->getUploadRootDir(), $this->id.'.'.$this->file->guessExtension());
-
-        unset($this->file);
+        $path = $this->container->getParameter('boom_library.profile_image_path').$this->id.'.'.$image->guessExtension();
+        $this->setImagePath($path);
+        $image->move($this->getUploadRootDir(), $path);
+        $this->setImageOption(self::IMAGE_PATH);
+        unlink($image->getRealPath());
+        unset($image);
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
-    }
 
     protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        $fs = new Filesystem();
+        $image_path = $this->container->getParameter('boom_library.web_path').$this->container->getParameter('boom_library.profile_image_path');
+        if(!$fs->exists($image_path)){
+            $fs->mkdir($image_path, 0664);
+        }
+
+        return $image_path;
     }
 
-        protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
-    }
 }

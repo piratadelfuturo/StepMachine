@@ -19,13 +19,22 @@ class BoomType extends AbstractType {
                         'style' => 'display:none;'
                     )
                 ));
+        $builder->add(
+                    'main_category','entity',
+                array(
+                    'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
+                    'property' => 'name',
+                    'multiple' => false,
+                    'required' => true
+                )
 
+                );
         $builder->add(
                 'categories', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',
             'multiple' => true,
-            'required' => true,
+            'required' => false,
             'expanded' => true
                 )
         );

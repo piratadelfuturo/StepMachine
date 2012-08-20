@@ -8,6 +8,7 @@
                 <th>Slug</th>
                 <th>Título</th>
                 <th>Posición</th>
+                <th>Principal</th>
                 <th>Booms</th>
                 <th>Acciones</th>
             </tr>
@@ -41,6 +42,7 @@
                 "iDisplayLength": 10,
                 "sAjaxSource": Routing.generate('BoomBackBundle_category_index', {  _format: 'json'}),
                 "aoColumns": [
+                    null,
                     null,
                     null,
                     null,

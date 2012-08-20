@@ -8,10 +8,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CategoryType extends AbstractType {
 
+    protected $categoryCount;
+
+    public function __construct($categoryCount = 0){
+        $this->categoryCount = (int) $categoryCount;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        $positionOptions = array('required'  => true);
+
+        if(isset($options['data']) && $options['data']['id'] !== null){
+            $positionOptions['choices'] = range(0,$this->categoryCount-1);
+        }else{
+            $positionOptions['choices'] = array_reverse(range(0,$this->categoryCount),true);
+        }
+
         $builder
-                ->add('slug', 'text', array('read_only' => false))
-                ->add('name');
+                ->add('name','text')
+                ->add('position','choice',$positionOptions)
+                ->add('featured','checkbox',array('required' => false));
 
     }
 

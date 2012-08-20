@@ -23,9 +23,11 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 require_once __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 require_once __DIR__.'/../app/autoload.php';
 require_once __DIR__.'/../app/AppKernel.php';
+require_once __DIR__.'/../app/DebugAppCache.php';
 
 $kernel = new AppKernel('dev', true);
 //$kernel->loadClassCache();
+$kernel = new DebugAppCache($kernel);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

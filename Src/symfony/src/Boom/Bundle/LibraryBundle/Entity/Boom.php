@@ -743,7 +743,7 @@ class Boom extends DomainObject {
         $this->children->removeElement($children);
     }
 
-    static public function getStatusEnumFieldChoices() {
+    static public function getStatusEnumFieldValues() {
         if (is_null(self::$_StatusEnumFieldValues)) {
             self::$_StatusEnumFieldValues = array();
             $oClass = new \ReflectionClass(__CLASS__);

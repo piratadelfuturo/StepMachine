@@ -24,4 +24,4 @@ echo $view->render(
     </fieldset>
 </form>
 
-<script type="text/javascript" src="<?php echo $view['assets']->getUrl('/bundles/boomback/public/js/Bundle/Boom/form.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $view['assets']->getUrl('/bundles/boomback/js/Bundle/Boom/form.js') ?>"></script>

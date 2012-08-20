@@ -2,6 +2,8 @@
 
 namespace Boom\Bundle\FrontBundle\Security\User\Provider;
 
+use Boom\Bundle\LibraryBundle\Entity\User;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -52,7 +54,6 @@ class FacebookProvider implements UserProviderInterface {
             }
         }
 
-
         try {
             $fbdata = $this->facebook->api('/me');
         } catch (FacebookApiException $e) {
@@ -69,11 +70,11 @@ class FacebookProvider implements UserProviderInterface {
                 if (isset($fbdata['email'])) {
                     $user->setEmail($fbdata['email']);
                 }
-                $user->addRole('ROLE_FACEBOOK');
-                $user->addRole('ROLE_SOCIAL');
-
                 // TODO use http://developers.facebook.com/docs/api/realtime
                 $user->setFBData($fbdata);
+                $user->setImageOption(User::IMAGE_FACEBOOK);
+                $user->addRole('ROLE_FACEBOOK');
+                $user->addRole('ROLE_SOCIAL');
 
                 if (count($this->validator->validate($user, 'Facebook')) > 0) {
                     // TODO: the user was found obviously, but doesnt match our expectations, do something smart

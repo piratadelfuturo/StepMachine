@@ -1,31 +1,5 @@
 <?php
-    $nav = array(
-        array(
-            'route' => 'BoomFrontBundle_category_index',
-            'slug' => 'musica',
-            'name' => 'Música'
-            ),
-        array(
-            'route' => 'BoomFrontBundle_category_index',
-            'slug' => 'sexo',
-            'name' => 'Sexo'
-            ),
-        array(
-            'route' => 'BoomFrontBundle_category_index',
-            'slug' => 'cine',
-            'name' => 'Cine'
-            ),
-        array(
-            'route' => 'BoomFrontBundle_category_index',
-            'slug' => 'tecnologia',
-            'name' => 'Tecnología'
-            ),
-        array(
-            'route' => 'BoomFrontBundle_category_index',
-            'slug' => 'lucky-7',
-            'name' => 'Lucky 7'
-            )
-    );
+$categories = $view['boom_front']->getFeaturedCategories();
 ?>
 <div id="hd-mn" class="gradient">
     <h1><a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a></h1>
@@ -44,8 +18,8 @@
             </div>
         </div>
         <nav class="gradient">
-            <?php foreach($nav as $el): ?>
-            <a href="<?php echo $view['router']->generate($el['route'],array('slug'=> $el['slug'])) ?>"><?php echo $view->escape($el['name']) ?></a>
+            <?php foreach ($categories as $el): ?>
+                <a href="<?php echo $view['router']->generate('BoomFrontBundle_category_index', array('slug' => $el['a_slug'])) ?>"><?php echo $view->escape($el['a_name']) ?></a>
             <?php endforeach; ?>
         </nav>
     </div>

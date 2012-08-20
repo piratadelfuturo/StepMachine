@@ -18,11 +18,21 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('boom_library');
+        $rootNode = $treeBuilder->root('boom_library', 'array' );
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('web_path')
+                    ->defaultValue('%kernel.root_dir%/../web/')
+                ->end()
+                ->scalarNode('content_upload_path')
+                    ->defaultValue('content/')
+                ->end()
+                ->scalarNode('profile_image_path')
+                    ->defaultValue('%boom_library.content_upload_path%user/')
+                ->end()
+            ->end()
+        ->end();
 
         return $treeBuilder;
     }

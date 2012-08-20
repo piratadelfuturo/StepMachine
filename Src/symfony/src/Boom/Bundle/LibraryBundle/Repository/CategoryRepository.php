@@ -65,7 +65,23 @@ class CategoryRepository extends EntityRepository {
                 ->setMaxResults(1)
                 ->getQuery()
                 ->getResult();
-        return $aResultTotal[0][1];
+        return (int) $aResultTotal[0][1];
     }
+
+    public function findFeaturedCategories(){
+        $query = $this->createQueryBuilder('a')
+                ->select(array('a.slug', 'a.name', 'a.position'))
+                ->select(array('a'))
+                ->orderBy('a.position','ASC')
+                ->where('a.featured = 1')
+                ->getQuery();
+        $query->useResultCache(true,600,'boom_category_featured');
+        $result = $query->setHydrationMode(Query::HYDRATE_SCALAR)
+                ->execute();
+
+        return $result;
+
+    }
+
 
 }
