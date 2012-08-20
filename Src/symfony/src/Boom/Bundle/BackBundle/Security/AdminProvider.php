@@ -14,6 +14,7 @@ namespace Boom\Bundle\BackBundle\Security;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Symfony\Component\Security\Core\Exception\CredentialsExpiredException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use FOS\UserBundle\Model\User;
 use FOS\UserBundle\Model\UserInterface;
@@ -21,8 +22,8 @@ use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Propel\User as PropelUser;
 use Boom\Bundle\LibraryBundle\Entity\User as UserEntity;
 
-class AdminProvider implements UserProviderInterface
-{
+class AdminProvider implements UserProviderInterface {
+
     /**
      * @var UserManagerInterface
      */
@@ -33,16 +34,14 @@ class AdminProvider implements UserProviderInterface
      *
      * @param UserManagerInterface $userManager
      */
-    public function __construct(UserManagerInterface $userManager)
-    {
+    public function __construct(UserManagerInterface $userManager) {
         $this->userManager = $userManager;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function loadUserByUsername($username)
-    {
+    public function loadUserByUsername($username) {
         $user = $this->findUser($username);
 
         if (!$user) {
@@ -55,8 +54,7 @@ class AdminProvider implements UserProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function refreshUser(SecurityUserInterface $user)
-    {
+    public function refreshUser(SecurityUserInterface $user) {
         if (!$user instanceof User && !$user instanceof PropelUser) {
             throw new UnsupportedUserException(sprintf('Expected an instance of FOS\UserBundle\Model\User, but got "%s".', get_class($user)));
         }
@@ -65,14 +63,17 @@ class AdminProvider implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('User with ID "%d" could not be reloaded.', $user->getId()));
         }
 
+        if(!$this->isAuthorizedAdmin($reloadedUser)){
+            throw new CredentialsExpiredException('User not allowed.');
+        }
+
         return $reloadedUser;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function supportsClass($class)
-    {
+    public function supportsClass($class) {
         $userClass = $this->userManager->getClass();
 
         return $userClass === $class || is_subclass_of($class, $userClass);
@@ -87,15 +88,24 @@ class AdminProvider implements UserProviderInterface
      *
      * @return UserInterface|null
      */
-    protected function findUser($username)
-    {
+    protected function findUser($username) {
         $user = $this->userManager->findUserByUsername($username);
 
-        if( ($user !== null && $user instanceOf User) && (!$user->hasRole('ROLE_ADMIN') || $user->getPassword() == '')){
+        if(!$this->isAuthorizedAdmin($user)){
             $user = null;
         }
 
         return $user;
+    }
+
+    protected function isAuthorizedAdmin($user = null){
+        if (
+                ($user !== null && $user instanceOf User) &&
+                !($user->hasRole('ROLE_ADMIN') && $user->getPassword() !== '')
+        ) {
+            return false;
+        }
+        return true;
     }
 
 }
