@@ -161,7 +161,6 @@ class BoomController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $em->flush();
 
             return $this->redirect(
                             $this->generateUrl(

@@ -1,4 +1,4 @@
-<form action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
+<form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
     <fieldset>
         <label><?php echo $form_title ?></label>
         <?php echo $view['form']->row($form['_token']) ?>
@@ -15,15 +15,16 @@
         )
         ?>
         <?php
-        echo $view['bbcode']->filter($form['summary']->get('value'),'default');
+        echo $view['bbcode']->filter($form['summary']->get('value'), 'default');
         ?>
         <section>
-<?php echo $view['form']->label($form['image'], 'Imagen') ?>
+            <?php echo $view['form']->label($form['image'], 'Imagen') ?>
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
         </section>
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
+        <?php echo $view['form']->row($form['main_category'], array('label' => 'Categoría principal')) ?>
         <?php echo $view['form']->row($form['categories'], array('label' => 'Categorías')) ?>
-<?php echo $view['form']->rest($form['tags'], array('label' => 'Etiquetas')) ?>
+        <?php echo $view['form']->rest($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
         <label>Boomies</label>
@@ -36,6 +37,9 @@
                     <span><?php echo $element['title']->vars['value'] ?></span>
                 </label>
                 <fieldset class="accordion_content">
+                    <?php if(isset($element['id']) && $element['id'] !== null): ?>
+                    <?php //echo $view['form']->widget($element['id']); ?>
+                    <?php endif; ?>
                     <?php
                     echo $view['form']->widget(
                             $element['position'], array(

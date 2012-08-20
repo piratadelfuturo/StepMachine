@@ -21,8 +21,11 @@ class BoomLibraryExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $container->setParameter('boom_library.web_path', $config['web_path']);
+        $container->setParameter('boom_library.content_upload_path', $config['content_upload_path']);
+        $container->setParameter('boom_library.profile_image_path', $config['profile_image_path']);
+
     }
 }

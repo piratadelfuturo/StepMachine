@@ -10,6 +10,46 @@ use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 
 class CategoryController extends Controller {
 
+    public function controlAction() {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Category');
+        $categories = $repo->findBy(array(), array('position' => 'ASC'));
+
+        $form = $this->createForm(
+                'collection', $categories, array(
+            'type' => new CategoryType(),
+            'allow_add' => true,
+            'by_reference' => false
+                )
+        );
+
+        return $this->render(
+                        'BoomBackBundle:Category:control.html.php', array(
+                    'form' => $form->createView(),
+                    'categories' => $categories
+                        )
+        );
+    }
+
+    public function addAction() {
+        $response = new Response(
+                        json_encode($output)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function modifyAction() {
+        $response = new Response(
+                        json_encode($output)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
     /**
      * Lists all Boom entities.
      *
@@ -30,6 +70,7 @@ class CategoryController extends Controller {
             'slug',
             'name',
             'position',
+            'featured',
             array(
                 'booms' => array(
                     'id boom_total' => 'COUNT(%s)'
@@ -120,10 +161,10 @@ class CategoryController extends Controller {
      *
      */
     public function newAction() {
-
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Category');
         $entity = new BoomEntity\Category();
-        $form = $this->createForm(new CategoryType(), $entity);
-
+        $form = $this->createForm(new CategoryType($repo->getCount()), $entity);
 
         return $this->render('BoomBackBundle:Category:new.html.php', array(
                     'entity' => $entity,
@@ -136,16 +177,17 @@ class CategoryController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new CategoryType());
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Category');
+        $form = $this->createForm(new CategoryType($repo->getCount()));
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('cache.apc')->delete('boom_category_featured');
             return $this->redirect(
                             $this->generateUrl('BoomBackBundle_category_index')
             );
@@ -164,7 +206,6 @@ class CategoryController extends Controller {
      */
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
-
         $repo = $em->getRepository('BoomLibraryBundle:Category');
         $entity = $repo->find($id);
 
@@ -172,7 +213,7 @@ class CategoryController extends Controller {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
+        $editForm = $this->createForm(new CategoryType($repo->getCount()), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BoomBackBundle:Category:edit.html.php', array(
@@ -188,14 +229,14 @@ class CategoryController extends Controller {
      */
     public function updateAction($id) {
         $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
+        $repo = $em->getRepository('BoomLibraryBundle:Category');
+        $entity = $repo->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category.');
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
+        $editForm = $this->createForm(new CategoryType($repo->getCount()), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -205,11 +246,11 @@ class CategoryController extends Controller {
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-
+            $this->get('cache.apc')->delete('boom_category_featured');
             return $this->redirect($this->generateUrl('BoomBackBundle_category_index'));
         }
 
-        return $this->render('BoomBackBundle:Category:edit.html.twig', array(
+        return $this->render('BoomBackBundle:Category:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),

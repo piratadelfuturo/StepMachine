@@ -39,7 +39,7 @@
         $js = array(
             'js/lib/jquery-1.7.2.min.js',
             'js/lib/jquery-ui-1.8.22.custom.min.js',
-            //'js/lib/tiny_mce/jquery.tinymce.js',
+            'js/lib/tiny_mce/jquery.tinymce.js',
             'js/functions.js',
             'js/plugins.js',
             'js/editor.js',

@@ -37,18 +37,18 @@ class Category extends DomainObject{
      */
     protected $position;
 
-    /*
+    /**
      * @ORM\Column(type="boolean")
      */
     protected $featured;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories", fetch="EXTRA_LAZY")
      */
     protected $booms;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="main_category" )
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="main_category", fetch="EXTRA_LAZY" )
      */
     protected $main_booms;
 
@@ -145,7 +145,7 @@ class Category extends DomainObject{
      */
     public function setFeatured($featured)
     {
-        $this->featured = $featured;
+        $this->featured = (bool) $featured;
         return $this;
     }
 
@@ -218,7 +218,7 @@ class Category extends DomainObject{
     /**
      * Get main_booms
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMainBooms()
     {

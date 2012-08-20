@@ -8,3 +8,11 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
         - All:
           - NotBlank: ~
           - NotNull: ~
+
+Boom\Bundle\LibraryBundle\Entity\User:
+    properties:
+      profile_image:
+        - File:
+                maxSize: 5120k
+                mimeTypes: [image/png, image/jpeg, image/gif]
+                mimeTypesMessage: Please upload a valid image

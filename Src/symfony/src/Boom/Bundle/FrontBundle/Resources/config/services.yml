@@ -2,6 +2,7 @@ parameters:
     boom_front.facebook.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\FacebookProvider
     boom_front.twitter.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\TwitterProvider
     boom_front.social.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\SocialProvider
+    boom_front.main.helper.class: Boom\Bundle\FrontBundle\Templating\Helper\MainHelper
 services:
     boom_front.facebook.user:
         class: %boom_front.facebook.user.class%
@@ -10,7 +11,12 @@ services:
             userManager:  "@fos_user.user_manager"
             validator:    "@validator"
             container:    "@service_container"
-
+    boom_front.main.helper:
+        class: %boom_front.main.helper.class%
+        arguments:
+            container:    "@service_container"
+        tags:
+            - { name: templating.helper, alias: boom_front }
     #boom_front.twitter.user:
     #    class: %boom_front.twitter.user.class%
     #    arguments:

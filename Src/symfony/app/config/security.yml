@@ -23,7 +23,7 @@ security:
             chain:
                  providers:
                   - boom_fos_facebook_provider
-                  - fos_userbundle_provider
+                  #- fos_userbundle_provider
         boom_fos_facebook_provider:
             id: boom_front.facebook.user
         boom_fos_admin_provider:

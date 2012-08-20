@@ -1,3 +1,11 @@
+BoomBackBundle_category_control:
+    pattern:  control.{_format}
+    defaults: { _controller: "BoomBackBundle:Category:control", _format: html }
+    options:
+        expose: true
+    requirements:
+      _format: html|json
+
 BoomBackBundle_category_index:
     pattern:  .{_format}
     defaults: { _controller: "BoomBackBundle:Category:index", _format: html }
