@@ -19,6 +19,7 @@ use FOS\UserBundle\Model\User;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Propel\User as PropelUser;
+use Boom\Bundle\LibraryBundle\Entity\User as UserEntity;
 
 class AdminProvider implements UserProviderInterface
 {
@@ -89,7 +90,7 @@ class AdminProvider implements UserProviderInterface
     protected function findUser($username)
     {
         $user = $this->userManager->findUserByUsername($username);
-        if(!$user->hasRole('ROLE_SUPER_ADMIN') && $user->getPassword() == ''){
+        if($user !== null && $user instanceOf UserEntity && !$user->hasRole('ROLE_SUPER_ADMIN') && $user->getPassword() == ''){
             $user = null;
         }
 

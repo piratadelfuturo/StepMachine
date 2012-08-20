@@ -3,7 +3,7 @@
 
 <form action="<?php echo $view['router']->generate('BoomBackBundle_user_update', array('id' => $entity['id'])) ?>" method="post" <?php echo $view['form']->enctype($edit_form) ?> >
     <fieldset>
-        <label><?php echo 'User edit' ?></label>
+        <label><?php echo $entity['username'] ?></label>
         <?php echo $view['form']->row($edit_form['_token']) ?>
         <?php echo $view['form']->row($edit_form['bio']) ?>
         <?php echo $view['form']->row($edit_form['admin']) ?>

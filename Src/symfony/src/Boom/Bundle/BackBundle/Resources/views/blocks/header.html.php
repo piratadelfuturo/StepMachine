@@ -1,3 +1,6 @@
+<?php
+$User = $app->getUser();
+?>
 <header>
     <div id="logo">
         <a href="">Logo Here</a>
@@ -6,7 +9,10 @@
         <ul id="headernav">
             <li>
                 <ul>
-                    <li><a href="#">Submenu</a><span>4</span>
+                    <li><a href="#"><?php echo $User->getUsername() ?></a>
+
+                        <span>4</span>
+
                         <ul>
                             <li><a href="#">Just</a></li>
                             <li><a href="#">another</a></li>
