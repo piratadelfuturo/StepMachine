@@ -94,7 +94,7 @@ security:
         - path: ^/resetting
           role: IS_AUTHENTICATED_ANONYMOUSLY
         - path: ^/admin
-          roles: ROLE_SUPER_ADMIN
+          roles: ROLE_ADMIN
         - path: ^/boomer
           roles: IS_AUTHENTICATED_FULLY
         - path: ^/
