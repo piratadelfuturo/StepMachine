@@ -23,8 +23,8 @@ fos_user:
     user_class: Boom\Bundle\LibraryBundle\Entity\User
     template:
         engine: twig
-    #group:
-    #    group_class: Boom\Bundle\LibraryBundle\Entity\Group
+    group:
+        group_class: Boom\Bundle\LibraryBundle\Entity\Group
     from_email:
         address:        admin@7boom.mx
         sender_name:    7Boom Admin

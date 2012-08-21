@@ -31,11 +31,11 @@ security:
                  providers:
                   - in_memory
                   - boom_fos_admin_provider
-        boom_chain_provider:
-            chain:
-                 providers:
-                  - boom_fos_facebook_provider
-                  - fos_userbundle_provider
+        #boom_chain_provider:
+        #    chain:
+        #         providers:
+        #          - boom_fos_facebook_provider
+        #          - fos_userbundle_provider
 
     firewalls:
         dev:
