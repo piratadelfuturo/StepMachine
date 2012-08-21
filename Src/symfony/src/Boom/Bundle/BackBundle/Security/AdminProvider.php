@@ -14,13 +14,12 @@ namespace Boom\Bundle\BackBundle\Security;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Symfony\Component\Security\Core\Exception\CredentialsExpiredException;
+//use Symfony\Component\Security\Core\Exception\CredentialsExpiredException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use FOS\UserBundle\Model\User;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use FOS\UserBundle\Propel\User as PropelUser;
-use Boom\Bundle\LibraryBundle\Entity\User as UserEntity;
 
 class AdminProvider implements UserProviderInterface {
 
@@ -63,10 +62,6 @@ class AdminProvider implements UserProviderInterface {
             throw new UsernameNotFoundException(sprintf('User with ID "%d" could not be reloaded.', $user->getId()));
         }
 
-        if(!$this->isAuthorizedAdmin($reloadedUser)){
-            throw new CredentialsExpiredException('User not allowed.');
-        }
-
         return $reloadedUser;
     }
 
@@ -90,7 +85,6 @@ class AdminProvider implements UserProviderInterface {
      */
     protected function findUser($username) {
         $user = $this->userManager->findUserByUsername($username);
-
         if(!$this->isAuthorizedAdmin($user)){
             $user = null;
         }
@@ -101,7 +95,7 @@ class AdminProvider implements UserProviderInterface {
     protected function isAuthorizedAdmin($user = null){
         if (
                 ($user !== null && $user instanceOf User) &&
-                !($user->hasRole('ROLE_ADMIN') && $user->getPassword() !== '')
+                !(($user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_SUPER_ADMIN'))&& $user->getPassword() !== '')
         ) {
             return false;
         }

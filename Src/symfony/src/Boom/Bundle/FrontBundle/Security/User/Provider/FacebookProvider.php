@@ -3,7 +3,6 @@
 namespace Boom\Bundle\FrontBundle\Security\User\Provider;
 
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -47,9 +46,9 @@ class FacebookProvider implements UserProviderInterface {
 
         $loggedUser = null;
 
-        if (is_null($user)) {
+        if ($user === null) {
             $userToken = $this->container->get('security.context')->getToken();
-            if (!is_null($userToken)) {
+            if ($userToken !== null) {
                 $loggedUser = $userToken->getUser();
             }
         }
@@ -60,8 +59,8 @@ class FacebookProvider implements UserProviderInterface {
             $fbdata = null;
         }
 
-        if (empty($user) || is_null($user)) {
-            if (!empty($fbdata) && !is_null($fbdata)) {
+        if (empty($user) || $user === null) {
+            if (!empty($fbdata) && $fbdata !== null) {
 
                 $user = $this->userManager->createUser();
                 $user->setEnabled(true);
@@ -83,8 +82,8 @@ class FacebookProvider implements UserProviderInterface {
                     $this->userManager->updateUser($user);
                 }
             }
-        } elseif (!empty($loggedUser) || !is_null($loggedUser)) {
-            if (!empty($fbdata) && !is_null($fbdata)) {
+        } elseif (!empty($loggedUser) || $loggedUser !== null) {
+            if (!empty($fbdata) && $fbdata !== null) {
                 if (!$user->hasRole('ROLE_FACEBOOK')) {
                     $user->addRole('ROLE_FACEBOOK');
                     $user->addRole('ROLE_SOCIAL');
@@ -99,7 +98,7 @@ class FacebookProvider implements UserProviderInterface {
             }
         }
 
-        if (empty($user) || is_null($user)) {
+        if (empty($user) || $user === null) {
             throw new UsernameNotFoundException('The user is not authenticated on facebook');
         }
 
