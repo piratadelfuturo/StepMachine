@@ -22,6 +22,8 @@ class User extends BaseUser implements \ArrayAccess {
     const IMAGE_FACEBOOK = 1;
     const IMAGE_TWITTER = 2;
 
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -220,15 +222,40 @@ class User extends BaseUser implements \ArrayAccess {
         $this->image_option = $option;
     }
 
+    /**
+     * Sets the admin status
+     *
+     * @param Boolean $boolean
+     *
+     * @return User
+     */
+    public function setAdmin($boolean)
+    {
+        if (true === $boolean) {
+            $this->addRole(static::ROLE_ADMIN);
+        } else {
+            $this->removeRole(static::ROLE_ADMIN);
+        }
 
-    public function setAdmin($admin = false){
-        $this->setSuperAdmin((bool) $admin);
         return $this;
     }
 
+
+    /**
+     * Tells if the the given user has the admin role.
+     *
+     * @return Boolean
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole(static::ROLE_ADMIN);
+    }
+
+    /*
     public function getAdmin($admin = false){
         return (bool) $this->isSuperAdmin();
-    }
+    }*/
+
 
     /**
      * @param Array

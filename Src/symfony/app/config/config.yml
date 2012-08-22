@@ -31,8 +31,6 @@ fos_user:
     registration:
         confirmation:
             enabled:    true
-    service:
-        mailer: fos_user.mailer.default
 fos_facebook:
       file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
       alias:  facebook
