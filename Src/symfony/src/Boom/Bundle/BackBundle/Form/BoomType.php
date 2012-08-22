@@ -12,7 +12,7 @@ class BoomType extends AbstractType {
 
         $builder
                 ->add('title')
-                ->add('summary')
+                ->add('summary',null,array('required' => false))
                 ->add('date_published',null,array(
                     'read_only' => false,
                     'attr' => array(

@@ -89,10 +89,7 @@ class Boom extends DomainObject {
 
     /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="booms")
-     * @ORM\JoinTable(name="booms_categories",
-     *      joinColumns={@ORM\JoinColumn(name="boom_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
-     *      )
+     * @ORM\JoinTable(name="booms_categories")
      */
     protected $categories;
 
@@ -181,6 +178,7 @@ class Boom extends DomainObject {
         $this->reply_enabled = false;
         $this->status = self::STATUS_DRAFT;
         $this->featured = false;
+        $this->summary = '';
     }
 
     /**

@@ -960,6 +960,14 @@ header{position:relative;}
   color:#8d8d8d;
 }
 
+.boomer .list li img, .list-grid li img{
+    width: 158px;
+    height: 90px;
+    display: block;
+    background-color: #EAEAEA;
+}
+
+
 #container{
     position: relative;
 }

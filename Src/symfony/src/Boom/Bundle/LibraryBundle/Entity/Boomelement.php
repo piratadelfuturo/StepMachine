@@ -57,6 +57,7 @@ class Boomelement extends DomainObject{
      **/
     protected $boomelementranks;
 
+
     /**
      * Get id
      *
@@ -187,6 +188,8 @@ class Boomelement extends DomainObject{
     {
         $this->community_position = 0;
         $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->content = '';
+
     }
 
     /**

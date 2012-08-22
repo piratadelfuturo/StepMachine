@@ -10,7 +10,6 @@ BoomFrontBundle_logout:
 BoomFrontBundle_fos_user:
     resource: "@BoomFrontBundle/Resources/config/routing/fos_user.yml"
 
-
 BoomFrontBundle_homepage:
     pattern:  /
     defaults: { _controller: BoomFrontBundle:Default:index }
@@ -22,3 +21,10 @@ BoomFrontBundle_boom:
 BoomFrontBundle_category:
     resource: "@BoomFrontBundle/Resources/config/routing/category.yml"
     prefix:   /cat
+
+BoomFrontBundle_slug_show:
+    pattern:  /{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:show" }
+    requirements:
+        slug: ".+"
+

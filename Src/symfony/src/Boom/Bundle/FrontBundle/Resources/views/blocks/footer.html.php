@@ -48,7 +48,7 @@
                         if (!response.session || !response.authResponse) {
                             var FBLogin = function(){
                                 if(response.status == 'connected' && window.FBLogin == false){
-                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb') ?>";
+                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb',array('_remember_me'=>'on')) ?>";
                                 }else{
                                     logout(response,window.FBLogin);
                                 }

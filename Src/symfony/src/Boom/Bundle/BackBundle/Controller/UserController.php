@@ -216,7 +216,14 @@ class UserController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('BoomBackBundle_user_index'));
+            return $this->redirect(
+                    $this->generateUrl(
+                            'BoomBackBundle_user_edit',
+                            array(
+                                'id' => $id
+                            )
+                            )
+                    );
         }
 
         return $this->render('BoomBackBundle:User:edit.html.twig', array(

@@ -38,8 +38,6 @@ fos_facebook:
       secret: %facebook_app_secret%
       cookie: true
       culture: es_LA
-      class:
-        helper: FOS\FacebookBundle\Templating\Helper\FacebookHelper
       permissions:
         - email
         - user_birthday

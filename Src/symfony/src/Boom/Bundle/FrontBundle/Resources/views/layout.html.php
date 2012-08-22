@@ -11,7 +11,7 @@
         <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
         <?php $canonical_url = $view['slots']->get('canonical_url',null); ?>
         <?php if($canonical_url !== null):?>
-            <link rel="canonical" href="<?php echo $canonical_url ?>"/>
+        <link rel="canonical" href="<?php echo $canonical_url ?>"/>
         <?php endif;?>
 
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />

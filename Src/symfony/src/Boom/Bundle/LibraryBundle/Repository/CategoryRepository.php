@@ -4,38 +4,35 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Boom\Bundle\LibraryBundle\Entity\Category;
 
 class CategoryRepository extends EntityRepository {
 
-    public function findBoomsByCategory($category, $field = 'date_created', $order = 'DESC', $limit = 7, $offset = 0) {
+    public function findBoomsByCategory(Category $category, $sort = array('date_created' => 'DESC'), $limit = 7, $offset = 0) {
+
+        $sortKey = \key($sort);
+        $sortValue = \current($sort);
+
         $qString = "
             SELECT
-                boom,
-                image.path    image_path,
-                category.name category_name,
-                category.slug category_slug,
-                user.username user_username,
-                user.nickname user_nickname
+                boom
             FROM
                 BoomLibraryBundle:Boom boom
             LEFT JOIN
                 boom.categories category
-            LEFT JOIN
-                boom.user user
-            LEFT JOIN
-                boom.image image
             WHERE
                 ?0
             MEMBER OF
                 boom.categories
-            ORDER BY boom.{$field} {$order}";
+            OR
+                boom.main_category = ?1
+            ORDER BY boom.{$sortKey} {$sortValue}";
 
         $em = $this->getEntityManager();
         $query = $em->createQuery($qString);
-        $query->setParameters(array($category));
+        $query->setParameters(array($category,$category));
         $query->setFirstResult($offset);
         $query->setMaxResults($limit);
-        $query->setHydrationMode(Query::HYDRATE_SCALAR);
         $result = $query->execute();
 
         return $result;
@@ -75,7 +72,7 @@ class CategoryRepository extends EntityRepository {
                 ->orderBy('a.position','ASC')
                 ->where('a.featured = 1')
                 ->getQuery();
-        $query->useResultCache(true,600,'boom_category_featured');
+        //$query->useResultCache(true,600,'boom_category_featured');
         $result = $query->setHydrationMode(Query::HYDRATE_SCALAR)
                 ->execute();
 

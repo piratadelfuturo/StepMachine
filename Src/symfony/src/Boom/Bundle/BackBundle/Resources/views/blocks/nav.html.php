@@ -6,7 +6,6 @@ $nav[] = array(
     'text' => 'Inicio',
 );
 $nav[] = array(
-    '_route' => '',
     'class' => 'i_create_write',
     'text' => 'Booms',
     'children' => array(
@@ -23,7 +22,6 @@ $nav[] = array(
     )
 );
 $nav[] = array(
-    '_route' => '',
     'class' => 'i_folder',
     'text' => 'Categorías',
     'children' => array(
@@ -40,23 +38,35 @@ $nav[] = array(
     )
 );
 $nav[] = array(
-    '_route' => 'BoomBackBundle_user_index',
     'class' => 'i_v-card',
-    'text' => 'Usuarios');
+    'text' => 'Usuarios',
+    'children' => array(
+            array(
+                '_route'    => 'BoomBackBundle_user_index',
+                'text'      => 'Usuarios',
+                'class'     => 'i_v-card'
+            ),
+            array(
+                '_route'    => 'BoomBackBundle_user_index',
+                'text'      => 'Grupos',
+                'class'     => 'i_v-card'
+            )
+        )
+    );
 
 ?>
 <nav>
     <ul id="nav">
         <?php foreach ($nav as $n): ?>
             <li class="<?php echo $n['class'] ?>">
-                <a <?php echo !empty($n['_route']) ? 'href="'.$view['router']->generate($n['_route']).'"' : '' ?> class="<?php echo $view['request']->getParameter('_route') == $n['_route'] ? 'active' : '' ?>">
+                <a <?php echo isset($n['_route']) ? 'href="'.$view['router']->generate($n['_route']).'"' : '' ?> class="<?php echo isset($n['_route']) && $view['request']->getParameter('_route') == $n['_route'] ? 'active' : '' ?>">
                     <span><?php echo $n['text'] ?></span>
                 </a>
                 <?php if (isset($n['children']) && !empty($n['children'])): ?>
                     <ul>
                         <?php foreach ($n['children'] as $c): ?>
                             <li class="<?php echo $c['class'] ?>">
-                                <a href="<?php echo!empty($c['_route']) ? $view['router']->generate($c['_route']) : '' ?>" class="<?php echo $view['request']->getParameter('_route') == $c['_route'] ? 'active' : '' ?>">
+                                <a href="<?php echo isset($c['_route']) ? $view['router']->generate($c['_route']) : '' ?>" class="<?php echo isset($c['_route']) &&  $view['request']->getParameter('_route') == $c['_route'] ? 'active' : '' ?>">
                                     <span><?php echo $c['text'] ?></span>
                                 </a>
                             </li>

@@ -9,18 +9,19 @@ $view['slots']->stop();
 <?php
     $blocks = array();
     $blocks['top_semanal'] = array(
-                  'title' => 'top semanal'        
+                  'title' => 'top semanal'
     );
     $blocks['booms_usuarios'] = array(
                   'title' => 'booms de usuarios'
     );
     $blocks['ultimos'] = array(
-                  'title' => 'últimos'
+                  'title' => 'últimos',
+                  'list' => $latest
     );
     $blocks['recomendados'] = array(
                   'title' => 'recomendados'
     );
-    
+
     foreach($blocks as $block):?>
       <?php echo $view->render('BoomFrontBundle:Boom:blocks/block_list.html.php',
               $block

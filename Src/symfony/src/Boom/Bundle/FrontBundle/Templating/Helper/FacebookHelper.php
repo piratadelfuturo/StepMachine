@@ -13,6 +13,9 @@ namespace Boom\Bundle\FrontBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use \BaseFacebook;
+
 
 class FacebookHelper extends Helper
 {
@@ -21,14 +24,18 @@ class FacebookHelper extends Helper
     protected $culture;
     protected $scope;
     protected $facebook;
+    protected $container;
 
-    public function __construct(EngineInterface $templating, \BaseFacebook $facebook, $logging = true, $culture = 'en_US', array $scope = array())
+
+    public function __construct(EngineInterface $templating, BaseFacebook $facebook, $logging = true, $culture = 'en_US', array $scope = array(), ContainerInterface $container = null)
     {
         $this->templating  = $templating;
         $this->logging     = $logging;
         $this->culture     = $culture;
         $this->scope       = $scope;
         $this->facebook    = $facebook;
+        $this->container   = $container;
+
     }
 
     /**
@@ -83,6 +90,10 @@ class FacebookHelper extends Helper
     public function logoutUrl($parameters = array(), $name = null)
     {
         return $this->facebook->getLogoutUrl($parameters);
+    }
+
+    public function getLoginUrl($params = array()){
+        return $this->facebook->getLoginUrl($params);
     }
 
     /**

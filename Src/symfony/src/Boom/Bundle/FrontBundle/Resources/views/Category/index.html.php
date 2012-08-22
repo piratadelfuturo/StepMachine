@@ -7,13 +7,15 @@
 ?>
 
     <?php echo $view->render('BoomFrontBundle:Boom:blocks/block_list.html.php', array(
-            'title' => 'top semanal'
+            'title' => 'top semanal',
+            'category' => $category
                 ));
 ?>
 
     <?php echo $view->render('BoomFrontBundle:Boom:blocks/long_list.html.php', array(
-            'list' => $latest,
-            'title' => 'ÚLTIMOS'
+            'title' => 'ÚLTIMOS',
+            'category' => $category,
+            'list' => $latest
                 ));
 ?>
 

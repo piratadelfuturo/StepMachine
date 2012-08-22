@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Form\BoomType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Boom controller.
@@ -26,24 +28,6 @@ class BoomController extends Controller
         return $this->render('BoomFrontBundle:Boom:index.html.php', array(
             'entities' => $entities,
         ));
-    }
-
-    /**
-     * Finds and displays a Boom entity.
-     *
-     */
-    public function showAction($slug)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Boom entity.');
-        }
-
-        return $this->render('BoomFrontBundle:Boom:show.html.php', array(
-            'entity'      => $entity));
     }
 
     /**

@@ -1,55 +1,42 @@
+<?php
+$categoryName = $categorySlug = null;
+if (isset($category) && $category !== null) {
+    $categorySlug = $category['slug'];
+    $categoryName = $category['name'];
+}
+if(!isset($list)){
+    $list = array();
+}
+?>
 <div class="boomer">
-        <h3 class="title-flag"><span><?php echo $view->escape($title); ?></span></h3>
-        <ul class="list-grid">
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag lucky">lucky 7</span>
-            <p class="boom-ti">Lorem ipsum  rth dolrtor blabtgla bla bla</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-            </li>
+    <h3 class="title-flag"><span><?php echo $view->escape($title); ?></span></h3>
+    <ul class="list-grid">
+        <?php
+        foreach ($list as $element):
+            if ($categorySlug === null):
+                $categorySlug = $element['maincategory']['slug'];
+                $categoryName = $element['maincategory']['name'];
+            endif;
+                $elementUrl = $view['router']->generate(
+                    'BoomFrontBundle_slug_show', array(
+                'slug' => $categorySlug . '/' . $element['slug']
+                    )
+            );
+
+            ?>
             <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag tecnologia">tecnologia</span>
-            <p class="boom-ti">Lorem ipsum dolor blablabla</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag cine">cine</span>
-            <p class="boom-ti">Los 7 Lorem Ipsum más famosos de la vida y mása</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag musica">música</span>
-            <p class="boom-ti">Lorem ipsum blabla bla bla</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag tecnologia">tecnologia</span>
-            <p class="boom-ti">Los 7 Lorem Ipsum más famosos de la vida y más</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag sexo">sexo</span>
-            <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <li>
-            <img src="http://placehold.it/158x90">
-            <span class="sm-flag tecnologia">tecnologia</span>
-            <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-            <a href="#" class="boom-moar">Por Juan Pérez.</a>
-            <p><date>22 de enero 2011</date></p>
-          </li>
-          <a href="#"><span class="moar">ver más</span></a>
-        </ul>
-      </div>
+                <img src="<?php echo $element['image']['path'] ?>" width="158px" height="90px" >
+                    <span class="sm-flag <?php echo $categorySlug ?>"><?php echo $view->escape($categoryName) ?></span>
+                <p class="boom-ti">
+                    <a href="<?php echo $elementUrl ?>" class="boom-moar">
+                        <?php echo $view->escape($element['title']) ?>
+                    </a>
+                </p>
+                <a href="<?php echo $elementUrl ?>" class="boom-moar">Por <?php echo $element['user']['username'] ?>.</a>
+                <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
+            </li>
+        <?php endforeach; ?>
+
+        <a href="#"><span class="moar">ver más</span></a>
+    </ul>
+</div>

@@ -24,6 +24,5 @@ assetic:
     bundles: [BoomBackBundle,BoomFrontBundle]
 
 swiftmailer:
-    delivery_address: daniel.maldonado@gmail.com
     transport: mail
     spool:     { type: memory }

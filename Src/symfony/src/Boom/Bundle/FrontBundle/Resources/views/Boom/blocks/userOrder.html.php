@@ -1,3 +1,11 @@
+<?php
+$elements = array();
+foreach($entity['elements'] as $el){
+    $position = $el['communityposition'] == 0 ? $el['position'] : $el['communityposition'];
+    $elements[$position] = $el;
+}
+?>
+
 <div id="usr-booms">
       <div class="botones">
         <a href="#"><span class="on" id="tendencia">Tendencias</span></a>
@@ -5,69 +13,15 @@
       </div>
       <h3>nuestros usuarios dicen</h3>
       <ul id="drag-booms">
+          <?php foreach($elements as $elementPosition => $element): ?>
         <li>
-          <span class="pos"><p>1</p></span>
+          <span class="pos"><p><?php echo $elementPosition ?></p></span>
           <img src="http://placehold.it/72x72">
           <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
+            <h4><?php echo $element['title'] ?></h4>
           </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
         </li>
-        <li>
-          <span class="pos"><p>2</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
-        <li>
-         <span class="pos"><p>3</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
-        <li>
-          <span class="pos"><p>4</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
-        <li>
-          <span class="pos"><p>5</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
-        <li>
-          <span class="pos"><p>6</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
-        <li>
-          <span class="pos"><p>7</p></span>
-          <img src="http://placehold.it/72x72">
-          <span class="boom-info">
-            <h4>The boy with the arab strap, Lorem ipsum dolor sit amet. The boy with the.</h4>
-            <p><span>3,456</span> modificaciones</p>
-          </span>
-          <a href="#"><span class="edit-boom">editar</span></a>
-        </li>
+        <?php endforeach; ?>
       </ul>
       <a href="#"><span id="editalo">
         <p>¿Estás de acuerdo?</p>

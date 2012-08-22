@@ -1,6 +1,8 @@
-BoomFrontBundle_boom_show:
-    pattern:  /{slug}
-    defaults: { _controller: "BoomFrontBundle:Boom:show" }
+#BoomFrontBundle_boom_show:
+#    pattern:  /{slug}
+#    defaults: { _controller: "BoomFrontBundle:Boom:show" }
+#    requirements:
+#        slug: ".+"
 
 BoomFrontBundle_boom_index:
     pattern:  /
