@@ -26,7 +26,7 @@ $view['slots']->set('canonical_url',$canonical_url);
         <div class="boom-info">
           <h2><?php echo $view->escape($entity['title']) ?></h2>
           <p><?php echo $view['bbcode']->filter($entity['summary'],'default') ?></p>
-          <a class="boom-moar" href="#">Publicado el <date>22 de enero 2011</date></a>
+          <a class="boom-moar" href="#">Publicado el <date>fecha </date></a>
         </div>
         <div class="social">
           <span class="comparte">comparte:
@@ -84,3 +84,5 @@ $view['slots']->set('canonical_url',$canonical_url);
           </div>
         </div>
       </div>
+     <pre><?php print_r($entity) ?> </pre>
+ 
