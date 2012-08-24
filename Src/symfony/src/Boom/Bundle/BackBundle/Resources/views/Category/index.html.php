@@ -9,7 +9,7 @@
                 <th>Título</th>
                 <th>Posición</th>
                 <th>Principal</th>
-                <th>Booms</th>
+                <th>Booms total</th>
                 <th>Acciones</th>
             </tr>
         </thead>

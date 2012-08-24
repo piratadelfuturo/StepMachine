@@ -61,30 +61,43 @@ class CategoryController extends Controller {
         }
 
         $get = $request->query->all();
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Category');
 
         /* Array of database columns which should be read and sent back to DataTables. Use a space where
          * you want to insert a non-database field (for example a counter or static image)
          */
-        $columns = array(
+        $standardColumn = array(
             'id',
             'slug',
             'name',
             'position',
-            'featured',
-            array(
-                'booms' => array(
-                    'id boom_total' => 'COUNT(%s)'
-                )
-            ),
-            'id action_id'
+            'featured'
         );
-        $get['columns'] = $columns;
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
+        $columns = $standardColumn;
+
+        /**
+         $columns[] = array(
+
+            'main_booms' => array(
+                'id main_boom_total' => 'COUNT(%s)'
+            )
+        );
+         */
+
+        $columns[] = array(
+            'booms' => array(
+                'id boom_total' => 'COUNT(%s)'
+            )
+        );
+
+        $columns[] = 'id action_id';
+
+        $get['columns'] = $columns;
         $result = $repo->ajaxTable($get, true);
         $rResult = $result['query']->getArrayResult();
-        $rResult = array_map(function($value) {
+        $rResult = array_map(function($value){
                     $value = array_map(function($value) {
                                 if ($value instanceof \DateTime) {
                                     $value = $value->format(\DateTime::RFC2822);

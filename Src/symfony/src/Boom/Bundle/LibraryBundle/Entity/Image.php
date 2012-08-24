@@ -35,7 +35,7 @@ class Image extends DomainObject {
     protected $path;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true )
      */
     protected $url;
 
@@ -62,24 +62,24 @@ class Image extends DomainObject {
      */
     protected $galleries;
 
-
     /**
      * @ORM\Column(type="datetime")
      */
     protected $date_created;
-
-
-    protected $file;
 
     /**
      * @ORM\Column(type="boolean")
      */
     protected $nsfw;
 
+    protected $file;
+
+
     public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->boomelements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->date_created = new \DateTime();
         $this->nsfw = false;
     }
 
@@ -149,6 +149,9 @@ class Image extends DomainObject {
      * @return string
      */
     public function getPath() {
+        if ($this->getId() !== null || $this->path !== null) {
+            //return sha1($this->getId()) . '.' . $this->path;
+        }
         return $this->path;
     }
 
@@ -170,6 +173,46 @@ class Image extends DomainObject {
      */
     public function getUrl() {
         return $this->url;
+    }
+
+    /**
+     * Set nsfw
+     *
+     * @param string $url
+     * @return Image
+     */
+    public function setNsfw($nsfw) {
+        $this->nsfw = (bool) $nsfw;
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function isNsfw() {
+        return (bool) $this->nsfw;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $url
+     * @return Image
+     */
+    public function setFile(\Symfony\Component\HttpFoundation\File\File $file) {
+        $this->file = $file;
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string
+     */
+    public function getFile() {
+        return $this->file;
     }
 
     /**
@@ -279,78 +322,13 @@ class Image extends DomainObject {
         return $this->galleries;
     }
 
-    public function getAbsolutePath() {
-        return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
-    }
-
-    public function getWebPath() {
-        return null === $this->path ? null : $this->getUploadDir() . '/' . $this->path;
-    }
-
-    protected function getUploadRootDir() {
-        // the absolute directory path where uploaded documents should be saved
-        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
-    }
-
-    protected function getUploadDir() {
-        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/documents';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        if (null !== $this->file) {
-            // do whatever you want to generate a unique name
-            $this->path = uniqid().'.'.$this->file->guessExtension();
-        }
-    }
-
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload() {
-        // the file property can be empty if the field is not required
-        if (null === $this->file) {
-            return;
-        }
-
-        // we use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-        // move takes the target directory and then the target filename to move to
-        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
-
-        // set the path property to the filename where you'ved saved the file
-        $this->path = $this->file->getClientOriginalName();
-
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($file = $this->getAbsolutePath()) {
-            unlink($file);
-        }
-    }
-
-
     /**
      * Set date_created
      *
      * @param datetime $dateCreated
      * @return Image
      */
-    public function setDateCreated($dateCreated)
-    {
+    public function setDateCreated($dateCreated) {
         $this->date_created = $dateCreated;
         return $this;
     }
@@ -360,8 +338,8 @@ class Image extends DomainObject {
      *
      * @return datetime
      */
-    public function getDateCreated()
-    {
+    public function getDateCreated() {
         return $this->date_created;
     }
+
 }

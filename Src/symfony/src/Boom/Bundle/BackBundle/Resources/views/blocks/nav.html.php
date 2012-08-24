@@ -54,6 +54,23 @@ $nav[] = array(
         )
     );
 
+$nav[] = array(
+    'class' => 'i_image',
+    'text' => 'Imágenes',
+    'children' => array(
+            array(
+                '_route'    => 'BoomBackBundle_image_index',
+                'text'      => 'Lista',
+                'class'     => 'i_v-card'
+            ),
+            array(
+                '_route'    => 'BoomBackBundle_image_new',
+                'text'      => 'Nueva',
+                'class'     => 'i_v-card'
+            )
+        )
+    );
+
 ?>
 <nav>
     <ul id="nav">
@@ -76,7 +93,6 @@ $nav[] = array(
             </li>
         <?php endforeach; ?>
         <li class="i_image"><a><span>Home</span></a></li>
-        <li class="i_image"><a href="#"><span>Imagenes</span></a></li>
         <li class="i_images"><a href="#"><span>Galerías</span></a></li>
         <li class="i_tags"><a href="#"><span>Tags</span></a></li>
         <li class="i_calendar_day"><a href="#"><span>Calendar</span></a></li>

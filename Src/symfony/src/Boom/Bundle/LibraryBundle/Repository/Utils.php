@@ -86,7 +86,7 @@ class Utils {
                             $subColumnValue = sprintf($replacePattern, $subColumnValue);
                         }
                         $finalColumns[$subColumnValue] = $subDisplayAlias;
-                        $aColumns[] = $subColumnValue . " {$subDisplayAlias}";
+                        $aColumns[] = $subColumnValue . ' '.$subDisplayAlias;
                     }
                 }
             }
@@ -97,7 +97,7 @@ class Utils {
         $finalColumnKeys = array_keys($finalColumns);
 
         $cb = $repo->createQueryBuilder($alias);
-        $cb->select(implode(', ',$aColumns));
+        $cb->select(implode(', ', $aColumns));
 
         $countValue = $alias . '.id';
 
@@ -118,13 +118,13 @@ class Utils {
             }
         }
 
-                /*
+        /*
          * Ordering
          */
         if (isset($get['iSortCol_0'])) {
             for ($i = 0; $i < intval($get['iSortingCols']); $i++) {
                 if ($get['bSortable_' . intval($get['iSortCol_' . $i])] == "true") {
-                    $orderColumn = explode(' ', $finalColumnKeys[(int) $get['iSortCol_' . $i]]);
+                    $orderColumn = explode(' ', $finalColumnNames[(int) $get['iSortCol_' . $i]]);
                     $orderColumn = end($orderColumn);
                     $cb->orderBy($orderColumn, $get['sSortDir_' . $i]);
                 }
@@ -142,7 +142,7 @@ class Utils {
         if (isset($get['sSearch']) && $get['sSearch'] != '') {
             for ($i = 0; $i < count($finalColumnNames); $i++) {
                 if (isset($get['bSearchable_' . $i]) && $get['bSearchable_' . $i] == "true") {
-                    $cb->orWhere($cb->expr()->like($finalColumnKeys[$i],'\'%' . $get['sSearch'] . '%\''));
+                    $cb->orWhere($cb->expr()->like($finalColumnKeys[$i], '\'%' . $get['sSearch'] . '%\''));
                     $cb2->orWhere($cb2->expr()->like($finalColumnKeys[$i], '\'%' . $get['sSearch'] . '%\''));
                 }
             }

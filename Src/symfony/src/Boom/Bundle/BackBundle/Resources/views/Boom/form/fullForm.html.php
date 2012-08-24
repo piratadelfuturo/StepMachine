@@ -24,7 +24,7 @@
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
         <?php echo $view['form']->row($form['main_category'], array('label' => 'Categoría principal')) ?>
         <?php echo $view['form']->row($form['categories'], array('label' => 'Categorías')) ?>
-        <?php echo $view['form']->rest($form['tags'], array('label' => 'Etiquetas')) ?>
+        <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
         <label>Boomies</label>

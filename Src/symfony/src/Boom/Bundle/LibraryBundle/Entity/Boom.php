@@ -117,14 +117,13 @@ class Boom extends DomainObject {
     protected $booomelementranks;
 
     /**
-    *@ORM\ManyToMany(targetEntity="User", mappedBy="favorites")
-    */
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="favorites")
+     */
     protected $favorite_users;
 
-
     /**
-    * @ORM\Column(type="boolean")
-    */
+     * @ORM\Column(type="boolean")
+     */
     protected $featured;
 
     /**
@@ -418,6 +417,9 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function addCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
+        var_dump($category);
+        exit;
+
         $this->categories[] = $category;
         return $this;
     }
@@ -428,7 +430,9 @@ class Boom extends DomainObject {
      * @param <variableType$categories
      */
     public function removeCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
-        $this->categories->removeElement($category);
+        if($elements !== $this['maincategory']){
+            $this->categories->removeElement($category);
+        }
     }
 
     /**
@@ -446,6 +450,8 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function setCategories(\Doctrine\Common\Collections\Collection $categories) {
+        var_dump($categories);
+        exit;
         $this->categories = $categories;
         return $this;
     }
@@ -700,7 +706,6 @@ class Boom extends DomainObject {
         return $this->status;
     }
 
-
     /**
      * Add booomelementranks
      *
@@ -753,16 +758,15 @@ class Boom extends DomainObject {
         return self::$_StatusEnumFieldValues;
     }
 
-
     /**
      * Set main_category
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Category $mainCategory
      * @return Boom
      */
-    public function setMainCategory(\Boom\Bundle\LibraryBundle\Entity\Category $mainCategory)
-    {
+    public function setMainCategory(\Boom\Bundle\LibraryBundle\Entity\Category $mainCategory) {
         $this->main_category = $mainCategory;
+        $this->addCategory($mainCategory);
         return $this;
     }
 
@@ -771,12 +775,9 @@ class Boom extends DomainObject {
      *
      * @return Boom\Bundle\LibraryBundle\Entity\Category
      */
-    public function getMainCategory()
-    {
+    public function getMainCategory() {
         return $this->main_category;
     }
-
-
 
     /**
      * Set featured
@@ -784,8 +785,7 @@ class Boom extends DomainObject {
      * @param boolean $featured
      * @return Boom
      */
-    public function setFeatured($featured)
-    {
+    public function setFeatured($featured) {
         $this->featured = $featured;
         return $this;
     }
@@ -795,11 +795,9 @@ class Boom extends DomainObject {
      *
      * @return boolean
      */
-    public function getFeatured()
-    {
+    public function getFeatured() {
         return $this->featured;
     }
-
 
     /**
      * Add favorite_users
@@ -807,8 +805,7 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers
      * @return Boom
      */
-    public function addFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers)
-    {
+    public function addFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers) {
         $this->favorite_users[] = $favoriteUsers;
         return $this;
     }
@@ -818,8 +815,7 @@ class Boom extends DomainObject {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers
      */
-    public function removeFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers)
-    {
+    public function removeFavoriteUser(\Boom\Bundle\LibraryBundle\Entity\User $favoriteUsers) {
         $this->favorite_users->removeElement($favoriteUsers);
     }
 
@@ -828,8 +824,7 @@ class Boom extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getFavoriteUsers()
-    {
+    public function getFavoriteUsers() {
         return $this->favorite_users;
     }
 
@@ -838,14 +833,11 @@ class Boom extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function setFavoriteUsers(\Doctrine\Common\Collections\Collection $favorite_users)
-    {
-        array_map(array($this,'addFavoriteUsers'),$favorite_users);
+    public function setFavoriteUsers(\Doctrine\Common\Collections\Collection $favorite_users) {
+        array_map(array($this, 'addFavoriteUsers'), $favorite_users);
         //$this->favorite_users = $favorite_users;
         return $this;
     }
-
-
 
     /**
      * Add activities
@@ -853,8 +845,7 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
      * @return Boom
      */
-    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
-    {
+    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities) {
         $this->activities[] = $activities;
         return $this;
     }
@@ -864,8 +855,7 @@ class Boom extends DomainObject {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
      */
-    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
-    {
+    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities) {
         $this->activities->removeElement($activities);
     }
 
@@ -874,8 +864,7 @@ class Boom extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getActivities()
-    {
+    public function getActivities() {
         return $this->activities;
     }
 
@@ -884,12 +873,10 @@ class Boom extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function setActivities(\Doctrine\Common\Collections\Collection $activities)
-    {
-        array_map(array($this,'addActivities'), $activities);
+    public function setActivities(\Doctrine\Common\Collections\Collection $activities) {
+        array_map(array($this, 'addActivities'), $activities);
         //$this->activities = $activities;
         return $this;
     }
-
 
 }

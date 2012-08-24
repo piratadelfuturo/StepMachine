@@ -279,7 +279,7 @@ header{
 	width:224px;
 	border:0;
 	-webkit-border-top-left-radius:4px; -moz-border-radius-topleft:4px; border-top-left-radius:4px;
-	background:url(images/logo.png) left center no-repeat;
+	background:url(images/logo.png) 25px center no-repeat;
 
 }
 #logo, #logo a{

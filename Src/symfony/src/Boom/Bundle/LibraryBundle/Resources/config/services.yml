@@ -1,0 +1,26 @@
+parameters:
+  boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
+  boom_library.image.helper.class: Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
+services:
+  boom_library.image_upload_persist.listener:
+        class: %boom_library.image_upload_persist.listener.class%
+        arguments:
+            container:  "@service_container"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist  }
+            - { name: doctrine.event_listener, event: preUpdate   }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate  }
+            - { name: doctrine.event_listener, event: postRemove  }
+            - { name: doctrine.event_listener, event: preRemove   }
+  boom_library.image.helper:
+        class: %boom_library.image.helper.class%
+        arguments:
+            container:    "@service_container"
+        tags:
+            - { name: templating.helper, alias: boom_image }
+
+#  boom_library.boom_category_update.listener:
+#        class: Boom\Bundle\LibraryBundle\Listener\BoomCategoryListener
+#        tags:
+#            - { name: doctrine.event_listener, event: preUpdate }

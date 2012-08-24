@@ -31,6 +31,29 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('profile_image_path')
                     ->defaultValue('%boom_library.content_upload_path%user/')
                 ->end()
+                ->scalarNode('boom_image_path')
+                    ->defaultValue('%boom_library.content_upload_path%boom-img/')
+                ->end()
+                ->arrayNode('boom_image_sizes')
+                    ->canBeUnset()
+                    ->ignoreExtraKeys()
+                    ->defaultValue(array(
+                        array(
+                            'width' => 100,
+                            'height'=> 100,
+                            'quality' => 90
+                        ),
+                    ))
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('width')->end()
+                            ->scalarNode('height')->end()
+                            ->scalarNode('quality')
+                                ->defaultValue(90)
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ->end();
 

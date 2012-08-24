@@ -4,9 +4,9 @@
     <IfModule mod_vhost_alias.c>
         RewriteBase /
     </IfModule>
-    
+
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{HTTP_HOST} =sb2.here
+    RewriteCond %{HTTP_HOST} =sevenboom.prod
     RewriteRule ^(.*)$ app.php [QSA,L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -14,3 +14,8 @@
 
 
 </IfModule>
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/x-javascript

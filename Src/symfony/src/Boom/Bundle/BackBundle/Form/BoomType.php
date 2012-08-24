@@ -12,23 +12,21 @@ class BoomType extends AbstractType {
 
         $builder
                 ->add('title')
-                ->add('summary',null,array('required' => false))
-                ->add('date_published',null,array(
+                ->add('summary', null, array('required' => false))
+                ->add('date_published', null, array(
                     'read_only' => false,
                     'attr' => array(
                         'style' => 'display:none;'
                     )
                 ));
         $builder->add(
-                    'main_category','entity',
-                array(
-                    'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
-                    'property' => 'name',
-                    'multiple' => false,
-                    'required' => true
+                'main_category', 'entity', array(
+            'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
+            'property' => 'name',
+            'multiple' => false,
+            'required' => true
                 )
-
-                );
+        );
         $builder->add(
                 'categories', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',

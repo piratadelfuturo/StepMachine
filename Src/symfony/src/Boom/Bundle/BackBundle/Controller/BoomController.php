@@ -32,7 +32,7 @@ class BoomController extends Controller {
             'title',
             'slug',
             array(
-                'categories' => array(
+                'main_category' => array(
                     'name categories'
                 )
             ),
@@ -153,10 +153,12 @@ class BoomController extends Controller {
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
-        $currentUser = $this->get('security.context')->getToken();
-        if ($currentUser instanceof BoomEntity\User) {
+        $sessionToken = $this->get('security.context')->getToken();
+
+        if ($sessionToken->getUser() instanceof User) {
             $entity->setUser($sessionToken->getUser());
         }
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);

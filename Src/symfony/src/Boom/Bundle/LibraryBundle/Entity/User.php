@@ -754,7 +754,7 @@ class User extends BaseUser implements \ArrayAccess {
         return $this->profile_image;
     }
 
-    public function setProfileImage(Symfony\Component\HttpFoundation\File\File $profile_image){
+    public function setProfileImage(\Symfony\Component\HttpFoundation\File\File $profile_image){
         $this->profile_image = $profile_image;
         return $this;
     }
@@ -766,7 +766,9 @@ class User extends BaseUser implements \ArrayAccess {
      */
     public function preUpload()
     {
-
+        if (null !== $this->getProfileImage()) {
+            $this->path = $this->getProfileImage()->guessExtension();
+        }
     }
 
     /**

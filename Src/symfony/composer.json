@@ -25,7 +25,8 @@
         "friendsofsymfony/twitter-bundle": "dev-master",
         "gedmo/doctrine-extensions": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
-        "mjohnson/decoda": "3.*"
+        "mjohnson/decoda": "3.*",
+        "francodacosta/phMagick": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

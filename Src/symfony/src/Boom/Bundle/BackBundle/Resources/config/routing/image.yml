@@ -1,5 +1,33 @@
-Boombackbundle_image_index:
+BoomBackBundle_image_index:
     pattern:  /list.{_format}
     defaults: { _controller: "BoomBackBundle:Image:index", _format: html }
     requirements:
       _format: html|json
+
+BoomBackBundle_image_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Image:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_image_new:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Image:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_image_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Image:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_image_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Image:update" }
+    requirements: { _method: post }
+
+BoomBackBundle_image_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BoomBackBundle:Image:delete" }
+    requirements: { _method: post }
+    options:
+        expose: true
