@@ -84,5 +84,5 @@ $view['slots']->set('canonical_url',$canonical_url);
           </div>
         </div>
       </div>
-     <pre><?php print_r($entity) ?> </pre>
+
  

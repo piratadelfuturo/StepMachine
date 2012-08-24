@@ -362,6 +362,15 @@ header{position:relative;}
     display:none;
     float:left;
 }
+#usr-bar #close-tab li{
+    color:#FFF;
+}
+#usr-bar #close-tab li:first-child{
+  border-left:none;
+}
+#usr-bar #close-tab li a{
+  color: #F87937;
+}
 
 #usr-bar ul {
   padding-top: 8px;
