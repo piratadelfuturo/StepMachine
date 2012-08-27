@@ -3,14 +3,39 @@
 namespace Boom\Bundle\BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\BackBundle\Form\BoomType;
-use Boom\Bundle\BackBundle\Form\BoomelementType;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 
 class BoomController extends Controller {
+
+    public function previewAction($id) {
+
+
+        $request = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find.');
+        }
+
+        $form = $this->createForm(new BoomType(), $entity);
+        $form->bind($request);
+
+        if (!$form->isValid()) {
+            throw $this->createNotFoundException('Invalid form information');
+        }
+
+        return $this->render(
+                        'BoomFrontBundle:Boom:show.html.php', array(
+                    'entity' => $entity,
+                    'category' => $entity['maincategory']
+                        )
+        );
+    }
 
     /**
      * Lists all Boom entities.
@@ -136,7 +161,6 @@ class BoomController extends Controller {
             $entity->addElement($element);
         }
         $form = $this->createForm(new BoomType(), $entity);
-
 
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
                     'entity' => $entity,

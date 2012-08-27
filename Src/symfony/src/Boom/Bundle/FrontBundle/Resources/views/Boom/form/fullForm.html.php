@@ -1,9 +1,9 @@
+<div class="boom-form">
+    <h3>CREA TU BOOM</h3>
 <form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
     <fieldset>
-        <label><?php echo $form_title ?></label>
-        <?php echo $view['form']->row($form['_token']) ?>
-        <?php echo $view['form']->widget($form['date_published']) ?>
-        <?php echo $view['form']->row($form['title'], array('label' => 'Título')) ?>
+        <?php echo $view['form']->widget($form['_token']) ?>
+        <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
         <?php
         echo $view['form']->row(
                 $form['summary'], array(
@@ -14,9 +14,6 @@
                 )
         )
         ?>
-        <?php
-        echo $view['bbcode']->filter($form['summary']->get('value'), 'default');
-        ?>
         <section>
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
@@ -24,7 +21,6 @@
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
         <?php echo $view['form']->row($form['main_category'], array('label' => 'Categoría principal')) ?>
         <?php echo $view['form']->row($form['categories'], array('label' => 'Categorías')) ?>
-        <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>
         <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
@@ -70,16 +66,7 @@
         <?php endforeach; ?>
 
     </fieldset>
-    <fieldset>
-        <section>
-            <div>
-                <?php if(isset($entity) && $entity['id'] !== null): ?>
-                <input type="hidden" id="entity_id" value="<?php echo $entity['id'] ?>" />
-                <button id="boom-preview" class="submit" type="submit" >Preview</button>
-                <?php endif; ?>
-                <button id="boom-submit" class="submit" type="submit" >Guardar</button>
-            </div>
-        </section>
-    </fieldset>
+                <button class="submit" type="submit" >Guardar</button>
 
 </form>
+</div>

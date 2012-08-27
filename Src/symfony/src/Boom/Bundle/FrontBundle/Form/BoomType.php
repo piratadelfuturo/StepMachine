@@ -1,8 +1,7 @@
 <?php
+
 namespace Boom\Bundle\BackBundle\Form;
 
-use Boom\Bundle\LibraryBundle\Form\BoomelementType;
-use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -20,22 +19,7 @@ class BoomType extends AbstractType {
                         'style' => 'display:none;'
                     )
                 ));
-       $builder->add(
-                'status',
-                'choice',
-                array(
-                    'required' => true,
-                    'choices' => array(
-                        Boom::STATUS_DRAFT      => 'Draft',
-                        Boom::STATUS_REVIEW     => 'Revisión',
-                        Boom::STATUS_PUBLIC     => 'Público',
-                        Boom::STATUS_PRIVATE    => 'Privado',
-                        Boom::STATUS_DELETE     => 'Eliminado'
-                    )
-                )
-                );
-
-               $builder->add(
+        $builder->add(
                 'main_category', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',
@@ -43,7 +27,6 @@ class BoomType extends AbstractType {
             'required' => true
                 )
         );
-
         $builder->add(
                 'categories', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
@@ -53,7 +36,6 @@ class BoomType extends AbstractType {
             'expanded' => true
                 )
         );
-
         $builder->add(
                 'nsfw', 'checkbox', array(
             'required' => false
@@ -85,7 +67,7 @@ class BoomType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_backbundle_boomtype';
+        return 'boom_bundle_frontbundle_boomtype';
     }
 
 }

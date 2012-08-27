@@ -1,0 +1,29 @@
+BoomFrontBundle_list_recommended:
+    pattern:  /recomendados/{page}
+    defaults: { _controller: "BoomFrontBundle:List:recommended",page: 1 }
+    requirements:
+      page: \d+
+
+BoomFrontBundle_list_latest:
+    pattern:  /ultimos/{page}
+    defaults: { _controller: "BoomFrontBundle:List:latest",page: 1 }
+    requirements:
+      page: \d+
+
+BoomFrontBundle_list_user:
+    pattern:  /usuario/{page}
+    defaults: { _controller: "BoomFrontBundle:List:user",page: 1 }
+    requirements:
+      page: \d+
+
+BoomFrontBundle_list_collaborator:
+    pattern:  /colaborador/{page}
+    defaults: { _controller: "BoomFrontBundle:List:collaborator",page: 1 }
+    requirements:
+      page: \d+
+
+BoomFrontBundle_list_top:
+    pattern:  /top/{page}
+    defaults: { _controller: "BoomFrontBundle:List:top",page: 1 }
+    requirements:
+      page: \d+

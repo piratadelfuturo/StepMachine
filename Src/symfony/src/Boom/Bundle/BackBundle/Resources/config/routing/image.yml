@@ -1,6 +1,8 @@
 BoomBackBundle_image_index:
     pattern:  /list.{_format}
     defaults: { _controller: "BoomBackBundle:Image:index", _format: html }
+    options:
+        expose: true
     requirements:
       _format: html|json
 

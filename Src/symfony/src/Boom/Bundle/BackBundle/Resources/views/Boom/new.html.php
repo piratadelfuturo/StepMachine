@@ -4,10 +4,11 @@
 <?php
 echo $view->render(
         'BoomBackBundle:Boom:form/fullForm.html.php', array(
-    'form_url' => $view['router']->generate('BoomBackBundle_boom_create'),
-    'form_enctype' => $view['form']->enctype($form),
-    'form_title' => 'Crear imagen',
-    'form' => $form
+    'form_url'      => $view['router']->generate('BoomBackBundle_boom_create'),
+    'form_enctype'  => $view['form']->enctype($form),
+    'form_title'    => 'Crear imagen',
+    'form'          => $form,
+    'entity'        => $entity
         )
 );
 ?>

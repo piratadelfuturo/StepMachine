@@ -8,7 +8,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
             <ul id="mini-nav">
                 <li><a href="#">Especiales</a></li>
                 <li><a href="#">Colaboradores</a></li>
-                <li><a href="#">CREA TU <span>boom</span></a></li>
+                <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_new'); ?>">CREA TU <span>boom</span></a></li>
             </ul>
             <div id="tb-rb">
                 <form>

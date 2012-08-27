@@ -5,7 +5,7 @@ namespace Boom\Bundle\BackBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Boom\Bundle\BackBundle\Form\CategoryType;
+use Boom\Bundle\LibraryBundle\Form\CategoryType;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 
 class CategoryController extends Controller {

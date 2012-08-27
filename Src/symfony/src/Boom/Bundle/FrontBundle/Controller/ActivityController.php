@@ -6,20 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController {
+class ActivityController {
+    //put your code here
 
-    public function listAction(){
+    public function followAction($username){
+
 
     }
 
-
-    public function collaboratorsAction(){
-
-    }
-
-
-    public function profileAction(){
+    public function recommendAction($slug){
 
     }
+
 
 }

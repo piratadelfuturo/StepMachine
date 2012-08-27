@@ -18,9 +18,22 @@ BoomFrontBundle_boom:
     resource: "@BoomFrontBundle/Resources/config/routing/boom.yml"
     prefix:   /boom
 
-BoomFrontBundle_category:
-    resource: "@BoomFrontBundle/Resources/config/routing/category.yml"
-    prefix:   /cat
+BoomFrontBundle_list:
+    resource: "@BoomFrontBundle/Resources/config/routing/list.yml"
+    prefix:   /lista
+
+BoomFrontBundle_activity:
+    resource: "@BoomFrontBundle/Resources/config/routing/activity.yml"
+    prefix:   /actividad
+
+BoomFrontBundle_profile:
+    resource: "@BoomFrontBundle/Resources/config/routing/profile.yml"
+    prefix:   /tu_sitio
+
+BoomFrontBundle_user:
+    resource: "@BoomFrontBundle/Resources/config/routing/user.yml"
+    prefix:   /usuarios
+
 
 BoomFrontBundle_slug_show:
     pattern:  /{slug}

@@ -1027,7 +1027,7 @@ aside .sb-bloque{
   margin:10px 0;
 }
 
-.sb-bloque h3{
+.sb-bloque > h3{
   position:relative;
   font: 24px 'Proxima', sans-serif;
   color:#FFF;
@@ -1045,11 +1045,11 @@ aside .sb-bloque{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 ); /* IE6-8 */
 }
 
-.sb-bloque h3 span{
+.sb-bloque > h3 span{
   margin-left:35px;
 }
 
-.fb-wdgt h3{
+.fb-wdgt > h3{
   border-bottom:1px solid #c6cedf;
   margin-bottom: -1px;
   background: #2e55a2; /* Old browsers */
@@ -1064,7 +1064,7 @@ aside .sb-bloque{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e55a2', endColorstr='#193772',GradientType=0 ); /* IE6-8 */
 }
 
-.tw-wdgt h3{
+.tw-wdgt > h3{
   background: #46cbfd; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ2Y2JmZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMzg4YmEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -1078,7 +1078,7 @@ aside .sb-bloque{
 }
 
 
-.sb-bloque h3:before{
+.sb-bloque > h3:before{
   content:'';
   font-size:0;
   width:0;
@@ -1090,7 +1090,7 @@ aside .sb-bloque{
   top: 0;
   left: 0;
 }
-.tw-wdgt h3 span, .fb-wdgt h3 span{
+.tw-wdgt > h3 span, .fb-wdgt > h3 span{
   background: url('../images/fb-wdgt.png') no-repeat left center;
   height: 45px;
   width: 150px;
@@ -1098,7 +1098,7 @@ aside .sb-bloque{
   overflow: hidden;
   text-indent:-9000px;
 }
-.tw-wdgt h3 span{
+.tw-wdgt > h3 span{
   background: url('../images/tw-wdgt.png') no-repeat left center;
 }
 

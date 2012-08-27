@@ -1,30 +1,11 @@
-BoomFrontBundle_boom:
+BoomFrontBundle_user_mySite:
     pattern:  /
-    defaults: { _controller: "BoomFrontBundle:User:index" }
+    defaults: { _controller: "BoomFrontBundle:User:list" }
 
-BoomFrontBundle_boom_show:
-    pattern:  /boom/{slug}
-    defaults: { _controller: "BoomFrontBundle:Boom:show" }
+BoomFrontBundle_user_profile:
+    pattern:  /colaboradores
+    defaults: { _controller: "BoomFrontBundle:User:collaborators" }
 
-BoomFrontBundle_boom_new:
-    pattern:  /new
-    defaults: { _controller: "BoomFrontBundle:Boom:new" }
-
-BoomFrontBundle_boom_create:
-    pattern:  /create
-    defaults: { _controller: "BoomFrontBundle:Boom:create" }
-    requirements: { _method: post }
-
-BoomFrontBundle_boom_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "BoomFrontBundle:Boom:edit" }
-
-BoomFrontBundle_boom_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "BoomFrontBundle:Boom:update" }
-    requirements: { _method: post }
-
-BoomFrontBundle_boom_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "BoomFrontBundle:Boom:delete" }
-    requirements: { _method: post }
+BoomFrontBundle_user_recent:
+    pattern:  /{username}
+    defaults: { _controller: "BoomFrontBundle:Boom:profile" }

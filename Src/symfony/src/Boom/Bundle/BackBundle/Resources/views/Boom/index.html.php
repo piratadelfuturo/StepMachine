@@ -75,9 +75,11 @@
                             var delB = del.clone();
                             var viewB = view.clone();
 
-                            prevB.click(function(){
-                                alert("hello");
-                            });
+                            prevB.attr(
+                            'href',
+                                Routing.generate('BoomBackBundle_boom_preview', { id: val })
+                            )
+                            .attr('target','_blank');
                             edB.attr(
                             'href',
                                 Routing.generate('BoomBackBundle_boom_edit', { id: val })

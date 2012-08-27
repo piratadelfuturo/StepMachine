@@ -1,6 +1,6 @@
 <?php
 
-namespace Boom\Bundle\BackBundle\Form;
+namespace Boom\Bundle\LibraryBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,8 +11,8 @@ class BoomelementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $subscriber = new AddBoomelementIdSubscriber($builder->getFormFactory());
-        $builder->addEventSubscriber($subscriber);
+        //$subscriber = new AddBoomelementIdSubscriber($builder->getFormFactory());
+        //$builder->addEventSubscriber($subscriber);
 
         $builder
             ->add('title')

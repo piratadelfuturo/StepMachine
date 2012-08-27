@@ -32,7 +32,6 @@
                     .text("B"+position)
                     position++
                 });
-            //ui.item.children( "h3" ).triggerHandler( "focusout" );
             }
         })
         .disableSelection()
@@ -71,6 +70,39 @@
 
         });
 
+        $form = $('#boom_bundle_backbundle_boomtype');
+
+        $entityId = $form.find('#entity_id',0);
+
+    if($entityId.length > 0){
+        
+        $submit = $form.find('#boom-submit');
+
+        $preview = $form.find('#boom-preview');
+
+        $submit.click(function(){
+            $form
+            .attr('target','_self')
+            .attr(
+                'action',
+                Routing.generate('BoomBackBundle_boom_update', {
+                    id: $entityId.val()
+                }));
+        });
+
+        $preview.click(function(){
+            $form.attr('target','_blank')
+            .attr(
+                'action',
+                Routing.generate('BoomBackBundle_boom_preview', {
+                    id: $entityId.val()
+                }));
+
+
+        });
+    }
+
     });
+
 })(document,jQuery);
 

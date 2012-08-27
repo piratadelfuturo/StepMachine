@@ -1,0 +1,8 @@
+BoomFrontBundle_activity_follow:
+    pattern:  /follow/{username}
+    defaults: { _controller: "BoomFrontBundle:Activity:follow" }
+
+BoomFrontBundle_activity_recommend:
+    pattern:  /recommendar/{slug}
+    defaults: { _controller: "BoomFrontBundle:Activity:recommend" }
+

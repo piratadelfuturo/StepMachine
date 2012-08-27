@@ -1,6 +1,6 @@
 <?php
 
-namespace Boom\Bundle\BackBundle\Form;
+namespace Boom\Bundle\LibraryBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

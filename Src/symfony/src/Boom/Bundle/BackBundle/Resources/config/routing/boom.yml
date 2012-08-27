@@ -13,6 +13,13 @@ BoomBackBundle_boom_show:
     options:
         expose: true
 
+BoomBackBundle_boom_preview:
+    pattern:  /{id}/preview
+    defaults: { _controller: "BoomBackBundle:Boom:preview" }
+    options:
+        expose: true
+
+
 BoomBackBundle_boom_create:
     pattern:  /new
     defaults: { _controller: "BoomBackBundle:Boom:create" }
@@ -33,6 +40,8 @@ BoomBackBundle_boom_update:
     pattern:  /{id}/update
     defaults: { _controller: "BoomBackBundle:Boom:update" }
     requirements: { _method: post }
+    options:
+        expose: true
 
 BoomBackBundle_boom_delete:
     pattern:  /{id}/delete

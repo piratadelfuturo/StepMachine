@@ -70,6 +70,9 @@ class DefaultController extends Controller {
             }
         }
 
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
         if ($inCategory == false || !$entity) {
             throw $this->createNotFoundException('Unable to find.');
         }
@@ -81,7 +84,8 @@ class DefaultController extends Controller {
                             'BoomFrontBundle:Boom:show.html.php', array(
                         'entity' => $entity,
                         'category' => $thisCategory
-                            )
+                            ),
+                    $response
             );
         }
     }

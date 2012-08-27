@@ -6,7 +6,8 @@ echo $view->render(
     'form_url' => $view['router']->generate('BoomBackBundle_boom_update', array('id' => $entity['id'])),
     'form_enctype' => $view['form']->enctype($edit_form),
     'form' => $edit_form,
-    'form_title' => 'Editar Boom'
+    'form_title' => 'Editar Boom',
+            'entity' => $entity
         )
 );
 ?>

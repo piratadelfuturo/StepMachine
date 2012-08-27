@@ -18,10 +18,11 @@ use Symfony\Component\Validator\ExecutionContext;
  */
 class Boom extends DomainObject {
 
-    const STATUS_DRAFT = 0;
-    const STATUS_REVIEW = 1;
-    const STATUS_PUBLIC = 2;
-    const STATUS_PRIVATE = 3;
+    const STATUS_DRAFT      = 0;
+    const STATUS_REVIEW     = 1;
+    const STATUS_PUBLIC     = 2;
+    const STATUS_PRIVATE    = 3;
+    const STATUS_DELETE     = 4;
 
     static private $_StatusEnumFieldValues = null;
 

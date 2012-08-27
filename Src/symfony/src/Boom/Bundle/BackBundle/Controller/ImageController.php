@@ -8,30 +8,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Boom\Bundle\BackBundle\Form\ImageFormType;
+use Boom\Bundle\LibraryBundle\Form\ImageFormType;
 
 class ImageController extends Controller {
 
     public function indexAction(Request $request) {
 
+        if ($request->getRequestFormat() !== 'json') {
+            return $this->render('BoomBackBundle:Image:index.html.php');
+        }
+
+        $result = array();
 
         $get = $request->query->all();
-
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Image');
-        $query = $repo->ajaxTable($get, true);
-        $result = $query->getResult(Query::HYDRATE_ARRAY);
+        $result['data'] = (array) $repo->findBy(array());
+        $result['total'] = 100;
 
-        if ($request->getRequestFormat() == 'json') {
-            $response = new Response(json_encode($result));
-            $response->headers->set('Content-Type', 'application/json');
-        } else {
-            $response = $this->render(
-                    'BoomBackBundle:Image:index.html.php', array(
-                'result' => $result
-                    )
-            );
-        }
+        $response = new Response(
+                        json_encode($result)
+        );
+        $response->headers->set('Content-Type', 'application/json');
 
         return $response;
     }
@@ -67,7 +65,7 @@ class ImageController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomBackBundle_image_show', array(
+                                    'BoomBackBundle_image_edit', array(
                                 'id' => $entity->getId()
                                     )
                             )

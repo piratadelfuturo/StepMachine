@@ -30,6 +30,14 @@ class ImageHelper extends Helper {
         return $this->container->getParameter('boom_library.boom_user_path');
     }
 
+    public function imageExists(){
+
+    }
+
+    public function thumb(){
+
+    }
+
     public function getName(){
         return 'boom_image';
     }
