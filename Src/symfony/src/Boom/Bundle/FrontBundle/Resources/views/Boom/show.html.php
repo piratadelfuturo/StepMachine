@@ -62,7 +62,7 @@ $view['slots']->set('canonical_url',$canonical_url);
               <div class="boom-content">
                 <?php $content = $element['content'] === null ?'':$element['content'];  ?>
                 <?php echo $view['bbcode']->filter($content,'default') ?>
-                <div class="comments">FB COMMENTS</div>
+                  <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="670"></div></div>
               </div>
               <span class="tab"><a href=""><span>TAB</span></a></span>
             </li>

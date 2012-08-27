@@ -362,6 +362,15 @@ header{position:relative;}
     display:none;
     float:left;
 }
+#usr-bar #close-tab li{
+    color:#FFF;
+}
+#usr-bar #close-tab li:first-child{
+  border-left:none;
+}
+#usr-bar #close-tab li a{
+  color: #F87937;
+}
 
 #usr-bar ul {
   padding-top: 8px;
@@ -1941,10 +1950,10 @@ border-radius: 10px;
   margin-left: 20px;
 }
 #usr-booms h3{
-  width:297px;
+  width:287px;
   height:59px;
   text-align:center;
-  background:url(../images/boom_trend.png);
+  background:url(../images/boom_trend.png) center 0 no-repeat;
   overflow:hidden;
   text-indent:-9000px;
 }
@@ -1982,6 +1991,17 @@ border-radius: 10px;
   background: linear-gradient(to bottom,  #504f4f 0%,#1f1f1f 99%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1f1f1f',GradientType=0 ); /* IE6-8 */
 }
+#drag-booms li .pos:before, #drag-booms li .pos:after{
+  background-image: url('../images/boom_texture.png');
+  content: '';
+  display: block;
+  width: 22px;
+  height: 16px;
+  position: absolute;
+  margin: 4px;
+}
+#drag-booms li .pos:before{top: 4px;}
+#drag-booms li .pos:after{bottom: 4px;}
 #drag-booms li h4{
   font:bold 15px 'Helvetica';
   color:#474747;
