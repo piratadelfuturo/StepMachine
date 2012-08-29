@@ -3,3 +3,4 @@ Src/symfony/composer.lock
 Src/symfony/web/content/*
 Src/symfony/web/content/img/*
 Src/symfony/web/content/user/*
+Src/symfony/app/config/parameters.yml
