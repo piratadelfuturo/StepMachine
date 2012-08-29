@@ -18,5 +18,9 @@ class ActivityController {
 
     }
 
+    public function listAction($page = 1){
+
+    }
+
 
 }

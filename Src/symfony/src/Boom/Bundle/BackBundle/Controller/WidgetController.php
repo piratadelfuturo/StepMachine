@@ -3,12 +3,14 @@
 namespace Boom\Bundle\BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Boom\Bundle\BackBundle\Form\CategoryType;
-use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
+use Boom\Bundle\LibraryBundle\Entity\Image;
+use Boom\Bundle\LibraryBundle\Entity\User;
+use Boom\Bundle\LibraryBundle\Form\ImageFormType;
 
-class CategoryController extends Controller {
+class WidgetController extends Controller {
 
     /**
      * Lists all Boom entities.
@@ -17,47 +19,27 @@ class CategoryController extends Controller {
     public function indexAction(Request $request) {
 
         if ($request->getRequestFormat() == 'html') {
-            return $this->render('BoomBackBundle:Category:index.html.php');
+            return $this->render('BoomBackBundle:Widget:index.html.php');
         }
 
         $get = $request->query->all();
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
 
         /* Array of database columns which should be read and sent back to DataTables. Use a space where
          * you want to insert a non-database field (for example a counter or static image)
          */
-        $standardColumn = array(
+        $columns = array(
             'id',
-            'slug',
             'name',
-            'position',
-            'featured'
+            'group',
+            'position'
         );
-
-        $columns = $standardColumn;
-
-        /**
-         $columns[] = array(
-
-            'main_booms' => array(
-                'id main_boom_total' => 'COUNT(%s)'
-            )
-        );
-         */
-
-        $columns[] = array(
-            'booms' => array(
-                'id boom_total' => 'COUNT(%s)'
-            )
-        );
-
-        $columns[] = 'id action_id';
-
         $get['columns'] = $columns;
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Widget');
         $result = $repo->ajaxTable($get, true);
         $rResult = $result['query']->getArrayResult();
-        $rResult = array_map(function($value){
+        $rResult = array_map(function($value) {
                     $value = array_map(function($value) {
                                 if ($value instanceof \DateTime) {
                                     $value = $value->format(\DateTime::RFC2822);
@@ -81,7 +63,7 @@ class CategoryController extends Controller {
         $output = array(
             "sEcho" => intval(isset($get['sEcho']) ? $get['sEcho'] : NULL),
             "iTotalRecords" => (int) $repo->getCount(),
-            "iTotalDisplayRecords" => (int) $iFilteredTotal,
+            "iTotalDisplayRecords" => $iFilteredTotal,
             "aaData" => array()
         );
 
@@ -110,86 +92,89 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Finds and displays a Boom entity.
+     * Finds and displays a Widget entity.
      *
      */
     public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
+        $entity = $em->getRepository('BoomLibraryBundle:Widget')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Category.');
+            throw $this->createNotFoundException('Unable to find Widget entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BoomBackBundle:Category:show.html.php', array(
+        return $this->render('BoomBackBundle:Widget:show.html.php', array(
                     'entity' => $entity,
                     'delete_form' => $deleteForm->createView(),));
     }
 
     /**
-     * Displays a form to create a new Category entity.
+     * Displays a form to create a new Widget entity.
      *
      */
     public function newAction() {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
-        $entity = new BoomEntity\Category();
-        $form = $this->createForm(new CategoryType($repo->getCount()), $entity);
 
-        return $this->render('BoomBackBundle:Category:new.html.php', array(
+        $entity = new BoomEntity\Widget();
+        $form = $this->createForm(new WidgetType(), $entity);
+
+        return $this->render('BoomBackBundle:Widget:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
                 ));
     }
 
     /**
-     * Creates a new Category entity.
+     * Creates a new Boom entity.
      *
      */
     public function createAction() {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
-        $form = $this->createForm(new CategoryType($repo->getCount()));
+        $form = $this->createForm(new WidgetType());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $this->get('cache.apc')->delete('boom_category_featured');
+
             return $this->redirect(
-                            $this->generateUrl('BoomBackBundle_category_index')
+                            $this->generateUrl(
+                                    'BoomBackBundle_widget_edit', array(
+                                'id' => $entity->getId()
+                                    )
+                            )
             );
         }
 
 
-        return $this->render('BoomBackBundle:Category:new.html.php', array(
+        return $this->render('BoomBackBundle:Widget:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
                 ));
     }
 
     /**
-     * Displays a form to edit an existing Category entity.
+     * Displays a form to edit an existing Widget entity.
      *
      */
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
+
+        $repo = $em->getRepository('BoomLibraryBundle:Widget');
         $entity = $repo->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Boom entity.');
+            throw $this->createNotFoundException('Unable to find Widget entity.');
         }
 
-        $editForm = $this->createForm(new CategoryType($repo->getCount()), $entity);
+        $editForm = $this->createForm(new WidgetType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BoomBackBundle:Category:edit.html.php', array(
+        return $this->render('BoomBackBundle:Widget:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
@@ -197,33 +182,33 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Edits an existing Category entity.
+     * Edits an existing Boom entity.
      *
      */
     public function updateAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('BoomLibraryBundle:Category');
-        $entity = $repo->find($id);
+
+        $entity = $em->getRepository('BoomLibraryBundle:Widget')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Category.');
+            throw $this->createNotFoundException('Unable to find Widget entity.');
         }
 
-        $editForm = $this->createForm(new CategoryType($repo->getCount()), $entity);
+        $editForm = $this->createForm(new BoomType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-            $this->get('cache.apc')->delete('boom_category_featured');
-            return $this->redirect($this->generateUrl('BoomBackBundle_category_index'));
+
+            return $this->redirect($this->generateUrl('BoomBackBundle_widget_edit', array('id' => $id)));
         }
 
-        return $this->render('BoomBackBundle:Category:edit.html.php', array(
+        return $this->render('BoomBackBundle:Widget:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
@@ -231,7 +216,7 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Deletes a Category entity.
+     * Deletes a Boom entity.
      *
      */
     public function deleteAction($id) {
@@ -242,17 +227,17 @@ class CategoryController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
+            $entity = $em->getRepository('BoomLibraryBundle:Widget')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Category entity.');
+                throw $this->createNotFoundException('Unable to find Widget entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('BoomLibraryBundle_category_index'));
+        return $this->redirect($this->generateUrl('BoomBackBundle_widget_index'));
     }
 
     private function createDeleteForm($id) {

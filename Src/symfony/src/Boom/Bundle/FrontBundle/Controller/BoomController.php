@@ -21,7 +21,7 @@ class BoomController extends Controller {
      * Lists all Boom entities.
      *
      */
-    public function indexAction() {
+    public function reorderAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('BoomLibraryBundle:Boom')->findAll();
@@ -31,7 +31,6 @@ class BoomController extends Controller {
                 ));
     }
 
-    
     /**
      * Displays a form to create a new Boom entity.
      *
@@ -55,22 +54,113 @@ class BoomController extends Controller {
      * Creates a new Boom entity.
      *
      */
+    public function createAction() {
+        $form = $this->createForm(new BoomType());
+        $request = $this->getRequest();
+        $form->bind($request);
+        $entity = $form->getData();
+
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity['user'] = $sessionUser;
+            $entity['status'] = Boom::STATUS_PRIVATE;
+
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect(
+                            $this->generateUrl(
+                                    'BoomBackBundle_boom_edit', array(
+                                'id' => $entity->getId()
+                                    )
+                            )
+            );
+        }
+
+
+        return $this->render('BoomBackBundle:Boom:new.html.php', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
+    }
+
+    /**
+     * Replies a new Boom entity.
+     *
+     */
     public function replyAction($slug) {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
+        $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
         if (!$entity || $entity['status'] !== Boom::STATUS_PUBLIC) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
+        $clonedBoomValues = array(
+            'title',
+            'summary',
+            'image',
+            'categories',
+            'maincategory',
+            'tags');
+
+        $clonedBoomelementValues = array(
+            'title',
+            'content',
+            'position',
+            'image'
+        );
+
+
+        $entity = new Boom();
+        foreach ($clonedBoomValues as $clBoomV) {
+            $entity[$clBoomV] = $foundEntity[$clBoomV];
+        }
+        foreach ($entity['elements'] as $entElem) {
+            $element = new Boomelement();
+            foreach ($clonedBoomelementValues as $clBoomelV) {
+                $element[$clBoomelV] = $entElem[$clBoomelV];
+            }
+            $entity->addElement($element);
+        }
+        $form = $this->createForm(new BoomType(), $entity);
+
+        return $this->render('BoomFrontBundle:Boom:new.html.php', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
+    }
+
+    /**
+     * Replies a new Boom entity.
+     *
+     */
+    public function repliedAction($slug) {
+
+        $em = $this->getDoctrine()->getManager();
+        $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
+
+        if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
+            throw $this->createNotFoundException('Unable to find Boom entity.');
+        }
+
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
 
         $request = $this->getRequest();
-        $form = $this->createForm(new BoomType(), $entity);
+        $form = $this->createForm(new BoomType());
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity['parent'] = $foundEntity;
+            $entity['user'] = $sessionUser;
+            $entity['status'] = Boom::STATUS_PRIVATE;
+
             $em->persist($entity);
             $sessionToken = $this->get('security.context')->getToken();
             $entity->setUser($sessionToken->getUser());
@@ -80,7 +170,7 @@ class BoomController extends Controller {
             return $this->redirect(
                             $this->generateUrl(
                                     'BoomFrontBundle_slug_show', array(
-                                'slug' => $entity['maincategory']['name'].'/'.$entity['slug']
+                                'slug' => $entity['maincategory']['name'] . '/' . $entity['slug']
                                     )
                             )
             );
@@ -97,16 +187,19 @@ class BoomController extends Controller {
      *
      */
     public function editAction($slug) {
+
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
+
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
-        if($entity['user']['id'] !== $sessionUser['id']){
-            throw new HttpException('Unauthorized access.', 401);
+
+        if (!$entity || in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+            throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Boom entity.');
+        if ($entity['user']['id'] !== $sessionUser['id']) {
+            throw new HttpException('Unauthorized access.', 401);
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
@@ -123,10 +216,14 @@ class BoomController extends Controller {
      * Edits an existing Boom entity.
      *
      */
-    public function updateAction($id) {
-        $em = $this->getDoctrine()->getManager();
+    public function updateAction($slug) {
 
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->find($id);
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
@@ -158,6 +255,7 @@ class BoomController extends Controller {
      *
      */
     public function deleteAction($slug) {
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
@@ -165,13 +263,17 @@ class BoomController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BoomLibraryBundle:Boom')->find($id);
+            $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Boom entity.');
             }
 
-            $em->remove($entity);
+            if ($entity['user']['id'] !== $sessionUser) {
+                throw $this->createNotFoundException('Unable to find Boom entity.');
+            }
+            $entity['status'] = Boom::STATUS_DELETE;
+            $em->persist($entity);
             $em->flush();
         }
 

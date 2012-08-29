@@ -46,14 +46,19 @@ class Image extends DomainObject {
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="image")
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="image", fetch="EXTRA_LAZY")
      * */
     protected $booms;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="image")
+     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="image", fetch="EXTRA_LAZY" )
      * */
     protected $boomelements;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="image", fetch="EXTRA_LAZY" )
+     */
+    protected $list_elements;
 
     /**
      * Inverse Side
@@ -78,6 +83,7 @@ class Image extends DomainObject {
     public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->boomelements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
         $this->date_created = new \DateTime();
         $this->nsfw = false;
@@ -341,5 +347,38 @@ class Image extends DomainObject {
     public function getDateCreated() {
         return $this->date_created;
     }
+
+    /**
+     * Add list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     * @return Image
+     */
+    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements[] = $listElements;
+        return $this;
+    }
+
+    /**
+     * Remove list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     */
+    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements->removeElement($listElements);
+    }
+
+    /**
+     * Get list_elements
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getListElements()
+    {
+        return $this->list_elements;
+    }
+
 
 }

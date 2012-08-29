@@ -1,6 +1,8 @@
 parameters:
   boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
   boom_library.image.helper.class: Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
+  boom_library.pagination.helper.class: Boom\Bundle\LibraryBundle\Templating\Helper\PaginationHelper
+
 services:
   boom_library.image_upload_persist.listener:
         class: %boom_library.image_upload_persist.listener.class%
@@ -19,6 +21,12 @@ services:
             container:    "@service_container"
         tags:
             - { name: templating.helper, alias: boom_image }
+  boom_library.pagination.helper:
+        class: %boom_library.pagination.helper.class%
+        arguments:
+            container:    "@service_container"
+        tags:
+            - { name: templating.helper, alias: boom_pagination }
 
 #  boom_library.boom_category_update.listener:
 #        class: Boom\Bundle\LibraryBundle\Listener\BoomCategoryListener

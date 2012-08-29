@@ -43,6 +43,6 @@ if (!isset($list)) {
                 </div>
             </li>
         <?php endforeach; ?>
-        <a href=""><span class="moar">ver más</span></a>
+        <a href="<?php echo $more_url ?>"><span class="moar">ver más</span></a>
     </ul>
 </div>

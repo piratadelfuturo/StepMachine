@@ -1,19 +1,31 @@
-BoomFrontBundle_user_mySite:
+BoomFrontBundle_profile_mySite:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:User:site" }
 
-BoomFrontBundle_user_profile:
+BoomFrontBundle_profile_edit:
     pattern:  /perfil
     defaults: { _controller: "BoomFrontBundle:Profile:edit" }
 
-BoomFrontBundle_user_recent:
+BoomFrontBundle_profile_recent:
     pattern:  /reciente
     defaults: { _controller: "BoomFrontBundle:Profile:recent" }
 
-BoomFrontBundle_user_my:
+BoomFrontBundle_profile_my:
     pattern:  /mis_booms
     defaults: { _controller: "BoomFrontBundle:Profile:my" }
 
-BoomFrontBundle_user_recommend:
+BoomFrontBundle_profile_recommend:
     pattern:  /recomendados
     defaults: { _controller: "BoomFrontBundle:Profile:recommend" }
+
+BoomFrontBundle_profile_followings:
+    pattern:  /siguiendo/{page}
+    defaults: { _controller: "BoomFrontBundle:Profile:followings", page: 1 }
+    requirements:
+      page: \d+
+
+BoomFrontBundle_profile_followers:
+    pattern:  /seguidores/{page}
+    defaults: { _controller: "BoomFrontBundle:Profile:followers", page: 1 }
+    requirements:
+      page: \d+

@@ -1,9 +1,14 @@
 <?php
 $nav = array();
 $nav[] = array(
-    '_route' => 'BoomBackBundle_homepage',
+    '_route' => 'BoomBackBundle_dashboard',
     'class' => 'i_house',
-    'text' => 'Inicio',
+    'text' => 'Dashboard',
+);
+$nav[] = array(
+    '_route' => 'BoomBackBundle_homepage_index',
+    'class' => 'i_desk',
+    'text' => 'Home',
 );
 $nav[] = array(
     'class' => 'i_create_write',
@@ -45,11 +50,6 @@ $nav[] = array(
                 '_route'    => 'BoomBackBundle_user_index',
                 'text'      => 'Usuarios',
                 'class'     => 'i_v-card'
-            ),
-            array(
-                '_route'    => 'BoomBackBundle_user_index',
-                'text'      => 'Grupos',
-                'class'     => 'i_v-card'
             )
         )
     );
@@ -66,6 +66,56 @@ $nav[] = array(
             array(
                 '_route'    => 'BoomBackBundle_image_new',
                 'text'      => 'Nueva',
+                'class'     => 'i_v-card'
+            )
+        )
+    );
+
+$nav[] = array(
+    'class' => 'i_images',
+    'text' => 'Galerías',
+    'children' => array(
+            array(
+                '_route'    => 'BoomBackBundle_image_index',
+                'text'      => 'Lista',
+                'class'     => 'i_v-card'
+            ),
+            array(
+                '_route'    => 'BoomBackBundle_image_new',
+                'text'      => 'Nueva',
+                'class'     => 'i_v-card'
+            )
+        )
+    );
+$nav[] = array(
+    'class' => 'i_tags',
+    'text' => 'Tags',
+    'children' => array(
+            array(
+                '_route'    => 'BoomBackBundle_image_index',
+                'text'      => 'Lista',
+                'class'     => 'i_v-card'
+            ),
+            array(
+                '_route'    => 'BoomBackBundle_image_new',
+                'text'      => 'Nuevo',
+                'class'     => 'i_v-card'
+            )
+        )
+    );
+
+$nav[] = array(
+    'class' => 'i_blocks_images',
+    'text' => 'Widgets',
+    'children' => array(
+            array(
+                '_route'    => 'BoomBackBundle_image_index',
+                'text'      => 'Lista',
+                'class'     => 'i_v-card'
+            ),
+            array(
+                '_route'    => 'BoomBackBundle_image_new',
+                'text'      => 'Nuevo',
                 'class'     => 'i_v-card'
             )
         )
@@ -92,9 +142,6 @@ $nav[] = array(
                 <?php endif; ?>
             </li>
         <?php endforeach; ?>
-        <li class="i_image"><a><span>Home</span></a></li>
-        <li class="i_images"><a href="#"><span>Galerías</span></a></li>
-        <li class="i_tags"><a href="#"><span>Tags</span></a></li>
-        <li class="i_calendar_day"><a href="#"><span>Calendar</span></a></li>
+        <!-- <li class="i_calendar_day"><a href="#"><span>Calendar</span></a></li> -->
     </ul>
 </nav>

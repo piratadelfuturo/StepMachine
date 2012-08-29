@@ -7,12 +7,12 @@ echo $view->render(
     'form_enctype' => $view['form']->enctype($edit_form),
     'form' => $edit_form,
     'form_title' => 'Editar Boom',
-            'entity' => $entity
+    'entity' => $entity
         )
 );
 ?>
 
-
+<!--
 <form action="<?php $view['router']->generate('BoomBackBundle_boom_delete', array('id' => $entity['id'])) ?>" method="post">
     <?php echo $view['form']->widget($delete_form) ?>
     <fieldset>
@@ -24,5 +24,6 @@ echo $view->render(
         </section>
     </fieldset>
 </form>
+-->
 
 <script type="text/javascript" src="<?php echo $view['assets']->getUrl('/bundles/boomback/js/Bundle/Boom/form.js') ?>"></script>

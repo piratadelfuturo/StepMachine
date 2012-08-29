@@ -7,6 +7,7 @@
         <?php echo $view['form']->row($edit_form['_token']) ?>
         <?php echo $view['form']->row($edit_form['bio']) ?>
         <?php echo $view['form']->row($edit_form['admin']) ?>
+        <?php echo $view['form']->row($edit_form['collaborator'],array('label'=>'Colaborador')) ?>
         <section>
             <section>
                 <label>Roles</label>

@@ -14,11 +14,8 @@ class BoomType extends AbstractType {
         $builder
                 ->add('title')
                 ->add('summary', null, array('required' => false))
-                ->add('date_published', null, array(
-                    'read_only' => false,
-                    'attr' => array(
-                        'style' => 'display:none;'
-                    )
+                ->add('date_published', 'datetime', array(
+                    'read_only' => false
                 ));
        $builder->add(
                 'status',
@@ -30,7 +27,8 @@ class BoomType extends AbstractType {
                         Boom::STATUS_REVIEW     => 'Revisión',
                         Boom::STATUS_PUBLIC     => 'Público',
                         Boom::STATUS_PRIVATE    => 'Privado',
-                        Boom::STATUS_DELETE     => 'Eliminado'
+                        Boom::STATUS_DELETE     => 'Eliminado',
+                        Boom::STATUS_BLOCK      => 'Bloqueado',
                     )
                 )
                 );

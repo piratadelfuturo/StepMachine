@@ -1,5 +1,4 @@
 <?php
-
 namespace Boom\Bundle\BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -160,6 +159,11 @@ class BoomController extends Controller {
             $element->setPosition($i);
             $entity->addElement($element);
         }
+        $sessionToken = $this->get('security.context')->getToken();
+        if ($sessionToken->getUser() instanceof BoomEntity\User) {
+            $entity['user'] = $sessionToken->getUser();
+        }
+
         $form = $this->createForm(new BoomType(), $entity);
 
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
@@ -178,9 +182,9 @@ class BoomController extends Controller {
         $form->bind($request);
         $entity = $form->getData();
         $sessionToken = $this->get('security.context')->getToken();
-
-        if ($sessionToken->getUser() instanceof User) {
-            $entity->setUser($sessionToken->getUser());
+        if ($sessionToken->getUser() instanceof BoomEntity\User) {
+            $sessionUser = $sessionToken->getUser();
+            $entity['user'] = $sessionUser;
         }
 
         if ($form->isValid()) {
@@ -190,7 +194,7 @@ class BoomController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomBackBundle_boom_show', array(
+                                    'BoomBackBundle_boom_edit', array(
                                 'id' => $entity->getId()
                                     )
                             )
@@ -284,7 +288,7 @@ class BoomController extends Controller {
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('boom'));
+        return $this->redirect($this->generateUrl('BoomBackBundle_boom_index'));
     }
 
     private function createDeleteForm($id) {

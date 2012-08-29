@@ -1,11 +1,15 @@
-BoomFrontBundle_user_mySite:
+BoomFrontBundle_user_list:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:User:list" }
 
-BoomFrontBundle_user_profile:
-    pattern:  /colaboradores
-    defaults: { _controller: "BoomFrontBundle:User:collaborators" }
+BoomFrontBundle_user_collaborators:
+    pattern:  /colaboradores/{page}
+    defaults: { _controller: "BoomFrontBundle:User:collaborators", page: 1 }
+    requirements:
+      page: \d+
 
-BoomFrontBundle_user_recent:
-    pattern:  /{username}
-    defaults: { _controller: "BoomFrontBundle:Boom:profile" }
+BoomFrontBundle_user_profile:
+    pattern:  /{username}/{page}
+    defaults: { _controller: "BoomFrontBundle:Boom:profile", page: 1 }
+    requirements:
+      page: \d+

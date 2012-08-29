@@ -5,13 +5,26 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 use Boom\Bundle\LibraryBundle\Entity\Category;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class CategoryRepository extends EntityRepository {
 
-    public function findBoomsByCategory(Category $category, $sort = array('date_created' => 'DESC'), $limit = 7, $offset = 0) {
+    public function findBoomsByCategory(Category $category, $sort = array('date_created' => 'DESC'), $limit = 7, $offset = 0, array $status = array()) {
 
         $sortKey = \key($sort);
         $sortValue = \current($sort);
+
+        $statusFilter = array();
+        $statusOptions = Boom::getStatusEnumFieldValues();
+
+        if(empty($status)){
+            $status[] = Boom::STATUS_PUBLIC;
+        }
+        foreach($status as $stat){
+            if(in_array($stat,$statusOptions)){
+                $statusFilter[] = $stat;
+            }
+        }
 
         $qString = "
             SELECT
@@ -21,16 +34,18 @@ class CategoryRepository extends EntityRepository {
             LEFT JOIN
                 boom.categories category
             WHERE
-                ?0
+                :category
             MEMBER OF
                 boom.categories
             OR
-                boom.main_category = ?1
+                boom.main_category = :category
+            AND
+                boom.status IN (:status)
             ORDER BY boom.{$sortKey} {$sortValue}";
 
         $em = $this->getEntityManager();
         $query = $em->createQuery($qString);
-        $query->setParameters(array($category,$category));
+        $query->setParameters(array('category' => $category,'status' =>$status));
         $query->setFirstResult($offset);
         $query->setMaxResults($limit);
         $result = $query->execute();

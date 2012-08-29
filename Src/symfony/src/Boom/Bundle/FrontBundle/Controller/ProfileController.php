@@ -19,7 +19,7 @@ class ProfileController extends Controller
             $response->setPrivate();
             $response->setMaxAge(5);
         }else{
-            $template = 'BoomFrontBundle:User:blocks/headerNotGranted.html.php';
+            $template = 'BoomFrontBundle:Profile:blocks/headerNotGranted.html.php';
             $response->setPublic();
             $response->setSharedMaxAge(600);
         }

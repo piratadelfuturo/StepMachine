@@ -3,10 +3,10 @@ parameters:
     boom_back.user_provider.admin.class: Boom\Bundle\BackBundle\Security\AdminProvider
 
 services:
-    form.type.image:
-        class: %boom_back.image_type.class%
-        tags:
-            - { name: form.type, alias: image }
+    #form.type.image:
+    #    class: %boom_back.image_type.class%
+    #    tags:
+    #        - { name: form.type, alias: image }
     boom_back.user_provider.admin:
         class: %boom_back.user_provider.admin.class%
         arguments:

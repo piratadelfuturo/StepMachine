@@ -1,5 +1,3 @@
-<div class="boom-form">
-    <h3>CREA TU BOOM</h3>
 <form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
@@ -34,8 +32,8 @@
                     <span><?php echo $element['title']->vars['value'] ?></span>
                 </label>
                 <fieldset class="accordion_content">
-                    <?php if(isset($element['id']) && $element['id'] !== null): ?>
-                    <?php //echo $view['form']->widget($element['id']); ?>
+                    <?php if (isset($element['id']) && $element['id'] !== null): ?>
+                        <?php //echo $view['form']->widget($element['id']); ?>
                     <?php endif; ?>
                     <?php
                     echo $view['form']->widget(
@@ -66,7 +64,5 @@
         <?php endforeach; ?>
 
     </fieldset>
-                <button class="submit" type="submit" >Guardar</button>
-
+    <button class="submit" type="submit" >Guardar</button>
 </form>
-</div>

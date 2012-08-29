@@ -108,8 +108,8 @@ class UserController extends Controller {
      *
      */
     public function showAction($id) {
+        
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
 
         if (!$entity) {

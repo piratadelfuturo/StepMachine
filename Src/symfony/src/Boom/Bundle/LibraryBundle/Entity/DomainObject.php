@@ -12,8 +12,8 @@ abstract class DomainObject implements \ArrayAccess
     }
 
     public function offsetSet($offset, $value) {
-        //$this->{"set$offset"}($value);
-        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+        return $this->{"set$offset"}($value);
+        //throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
     }
 
     public function offsetGet($offset) {
@@ -21,7 +21,7 @@ abstract class DomainObject implements \ArrayAccess
     }
 
     public function offsetUnset($offset) {
-        //$this->{"set$offset"}(null);
-        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+        return $this->{"set$offset"}(null);
+        //throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
     }
 }

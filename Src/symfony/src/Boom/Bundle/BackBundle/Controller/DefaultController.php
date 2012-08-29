@@ -10,4 +10,13 @@ class DefaultController extends Controller
     {
         return $this->render('BoomBackBundle:Default:dashboard.html.php');
     }
+
+    public function homepageAction()
+    {
+
+
+        return $this->render('BoomBackBundle:Default:homepage.html.php');
+    }
+
+
 }

@@ -23,6 +23,7 @@ class Boom extends DomainObject {
     const STATUS_PUBLIC     = 2;
     const STATUS_PRIVATE    = 3;
     const STATUS_DELETE     = 4;
+    const STATUS_BLOCK      = 5;
 
     static private $_StatusEnumFieldValues = null;
 
@@ -56,7 +57,6 @@ class Boom extends DomainObject {
     protected $date_created;
 
     /**
-     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $date_published;
@@ -84,7 +84,7 @@ class Boom extends DomainObject {
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="booms", fetch="LAZY")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true )
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false )
      * */
     protected $user;
 
@@ -169,16 +169,24 @@ class Boom extends DomainObject {
      */
     private $children;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="boom", fetch="EXTRA_LAZY" )
+     */
+    protected $list_elements;
+
+
     public function __construct() {
         $this->children = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->elements = new ArrayCollection();
+        $this->list_elements = new ArrayCollection();
         $this->nsfw = false;
-        $this->reply_enabled = false;
+        $this->reply_enabled = true;
         $this->status = self::STATUS_DRAFT;
         $this->featured = false;
         $this->summary = '';
+        $this->date_published = new \DateTime("now");
     }
 
     /**
@@ -318,7 +326,7 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\Image $image
      * @return Boom
      */
-    public function setImage(\Boom\Bundle\LibraryBundle\Entity\Image $image = null) {
+    public function setImage(\Boom\Bundle\LibraryBundle\Entity\Image $image) {
         $this->image = $image;
         return $this;
     }
@@ -338,7 +346,7 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\User $user
      * @return Boom
      */
-    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null) {
+    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user) {
         $this->user = $user;
         return $this;
     }
@@ -418,9 +426,6 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function addCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
-        var_dump($category);
-        exit;
-
         $this->categories[] = $category;
         return $this;
     }
@@ -451,8 +456,6 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function setCategories(\Doctrine\Common\Collections\Collection $categories) {
-        var_dump($categories);
-        exit;
         $this->categories = $categories;
         return $this;
     }
@@ -669,7 +672,7 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function setReplyEnabled($replyEnabled) {
-        $this->reply_enabled = $replyEnabled;
+        $this->reply_enabled = (bool) $replyEnabled;
         return $this;
     }
 
@@ -878,6 +881,38 @@ class Boom extends DomainObject {
         array_map(array($this, 'addActivities'), $activities);
         //$this->activities = $activities;
         return $this;
+    }
+
+    /**
+     * Add list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     * @return Boom
+     */
+    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements[] = $listElements;
+        return $this;
+    }
+
+    /**
+     * Remove list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     */
+    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements->removeElement($listElements);
+    }
+
+    /**
+     * Get list_elements
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getListElements()
+    {
+        return $this->list_elements;
     }
 
 }

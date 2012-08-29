@@ -52,9 +52,21 @@ class Category extends DomainObject{
      */
     protected $main_booms;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ListGroup", mappedBy="category", fetch="EXTRA_LAZY" )
+     */
+    protected $list_groups;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="category", fetch="EXTRA_LAZY" )
+     */
+    protected $list_elements;
+
     public function __construct()
     {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->list_groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->featured = false;
     }
 
@@ -224,4 +236,68 @@ class Category extends DomainObject{
     {
         return $this->main_booms;
     }
+    /**
+     * Add list_groups
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroups
+     * @return Category
+     */
+    public function addListGroup(\Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroups)
+    {
+        $this->list_groups[] = $listGroups;
+        return $this;
+    }
+
+    /**
+     * Remove list_groups
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroups
+     */
+    public function removeListGroup(\Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroups)
+    {
+        $this->list_groups->removeElement($listGroups);
+    }
+
+    /**
+     * Get list_groups
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getListGroups()
+    {
+        return $this->list_groups;
+    }
+
+    /**
+     * Add list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     * @return Category
+     */
+    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements[] = $listElements;
+        return $this;
+    }
+
+    /**
+     * Remove list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     */
+    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
+    {
+        $this->list_elements->removeElement($listElements);
+    }
+
+    /**
+     * Get list_elements
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getListElements()
+    {
+        return $this->list_elements;
+    }
+
 }

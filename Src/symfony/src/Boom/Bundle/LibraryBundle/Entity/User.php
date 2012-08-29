@@ -81,6 +81,11 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $bio;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $collaborator;
+
 
     /**
      * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
@@ -166,6 +171,7 @@ class User extends BaseUser implements \ArrayAccess {
         $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
         $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setImageOption(self::IMAGE_PATH);
+        $this->collaborator = false;
     }
 
     public function serialize() {
@@ -805,5 +811,19 @@ class User extends BaseUser implements \ArrayAccess {
 
         return $image_path;
     }
+
+    public function setCollaborator($collaborator){
+        $this->collaborator = (bool) $collaborator;
+        return $this;
+    }
+
+    public function isCollaborator($collaborator){
+        return (bool) $this->collaborator;
+    }
+
+    public function getCollaborator(){
+        return (bool) $this->collaborator;
+    }
+
 
 }

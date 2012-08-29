@@ -5,6 +5,7 @@ namespace Boom\Bundle\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class DefaultController extends Controller {
 
@@ -12,15 +13,14 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
-        $latest = $repo->findBy(array(),array('date_published' => 'ASC'),7,0);
+        $latest = $repo->findBy(array('status'=> Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
 
 
         return $this->render(
-                'BoomFrontBundle:Default:index.html.php',
-                array(
+                        'BoomFrontBundle:Default:index.html.php', array(
                     'latest' => $latest
-                )
-                );
+                        )
+        );
     }
 
     public function bigTopBlockAction() {
@@ -60,11 +60,11 @@ class DefaultController extends Controller {
         $thisCategory = $catRepo->findOneBySlug($slugArray[0]);
 
         $inCategory = false;
-        if($entity['maincategory']['id'] == $thisCategory['id']){
+        if ($entity['maincategory']['id'] == $thisCategory['id']) {
             $inCategory = true;
-        }else{
-            foreach($entity['categories'] as $category){
-                if($category['id'] == $thisCategory['id']){
+        } else {
+            foreach ($entity['categories'] as $category) {
+                if ($category['id'] == $thisCategory['id']) {
                     $inCategory = true;
                 }
             }
@@ -77,6 +77,10 @@ class DefaultController extends Controller {
             throw $this->createNotFoundException('Unable to find.');
         }
 
+        if (!in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+            throw $this->createNotFoundException('Unable to find.');
+        }
+
         if ($response->isNotModified($this->getRequest()) == true) {
             return $response;
         } else {
@@ -84,8 +88,7 @@ class DefaultController extends Controller {
                             'BoomFrontBundle:Boom:show.html.php', array(
                         'entity' => $entity,
                         'category' => $thisCategory
-                            ),
-                    $response
+                            ), $response
             );
         }
     }
@@ -102,10 +105,10 @@ class DefaultController extends Controller {
         }
 
         $latest = $catRepo->findBoomsByCategory(
-                $thisCategory,
-                array('date_created' =>'DESC')
-                ,14
-                ,0);
+                $thisCategory, array('date_created' => 'DESC')
+                , 14
+                , 0
+                ,array(Boom::STATUS_PUBLIC));
 
         return $this->render('BoomFrontBundle:Category:index.html.php', array(
                     //'top' => $top,

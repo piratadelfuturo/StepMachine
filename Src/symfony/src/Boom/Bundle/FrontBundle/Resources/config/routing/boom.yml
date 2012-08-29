@@ -1,26 +1,30 @@
-BoomFrontBundle_boom_index:
-    pattern:  /
-    defaults: { _controller: "BoomFrontBundle:Boom:index" }
+BoomFrontBundle_boom_reorder:
+    pattern:  /reordena/{slug}
+    defaults: { _controller: "BoomFrontBundle:Boom:reorder" }
+
+BoomFrontBundle_boom_reply:
+    pattern:  /responde/{slug}
+    defaults: { _controller: "BoomFrontBundle:Boom:reply" }
 
 BoomFrontBundle_boom_new:
-    pattern:  /new
+    pattern:  /nuevo
     defaults: { _controller: "BoomFrontBundle:Boom:new" }
 
 BoomFrontBundle_boom_create:
-    pattern:  /create
+    pattern:  /nuevo
     defaults: { _controller: "BoomFrontBundle:Boom:create" }
     requirements: { _method: post }
 
 BoomFrontBundle_boom_edit:
-    pattern:  /{id}/edit
+    pattern:  /{slug}/editar
     defaults: { _controller: "BoomFrontBundle:Boom:edit" }
 
 BoomFrontBundle_boom_update:
-    pattern:  /{id}/update
+    pattern:  /{slug}/actualizar
     defaults: { _controller: "BoomFrontBundle:Boom:update" }
     requirements: { _method: post }
 
 BoomFrontBundle_boom_delete:
-    pattern:  /{id}/delete
+    pattern:  /{slug}/borrar
     defaults: { _controller: "BoomFrontBundle:Boom:delete" }
     requirements: { _method: post }

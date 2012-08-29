@@ -12,23 +12,23 @@ use Boom\Bundle\LibraryBundle\Entity\Category;
  */
 class ListController extends Controller {
 
-    public function recommendedAction() {
+    public function recommendedAction($page = 1) {
 
     }
 
-    public function latestAction() {
+    public function latestAction($page = 1) {
 
     }
 
-    public function userAction() {
+    public function userAction($page = 1) {
 
     }
 
-    public function collaboratorAction() {
+    public function collaboratorAction($page = 1) {
 
     }
 
-    public function topAction() {
+    public function topAction($page = 1) {
 
     }
 

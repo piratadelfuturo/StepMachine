@@ -89,5 +89,9 @@ security:
           roles: ROLE_ADMIN
         - path: ^/boom
           roles: IS_AUTHENTICATED_FULLY
+        - path: ^/actividad
+          roles: IS_AUTHENTICATED_FULLY
+        - path: ^/tu_sitio
+          roles: IS_AUTHENTICATED_FULLY
         - path: ^/
           roles: [IS_AUTHENTICATED_ANONYMOUSLY]

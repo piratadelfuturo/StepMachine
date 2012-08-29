@@ -1,8 +1,18 @@
 <form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
     <fieldset>
         <label><?php echo $form_title ?></label>
+        <?php if(isset($entity) && $entity['slug'] !== null): ?>
+            <section>
+                <label>URL</label>
+                <div>
+                    <?php
+                        $url = $view['router']->generate('BoomFrontBundle_slug_show',array('slug' => $entity['maincategory']['slug'].'/'.$entity['slug']),true);
+                        ?>
+                    <a href="<?php echo $url ?>" target="_blank" ><?php echo $url ?></a>
+                </div>
+            </section>
+        <?php endif; ?>
         <?php echo $view['form']->row($form['_token']) ?>
-        <?php echo $view['form']->widget($form['date_published']) ?>
         <?php echo $view['form']->row($form['title'], array('label' => 'Título')) ?>
         <?php
         echo $view['form']->row(
@@ -14,9 +24,7 @@
                 )
         )
         ?>
-        <?php
-        echo $view['bbcode']->filter($form['summary']->get('value'), 'default');
-        ?>
+        <?php echo $view['form']->row($form['date_published'],array('Label' => 'Fecha de publicación')) ?>
         <section>
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
