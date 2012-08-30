@@ -102,7 +102,7 @@ class Boom extends DomainObject {
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms")
-     * @ORM\JoinTable(name="booms_tags", nullable=true)
+     * @ORM\JoinTable(name="booms_tags")
      * */
     protected $tags;
 
