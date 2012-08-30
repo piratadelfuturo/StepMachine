@@ -25,7 +25,7 @@ $view['slots']->set('canonical_url',$canonical_url);
         <img src="http://placehold.it/680x382">
         <div class="boom-info">
           <h2><?php echo $view->escape($entity['title']) ?></h2>
-          <p><?php echo $view['bbcode']->filter($entity['summary'],'default') ?></p>
+          <p><?php echo $view['bbcode']->filter((string) $entity['summary'],'default') ?></p>
           <a class="boom-moar" href="#">Publicado el <date>fecha </date></a>
         </div>
         <div class="social">
@@ -61,7 +61,7 @@ $view['slots']->set('canonical_url',$canonical_url);
               </div>
               <div class="boom-content">
                 <?php $content = $element['content'] === null ?'':$element['content'];  ?>
-                <?php echo $view['bbcode']->filter($content,'default') ?>
+                <?php echo $view['bbcode']->filter((string) $content,'default') ?>
                   <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="670"></div></div>
               </div>
               <span class="tab"><a href=""><span>TAB</span></a></span>

@@ -11,11 +11,20 @@ class WidgetType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-                ->add('name')
-                ->add('content' , null, array('required' => false))
-                ->add('group'   , null )
-                ->add('position', null );
-
+                ->add('name', null, array('label' => 'Nombre'))
+                ->add('content', null, array(
+                    'required' => false,
+                    'label' => 'Contenido'))
+                ->add('block', 'widget_block', array('label' => 'Bloque'))
+                ->add('position', 'choice', array(
+                    'label' => 'Posición',
+                    'expanded' => false,
+                    'choices' => range(1, 25),
+                    'attr' => array(
+                        'rows' => 100
+                    )
+                        )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
@@ -27,6 +36,5 @@ class WidgetType extends AbstractType {
     public function getName() {
         return 'boom_bundle_backbundle_widgettype';
     }
-
 
 }

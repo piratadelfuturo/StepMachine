@@ -45,13 +45,7 @@ $nav[] = array(
 $nav[] = array(
     'class' => 'i_v-card',
     'text' => 'Usuarios',
-    'children' => array(
-            array(
-                '_route'    => 'BoomBackBundle_user_index',
-                'text'      => 'Usuarios',
-                'class'     => 'i_v-card'
-            )
-        )
+    '_route'    => 'BoomBackBundle_user_index'
     );
 
 $nav[] = array(
@@ -76,12 +70,12 @@ $nav[] = array(
     'text' => 'Galerías',
     'children' => array(
             array(
-                '_route'    => 'BoomBackBundle_image_index',
+                '_route'    => 'BoomBackBundle_gallery_index',
                 'text'      => 'Lista',
                 'class'     => 'i_v-card'
             ),
             array(
-                '_route'    => 'BoomBackBundle_image_new',
+                '_route'    => 'BoomBackBundle_gallery_new',
                 'text'      => 'Nueva',
                 'class'     => 'i_v-card'
             )
@@ -92,12 +86,12 @@ $nav[] = array(
     'text' => 'Tags',
     'children' => array(
             array(
-                '_route'    => 'BoomBackBundle_image_index',
+                '_route'    => 'BoomBackBundle_tag_index',
                 'text'      => 'Lista',
                 'class'     => 'i_v-card'
             ),
             array(
-                '_route'    => 'BoomBackBundle_image_new',
+                '_route'    => 'BoomBackBundle_tag_new',
                 'text'      => 'Nuevo',
                 'class'     => 'i_v-card'
             )
@@ -109,14 +103,14 @@ $nav[] = array(
     'text' => 'Widgets',
     'children' => array(
             array(
-                '_route'    => 'BoomBackBundle_image_index',
+                '_route'    => 'BoomBackBundle_widget_index',
                 'text'      => 'Lista',
-                'class'     => 'i_v-card'
+                'class'     => 'i_blocks_images'
             ),
             array(
-                '_route'    => 'BoomBackBundle_image_new',
+                '_route'    => 'BoomBackBundle_widget_new',
                 'text'      => 'Nuevo',
-                'class'     => 'i_v-card'
+                'class'     => 'i_blocks_images'
             )
         )
     );

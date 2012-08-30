@@ -1066,6 +1066,13 @@ form fieldset > section > div > div{
 	clear:both;
 	width:auto;
 }
+
+form fieldset > section > div > div > div{
+    float:left;
+    clear:none;
+    margin-right: 10px;
+}
+
 form fieldset > section > div div.date{
 	max-width:230px;
 }

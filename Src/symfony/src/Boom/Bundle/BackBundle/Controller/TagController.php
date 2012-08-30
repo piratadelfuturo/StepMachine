@@ -10,7 +10,7 @@ use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\LibraryBundle\Form\ImageFormType;
 
-class GalleryController extends Controller {
+class TagController extends Controller {
 
     /**
      * Lists all Boom entities.

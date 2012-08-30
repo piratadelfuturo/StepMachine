@@ -1,0 +1,41 @@
+BoomBackBundle_gallery_index:
+    pattern:  list.{_format}
+    defaults: { _controller: "BoomBackBundle:Gallery:index", _format: html }
+    options:
+        expose: true
+    requirements:
+      _format: html|json
+
+BoomBackBundle_gallery_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:Gallery:show" }
+    options:
+        expose: true
+
+BoomBackBundle_gallery_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Gallery:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_gallery_new:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Gallery:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_gallery_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Gallery:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_gallery_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Gallery:update" }
+    requirements: { _method: post }
+
+BoomBackBundle_gallery_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BoomBackBundle:Gallery:delete" }
+    requirements: { _method: post }
+    options:
+        expose: true

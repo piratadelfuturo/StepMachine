@@ -14,8 +14,9 @@ BoomBackBundle_boom_show:
         expose: true
 
 BoomBackBundle_boom_preview:
-    pattern:  /{id}/preview
-    defaults: { _controller: "BoomBackBundle:Boom:preview" }
+    pattern:  /preview/{id}
+    defaults: { _controller: "BoomBackBundle:Boom:preview", id: 0 }
+    requirements: { _method: post }
     options:
         expose: true
 

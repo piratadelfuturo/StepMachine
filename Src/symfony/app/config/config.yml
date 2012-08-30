@@ -132,7 +132,6 @@ boom_library:
         height: 90
       - width: 72
         height: 72
-
 services:
     cache.apc:
         class: Doctrine\Common\Cache\ApcCache

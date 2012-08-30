@@ -8,8 +8,8 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "v2.1.0-RC1",
-        "doctrine/orm": "2.3.0-BETA1",
+        "symfony/symfony": "v2.1.0-RC2",
+        "doctrine/orm": "2.3.0-RC2",
         "doctrine/doctrine-bundle": "dev-master",
         "twig/extensions": "dev-master",
         "symfony/assetic-bundle": "dev-master",
@@ -23,10 +23,9 @@
         "friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/facebook-bundle": "dev-master",
         "friendsofsymfony/twitter-bundle": "dev-master",
-        "gedmo/doctrine-extensions": "dev-master",
+        "gedmo/doctrine-extensions": "v2.3.2",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
-        "mjohnson/decoda": "3.*",
-        "francodacosta/phMagick": "dev-master"
+        "mjohnson/decoda": "3.*"
     },
     "scripts": {
         "post-install-cmd": [

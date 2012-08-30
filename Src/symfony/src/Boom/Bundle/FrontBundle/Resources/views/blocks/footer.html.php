@@ -4,8 +4,8 @@
             <li class="about">
                 <h3><a href="#">Sobre 7Boom</a></h3>
                 <p>Bacon ipsum dolor sit amet shankle pastrami t-bone, short ribs jowl ham tongue venison pork belly spare ribs tail. Hamburger flank ribeye, cow </p>
-                <a href="#" id="fb-btn">facebook</a>
-                <a href="#" id="tw-btn">twitter</a>
+                <a href="https://www.facebook.com/7boomMx" target="_blank" id="fb-btn">facebook</a>
+                <a href="https://www.twitter.com/7_boom"   target="_blank" id="tw-btn">twitter</a>
             </li>
             <li class="contact">
                 <h3><a href="#">Tu marca en 7Boom</a></h3>
@@ -32,9 +32,7 @@
                 }
 
             }
-
             window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK') ? 'true' : 'false'; ?>;
-
             window.onFbInit = function(response) {
                 if (typeof(FB) != 'undefined' && FB != null ) {
                     FB.getLoginStatus(function(response){
@@ -48,7 +46,7 @@
                         if (!response.session || !response.authResponse) {
                             var FBLogin = function(){
                                 if(response.status == 'connected' && window.FBLogin == false){
-                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb',array('_remember_me'=>'on')) ?>";
+                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
                                 }else{
                                     logout(response,window.FBLogin);
                                 }

@@ -94,4 +94,4 @@ security:
         - path: ^/tu_sitio
           roles: IS_AUTHENTICATED_FULLY
         - path: ^/
-          roles: [IS_AUTHENTICATED_ANONYMOUSLY]
+          roles: IS_AUTHENTICATED_ANONYMOUSLY

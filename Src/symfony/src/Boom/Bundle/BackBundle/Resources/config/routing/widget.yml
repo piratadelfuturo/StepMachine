@@ -1,0 +1,41 @@
+BoomBackBundle_widget_index:
+    pattern:  list.{_format}
+    defaults: { _controller: "BoomBackBundle:Widget:index", _format: html }
+    options:
+        expose: true
+    requirements:
+      _format: html|json
+
+BoomBackBundle_widget_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:Widget:show" }
+    options:
+        expose: true
+
+BoomBackBundle_widget_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Widget:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_widget_new:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Widget:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_widget_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Widget:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_widget_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Widget:update" }
+    requirements: { _method: post }
+
+BoomBackBundle_widget_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BoomBackBundle:Widget:delete" }
+    requirements: { _method: post }
+    options:
+        expose: true

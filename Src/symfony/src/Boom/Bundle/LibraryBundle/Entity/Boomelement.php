@@ -40,9 +40,9 @@ class Boomelement extends DomainObject{
     protected $community_position;
 
     /**
-     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="Boom", inversedBy="elements")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=false)
+     * @Gedmo\SortableGroup
      **/
     protected $boom;
 

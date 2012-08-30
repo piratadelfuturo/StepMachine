@@ -8,11 +8,9 @@
                 <th>Username</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Facebook</th>
-                <th>Twitter</th>
-                <th>Booms</th>
-                <th>Imágenes</th>
-                <th>Gallerías</th>
+                <th>E-mail</th>
+                <th>Admin</th>
+                <th>Colaborador</th>
                 <th style="width:100px">Acciones</th>
             </tr>
         </thead>
@@ -55,9 +53,22 @@
                     null,
                     null,
                     null,
-                    null,
-                    null,
-                    null,
+                    {     // fifth column (Edit link)
+                        "sName": "roles",
+                        "bSearchable": true,
+                        "bSortable": false,
+                        "fnCreatedCell": function (nTd,val)
+                        {
+                            var role;
+                            if(val.indexOf('ROLE_ADMIN') == -1){
+                                role = 'false';
+                            }else{
+                                role = 'true';
+                            }
+
+                            $(nTd).empty().text(role);
+                        }
+                    },
                     null,
                     {     // fifth column (Edit link)
                         "sName": "action_id",
@@ -81,7 +92,7 @@
                                 Routing.generate('BoomBackBundle_user_show', { id: val })
                             );
 
-                            $(nTd).empty().append(viewB,edB);
+                            $(nTd).empty().append(edB);
                         }
                     }
                 ]

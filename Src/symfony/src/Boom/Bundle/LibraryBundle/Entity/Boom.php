@@ -175,7 +175,11 @@ class Boom extends DomainObject {
     protected $list_elements;
 
 
+    protected $element_amount;
+
     public function __construct() {
+
+        $this->element_amount = 7;
         $this->children = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
@@ -187,6 +191,13 @@ class Boom extends DomainObject {
         $this->featured = false;
         $this->summary = '';
         $this->date_published = new \DateTime("now");
+
+        for ($i = 1; $i <= $this->element_amount; $i++) {
+            $element = new Boomelement();
+            $element->setPosition($i);
+            $this->elements[] = $element;
+        }
+
     }
 
     /**
@@ -436,7 +447,7 @@ class Boom extends DomainObject {
      * @param <variableType$categories
      */
     public function removeCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
-        if($elements !== $this['maincategory']){
+        if($category !== $this['maincategory']){
             $this->categories->removeElement($category);
         }
     }
@@ -456,6 +467,7 @@ class Boom extends DomainObject {
      * @return Boom
      */
     public function setCategories(\Doctrine\Common\Collections\Collection $categories) {
+        $categories[] = $this['maincategory'];
         $this->categories = $categories;
         return $this;
     }
