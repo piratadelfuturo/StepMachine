@@ -84,13 +84,13 @@ class Boom extends DomainObject {
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="booms", fetch="LAZY")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false )
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true )
      * */
     protected $user;
 
     /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="booms")
-     * @ORM\JoinTable(name="booms_categories")
+     * @ORM\JoinTable(name="booms_categories" )
      */
     protected $categories;
 
@@ -102,7 +102,7 @@ class Boom extends DomainObject {
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms")
-     * @ORM\JoinTable(name="booms_tags")
+     * @ORM\JoinTable(name="booms_tags", nullable=true)
      * */
     protected $tags;
 

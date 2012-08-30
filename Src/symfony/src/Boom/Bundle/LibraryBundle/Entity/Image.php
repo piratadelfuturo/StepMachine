@@ -41,7 +41,7 @@ class Image extends DomainObject {
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="images" , fetch="LAZY")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      * */
     protected $user;
 

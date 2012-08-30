@@ -152,7 +152,7 @@ class CategoryController extends Controller {
     public function createAction() {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Category');
-        $form = $this->createForm(new CategoryType($repo->getCount()));
+        $form = $this->createForm(new CategoryType($repo->getCount()), new BoomEntity\Category());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();

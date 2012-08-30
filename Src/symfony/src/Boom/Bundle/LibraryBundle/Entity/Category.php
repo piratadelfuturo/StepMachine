@@ -64,6 +64,7 @@ class Category extends DomainObject{
 
     public function __construct()
     {
+        $this->main_booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->list_groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();

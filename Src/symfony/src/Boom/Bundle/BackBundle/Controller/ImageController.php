@@ -47,7 +47,7 @@ class ImageController extends Controller {
     }
 
     public function createAction() {
-        $form = $this->createForm(new ImageFormType());
+        $form = $this->createForm(new ImageFormType(), new Image());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
