@@ -16,3 +16,7 @@ parameters:
 
     facebook_app_id:     349118228506488
     facebook_app_secret: 4ee0f31658d284d2c763b580b67fa2cf
+
+    boom_widget_blocks:
+      lower_sidebar: "Sidebar abajo"
+      upper_sidebar: "Sidebar arriba"
