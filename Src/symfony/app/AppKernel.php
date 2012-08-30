@@ -25,9 +25,9 @@ class AppKernel extends Kernel
             //new FOS\TwitterBundle\FOSTwitterBundle(),
             new FM\BbcodeBundle\FMBbcodeBundle(),
             new Boom\Bundle\LibraryBundle\BoomLibraryBundle(),
+            new Boom\Bundle\UserBundle\BoomUserBundle(),
             new Boom\Bundle\FrontBundle\BoomFrontBundle(),
             new Boom\Bundle\BackBundle\BoomBackBundle(),
-            new Boom\Bundle\UserBundle\BoomUserBundle(),
             );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,12 +1,15 @@
 parameters:
-    boom_back.image_type.class: Boom\Bundle\BackBundle\Form\Type\ImageType
+    #boom_back.image_type.class: Boom\Bundle\BackBundle\Form\Type\WidgetBlockType
+    boom_back.widget_block_type.class: Boom\Bundle\BackBundle\Form\Type\WidgetBlockType
     boom_back.user_provider.admin.class: Boom\Bundle\BackBundle\Security\AdminProvider
 
 services:
-    #form.type.image:
-    #    class: %boom_back.image_type.class%
-    #    tags:
-    #        - { name: form.type, alias: image }
+    form.type.widget_block_type:
+        class: %boom_back.widget_block_type.class%
+        arguments:
+          - "%boom_widget_blocks%"
+        tags:
+            - { name: form.type, alias: widget_block }
     boom_back.user_provider.admin:
         class: %boom_back.user_provider.admin.class%
         arguments:

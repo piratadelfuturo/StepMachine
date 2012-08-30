@@ -11,11 +11,11 @@ use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\ExecutionContext;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\WidgetRepository")
  * @ORM\Table(name="widget")
  * @ORM\HasLifecycleCallbacks
  */
-class Widget {
+class Widget extends DomainObject{
 
     /**
      * @ORM\Id
@@ -23,6 +23,12 @@ class Widget {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=140, unique=true)
+     */
+    protected $slug;
 
     /**
      * @ORM\Column(type="string", length=140)
@@ -36,9 +42,9 @@ class Widget {
 
     /**
      * @Gedmo\SortableGroup
-     * @ORM\Column(type="string", length=140)
+     * @ORM\Column(name="block", type="string", length=140)
      */
-    protected $group;
+    protected $block;
 
     /**
      * @Gedmo\SortablePosition
@@ -56,6 +62,33 @@ class Widget {
     {
         return $this->id;
     }
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Widget
+     */
+    public function setSlug($slug)
+    {
+        if($this->name == null || is_empty($this->name)){
+            $this->name = $slug;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
 
     /**
      * Set name
@@ -104,26 +137,26 @@ class Widget {
     }
 
     /**
-     * Set group
+     * Set block
      *
-     * @param string $group
+     * @param string $block
      * @return Widget
      */
-    public function setGroup($group)
+    public function setBlock($block)
     {
-        $this->group = $group;
+        $this->block = $block;
 
         return $this;
     }
 
     /**
-     * Get group
+     * Get block
      *
      * @return string
      */
-    public function getGroup()
+    public function getBlock()
     {
-        return $this->group;
+        return $this->block;
     }
 
     /**

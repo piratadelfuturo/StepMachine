@@ -7,25 +7,24 @@
             type: 'profile',
             rpp: 4,
             interval: 30000,
-            width: 250,
-            height: 300,
+            width: 'auto',
+            height: 390,
             theme: {
                 shell: {
-                    background: '#333333',
-                    color: '#ffffff'
+                    background: '#ffffff',
+                    color: '#000000'
                 },
                 tweets: {
-                    background: '#000000',
-                    color: '#ffffff',
-                    links: '#4aed05'
+                    background: '#ffffff',
+                    color: '#000000',
+                    links: '#eb6a07'
                 }
             },
             features: {
-                scrollbar: false,
-                loop: true,
+                scrollbar: true,
+                loop: false,
                 live: true,
-                behavior: 'default'
+                behavior: 'all'
             }
         }).render().setUser('7_boom').start();
-    </script>
-</div>
+    </script></div>

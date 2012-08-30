@@ -54,6 +54,13 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('boom_widget_blocks')
+                    ->canBeUnset()
+                    ->ignoreExtraKeys()
+                    ->defaultValue(array())
+                    ->prototype('scalar')
+                    ->end()
+                ->end()
             ->end()
         ->end();
 

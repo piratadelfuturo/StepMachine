@@ -48,12 +48,13 @@
 
 (function(document,$){
     $(document).ready(function(){
-        var textareas = $('form#boom_bundle_backbundle_boomtype textarea');
+        var textareas = $('form#boom_bundle_backbundle_boomtype #boom_bundle_backbundle_boomtype_elements textarea');
         textareas.tinymce({
             script_url : '/bundles/boomback/js/lib/tiny_mce/tiny_mce.js',
             theme : "advanced",
-            mode : "none",
-            plugins : "bbcode",
+            mode : "textareas",
+            width: "100%",
+            plugins : "bbcode,autoresize",
             theme_advanced_buttons1 : "bold,italic,underline,undo,redo,link,unlink,forecolor,styleselect,removeformat,cleanup",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
@@ -72,10 +73,6 @@
 
         $form = $('#boom_bundle_backbundle_boomtype');
 
-        $entityId = $form.find('#entity_id',0);
-
-    if($entityId.length > 0){
-        
         $submit = $form.find('#boom-submit');
 
         $preview = $form.find('#boom-preview');
@@ -95,12 +92,11 @@
             .attr(
                 'action',
                 Routing.generate('BoomBackBundle_boom_preview', {
-                    id: $entityId.val()
+                    id: $preview.val()
                 }));
 
 
         });
-    }
 
     });
 

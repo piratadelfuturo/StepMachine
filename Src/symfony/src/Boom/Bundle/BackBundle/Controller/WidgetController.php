@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\Query;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Boom\Bundle\LibraryBundle\Entity\Image;
+use Boom\Bundle\LibraryBundle\Entity\Widget;
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Boom\Bundle\LibraryBundle\Form\ImageFormType;
+use Boom\Bundle\BackBundle\Form\WidgetType;
 
 class WidgetController extends Controller {
 
@@ -30,8 +30,9 @@ class WidgetController extends Controller {
         $columns = array(
             'id',
             'name',
-            'group',
-            'position'
+            'block',
+            'position',
+            'id action_id'
         );
         $get['columns'] = $columns;
 
@@ -117,7 +118,7 @@ class WidgetController extends Controller {
      */
     public function newAction() {
 
-        $entity = new BoomEntity\Widget();
+        $entity = new Widget();
         $form = $this->createForm(new WidgetType(), $entity);
 
         return $this->render('BoomBackBundle:Widget:new.html.php', array(
@@ -172,12 +173,10 @@ class WidgetController extends Controller {
         }
 
         $editForm = $this->createForm(new WidgetType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BoomBackBundle:Widget:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
                 ));
     }
 

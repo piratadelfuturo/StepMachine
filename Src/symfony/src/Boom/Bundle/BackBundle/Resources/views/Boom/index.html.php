@@ -93,7 +93,7 @@
                                 Routing.generate('BoomBackBundle_boom_show', { id: val })
                             );
 
-                            $(nTd).empty().append(prevB,viewB,edB,delB);
+                            $(nTd).empty().append(edB);
                         }
                     }
                 ]

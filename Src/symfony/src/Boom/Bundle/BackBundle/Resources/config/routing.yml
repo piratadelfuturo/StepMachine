@@ -54,3 +54,15 @@ BoomBackBundle_user:
 BoomBackBundle_image:
     resource: "@BoomBackBundle/Resources/config/routing/image.yml"
     prefix: /image
+
+BoomBackBundle_widget:
+    resource: "@BoomBackBundle/Resources/config/routing/widget.yml"
+    prefix: /widget
+
+BoomBackBundle_gallery:
+    resource: "@BoomBackBundle/Resources/config/routing/gallery.yml"
+    prefix: /gallery
+
+BoomBackBundle_tag:
+    resource: "@BoomBackBundle/Resources/config/routing/tag.yml"
+    prefix: /tag

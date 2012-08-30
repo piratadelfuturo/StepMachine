@@ -33,7 +33,7 @@
         <?php echo $view['form']->row($form['main_category'], array('label' => 'Categoría principal')) ?>
         <?php echo $view['form']->row($form['categories'], array('label' => 'Categorías')) ?>
         <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>
-        <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
+        <?php // echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
         <label>Boomies</label>
@@ -81,10 +81,7 @@
     <fieldset>
         <section>
             <div>
-                <?php if(isset($entity) && $entity['id'] !== null): ?>
-                <input type="hidden" id="entity_id" value="<?php echo $entity['id'] ?>" />
-                <button id="boom-preview" class="submit" type="submit" >Preview</button>
-                <?php endif; ?>
+                <button id="boom-preview" value ="<?php echo $entity['id']?>" class="submit" type="submit" >Preview</button>
                 <button id="boom-submit" class="submit" type="submit" >Guardar</button>
             </div>
         </section>

@@ -1,11 +1,12 @@
 <div id="pageoptions">
     <ul>
         <li><a href="<?php echo $view['router']->generate('BoomBackBundle_logout') ?>">Logout</a></li>
-        <li><a href="#" id="wl_config">Configuration</a></li>
-        <li><a href="#">Settings</a></li>
+        <li><a href="#" id="wl_config">Ayuda</a></li>
+        <!-- <li><a href="#">Ayuda</a></li> -->
     </ul>
     <div>
-        <h3>Place for some configs</h3>
-        <p>Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi traductores.</p>
+        <quote>"My mother always said, life was like a box of chocolates, you never know what you're gonna get"</quote>
+        <br/>
+        <em>Forrest Gump</em>
     </div>
 </div>

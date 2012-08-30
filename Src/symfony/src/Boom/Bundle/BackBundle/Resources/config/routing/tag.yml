@@ -1,0 +1,41 @@
+BoomBackBundle_tag_index:
+    pattern:  list.{_format}
+    defaults: { _controller: "BoomBackBundle:Tag:index", _format: html }
+    options:
+        expose: true
+    requirements:
+      _format: html|json
+
+BoomBackBundle_tag_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:Tag:show" }
+    options:
+        expose: true
+
+BoomBackBundle_tag_create:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Tag:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_tag_new:
+    pattern:  /new
+    defaults: { _controller: "BoomBackBundle:Tag:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_tag_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Tag:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_tag_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Tag:update" }
+    requirements: { _method: post }
+
+BoomBackBundle_tag_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BoomBackBundle:Tag:delete" }
+    requirements: { _method: post }
+    options:
+        expose: true

@@ -18,7 +18,7 @@ class BoomController extends Controller {
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find.');
+            $entity = new BoomEntity\Boom();
         }
 
         $form = $this->createForm(new BoomType(), $entity);
@@ -154,11 +154,6 @@ class BoomController extends Controller {
     public function newAction() {
 
         $entity = new BoomEntity\Boom();
-        for ($i = 1; $i <= 7; $i++) {
-            $element = new BoomEntity\Boomelement();
-            $element->setPosition($i);
-            $entity->addElement($element);
-        }
         $sessionToken = $this->get('security.context')->getToken();
         if ($sessionToken->getUser() instanceof BoomEntity\User) {
             $entity['user'] = $sessionToken->getUser();
@@ -177,7 +172,7 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new BoomType());
+        $form = $this->createForm(new BoomType(),new BoomEntity/Boom());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();

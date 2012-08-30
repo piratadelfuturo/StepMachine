@@ -30,19 +30,9 @@ class UserController extends Controller {
             'username',
             'firstname',
             'lastname',
-            'facebookId',
-            'twitterId',
-            array(
-                'booms' => array(
-                    'id boom_total' => 'COUNT(%s)'
-                ),
-                'images' => array(
-                    'id image_total' => 'COUNT(%s)'
-                ),
-                'galleries' => array(
-                    'id gallery_total' => 'COUNT(%s)'
-                ),
-            ),
+            'email',
+            'roles',
+            'collaborator',
             'id action_id'
         );
         $get['columns'] = $columns;
@@ -108,9 +98,9 @@ class UserController extends Controller {
      *
      */
     public function showAction($id) {
-        
+
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Category')->find($id);
+        $entity = $em->getRepository('BoomLibraryBundle:User')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category.');
@@ -118,9 +108,9 @@ class UserController extends Controller {
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BoomBackBundle:Category:show.html.php', array(
-                    'entity' => $entity,
-                    'delete_form' => $deleteForm->createView(),));
+        return $this->render('BoomBackBundle:User:show.html.php', array(
+                    'entity' => $entity
+                    ));
     }
 
     /**

@@ -71,7 +71,7 @@
                                 Routing.generate('BoomBackBundle_category_show', { id: val })
                             );
 
-                            $(nTd).empty().append(viewB,edB,delB);
+                            $(nTd).empty().append(edB);
                         }
                     }
                 ]

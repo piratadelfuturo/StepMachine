@@ -57,16 +57,21 @@ class BoomType extends AbstractType {
             'required' => false
                 )
         );
-        $builder->add(
-                'image', 'hidden');
 
         $builder->add(
-                'tags', 'collection', array(
-            'type' => 'text',
-            'allow_add' => true,
-            'allow_delete' => true)
+                'featured', 'checkbox', array(
+            'required' => false
+                )
         );
 
+        $builder->add(
+                'image', 'hidden');
+        /*
+        $builder->add(
+                'tags', 'textarea', array()
+        );
+        */
+        
         $builder->add(
                 'elements', 'collection', array(
             'type' => new BoomelementType(),
