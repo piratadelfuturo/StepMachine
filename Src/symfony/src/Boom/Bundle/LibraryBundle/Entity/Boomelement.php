@@ -184,8 +184,9 @@ class Boomelement extends DomainObject{
     }
 
 
-    public function __construct()
+    public function __construct(Boom $boom)
     {
+        $this->setBoom($boom);
         $this->community_position = 0;
         $this->boomelementranks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->content = '';

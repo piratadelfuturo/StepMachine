@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\BackBundle\Form\BoomType;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class BoomController extends Controller {
 
@@ -172,7 +173,7 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new BoomType(),new BoomEntity/Boom());
+        $form = $this->createForm(new BoomType(),new Boom());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();

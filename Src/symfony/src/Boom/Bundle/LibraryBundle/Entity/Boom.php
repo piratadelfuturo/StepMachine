@@ -159,7 +159,7 @@ class Boom extends DomainObject {
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Boom", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
      */
     private $parent;
 
@@ -193,7 +193,7 @@ class Boom extends DomainObject {
         $this->date_published = new \DateTime("now");
 
         for ($i = 1; $i <= $this->element_amount; $i++) {
-            $element = new Boomelement();
+            $element = new Boomelement($this);
             $element->setPosition($i);
             $this->elements[] = $element;
         }
