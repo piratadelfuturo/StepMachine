@@ -6,7 +6,7 @@
                 <label>URL</label>
                 <div>
                     <?php
-                        $url = $view['router']->generate('BoomFrontBundle_slug_show',array('slug' => $entity['category']['slug'].'/'.$entity['slug']),true);
+                        $url = $view['router']->generate('BoomFrontBundle_boom_show',array('slug' => $entity['category']['slug'].'/'.$entity['slug']),true);
                         ?>
                     <a href="<?php echo $url ?>" target="_blank" ><?php echo $url ?></a>
                 </div>
