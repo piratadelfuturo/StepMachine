@@ -78,7 +78,9 @@ class DefaultController extends Controller {
                             'BoomFrontBundle:Boom:show.html.php', array(
                         'entity' => $entity,
                         'category' => $thisCategory
+
                             )            );
+
         //}
     }
 
