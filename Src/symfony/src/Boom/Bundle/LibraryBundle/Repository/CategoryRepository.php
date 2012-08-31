@@ -32,13 +32,9 @@ class CategoryRepository extends EntityRepository {
             FROM
                 BoomLibraryBundle:Boom boom
             LEFT JOIN
-                boom.categories category
+                boom.category category
             WHERE
-                :category
-            MEMBER OF
-                boom.categories
-            OR
-                boom.main_category = :category
+                boom.category = :category
             AND
                 boom.status IN (:status)
             ORDER BY boom.{$sortKey} {$sortValue}";

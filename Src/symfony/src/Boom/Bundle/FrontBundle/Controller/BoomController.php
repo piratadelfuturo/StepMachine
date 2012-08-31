@@ -104,8 +104,7 @@ class BoomController extends Controller {
             'title',
             'summary',
             'image',
-            'categories',
-            'maincategory',
+            'category',
             'tags');
 
         $clonedBoomelementValues = array(
@@ -170,7 +169,7 @@ class BoomController extends Controller {
             return $this->redirect(
                             $this->generateUrl(
                                     'BoomFrontBundle_slug_show', array(
-                                'slug' => $entity['maincategory']['name'] . '/' . $entity['slug']
+                                'slug' => $entity['category']['name'] . '/' . $entity['slug']
                                     )
                             )
             );
@@ -255,7 +254,7 @@ class BoomController extends Controller {
      *
      */
     public function deleteAction($slug) {
-        
+
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 

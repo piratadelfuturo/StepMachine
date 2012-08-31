@@ -2,9 +2,9 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: slug
         - Callback:
-            methods:   [hasCategories]
+            methods:   [validations]
     properties:
-      categories:
+      category:
         - All:
           - NotBlank: ~
           - NotNull: ~

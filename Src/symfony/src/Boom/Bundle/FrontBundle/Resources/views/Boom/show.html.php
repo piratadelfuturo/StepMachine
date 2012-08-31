@@ -8,7 +8,7 @@ $sidebar = $view->render(
         );
 $canonical_url = $view['router']->generate(
                     'BoomFrontBundle_slug_show', array(
-                'slug' => $entity['maincategory']['slug'] . '/' . $entity['slug']
+                'slug' => $entity['category']['slug'] . '/' . $entity['slug']
                     ),
                     true
             );

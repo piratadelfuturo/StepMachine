@@ -88,17 +88,12 @@ class Boom extends DomainObject {
      * */
     protected $user;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="booms")
-     * @ORM\JoinTable(name="booms_categories" )
-     */
-    protected $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="main_booms")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="booms")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      */
-    protected $main_category;
+    protected $category;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms")
@@ -181,7 +176,6 @@ class Boom extends DomainObject {
 
         $this->element_amount = 7;
         $this->children = new ArrayCollection();
-        $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->elements = new ArrayCollection();
         $this->list_elements = new ArrayCollection();
@@ -431,48 +425,6 @@ class Boom extends DomainObject {
     }
 
     /**
-     * Add categories
-     *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $category
-     * @return Boom
-     */
-    public function addCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
-        $this->categories[] = $category;
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param <variableType$categories
-     */
-    public function removeCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
-        if($category !== $this['maincategory']){
-            $this->categories->removeElement($category);
-        }
-    }
-
-    /**
-     * Get categories
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function getCategories() {
-        return $this->categories;
-    }
-
-    /**
-     * Set categories
-     *
-     * @return Boom
-     */
-    public function setCategories(\Doctrine\Common\Collections\Collection $categories) {
-        $categories[] = $this['maincategory'];
-        $this->categories = $categories;
-        return $this;
-    }
-
-    /**
      * Add elements
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Boomelement $elements
@@ -570,10 +522,7 @@ class Boom extends DomainObject {
         $this->setDatePublished(new \DateTime());
     }
 
-    public function hasCategories(ExecutionContext $context) {
-        if ($this->getCategories()->count() == 0) {
-            $context->addViolationAtSubPath('categories', 'No categories selected');
-        }
+    public function validations(ExecutionContext $context) {
         if ($this->getElements()->count() !== 7) {
             $context->addViolationAtSubPath('elements', 'Invalid quantity of elements');
         }
@@ -775,24 +724,24 @@ class Boom extends DomainObject {
     }
 
     /**
-     * Set main_category
+     * Set category
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $mainCategory
+     * @param Boom\Bundle\LibraryBundle\Entity\Category $category
      * @return Boom
      */
-    public function setMainCategory(\Boom\Bundle\LibraryBundle\Entity\Category $mainCategory) {
-        $this->main_category = $mainCategory;
-        $this->addCategory($mainCategory);
+    public function setCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
+        $this->category = $category;
+        $this->addCategory($category);
         return $this;
     }
 
     /**
-     * Get main_category
+     * Get category
      *
      * @return Boom\Bundle\LibraryBundle\Entity\Category
      */
-    public function getMainCategory() {
-        return $this->main_category;
+    public function getCategory() {
+        return $this->category;
     }
 
     /**

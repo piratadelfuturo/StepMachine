@@ -14,8 +14,8 @@ if(!isset($list)){
         <?php
         foreach ($list as $element):
             if ($categorySlug === null):
-                $categorySlug = $element['maincategory']['slug'];
-                $categoryName = $element['maincategory']['name'];
+                $categorySlug = $element['category']['slug'];
+                $categoryName = $element['category']['name'];
             endif;
                 $elementUrl = $view['router']->generate(
                     'BoomFrontBundle_slug_show', array(

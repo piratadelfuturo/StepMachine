@@ -32,7 +32,7 @@ class BoomController extends Controller {
         return $this->render(
                         'BoomFrontBundle:Boom:show.html.php', array(
                     'entity' => $entity,
-                    'category' => $entity['maincategory']
+                    'category' => $entity['category']
                         )
         );
     }
@@ -57,8 +57,8 @@ class BoomController extends Controller {
             'title',
             'slug',
             array(
-                'main_category' => array(
-                    'name categories'
+                'category' => array(
+                    'name'
                 )
             ),
             'date_created',

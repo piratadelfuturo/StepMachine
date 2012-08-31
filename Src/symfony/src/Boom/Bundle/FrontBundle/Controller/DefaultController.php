@@ -60,14 +60,8 @@ class DefaultController extends Controller {
         $thisCategory = $catRepo->findOneBySlug($slugArray[0]);
 
         $inCategory = false;
-        if ($entity['maincategory']['id'] == $thisCategory['id']) {
+        if ($entity['category']['id'] == $thisCategory['id']) {
             $inCategory = true;
-        } else {
-            foreach ($entity['categories'] as $category) {
-                if ($category['id'] == $thisCategory['id']) {
-                    $inCategory = true;
-                }
-            }
         }
 
         $sessionToken = $this->get('security.context')->getToken();
