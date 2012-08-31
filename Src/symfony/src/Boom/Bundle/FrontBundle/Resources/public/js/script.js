@@ -15,7 +15,10 @@
             $dialog.dialog('open');
             return false;
         });
-
+        $('li.boom:first-child').ready(function(){
+          var Boom1 = $('li.boom:first-child');
+          Boom1.addClass("on");
+        });
         var $user = $('#usr-cnt');
         var $userBox = $user.find("#usr-roll");
         if($userBox){

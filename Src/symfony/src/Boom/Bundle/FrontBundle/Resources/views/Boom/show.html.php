@@ -15,7 +15,6 @@ $canonical_url = $view['router']->generate(
 
 $view['slots']->set('sidebar_top',$sidebar);
 $view['slots']->set('canonical_url',$canonical_url);
-
 ?>
 
 <div class="musica" id="single-boom">
@@ -48,8 +47,11 @@ $view['slots']->set('canonical_url',$canonical_url);
           <ul>
             <?php
             $elements = array_reverse($entity['elements']->toArray());
-            foreach($elements as $element): ?>
-            <li class="boom on">
+foreach($elements as $element): 
+            $pos = 7;
+            ?>
+
+            <li class="boom pos<?php echo ·$pos ?>">
               <div class="place-info">
                 <span class="place">
                     <?php echo $element['position'] ?>
