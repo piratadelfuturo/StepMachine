@@ -53,9 +53,11 @@ class DefaultController extends Controller {
         $response = new Response();
         $response->setPublic();
         $response->setSharedMaxAge(600);
-
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
+        if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
+            return $response;
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
                 array(
                     'slug' => $slug,
                     'status' => array(
@@ -63,19 +65,15 @@ class DefaultController extends Controller {
                         Boom::STATUS_PRIVATE
                     )
                 )
-        );
+            );
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find.');
-        } elseif ($entity['category']['slug'] !== $category_slug) {
-            throw $this->createNotFoundException('Unable to find.');
-        }
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find.');
+            } elseif ($entity['category']['slug'] !== $category_slug) {
+                throw $this->createNotFoundException('Unable to find.');
+            }
 
-        $thisCategory = $entity['category'];
-
-        if ($response->isNotModified($this->getRequest()) == true) {
-            return $response;
-        } else {
+            $thisCategory = $entity['category'];
             return $this->render(
                             'BoomFrontBundle:Boom:show.html.php', array(
                         'entity' => $entity,

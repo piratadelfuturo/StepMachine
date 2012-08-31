@@ -28,7 +28,8 @@
         (function(window){
             var logout = function(response,FBLogin){
                 if((response.status == 'unknown' || response == true ) && FBLogin == true){
-                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
+                    console.log("<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>");
+                    //window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
                 }
 
             }
@@ -46,7 +47,8 @@
                         if (!response.session || !response.authResponse) {
                             var FBLogin = function(){
                                 if(response.status == 'connected' && window.FBLogin == false){
-                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
+                                    console.log("<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>");
+                                    //window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
                                 }else{
                                     logout(response,window.FBLogin);
                                 }
