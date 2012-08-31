@@ -9,7 +9,7 @@
         <section><label for="username">Username</label>
             <div><input type="text" id="username" name="_username" value="<?php echo $last_username ?>" autofocus></div>
         </section>
-        <section><label for="password">Password <a href="#">lost password?</a></label>
+        <section><label for="password">Password</label>
             <div><input type="password" id="password" name="_password"></div>
             <div><input type="checkbox" id="remember" name="_remember_me" value="on" ><label for="remember" class="checkbox">remember me</label></div>
         </section>

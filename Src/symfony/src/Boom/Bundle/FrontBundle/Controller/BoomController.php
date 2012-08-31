@@ -168,8 +168,9 @@ class BoomController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomFrontBundle_slug_show', array(
-                                'slug' => $entity['category']['name'] . '/' . $entity['slug']
+                                    'BoomFrontBundle_boom_show', array(
+                                'slug_category' => $entity['category']['name'],
+                                'slug' => $entity['slug']
                                     )
                             )
             );

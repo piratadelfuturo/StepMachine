@@ -6,7 +6,11 @@
             foreach($collaborators as $index => $collaborator):
         ?>
           <li class="<?php echo ($index+1) % 2 == 0 ? 'grey' : '' ?>">
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_slug_show',array('slug' => $collaborator['category_slug'].'/'.$collaborator['boom_slug']))?>">
+            <a href="<?php echo $view['router']->generate(
+                    'BoomFrontBundle_boom_show',
+                    array(
+                        'category_slug' => $collaborator['category_slug'],
+                        'slug' => $collaborator['boom_slug']))?>">
                 <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
                 <h4 class="autor"><?php  echo $collaborator['user_record']['lastname'].' '.$collaborator['user_record']['firstname'] ?></h4>
                 <p class="last-boom"><?php echo $collaborator['boom_title']?></p>

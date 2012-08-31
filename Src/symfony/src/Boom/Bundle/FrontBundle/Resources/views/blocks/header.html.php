@@ -19,7 +19,13 @@ $categories = $view['boom_front']->getFeaturedCategories();
         </div>
         <nav class="gradient">
             <?php foreach ($categories as $el): ?>
-                <a href="<?php echo $view['router']->generate('BoomFrontBundle_slug_show', array('slug' => $el['a_slug'])) ?>"><?php echo $view->escape($el['a_name']) ?></a>
+                <a href="<?php echo $view['router']->generate(
+                        'BoomFrontBundle_category_show',
+                        array(
+                            'slug' => $el['a_slug']
+                            )) ?>">
+                                <?php echo $view->escape($el['a_name']) ?>
+                </a>
             <?php endforeach; ?>
         </nav>
     </div>
