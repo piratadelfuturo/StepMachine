@@ -731,7 +731,6 @@ class Boom extends DomainObject {
      */
     public function setCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category) {
         $this->category = $category;
-        $this->addCategory($category);
         return $this;
     }
 
