@@ -6,16 +6,6 @@ $sidebar = $view->render(
         )
 );
 $canonical_url = $view['router']->generate(
-<<<<<<< HEAD
-                    'BoomFrontBundle_slug_show', array(
-                'slug' => $entity['maincategory']['slug'] . '/' . $entity['slug']
-                    ),
-                    true
-            );
-
-$view['slots']->set('sidebar_top',$sidebar);
-$view['slots']->set('canonical_url',$canonical_url);
-=======
         'BoomFrontBundle_boom_show', array(
     'category_slug' => $entity['category']['slug'],
     'slug' => $entity['slug']
@@ -24,7 +14,7 @@ $view['slots']->set('canonical_url',$canonical_url);
 
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('canonical_url', $canonical_url);
->>>>>>> ba09435da0ad512df048c251b0036fdb7eee8d34
+
 ?>
 
 <div class="musica" id="single-boom">
@@ -51,39 +41,7 @@ $view['slots']->set('canonical_url', $canonical_url);
         <span>
             <h3>Publicado por <a rel="author" href="#"><?php echo $entity['user']['username'] ?></a></h3>
             <p>Phillip k. Dick es un escritor de California. Su literatura está influenciada por la narrativa policiaca de Raymond Chandler y los textos futuristas de William Gibson. K. Dick es quizá el autor más adaptado al cine...<a class="ver-moar" href="#">Leer más</a></p>
-<<<<<<< HEAD
-          </span>
-        </div>
-        <div class="booms">
-          <ul>
-            <?php
-            $elements = array_reverse($entity['elements']->toArray());
-foreach($elements as $element): 
-            $pos = 7;
-            ?>
 
-            <li class="boom pos<?php echo ·$pos ?>">
-              <div class="place-info">
-                <span class="place">
-                    <?php echo $element['position'] ?>
-                </span>
-                <img src="http://placehold.it/151x86" height="87px" width="151px">
-                <p class="boom-ti">
-                    <?php echo $element['title'] ?>
-                </p>
-              </div>
-              <div class="boom-content">
-                <?php $content = $element['content'] === null ?'':$element['content'];  ?>
-                <?php echo $view['bbcode']->filter((string) $content,'default') ?>
-                  <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="670"></div></div>
-              </div>
-              <span class="tab"><a href=""><span>TAB</span></a></span>
-            </li>
-            <?php endforeach; ?>
-          </ul>
-          <div class="boom-tags"><p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p></div>
-          <div class="social">
-=======
         </span>
     </div>
     <div class="booms">
@@ -113,7 +71,6 @@ foreach ($elements as $element):
         </ul>
         <div class="boom-tags"><p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p></div>
         <div class="social">
->>>>>>> ba09435da0ad512df048c251b0036fdb7eee8d34
             <span class="comparte">comparte:
                 <a href="#"><span class="btn-fb">facebook</span></a>
                 <a href="#"><span class="btn-tw">twitter</span></a>
