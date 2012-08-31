@@ -50,7 +50,7 @@ class DefaultController extends Controller {
 
     public function boomAction($category_slug, $slug) {
 
-        $response = new Response();
+        //$response = new Response();
         //$response->setPublic();
         //$response->setSharedMaxAge(600);
         //if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
@@ -78,8 +78,7 @@ class DefaultController extends Controller {
                             'BoomFrontBundle:Boom:show.html.php', array(
                         'entity' => $entity,
                         'category' => $thisCategory
-                            ), $response
-            );
+                            )            );
         //}
     }
 

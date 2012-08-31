@@ -15,10 +15,25 @@
             $dialog.dialog('open');
             return false;
         });
+
+        //BOOMIES
         $('li.boom:first-child').ready(function(){
-          var Boom1 = $('li.boom:first-child');
-          Boom1.addClass("on");
+          var Boom7 = $('li.boom:first-child');
+          Boom7.addClass("on");
+          return false; 
         });
+          $('span[class="tab"]').click(function(){
+          if($(this).parent().hasClass("on")){
+            $(this).parent().removeClass("on");
+          }else{
+            $(this).parent().addClass(function(){
+              $(this).fadeIn("slow");
+              return "on";
+            });
+          }
+          return false;
+        })
+
         var $user = $('#usr-cnt');
         var $userBox = $user.find("#usr-roll");
         if($userBox){
