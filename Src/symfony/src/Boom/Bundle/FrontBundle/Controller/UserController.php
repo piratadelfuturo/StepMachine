@@ -5,7 +5,7 @@ namespace Boom\Bundle\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Boom\Bundle\FrontBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class UserController extends Controller{
 
@@ -42,11 +42,12 @@ class UserController extends Controller{
         $em     = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:User')->findOneByUsername($username);
 
-        $em     = $em->getRepository('BoomLibraryBundle:Boom')->findBy(
+        $list   = $em->getRepository('BoomLibraryBundle:Boom')->findBy(
                     array(
                         'user' => $entity,
                         'status' => Boom::STATUS_PUBLIC
                     ),
+                    array('date_published' => 'DESC'),
                     $limit,
                     $limit*($page - 1)
                 );
@@ -66,7 +67,8 @@ class UserController extends Controller{
         $total = $query->getSingleScalarResult();
 
         return $this->render('BoomFrontBundle:User:profile.html.php', array(
-            'list'  => $result,
+            'entity'=> $entity,
+            'list'  => $list,
             'total' => $total,
             'limit' => $limit,
             'page'  => $page

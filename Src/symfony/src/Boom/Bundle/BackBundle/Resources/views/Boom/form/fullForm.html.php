@@ -6,7 +6,10 @@
                 <label>URL</label>
                 <div>
                     <?php
-                        $url = $view['router']->generate('BoomFrontBundle_slug_show',array('slug' => $entity['maincategory']['slug'].'/'.$entity['slug']),true);
+                        $url = $view['router']->generate(
+                                'BoomFrontBundle_boom_show',
+                                array('category_slug' => $entity['category']['slug'],
+                                    'slug' => $entity['slug']),true);
                         ?>
                     <a href="<?php echo $url ?>" target="_blank" ><?php echo $url ?></a>
                 </div>
@@ -30,8 +33,7 @@
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
         </section>
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
-        <?php echo $view['form']->row($form['main_category'], array('label' => 'Categoría principal')) ?>
-        <?php echo $view['form']->row($form['categories'], array('label' => 'Categorías')) ?>
+        <?php echo $view['form']->row($form['category'], array('label' => 'Categoría')) ?>
         <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>
         <?php // echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>

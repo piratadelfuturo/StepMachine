@@ -2,16 +2,19 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: slug
         - Callback:
-            methods:   [hasCategories]
-    properties:
-      categories:
-        - All:
-          - NotBlank: ~
-          - NotNull: ~
+            methods:   [validations]
 
 Boom\Bundle\LibraryBundle\Entity\User:
     properties:
       profile_image:
+        - File:
+                maxSize: 5120k
+                mimeTypes: [image/png, image/jpeg, image/gif]
+                mimeTypesMessage: Please upload a valid image
+
+Boom\Bundle\LibraryBundle\Entity\User:
+    properties:
+      file:
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]

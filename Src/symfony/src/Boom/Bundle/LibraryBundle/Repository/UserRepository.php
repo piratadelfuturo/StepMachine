@@ -48,7 +48,7 @@ class UserRepository extends EntityRepository {
             LEFT JOIN
                 user.booms boom
             LEFT JOIN
-                boom.main_category category
+                boom.category category
             WHERE
                 boom.status = ?0
             ORDER BY date_published DESC";

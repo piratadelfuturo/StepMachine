@@ -34,21 +34,11 @@ class BoomType extends AbstractType {
                 );
 
                $builder->add(
-                'main_category', 'entity', array(
+                'category', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',
             'multiple' => false,
             'required' => true
-                )
-        );
-
-        $builder->add(
-                'categories', 'entity', array(
-            'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
-            'property' => 'name',
-            'multiple' => true,
-            'required' => false,
-            'expanded' => true
                 )
         );
 
@@ -71,7 +61,7 @@ class BoomType extends AbstractType {
                 'tags', 'textarea', array()
         );
         */
-        
+
         $builder->add(
                 'elements', 'collection', array(
             'type' => new BoomelementType(),

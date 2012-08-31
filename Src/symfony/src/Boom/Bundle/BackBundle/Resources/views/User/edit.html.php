@@ -6,7 +6,9 @@
         <label><?php echo $entity['username'] ?></label>
         <?php echo $view['form']->row($edit_form['_token']) ?>
         <?php echo $view['form']->row($edit_form['bio']) ?>
-        <?php echo $view['form']->row($edit_form['admin']) ?>
+        <?php if(!empty($entity['password'])): ?>
+            <?php echo $view['form']->row($edit_form['admin']) ?>
+        <?php endif; ?>
         <?php echo $view['form']->row($edit_form['collaborator'],array('label'=>'Colaborador')) ?>
         <section>
             <section>

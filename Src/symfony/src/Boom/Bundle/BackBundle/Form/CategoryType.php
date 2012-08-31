@@ -10,7 +10,7 @@ class CategoryType extends AbstractType {
 
     protected $categoryCount;
 
-    public function __construct($categoryCount = 0){
+    public function __construct($categoryCount){
         $this->categoryCount = (int) $categoryCount;
     }
 
@@ -19,10 +19,17 @@ class CategoryType extends AbstractType {
 
         $positionOptions = array('required'  => true);
 
+        $range = array();
+
+        for($i=1;$i<=$this->categoryCount+1;$i++){
+            $range[$i] = $i;
+        }
+
         if(isset($options['data']) && $options['data']['id'] !== null){
-            $positionOptions['choices'] = range(0,$this->categoryCount-1);
+            array_pop($range);
+            $positionOptions['choices'] = $range;
         }else{
-            $positionOptions['choices'] = array_reverse(range(0,$this->categoryCount),true);
+            $positionOptions['choices'] = array_reverse($range,true);
         }
 
         $builder

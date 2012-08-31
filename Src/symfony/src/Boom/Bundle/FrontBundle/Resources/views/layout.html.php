@@ -4,15 +4,15 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <?php
-            $title = $view['slots']->get('title', null);
+        $title = $view['slots']->get('title', null);
         ?>
-        <title>7boom <?php echo $title !== null ?'- '.$title : '';?></title>
+        <title>7boom <?php echo $title !== null ? '- ' . $title : ''; ?></title>
 
         <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
-        <?php $canonical_url = $view['slots']->get('canonical_url',null); ?>
-        <?php if($canonical_url !== null):?>
-        <link rel="canonical" href="<?php echo $canonical_url ?>"/>
-        <?php endif;?>
+        <?php $canonical_url = $view['slots']->get('canonical_url', null); ?>
+        <?php if ($canonical_url !== null): ?>
+            <link rel="canonical" href="<?php echo $canonical_url ?>"/>
+        <?php endif; ?>
 
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
 
@@ -44,12 +44,12 @@
         );
         ?>
         <header>
-        <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
+            <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
         </header>
-        <?php echo $view['actions']->render('BoomFrontBundle:Profile:userBlock',array(), array('standalone' => false)); ?>
+        <?php echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => 'esi')); ?>
         <div id="container" class="<?php $view['slots']->output('layout_container_css_class', '') ?>">
-        <?php $view['slots']->output('_content') ?>
+            <?php $view['slots']->output('_content') ?>
         </div>
-<?php echo $view->render('BoomFrontBundle::blocks/footer.html.php'); ?>
+        <?php echo $view->render('BoomFrontBundle::blocks/footer.html.php'); ?>
     </body>
 </html>

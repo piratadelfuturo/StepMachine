@@ -1,9 +1,4 @@
 <?php
-$categoryName = $categorySlug = null;
-if (isset($category) && $category !== null) {
-    $categorySlug = $category['slug'];
-    $categoryName = $category['name'];
-}
 if (!isset($list)) {
     $list = array();
 }
@@ -13,20 +8,16 @@ if (!isset($list)) {
     <ul class="list">
         <?php
         foreach ($list as $element):
-            if ($categorySlug === null):
-                $categorySlug = $element['maincategory']['slug'];
-                $categoryName = $element['maincategory']['name'];
-            endif;
             $elementUrl = $view['router']->generate(
-                    'BoomFrontBundle_slug_show', array(
-                'slug' => $categorySlug . '/' . $element['slug']
+                    'BoomFrontBundle_boom_show', array(
+                'category_slug' => $element['category']['slug'], 'slug' => $element['slug']
                     )
             );
             ?>
             <li class="boom">
                 <img src="<?php echo $element['image']['path'] ?>" width="158px" height="90px" >
                 <div class="boom-info">
-                    <span class="sm-flag <?php echo $categorySlug ?>"><?php echo $view->escape($categoryName) ?></span>
+                    <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                     <p class="boom-ti">
                         <a href="<?php echo $elementUrl ?>" class="boom-moar">
                             <?php echo $view->escape($element['title']); ?>

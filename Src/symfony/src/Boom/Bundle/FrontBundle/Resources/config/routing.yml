@@ -35,9 +35,14 @@ BoomFrontBundle_profile:
     prefix:   /tu_sitio
 
 
-BoomFrontBundle_slug_show:
+BoomFrontBundle_category_show:
     pattern:  /{slug}
-    defaults: { _controller: "BoomFrontBundle:Default:show" }
+    defaults: { _controller: "BoomFrontBundle:Default:category" }
     requirements:
-        slug: ".+"
+        _method:  GET
 
+BoomFrontBundle_boom_show:
+    pattern:  /{category_slug}/{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:boom" }
+    requirements:
+        _method:  GET

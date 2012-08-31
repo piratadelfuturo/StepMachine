@@ -13,7 +13,7 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
-        $latest = $repo->findBy(array('status'=> Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
+        $latest = $repo->findBy(array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
 
 
         return $this->render(
@@ -36,10 +36,10 @@ class DefaultController extends Controller {
 
         switch ($slugCount) {
             case 1:
-                $response = $this->_categoryAction($slug);
+                $response = $this->categoryAction($slug);
                 break;
             case 2:
-                $response = $this->_boomAction($slugArray);
+                $response = $this->boomAction($slugArray);
                 break;
             default:
                 throw $this->createNotFoundException('Not found');
@@ -48,38 +48,30 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    private function _boomAction(array $slugArray) {
+    public function boomAction($category_slug, $slug) {
 
         $response = new Response();
         $response->setPublic();
         $response->setSharedMaxAge(600);
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slugArray[1]);
-        $catRepo = $em->getRepository('BoomLibraryBundle:Category');
-        $thisCategory = $catRepo->findOneBySlug($slugArray[0]);
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
+                array(
+                    'slug' => $slug,
+                    'status' => array(
+                        Boom::STATUS_PUBLIC,
+                        Boom::STATUS_PRIVATE
+                    )
+                )
+        );
 
-        $inCategory = false;
-        if ($entity['maincategory']['id'] == $thisCategory['id']) {
-            $inCategory = true;
-        } else {
-            foreach ($entity['categories'] as $category) {
-                if ($category['id'] == $thisCategory['id']) {
-                    $inCategory = true;
-                }
-            }
-        }
-
-        $sessionToken = $this->get('security.context')->getToken();
-        $sessionUser = $sessionToken->getUser();
-
-        if ($inCategory == false || !$entity) {
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find.');
+        } elseif ($entity['category']['slug'] !== $category_slug) {
             throw $this->createNotFoundException('Unable to find.');
         }
 
-        if (!in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
-            throw $this->createNotFoundException('Unable to find.');
-        }
+        $thisCategory = $entity['category'];
 
         if ($response->isNotModified($this->getRequest()) == true) {
             return $response;
@@ -93,7 +85,7 @@ class DefaultController extends Controller {
         }
     }
 
-    private function _categoryAction($slug) {
+    private function categoryAction($slug) {
         $em = $this->getDoctrine()->getManager();
         $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
@@ -108,7 +100,7 @@ class DefaultController extends Controller {
                 $thisCategory, array('date_created' => 'DESC')
                 , 14
                 , 0
-                ,array(Boom::STATUS_PUBLIC));
+                , array(Boom::STATUS_PUBLIC));
 
         return $this->render('BoomFrontBundle:Category:index.html.php', array(
                     //'top' => $top,

@@ -43,14 +43,9 @@ class Category extends DomainObject{
     protected $featured;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="categories", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="category", fetch="EXTRA_LAZY" )
      */
     protected $booms;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="main_category", fetch="EXTRA_LAZY" )
-     */
-    protected $main_booms;
 
     /**
      * @ORM\OneToMany(targetEntity="ListGroup", mappedBy="category", fetch="EXTRA_LAZY" )

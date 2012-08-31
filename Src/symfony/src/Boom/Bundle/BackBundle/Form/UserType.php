@@ -16,7 +16,9 @@ class UserType extends AbstractType {
                     'required' => false
                         )
                 )
-                ->add('collaborator');
+                ->add('collaborator','checkbox',array(
+                    'required' => false
+                ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
