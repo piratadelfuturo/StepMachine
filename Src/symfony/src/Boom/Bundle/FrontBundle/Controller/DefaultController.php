@@ -55,18 +55,19 @@ class DefaultController extends Controller {
         $response->setSharedMaxAge(600);
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findBy(
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
                 array(
-            'slug' => $slug,
-            'status' => array(
-                Boom::STATUS_PUBLIC,
-                Boom::STATUS_PRIVATE
-            ),
-            'category.slug' => $category_slug
-                ), null, 1, 0
+                    'slug' => $slug,
+                    'status' => array(
+                        Boom::STATUS_PUBLIC,
+                        Boom::STATUS_PRIVATE
+                    )
+                )
         );
 
         if (!$entity) {
+            throw $this->createNotFoundException('Unable to find.');
+        } elseif ($entity['category']['slug'] !== $category_slug) {
             throw $this->createNotFoundException('Unable to find.');
         }
 
