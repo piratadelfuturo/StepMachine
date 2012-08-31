@@ -51,11 +51,11 @@ class DefaultController extends Controller {
     public function boomAction($category_slug, $slug) {
 
         $response = new Response();
-        $response->setPublic();
-        $response->setSharedMaxAge(600);
-        if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
-            return $response;
-        } else {
+        //$response->setPublic();
+        //$response->setSharedMaxAge(600);
+        //if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
+            //return $response;
+        //} else {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
                 array(
@@ -80,7 +80,7 @@ class DefaultController extends Controller {
                         'category' => $thisCategory
                             ), $response
             );
-        }
+        //}
     }
 
     private function categoryAction($slug) {
