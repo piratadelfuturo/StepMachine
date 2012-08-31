@@ -28,27 +28,18 @@
         (function(window){
             var logout = function(response,FBLogin){
                 if((response.status == 'unknown' || response == true ) && FBLogin == true){
-                    console.log("<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>");
-                    //window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
+                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
                 }
 
             }
             window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK') ? 'true' : 'false'; ?>;
             window.onFbInit = function(response) {
-                if (typeof(FB) != 'undefined' && FB != null ) {
-                    FB.getLoginStatus(function(response){
-                        //if(console&&response)console.log('init1',response,window.FBLogin);
-                        logout(response,window.FBLogin);
-                    });
-
-
+                if (!!FB) {
                     FB.Event.subscribe('auth.statusChange', function(response) {
-                        //if(console&&response)console.log('status',response,window.FBLogin);
                         if (!response.session || !response.authResponse) {
                             var FBLogin = function(){
                                 if(response.status == 'connected' && window.FBLogin == false){
-                                    console.log("<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>");
-                                    //window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
+                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
                                 }else{
                                     logout(response,window.FBLogin);
                                 }
@@ -61,6 +52,5 @@
                 }
             }
         })(window);
-
     </script>
 </footer>
