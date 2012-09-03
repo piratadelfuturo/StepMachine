@@ -18,18 +18,19 @@
 
         //BOOMIES
         $('li.boom:first-child').ready(function(){
+          $('li.boom:first-child').children(".boom-content").slideDown("slow");
           var Boom7 = $('li.boom:first-child');
           Boom7.addClass("on");
           return false; 
         });
           $('span[class="tab"]').click(function(){
           if($(this).parent().hasClass("on")){
+             $(this).siblings('.boom-content').slideUp("slow");            
             $(this).parent().removeClass("on");
           }else{
-            $(this).parent().addClass(function(){
-              $(this).fadeIn("slow");
-              return "on";
-            });
+            $(this).parent().addClass("on");
+             $(this).siblings('.boom-content').slideDown("slow");
+            
           }
           return false;
         })
