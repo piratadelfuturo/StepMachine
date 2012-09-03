@@ -1775,17 +1775,20 @@ footer p{
 }
 #single-boom .booms .boom-content{
   border-top:1px solid #dfdfdf;
-  padding:10px 0;
+  padding: 10px 0 0;
+  margin-bottom:10px;
 }
 #single-boom .boom .boom-content{
-  display:none;
   color:#828282;
+  overflow: hidden;
+  height:0;
 }
 #single-boom .boom .boom-content a{
   color:#f47b20;
 }
 #single-boom .on .boom-content{
-  display:inline-block;
+  /*display:inline-block;*/
+  height:auto;
 }
 #single-boom .booms .boom-content .comments{
   margin-top:10px;
