@@ -35,7 +35,7 @@ class Boom extends DomainObject {
     protected $id;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
+     * @Gedmo\Slug(fields={"title"},unique=true,updatable=false)
      * @ORM\Column(type="string", length=140, unique=true)
      */
     protected $slug;
@@ -46,7 +46,7 @@ class Boom extends DomainObject {
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=false)
      */
     protected $summary;
 
@@ -96,7 +96,7 @@ class Boom extends DomainObject {
     protected $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms", cascade={"persist"})
      * @ORM\JoinTable(name="booms_tags")
      * */
     protected $tags;

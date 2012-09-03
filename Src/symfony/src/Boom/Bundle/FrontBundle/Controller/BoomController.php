@@ -5,7 +5,7 @@ namespace Boom\Bundle\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\Boomelement;
-use Boom\Bundle\BackBundle\Form\BoomType;
+use Boom\Bundle\FrontBundle\Form\BoomType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use UnauthorizedHttpException;

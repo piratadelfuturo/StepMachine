@@ -3,10 +3,13 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="tag")
+ * @ORM\HasLifecycleCallbacks
  */
 class Tag extends DomainObject{
 
@@ -18,12 +21,13 @@ class Tag extends DomainObject{
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=140)
+     * @Gedmo\Slug(fields={"name"},unique=true, updatable=true)
+     * @ORM\Column(type="string", length=140, unique=true)
      */
     protected $slug;
 
     /**
-     * @ORM\Column(type="string", length=140)
+     * @ORM\Column(type="string", length=140, unique=true)
      */
     protected $name;
 
@@ -33,8 +37,9 @@ class Tag extends DomainObject{
      **/
     protected $booms;
 
-    public function __construct()
+    public function __construct($name)
     {
+        $this->setName($name);
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -78,6 +83,9 @@ class Tag extends DomainObject{
      */
     public function setName($name)
     {
+        $name = trim($name);
+        $name = preg_replace('!\s+!', ' ', $name);
+        $name = mb_strtolower($name, 'UTF-8');
         $this->name = $name;
         return $this;
     }

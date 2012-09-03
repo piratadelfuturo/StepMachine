@@ -35,7 +35,7 @@
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría')) ?>
         <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>
-        <?php // echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
+        <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
         <label>Boomies</label>

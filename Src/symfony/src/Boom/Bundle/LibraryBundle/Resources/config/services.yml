@@ -1,8 +1,8 @@
 parameters:
   boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
-  boom_library.image.helper.class: Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
-  boom_library.pagination.helper.class: Boom\Bundle\LibraryBundle\Templating\Helper\PaginationHelper
-
+  boom_library.image.helper.class:        Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
+  boom_library.pagination.helper.class:   Boom\Bundle\LibraryBundle\Templating\Helper\PaginationHelper
+  boom_library.tags_selector.type.class:  Boom\Bundle\LibraryBundle\Form\Type\TagsSelectorType
 services:
   boom_library.image_upload_persist.listener:
         class: %boom_library.image_upload_persist.listener.class%
@@ -27,6 +27,11 @@ services:
             container:    "@service_container"
         tags:
             - { name: templating.helper, alias: boom_pagination }
+  boom_library.tags_selector.type:
+        class: %boom_library.tags_selector.type.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: tags_selector }
 
 #  boom_library.boom_category_update.listener:
 #        class: Boom\Bundle\LibraryBundle\Listener\BoomCategoryListener

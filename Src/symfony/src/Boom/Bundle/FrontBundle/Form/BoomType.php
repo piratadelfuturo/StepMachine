@@ -1,7 +1,8 @@
 <?php
+namespace Boom\Bundle\FrontBundle\Form;
 
-namespace Boom\Bundle\BackBundle\Form;
-
+use Boom\Bundle\LibraryBundle\Form\BoomelementType;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,14 +13,27 @@ class BoomType extends AbstractType {
 
         $builder
                 ->add('title')
-                ->add('summary', null, array('required' => false))
-                ->add('date_published', null, array(
-                    'read_only' => false,
-                    'attr' => array(
-                        'style' => 'display:none;'
-                    )
+                ->add('summary', null, array('required' => true))
+                ->add('date_published', 'datetime', array(
+                    'read_only' => false
                 ));
-        $builder->add(
+       $builder->add(
+                'status',
+                'choice',
+                array(
+                    'required' => true,
+                    'choices' => array(
+                        Boom::STATUS_DRAFT      => 'Draft',
+                        Boom::STATUS_REVIEW     => 'Revisión',
+                        Boom::STATUS_PUBLIC     => 'Público',
+                        Boom::STATUS_PRIVATE    => 'Privado',
+                        Boom::STATUS_DELETE     => 'Eliminado',
+                        Boom::STATUS_BLOCK      => 'Bloqueado',
+                    )
+                )
+                );
+
+               $builder->add(
                 'category', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',
@@ -27,25 +41,31 @@ class BoomType extends AbstractType {
             'required' => true
                 )
         );
+
         $builder->add(
                 'nsfw', 'checkbox', array(
             'required' => false
                 )
         );
+
+        $builder->add(
+                'featured', 'checkbox', array(
+            'required' => false
+                )
+        );
+
         $builder->add(
                 'image', 'hidden');
 
         $builder->add(
-                'tags', 'collection', array(
-            'type' => 'text',
-            'allow_add' => true,
-            'allow_delete' => true)
+                'tags', 'tags_selector', array()
         );
+
 
         $builder->add(
                 'elements', 'collection', array(
             'type' => new BoomelementType(),
-            'allow_add' => true,
+            'allow_add' => false,
             'allow_delete' => false
                 )
         );

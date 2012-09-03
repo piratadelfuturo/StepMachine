@@ -13,7 +13,7 @@ class BoomType extends AbstractType {
 
         $builder
                 ->add('title')
-                ->add('summary', null, array('required' => false))
+                ->add('summary', null, array('required' => true))
                 ->add('date_published', 'datetime', array(
                     'read_only' => false
                 ));
@@ -56,16 +56,16 @@ class BoomType extends AbstractType {
 
         $builder->add(
                 'image', 'hidden');
-        /*
+
         $builder->add(
-                'tags', 'textarea', array()
+                'tags', 'tags_selector', array()
         );
-        */
+
 
         $builder->add(
                 'elements', 'collection', array(
             'type' => new BoomelementType(),
-            'allow_add' => true,
+            'allow_add' => false,
             'allow_delete' => false
                 )
         );
