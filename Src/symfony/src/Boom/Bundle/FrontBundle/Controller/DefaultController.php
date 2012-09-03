@@ -23,6 +23,10 @@ class DefaultController extends Controller {
         );
     }
 
+    public function testAction(){
+        return $this->render('BoomFrontBundle:Default:test.html.php');
+    }
+
     public function bigTopBlockAction() {
         return $this->render(
                         'BoomFrontBundle:Default:blocks/bigTop.html.php');
@@ -83,7 +87,7 @@ class DefaultController extends Controller {
         //}
     }
 
-    private function categoryAction($slug) {
+    public function categoryAction($slug) {
         $em = $this->getDoctrine()->getManager();
         $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');

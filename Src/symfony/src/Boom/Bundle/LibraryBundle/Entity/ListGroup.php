@@ -20,15 +20,33 @@ class ListGroup extends DomainObject{
     protected $id;
 
     /**
+     * @Gedmo\SortableGroup
+     * @ORM\Column(type="string", length=140)
+     */
+    protected $block;
+
+    /**
+     * @Gedmo\SortablePosition
+     * @ORM\Column(type="integer")
+     */
+    protected $position;
+
+    /**
      * @ORM\Column(type="string", length=140)
      */
     protected $name;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $update_date;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_groups")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     protected $category;
+
 
     /**
      * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group" )
@@ -40,7 +58,12 @@ class ListGroup extends DomainObject{
      */
     public function __construct()
     {
-        $this->listelements = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
+        /*for($i=1;$i<=7;$i++){
+            $listElement = new ListElement($this);
+            $listElement->setPosition($i);
+            $this->list_elements[] = $listElement;
+        }*/
     }
 
     /**
@@ -131,4 +154,33 @@ class ListGroup extends DomainObject{
     {
         return $this->list_elements;
     }
+
+    public function getUpdateDate() {
+        return $this->update_date;
+    }
+
+    public function setUpdateDate(\DateTime $update_date) {
+        $this->update_date = $update_date;
+    }
+
+
+    public function getBlock() {
+        return $this->block;
+    }
+
+    public function setBlock($block) {
+        $this->block = $block;
+    }
+
+    public function getPosition() {
+        return $this->position;
+    }
+
+    public function setPosition($position) {
+        $this->position = $position;
+    }
+
+
+
+
 }

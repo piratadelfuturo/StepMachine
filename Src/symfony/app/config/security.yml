@@ -56,7 +56,6 @@ security:
             form_login:
                 check_path: /admin/login_check
                 login_path: /admin/login
-                default_target_path: /admin
         boom_area:
             pattern:    ^/
             anonymous: true
@@ -64,20 +63,17 @@ security:
               key:      "%secret%"
               lifetime: 3600
               path:     /
-              domain: ~
             form_login:
                 provider: fos_userbundle_provider
                 csrf_provider: form.csrf_provider
             fos_facebook:
-                app_url: "http://apps.facebook.com/echo_mx/"
-                server_url: "http://sb.here/"
                 check_path: /login_check_fb
-                login_path: /
-                default_target_path: /
+                use_referer: true
                 provider: boom_fos_facebook_provider
+                success_handler: boom_front.facebook.auth_handler
+                failure_handler: boom_front.facebook.auth_handler
             logout:
                 path:   /logout
-                target: /
                 handlers: ["fos_facebook.logout_handler"]
     access_control:
         - path: ^/_internal/secure
@@ -87,11 +83,7 @@ security:
           roles: IS_AUTHENTICATED_ANONYMOUSLY
         - path: ^/admin
           roles: ROLE_ADMIN
-        - path: ^/boom
-          roles: IS_AUTHENTICATED_FULLY
-        - path: ^/actividad
-          roles: IS_AUTHENTICATED_FULLY
-        - path: ^/tu_sitio
+        - path: ^/(boom|actividad|tu_sitio)
           roles: IS_AUTHENTICATED_FULLY
         - path: ^/
           roles: IS_AUTHENTICATED_ANONYMOUSLY

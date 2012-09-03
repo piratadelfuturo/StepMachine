@@ -42,15 +42,25 @@ class FacebookProvider implements UserProviderInterface {
 
     public function loadUserByUsername($fbId) {
 
-        $user = $this->findUserByFbId($fbId);
+        $user = $this->processUser($fbId);
+
+        if (empty($user) || $user === null) {
+            throw new UsernameNotFoundException('The user is not authenticated on facebook');
+        }
+
+        return $user;
+    }
+
+    public function processUser($fbId){
 
         $loggedUser = null;
+        $user = null;
 
-        if ($user === null) {
-            $userToken = $this->container->get('security.context')->getToken();
-            if ($userToken !== null) {
-                $loggedUser = $userToken->getUser();
-            }
+        $userToken = $this->container->get('security.context')->getToken();
+        if ($userToken !== null) {
+            $loggedUser = $userToken->getUser();
+        }else{
+            $user = $this->findUserByFbId($fbId);
         }
 
         try {
@@ -96,10 +106,6 @@ class FacebookProvider implements UserProviderInterface {
                     }
                 }
             }
-        }
-
-        if (empty($user) || $user === null) {
-            throw new UsernameNotFoundException('The user is not authenticated on facebook');
         }
 
         return $user;

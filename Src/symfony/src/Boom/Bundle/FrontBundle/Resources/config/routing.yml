@@ -1,5 +1,7 @@
 BoomFrontBundle_login_fb:
     pattern:  /login_fb
+    defaults: { _controller: BoomFrontBundle:Profile:fbLogin }
+
 
 BoomFrontBundle_login_check_fb:
     pattern:   /login_check_fb
@@ -34,6 +36,10 @@ BoomFrontBundle_profile:
     resource: "@BoomFrontBundle/Resources/config/routing/profile.yml"
     prefix:   /tu_sitio
 
+
+BoomFrontBundle_Default_test:
+    pattern:  /test
+    defaults: { _controller: "BoomFrontBundle:Default:test" }
 
 BoomFrontBundle_category_show:
     pattern:  /{slug}

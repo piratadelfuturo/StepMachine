@@ -67,6 +67,10 @@ class ListElement extends DomainObject{
      */
     protected $list_group;
 
+    /*
+    public function __construct(ListGroup $list_group){
+        $this->setListGroup($list_group);
+    }*/
 
     /**
      * Get id

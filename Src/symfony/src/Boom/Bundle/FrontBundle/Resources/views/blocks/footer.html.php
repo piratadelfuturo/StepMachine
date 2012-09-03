@@ -24,33 +24,4 @@
         </ul>
     </div>
     <p id="copyright">Copyright © 2012 · All Rights Reserved · info@7boom.mx</p>
-    <script type="text/javascript">
-        (function(window){
-            var logout = function(response,FBLogin){
-                if((response.status == 'unknown' || response == true ) && FBLogin == true){
-                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_logout') ?>";
-                }
-
-            }
-            window.FBLogin = <?php echo $view['security']->isGranted('ROLE_FACEBOOK') ? 'true' : 'false'; ?>;
-            window.onFbInit = function(response) {
-                if (!!FB) {
-                    FB.Event.subscribe('auth.statusChange', function(response) {
-                        if (!response.session || !response.authResponse) {
-                            var FBLogin = function(){
-                                if(response.status == 'connected' && window.FBLogin == false){
-                                    window.location.href = "<?php echo $view['router']->generate('BoomFrontBundle_login_check_fb', array('_remember_me' => 'on')) ?>";
-                                }else{
-                                    logout(response,window.FBLogin);
-                                }
-                            }
-                            setTimeout( FBLogin , 500);
-                        } else {
-                            logout(true,true);
-                        }
-                    });
-                }
-            }
-        })(window);
-    </script>
 </footer>

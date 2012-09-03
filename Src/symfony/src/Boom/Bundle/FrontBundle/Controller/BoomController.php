@@ -37,11 +37,6 @@ class BoomController extends Controller {
      */
     public function newAction() {
         $entity = new Boom();
-        for ($i = 1; $i <= 7; $i++) {
-            $element = new Boomelement();
-            $element->setPosition($i);
-            $entity->addElement($element);
-        }
         $form = $this->createForm(new BoomType(), $entity);
 
         return $this->render('BoomFrontBundle:Boom:new.html.php', array(

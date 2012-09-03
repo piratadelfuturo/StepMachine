@@ -14,7 +14,6 @@
             });
         });
 
-
         elements.sortable({
             axis: "y",
             handle: "label",
@@ -52,16 +51,15 @@
         textareas.tinymce({
             script_url : '/bundles/boomback/js/lib/tiny_mce/tiny_mce.js',
             theme : "advanced",
-            mode : "textareas",
+            mode : "none",
             width: "100%",
-            plugins : "bbcode,autoresize",
-            theme_advanced_buttons1 : "bold,italic,underline,undo,redo,link,unlink,forecolor,styleselect,removeformat,cleanup",
+            plugins : "bbcode,autoresize,boom",
+            theme_advanced_buttons1 : "image,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
-            valid_elements: "strong/b,i/em,u,blockquote",
+            valid_elements: "strong/b,i/em,u,blockquote,img[!src|alt|title|width|height|!insert-id],a[!href|!target:_blank]|div[!class<gallery|!insert-id|!insert-type]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
-            theme_advanced_styles : "Code=codeStyle;Quote=quoteStyle",
             //content_css : "css/bbcode.css",
             entity_encoding : "raw",
             add_unload_trigger : false,
@@ -94,7 +92,6 @@
                 Routing.generate('BoomBackBundle_boom_preview', {
                     id: $preview.val()
                 }));
-
 
         });
 

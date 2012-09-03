@@ -1,9 +1,7 @@
 parameters:
     boom_front.facebook.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\FacebookProvider
-    boom_front.twitter.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\TwitterProvider
-    boom_front.social.user.class: Boom\Bundle\FrontBundle\Security\User\Provider\SocialProvider
     boom_front.main.helper.class: Boom\Bundle\FrontBundle\Templating\Helper\MainHelper
-    boom_front.facebook.helper.class: Boom\Bundle\FrontBundle\Templating\Helper\FacebookHelper
+    boom_front.facebook.auth_handler.class: Boom\Bundle\FrontBundle\Security\Http\Authentication\FacebookAuthenticationHandler
 services:
     boom_front.facebook.user:
         class: %boom_front.facebook.user.class%
@@ -12,35 +10,20 @@ services:
             userManager:  "@fos_user.user_manager"
             validator:    "@validator"
             container:    "@service_container"
+            logging:      %fos_facebook.logging%
+            culture:      %fos_facebook.culture%
+            scope:        %fos_facebook.permissions%
     boom_front.main.helper:
         class: %boom_front.main.helper.class%
         arguments:
             container:    "@service_container"
         tags:
             - { name: templating.helper, alias: boom_front }
-    boom_front.facebook.helper:
-        class: %boom_front.facebook.helper.class%
+    boom_front.facebook.auth_handler:
+        class: %boom_front.facebook.auth_handler.class%
+        public: false
         arguments:
-            templating: "@templating"
-            facebook:   "@fos_facebook.api"
-            logging:    %fos_facebook.logging%
-            culture:    %fos_facebook.culture%
-            scope:      %fos_facebook.permissions%
-            container:  "@service_container"
+            securityContext: "@security.context"
+            router: '@router'
         tags:
-            - { name: templating.helper, alias: boom_facebook }
-    #boom_front.twitter.user:
-    #    class: %boom_front.twitter.user.class%
-    #    arguments:
-    #        twitter_oauth: "@fos_twitter.api"
-    #        userManager: "@fos_user.user_manager"
-    #        validator: "@validator"
-    #        session: "@session"
-    #boom_front.social.user:
-    #    class: %boom_front.social.user.class%
-    #    arguments:
-    #        facebook: "@fos_facebook.api"
-    #        twitter_oauth: "@fos_twitter.api"
-    #        userManager: "@fos_user.user_manager"
-    #        validator: "@validator"
-    #        session: "@session"
+            - { name: 'monolog.logger', channel: 'security' }

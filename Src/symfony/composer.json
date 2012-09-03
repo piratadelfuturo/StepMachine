@@ -25,7 +25,8 @@
         "friendsofsymfony/twitter-bundle": "dev-master",
         "gedmo/doctrine-extensions": "v2.3.2",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
-        "mjohnson/decoda": "3.*"
+        "mjohnson/decoda": "3.*",
+        "hwi/oauth-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [
