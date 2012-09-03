@@ -39,6 +39,8 @@ fos_facebook:
       secret: %facebook_app_secret%
       cookie: true
       culture: es_LA
+      class:
+        helper: Boom\Bundle\FrontBundle\Templating\Helper\FacebookHelper
       permissions:
         - email
         - user_birthday
@@ -88,8 +90,8 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
-        metadata_cache_driver: array
-        query_cache_driver: array
+        metadata_cache_driver: apc
+        query_cache_driver: apc
         result_cache_driver: apc
         # only these lines are added additionally
         mappings:
@@ -126,12 +128,9 @@ swiftmailer:
 
 boom_library:
     boom_image_sizes:
-      - width: 680
-        height: 382
-      - width: 158
-        height: 90
-      - width: 72
-        height: 72
+      - { width: 680, height: 382 }
+      - { width: 158, height: 90  }
+      - { width: 72 , height: 72  }
 services:
     cache.apc:
         class: Doctrine\Common\Cache\ApcCache

@@ -158,3 +158,25 @@
 
     });
 })(document,jQuery);
+
+/*
+ * FB Login
+ */
+
+(function(window, document, $ ){
+    window.onFbInit = function(){
+        if(!!FB){
+            $("a#fb-login-check").click(function(){
+                var _a = $(this);
+                FB.login(function(response){
+                    if(response.status == 'connected'){
+                        window.location = _a.attr('registration-url');
+                    }
+                },{
+                    scope:_a.attr('scope')
+                    });
+                return false;
+            });
+        }
+    }
+})(window,document,jQuery);

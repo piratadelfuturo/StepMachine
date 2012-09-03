@@ -37,7 +37,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
                     </div>
                 </div>
                 <div id="filter">
-                    <form >
+                    <form id="usr-category-pref">
                         <p>Filtro por categoría:</p>
                         <ul>
                             <?php foreach ($categories as $category): ?>
@@ -48,7 +48,6 @@ $categories = $view['boom_front']->getFeaturedCategories();
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-                        <a href="#" class="ver-moar">Ver todas</a>
                     </form>
                 </div>
                 <?php $followings = $user['following']->slice(0, 12); ?>

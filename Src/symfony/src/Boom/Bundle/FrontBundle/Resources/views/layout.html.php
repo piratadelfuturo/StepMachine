@@ -39,14 +39,21 @@
         echo $view['facebook']->initialize(
                 array(
                     'xfbml' => true,
-                    'fbAsyncInit' => 'onFbInit();',
-                    'oauth' => true)
+                    'fbAsyncInit' => 'window.onFbInit()',
+                    'oauth' => true),
+                'BoomFrontBundle::blocks/facebook/initialize.html.php'
         );
         ?>
         <header>
             <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
         </header>
-        <?php echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => 'esi')); ?>
+        <?php
+            if($view['security']->isGranted('ROLE_USER') == false){
+                echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
+            }else{
+                echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
+            }
+        ?>
         <div id="container" class="<?php $view['slots']->output('layout_container_css_class', '') ?>">
             <?php $view['slots']->output('_content') ?>
         </div>

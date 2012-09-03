@@ -10,6 +10,7 @@ class DebugAppCache extends HttpCache {
     {
         return array(
             'debug'                  => true,
+            'allow_reload'           => true,
             /*'default_ttl'            => 0,
             'private_headers'        => array('Authorization', 'Cookie'),
             'allow_reload'           => false,
