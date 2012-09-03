@@ -50,7 +50,7 @@ $view['slots']->set('canonical_url', $canonical_url);
 $elements = array_reverse($entity['elements']->toArray());
 foreach ($elements as $element):
     ?>
-                <li class="boom on">
+      <li class="boom">
                     <div class="place-info">
                         <span class="place">
     <?php echo $element['position'] ?>
