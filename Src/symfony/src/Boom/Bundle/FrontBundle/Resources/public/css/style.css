@@ -296,17 +296,37 @@ header{position:relative;}
   text-indent: -9999px;
 }
 
-#hd-mn #hd-social-list{
-    float: right;
-    overflow: hidden;
-    margin: 0px 0px 5px;
-    position: absolute;
+.hd-social-list {
+    position: relative;
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+    padding-right: 10px;
 }
 
-#hd-mn #hd-social-list li{
-    float:left;
-    display: block;
-    margin: 0px 5px 0px;
+.hd-social-list p {
+  display: inline-block;
+  color: #999;
+  font: 16px/27px 'Proxima', sans-serif;
+}
+
+.hd-social-list a {
+  display: block;
+  text-indent: 50px;
+  width: 27px;
+  height: 27px;
+  margin-left: 5px;
+  overflow: hidden;
+  background-image: url('../images/social.png');
+  border: 1px solid #A6B0C4;
+}
+
+.hd-social-list .fb {
+  background-position: 0 0;
+}
+
+.hd-social-list .tw {
+  background-position: -37px 0;
 }
 
 #hd-mn #link-block{
