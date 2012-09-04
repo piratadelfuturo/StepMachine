@@ -53,8 +53,7 @@ class TextToTagTransformer implements DataTransformerInterface {
                 $TagEntity = $repo->findOneBy(array('name' => $tag));
                 if ($TagEntity === null) {
                     $tagsLocation[$tag] = new Tag($tag);
-                    $this->om->persist($tagsLocation[$tag]);
-                    $this->om->flush();
+                    //$this->om->persist($tagsLocation[$tag]);
                     $tagEntities[$tag] = &$tagsLocation[$tag];
                 } elseif (!isset($tagsLocation[$tag])) {
                     $tagEntities[$tag] = $TagEntity;

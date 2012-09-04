@@ -474,8 +474,9 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\Tag $tags
      * @return Boom
      */
-    public function addTag(\Boom\Bundle\LibraryBundle\Entity\Tag $tags) {
-        $this->tags[] = $tags;
+    public function addTag(\Boom\Bundle\LibraryBundle\Entity\Tag $tag) {
+        $tag->addBoom($this);
+        $this->tags[] = $tag;
         return $this;
     }
 
@@ -502,10 +503,11 @@ class Boom extends DomainObject {
      *
      * @return Boom
      */
+    /*
     public function setTags(\Doctrine\Common\Collections\Collection $tags) {
         $this->tags = $tags;
         return $this;
-    }
+    }*/
 
     /**
      * @ORM\PrePersist()
