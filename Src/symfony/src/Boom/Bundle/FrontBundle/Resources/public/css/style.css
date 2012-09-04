@@ -342,7 +342,7 @@ header{position:relative;}
 #hd-mn nav {
   display: block;
   position: relative;
-  padding: 0 285px 0 24px;
+  padding: 0 0 0 24px;
   height: 40px;
   font: 16px 'Proxima', sans-serif;
   background: #e74f4a;
