@@ -7,7 +7,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>URL</th>
-                <th>Categorías</th>
+                <th>Categoría</th>
                 <th>Fecha</th>
                 <th>NSFW</th>
                 <th>Usuario</th>

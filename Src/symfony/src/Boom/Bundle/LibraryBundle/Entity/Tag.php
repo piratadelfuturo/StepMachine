@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\TagRepository")
  * @ORM\Table(name="tag")
  * @ORM\HasLifecycleCallbacks
  */

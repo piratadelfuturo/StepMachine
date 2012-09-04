@@ -4,7 +4,7 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
-class ImageRepository extends EntityRepository {
+class TagRepository extends EntityRepository {
 
     /**
      * @param array $get

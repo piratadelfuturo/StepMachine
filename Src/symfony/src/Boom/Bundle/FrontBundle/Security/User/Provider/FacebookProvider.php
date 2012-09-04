@@ -84,13 +84,7 @@ class FacebookProvider implements UserProviderInterface {
                 $user->setImageOption(User::IMAGE_FACEBOOK);
                 $user->addRole('ROLE_FACEBOOK');
                 $user->addRole('ROLE_SOCIAL');
-
-                if (count($this->validator->validate($user, 'Facebook')) > 0) {
-                    // TODO: the user was found obviously, but doesnt match our expectations, do something smart
-                    throw new UsernameNotFoundException('The facebook user could not be stored');
-                } else {
-                    $this->userManager->updateUser($user);
-                }
+                $this->userManager->updateUser($user);
             }
         } elseif (!empty($loggedUser) || $loggedUser !== null) {
             if (!empty($fbdata) && $fbdata !== null) {

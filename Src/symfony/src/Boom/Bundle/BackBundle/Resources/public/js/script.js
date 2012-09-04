@@ -109,7 +109,7 @@ $(document).ready(function() {
 		$content.find('div.calendar').wl_Calendar({
 			eventSources: [
 					{
-						url: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic'
+						url: 'http://www.google.com/calendar/feeds/fmf_7117_%50achuca#sports@group.v.calendar.google.com'
 					},{
 						events: [ // put the array in the `events` property
 							{
