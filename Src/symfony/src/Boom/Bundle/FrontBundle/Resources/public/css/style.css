@@ -13,6 +13,11 @@ ul, li {
   list-style-type: none;
 }
 
+/* clearfix */
+.cf:before, .cf:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.cf:after { clear: both; }
+.cf{ zoom: 1; }
+
 /*BODY*/
 
 body {
@@ -1777,16 +1782,16 @@ footer p{
 }
 #single-boom .booms .place-info{
   position: relative;
-  padding:10px 0;
+  padding:25px 0 2px 0;
 }
 #single-boom .booms .place{
   text-align:center;
   width:66px;
-  margin-right:7px;
+  margin-right:3px;
   display:inline-block;
   font: 67px 'Proxima', sans-serif;
   color:#f47b20;
-  line-height:86px;
+  line-height:87px;
   vertical-align: top;
   background: #504f4f; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -1810,8 +1815,8 @@ footer p{
 }
 #single-boom .booms .boom-content{
   border-top:1px solid #dfdfdf;
-  padding: 10px 0 0;
-  margin-bottom:10px;
+  padding: 20px 0 0;
+  margin:10px 0;
   display:none;
   height:auto;
 }
@@ -1827,7 +1832,7 @@ footer p{
   /*display:inline-block;*/
 }
 #single-boom .booms .boom-content .comments{
-  margin-top:10px;
+  margin-top:20px;
 }
 #single-boom .booms .tab{
   width:100%;
