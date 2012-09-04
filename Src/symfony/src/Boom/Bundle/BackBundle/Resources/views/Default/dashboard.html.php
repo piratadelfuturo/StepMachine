@@ -13,7 +13,7 @@
 					<div class="calendar" data-header="small">
 					</div>
 					<p>
-					<a class="btn" href="calendar.html">Check out the Calendar section</a>
+					<a class="btn" href="http://9gag.com">9gag</a>
 					</p>
 				</div>
 			</div>

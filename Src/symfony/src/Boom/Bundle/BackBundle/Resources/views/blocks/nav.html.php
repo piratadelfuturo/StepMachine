@@ -82,20 +82,9 @@ $nav[] = array(
         )
     );
 $nav[] = array(
+    '_route'    => 'BoomBackBundle_tag_index',
     'class' => 'i_tags',
-    'text' => 'Tags',
-    'children' => array(
-            array(
-                '_route'    => 'BoomBackBundle_tag_index',
-                'text'      => 'Lista',
-                'class'     => 'i_v-card'
-            ),
-            array(
-                '_route'    => 'BoomBackBundle_tag_new',
-                'text'      => 'Nuevo',
-                'class'     => 'i_v-card'
-            )
-        )
+    'text' => 'Tags'
     );
 
 $nav[] = array(

@@ -10,19 +10,16 @@ $User = $app->getUser();
             <li>
                 <ul>
                     <li><a href="#"><?php echo $User->getUsername() ?></a>
-
-                        <span>4</span>
-
+                        <?php $score = rand(2,11)?>
+                        <span><?php echo $score ?></span>
                         <ul>
-                            <li><a href="#">Just</a></li>
-                            <li><a href="#">another</a></li>
-                            <li><a href="#">Dropdown</a></li>
-                            <li><a href="#">Menu</a></li>
+                            <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
+        <!--
         <div id="searchbox">
             <form id="searchform" autocomplete="off">
                 <input type="search" name="query" id="search" placeholder="Search">
@@ -30,5 +27,5 @@ $User = $app->getUser();
         </div>
         <ul id="searchboxresult">
         </ul>
-    </div>
+    </div> -->
 </header>

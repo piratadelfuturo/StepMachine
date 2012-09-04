@@ -32,28 +32,18 @@ class TagController extends Controller {
         $standardColumn = array(
             'id',
             'slug',
-            'name',
-            'position',
-            'featured'
+            'name'
         );
 
         $columns = $standardColumn;
 
-        /**
-          $columns[] = array(
-
-          'main_booms' => array(
-          'id main_boom_total' => 'COUNT(%s)'
-          )
-          );
-         */
         $columns[] = array(
             'booms' => array(
                 'id boom_total' => 'COUNT(%s)'
             )
         );
 
-        $columns[] = 'id action_id';
+        //$columns[] = 'id action_id';
 
         $get['columns'] = $columns;
         $result = $repo->ajaxTable($get, true);
