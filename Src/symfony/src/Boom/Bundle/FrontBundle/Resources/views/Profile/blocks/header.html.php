@@ -17,7 +17,9 @@ $categories = $view['boom_front']->getFeaturedCategories();
                         </a>
                     <?php endif; ?>
                 </li>
-                <li><a href="#"><?php echo $user['firstname'] ?></a><span> ama este sitio.</span></li>
+                <li id="user-activity-strean" >
+                    <a href="#"><?php echo $user['firstname'] ?></a> ama este sitio.
+                </li>
             </ul>
             <ul id="open-tab">
                 <li class="on"><a href="#">Actividad</a><span>.</span></li>

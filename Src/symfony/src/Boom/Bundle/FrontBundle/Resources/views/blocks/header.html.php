@@ -4,6 +4,10 @@ $categories = $view['boom_front']->getFeaturedCategories();
 <div id="hd-mn" class="gradient">
     <h1><a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a></h1>
     <div id="link-block">
+        <div id="hd-social-list" >
+            <a href="http://www.facebook.com">Facebook</a>
+            <a href="http://www.twitter.com">Twitter</a>
+        </div>
         <div id="top-bar" class="gradient">
             <ul id="mini-nav">
                 <li><a href="#">Especiales</a></li>
