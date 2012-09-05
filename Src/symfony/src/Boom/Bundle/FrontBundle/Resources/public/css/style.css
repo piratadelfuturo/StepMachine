@@ -2015,6 +2015,10 @@ border-radius: 10px;
   position:relative;
   margin:5px 0;
 }
+#drag-booms li.empty{
+  border:1px dashed #ebebeb;
+  background:transparent !important;
+}
 #drag-booms li .boom-info, #drag-booms li img, #drag-booms li .pos{
   display:inline-block;
   vertical-align:top;

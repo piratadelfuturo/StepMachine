@@ -29,11 +29,17 @@
           }else{
             $(this).parent().addClass("on");
              $(this).siblings('.boom-content').slideDown('slow');
-            
           }
           return false;
         })
 
+        //DRAGnDROP
+        $("#drag-booms").dragsort({ dragSelector: '.pos', dragEnd: function(){
+          $("#drag-booms").children().each(function(index) {
+              $(this).children(".pos").html(index+1)
+            });
+        }, dragBetween: false, placeHolderTemplate: "<li class='empty'></li>" }); 
+        
         var $user = $('#usr-cnt');
         var $userBox = $user.find("#usr-roll");
         if($userBox){
