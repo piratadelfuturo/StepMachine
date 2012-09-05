@@ -3,10 +3,7 @@ $user = $app->getUser();
 $categories = $view['boom_front']->getFeaturedCategories();
 ?>
 <div id="usr-cnt">
-    <a href="#" class="mostrar">
-        <span style="display:none" >Mostrar</span>
-        <span  >Ocultar</span>
-    </a>
+    <a href="#" class="mostrar"><span>Tu Panel</span></a>
     <div id="usr-box">
         <div id="usr-bar">
             <ul id="close-tab">
