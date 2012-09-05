@@ -31,6 +31,8 @@
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.blockUI.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/plugins.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/script.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/modernizr-1.7.min.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/jquery.dragsort-0.5.1.min.js') ?>"></script>
 
 
     </head>
