@@ -79,12 +79,12 @@ body {
   padding-left: 50px;
   margin-left: 35px;
 }
-.title-flag span:before{
+.title-flag:before{
   width: 0;
 	height: 0;
-  border-top: 28px solid transparent;
-  border-bottom: 28px solid transparent;
-  border-left: 14px solid #FFF;
+  border-top: 32px solid transparent;
+  border-bottom: 32px solid transparent;
+  border-left: 16px solid #FFF;
   content: '';
   font-size: 0px;
   position: absolute;
