@@ -89,8 +89,8 @@ body {
   content: '';
   font-size: 0px;
   position: absolute;
-  top: -2px;
-  left: -1px;
+  top: -4px;
+  left: -2px;
 }
 
 /*END BODY*/
@@ -104,14 +104,6 @@ header{position:relative;}
   width: 100%;
   height: 40px;
   background: #373737;
-  /*background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzI0MjMyMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzYTM5MzkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top,  #242323 0%, #3a3939 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#242323), color-stop(100%,#3a3939));
-  background: -webkit-linear-gradient(top,  #242323 0%,#3a3939 100%);
-  background: -o-linear-gradient(top,  #242323 0%,#3a3939 100%);
-  background: -ms-linear-gradient(top,  #242323 0%,#3a3939 100%);
-  background: linear-gradient(top,  #242323 0%,#3a3939 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#242323', endColorstr='#3a3939',GradientType=0 );*/
   font: 16px 'Proxima', sans-serif;
   margin: 0 0 2px 0;
 }
@@ -954,13 +946,25 @@ header{position:relative;}
 #booms-container .boomer{
   margin-bottom:15px;
 }
-#booms-container ul{
+
+#booms-container ul {
   border: 1px solid #DFDFDF;
-  padding: 10px 10px 0;
+  padding: 10px 10px 30px;
 }
 #booms-container .top-semanal .boom{
   height:90px;
 }
+
+.boom-main img {
+  display: block;
+  width: 680px;
+  height: 382px;
+}
+
+.boom-main .title-flag:before {
+  display: none;
+}
+
 .top-semanal .boom .place, .top-semanal .boom img, .top-semanal .boom .boom-info{
   float:left;
   height:90px;
@@ -1012,9 +1016,9 @@ header{position:relative;}
   color:#8d8d8c;
 }
 
-#booms-container ul.list-grid{
-  position:relative;
-  display:inline-block;
+#booms-container ul.list-grid {
+  position: relative;
+  display: block;
 }
 
 #booms-container ul.list-grid li{
@@ -1710,23 +1714,57 @@ footer p{
     display: none;
 }
 
-/* INTERIOR BOOOOOOM */
+/* INTERIOR BOOM */
 #container.interior-boom #booms-container{
   width:680px;
 }
-#single-boom{position:relative;}
-#single-boom .title-flag{
-  width:196px;
+
+#single-boom {
+  position: relative;
+}
+
+#single-boom .title-flag {
+  width: auto;
   background: url('../images/cat_flags_l.png') no-repeat 0 -144px;
   border:none;
   height: 35px;
   line-height: 35px;
   position:absolute;
   top:320px;
+  padding-right: 80px;
 }
+
+#single-boom .title-flag:after {
+  background-image: url('../images/cat_flags_l.png');
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 35px;
+  top: 0;
+  right: -10px;
+}
+
+/*MUESTRA - Borra después el comment*/
+#single-boom.musica .title-flag {
+  background: rgb(168,53,42);
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2E4MzUyYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlMTUxNDQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(left,  rgba(168,53,42,1) 0%, rgba(225,81,68,1) 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(168,53,42,1)), color-stop(100%,rgba(225,81,68,1)));
+  background: -webkit-linear-gradient(left,  rgba(168,53,42,1) 0%,rgba(225,81,68,1) 100%);
+  background: -o-linear-gradient(left,  rgba(168,53,42,1) 0%,rgba(225,81,68,1) 100%);
+  background: -ms-linear-gradient(left,  rgba(168,53,42,1) 0%,rgba(225,81,68,1) 100%);
+  background: linear-gradient(to right,  rgba(168,53,42,1) 0%,rgba(225,81,68,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8352a', endColorstr='#e15144',GradientType=1 );
+}
+
+#single-boom.musica .title-flag:after {
+  background-position: right -72px;
+}
+/*End MUESTRA*/
+
 #single-boom.sexo .title-flag{background-position:0 0;}
 #single-boom.tecnologia .title-flag{background-position: 0 -36px;}
-#single-boom.musica .title-flag{background-position: 0 -72px;}
 #single-boom.cine .title-flag{background-position: 0 -108px;}
 #single-boom.lucky .title-flag{background-position: 0 -144px;}
 
@@ -1831,18 +1869,20 @@ footer p{
   border-right:none;
   padding:0;
 }
-#single-boom .booms .place-info{
+#single-boom .booms .boom-info{
   position: relative;
   padding:25px 0 2px 0;
 }
-#single-boom .booms .place{
-  text-align:center;
-  width:66px;
-  margin-right:3px;
-  display:inline-block;
+
+#single-boom .booms .place {
+  float: left;
+  text-align: center;
+  width: 66px;
+  margin-right: 4px;
+  display: inline-block;
   font: 67px 'Proxima', sans-serif;
-  color:#f47b20;
-  line-height:87px;
+  color: #f47b20;
+  line-height: 87px;
   vertical-align: top;
   background: #504f4f; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -1856,12 +1896,22 @@ footer p{
   background: linear-gradient(top, #504f4f 0%,#1e1e1e 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1e1e1e',GradientType=0 ); /* IE6-8 */
 }
+
+.float-container {
+  width: 576px;
+  float: left;
+}
+
+.float-container img {
+  float: left;
+  margin-right: 10px;
+}
+
 #single-boom .booms .boom-ti{
   font: 24px 'Museo500', sans-serif;
-  display:inline-block;
+  display: block;
   color:#000;
   margin: 5px 15px 0;
-  width:395px;
   vertical-align: top;
 }
 #single-boom .booms .boom-content{

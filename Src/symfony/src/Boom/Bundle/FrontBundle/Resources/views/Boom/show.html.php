@@ -18,10 +18,12 @@ $view['slots']->set('canonical_url', $canonical_url);
 ?>
 
 <div class="musica" id="single-boom">
-    <h3 class="title-flag <?php echo $category['slug'] ?>">
-        <span><?php echo $view->escape($category['name']) ?></span>
-    </h3>
-    <img src="http://placehold.it/680x382">
+    <div class="boom-main">
+      <h3 class="title-flag <?php echo $category['slug'] ?>">
+          <span><?php echo $view->escape($category['name']) ?></span>
+      </h3>
+      <img src="http://placehold.it/680x382">
+    </div>
     <div class="boom-info">
         <h2><?php echo $view->escape($entity['title']) ?></h2>
         <p><?php echo $view['bbcode']->filter((string) $entity['summary'], 'default') ?></p>
@@ -51,14 +53,14 @@ $elements = array_reverse($entity['elements']->toArray());
 foreach ($elements as $element):
     ?>
       <li class="boom">
-                    <div class="place-info">
+                    <div class="boom-info cf">
                         <span class="place">
     <?php echo $element['position'] ?>
                         </span>
-                        <img src="http://placehold.it/151x86" height="87px" width="151px">
-                        <p class="boom-ti">
-    <?php echo $element['title'] ?>
-                        </p>
+                        <div class="float-container cf">
+                          <img src="http://placehold.it/151x86" height="87px" width="151px" />
+                          <p class="boom-ti"><?php echo $element['title'] ?></p>
+                        </div>
                     </div>
                     <div class="boom-content">
     <?php $content = $element['content'] === null ? '' : $element['content']; ?>
