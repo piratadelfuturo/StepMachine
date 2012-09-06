@@ -18,10 +18,12 @@ $view['slots']->set('canonical_url', $canonical_url);
 ?>
 
 <div class="musica" id="single-boom">
-    <h3 class="title-flag <?php echo $category['slug'] ?>">
-        <span><?php echo $view->escape($category['name']) ?></span>
-    </h3>
-    <img src="http://placehold.it/680x382">
+    <div class="feat-img">
+      <h3 class="title-flag <?php echo $category['slug'] ?>">
+          <span><?php echo $view->escape($category['name']) ?></span>
+      </h3>
+      <img src="http://placekitten.com/680/382">
+    </div>
     <div class="boom-info">
         <h2><?php echo $view->escape($entity['title']) ?></h2>
         <p><?php echo $view['bbcode']->filter((string) $entity['summary'], 'default') ?></p>
@@ -37,7 +39,7 @@ $view['slots']->set('canonical_url', $canonical_url);
         </span>
     </div>
     <div class="autor">
-        <img src="http://placehold.it/85x85">
+        <img src="http://placekitten.com/85/85">
         <span>
             <h3>Publicado por <a rel="author" href="#"><?php echo $entity['user']['username'] ?></a></h3>
             <p>Phillip k. Dick es un escritor de California. Su literatura está influenciada por la narrativa policiaca de Raymond Chandler y los textos futuristas de William Gibson. K. Dick es quizá el autor más adaptado al cine...<a class="ver-moar" href="#">Leer más</a></p>
@@ -55,10 +57,12 @@ foreach ($elements as $element):
                         <span class="place">
     <?php echo $element['position'] ?>
                         </span>
-                        <img src="http://placehold.it/151x86" height="87px" width="151px">
-                        <p class="boom-ti">
-    <?php echo $element['title'] ?>
-                        </p>
+                        <div class="b-info cf">
+                          <img src="http://placekitten.com/151/86" height="87px" width="151px">
+                          <p class="boom-ti">
+      <?php echo $element['title'] ?>
+                          </p>
+                        </div>
                     </div>
                     <div class="boom-content">
     <?php $content = $element['content'] === null ? '' : $element['content']; ?>

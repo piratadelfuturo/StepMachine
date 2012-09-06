@@ -1701,20 +1701,80 @@ footer p{
   width:680px;
 }
 #single-boom{position:relative;}
+#single-boom .feat-img {position: relative;}
+#single-boom .feat-img img{width:680px;}
 #single-boom .title-flag{
-  width:196px;
-  background: url('../images/cat_flags_l.png') no-repeat 0 -144px;
   border:none;
   height: 35px;
   line-height: 35px;
   position:absolute;
-  top:320px;
+  bottom: 30px;
+  padding-right: 10px;
 }
-#single-boom.sexo .title-flag{background-position:0 0;}
-#single-boom.tecnologia .title-flag{background-position: 0 -36px;}
-#single-boom.musica .title-flag{background-position: 0 -72px;}
-#single-boom.cine .title-flag{background-position: 0 -108px;}
-#single-boom.lucky .title-flag{background-position: 0 -144px;}
+#single-boom .title-flag:after{ 
+  background: url('../images/cat_flags_l.png') no-repeat right 0;
+  height: 35px;
+  content: ' ';
+  display: block;
+  margin: -35px -18px 0 0;
+}
+#single-boom .title-flag.sexo{
+  background: #c61a75; /* Old browsers */
+  background: -moz-linear-gradient(left,  #c61a75 0%, #fe49ab 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c61a75), color-stop(100%,#fe49ab)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #c61a75 0%,#fe49ab 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #c61a75 0%,#fe49ab 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #c61a75 0%,#fe49ab 100%); /* IE10+ */
+  background: linear-gradient(to right,  #c61a75 0%,#fe49ab 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c61a75', endColorstr='#fe49ab',GradientType=1 ); /* IE6-9 */
+}
+#single-boom .title-flag.tecnologia{
+  background: #532f88; /* Old browsers */
+  background: -moz-linear-gradient(left,  #532f88 0%, #8655cf 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#532f88), color-stop(100%,#8655cf)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #532f88 0%,#8655cf 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #532f88 0%,#8655cf 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #532f88 0%,#8655cf 100%); /* IE10+ */
+  background: linear-gradient(to right,  #532f88 0%,#8655cf 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#532f88', endColorstr='#8655cf',GradientType=1 ); /* IE6-9 */
+}
+  #single-boom .title-flag.musica {
+  background: #a8352a; /* Old browsers */
+  background: -moz-linear-gradient(left,  #a8352a 0%, #e25144 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#a8352a), color-stop(100%,#e25144)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #a8352a 0%,#e25144 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #a8352a 0%,#e25144 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #a8352a 0%,#e25144 100%); /* IE10+ */
+  background: linear-gradient(to right,  #a8352a 0%,#e25144 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8352a', endColorstr='#e25144',GradientType=1 ); /* IE6-9 */
+}
+#single-boom .title-flag.cine{
+  background: #4e8f3f; /* Old browsers */
+  background: -moz-linear-gradient(left,  #4e8f3f 0%, #73c461 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#4e8f3f), color-stop(100%,#73c461)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #4e8f3f 0%,#73c461 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #4e8f3f 0%,#73c461 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #4e8f3f 0%,#73c461 100%); /* IE10+ */
+  background: linear-gradient(to right,  #4e8f3f 0%,#73c461 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e8f3f', endColorstr='#73c461',GradientType=1 ); /* IE6-9 */
+}
+#single-boom .title-flag.lucky{
+  background: #e35344; /* Old browsers */
+  background: -moz-linear-gradient(left,  #e35344 0%, #f57a21 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e35344), color-stop(100%,#f57a21)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #e35344 0%,#f57a21 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #e35344 0%,#f57a21 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #e35344 0%,#f57a21 100%); /* IE10+ */
+  background: linear-gradient(to right,  #e35344 0%,#f57a21 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e35344', endColorstr='#f57a21',GradientType=1 ); /* IE6-9 */
+}
+
+
+#single-boom .title-flag.sexo:after{background-position-y: 0;}
+#single-boom .title-flag.tecnologia:after{background-position-y: -36px;}
+#single-boom .title-flag.musica:after{background-position-y: -72px;}
+#single-boom .title-flag.cine:after{background-position-y: -108px;}
+#single-boom .title-flag.lucky:after{background-position-y: -144px;}
 
 #single-boom .title-flag span:before{
   border:none;
@@ -1819,7 +1879,7 @@ footer p{
 }
 #single-boom .booms .place-info{
   position: relative;
-  padding:25px 0 2px 0;
+  padding:25px 0 3px 0;
 }
 #single-boom .booms .place{
   text-align:center;
@@ -1830,6 +1890,7 @@ footer p{
   color:#f47b20;
   line-height:87px;
   vertical-align: top;
+  float:left;
   background: #504f4f; /* Old browsers */
   /* IE9 SVG, needs conditional override of 'filter' to 'none' */
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDA
@@ -1842,13 +1903,21 @@ footer p{
   background: linear-gradient(top, #504f4f 0%,#1e1e1e 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1e1e1e',GradientType=0 ); /* IE6-8 */
 }
+#single-boom .booms .place-info .b-info{
+  width:670px;
+  position:relative;
+}
+#single-boom .booms .place-info .b-info img{
+  float:left;
+}
 #single-boom .booms .boom-ti{
   font: 24px 'Museo500', sans-serif;
   display:inline-block;
   color:#000;
   margin: 5px 15px 0;
-  width:395px;
   vertical-align: top;
+  float:left;
+  width: 420px;
 }
 #single-boom .booms .boom-content{
   border-top:1px solid #dfdfdf;
