@@ -9,8 +9,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity\Widget;
 use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\BackBundle\Form\WidgetType;
+use Boom\Bundle\BackBundle\Form\DailySevenType;
 
 class WidgetController extends Controller {
+
+
+    public function dailySevenAction(){
+
+
+
+        $form = $this->createForm(new DailySevenType());
+        $request = $this->getRequest();
+        $form->bind($request);
+
+        return $this->render('BoomBackBundle:Widget:dailySeven.html.php', array(
+                    'form' => $form->createView(),
+                ));
+
+
+    }
 
     /**
      * Lists all Boom entities.

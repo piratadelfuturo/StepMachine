@@ -8,12 +8,12 @@
 		<div class="g6 widgets">
 
 			<div class="widget" id="calendar_widget" data-icon="calendar">
-				<h3 class="handle">Calendar</h3>
+				<h3 class="handle">Calendario</h3>
 				<div>
 					<div class="calendar" data-header="small">
 					</div>
 					<p>
-					<a class="btn" href="http://9gag.com">9gag</a>
+					<a class="btn" href="http://9gag.com" target="_blank" >9gag</a>
 					</p>
 				</div>
 			</div>
@@ -34,6 +34,12 @@
 
 
 		<div class="g6 widgets">
+
+            <div class="widget" id="daily-seven-widget" data-icon="google_buzz">
+                <h3 class="handle">Siete diarios</h3>
+                    <?php echo $view['actions']->render('BoomBackBundle:Widget:dailySeven'); ?>
+            </div>
+
 			<div class="widget" id="widget_charts" data-icon="graph">
 				<h3 class="handle">Charts</h3>
 				<div>

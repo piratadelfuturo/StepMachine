@@ -998,6 +998,25 @@ form:last-child{
 .widget form{
 	border:0;
 }
+#widget_ajax form{
+    margin:0px;
+    padding: 0px 0px 10px;
+}
+
+#widget_ajax form div{
+    overflow: hidden;
+}
+
+#widget_ajax form div label{
+    float: left;
+    width: 20%;
+}
+
+#widget_ajax form div input{
+    float: left;
+    width: 75%;
+}
+
 form .wl_formstatus{
 	padding-left:18px;
 }
@@ -1059,6 +1078,16 @@ form fieldset > section > div{
 	border-left:1px solid;
 	height:100%;
 	min-height:100%;
+}
+
+.widget form fieldset > section > div{
+    width:75%;
+    padding: 5px 1%;
+}
+
+.widget form label {
+    padding: 10px 5px;
+
 }
 
 form fieldset > section > div > div{

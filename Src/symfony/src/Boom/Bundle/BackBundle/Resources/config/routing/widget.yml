@@ -22,6 +22,12 @@ BoomBackBundle_widget_new:
     defaults: { _controller: "BoomBackBundle:Widget:new" }
     requirements: { _method: get }
 
+BoomBackBundle_widget_dailyseven:
+    pattern:  /dailyseven
+    defaults: { _controller: "BoomBackBundle:Widget:dailySeven" }
+    options:
+        expose: true
+
 BoomBackBundle_widget_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "BoomBackBundle:Widget:edit" }
