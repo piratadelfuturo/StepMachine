@@ -2,14 +2,15 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
+        <input type="text" name="title" id="form-titleboom" placeholder="Título de tu Boom" />
         <?php
         echo $view['form']->row(
-                $form['summary'], array(
+          $form['summary'], array(
             'label' => 'Resumen',
             'attr' => array(
-                'class' => 'boomie-position-input'
+              'class' => 'boomie-position-input'
             )
-                )
+          )
         )
         ?>
         <section>

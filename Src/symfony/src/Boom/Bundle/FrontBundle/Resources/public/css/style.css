@@ -2362,8 +2362,17 @@ border-radius: 10px;
 #form-boom label {
   font: 24px 'Museo500', sans-serif;
   text-transform: uppercase;
-  color:#2d2c2c;
+  color: #2d2c2c;
 }
 #form-boom fieldset {
   padding: 0 20px;
+}
+
+#form-titleboom{
+  width: 600px;
+}
+
+#form-titleboom::-webkit-input-placeholder, #form-titleboom::-moz-placeholder {
+  font: 16px 'Proxima', sans-serif;
+  height: 34px;
 }
