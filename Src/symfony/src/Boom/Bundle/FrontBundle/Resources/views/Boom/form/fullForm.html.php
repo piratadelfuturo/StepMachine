@@ -20,7 +20,7 @@
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría principal')) ?>
         <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
-    <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements">
+    <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
         <label>Boomies</label>
         <?php
         foreach ($form['elements'] as $element):
@@ -60,6 +60,7 @@
                     ?>
                 </fieldset>
             </fieldset>
+            <span class="tab"><a href=""><span>TAB</span></a></span>
         <?php endforeach; ?>
 
     </fieldset>
