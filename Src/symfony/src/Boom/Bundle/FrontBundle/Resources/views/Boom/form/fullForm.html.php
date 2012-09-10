@@ -19,16 +19,15 @@
         </section>
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría principal')) ?>
-        <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
     <fieldset id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
         <label>Boomies</label>
         <?php
         foreach ($form['elements'] as $element):
             ?>
-            <fieldset id="<?php echo $element->get('id') ?>">
+            <fieldset id="<?php echo $element->get('id') ?>" class="boomie">
                 <label>
-                    <strong><?php echo "B{$element['position']->vars['value']}"; ?></strong>
+                    <span class="place"><?php echo "{$element['position']->vars['value']}"; ?></span>
                     <span><?php echo $element['title']->vars['value'] ?></span>
                 </label>
                 <fieldset class="accordion_content">
@@ -58,12 +57,12 @@
                         )
                             )
                     );
-                    ?>
+                    ?><D-º>
                 </fieldset>
             </fieldset>
             <span class="tab"><a href=""><span>TAB</span></a></span>
         <?php endforeach; ?>
-
+        <?php echo $view['form']->row($form['tags'], array('label' => 'Tags:')) ?>
     </fieldset>
-    <button class="submit" type="submit" >Guardar</button>
+    <button class="submit" type="submit" >¡Publicar!</button>
 </form>
