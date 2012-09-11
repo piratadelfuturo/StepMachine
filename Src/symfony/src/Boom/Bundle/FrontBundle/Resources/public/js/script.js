@@ -28,7 +28,30 @@
             $(this).parent().addClass("on");
           }
           return false;
-        })
+        });
+
+        //usr-booms selector
+        var onSelector = $('#usr-booms .botones'),
+            arrow = onSelector.children('span.arrow');
+
+        onSelector.children('a').click(function() {
+
+          var pos = $(this).position(),
+              wd = $(this).innerWidth() / 2,
+              sum = parseInt(pos.left + wd - 9);
+
+          if($(this).hasClass('on')){
+            arrow.css('left', sum);
+            return false;
+          }else{
+            $(this).toggleClass('on');
+            $(this).siblings('a').toggleClass('on');
+            arrow.css('left', sum);
+          }
+
+          return false;
+
+        });
 
         //DRAGnDROP
         $("#drag-booms").dragsort({ dragSelector: '.pos', dragEnd: function(){

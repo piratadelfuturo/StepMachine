@@ -17,7 +17,7 @@ $view['slots']->set('canonical_url', $canonical_url);
 
 ?>
 
-<div class="musica" id="single-boom">
+<div class="musica single-boom">
     <div class="boom-main">
       <h3 class="title-flag <?php echo $category['slug'] ?>">
           <span><?php echo $view->escape($category['name']) ?></span>
@@ -63,9 +63,11 @@ foreach ($elements as $element):
                         </div>
                     </div>
                     <div class="boom-content">
-    <?php $content = $element['content'] === null ? '' : $element['content']; ?>
-                        <?php echo $view['bbcode']->filter((string) $content, 'default') ?>
-                        <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="670"></div></div>
+                      <div class="boom-text">
+                        <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
+                        <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
+                      </div>
+                      <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="648"></div></div>
                     </div>
                     <span class="tab"><a href=""><span>TAB</span></a></span>
                 </li>

@@ -8,14 +8,19 @@ foreach($entity['elements'] as $el){
 
 <div id="usr-booms">
       <div class="botones">
-        <a href="#"><span class="on" id="tendencia">Tendencias</span></a>
-        <a href="#"><span id="miboom">Mi Boom</span></a>
+        <a href="#" class="on" id="tendencia">Tendencias</a>
+        <span class="divider">divider</span>
+        <a href="#" id="miboom">Mi Boom</a>
+        <span class="arrow">Recomendados</span>
       </div>
       <h3>nuestros usuarios dicen</h3>
       <ul id="drag-booms">
           <?php foreach($elements as $elementPosition => $element): ?>
         <li>
-          <span class="pos"><p><?php echo $elementPosition ?></p></span>
+          <div class="balloon">
+            <p>Arrastrar</p>
+          </div>
+          <p class="pos"><span><?php echo $elementPosition ?></span></p>
           <img src="http://placehold.it/72x72">
           <span class="boom-info">
             <h4><?php echo $element['title'] ?></h4>
@@ -23,8 +28,5 @@ foreach($entity['elements'] as $el){
         </li>
         <?php endforeach; ?>
       </ul>
-      <a href="#"><span id="editalo">
-        <p>¿Estás de acuerdo?</p>
-        <p>¡edítalo!</p>
-      </span></a>
+      <a href="#" id="editalo">¿Estás de acuerdo?<span>¡edítalo!</span></a>
     </div>
