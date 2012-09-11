@@ -32,4 +32,37 @@ class ListController extends Controller {
 
     }
 
+    public function tagAction($slug,$page = 1){
+
+        $limit = 14;
+
+        $em = $this->getDoctrine()->getManager();
+        $tagRepo = $em->getRepository('BoomLibraryBundle:Tag');
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+
+        $thisTag = $tagRepo->findOneBySlug($slug);
+
+        if (is_null($thisTag) || $thisTag == false) {
+            throw $this->createNotFoundException('Tag no existente');
+        }
+
+        $latest = $boomRepo->findBoomsByTag(
+                $thisTag
+                , array('date_created' => 'DESC')
+                , $limit
+                , $limit * ($page - 1)
+                , array(Boom::STATUS_PUBLIC)
+                );
+
+        $total = $boomRepo->totalBoomsByTag($thisTag,array(Boom::STATUS_PUBLIC));
+
+        return $this->render('BoomFrontBundle:List:tag.html.php', array(
+                    'total'     => $total,
+                    'page'      => $page,
+                    'list'      => $latest,
+                    'entity'    => $thisTag
+                ));
+
+    }
+
 }

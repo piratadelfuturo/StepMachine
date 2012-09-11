@@ -99,8 +99,9 @@ class DefaultController extends Controller {
             throw $this->createNotFoundException('Categoria no existente');
         }
 
-        $latest = $catRepo->findBoomsByCategory(
-                $thisCategory, array('date_created' => 'DESC')
+        $latest = $boomRepo->findBoomsByCategory(
+                $thisCategory,
+                array('date_created' => 'DESC')
                 , 14
                 , 0
                 , array(Boom::STATUS_PUBLIC));

@@ -24,6 +24,18 @@
                 </ul>
             </div>
         </section>
+        <?php if($entity['confirmationtoken'] !== null && $view['security']->isGranted('ROLE_SUPER_ADMIN')):?>
+        <section>
+            <section>
+                <label>Password reset link</label>
+            </section>
+            <div>
+                <a href="<?php echo $view['router']->generate('fos_user_resetting_reset',array('token' => $entity['confirmationtoken']),true)?>">
+                    <?php echo $view['router']->generate('fos_user_resetting_reset',array('token' => $entity['confirmationtoken']),true)?>
+                </a>
+            </div>
+        </section>
+        <?php endif; ?>
         <?php echo $view['form']->rest($edit_form) ?>
     </fieldset>
     <fieldset>

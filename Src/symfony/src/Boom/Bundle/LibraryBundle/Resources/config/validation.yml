@@ -10,12 +10,3 @@ Boom\Bundle\LibraryBundle\Entity\User:
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]
-                mimeTypesMessage: Please upload a valid image
-
-Boom\Bundle\LibraryBundle\Entity\User:
-    properties:
-      file:
-        - File:
-                maxSize: 5120k
-                mimeTypes: [image/png, image/jpeg, image/gif]
-                mimeTypesMessage: Please upload a valid image

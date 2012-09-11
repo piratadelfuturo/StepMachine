@@ -21,7 +21,7 @@ class TagRepository extends EntityRepository {
         return $return;
     }
 
-        /**
+    /**
      * @return int
      */
     public function getCount() {

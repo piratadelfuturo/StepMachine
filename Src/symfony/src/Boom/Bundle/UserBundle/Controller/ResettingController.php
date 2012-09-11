@@ -25,7 +25,7 @@ class ResettingController extends BaseController {
     public function sendEmailAction() {
         $token = $this->container->get('security.context')->getToken();
 
-        if ($token !== null) {
+        if ($this->container->get('security.context')->isGranted('ROLE_USER') == true) {
             $username = $token->getUser()->getUsername();
         } else {
             $username = $this->container->get('request')->request->get('username');

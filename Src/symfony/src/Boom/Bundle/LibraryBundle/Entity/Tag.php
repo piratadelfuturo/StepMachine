@@ -33,7 +33,7 @@ class Tag extends DomainObject{
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Boom", mappedBy="tags", fetch="EXTRA_LAZY")
      **/
     protected $booms;
 

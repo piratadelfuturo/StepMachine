@@ -11,7 +11,6 @@ $view['slots']->stop();
     $blocks['top_semanal'] = array(
                   'title'   => 'top semanal',
                   'list'    => array(),
-                  'more_url'=> $view['router']->generate('BoomFrontBundle_list_top'),
                   'template'=> 'BoomFrontBundle:Boom:blocks/long_numbered_list.html.php'
     );
     $blocks['booms_usuarios'] = array(

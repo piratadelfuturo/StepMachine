@@ -18,27 +18,32 @@
 
         //BOOMIES
         $('li.boom:first-child').ready(function(){
-          $('li.boom:first-child').children(".boom-content").slideDown('slow');
-          $('li.boom:first-child').addClass("on");
-          return false;
+            $('li.boom:first-child').children(".boom-content").slideDown('slow');
+            $('li.boom:first-child').addClass("on");
+            return false;
         });
-          $('span[class="tab"]').click(function(){
-          if($(this).parent().hasClass("on")){
-             $(this).siblings('.boom-content').slideUp('slow');
-            $(this).parent().removeClass("on");
-          }else{
-            $(this).parent().addClass("on");
-             $(this).siblings('.boom-content').slideDown('slow');
-          }
-          return false;
+        $('span[class="tab"]').click(function(){
+            if($(this).parent().hasClass("on")){
+                $(this).siblings('.boom-content').slideUp('slow');
+                $(this).parent().removeClass("on");
+            }else{
+                $(this).parent().addClass("on");
+                $(this).siblings('.boom-content').slideDown('slow');
+            }
+            return false;
         })
 
         //DRAGnDROP
-        $("#drag-booms").dragsort({ dragSelector: '.pos', dragEnd: function(){
-          $("#drag-booms").children().each(function(index) {
-              $(this).children(".pos").html(index+1)
-            });
-        }, dragBetween: false, placeHolderTemplate: "<li class='empty'></li>" });
+        $("#drag-booms").dragsort({
+            dragSelector: '.pos',
+            dragEnd: function(){
+                $("#drag-booms").children().each(function(index) {
+                    $(this).children(".pos").html(index+1)
+                });
+            },
+            dragBetween: false,
+            placeHolderTemplate: "<li class='empty'></li>"
+        });
 
         var user = $('#usr-cnt');
         var userBox = user.find('#usr-roll');
@@ -82,12 +87,12 @@
                 });
 
                 if(animated){
-                  closeTab.fadeOut('slow',function(){
-                    openTab.fadeIn('slow',function(){
-                      counter.count();
+                    closeTab.fadeOut('slow',function(){
+                        openTab.fadeIn('slow',function(){
+                            counter.count();
+                        });
+                        counter.count();
                     });
-                    counter.count();
-                  });
                     userBox.slideDown('slow',function(){
                         counter.count();
                     });
@@ -161,8 +166,8 @@
             if(showCookie == 'hide'){
                 close(false);
             }else{
-              userBox.addClass('on');
-              handle.addClass('on');
+                userBox.addClass('on');
+                handle.addClass('on');
             }
 
         }
@@ -184,7 +189,7 @@
                     }
                 },{
                     scope:_a.attr('scope')
-                    });
+                });
                 return false;
             });
         }

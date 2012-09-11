@@ -46,14 +46,8 @@ BoomFrontBundle_list_collaborator:
     requirements:
       page: \d+
 
-BoomFrontBundle_list_category_top:
-    pattern:  /top/{category_slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:top",page: 1 }
-    requirements:
-      page: \d+
-
-BoomFrontBundle_list_top:
-    pattern:  /top/{page}
-    defaults: { _controller: "BoomFrontBundle:List:top",page: 1 }
+BoomFrontBundle_list_tag:
+    pattern:  /tag/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:tag",page: 1 }
     requirements:
       page: \d+

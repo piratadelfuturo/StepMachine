@@ -9,47 +9,8 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class CategoryRepository extends EntityRepository {
 
-    public function findBoomsByCategory(Category $category, $sort = array('date_created' => 'DESC'), $limit = 7, $offset = 0, array $status = array()) {
-
-        $sortKey = \key($sort);
-        $sortValue = \current($sort);
-
-        $statusFilter = array();
-        $statusOptions = Boom::getStatusEnumFieldValues();
-
-        if(empty($status)){
-            $status[] = Boom::STATUS_PUBLIC;
-        }
-        foreach($status as $stat){
-            if(in_array($stat,$statusOptions)){
-                $statusFilter[] = $stat;
-            }
-        }
-
-        $qString = "
-            SELECT
-                boom
-            FROM
-                BoomLibraryBundle:Boom boom
-            LEFT JOIN
-                boom.category category
-            WHERE
-                boom.category = :category
-            AND
-                boom.status IN (:status)
-            ORDER BY boom.{$sortKey} {$sortValue}";
-
-        $em = $this->getEntityManager();
-        $query = $em->createQuery($qString);
-        $query->setParameters(array('category' => $category,'status' =>$status));
-        $query->setFirstResult($offset);
-        $query->setMaxResults($limit);
-        $result = $query->execute();
-
-        return $result;
-    }
-
-        /**
+    
+    /**
      * @param array $get
      * @param bool $flag
      * @return array|\Doctrine\ORM\Query

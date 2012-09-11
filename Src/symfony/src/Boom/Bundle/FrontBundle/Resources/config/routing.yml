@@ -18,7 +18,7 @@ BoomFrontBundle_homepage:
 
 BoomFrontBundle_list:
     resource: "@BoomFrontBundle/Resources/config/routing/list.yml"
-    prefix:   /lista
+    prefix:   /
 
 BoomFrontBundle_user:
     resource: "@BoomFrontBundle/Resources/config/routing/user.yml"
