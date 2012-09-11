@@ -25,15 +25,31 @@
         <?php
         foreach ($form['elements'] as $element):
             ?>
-            <fieldset id="<?php echo $element->get('id') ?>" class="boomie">
+            <div id="<?php echo $element->get('id') ?>" class="boomie">
                 <label>
                     <span class="place"><?php echo "{$element['position']->vars['value']}"; ?></span>
-                    <span><?php echo $element['title']->vars['value'] ?></span>
                 </label>
-                <fieldset class="accordion_content">
+                <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto para agregarla."> 
+                <?php echo $element['title']->vars['value'] ?>
+                <?php echo $view['form']->widget(
+                      $element['title'], array(
+                        'attr' => array(
+                          'class' => 'boomie-title-input',
+                          'placeholder' => 'Título del Boom No.'.$element['position']->vars['value']
+                        )
+                      )
+                    );?>
+                  <div class="accordion_content">
                     <?php if (isset($element['id']) && $element['id'] !== null): ?>
                         <?php //echo $view['form']->widget($element['id']); ?>
                     <?php endif; ?>
+                    <ul class="wyswyg-menu">
+                      <a href="#"><li class="hyperlink">Hipervinculo</li></a>
+                      <a href="#"><li class="picture">Foto</li></a>
+                      <a href="#"><li class="embed">Embed</li></a>
+                      <a href="#"><li class="gallery">Galería</li></a>
+                      <a href="#"><li class="video">Video</li></a>
+                    </ul>
                     <?php
                     echo $view['form']->widget(
                             $element['position'], array(
@@ -42,27 +58,27 @@
                         )
                             )
                     );
-                    echo $view['form']->row(
-                            $element['title'], array(
-                        'attr' => array(
-                            'class' => 'boomie-title-input'
-                        )
-                            )
-                    );
-
-                    echo $view['form']->row(
+                    echo $view['form']->widget(
                             $element['content'], array(
                         'attr' => array(
-                            'class' => 'boom-wysiwyg'
+                          'class' => 'boom-wysiwyg',
+                          'placeholder' => 'Escribe aquí tu boom...'
                         )
                             )
                     );
-                    ?><D-º>
-                </fieldset>
-            </fieldset>
+                    ?>
+                </div>
+            </div>
             <span class="tab"><a href=""><span>TAB</span></a></span>
         <?php endforeach; ?>
-        <?php echo $view['form']->row($form['tags'], array('label' => 'Tags:')) ?>
+        <?php echo $view['form']->row(
+          $form['tags'], array(
+            'attr' => array(
+              'label' => 'Tags:',
+              'placeholder' => 'Escribe tus tags separados por comas...'
+            )
+          )
+        ) ?>
     </fieldset>
     <button class="submit" type="submit" >¡Publicar!</button>
 </form>
