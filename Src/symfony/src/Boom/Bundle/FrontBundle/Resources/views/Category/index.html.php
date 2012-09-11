@@ -7,10 +7,10 @@
 ?>
 
     <?php echo $view->render('BoomFrontBundle:Boom:blocks/block_list.html.php', array(
-            'title'     => 'top semanal',
+            'title'     => 'recomendados',
             'category'  => $category,
             'more_url'  => $view['router']->generate(
-                    'BoomFrontBundle_list_category_top',
+                    'BoomFrontBundle_list_category_recommended',
                     array(
                         'category_slug' => $category['slug']))
                 ));
