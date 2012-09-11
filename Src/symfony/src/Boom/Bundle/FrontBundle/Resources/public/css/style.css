@@ -1971,14 +1971,39 @@ footer p{
 }
 #single-boom .booms .boom-content{
   border-top:1px solid #dfdfdf;
-  padding: 20px 0 0;
-  margin:10px 0;
-  display:none;
+  display: block;
   height:auto;
 }
 #single-boom .boom .boom-content{
   color:#828282;
   overflow: hidden;
+  width: 670px;
+  padding: 0;
+  margin: 0;
+}
+
+#single-boom .boom, .boom .boom-content {
+  overflow: hidden;
+  max-height: 160px;
+  transition: max-height 600ms;
+  -webkit-transition: max-height 600ms;
+  -moz-transition: max-height 600ms;
+  -ms-transition: max-height 600ms;
+  -o-transition: max-height 600ms;
+}
+
+#single-boom .boom.on {
+  max-height: 2000px;
+}
+
+.boom .boom-content {
+  max-height: 0;
+}
+
+.boom.on .boom-content {
+  padding: 20px 0 0;
+  margin:10px 0;
+  max-height: 2000px;
 }
 
 #single-boom .boom .boom-content a{
