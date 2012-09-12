@@ -95,7 +95,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
                 $cb->expr()->eq('boom.category', $category['id']),
-                $cb->expr()->eq('user.collaborator', $collaborator),
+                $cb->expr()->eq('user.collaborator', (int) $collaborator),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
@@ -108,7 +108,7 @@ class BoomRepository extends NestedTreeRepository {
                 $cb->orderBy($aSortKey, $aSortValue);
             }
         }
-        $cb->setFirstResult((int) $offset)->setMaxResults((int) $limit);
+        $cb->setFirstResult((int) $offset)->setMaxResults((string) $limit);
 
         $query = $cb->getQuery();
         $result = $query->execute();
@@ -126,7 +126,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
                 $cb->expr()->eq('boom.category', $category['id']),
-                $cb->expr()->eq('user.collaborator', $collaborator),
+                $cb->expr()->eq('user.collaborator', (string) $collaborator),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
@@ -236,7 +236,7 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function findUsersBooms($sort = array('date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array(),$featured = false, $collaborator = false) {
+    public function findUsersBooms($sort = array('boom.date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array(),$featured = false, $collaborator = false) {
 
         $statusFilter = $this->validateStatus($status);
 
@@ -244,7 +244,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('boom');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.collaborator', $collaborator),
+                $cb->expr()->eq('user.collaborator', (int) $collaborator),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
@@ -273,7 +273,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('count(boom)');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.collaborator', $collaborator),
+                $cb->expr()->eq('user.collaborator', (int) $collaborator),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
