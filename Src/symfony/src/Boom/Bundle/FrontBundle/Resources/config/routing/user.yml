@@ -1,6 +1,6 @@
-BoomFrontBundle_user_list:
-    pattern:  /
-    defaults: { _controller: "BoomFrontBundle:User:list" }
+#BoomFrontBundle_user_list:
+#    pattern:  /
+#    defaults: { _controller: "BoomFrontBundle:User:list" }
 
 BoomFrontBundle_user_collaborators:
     pattern:  /colaboradores/{page}

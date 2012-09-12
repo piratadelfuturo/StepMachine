@@ -80,7 +80,7 @@ class ListController extends Controller {
 
         $list = $boomRepo->findLatestBooms(
                 array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)
