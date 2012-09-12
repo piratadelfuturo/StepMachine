@@ -1,18 +1,18 @@
 BoomFrontBundle_list_category_recommended:
-    pattern:  /recomendados/{category_slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:recommended",page: 1 }
+    pattern:  /recomendados/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:featuredCategoy",page: 1 }
     requirements:
       page: \d+
 
 BoomFrontBundle_list_recommended:
     pattern:  /recomendados/{page}
-    defaults: { _controller: "BoomFrontBundle:List:recommended",page: 1 }
+    defaults: { _controller: "BoomFrontBundle:List:featured",page: 1 }
     requirements:
       page: \d+
 
 BoomFrontBundle_list_category_latest:
-    pattern:  /ultimos/{category_slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:latest",page: 1 }
+    pattern:  /ultimos/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:latestCategory",page: 1 }
     requirements:
       page: \d+
 
@@ -23,8 +23,8 @@ BoomFrontBundle_list_latest:
       page: \d+
 
 BoomFrontBundle_list_category_users:
-    pattern:  /usuarios/{category_slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:user",page: 1 }
+    pattern:  /usuarios/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:userCategory",page: 1 }
     requirements:
       page: \d+
 
@@ -35,8 +35,8 @@ BoomFrontBundle_list_users:
       page: \d+
 
 BoomFrontBundle_list_category_collaborator:
-    pattern:  /colaborador/{category_slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:collaborator",page: 1 }
+    pattern:  /colaborador/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:collaboratorCategory",page: 1 }
     requirements:
       page: \d+
 

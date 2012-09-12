@@ -56,6 +56,8 @@ security:
             form_login:
                 check_path: /admin/login_check
                 login_path: /admin/login
+                always_use_default_target_path: true
+                default_target_path: /admin/
         boom_area:
             pattern:    ^/
             anonymous: true

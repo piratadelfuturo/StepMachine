@@ -16,10 +16,6 @@ BoomFrontBundle_homepage:
     pattern:  /
     defaults: { _controller: BoomFrontBundle:Default:index }
 
-BoomFrontBundle_list:
-    resource: "@BoomFrontBundle/Resources/config/routing/list.yml"
-    prefix:   /
-
 BoomFrontBundle_user:
     resource: "@BoomFrontBundle/Resources/config/routing/user.yml"
     prefix:   /usuarios
@@ -36,10 +32,13 @@ BoomFrontBundle_profile:
     resource: "@BoomFrontBundle/Resources/config/routing/profile.yml"
     prefix:   /tu_sitio
 
-
 BoomFrontBundle_Default_test:
     pattern:  /test
     defaults: { _controller: "BoomFrontBundle:Default:test" }
+
+BoomFrontBundle_list:
+    resource: "@BoomFrontBundle/Resources/config/routing/list.yml"
+    prefix:   /
 
 BoomFrontBundle_category_show:
     pattern:  /{slug}

@@ -51,6 +51,8 @@ class UserRepository extends EntityRepository {
                 boom.category category
             WHERE
                 boom.status = ?0
+            AND
+                user.collaborator = true
             ORDER BY date_published DESC";
 
         $em = $this->getEntityManager();

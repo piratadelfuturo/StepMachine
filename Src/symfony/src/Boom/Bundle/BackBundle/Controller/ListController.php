@@ -88,6 +88,7 @@ class ListController extends Controller {
     }
 
     public function updateAction($block,$slug) {
+
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:ListGroup');
         $entity = $repo->findOneBy(
@@ -101,10 +102,10 @@ class ListController extends Controller {
             throw $this->createNotFoundException('Unable to find entity.');
         }
 
-        $form = $this->createForm(new ListGroupType(), new ListGroup());
+        $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-
+        
         if ($form->isValid()) {
             $em->persist($entity);
             $em->flush();

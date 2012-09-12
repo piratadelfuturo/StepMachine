@@ -6,7 +6,7 @@
     echo $view->render(
             'BoomBackBundle:List:form/form.html.php', array(
         'form_url' => $view['router']->generate(
-                'BoomBackBundle_list_edit',
+                'BoomBackBundle_list_update',
                 array(
                     'block' => $entity['block'],
                     'slug' => $entity['slug']
