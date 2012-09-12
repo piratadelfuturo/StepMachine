@@ -9,9 +9,6 @@ BoomFrontBundle_login_check_fb:
 BoomFrontBundle_logout:
     pattern:  /logout
 
-BoomFrontBundle_fos_user:
-    resource: "@BoomFrontBundle/Resources/config/routing/fos_user.yml"
-
 BoomFrontBundle_homepage:
     pattern:  /
     defaults: { _controller: BoomFrontBundle:Default:index }
