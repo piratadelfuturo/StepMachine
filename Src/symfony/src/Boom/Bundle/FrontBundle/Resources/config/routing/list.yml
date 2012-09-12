@@ -1,6 +1,6 @@
 BoomFrontBundle_list_category_recommended:
     pattern:  /recomendados/{slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:featuredCategoy",page: 1 }
+    defaults: { _controller: "BoomFrontBundle:List:featuredCategory",page: 1 }
     requirements:
       page: \d+
 

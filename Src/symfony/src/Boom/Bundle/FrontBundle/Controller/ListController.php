@@ -59,14 +59,14 @@ class ListController extends Controller {
                 , true
         );
 
-        $total = $boomRepo->totalBoomsByTag($thisTag, array(Boom::STATUS_PUBLIC), true);
+        $total = $boomRepo->totalBoomsByCategory($thisCat, array(Boom::STATUS_PUBLIC), true);
 
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
                     'list' => $latest,
-                    'entity' => $thisTag
+                    'entity' => $thisCat
                 ));
     }
 
