@@ -105,7 +105,7 @@ class ListController extends Controller {
         $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-        
+
         if ($form->isValid()) {
             $em->persist($entity);
             $em->flush();

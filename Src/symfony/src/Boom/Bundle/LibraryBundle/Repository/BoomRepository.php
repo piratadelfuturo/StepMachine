@@ -151,7 +151,7 @@ class BoomRepository extends NestedTreeRepository {
                 $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNotNull('boom.featured')
         );
         $cb->orderBy('boom.featured', 'DESC');
-        $cb->orderBy($aSortKey, $aSortValue);
+        $cb->orderBy('boom.date_published', 'DESC');
         $cb->setFirstResult((int) $offset)->setMaxResults((int) $limit);
         $query = $cb->getQuery();
         $result = $query->execute();

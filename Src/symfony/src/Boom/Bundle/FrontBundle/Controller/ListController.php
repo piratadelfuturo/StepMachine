@@ -26,10 +26,11 @@ class ListController extends Controller {
                 , array(Boom::STATUS_PUBLIC)
         );
 
-        $total = $boomRepo->totalBoomsByTag(array(Boom::STATUS_PUBLIC));
+        $total = $boomRepo->findFeaturedBooms(array(Boom::STATUS_PUBLIC));
 
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
+                    'page_title' => 'Recomendados',
                     'total' => $total,
                     'page' => $page,
                     'list' => $list
