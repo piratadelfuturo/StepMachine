@@ -952,7 +952,7 @@ pre code{
 }
 
 input,textarea{
-	width:99%;
+	width:95%;
 	border:1px solid;
 	padding:4px 2px;
 	margin:0 1px;
@@ -1128,7 +1128,7 @@ form fieldset > section label{
 	background:none;
 	filter:none;
 	margin:0;
-	width:16%;
+	width:15%;
 	padding-left:2px;
 	margin-left:8px;
 	text-align:left;

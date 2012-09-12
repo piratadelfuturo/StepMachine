@@ -1,7 +1,8 @@
 <?php
+
 namespace Boom\Bundle\BackBundle\Form;
 
-use Boom\Bundle\LibraryBundle\Form\ListElementType;
+use Boom\Bundle\BackBundle\Form\ListElementType;
 use Boom\Bundle\LibraryBundle\Entity\ListGroup;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,13 +12,12 @@ class ListGroupType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        $builder->add('name');
-
         $builder->add(
                 'list_elements', 'collection', array(
             'type' => new ListElementType(),
             'allow_add' => true,
-            'allow_delete' => false
+            'allow_delete' => true,
+                    'by_reference' => false
                 )
         );
     }

@@ -1,4 +1,4 @@
-<form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
+<form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
     <fieldset>
         <label><?php echo $form_title ?></label>
         <?php if(isset($entity) && $entity['slug'] !== null): ?>

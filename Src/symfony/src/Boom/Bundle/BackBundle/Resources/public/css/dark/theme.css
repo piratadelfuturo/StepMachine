@@ -29,7 +29,7 @@
 /* General Section
 /*----------------------------------------------------------------------*/
 
-html, body, textarea, input { 
+html, body, textarea, input {
 	color:#c1c1c1;
 }
 html{
@@ -61,7 +61,7 @@ blockquote{
 	color:#666666;
 }
 
-hr { 
+hr {
 	border-top-color:#1e1e1e;
 	border-bottom-color:#2e2e33;
 }
@@ -173,7 +173,7 @@ header{
 	color:#cacaca;
 	text-shadow:0px 1px 0 #2e2e33;
 	border-top-color:#555;
-	
+
 	background:#202020;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#202020', endColorstr='#151515');
 	background:-webkit-gradient(linear, left top, left bottom, from(#202020), to(#151515));
@@ -192,12 +192,12 @@ header{
 	-webkit-box-shadow:inset 0 2px 1px rgba(204, 204, 204, 0.3);
 	-moz-box-shadow:inset 0 2px 1px rgba(204, 204, 204, 0.3);
 	box-shadow:inset 0 2px 1px rgba(204, 204, 204, 0.3);
-	
+
 	background:#151515;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#151515', endColorstr='#1c1c1c');
 	background:-webkit-gradient(linear, left top, left bottom, from(#151515), to(#1c1c1c));
 	background:-moz-linear-gradient(top,  #151515,  #1c1c1c);
-	background:-o-linear-gradient(top,  #151515,  #1c1c1c); 
+	background:-o-linear-gradient(top,  #151515,  #1c1c1c);
 }
 #header ul li ul li:active, #header ul li ul li.active{
 }
@@ -225,7 +225,7 @@ form#searchform input#search{
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;
 	box-shadow:none;
-	
+
 	background:#202020;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#202020', endColorstr='#151515');
 	background:-webkit-gradient(linear, left top, left bottom, from(#202020), to(#151515));
@@ -431,7 +431,7 @@ nav ul li ul li a span{
 #wl_msg .msg-box, #wl_msg .msg-box-close{
 	border-color:#1e1e1e;
 	color:#202020;
-	
+
 	background:#f1f1f1;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e8e8e8');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#e8e8e8));
@@ -598,7 +598,7 @@ form label{
 	border-top-color:#2e2e33;
 	color:#bbbbbb;
 	text-shadow:0 1px 0 #2e2e33;
-	
+
 	background:#202020;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#202020', endColorstr='#151515');
 	background:-webkit-gradient(linear, left top, left bottom, from(#202020), to(#151515));
@@ -608,7 +608,7 @@ form label{
 form fieldset > section{
 	border-top-color:#2e2e33;
 	border-bottom-color:#181818;
-	
+
 	background:#2c2c2c;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c2c2c', endColorstr='#202020');
 	background:-webkit-gradient(linear, left top, left bottom, from(#2c2c2c), to(#202020));
@@ -646,7 +646,7 @@ div.passwordstrength.s_5{background-color:#357317;}
 /* jQuery Checkbox
 /*----------------------------------------------------------------------*/
 
-.jquery-checkbox span.checkboxplaceholder { 
+.jquery-checkbox span.checkboxplaceholder {
 	background-image:url(images/checkbox.png);
 }
 
@@ -859,7 +859,7 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 	color:#f1f1f1;
 	border-top-color:#2e2e33;
 	border-bottom-color:#555555;
-	
+
 	background:#202020;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#202020', endColorstr='#151515');
 	background:-webkit-gradient(linear, left top, left bottom, from(#202020), to(#151515));
@@ -870,7 +870,7 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 	-webkit-box-shadow:inset 0 -3px 12px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow:inset 0 -3px 12px rgba(0, 0, 0, 0.5);
 	box-shadow:inset 0 -3px 12px rgba(0, 0, 0, 0.5);
-	
+
 	background:#2c2c2c;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c2c2c', endColorstr='#202020');
 	background:-webkit-gradient(linear, left top, left bottom, from(#2c2c2c), to(#202020));

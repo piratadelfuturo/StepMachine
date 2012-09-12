@@ -6,29 +6,27 @@ if (!isset($list)) {
 <div class="boomer top-semanal">
     <h3 class="title-flag"><span><?php echo $view->escape($title); ?></span></h3>
     <ul>
-    <?php
+        <?php
         $position = 1;
         foreach ($list as $element):
-                $elementUrl = $view['router']->generate(
-                    'BoomFrontBundle_boom_show', array(
-                'category_slug' => $element['category']['slug'],
-                        'slug' => $element['slug']
-                    )
-            );
-
+            $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/120/75';
             ?>
-        <li class="boom">
-            <span class="place"><?php echo $position ?></span>
-            <img src="http://placehold.it/158x90">
-            <div class="boom-info">
-                <span class="sm-flag <?php echo $element['category']['slug'] ?>">,<?php echo $view->escape($element['category']['name']) ?></span>
-                <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
-                <a href="#" class="boom-moar">Por <?php echo $view->escape($element['user']['username']) ?></a>
-                <date><?php echo $element['user']->format('D, d M y'); ?></date>
-            </div>
-        </li>
-        <?php
-        $position++;
+            <li class="boom">
+                <span class="place"><?php echo $position ?></span>
+                <img src="<?php echo $image ?>">
+                <div class="boom-info">
+                    <?php if ($element['boom'] !== null): ?>
+                        <span class="sm-flag <?php echo $element['category']['slug'] ?>">,<?php echo $view->escape($element['category']['name']) ?></span>
+                    <?php endif; ?>
+                    <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
+                    <?php if ($element['boom'] !== null): ?>
+                        <a href="<?php ?>" class="boom-moar">Por <?php echo $view->escape($element['user']['username']) ?></a>
+                        <date><?php echo $element['boom']['publish_date']->format('D, d M y'); ?></date>
+                    <?php endif; ?>
+                </div>
+            </li>
+            <?php
+            $position++;
         endforeach;
         ?>
     </ul>

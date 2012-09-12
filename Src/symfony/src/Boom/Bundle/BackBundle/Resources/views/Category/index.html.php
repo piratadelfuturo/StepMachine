@@ -52,7 +52,7 @@
                         "sName": "actionId",
                         "bSearchable": false,
                         "bSortable": false,
-                        "fnCreatedCell": function (nTd,val)
+                        "fnCreatedCell": function (nTd,val,oData)
                         {
                             var edB = ed.clone();
                             var delB = del.clone();
@@ -68,10 +68,10 @@
                             );
                             viewB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_category_show', { id: val })
+                                Routing.generate('BoomBackBundle_list_edit', { block: oData[1] , slug: 'top' })
                             );
 
-                            $(nTd).empty().append(edB);
+                            $(nTd).empty().append(edB,viewB);
                         }
                     }
                 ]

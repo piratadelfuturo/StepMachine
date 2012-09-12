@@ -118,7 +118,7 @@ class Boom extends DomainObject {
     protected $favorite_users;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $featured;
 
@@ -182,10 +182,10 @@ class Boom extends DomainObject {
         $this->nsfw = false;
         $this->reply_enabled = true;
         $this->status = self::STATUS_DRAFT;
-        $this->featured = false;
         $this->summary = '';
-        $this->date_published = new \DateTime("now");
-
+        $this->featured = NULL;
+        $this->date_published = NULL;
+        $this->date_created = new \DateTime("now");
         for ($i = 1; $i <= $this->element_amount; $i++) {
             $element = new Boomelement($this);
             $element->setPosition($i);
@@ -503,11 +503,14 @@ class Boom extends DomainObject {
      *
      * @return Boom
      */
-    /*
+
     public function setTags(\Doctrine\Common\Collections\Collection $tags) {
+        foreach ($tags as $tag) {
+            $tag->addBoom($this);
+        }
         $this->tags = $tags;
         return $this;
-    }*/
+    }
 
     /**
      * @ORM\PrePersist()

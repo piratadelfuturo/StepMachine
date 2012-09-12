@@ -1,4 +1,5 @@
 <?php
+
 namespace Boom\Bundle\BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -173,7 +174,7 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new BoomType(),new Boom());
+        $form = $this->createForm(new BoomType(), new Boom());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
@@ -292,6 +293,17 @@ class BoomController extends Controller {
                         ->add('id', 'hidden')
                         ->getForm()
         ;
+    }
+
+    public function searchBoomAjaxAction() {
+        $request = $this->getRequest();
+        $queryString = $request->query->get('q', '');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $results = $repo->findBoomsByLike($queryString);
+        $response = new Response(json_encode($results));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
 }

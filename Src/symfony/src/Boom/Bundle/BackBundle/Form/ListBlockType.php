@@ -1,7 +1,7 @@
 <?php
 namespace Boom\Bundle\BackBundle\Form;
 
-use Boom\Bundle\LibraryBundle\Form\ListGroupType;
+use Boom\Bundle\BackBundle\Form\ListGroupType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,14 +12,17 @@ class ListBlockType extends AbstractType {
 
         $builder->add(
                 'list_groups', 'collection', array(
-            'type' => new ListGroupType()
+            'type' => new ListGroupType(),
+                    'allow_add' => true,
+                    'allow_delete'  => true
                 )
         );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'virtual' => true
+            'virtual' => false,
+            'by_reference' => false
         ));
     }
 

@@ -6,9 +6,32 @@ $nav[] = array(
     'text' => 'Dashboard',
 );
 $nav[] = array(
-    '_route' => 'BoomBackBundle_homepage_index',
     'class' => 'i_desk',
     'text' => 'Home',
+    'children' => array(
+        array(
+            '_route' => array(
+                'BoomBackBundle_list_edit',
+                array(
+                    'block' => 'home_page',
+                    'slug' => 'top'
+                )
+            ),
+            'class' => 'i_create_write',
+            'text' => 'Top'
+        ),
+        array(
+            '_route' => array(
+                'BoomBackBundle_list_edit',
+                array(
+                    'block' => 'home_page',
+                    'slug' => 'semanal'
+                )
+            ),
+            'class' => 'i_create_write',
+            'text' => 'Semanal'
+        )
+    )
 );
 if ($view['security']->isGranted('ROLE_SUPER_ADMIN') == false) {
     $nav[] = array(
@@ -118,7 +141,13 @@ $nav[] = array(
                     <ul>
                         <?php foreach ($n['children'] as $c): ?>
                             <li class="<?php echo $c['class'] ?>">
-                                <a href="<?php echo isset($c['_route']) ? $view['router']->generate($c['_route']) : '' ?>" class="<?php echo isset($c['_route']) && $view['request']->getParameter('_route') == $c['_route'] ? 'active' : '' ?>">
+                                <?php
+                                $route = '';
+                                if (isset($c['_route'])) {
+                                    $route = call_user_func_array(array($view['router'], 'generate'), (array) $c['_route']);
+                                }
+                                ?>
+                                <a href="<?php echo $route ?>" class="<?php echo isset($c['_route']) && $view['request']->getParameter('_route') == $c['_route'] ? 'active' : '' ?>">
                                     <span><?php echo $c['text'] ?></span>
                                 </a>
                             </li>

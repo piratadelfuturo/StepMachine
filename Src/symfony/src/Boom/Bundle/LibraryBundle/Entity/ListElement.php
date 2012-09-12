@@ -44,7 +44,7 @@ class ListElement extends DomainObject{
 
     /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="list_elements")
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
      */
     protected $image;
 
@@ -63,14 +63,13 @@ class ListElement extends DomainObject{
     /**
      * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="ListGroup", inversedBy="list_elements")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="list_group_id", referencedColumnName="id", nullable=false)
      */
     protected $list_group;
 
-    /*
-    public function __construct(ListGroup $list_group){
-        $this->setListGroup($list_group);
-    }*/
+
+    public function __construct(){
+    }
 
     /**
      * Get id
@@ -246,20 +245,20 @@ class ListElement extends DomainObject{
     /**
      * Set list_group
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\Category $listGroup
+     * @param Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroup
      * @return ListElement
      */
-    public function setListGroup(\Boom\Bundle\LibraryBundle\Entity\Category $listGroup)
+    public function setListGroup(\Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroup)
     {
+        //$listGroup->addListElement($this);
         $this->list_group = $listGroup;
-
         return $this;
     }
 
     /**
      * Get list_group
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\Category
+     * @return Boom\Bundle\LibraryBundle\Entity\ListGroup
      */
     public function getListGroup()
     {

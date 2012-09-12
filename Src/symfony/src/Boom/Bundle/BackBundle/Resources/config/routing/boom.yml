@@ -6,7 +6,6 @@ BoomBackBundle_boom_index:
     options:
       expose: true
 
-
 BoomBackBundle_boom_show:
     pattern:  /{id}/show
     defaults: { _controller: "BoomBackBundle:Boom:show" }
@@ -19,7 +18,6 @@ BoomBackBundle_boom_preview:
     requirements: { _method: post }
     options:
         expose: true
-
 
 BoomBackBundle_boom_create:
     pattern:  /new
@@ -50,3 +48,10 @@ BoomBackBundle_boom_delete:
     requirements: { _method: post }
     options:
         expose: true
+
+BoomBackBundle_boom_ajaxsearch:
+    pattern:  /search
+    defaults: { _controller: "BoomBackBundle:Boom:searchBoomAjax" }
+    options:
+        expose: true
+

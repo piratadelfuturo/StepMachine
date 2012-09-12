@@ -35,9 +35,9 @@ BoomBackBundle_dashboard:
     pattern:  /
     defaults: { _controller: BoomBackBundle:Default:dashboard }
 
-BoomBackBundle_homepage_index:
-    pattern:  /homepage
-    defaults: { _controller: BoomBackBundle:Default:homepage }
+BoomBackBundle_list:
+    resource: "@BoomBackBundle/Resources/config/routing/list.yml"
+    prefix: /list
 
 BoomBackBundle_boom:
     resource: "@BoomBackBundle/Resources/config/routing/boom.yml"

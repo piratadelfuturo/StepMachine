@@ -52,3 +52,5 @@ BoomFrontBundle_boom_show:
     defaults: { _controller: "BoomFrontBundle:Default:boom" }
     requirements:
         _method:  GET
+    options:
+        expose: true

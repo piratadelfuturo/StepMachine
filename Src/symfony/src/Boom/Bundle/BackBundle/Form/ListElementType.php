@@ -1,26 +1,25 @@
 <?php
 
-namespace Boom\Bundle\LibraryBundle\Form;
+namespace Boom\Bundle\BackBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Boom\Bundle\BackBundle\Form\EventListener\AddBoomelementIdSubscriber;
 
-class BoomelementType extends AbstractType
+class ListElementType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $builder
             ->add('position','hidden')
-            ->add('title')
-            ->add('summary')
-            ->add('url')
-            ->add('image','hidden')
-            ->add('boom','hidden')
-            ->add('category','hidden')
-            ->add('position','hidden');
+            ->add('title','text',array('required' => true))
+            ->add('summary','text',array('required' => true))
+            ->add('url','text',array('required' => true))
+            ->add('image','text',array('required' => false))
+            ->add('boom','hidden',array('required' => false))
+            ->add('category','hidden',array('required' => false));
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

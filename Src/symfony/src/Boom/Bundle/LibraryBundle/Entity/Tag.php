@@ -108,7 +108,9 @@ class Tag extends DomainObject{
      */
     public function addBoom(\Boom\Bundle\LibraryBundle\Entity\Boom $booms)
     {
-        $this->booms[] = $booms;
+        if (!$this->booms->contains($booms)) {
+            $this->booms[] = $booms;
+        }
         return $this;
     }
 

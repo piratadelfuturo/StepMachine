@@ -1,0 +1,43 @@
+BoomBackBundle_list_index:
+    pattern:  .{_format}
+    defaults: { _controller: "BoomBackBundle:List:index", _format: html }
+    requirements:
+      _format: html|json
+    options:
+      expose: true
+
+BoomBackBundle_list_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BoomBackBundle:List:show" }
+    options:
+        expose: true
+
+BoomBackBundle_list_preview:
+    pattern:  /preview
+    defaults: { _controller: "BoomBackBundle:List:preview" }
+    requirements: { _method: post }
+    options:
+        expose: true
+
+BoomBackBundle_list_create:
+    pattern:  /new/{block}/{slug}
+    defaults: { _controller: "BoomBackBundle:List:create" }
+    requirements: { _method: post }
+
+BoomBackBundle_list_new:
+    pattern:  /new/{block}/{slug}
+    defaults: { _controller: "BoomBackBundle:List:new" }
+    requirements: { _method: get }
+
+BoomBackBundle_list_edit:
+    pattern:  /{block}/{slug}/edit
+    defaults: { _controller: "BoomBackBundle:List:edit" }
+    options:
+        expose: true
+
+BoomBackBundle_list_update:
+    pattern:  /{block}/{slug}/update
+    defaults: { _controller: "BoomBackBundle:List:update" }
+    requirements: { _method: post }
+    options:
+        expose: true

@@ -37,7 +37,14 @@ class ListGroup extends DomainObject{
     protected $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Gedmo\Slug(fields={"name"},unique=true,updatable=false)
+     * @ORM\Column(type="string", length=140, unique=true)
+     */
+    protected $slug;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $update_date;
 
@@ -49,7 +56,7 @@ class ListGroup extends DomainObject{
 
 
     /**
-     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group" )
+     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group", cascade={"all"} )
      */
     protected $list_elements;
 
@@ -130,7 +137,10 @@ class ListGroup extends DomainObject{
      */
     public function addListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements)
     {
-        $this->list_elements[] = $listelements;
+        if(!$this->list_elements->contains($listelements)){
+            $listelements->setListGroup($this);
+            $this->list_elements[] = $listelements;
+        }
 
         return $this;
     }
@@ -154,6 +164,8 @@ class ListGroup extends DomainObject{
     {
         return $this->list_elements;
     }
+
+
 
     public function getUpdateDate() {
         return $this->update_date;
@@ -180,6 +192,27 @@ class ListGroup extends DomainObject{
         $this->position = $position;
     }
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return ListGroup
+     */
+    public function setSlug($slug) {
+        if (empty($this->slug) || is_null($this->slug)) {
+            $this->slug = $slug;
+        }
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug() {
+        return $this->slug;
+    }
 
 
 

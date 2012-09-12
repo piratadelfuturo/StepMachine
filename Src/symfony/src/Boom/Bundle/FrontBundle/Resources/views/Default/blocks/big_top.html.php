@@ -1,22 +1,27 @@
 <div id="main-car">
-  <a href="#" class="car-btn prev">prev</a>
-  <a href="#" class="car-btn next">next</a>
-  <div class="active cf">
-    <div class="img-container">
-      <img src="http://placehold.it/677x382" class="main-img" alt="placeholder"/>
+    <a href="#" class="car-btn prev">prev</a>
+    <a href="#" class="car-btn next">next</a>
+    <?php foreach ($list as $element): ?>
+    <?php $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/g/677/381'?>
+        <div class="active cf">
+            <div class="img-container">
+                <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
+            </div>
+            <h2><?php echo $view->escape($element['title']) ?></h2>
+            <p><?php echo $view->escape($element['summary']) ?></p>
+        </div>
+    <?php endforeach; ?>
+    <div id="carousel">
+        <ul>
+            <?php foreach ($list as $element): ?>
+            <?php $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/133/75'?>
+                <li>
+                    <a href="<?php echo $element['url'] ?>">
+                        <p><?php echo $view->escape($element['title']) ?></p>
+                        <img src="http://placekitten.com/133/75" alt="<?php echo $view->escape($element['title']) ?>" />
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
     </div>
-    <h2>Los 7 mejores discos del 2012</h2>
-    <p>Everyone wants to be a world-record holder. Now Toyota Prius and URDB are bringing you the chance. Join us on March 30 and 31 right here for a live, two-day, record-setting event! Everyone wants to be a world-record holder. Now Toyota Prius and URDB are bringing you the chance. Join us on March 30 and 31 right here for a live, two-day, record-setting event!</p>
-  </div>
-  <div id="carousel">
-    <ul>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>
-      <li><a href="#"><p>Come caca</p><img src="http://placehold.it/133x75" alt="placeholder" /></a></li>          
-    </ul>
-  </div>
 </div>

@@ -13,17 +13,46 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
-        $latest = $repo->findBy(array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
+        $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
 
+        $latest = $repo->findBy(
+                array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
 
-        return $this->render(
-                        'BoomFrontBundle:Default:index.html.php', array(
-                    'latest' => $latest
-                        )
+        $users = $repo->findUsersBooms();
+
+        $featured = $repo->findBy(
+                array(
+            'status' => Boom::STATUS_PUBLIC
+                ), array(
+            'featured' => 'ASC',
+            'date_published' => 'ASC'), 7, 0);
+
+        $top = $listRepo->findOneBy(
+                array(
+                    'block' => 'home_page',
+                    'name' => 'top'
+                ));
+
+        $weekly = $listRepo->findOneBy(
+                array(
+                    'block' => 'home_page',
+                    'name' => 'semanal'
+                ));
+
+        $viewVars = array(
+            'top' => $top,
+            'weekly' => $weekly,
+            'users' => $users,
+            'featured' => $featured,
+            'latest' => $latest
         );
+
+        //var_dump($viewVars);
+        //exit;
+        return $this->render('BoomFrontBundle:Default:index.html.php', $viewVars);
     }
 
-    public function testAction(){
+    public function testAction() {
         return $this->render('BoomFrontBundle:Default:test.html.php');
     }
 
@@ -58,10 +87,10 @@ class DefaultController extends Controller {
         //$response->setPublic();
         //$response->setSharedMaxAge(600);
         //if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
-            //return $response;
+        //return $response;
         //} else {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
                 array(
                     'slug' => $slug,
                     'status' => array(
@@ -69,21 +98,20 @@ class DefaultController extends Controller {
                         Boom::STATUS_PRIVATE
                     )
                 )
-            );
+        );
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find.');
-            } elseif ($entity['category']['slug'] !== $category_slug) {
-                throw $this->createNotFoundException('Unable to find.');
-            }
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find.');
+        } elseif ($entity['category']['slug'] !== $category_slug) {
+            throw $this->createNotFoundException('Unable to find.');
+        }
 
-            $thisCategory = $entity['category'];
-            return $this->render(
-                            'BoomFrontBundle:Boom:show.html.php', array(
-                        'entity' => $entity,
-                        'category' => $thisCategory
-
-                            )            );
+        $thisCategory = $entity['category'];
+        return $this->render(
+                        'BoomFrontBundle:Boom:show.html.php', array(
+                    'entity' => $entity,
+                    'category' => $thisCategory
+                ));
 
         //}
     }
@@ -92,6 +120,7 @@ class DefaultController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
 
         $thisCategory = $catRepo->findOneBySlug($slug);
 
@@ -100,14 +129,27 @@ class DefaultController extends Controller {
         }
 
         $latest = $boomRepo->findBoomsByCategory(
-                $thisCategory,
-                array('date_created' => 'DESC')
+                $thisCategory, array('boom.date_created' => 'DESC')
                 , 14
                 , 0
                 , array(Boom::STATUS_PUBLIC));
 
+        $featured = $boomRepo->findBoomsByCategory(
+                $thisCategory, array('boom.date_created' => 'DESC')
+                , 14
+                , 0
+                , array(Boom::STATUS_PUBLIC), true);
+
+        $top = $listRepo->findOneBy(
+                array(
+                    'block' => $thisCategory['slug'],
+                    'name' => 'top'
+                )
+        );
+
         return $this->render('BoomFrontBundle:Category:index.html.php', array(
-                    //'top' => $top,
+                    'top' => $top,
+                    'featured' => $featured,
                     'latest' => $latest,
                     'category' => $thisCategory
                 ));
