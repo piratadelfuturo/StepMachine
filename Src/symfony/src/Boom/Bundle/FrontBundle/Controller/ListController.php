@@ -160,7 +160,7 @@ class ListController extends Controller {
         $list = $boomRepo->findUserBoomsByCategory(
                 $thisCat
                 , array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)
@@ -187,18 +187,12 @@ class ListController extends Controller {
         $limit = 14;
 
         $em = $this->getDoctrine()->getManager();
-        $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
 
-        $thisCat = $catRepo->findOneBySlug($slug);
-
-        if (is_null($thisCat) || $thisCat == false) {
-            throw $this->createNotFoundException('Categoría no existente');
-        }
 
         $list = $boomRepo->findUsersBooms(
                 array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)
@@ -237,7 +231,7 @@ class ListController extends Controller {
         $list = $boomRepo->findUserBoomsByCategory(
                 $thisCat
                 , array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)
@@ -275,7 +269,7 @@ class ListController extends Controller {
 
         $list = $boomRepo->findUsersBooms(
                 array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)

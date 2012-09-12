@@ -356,7 +356,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->setFirstResult((int) $offset)->setMaxResults((int) $limit);
 
         $query = $cb->getQuery();
-        $result = $query->getSingleScalarResult();
+        $result = $query->execute();
 
         return $result;
 

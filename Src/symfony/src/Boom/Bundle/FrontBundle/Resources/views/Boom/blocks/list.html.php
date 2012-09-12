@@ -1,5 +1,8 @@
 <ul class="list">
     <?php
+    if(!isset($list)){
+        $list = array();
+    }
     foreach ($list as $element):
         $elementUrl = $view['router']->generate(
                 'BoomFrontBundle_boom_show', array(
