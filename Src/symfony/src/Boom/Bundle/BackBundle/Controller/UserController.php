@@ -216,7 +216,7 @@ class UserController extends Controller {
                     );
         }
 
-        return $this->render('BoomBackBundle:User:edit.html.twig', array(
+        return $this->render('BoomBackBundle:User:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView()
                 ));

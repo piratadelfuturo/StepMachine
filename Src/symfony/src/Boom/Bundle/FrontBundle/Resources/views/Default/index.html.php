@@ -1,7 +1,7 @@
 <?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php') ?>
 <?php
 $view['slots']->start('top_two_col');
-if(empty($top['listelements']) || $top['listelements'] === null){
+if($top['listelements'] !== null){
 echo $view->render('BoomFrontBundle:Default:blocks/big_top.html.php', array(
             'title' => $top['name'],
             'list'  => $top['listelements']

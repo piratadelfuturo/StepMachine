@@ -9,7 +9,7 @@
     foreach ($list as $element):
         $position++;
         $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/g/677/381'?>
-        <div class="<?php echo $position == 1 ? 'active' : '' ?> cf">
+        <div class="slide <?php echo $position == 1 ? 'active' : '' ?> cf">
             <div class="img-container">
                 <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
             </div>
