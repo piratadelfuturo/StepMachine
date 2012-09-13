@@ -44,6 +44,27 @@ foreach($entity['elements'] as $el){
                 <span>Sustituir este bloque por contenido real</span>
               </h4>
             </li>
+            <li>
+              <div class="balloon">
+                <p>arrastrar</p>
+              </div>
+              <p class="pos"><span>2</span></p>
+              <img src="http://placehold.it/72x72">
+              <h4 class="boom-info">
+                <span>Sustituir este bloque por contenido real</span>
+              </h4>
+            </li>
+            <li>
+              <div class="balloon">
+                <p>arrastrar</p>
+              </div>
+              <p class="pos"><span>3</span></p>
+              <img src="http://placehold.it/72x72">
+              <h4 class="boom-info">
+                <span>Sustituir este bloque por contenido real</span>
+              </h4>
+            </li>
+
           </ul>
         </div>
       </div>

@@ -56,9 +56,9 @@
         });
 
         //DRAGnDROP
-        $("#usr-booms .drag-booms").dragsort({ dragSelector: '.pos', dragEnd: function(){
-          $("#usr-booms .drag-booms").children().each(function(index) {
-              $(this).children(".pos").html(index+1)
+        $("#usr-booms .dyna-content > .drag-booms").dragsort({ dragSelector: '.drag-booms li', dragEnd: function(){
+          $(".dyna-content.on .drag-booms").children().each(function(index){
+              $(this).children(".pos").html(index+1);
             });
         }, dragBetween: false, placeHolderTemplate: "<li class='empty'></li>" });
 
