@@ -1,16 +1,16 @@
 <?php
+
 namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="list_group")
  */
-class ListGroup extends DomainObject{
+class ListGroup extends DomainObject {
 
     /**
      * @ORM\Id
@@ -54,7 +54,6 @@ class ListGroup extends DomainObject{
      */
     protected $category;
 
-
     /**
      * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group", cascade={"all"} )
      */
@@ -63,14 +62,13 @@ class ListGroup extends DomainObject{
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
-        /*for($i=1;$i<=7;$i++){
-            $listElement = new ListElement($this);
-            $listElement->setPosition($i);
-            $this->list_elements[] = $listElement;
-        }*/
+        /* for($i=1;$i<=7;$i++){
+          $listElement = new ListElement($this);
+          $listElement->setPosition($i);
+          $this->list_elements[] = $listElement;
+          } */
     }
 
     /**
@@ -78,8 +76,7 @@ class ListGroup extends DomainObject{
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -89,8 +86,7 @@ class ListGroup extends DomainObject{
      * @param string $name
      * @return ListGroup
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -101,8 +97,7 @@ class ListGroup extends DomainObject{
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -112,8 +107,7 @@ class ListGroup extends DomainObject{
      * @param Boom\Bundle\LibraryBundle\Entity\Category $category
      * @return ListGroup
      */
-    public function setCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\Boom\Bundle\LibraryBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -124,8 +118,7 @@ class ListGroup extends DomainObject{
      *
      * @return Boom\Bundle\LibraryBundle\Entity\Category
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -135,9 +128,8 @@ class ListGroup extends DomainObject{
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listelements
      * @return ListGroup
      */
-    public function addListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements)
-    {
-        if(!$this->list_elements->contains($listelements)){
+    public function addListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements) {
+        if (!$this->list_elements->contains($listelements)) {
             $listelements->setListGroup($this);
             $this->list_elements[] = $listelements;
         }
@@ -150,8 +142,7 @@ class ListGroup extends DomainObject{
      *
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listelements
      */
-    public function removeListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements)
-    {
+    public function removeListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements) {
         $this->list_elements->removeElement($listelements);
     }
 
@@ -160,12 +151,24 @@ class ListGroup extends DomainObject{
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getListElements()
-    {
+    public function getListElements() {
         return $this->list_elements;
     }
 
-
+    /**
+     * Set list_elements
+     *
+     * @return ListGroup
+     */
+    public function setListElements(Doctrine\Common\Collections\Collection $list_elements = null) {
+        if ($list_elements !== null) {
+            foreach ($list_elements as $list_element) {
+                $list_element->setListGroup($this);
+            }
+        }
+        $this->list_elements = $list_elements;
+        return $this;
+    }
 
     public function getUpdateDate() {
         return $this->update_date;
@@ -174,7 +177,6 @@ class ListGroup extends DomainObject{
     public function setUpdateDate(\DateTime $update_date) {
         $this->update_date = $update_date;
     }
-
 
     public function getBlock() {
         return $this->block;
@@ -213,7 +215,5 @@ class ListGroup extends DomainObject{
     public function getSlug() {
         return $this->slug;
     }
-
-
 
 }

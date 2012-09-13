@@ -884,6 +884,9 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 .widget h3.handle .reload{
 	background-image:url(../images/icons/light/refresh_3.png);
 }
+.widget h3.handle .remove{
+	background-image:url(../images/icons/light/cross.png);
+}
 .widget.collapsed{
 	border-bottom-color:#555555;
 }

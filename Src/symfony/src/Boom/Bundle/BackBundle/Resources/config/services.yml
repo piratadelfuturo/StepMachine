@@ -2,6 +2,7 @@ parameters:
     #boom_back.image_type.class: Boom\Bundle\BackBundle\Form\Type\WidgetBlockType
     boom_back.widget_block_type.class: Boom\Bundle\BackBundle\Form\Type\WidgetBlockType
     boom_back.user_provider.admin.class: Boom\Bundle\BackBundle\Security\AdminProvider
+    boom_library.boom_bundle_backbundle_listelementtype.type.class: Boom\Bundle\BackBundle\Form\ListElementType
 
 services:
     form.type.widget_block_type:
@@ -15,4 +16,9 @@ services:
         arguments:
           userManager:  "@fos_user.user_manager"
           #validator:    "@validator"
+    boom_back.boom_bundle_backbundle_listelementtype.type:
+        class: %boom_library.boom_bundle_backbundle_listelementtype.type.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: boom_bundle_backbundle_listelementtype }
           #container:    "@service_container"

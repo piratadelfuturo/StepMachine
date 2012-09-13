@@ -5,9 +5,18 @@
         data-prototype="<?php echo $view->escape($view['form']->widget($form['list_elements']->get('prototype'))) ?>"
         class="sort-elements" >
             <?php foreach ($form['list_elements'] as $element): ?>
-            <fieldset id="<?php echo $element->get('id') ?>" >
-                <label><?php echo $element->get('name') ?></label>
+            <fieldset id="<?php echo $element->get('id') ?>" class="widget" >
+                <h3 class="handle icon" >
+                    <?php echo $element->get('name') ?>
+                    <a class="icon i_bulls_eye"></a>
+                    <a title="remove" class="collapse remove"></a>
+                </h3>
                 <fieldset>
+                    <?php
+                    if (isset($element['id'])) {
+                        echo $view['form']->row($element['id']);
+                    }
+                    ?>
                     <?php echo $view['form']->row($element['title']); ?>
                     <?php echo $view['form']->row($element['summary']); ?>
                     <?php echo $view['form']->row($element['url']); ?>

@@ -5,32 +5,60 @@ namespace Boom\Bundle\BackBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Boom\Bundle\BackBundle\Form\EventListener\ListElementSubscriber;
+use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementImageTransformer;
+use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementBoomTransformer;
+use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementCategoryTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
 
-class ListElementType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+class ListElementType extends AbstractType {
 
-        $builder
-            ->add('position','hidden')
-            ->add('title','text',array('required' => true))
-            ->add('summary','text',array('required' => true))
-            ->add('url','text',array('required' => true))
-            ->add('image','text',array('required' => false))
-            ->add('boom','hidden',array('required' => false))
-            ->add('category','hidden',array('required' => false));
+    /**
+     * @var ObjectManager
+     */
+    private $om;
 
+    /**
+     * @param ObjectManager $om
+     */
+    public function __construct(ObjectManager $om) {
+        $this->om = $om;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        //$subscriber = new ListElementSubscriber($builder->getFormFactory());
+        //$builder->addEventSubscriber($subscriber);
+        $builder
+                ->add('position', 'hidden', array('required' => true))
+                ->add('title', 'text', array('required' => true))
+                ->add('summary', 'text', array('required' => false))
+                ->add('url', 'text', array('required' => true))
+                ->add(
+                        $builder->create('image', 'hidden', array('required' => false))
+                        ->prependNormTransformer(new ListElementImageTransformer($this->om))
+                )
+                ->add(
+                        $builder->create('boom', 'hidden', array('required' => false))
+                        ->prependNormTransformer(new ListElementBoomTransformer($this->om))
+                )
+                ->add(
+                        $builder->create('category', 'hidden', array('required' => false))
+                        ->prependNormTransformer(new ListElementCategoryTransformer($this->om))
+        );
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\ListElement'
+            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\ListElement',
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => true
         ));
     }
 
-    public function getName()
-    {
+    public function getName() {
         return 'boom_bundle_backbundle_listelementtype';
     }
+
 }

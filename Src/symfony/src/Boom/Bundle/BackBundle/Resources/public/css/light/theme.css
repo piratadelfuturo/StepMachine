@@ -29,7 +29,7 @@
 /* General Section
 /*----------------------------------------------------------------------*/
 
-html, body, textarea, input { 
+html, body, textarea, input {
 	color:#6f6f6f;
 }
 html{
@@ -61,7 +61,7 @@ blockquote{
 	color:#999999;
 }
 
-hr { 
+hr {
 	border-top-color:#e1e1e1;
 	border-bottom-color:#ffffff;
 }
@@ -154,7 +154,7 @@ header{
 	-moz-box-shadow:3px 0 4px rgba(0, 0, 0, 0.1);
 	box-shadow:3px 0 4px rgba(0, 0, 0, 0.1);
 	border-top-color:#d7d7d7;
-	
+
 	background:#f3f3f3;
 	/* the filter causes an overflow problem on IE9 http://stackoverflow.com/questions/3619383/internet-explorer-css-property-filter-ignores-overflowvisible
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#f1f1f1');*/
@@ -173,7 +173,7 @@ header{
 	color:#353535;
 	text-shadow:0px 1px 0 #ffffff;
 	border-top-color:#ffffff;
-	
+
 	background:#f1f1f1;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e8e8e8');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#e8e8e8));
@@ -192,12 +192,12 @@ header{
 	-webkit-box-shadow:inset 0 2px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:inset 0 2px 1px rgba(0, 0, 0, 0.3);
 	box-shadow:inset 0 2px 1px rgba(0, 0, 0, 0.3);
-	
+
 	background:#e8e8e8;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8e8e8', endColorstr='#e3e3e3');
 	background:-webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#e3e3e3));
 	background:-moz-linear-gradient(top,  #e8e8e8,  #e3e3e3);
-	background:-o-linear-gradient(top,  #e8e8e8,  #e3e3e3); 
+	background:-o-linear-gradient(top,  #e8e8e8,  #e3e3e3);
 }
 #header ul li ul li:active, #header ul li ul li.active{
 }
@@ -225,7 +225,7 @@ form#searchform input#search{
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;
 	box-shadow:none;
-	
+
 	background:#f1f1f1;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e8e8e8');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#e8e8e8));
@@ -430,7 +430,7 @@ nav ul li ul li a span{
 #wl_msg .msg-box, #wl_msg .msg-box-close{
 	border-color:#e1e1e1;
 	color:#f1f1f1;
-	
+
 	background:#202020;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#202020', endColorstr='#151515');
 	background:-webkit-gradient(linear, left top, left bottom, from(#202020), to(#151515));
@@ -598,7 +598,7 @@ form label{
 	border-top-color:#ffffff;
 	color:#444444;
 	text-shadow:0 1px 0 #ffffff;
-	
+
 	background:#f1f1f1;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e8e8e8');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#e8e8e8));
@@ -608,7 +608,7 @@ form label{
 form fieldset > section{
 	border-top-color:#ffffff;
 	border-bottom-color:#e7e7e7;
-	
+
 	background:#f6f6f6;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#f1f1f1');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#f1f1f1));
@@ -646,7 +646,7 @@ div.passwordstrength.s_5{background-color:#a2e8a2;}
 /* jQuery Checkbox
 /*----------------------------------------------------------------------*/
 
-.jquery-checkbox span.checkboxplaceholder { 
+.jquery-checkbox span.checkboxplaceholder {
 	background-image:url(images/checkbox.png);
 }
 
@@ -858,7 +858,7 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 	text-shadow:0 0 1px #ffffff;
 	border-top-color:#ffffff;
 	border-bottom-color:#aaaaaa;
-	
+
 	background:#f1f1f1;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f1f1', endColorstr='#e8e8e8');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#e8e8e8));
@@ -869,7 +869,7 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 	-webkit-box-shadow:inset 0 -3px 12px rgba(255, 255, 255, 0.5);
 	-moz-box-shadow:inset 0 -3px 12px rgba(255, 255, 255, 0.5);
 	box-shadow:inset 0 -3px 12px rgba(255, 255, 255, 0.5);
-	
+
 	background:#f6f6f6;
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#f1f1f1');
 	background:-webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#f1f1f1));
@@ -882,6 +882,9 @@ button.purple:hover, a.btn.purple:hover, .button.purple:hover{
 }
 .widget h3.handle .reload{
 	background-image:url(../images/icons/dark/refresh_3.png);
+}
+.widget h3.handle .remove{
+	background-image:url("../images/icons/dark/cross.png");
 }
 .widget.collapsed{
 	border-bottom-color:#aaaaaa;

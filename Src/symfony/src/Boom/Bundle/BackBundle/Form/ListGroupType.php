@@ -2,8 +2,7 @@
 
 namespace Boom\Bundle\BackBundle\Form;
 
-use Boom\Bundle\BackBundle\Form\ListElementType;
-use Boom\Bundle\LibraryBundle\Entity\ListGroup;
+use Boom\Bundle\BackBundle\Form\DataTransformer\ListGroupTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -12,12 +11,15 @@ class ListGroupType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
+
+        //$builder->prependNormTransformer(new ListGroupTransformer());
+
         $builder->add(
                 'list_elements', 'collection', array(
-            'type' => new ListElementType(),
+            'type' => 'boom_bundle_backbundle_listelementtype',
             'allow_add' => true,
             'allow_delete' => true,
-                    'by_reference' => false
+            'by_reference' => true
                 )
         );
     }

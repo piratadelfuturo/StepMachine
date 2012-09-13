@@ -74,7 +74,6 @@ class ListController extends Controller {
                                 'slug' => $slug
                                     )
                     ));
-            //throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
         $form = $this->createForm(new ListGroupType(), $entity);
@@ -102,20 +101,41 @@ class ListController extends Controller {
             throw $this->createNotFoundException('Unable to find entity.');
         }
 
+        $newListElements = array();
+        $originalListElements = array();
+
+        foreach($entity['listelements'] as $listelement) $originalListElements[] = $listelement;
+
+
         $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
 
         if ($form->isValid()) {
+            $newListElements = &$entity['listelements'];
+            foreach ($newListElements as $nle) {
+                foreach ($originalListElements as $key => $ole) {
+                    if ($ole['id'] === $nle['id']) {
+                        unset($originalListElements[$key]);
+                    }
+                }
+            }
+            foreach ($originalListElements as $ole) {
+                $em->remove($ole);
+            }
+            foreach($newListElements as $element){
+                $em->persist($element);
+            }
+
             $em->persist($entity);
             $em->flush();
-            return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
+            /*return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
 
                 'block' => $entity['block'],
                 'slug' => $entity['slug']
                 )
                             )
-            );
+            );*/
         }
 
 

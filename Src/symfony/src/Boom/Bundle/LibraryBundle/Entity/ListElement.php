@@ -33,7 +33,7 @@ class ListElement extends DomainObject{
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $summary;
 
@@ -61,9 +61,9 @@ class ListElement extends DomainObject{
     protected $category;
 
     /**
-     * @Gedmo\SortableGroup
      * @ORM\ManyToOne(targetEntity="ListGroup", inversedBy="list_elements")
      * @ORM\JoinColumn(name="list_group_id", referencedColumnName="id", nullable=false)
+     * @Gedmo\SortableGroup
      */
     protected $list_group;
 

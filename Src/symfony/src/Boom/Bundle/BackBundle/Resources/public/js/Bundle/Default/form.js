@@ -3,10 +3,19 @@
 
     $(document).ready(function(){
 
+        var removeElement = function(button){
+            $(button).parent().parent().remove();
+        }
+
         var elements = $( "#boom_bundle_backbundle_listgrouptype_list_elements",document );
+        elements.on("click",".widget .handle .remove",function(e){
+            e.preventDefault();
+            removeElement(this);
+            return false;
+        })
         elements.sortable({
             axis: "y",
-            handle: "label",
+            handle: ".handle",
             items: "> fieldset",
             update: function( event, ui ) {
                 var position = 1;
@@ -24,7 +33,7 @@
             }
         })
         .disableSelection()
-        .find('> fieldset > label')
+        .find('> fieldset > .handle')
         .click(function(){
             $(this).next().toggle();
         })
@@ -68,7 +77,7 @@
             var title = $(document.createElement('strong'));
             var category = $(document.createElement('strong'));
             var add = $(document.createElement('a'));
-            container.data('boom',data).addClass('alert').addClass('i_arrow_left');
+            container.data('boom',data).addClass('alert').addClass('i_plus');
             container.append(title,document.createElement('br'),category);
             title.text(data.title);
             category.text(data.category_name);
@@ -80,24 +89,26 @@
         }
 
         var createAccordionNode = function(data,sortable,number){
-            var newElement = $(document.createElement('fieldset'));
+            var newElement = $(document.createElement('fieldset')).addClass('widget');
             var container  = $(document.createElement('fieldset'));
             var prototype = $(sortable).attr('data-prototype');
             var transferElement = $(prototype.replace(/__name__/g, number));
-            var label = $(document.createElement('label'));
-
+            var handle = $(document.createElement('h3')).addClass('handle icon');
 
             container.append(transferElement.children());
-            label.text(number);
+            handle.text(number).append(
+                $(document.createElement('a')).addClass('icon i_bulls_eye'),
+                $(document.createElement('a')).addClass('collapse remove').attr('title','remove')
+            );
             newElement
             .append(
-                label,
+                handle,
                 container
                 )
             .attr('id',transferElement.attr('id'));
             sortable.append(newElement);
 
-            label.click(function(){
+            handle.click(function(){
                 $(this).next().toggle();
             })
             .next().toggle();
