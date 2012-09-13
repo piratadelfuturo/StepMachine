@@ -121,7 +121,7 @@ class ListController extends Controller {
         $list = $boomRepo->findBoomsByCategory(
                 $thisCat
                 , array(
-            'date_published' => 'DESC'
+            'boom.date_published' => 'DESC'
                 )
                 , $limit
                 , $limit * ($page - 1)
