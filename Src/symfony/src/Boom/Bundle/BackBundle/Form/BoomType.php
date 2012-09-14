@@ -1,6 +1,7 @@
 <?php
 namespace Boom\Bundle\BackBundle\Form;
 
+use Boom\Bundle\BackBundle\Form\EventListener\BoomFeaturedSubscriber;
 use Boom\Bundle\LibraryBundle\Form\BoomelementType;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Form\AbstractType;
@@ -10,6 +11,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class BoomType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        //$subscriber = new BoomFeaturedSubscriber($builder->getFormFactory());
+        //$builder->addEventSubscriber($subscriber);
 
         $builder
                 ->add('title')
@@ -44,12 +48,6 @@ class BoomType extends AbstractType {
 
         $builder->add(
                 'nsfw', 'checkbox', array(
-            'required' => false
-                )
-        );
-
-        $builder->add(
-                'featured', 'checkbox', array(
             'required' => false
                 )
         );

@@ -1,57 +1,10 @@
 (function(document,$){
     $(document).ready(function(){
-
-        var elements = $( "#boom_bundle_backbundle_boomtype_elements",document );
-
-        elements.children('fieldset').each(function(){
-            var _this = $(this);
-            var title = _this.find('> label > span');
-            _this
-            .find('input.boomie-title-input')
-            .eq(0)
-            .keyup(function(){
-                title.text($(this).val());
-            });
-        });
-
-        elements.sortable({
-            axis: "y",
-            handle: "label",
-            items: "> fieldset",
-            update: function( event, ui ) {
-                var position = 1;
-                $(this)
-                .children('fieldset')
-                .each(function(){
-                    $(this)
-                    .find('input.boomie-position-input').first()
-                    .val(position);
-
-                    $(this).find('> label > strong').first()
-                    .text("B"+position)
-                    position++
-                });
-            }
-        })
-        .disableSelection()
-        .find('> fieldset > label')
-        .click(function(){
-            $(this).next().toggle();
-        })
-        .next()
-        .toggle();
-
-    });
-
-})(document,jQuery);
-
-(function(document,$){
-    $(document).ready(function(){
         var textareas = $('form#boom_bundle_backbundle_boomtype #boom_bundle_backbundle_boomtype_elements textarea');
-        textareas.tinymce({
-            script_url : '/bundles/boomback/js/lib/tiny_mce/tiny_mce.js',
+        tinyMCE.init({
             theme : "advanced",
-            mode : "none",
+            mode : "specific_textareas",
+            editor_selector : "boom-wysiwyg",
             width: "100%",
             plugins : "bbcode,autoresize,boom",
             theme_advanced_buttons1 : "image,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
@@ -66,7 +19,6 @@
             remove_linebreaks : false,
             inline_styles : false,
             convert_fonts_to_spans : false
-
         });
 
         $form = $('#boom_bundle_backbundle_boomtype');
@@ -99,3 +51,48 @@
 
 })(document,jQuery);
 
+(function(document,$){
+    $(document).ready(function(){
+
+        var elements = $( "#boom_bundle_backbundle_boomtype_elements",document );
+        elements.children('.widget').each(function(){
+            var _this = $(this);
+            var title = _this.find('> .handle > span');
+            _this
+            .find('input.boomie-title-input')
+            .eq(0)
+            .keyup(function(){
+                title.text($(this).val());
+            });
+            _this
+            .find('> .handle > .collapse')
+            .click(function(){
+                $(this).parent().next().toggle();
+                _this.toggleClass('collapsed',0);
+            });
+        });
+
+        elements.sortable({
+            axis: "y",
+            handle: ".handle",
+            items: "> .widget",
+            update: function( event, ui ) {
+                var position = 1;
+                $(this)
+                .children('.widget')
+                .each(function(){
+                    $(this)
+                    .find('input.boomie-position-input').first()
+                    .val(position);
+
+                    $(this).find('> .handle > strong').first()
+                    .text("B"+position)
+                    position++
+                });
+            }
+        })
+        .disableSelection();
+
+    });
+
+})(document,jQuery);
