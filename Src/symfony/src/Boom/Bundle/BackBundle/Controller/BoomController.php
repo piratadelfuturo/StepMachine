@@ -25,6 +25,12 @@ class BoomController extends Controller {
 
         $form = $this->createForm(new BoomType(), $entity);
         $form->bind($request);
+        $sessionToken = $this->get('security.context')->getToken();
+        if ($sessionToken->getUser() instanceof BoomEntity\User) {
+            $sessionUser = $sessionToken->getUser();
+            $entity['user'] = $sessionUser;
+        }
+
 
         if (!$form->isValid()) {
             throw $this->createNotFoundException('Invalid form information');
@@ -174,10 +180,10 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new BoomType(), new Boom());
+        $entity = new BoomEntity\Boom();
+        $form = $this->createForm(new BoomType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-        $entity = $form->getData();
         $sessionToken = $this->get('security.context')->getToken();
         if ($sessionToken->getUser() instanceof BoomEntity\User) {
             $sessionUser = $sessionToken->getUser();
@@ -243,10 +249,7 @@ class BoomController extends Controller {
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
         $request = $this->getRequest();
-
         $editForm->bind($request);
 
         if ($editForm->isValid()) {

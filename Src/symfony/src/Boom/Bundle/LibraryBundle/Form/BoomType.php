@@ -48,12 +48,6 @@ class BoomType extends AbstractType {
         );
 
         $builder->add(
-                'featured', 'checkbox', array(
-            'required' => false
-                )
-        );
-
-        $builder->add(
                 'image', 'hidden');
 
         $builder->add(
