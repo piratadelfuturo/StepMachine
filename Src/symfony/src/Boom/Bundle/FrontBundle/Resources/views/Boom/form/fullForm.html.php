@@ -8,7 +8,7 @@
           $form['summary'], array(
             'label' => 'Resumen',
             'attr' => array(
-              'class' => 'boomie-position-input'
+              'class' => 'boomie-resumen'
             )
           )
         )
