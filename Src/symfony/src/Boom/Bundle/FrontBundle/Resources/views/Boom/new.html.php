@@ -1,5 +1,4 @@
 <?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php') ?>
-<?php $view['form']->setTheme($form, array('BoomBackBundle:Form')) ?>
 <div id="usr-site">
     <div id="tusitio-bar">
         <h3>tu sitio</h3>
