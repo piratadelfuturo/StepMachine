@@ -2542,29 +2542,39 @@ footer p{
   font: 20px 'Proxima', sans-serif;
   padding: 10px;
 }
+
 #boom_bundle_frontbundle_boomtype_category {
   width: 275px;
   font: 20px 'Proxima', sans-serif;
 }
-#boom_bundle_frontbundle_boomtype input[type='checkbox'] {
+
+#nsfw-sc {
+ width: 90px;
+}
+#nsfw-sc input[type='checkbox']{
   width: 18px;
   margin: 0;
   clear: none;
-  opacity:0.5;
+  opacity:0;
+  float: right;
   margin-right:-19px;
   cursor: pointer;
-  background: url(../images/sprite-chckbx.png) no-repeat 0 0px;
-  height: 19px;
+}
+#nsfw-sc input[type='checkbox']+label{
+  background: url(../images/sprite-chckbx.png) no-repeat 91px -17px;
+  height: 18px;
   display: block;
-  line-height: 19px;
+  line-height: 20px;
+  width: 112px;
 }
 
-#boom_bundle_frontbundle_boomtype input[type='checkbox']:checked {
-  background: url(../images/sprite-chckbx.png) no-repeat 0 0;
-  height: 19px;
+#nsfw-sc input[type='checkbox']:checked + label {
+  background: url(../images/sprite-chckbx.png) no-repeat 91px 0;  
+  height: 18px;
   display: block;
-  line-height: 19px;
+  line-height: 20px;
 }
+
 #boom_bundle_frontbundle_boomtype_tags {
   width: 630px;
   font: 20px 'Proxima', sans-serif;
