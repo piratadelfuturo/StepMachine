@@ -54,7 +54,7 @@ class ResettingController extends BaseController {
         $this->container->get('fos_user.user_manager')->updateUser($user);
 
         //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_check_email'));
-        return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:checkEmail.html.php'));
+        return new RedirectResponse($this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:checkEmail.html.php'));
     }
 
     /**
@@ -67,7 +67,7 @@ class ResettingController extends BaseController {
 
         if (empty($email)) {
             // the user does not come from the sendEmail action
-            return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:reset.html.php'));
+            return new RedirectResponse($this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:reset.html.php'));
             //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
         }
 

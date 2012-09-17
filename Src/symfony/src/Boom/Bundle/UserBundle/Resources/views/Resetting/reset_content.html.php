@@ -5,10 +5,13 @@
     ahora sólo escribe la nueva un par de veces.</p>
   <form action="<?php echo $view['router']->generate('fos_user_resetting_reset',array('token' => $token)); ?>"
       <?php echo $view['form']->enctype($form) ?> method="POST" class="fos_user_resetting_reset">
+        <?php echo $view['form']->widget($form['_token']); ?>
       <div class="grad-border">
-        <?php echo $view['form']->widget($form) ?>
+        <?php echo $view['form']->widget($form['new']['first'], array('attr' => array( 'class' => 'cp-new', 'placeholder' => 'Introduce tu nueva contraseña...' ) )); ?>
       </div>
-
+      <div class="grad-border">
+        <?php echo $view['form']->widget($form['new']['second'], array('attr' => array( 'class' => 'cp-confirm', 'placeholder' => 'Una vez más, para estar seguros...' ) )); ?>
+      </div>
       <div>
           <input type="submit" value="Reset" />
       </div>

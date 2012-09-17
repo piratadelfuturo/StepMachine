@@ -2635,7 +2635,7 @@ button.submit {
   color: #B4B4B4;
 }
 
-.pass-page input[type="text"] {
+.pass-page input[type="text"], .pass-page input[type="password"] {
   display: block;
   position: relative;
   width: 380px;
