@@ -2437,6 +2437,16 @@ footer p{
   color: #2d2c2c;
   margin-top:10px;
 }
+#form-boom .boomie-resumen{
+  width: 630px;
+  height: 120px;
+  padding: 10px;
+  font: 16px 'Proxima', sans-serif;
+  line-height: 20px;
+  resize: none;
+  overflow: auto;
+  border: 2px inset;
+}
 #form-boom .accordion_content {
   padding:0;
   margin:10px 0;
@@ -2454,9 +2464,10 @@ footer p{
   font: 20px 'Proxima', sans-serif;
   line-height: 34px;
   text-align: center;
+  margin-bottom: 10px;
 }
 .boomie {
-  padding: 10px 40px;
+  padding: 10px 0;
 }
 .up-pic, .boomie-title-input {
   height: 74px;
@@ -2471,7 +2482,7 @@ footer p{
   width: 150px;
 }
 .boomie-title-input {
-  width: 315px;
+  width: 394px;
   margin-left: 7px;
 }
 .wyswyg-menu {
@@ -2512,9 +2523,9 @@ footer p{
 }
 
 .boom-wysiwyg {
-  width: 485px;
+  width: 564px;
   padding: 10px;
-  max-width: 485px;
+  max-width: 564px;
   max-height: 238px;
   resize: none;
   font: 16px 'Proxima', sans-serif;
