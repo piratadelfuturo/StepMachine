@@ -24,7 +24,11 @@ class BoomFeaturedTransformer implements DataTransformerInterface {
         if($data == 2){
             $data = new \DateTime();
         }elseif($data !== 2 || $data !== 0){
-            $data = new \DateTime($data);
+            try{
+                $data = new \DateTime($data);
+            }catch(\Exception $e){
+                $data = null;
+            }
         }else{
            $data = null;
         }

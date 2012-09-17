@@ -1,4 +1,5 @@
 <?php
+
 namespace Boom\Bundle\BackBundle\Form;
 
 use Boom\Bundle\BackBundle\Form\EventListener\BoomFeaturedSubscriber;
@@ -12,8 +13,8 @@ class BoomType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        //$subscriber = new BoomFeaturedSubscriber($builder->getFormFactory());
-        //$builder->addEventSubscriber($subscriber);
+        $subscriber = new BoomFeaturedSubscriber($builder->getFormFactory());
+        $builder->addEventSubscriber($subscriber);
 
         $builder
                 ->add('title')
@@ -21,23 +22,21 @@ class BoomType extends AbstractType {
                 ->add('date_published', 'datetime', array(
                     'read_only' => false
                 ));
-       $builder->add(
-                'status',
-                'choice',
-                array(
-                    'required' => true,
-                    'choices' => array(
-                        Boom::STATUS_DRAFT      => 'Draft',
-                        Boom::STATUS_REVIEW     => 'Revisión',
-                        Boom::STATUS_PUBLIC     => 'Público',
-                        Boom::STATUS_PRIVATE    => 'Privado',
-                        Boom::STATUS_DELETE     => 'Eliminado',
-                        Boom::STATUS_BLOCK      => 'Bloqueado',
-                    )
+        $builder->add(
+                'status', 'choice', array(
+            'required' => true,
+            'choices' => array(
+                Boom::STATUS_DRAFT => 'Draft',
+                Boom::STATUS_REVIEW => 'Revisión',
+                Boom::STATUS_PUBLIC => 'Público',
+                Boom::STATUS_PRIVATE => 'Privado',
+                Boom::STATUS_DELETE => 'Eliminado',
+                Boom::STATUS_BLOCK => 'Bloqueado',
+            )
                 )
-                );
+        );
 
-               $builder->add(
+        $builder->add(
                 'category', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',

@@ -1,5 +1,4 @@
 <?php
-
 namespace Boom\Bundle\BackBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -11,25 +10,27 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author daniel
  */
-class WidgetBlockType extends AbstractType {
+class FeaturedBoomType extends AbstractType{
 
-    protected $blockChoices;
 
-    public function __construct(array $blockChoices) {
-        $this->blockChoices = $blockChoices;
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
         $resolver->setDefaults(array(
-            'choices' => $this->blockChoices,
+            'required' => true,
+            'expanded' => true,
+            'choices' => array(
+                0 => 'No',
+                1 => 'Si',
+                3 => 'Último'
+            ),
         ));
     }
 
-    public function getParent() {
+    public function getParent(){
         return 'choice';
     }
 
-    public function getName() {
+    public function getName(){
 
         return 'widget_block';
     }

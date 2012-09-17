@@ -5,7 +5,6 @@ namespace Boom\Bundle\BackBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Boom\Bundle\BackBundle\Form\EventListener\ListElementSubscriber;
 use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementImageTransformer;
 use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementBoomTransformer;
 use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementCategoryTransformer;
@@ -27,8 +26,6 @@ class ListElementType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
-        //$subscriber = new ListElementSubscriber($builder->getFormFactory());
-        //$builder->addEventSubscriber($subscriber);
         $builder
                 ->add('position', 'hidden', array('required' => true))
                 ->add('title', 'text', array('required' => true))

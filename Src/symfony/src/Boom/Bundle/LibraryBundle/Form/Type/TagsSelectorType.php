@@ -1,13 +1,16 @@
 <?php
+
 namespace Boom\Bundle\LibraryBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Boom\Bundle\LibraryBundle\Form\DataTransformer\TextToTagTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TagsSelectorType extends AbstractType{
-/**
+class TagsSelectorType extends AbstractType {
+
+    /**
      * @var ObjectManager
      */
     private $om;
@@ -15,8 +18,7 @@ class TagsSelectorType extends AbstractType{
     /**
      * @param ObjectManager $om
      */
-    public function __construct(ObjectManager $om)
-    {
+    public function __construct(ObjectManager $om) {
         $this->om = $om;
     }
 
@@ -25,21 +27,18 @@ class TagsSelectorType extends AbstractType{
         $builder->prependNormTransformer($transformer);
     }
 
-    public function getDefaultOptions(array $options)
-    {
-        return array(
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+        $resolver->setDefaults(array(
             'invalid_message' => 'The selected issue does not exist',
             'required' => false
-        );
+        ));
     }
 
-    public function getParent()
-    {
+    public function getParent() {
         return 'text';
     }
 
-    public function getName()
-    {
+    public function getName() {
         return 'tags_selector';
     }
 

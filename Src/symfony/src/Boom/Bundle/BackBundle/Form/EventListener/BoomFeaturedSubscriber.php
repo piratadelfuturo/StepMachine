@@ -36,23 +36,22 @@ class BoomFeaturedSubscriber implements EventSubscriberInterface {
         if (null !== $data) {
             if ($data['featured'] instanceOf \DateTime) {
                 $choices[$data['featured']->format('Y-m-d H:i:s')] = $data['featured']->format('Y-m-d H:i:s');
-            } else {
+            } elseif (!empty($data['featured'])) {
                 $choices[$data['featured']] = $data['featured'];
             }
         }
         $choices[2] = 'Ahora';
 
-        $named = $this->factory->createNamed(
-                'featured', 'choice', array(
-            'required' => 'true',
-            'multiple' => 'false',
-            'expanded' => 'true',
-            'choices' => $choices,
+        $named = $this->factory->createNamedBuilder(
+                'featured',
+                'choice',
+                null,
+                array(
+            'choices' => $choices
                 )
         );
-
-        //$named->prependNormTransformer(new BoomFeaturedTransformer());
-        $form->add($named);
+        $named->addModelTransformer(new BoomFeaturedTransformer());
+        $form->add($named->getForm());
     }
 
 }

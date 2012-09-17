@@ -35,7 +35,12 @@
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría')) ?>
         <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>
         <?php if (isset($form['featured'])): ?>
-            <?php echo $view['form']->row($form['featured'], array('label' => 'Recomendado')) ?>
+            <?php echo $view['form']->row(
+                    $form['featured'],
+                    array(
+                        'label' => 'Recomendado'
+                        )
+                    ) ?>
         <?php endif; ?>
         <?php echo $view['form']->row($form['tags'], array('label' => 'Etiquetas')) ?>
     </fieldset>
