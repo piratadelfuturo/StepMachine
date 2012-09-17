@@ -17,7 +17,7 @@
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?></div>
         </section>
-        <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
+        <section id="nsfw-sc"><?php echo $view['form']->widget($form['nsfw']) ?><label>NSFW:</label></section>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría principal')) ?>
     </fieldset>
     <div id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
