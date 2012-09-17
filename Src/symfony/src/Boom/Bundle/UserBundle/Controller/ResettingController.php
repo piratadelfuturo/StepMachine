@@ -53,7 +53,8 @@ class ResettingController extends BaseController {
         $user->setPasswordRequestedAt(new \DateTime());
         $this->container->get('fos_user.user_manager')->updateUser($user);
 
-        return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_check_email'));
+        //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_check_email'));
+        return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:checkEmail.html.php'));
     }
 
     /**
@@ -66,7 +67,8 @@ class ResettingController extends BaseController {
 
         if (empty($email)) {
             // the user does not come from the sendEmail action
-            return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
+            return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:reset.html.php'));
+            //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
         }
 
         return $this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:checkEmail.html.php', array(
@@ -85,7 +87,8 @@ class ResettingController extends BaseController {
         }
 
         if (!$user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
-            return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
+            //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
+            return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:request.html.php'));
         }
 
         $form = $this->container->get('fos_user.resetting.form');
@@ -100,7 +103,7 @@ class ResettingController extends BaseController {
             return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:reset.html.' . $this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:reset_content.html.php', array(
                     'token' => $token,
                     'form' => $form->createView(),
                 ));
