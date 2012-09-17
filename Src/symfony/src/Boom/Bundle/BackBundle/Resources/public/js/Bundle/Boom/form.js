@@ -7,12 +7,13 @@
             editor_selector : "boom-wysiwyg",
             width: "100%",
             plugins : "bbcode,autoresize,boom",
-            theme_advanced_buttons1 : "image,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
+            theme_advanced_buttons1 : "bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             valid_elements: "strong/b,i/em,u,blockquote,img[!src|alt|title|width|height|!insert-id],a[!href|!target:_blank]|div[!class<gallery|!insert-id|!insert-type]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
+            theme_advanced_resizing : true,
             //content_css : "css/bbcode.css",
             entity_encoding : "raw",
             add_unload_trigger : false,
@@ -31,19 +32,19 @@
             $form
             .attr('target','_self')
             .attr(
-                'action',
-                Routing.generate('BoomBackBundle_boom_update', {
-                    id: $entityId.val()
-                }));
+            'action',
+            Routing.generate('BoomBackBundle_boom_update', {
+                id: $entityId.val()
+            }));
         });
 
         $preview.click(function(){
             $form.attr('target','_blank')
             .attr(
-                'action',
-                Routing.generate('BoomBackBundle_boom_preview', {
-                    id: $preview.val()
-                }));
+            'action',
+            Routing.generate('BoomBackBundle_boom_preview', {
+                id: $preview.val()
+            }));
 
         });
 
@@ -88,6 +89,21 @@
                     $(this).find('> .handle > strong').first()
                     .text("B"+position)
                     position++
+                });
+            },
+            start: function(e, ui){
+                console.log(this);
+                $(this).find('.boom-wysiwyg').each(function(){
+                    tinyMCE.execCommand( 'mceRemoveControl', false, $(this).attr('id') );
+                    $(this).attr('readonly','readonly');
+                });
+            },
+            stop: function(e,ui) {
+                console.log(this);
+                $(this).find('.boom-wysiwyg').each(function(){
+                    $(this).removeAttr('readonly');
+                    tinyMCE.execCommand( 'mceAddControl', true, $(this).attr('id') );
+                    $(this).sortable("refresh");
                 });
             }
         })

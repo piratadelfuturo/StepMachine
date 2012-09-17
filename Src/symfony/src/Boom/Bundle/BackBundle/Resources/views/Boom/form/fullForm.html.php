@@ -26,7 +26,7 @@
                 )
         )
         ?>
-        <?php echo $view['form']->row($form['date_published'], array('Label' => 'Fecha de publicación')) ?>
+        <?php echo $view['form']->row($form['date_published'], array('label' => 'Fecha de publicación')) ?>
         <section>
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
