@@ -18,7 +18,8 @@ class SecurityController extends ContainerAware
 {
     public function loginAction()
     {
-        $request = $this->container->get('request');
+        $request = $this->container->get('templating')->renderResponse('BoomUserBundle:Security:login.html.php');
+        //$request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
         $session = $request->getSession();
         /* @var $session \Symfony\Component\HttpFoundation\Session */

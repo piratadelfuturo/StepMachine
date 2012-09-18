@@ -65,7 +65,7 @@ class ResettingController extends BaseController {
         $email = $session->get(static::SESSION_EMAIL);
         $session->remove(static::SESSION_EMAIL);
 
-        if (empty($email)) {
+        if (empty($email) || $email === null) {
             // the user does not come from the sendEmail action
             return new RedirectResponse($this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:reset.html.php'));
             //return new RedirectResponse($this->container->get('router')->generate('fos_user_resetting_request'));
