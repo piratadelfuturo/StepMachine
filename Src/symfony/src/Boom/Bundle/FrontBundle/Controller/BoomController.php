@@ -222,8 +222,12 @@ class BoomController extends Controller {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
+        if ($entity['user']['id'] !== $sessionUser['id']) {
+            throw new HttpException(401,'Unauthorized access.');
+        }
+
+
         $editForm = $this->createForm(new BoomType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
 
@@ -238,8 +242,7 @@ class BoomController extends Controller {
 
         return $this->render('BoomFrontBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    'edit_form' => $editForm->createView()
                 ));
     }
 
