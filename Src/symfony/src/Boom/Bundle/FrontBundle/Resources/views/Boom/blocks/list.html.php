@@ -1,4 +1,4 @@
-<ul class="list">
+<ul class="list cf">
     <?php
     if(!isset($list)){
         $list = array();
@@ -20,7 +20,7 @@
                     </a>
                 </p>
                 <a href="<?php echo $elementUrl ?>" class="boom-moar">
-                    <?php
+                    Por <?php
                     echo $view->escape(
                             !empty($element['user']['nickname']) || $element['user']['nickname'] == null ? $element['user']['username'] : $element['user']['nickname']
                     )
@@ -33,4 +33,17 @@
     <?php if (isset($more_url)): ?>
         <a href="<?php echo $more_url ?>"><span class="moar">ver más</span></a>
     <?php endif; ?>
+    <li class="pags">
+      <ul class="paginador">
+        <li><a href="#"><span class="pagina-prev">prev</span></a></li>
+        <li><a href="#"><span class="pagina">1</span></a></li>
+        <li><a href="#"><span class="pagina even">2</span></a></li>
+        <li><a href="#"><span class="pagina">3</span></a></li>
+        <li><a href="#"><span class="pagina even">4</span></a></li>
+        <li><a href="#"><span class="pagina on">5</span></a></li>
+        <li><a href="#"><span class="pagina even">60</span></a></li>
+        <li><a href="#"><span class="pagina">70</span></a></li>
+        <li><a href="#"><span class="pagina-next">next</span></a></li>
+      </ul>
+    </li>
 </ul>

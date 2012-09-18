@@ -2,7 +2,7 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
-        <input type="text" name="title" id="form-titleboom" placeholder="Título de tu Boom" />
+        <div class="grad-border"><input type="text" name="title" id="form-titleboom" placeholder="Título de tu Boom" /></div>
         <?php
         echo $view['form']->row(
           $form['summary'], array(
@@ -18,7 +18,7 @@
             <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?></div>
         </section>
         <section id="nsfw-sc"><?php echo $view['form']->widget($form['nsfw']) ?><label>NSFW:</label></section>
-        <?php echo $view['form']->row($form['category'], array('label' => 'Categoría principal')) ?>
+        <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: ')) ?>
     </fieldset>
     <div id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
         <?php foreach ($form['elements'] as $element):?>
