@@ -70,6 +70,7 @@
                     );
                     echo $view['form']->row(
                             $element['title'], array(
+                        'label' => 'Título',
                         'attr' => array(
                             'class' => 'boomie-title-input'
                         )
@@ -78,6 +79,7 @@
 
                     echo $view['form']->row(
                             $element['content'], array(
+                                'label' => 'Contenido',
                         'attr' => array(
                             'class' => 'boom-wysiwyg'
                         )
