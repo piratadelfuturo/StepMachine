@@ -189,12 +189,12 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
-        if (!$entity || in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
         if ($entity['user']['id'] !== $sessionUser['id']) {
-            throw new HttpException('Unauthorized access.', 401);
+            throw new HttpException(401,'Unauthorized access.');
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
