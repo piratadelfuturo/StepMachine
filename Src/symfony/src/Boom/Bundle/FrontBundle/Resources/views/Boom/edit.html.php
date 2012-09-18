@@ -8,7 +8,7 @@
             <a href="#"><li class="recomendados-booms">Recomendados</li></a>
         </ul>
     </div>
-    <span id="creatuboom"><h3>crea tu boom</h3></span>
+    <span id="creatuboom"><h3>edita tu boom</h3></span>
     <a href="#"><span class="comocrear">¿Cómo crear tu boom?</span></a>
     <div id="form-boom">
     <?php
@@ -22,4 +22,3 @@
     ?>
     </div>
 </div>
-
