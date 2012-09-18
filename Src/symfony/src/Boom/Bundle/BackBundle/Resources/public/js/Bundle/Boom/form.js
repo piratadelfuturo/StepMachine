@@ -10,7 +10,11 @@
             theme_advanced_buttons1 : "bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
-            valid_elements: "strong/b,i/em,u,blockquote,img[!src|alt|title|width|height|!insert-id],a[!href|!target:_blank]|div[!class<gallery|!insert-id|!insert-type]",
+            valid_elements: "strong/b,i/em,u,blockquote/quote,"+
+                            "img[!src|alt|title|width|height|!insert-id],"+
+                            "a[!href|!target:_blank],"+
+                            "div[!class<gallery|!insert-id|!insert-type],"+
+                            "ul,ol,li,table,tr,td,th,thead,tbody",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
