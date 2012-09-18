@@ -198,12 +198,10 @@ class BoomController extends Controller {
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BoomFrontBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    'edit_form' => $editForm->createView()
                 ));
     }
 
