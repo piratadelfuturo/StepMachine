@@ -1,4 +1,5 @@
 <?php
+
 namespace Boom\Bundle\FrontBundle\Form;
 
 use Boom\Bundle\LibraryBundle\Form\BoomelementType;
@@ -12,28 +13,10 @@ class BoomType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-                ->add('title')
-                ->add('summary', null, array('required' => true))
-                ->add('date_published', 'datetime', array(
-                    'read_only' => false
-                ));
-       $builder->add(
-                'status',
-                'choice',
-                array(
-                    'required' => true,
-                    'choices' => array(
-                        Boom::STATUS_DRAFT      => 'Draft',
-                        Boom::STATUS_REVIEW     => 'Revisión',
-                        Boom::STATUS_PUBLIC     => 'Público',
-                        Boom::STATUS_PRIVATE    => 'Privado',
-                        Boom::STATUS_DELETE     => 'Eliminado',
-                        Boom::STATUS_BLOCK      => 'Bloqueado',
-                    )
-                )
-                );
+                ->add('title', 'text', array('required' => true))
+                ->add('summary', 'text', array('required' => true));
 
-               $builder->add(
+        $builder->add(
                 'category', 'entity', array(
             'class' => 'Boom\Bundle\LibraryBundle\Entity\Category',
             'property' => 'name',
@@ -44,12 +27,6 @@ class BoomType extends AbstractType {
 
         $builder->add(
                 'nsfw', 'checkbox', array(
-            'required' => false
-                )
-        );
-
-        $builder->add(
-                'featured', 'checkbox', array(
             'required' => false
                 )
         );

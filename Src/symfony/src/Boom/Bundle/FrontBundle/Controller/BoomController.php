@@ -37,6 +37,8 @@ class BoomController extends Controller {
      */
     public function newAction() {
         $entity = new Boom();
+        $entity['status'] = Boom::STATUS_PRIVATE;
+
         $form = $this->createForm(new BoomType(), $entity);
 
         return $this->render('BoomFrontBundle:Boom:new.html.php', array(
