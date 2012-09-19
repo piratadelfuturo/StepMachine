@@ -1,10 +1,9 @@
 <?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php') ?>
 
 <div class="user-login pass-page">
-<?php var_dump($csrf_token) ?>
 
 <?php if(isset($error)): ?>
-  <div class="box-error"><?php echo $error; ?></div>
+  <div class="box-error"><p class="lab">Nombre de usuario o contraseña incorrectos.</p></div>
 <?php endif; ?>
 
 <form action="login_check" method="post">

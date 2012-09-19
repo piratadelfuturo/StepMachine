@@ -12,7 +12,7 @@
       <div class="grad-border">
         <?php echo $view['form']->widget($form['new']['second'], array('attr' => array( 'class' => 'cp-confirm', 'placeholder' => 'Una vez más, para estar seguros...' ) )); ?>
       </div>
-      <div>
+      <div class="sub-btn">
           <input type="submit" value="Reset" />
       </div>
   </form>
