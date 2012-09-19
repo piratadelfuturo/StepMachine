@@ -89,30 +89,17 @@
         }
 
         var createAccordionNode = function(data,sortable,number){
-            var newElement = $(document.createElement('fieldset')).addClass('widget');
-            var container  = $(document.createElement('fieldset'));
             var prototype = $(sortable).attr('data-prototype');
             var transferElement = $(prototype.replace(/__name__/g, number));
-            var handle = $(document.createElement('h3')).addClass('handle icon');
+            var container  = transferElement.find('> fieldset',0);
+            var handle = transferElement.find('> .handle',0);
 
-            container.append(transferElement.children());
-            handle.text(number).append(
-                $(document.createElement('a')).addClass('icon i_bulls_eye'),
-                $(document.createElement('a')).addClass('collapse remove').attr('title','remove')
-            );
-            newElement
-            .append(
-                handle,
-                container
-                )
-            .attr('id',transferElement.attr('id'));
-            sortable.append(newElement);
+            sortable.append(transferElement);
 
             handle.click(function(){
                 $(this).next().toggle();
             })
             .next().toggle();
-            transferElement.remove();
 
             var urlVal;
             if(data.slug){
@@ -130,16 +117,12 @@
             var iBoom       = container.find('input[id$="boom"]',0).val(data.id||'');
             var iCategory   = container.find('input[id$="category"]',0).val(data.category_id||'');
             var iImageId    = container.find('input[id$="image_id"]',0).val(data.image_id||'');
+            var iImageFile  = container.find('input[id$="image_file"]',0).val('');
             var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length);
+            if(window.ajaxUploadCreate){
+                window.ajaxUploadCreate.apply(iImageFile);
+            }
 
-            /*
-            var ImageFormBlock  = iImageId.parent();
-            var ImageFileBlock  = ImageFormBlock.children('section').eq(0);
-            ImageFileBlock.children('div').eq(0).append(iImageId);
-
-            container.append(ImageFileBlock);
-            ImageFormBlock.parent().remove();
-            */
             return false;
         }
 

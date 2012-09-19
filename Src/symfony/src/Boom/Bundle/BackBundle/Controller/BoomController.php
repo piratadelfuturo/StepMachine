@@ -306,7 +306,7 @@ class BoomController extends Controller {
     }
 
     private function createAjaxImageForm(){
-        return $this->createForm(new AjaxImageType($this->getDoctrine()->getEntityManager()), new Image());
+        return $this->createForm($this->get('boom_library.ajax_image.type'), new Image());
     }
 
     public function searchBoomAjaxAction() {

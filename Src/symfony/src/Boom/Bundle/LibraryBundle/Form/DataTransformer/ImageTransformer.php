@@ -5,7 +5,7 @@ namespace Boom\Bundle\LibraryBundle\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
-
+use Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper;
 
 /**
  * Description of ListElementTransformer
@@ -14,19 +14,16 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class ImageTransformer implements DataTransformerInterface {
 
-
     /**
      * @var ObjectManager
      */
-    private $om;
+    protected $om;
+    protected $image_helper;
 
-    /**
-     * @param ObjectManager $om
-     */
-    public function __construct(ObjectManager $om) {
+    public function __construct(ObjectManager $om, ImageHelper $image_helper) {
         $this->om = $om;
+        $this->image_helper = $image_helper;
     }
-
 
     /**
      * Transforms a string (number) to an object (issue).
@@ -39,7 +36,7 @@ class ImageTransformer implements DataTransformerInterface {
 
         $newData = null;
 
-        if($data['id'] !== null){
+        if ($data !== null && $data['id'] !== null) {
             $repo = $this->om->getRepository('BoomLibraryBundle:Image');
             $newData = $repo->findOneById($data['id']);
         }
@@ -55,10 +52,19 @@ class ImageTransformer implements DataTransformerInterface {
      */
     public function transform($data) {
 
-        $newData = array('id'=>null,'file'=>null);
+        $newData = array(
+            'id' => null,
+            'file' => null,
+            'path' => null
+        );
 
-        if($data !== null){
-            $newData['id'] = $data['id'];
+        if ($data !== null) {
+            try {
+                $newData['id'] = $data['id'];
+                $newData['path'] = $data['path'];
+            } catch (\Exception $e) {
+
+            }
         }
 
         return $newData;

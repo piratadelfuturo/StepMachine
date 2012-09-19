@@ -44,7 +44,7 @@ class ListElement extends DomainObject{
 
     /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="list_elements")
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=false)
      */
     protected $image;
 

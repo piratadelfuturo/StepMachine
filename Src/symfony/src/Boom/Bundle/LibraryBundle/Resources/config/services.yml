@@ -36,7 +36,9 @@ services:
             - { name: form.type, alias: tags_selector }
   boom_library.ajax_image.type:
         class: %boom_library.ajax_image.type.class%
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments:
+            om: "@doctrine.orm.entity_manager"
+            image_helper: "@boom_library.image.helper"
         tags:
             - { name: form.type, alias: ajax_image }
 

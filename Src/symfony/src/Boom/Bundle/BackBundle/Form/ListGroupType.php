@@ -19,7 +19,7 @@ class ListGroupType extends AbstractType {
      *
      *  @param ObjectManager $om
      */
-    
+
      /*
     public function __construct(ObjectManager $om) {
         $this->om = $om;
@@ -39,11 +39,13 @@ class ListGroupType extends AbstractType {
         //$builder->prependNormTransformer(new ListGroupTransformer());
 
         $builder->add(
-                'list_elements', 'collection', array(
-            'type' => 'boom_bundle_backbundle_listelementtype',
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false
+                'list_elements',
+                'collection',
+                array(
+                    'type' => 'boom_bundle_backbundle_listelementtype',
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false
                 )
         );
     }

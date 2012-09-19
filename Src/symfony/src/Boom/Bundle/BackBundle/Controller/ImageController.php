@@ -81,27 +81,29 @@ class ImageController extends Controller {
 
     public function ajaxCreateAction() {
         $entity = new Image();
-        //$form = $this->createForm(new AjaxImageType($this->getDoctrine()->getEntityManager()), $entity);
         $request = $this->getRequest();
-        $file = $request->files->get('boom');
-        //$form->bind($file['image']['file']);
-        $entity['file'] = $file['image']['file'];
+        $file = $request->files->get($request->query->get('path'),null,true);
+        if ($file instanceOf \Symfony\Component\HttpFoundation\File\UploadedFile) {
+            $entity['file'] = $file;
+            $sessionToken = $this->get('security.context')->getToken();
 
-        $sessionToken = $this->get('security.context')->getToken();
+            if ($sessionToken->getUser() instanceof User) {
+                $entity->setUser($sessionToken->getUser());
+            }
 
-        if ($sessionToken->getUser() instanceof User) {
-            $entity->setUser($sessionToken->getUser());
-        }
-
-        if ($entity['file'] instanceOf \Symfony\Component\HttpFoundation\File\UploadedFile) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $imgHelper = $this->get('boom_library.image.helper');
             $result = array(
                 'id' => $entity['id'],
-                'path' => $entity['path']
+                'path' => $imgHelper->getBoomImageUrl(
+                        $entity['path'],
+                        $request->query->get('w',158),
+                        $request->query->get('h',90)
+                        )
             );
-        }else{
+        } else {
             $result = null;
         }
 
@@ -111,10 +113,7 @@ class ImageController extends Controller {
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
-
     }
-
-
 
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -136,7 +135,6 @@ class ImageController extends Controller {
                     'entity' => $entity
                 ));
     }
-
 
     public function updateAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -173,6 +171,5 @@ class ImageController extends Controller {
                         ->add('id', 'hidden')
                         ->getForm();
     }
-
 
 }

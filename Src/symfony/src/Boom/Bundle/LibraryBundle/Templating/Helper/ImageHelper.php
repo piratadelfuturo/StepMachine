@@ -26,8 +26,42 @@ class ImageHelper extends Helper {
         return $this->container->getParameter('boom_library.boom_image_path');
     }
 
+    public function getBoomImageUrl($image_path, $w = null, $h = null, $default = ''){
+        $path = $this->container->getParameter('boom_library.boom_image_path');
+        if( ($w !== null || $h !== null) && $this->hasBoomImageSize($w,$h)){
+            $image_path = explode('.',$image_path);
+            $image_path = $image_path[0].'/'.$w.'_'.$h.'.'.$image_path[1];
+        }
+        return $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
+
+    }
+
+    public function getBoomImageSizes(){
+        return (array) $this->container->getParameter('boom_library.boom_image_sizes');
+    }
+
+    public function hasBoomImageSize($w,$h){
+        $sizes = $this->getBoomImageSizes();
+        foreach($sizes as $size){
+            if($size['width'] == $w && $size['height'] == $h){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public function getUserImagePath(){
         return $this->container->getParameter('boom_library.boom_user_path');
+    }
+
+    public function getUserImageUrl($image_path, $size = null,$default = ''){
+        $path = $this->container->getParameter('boom_library.boom_user_path');
+        if($size !== null && !empty($size) && count($size) == 2){
+            $image_path = explode('.',$image_path);
+            $image_path = $image_path[0].'/'.(int)$size[0].'_'.(int)$size[1].'.'.$image_path[1];
+        }
+        return $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
     }
 
     public function imageExists(){
