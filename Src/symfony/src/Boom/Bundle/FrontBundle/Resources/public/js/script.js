@@ -55,12 +55,26 @@
 
         });
 
-        //DRAGnDROP
-        $("#usr-booms .dyna-content > .drag-booms").dragsort({ dragSelector: '.drag-booms li', dragEnd: function(){
-          $(".dyna-content.on .drag-booms").children().each(function(index){
+        //DRAGnDROP widgt
+        $("#usr-booms .dyna-content > .drag-booms").dragsort({ 
+          dragSelector: '.drag-booms li', 
+          dragEnd: function(){
+            $(".dyna-content.on .drag-booms").children().each(function(index){
               $(this).children(".pos").html(index+1);
             });
-        }, dragBetween: false, placeHolderTemplate: "<li class='empty'></li>" });
+          }, 
+          dragBetween: false, 
+          placeHolderTemplate: "<li class='empty'></li>" });
+
+        //DRAGnDROP boomies
+        $("#boom_bundle_frontbundle_boomtype_elements.sort-elements").dragsort({ 
+          dragSelector: '#boom_bundle_frontbundle_boomtype_elements .boomie .place', 
+          dragEnd: function(){
+            $('.sort-elements').children().each(function(index){
+              $(this).find('.place').html(index+1);
+            })
+          },
+          dragBetween: false, placeHolderTemplate: "<li class='empty'></li>" });
 
         var user = $('#usr-cnt');
         var userBox = user.find('#usr-roll');
