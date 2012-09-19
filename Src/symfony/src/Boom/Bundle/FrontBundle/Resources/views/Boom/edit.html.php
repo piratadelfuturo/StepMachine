@@ -13,11 +13,11 @@
     <div id="form-boom">
     <?php
     echo $view->render(
-            'BoomFrontBundle:Boom:form/fullForm.html.php', array(
-        'form_url' => $view['router']->generate('BoomFrontBundle_boom_create'),
-        'form_enctype' => $view['form']->enctype($form),
-        'form' => $form
-            )
+        'BoomFrontBundle:Boom:form/fullForm.html.php', array(
+          'form_url' => $view['router']->generate('BoomFrontBundle_boom_create'),
+          'form_enctype' => $view['form']->enctype($edit_form),
+          'form' => $edit_form
+        )
     );
     ?>
     </div>

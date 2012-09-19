@@ -31,10 +31,7 @@ class ListElementType extends AbstractType {
                 ->add('title', 'text', array('required' => true))
                 ->add('summary', 'text', array('required' => false))
                 ->add('url', 'text', array('required' => true))
-                ->add(
-                        $builder->create('image', 'hidden', array('required' => false))
-                        ->prependNormTransformer(new ListElementImageTransformer($this->om))
-                )
+                ->add('image', 'ajax_image', array('required' => false))
                 ->add(
                         $builder->create('boom', 'hidden', array('required' => false))
                         ->prependNormTransformer(new ListElementBoomTransformer($this->om))

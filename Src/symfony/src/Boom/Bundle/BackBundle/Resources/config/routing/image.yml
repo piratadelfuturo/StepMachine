@@ -11,6 +11,15 @@ BoomBackBundle_image_create:
     defaults: { _controller: "BoomBackBundle:Image:create" }
     requirements: { _method: post }
 
+BoomBackBundle_image_ajax_create:
+    pattern:  /upload.{_format}
+    defaults: { _controller: "BoomBackBundle:Image:ajaxCreate" , _format: json}
+    requirements:
+      _method: post
+      _format: json
+    options:
+        expose: true
+
 BoomBackBundle_image_new:
     pattern:  /new
     defaults: { _controller: "BoomBackBundle:Image:new" }

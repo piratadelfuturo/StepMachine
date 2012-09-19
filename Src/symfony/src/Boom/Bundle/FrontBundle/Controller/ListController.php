@@ -20,7 +20,7 @@ class ListController extends Controller {
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
 
         $list = $boomRepo->findFeaturedBooms(
-                array('date_created' => 'DESC')
+                array('date_published' => 'DESC')
                 , $limit
                 , $limit * ($page - 1)
                 , array(Boom::STATUS_PUBLIC)

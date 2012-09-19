@@ -9,6 +9,30 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ListGroupType extends AbstractType {
 
+
+    /**
+     * @var ObjectManager
+     */
+    private $om;
+
+    /**
+     *
+     *  @param ObjectManager $om
+     */
+    
+     /*
+    public function __construct(ObjectManager $om) {
+        $this->om = $om;
+    }
+
+     */
+
+     /*
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array $options
+     */
+
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
 

@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Boom\Bundle\LibraryBundle\Form\ImageFormType;
+use Boom\Bundle\LibraryBundle\Form\ImageType;
+use Boom\Bundle\LibraryBundle\Form\AjaxImageType;
 
 class ImageController extends Controller {
 
@@ -37,7 +38,7 @@ class ImageController extends Controller {
     public function newAction() {
 
         $entity = new Image();
-        $form = $this->createForm(new ImageFormType(), $entity);
+        $form = $this->createForm(new ImageType(), $entity);
 
 
         return $this->render('BoomBackBundle:Image:new.html.php', array(
@@ -47,7 +48,7 @@ class ImageController extends Controller {
     }
 
     public function createAction() {
-        $form = $this->createForm(new ImageFormType(), new Image());
+        $form = $this->createForm(new ImageType(), new Image());
         $request = $this->getRequest();
         $form->bind($request);
         $entity = $form->getData();
@@ -78,6 +79,42 @@ class ImageController extends Controller {
                 ));
     }
 
+    public function ajaxCreateAction() {
+        $entity = new Image();
+        //$form = $this->createForm(new AjaxImageType($this->getDoctrine()->getEntityManager()), $entity);
+        $request = $this->getRequest();
+        $file = $request->files->get('boom');
+        //$form->bind($file['image']['file']);
+        $entity['file'] = $file['image']['file'];
+
+        $sessionToken = $this->get('security.context')->getToken();
+
+        if ($sessionToken->getUser() instanceof User) {
+            $entity->setUser($sessionToken->getUser());
+        }
+
+        if ($entity['file'] instanceOf \Symfony\Component\HttpFoundation\File\UploadedFile) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+            $result = array(
+                'id' => $entity['id'],
+                'path' => $entity['path']
+            );
+        }else{
+            $result = null;
+        }
+
+        $response = new Response(
+                        json_encode($result)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+
+    }
+
+
 
     public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
@@ -89,7 +126,7 @@ class ImageController extends Controller {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        $editForm = $this->createForm(new ImageFormType(), $entity);
+        $editForm = $this->createForm(new ImageType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BoomBackBundle:Image:edit.html.php', array(
@@ -110,7 +147,7 @@ class ImageController extends Controller {
             throw $this->createNotFoundException('Unable to find Image entity.');
         }
 
-        $editForm = $this->createForm(new ImageFormType(), $entity);
+        $editForm = $this->createForm(new ImageType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();

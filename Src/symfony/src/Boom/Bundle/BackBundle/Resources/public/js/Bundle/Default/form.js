@@ -129,9 +129,17 @@
             var iUrl        = container.find('input[id$="url"]',0).val(urlVal||'');
             var iBoom       = container.find('input[id$="boom"]',0).val(data.id||'');
             var iCategory   = container.find('input[id$="category"]',0).val(data.category_id||'');
-            var iImage      = container.find('input[id$="image"]',0).val(data.image_id||'');
+            var iImageId    = container.find('input[id$="image_id"]',0).val(data.image_id||'');
             var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length);
 
+            /*
+            var ImageFormBlock  = iImageId.parent();
+            var ImageFileBlock  = ImageFormBlock.children('section').eq(0);
+            ImageFileBlock.children('div').eq(0).append(iImageId);
+
+            container.append(ImageFileBlock);
+            ImageFormBlock.parent().remove();
+            */
             return false;
         }
 

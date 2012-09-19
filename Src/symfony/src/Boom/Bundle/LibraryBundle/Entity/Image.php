@@ -4,6 +4,8 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\ImageRepository")
@@ -20,12 +22,12 @@ class Image extends DomainObject {
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=140)
+     * @ORM\Column(type="string", length=140, nullable=true)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
 
@@ -69,6 +71,7 @@ class Image extends DomainObject {
 
     /**
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     protected $date_created;
 

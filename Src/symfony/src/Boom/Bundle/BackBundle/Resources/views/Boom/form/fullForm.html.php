@@ -1,3 +1,12 @@
+<?php if(isset($ajax_image_form)){
+   /*echo $view['form']->widget($ajax_image_form['file'],array(
+       'attr' => array(
+           'data-url' => $view['router']->generate('BoomBackBundle_image_create'),
+           'multiple' => 'multiple',
+           'style'    => 'display:none'
+       )
+   ));*/
+}?>
 <form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
     <fieldset>
         <label><?php echo $form_title ?></label>
@@ -27,10 +36,16 @@
         )
         ?>
         <?php echo $view['form']->row($form['date_published'], array('label' => 'Fecha de publicación')) ?>
+        <?php echo $view['form']->row($form['image'], array('label' => 'Imagen')) ?>
+        <?php /* ?>
         <section>
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
-            <div><?php echo $view['form']->widget($form['image'], array('attr' => array('class' => 'image-uploader'))); ?> </div>
+            <div>
+                <?php echo $view['form']->widget($form['image']['id']); ?>
+                <?php echo $view['form']->widget($form['image']['file'], array('attr' => array('class' => 'ajax-image-uploader'))); ?>
+            </div>
         </section>
+         <?php */ ?>
         <?php echo $view['form']->row($form['nsfw'], array('label' => 'NSFW')) ?>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría')) ?>
         <?php echo $view['form']->row($form['status'], array('label' => 'Estatus')) ?>

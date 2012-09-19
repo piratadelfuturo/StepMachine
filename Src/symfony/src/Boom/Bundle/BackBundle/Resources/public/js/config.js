@@ -121,6 +121,7 @@ $(document).ready(function() {
         initialContent: ''
     };
 
+    /*
     if($.fn.wl_File) $.fn.wl_File.defaults = {
         url: 'upload.php',
         autoUpload: true,
@@ -165,7 +166,7 @@ $(document).ready(function() {
             });
         }
     };
-
+*/
     if($.fn.wl_Fileexplorer) $.fn.wl_Fileexplorer.defaults = {
         url: 'elfinder/php/connector.php',
         toolbar: [

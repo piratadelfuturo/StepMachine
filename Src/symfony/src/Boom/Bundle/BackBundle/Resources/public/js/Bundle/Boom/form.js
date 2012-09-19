@@ -116,3 +116,19 @@
     });
 
 })(document,jQuery);
+
+(function(document,$){
+    $(document).ready(function(){
+        $('#boom_image_file').fileupload({
+        dataType: 'json',
+        url: Routing.generate('BoomBackBundle_image_ajax_create',{ _format: 'json'}),
+        done: function (e, data) {
+            if(data.result.id){
+                $('#boom_image_id').val(data.result.id)
+                console.log(this);
+            }
+        }
+    });
+
+    });
+})(document,jQuery);
