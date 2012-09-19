@@ -14,7 +14,7 @@ class BoomType extends AbstractType {
 
         $builder
                 ->add('title', 'text', array('required' => true))
-                ->add('summary', 'text', array('required' => true));
+                ->add('summary', 'textarea', array('required' => true));
 
         $builder->add(
                 'category', 'entity', array(

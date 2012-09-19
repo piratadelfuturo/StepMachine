@@ -123,8 +123,9 @@
         dataType: 'json',
         url: Routing.generate('BoomBackBundle_image_ajax_create',{ _format: 'json'}),
         done: function (e, data) {
-            if(data.id){
-                $('#boom_image_file').val(data.id)
+            if(data.result.id){
+                $('#boom_image_id').val(data.result.id)
+                console.log(this);
             }
         }
     });

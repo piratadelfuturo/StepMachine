@@ -2621,7 +2621,7 @@ button.submit {
   margin-bottom: 20px;
 }
 
-.grad-border {
+.grad-border, .rem-container {
   display: block;
   position: relative;
   margin: 30px auto 0;
@@ -2637,6 +2637,22 @@ button.submit {
   background: linear-gradient(to right,  rgba(238,238,238,1) 0%,rgba(249,249,249,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f9f9f9',GradientType=1 );
   border-radius: 7px;
+}
+
+.rem-container {
+  background: transparent;
+  border-radius: 0;
+  width: 200px;
+  margin: 5px auto;
+}
+
+.rem-container input[type=checkbox] {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.user-login .rem-container .lab {
+  display: inline-block;
 }
 
 .sub-btn {
