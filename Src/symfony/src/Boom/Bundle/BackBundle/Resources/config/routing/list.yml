@@ -20,23 +20,23 @@ BoomBackBundle_list_preview:
         expose: true
 
 BoomBackBundle_list_create:
-    pattern:  /new/{block}/{slug}
+    pattern:  /new/{block}/{name}
     defaults: { _controller: "BoomBackBundle:List:create" }
     requirements: { _method: post }
 
 BoomBackBundle_list_new:
-    pattern:  /new/{block}/{slug}
+    pattern:  /new/{block}/{name}
     defaults: { _controller: "BoomBackBundle:List:new" }
     requirements: { _method: get }
 
 BoomBackBundle_list_edit:
-    pattern:  /{block}/{slug}/edit
+    pattern:  /{block}/{name}/edit
     defaults: { _controller: "BoomBackBundle:List:edit" }
     options:
         expose: true
 
 BoomBackBundle_list_update:
-    pattern:  /{block}/{slug}/update
+    pattern:  /{block}/{name}/update
     defaults: { _controller: "BoomBackBundle:List:update" }
     requirements: { _method: post }
     options:

@@ -68,7 +68,7 @@
                             );
                             viewB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_list_edit', { block: oData[1] , slug: 'top' })
+                                Routing.generate('BoomBackBundle_list_edit', { block: oData[1] , name: 'top' })
                             );
 
                             $(nTd).empty().append(edB,viewB);

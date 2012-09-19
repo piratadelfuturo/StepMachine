@@ -8,11 +8,31 @@ use Boom\Bundle\LibraryBundle\Entity\ListGroup;
 
 class ListController extends Controller {
 
-    public function newAction($block,$slug) {
+    public function newAction($block, $name) {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('BoomLibraryBundle:ListGroup');
+
+        $entity = $repo->findOneBy(
+                array(
+                    'block' => $block,
+                    'name' => $name
+                )
+        );
+
+        if ($entity !== null) {
+            return $this->redirect(
+                            $this->generateUrl(
+                                    'BoomBackBundle_list_edit', array(
+                                'block' => $entity['block'],
+                                'name' => $entity['name']
+                                    )
+                            )
+            );
+        }
 
         $entity = new ListGroup();
         $entity['block'] = $block;
-        $entity['name'] = $entity['slug'] = $slug;
+        $entity['name'] = $entity['slug'] = $name;
 
         $form = $this->createForm(new ListGroupType(), $entity);
 
@@ -24,16 +44,16 @@ class ListController extends Controller {
         );
     }
 
-    public function createAction($block,$slug) {
+    public function createAction($block, $name) {
 
         $entity = new ListGroup();
         $entity['block'] = $block;
-        $entity['name'] = $entity['slug'] = $slug;
+        $entity['name'] = $entity['slug'] = $name;
         $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
         $entity['block'] = $block;
-        $entity['name'] = $entity['slug'] = $slug;
+        $entity['name'] = $entity['slug'] = $name;
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -43,7 +63,7 @@ class ListController extends Controller {
                             $this->generateUrl(
                                     'BoomBackBundle_list_edit', array(
                                 'block' => $entity['block'],
-                                'slug' => $entity['slug']
+                                'name' => $entity['name']
                                     )
                             )
             );
@@ -58,22 +78,22 @@ class ListController extends Controller {
         );
     }
 
-    public function editAction($block,$slug) {
+    public function editAction($block, $name) {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:ListGroup');
         $entity = $repo->findOneBy(
                 array(
                     'block' => $block,
-                    'slug' => $slug
+                    'name' => $name
                 )
         );
         if (!$entity) {
             return $this->redirect($this->generateUrl(
                                     'BoomBackBundle_list_new', array(
                                 'block' => $block,
-                                'slug' => $slug
+                                'name' => $name
                                     )
-                    ));
+                            ));
         }
 
         $form = $this->createForm(new ListGroupType(), $entity);
@@ -86,14 +106,14 @@ class ListController extends Controller {
         );
     }
 
-    public function updateAction($block,$slug) {
+    public function updateAction($block, $name) {
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:ListGroup');
         $entity = $repo->findOneBy(
                 array(
                     'block' => $block,
-                    'slug' => $slug
+                    'name' => $name
                 )
         );
 
@@ -104,7 +124,8 @@ class ListController extends Controller {
         $newListElements = array();
         $originalListElements = array();
 
-        foreach($entity['listelements'] as $listelement) $originalListElements[] = $listelement;
+        foreach ($entity['listelements'] as $listelement)
+            $originalListElements[] = $listelement;
 
 
         $form = $this->createForm(new ListGroupType(), $entity);
@@ -123,19 +144,19 @@ class ListController extends Controller {
             foreach ($originalListElements as $ole) {
                 $em->remove($ole);
             }
-            foreach($newListElements as $element){
+            foreach ($newListElements as $element) {
                 $em->persist($element);
             }
 
             $em->persist($entity);
             $em->flush();
-            /*return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
+            /* return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
 
-                'block' => $entity['block'],
-                'slug' => $entity['slug']
-                )
-                            )
-            );*/
+              'block' => $entity['block'],
+              'slug' => $entity['slug']
+              )
+              )
+              ); */
         }
 
 

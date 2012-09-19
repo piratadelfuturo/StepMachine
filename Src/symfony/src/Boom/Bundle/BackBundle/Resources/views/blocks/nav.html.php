@@ -14,7 +14,7 @@ $nav[] = array(
                 'BoomBackBundle_list_edit',
                 array(
                     'block' => 'home_page',
-                    'slug' => 'top'
+                    'name' => 'top'
                 )
             ),
             'class' => 'i_create_write',
@@ -25,7 +25,7 @@ $nav[] = array(
                 'BoomBackBundle_list_edit',
                 array(
                     'block' => 'home_page',
-                    'slug' => 'semanal'
+                    'name' => 'semanal'
                 )
             ),
             'class' => 'i_create_write',
@@ -50,7 +50,7 @@ if ($view['security']->isGranted('ROLE_SUPER_ADMIN') == false) {
             )
         )
     );
-
+/*
     $nav[] = array(
         'class' => 'i_image',
         'text' => 'Imágenes',
@@ -84,6 +84,7 @@ if ($view['security']->isGranted('ROLE_SUPER_ADMIN') == false) {
             )
         )
     );
+ */
 }
 $nav[] = array(
     'class' => 'i_folder',

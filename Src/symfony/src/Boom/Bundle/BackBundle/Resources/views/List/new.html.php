@@ -8,7 +8,7 @@
         'form_url' => $view['router']->generate(
                 'BoomBackBundle_list_create', array(
             'block' => $entity['block'],
-            'slug' => $entity['slug']
+            'name' => $entity['name']
                 )
         ),
         'form_title' => 'Crear Boom',

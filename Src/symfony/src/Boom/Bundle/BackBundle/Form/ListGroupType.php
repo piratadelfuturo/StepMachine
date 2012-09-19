@@ -19,7 +19,7 @@ class ListGroupType extends AbstractType {
             'type' => 'boom_bundle_backbundle_listelementtype',
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => true
+            'by_reference' => false
                 )
         );
     }
