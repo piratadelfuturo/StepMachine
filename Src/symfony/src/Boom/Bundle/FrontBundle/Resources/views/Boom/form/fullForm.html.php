@@ -3,15 +3,17 @@
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
         <div class="grad-border">
-        <?php echo $view['form']->widget($form['title'],array('attrs' => array(
+        <?php echo $view['form']->widget($form['title'],array(
+          'attr' => array(
             'placeholder' => 'Título de tu Boom'
-            ))) ?>
+          ))) ?>
         </div>
         <?php
         echo $view['form']->row(
           $form['summary'], array(
             'label' => 'Resumen',
             'attr' => array(
+              'placeholder' => 'El resumen de tu Boom…',
               'class' => 'boomie-resumen'
             )
           )
