@@ -82,6 +82,7 @@
             title.text(data.title);
             category.text(data.category_name);
             container.click(function(event){
+                event.preventDefault();
                 addCallback(data,sortable,accordionCount++);
                 return false;
             })
@@ -118,6 +119,7 @@
             var iCategory   = container.find('input[id$="category"]',0).val(data.category_id||'');
             var iImageId    = container.find('input[id$="image_id"]',0).val(data.image_id||'');
             var iImageFile  = container.find('input[id$="image_file"]',0).val('');
+            var iImageImg   = container.find('img[id$="image_img"]',0).attr('src',data.image_path);
             var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length);
             if(window.ajaxUploadCreate){
                 window.ajaxUploadCreate.apply(iImageFile);

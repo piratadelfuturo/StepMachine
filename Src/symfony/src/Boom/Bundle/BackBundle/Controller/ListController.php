@@ -144,9 +144,6 @@ class ListController extends Controller {
             foreach ($originalListElements as $ole) {
                 $em->remove($ole);
             }
-            foreach ($newListElements as $element) {
-                $em->persist($element);
-            }
 
             $em->persist($entity);
             $em->flush();
