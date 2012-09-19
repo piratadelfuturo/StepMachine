@@ -64,11 +64,6 @@ class ListGroup extends DomainObject {
      */
     public function __construct() {
         $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
-        /* for($i=1;$i<=7;$i++){
-          $listElement = new ListElement($this);
-          $listElement->setPosition($i);
-          $this->list_elements[] = $listElement;
-          } */
     }
 
     /**
@@ -129,10 +124,8 @@ class ListGroup extends DomainObject {
      * @return ListGroup
      */
     public function addListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listelements) {
-        if (!$this->list_elements->contains($listelements)) {
-            $listelements->setListGroup($this);
-            $this->list_elements[] = $listelements;
-        }
+        $listelements->setListGroup($this);
+        $this->list_elements[] = $listelements;
 
         return $this;
     }

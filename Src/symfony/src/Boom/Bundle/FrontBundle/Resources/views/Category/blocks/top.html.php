@@ -19,8 +19,10 @@
                     <h2><?php echo $view->escape($element['title']) ?></h2>
                     <p><?php echo $view->escape($element['summary']) ?></p>
                     <?php if ($element['boom'] !== NULL): ?>
-                        <a href="#" class="boom-moar">Por <?php echo $view->escape($element['user']['username']) ?>.</a>
-                        <date><?php echo $element['boom']['publish_date']->format('D, d M y'); ?></date>
+                        <?php if ($element['boom']['user'] !== NULL): ?>
+                        <a href="#" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?>.</a>
+                        <?php endif; ?>
+                        <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
                     <?php endif; ?>
                 </div>
             </li>

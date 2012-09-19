@@ -250,7 +250,6 @@ class ListElement extends DomainObject{
      */
     public function setListGroup(\Boom\Bundle\LibraryBundle\Entity\ListGroup $listGroup)
     {
-        //$listGroup->addListElement($this);
         $this->list_group = $listGroup;
         return $this;
     }

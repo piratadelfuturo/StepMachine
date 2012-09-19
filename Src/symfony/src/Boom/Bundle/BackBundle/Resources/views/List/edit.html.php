@@ -9,7 +9,7 @@
                 'BoomBackBundle_list_update',
                 array(
                     'block' => $entity['block'],
-                    'slug' => $entity['slug']
+                    'name' => $entity['name']
                 )
                 ),
         'form_title' => 'Editar Boom',

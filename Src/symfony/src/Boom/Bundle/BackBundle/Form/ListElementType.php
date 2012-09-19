@@ -50,7 +50,7 @@ class ListElementType extends AbstractType {
             'data_class' => 'Boom\Bundle\LibraryBundle\Entity\ListElement',
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => true
+            'by_reference' => false
         ));
     }
 
