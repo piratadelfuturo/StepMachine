@@ -317,6 +317,7 @@ class BoomRepository extends NestedTreeRepository {
                 category.slug category_slug,
                 boom.id id,
                 image.id image_id,
+                image.path image_path,
                 category.id category_id
             FROM
                 BoomLibraryBundle:Boom boom

@@ -44,10 +44,7 @@ class ListElementType extends AbstractType {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\ListElement',
-            'allow_add' => true,
-            'allow_delete' => true,
-            'by_reference' => false
+            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\ListElement'
         ));
     }
 

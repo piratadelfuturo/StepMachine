@@ -11,10 +11,10 @@
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             valid_elements: "strong/b,i/em,u,blockquote/quote,"+
-                            "img[!src|alt|title|width|height|!insert-id],"+
-                            "a[!href|!target:_blank],"+
-                            "div[!class<gallery|!insert-id|!insert-type],"+
-                            "ul,ol,li,table,tr,td,th,thead,tbody",
+                "img[!src|alt|title|width|height|!insert-id],"+
+                "a[!href|!target:_blank],"+
+                "div[!class<gallery|!insert-id|!insert-type],"+
+                "ul,ol,li,table,tr,td,th,thead,tbody",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
@@ -115,20 +115,4 @@
 
     });
 
-})(document,jQuery);
-
-(function(document,$){
-    $(document).ready(function(){
-        $('#boom_image_file').fileupload({
-        dataType: 'json',
-        url: Routing.generate('BoomBackBundle_image_ajax_create',{ _format: 'json'}),
-        done: function (e, data) {
-            if(data.result.id){
-                $('#boom_image_id').val(data.result.id)
-                console.log(this);
-            }
-        }
-    });
-
-    });
 })(document,jQuery);

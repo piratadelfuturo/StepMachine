@@ -144,19 +144,15 @@ class ListController extends Controller {
             foreach ($originalListElements as $ole) {
                 $em->remove($ole);
             }
-            foreach ($newListElements as $element) {
-                $em->persist($element);
-            }
 
             $em->persist($entity);
             $em->flush();
-            /* return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
-
-              'block' => $entity['block'],
-              'slug' => $entity['slug']
-              )
-              )
-              ); */
+            return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(
+                                'block' => $entity['block'],
+                                'name' => $entity['name']
+                                    )
+                            )
+            );
         }
 
 

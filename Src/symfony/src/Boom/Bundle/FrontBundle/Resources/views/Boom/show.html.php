@@ -22,7 +22,7 @@ $view['slots']->set('canonical_url', $canonical_url);
       <h3 class="title-flag <?php echo $category['slug'] ?>">
           <span><?php echo $view->escape($category['name']) ?></span>
       </h3>
-      <img src="http://placekitten.com/680/382">
+      <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path'])?>">
     </div>
     <div class="boom-info">
         <h2><?php echo $view->escape($entity['title']) ?></h2>

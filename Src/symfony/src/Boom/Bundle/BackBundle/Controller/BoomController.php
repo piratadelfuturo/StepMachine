@@ -306,7 +306,7 @@ class BoomController extends Controller {
     }
 
     private function createAjaxImageForm(){
-        return $this->createForm(new AjaxImageType($this->getDoctrine()->getEntityManager()), new Image());
+        return $this->createForm($this->get('boom_library.ajax_image.type'), new Image());
     }
 
     public function searchBoomAjaxAction() {
@@ -315,6 +315,9 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $results = $repo->findBoomsByLike($queryString);
+        foreach($results as &$result){
+            $result['image_path'] = $result['image_path'] === null ? '' : $this->get('boom_library.image.helper')->getBoomImageUrl($result['image_path'],158,90);
+        }
         $response = new Response(json_encode($results));
         $response->headers->set('Content-Type', 'application/json');
         return $response;

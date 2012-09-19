@@ -93,6 +93,12 @@
                     );
 
                     echo $view['form']->row(
+                            $element['image'], array(
+                        'label' => 'Imagen'
+                            )
+                    );
+
+                    echo $view['form']->row(
                             $element['content'], array(
                                 'label' => 'Contenido',
                         'attr' => array(

@@ -12,7 +12,7 @@
         foreach ($list as $element):
             $position++;
             ?>
-            <?php $image = isset($element['image']) ? $element['image']['path'] : 'http://placekitten.com/680/382' ?>
+            <?php $image = isset($element['image']) ? $view['boom_image']->getBoomImageUrl($element['image']['path']) : 'http://placekitten.com/680/382' ?>
             <li class="<?php echo $position == 1 ? 'active' : ''; ?>">
                 <img src="<?php echo $image ?>">
                 <div class="boom-info">

@@ -48,7 +48,7 @@ class Boomelement extends DomainObject{
 
     /**
      * @ORM\ManyToOne(targetEntity="Image", inversedBy="boomelements")
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
      **/
     protected $image;
 
