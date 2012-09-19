@@ -2,6 +2,7 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
+
         <div class="grad-border">
         <?php echo $view['form']->widget($form['title'],array('attrs' => array(
             'placeholder' => 'Título de tu Boom',
