@@ -2,7 +2,7 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
-        <div class="grad-border"><input type="text" name="title" id="form-titleboom" placeholder="Título de tu Boom" /></div>
+        <div class="grad-border"><input type="text" name="title" class="form-titleboom" placeholder="Título de tu Boom" /></div>
         <?php
         echo $view['form']->row(
           $form['summary'], array(
