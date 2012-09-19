@@ -97,7 +97,8 @@ class ResettingController extends BaseController {
 
         if ($process) {
             $this->setFlash('fos_user_success', 'resetting.flash.success');
-            $response = new RedirectResponse($this->getRedirectionUrl($user));
+            //$response = new RedirectResponse($this->getRedirectionUrl($user));
+            $response = $this->container->get('templating')->renderResponse('BoomUserBundle:Resetting:success.html.php');
             $this->authenticateUser($user, $response);
 
             return $response;

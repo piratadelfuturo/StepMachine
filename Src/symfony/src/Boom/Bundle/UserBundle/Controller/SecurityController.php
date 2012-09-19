@@ -18,8 +18,7 @@ class SecurityController extends ContainerAware
 {
     public function loginAction()
     {
-        $request = $this->container->get('templating')->renderResponse('BoomUserBundle:Security:login.html.php');
-        //$request = $this->container->get('request');
+        $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
         $session = $request->getSession();
         /* @var $session \Symfony\Component\HttpFoundation\Session */
@@ -43,7 +42,8 @@ class SecurityController extends ContainerAware
 
         $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
 
-        return $this->renderLogin(array(
+        //return $this->renderLogin(array(
+        return $this->container->get('templating')->renderResponse('BoomUserBundle:Security:login.html.php', array(
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
