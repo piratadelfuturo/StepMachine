@@ -8,7 +8,8 @@ echo $view->render(
     'form_enctype'  => $view['form']->enctype($form),
     'form_title'    => 'Crear Boom',
     'form'          => $form,
-    'entity'        => $entity
+    'entity'        => $entity,
+    'ajax_image_form' => $ajax_image_form
         )
 );
 ?>

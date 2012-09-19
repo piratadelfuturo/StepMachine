@@ -129,13 +129,13 @@ class DefaultController extends Controller {
         }
 
         $latest = $boomRepo->findBoomsByCategory(
-                $thisCategory, array('boom.date_created' => 'DESC')
+                $thisCategory, array('boom.date_published' => 'DESC')
                 , 14
                 , 0
                 , array(Boom::STATUS_PUBLIC));
 
         $featured = $boomRepo->findBoomsByCategory(
-                $thisCategory, array('boom.date_created' => 'DESC')
+                $thisCategory, array('boom.date_published' => 'DESC')
                 , 14
                 , 0
                 , array(Boom::STATUS_PUBLIC), true);

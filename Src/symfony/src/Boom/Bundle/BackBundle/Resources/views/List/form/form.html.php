@@ -20,9 +20,9 @@
                     <?php echo $view['form']->row($element['title']); ?>
                     <?php echo $view['form']->row($element['summary']); ?>
                     <?php echo $view['form']->row($element['url']); ?>
+                    <?php echo $view['form']->row($element['image']); ?>
                     <?php echo $view['form']->row($element['boom']); ?>
                     <?php echo $view['form']->row($element['category']); ?>
-                    <?php echo $view['form']->row($element['image']); ?>
                     <?php echo $view['form']->row($element['position']); ?>
                 </fieldset>
             </fieldset>

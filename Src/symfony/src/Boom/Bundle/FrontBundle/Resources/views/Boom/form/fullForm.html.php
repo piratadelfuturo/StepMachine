@@ -2,7 +2,13 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
-        <div class="grad-border"><input type="text" name="title" class="form-titleboom" placeholder="Título de tu Boom" /></div>
+
+        <div class="grad-border">
+        <?php echo $view['form']->widget($form['title'],array('attrs' => array(
+            'placeholder' => 'Título de tu Boom',
+            'id'          =>'form-titleboom'
+            ))) ?>
+        </div>
         <?php
         echo $view['form']->row(
           $form['summary'], array(
@@ -27,7 +33,7 @@
             <label>
               <span class="place"><?php echo "{$element['position']->vars['value']}"; ?></span>
             </label>
-            <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto para agregarla."> 
+            <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto para agregarla.">
             <?php echo $element['title']->vars['value'] ?>
             <?php echo $view['form']->widget(
                 $element['title'], array(
