@@ -2,11 +2,9 @@
     <fieldset>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
-
         <div class="grad-border">
         <?php echo $view['form']->widget($form['title'],array('attrs' => array(
-            'placeholder' => 'Título de tu Boom',
-            'id'          =>'form-titleboom'
+            'placeholder' => 'Título de tu Boom'
             ))) ?>
         </div>
         <?php
@@ -26,15 +24,14 @@
         <section id="nsfw-sc"><?php echo $view['form']->widget($form['nsfw']) ?><label>NSFW:</label></section>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: ')) ?>
     </fieldset>
-    <div id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
+    <ul id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
         <?php foreach ($form['elements'] as $element):?>
-        <fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
+        <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
           <form>
             <label>
               <span class="place"><?php echo "{$element['position']->vars['value']}"; ?></span>
             </label>
-            <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto para agregarla.">
-            <?php echo $element['title']->vars['value'] ?>
+            <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto">
             <?php echo $view['form']->widget(
                 $element['title'], array(
                   'attr' => array(
@@ -74,9 +71,9 @@
             ?>
           </div>
           <span class="tab"><a href=""><span>TAB</span></a></span>
-        </fieldset>
+        </fieldset></li>
         <?php endforeach; ?>
-      </div>
+      </ul>
       <?php echo $view['form']->row(
         $form['tags'], array(
           'attr' => array(
