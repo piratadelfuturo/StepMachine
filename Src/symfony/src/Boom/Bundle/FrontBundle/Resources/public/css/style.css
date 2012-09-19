@@ -856,34 +856,32 @@ header{position:relative;}
 /*END USER BOX /assets/img */
 
 /* MAIN CAR */
-#main-car{
-  position:relative;
+#main-car {
+  position: relative;
   overflow-x: hidden;
-  margin: 0px 0px 10px;
+  margin: 0 0 10px;
 }
 
-#main-car .prev, #cat-car .prev{
-  width:38px;
-  height:74px;
-  display:block;
-  background:url('../images/boom_31.png');
-  position:absolute;
-  top:159px;
-  left:0;
-  overflow:hidden;
-  text-indent:-9000px;
+#main-car .prev, #cat-car .prev,
+#main-car .next, #cat-car .next {
+  position: absolute;
+  width: 38px;
+  height: 74px;
+  display: block;
+  overflow: hidden;
+  text-indent: -9000px;
+  z-index: 9;
+  top: 156px;
+}
+
+#main-car .prev, #cat-car .prev {
+  background: url('../images/boom_31.png');
+  left: 0;
 }
 
 #main-car .next, #cat-car .next {
-  width:38px;
-  height:74px;
-  display:block;
-  background:url('../images/boom_34.png');
-  position:absolute;
-  top:156px;
-  right:0;
-  overflow:hidden;
-  text-indent:-9000px;
+  background: url('../images/boom_34.png');
+  right: 0;
 }
 
 .slide-container {
@@ -901,6 +899,20 @@ header{position:relative;}
   display: block;
   float: left;
   width: 1024px;
+  position: absolute;
+  left: -100%;
+  z-index: -1;
+}
+
+#main-car div.slide.active {
+  position: relative;
+  left: 0;
+  z-index: 8;
+}
+
+#main-car div.slide.r-to-l {
+  position: relative;
+  left: 0;
 }
 
 .info-container {
@@ -918,18 +930,18 @@ header{position:relative;}
 }
 
 #main-car div.slide p {
-  margin: 0 42px;
   color: #828282;
+  padding-left: 3px;
 }
 
-#carousel ul {
+#car-thumbs ul {
   width: 1024px;
   display: inline-block;
   background: #000;
   margin-top: 3px;
 }
 
-#carousel li {
+#car-thumbs li {
   width: 133px;
   height: 75px;
   padding: 0;
@@ -940,19 +952,19 @@ header{position:relative;}
   border: 3px solid #000000;
 }
 
-#carousel li:hover, #carousel li.active {
+#car-thumbs li:hover, #car-thumbs li.active {
   border:3px solid #faa634;
 }
 
-#carousel li:first-child {
+#car-thumbs li:first-child {
   margin-left: 10px;
 }
 
-#carousel li img {
+#car-thumbs li img {
   position: relative;
 }
 
-#carousel li p {
+#car-thumbs li p {
   text-align: center;
   position: absolute;
   background: rgba(0,0,0,0.7);
@@ -963,10 +975,9 @@ header{position:relative;}
   z-index: 1;
 }
 
-
-#booms-container{
-  width:695px;
-  float:left;
+#booms-container {
+  width: 695px;
+  float: left;
 }
 
 #booms-container .boomer{
