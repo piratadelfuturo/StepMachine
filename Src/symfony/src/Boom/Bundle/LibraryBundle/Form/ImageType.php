@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Boom\Bundle\BackBundle\Form\EventListener\ImageFileSubscriber;
 
-class ImageFormType extends AbstractType {
+class ImageType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('title')

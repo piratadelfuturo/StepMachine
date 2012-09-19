@@ -128,9 +128,6 @@ class ImageUploadListener implements ContainerAwareInterface {
 
     protected function thumbGenerator(Image $entity) {
         $path = $this->getAbsolutePath($entity);
-        //var_dump('identify '.$path);
-        //var_dump(exec('identify '.$path));
-        //exit;
         $sizes = $this->container->getParameter('boom_library.boom_image_sizes');
         $fileName = $entity->getPath();
         $fileName = explode('.', $fileName);
@@ -149,7 +146,7 @@ class ImageUploadListener implements ContainerAwareInterface {
                 $this->resizeGif($imagick, $fileExt, $thumbPath, $size);
             } else {
                 $imageSize = $imagick->getImageGeometry();
-                if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
+                //if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
                     $imageClone = clone($imagick);
                     $imageClone->adaptiveResizeImage( $size['width'] , $size['height'] , true);
                     $imageClone->writeImage(
@@ -157,7 +154,7 @@ class ImageUploadListener implements ContainerAwareInterface {
                             );
                     $imageClone->clear();
                     $imageClone->destroy();
-                }
+                //}
             }
         }
         $imagick->clear();

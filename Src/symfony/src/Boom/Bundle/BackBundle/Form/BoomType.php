@@ -4,12 +4,27 @@ namespace Boom\Bundle\BackBundle\Form;
 
 use Boom\Bundle\BackBundle\Form\EventListener\BoomFeaturedSubscriber;
 use Boom\Bundle\LibraryBundle\Form\BoomelementType;
+use Boom\Bundle\LibraryBundle\Form\AjaxImageType;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Boom\Bundle\LibraryBundle\Form\DataTransformer\BoomImageTransformer;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class BoomType extends AbstractType {
+
+    /**
+     * @var ObjectManager
+     */
+    private $om;
+
+    /**
+     * @param ObjectManager $om
+     */
+    public function __construct(ObjectManager $om) {
+        $this->om = $om;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
@@ -52,7 +67,12 @@ class BoomType extends AbstractType {
         );
 
         $builder->add(
-                'image', 'hidden');
+                'image', 'ajax_image', array(
+            'required' => false,
+            'data_class' => null
+                )
+        );
+
 
         $builder->add(
                 'tags', 'tags_selector', array()
@@ -75,7 +95,7 @@ class BoomType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_backbundle_boomtype';
+        return 'boom';
     }
 
 }

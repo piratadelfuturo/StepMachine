@@ -83,7 +83,7 @@ $(document).ready(function() {
 		/* uniform plugin causes some issues on checkboxes and radios
 		/*----------------------------------------------------------------------*/
 
-		$("select, input[type=file]").not('select[multiple]').uniform();
+		$("select").not('select[multiple]').uniform();
 		$('input:checkbox, input:radio').checkbox();
 
 		/*----------------------------------------------------------------------*/

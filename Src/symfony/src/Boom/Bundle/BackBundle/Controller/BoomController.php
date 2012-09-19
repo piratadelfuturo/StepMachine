@@ -6,8 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\BackBundle\Form\BoomType;
+use Boom\Bundle\LibraryBundle\Form\AjaxImageType;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\Image;
 
 class BoomController extends Controller {
 
@@ -167,11 +169,12 @@ class BoomController extends Controller {
             $entity['user'] = $sessionToken->getUser();
         }
 
-        $form = $this->createForm(new BoomType(), $entity);
+        $form = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
 
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }
 
@@ -180,8 +183,9 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
+
         $entity = new BoomEntity\Boom();
-        $form = $this->createForm(new BoomType(), $entity);
+        $form = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
         $request = $this->getRequest();
         $form->bind($request);
         $sessionToken = $this->get('security.context')->getToken();
@@ -208,6 +212,7 @@ class BoomController extends Controller {
         return $this->render('BoomBackBundle:Boom:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
+                    'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }
 
@@ -225,13 +230,14 @@ class BoomController extends Controller {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        $editForm = $this->createForm(new BoomType(), $entity);
+        $editForm = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BoomBackBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
+                    'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }
 
@@ -248,7 +254,7 @@ class BoomController extends Controller {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
-        $editForm = $this->createForm(new BoomType(), $entity);
+        $editForm = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
         $request = $this->getRequest();
         $editForm->bind($request);
 
@@ -263,6 +269,7 @@ class BoomController extends Controller {
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
+                    'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }
 
@@ -296,6 +303,10 @@ class BoomController extends Controller {
                         ->add('id', 'hidden')
                         ->getForm()
         ;
+    }
+
+    private function createAjaxImageForm(){
+        return $this->createForm(new AjaxImageType($this->getDoctrine()->getEntityManager()), new Image());
     }
 
     public function searchBoomAjaxAction() {

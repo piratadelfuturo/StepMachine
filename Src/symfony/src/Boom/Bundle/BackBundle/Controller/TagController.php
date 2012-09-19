@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Boom\Bundle\LibraryBundle\Form\ImageFormType;
+use Boom\Bundle\LibraryBundle\Form\ImageType;
 
 class TagController extends Controller {
 
