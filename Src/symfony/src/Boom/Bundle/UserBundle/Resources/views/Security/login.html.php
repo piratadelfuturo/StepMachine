@@ -1,5 +1,6 @@
 <?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php') ?>
 
+<?php var_dump($csrf_token) ?>
 <div class="user-login">
 
 <?php if(isset($error)): ?>

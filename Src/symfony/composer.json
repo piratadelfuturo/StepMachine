@@ -20,10 +20,10 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
+        "gedmo/doctrine-extensions": "v2.3.2",
         "friendsofsymfony/user-bundle": "*",
         "friendsofsymfony/facebook-bundle": "dev-master",
         "friendsofsymfony/twitter-bundle": "dev-master",
-        "gedmo/doctrine-extensions": "v2.3.2",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
         "mjohnson/decoda": "3.*"
     },
