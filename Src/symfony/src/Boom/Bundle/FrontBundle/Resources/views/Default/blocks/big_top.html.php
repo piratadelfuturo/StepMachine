@@ -24,7 +24,7 @@
                 <li>
                     <a href="<?php echo $element['url'] ?>">
                         <p><?php echo $view->escape($element['title']) ?></p>
-                        <img src="http://placekitten.com/133/75" alt="<?php echo $view->escape($element['title']) ?>" />
+                        <img src="<?php echo $image ?>" alt="<?php echo $view->escape($element['title']) ?>" />
                     </a>
                 </li>
             <?php endforeach; ?>
