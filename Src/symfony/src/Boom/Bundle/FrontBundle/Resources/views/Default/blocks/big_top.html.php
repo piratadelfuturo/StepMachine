@@ -20,7 +20,7 @@
     <div id="carousel">
         <ul>
             <?php foreach ($list as $element): ?>
-            <?php $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/133/75'?>
+            <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/g/158/90'?>
                 <li>
                     <a href="<?php echo $element['url'] ?>">
                         <p><?php echo $view->escape($element['title']) ?></p>

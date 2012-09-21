@@ -129,6 +129,7 @@ swiftmailer:
 boom_library:
     boom_image_sizes:
       - { width: 680, height: 382 }
+      - { width: 133, height: 75  }
       - { width: 158, height: 90  }
       - { width: 72 , height: 72  }
 services:
