@@ -145,7 +145,7 @@ $nav[] = array(
                                 <?php
                                 $route = '';
                                 if (isset($c['_route'])) {
-                                    $route = call_user_func_array(array($view['router'], 'generate'), (array) $c['_route']);
+                                    $route = call_user_func_array(array($view['router'], 'generate'), is_array($c['_route']) ? $c['_route'] : array($c['_route']));
                                 }
                                 ?>
                                 <a href="<?php echo $route ?>" class="<?php echo isset($c['_route']) && $view['request']->getParameter('_route') == $c['_route'] ? 'active' : '' ?>">
