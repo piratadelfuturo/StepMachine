@@ -5,6 +5,7 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -153,7 +154,7 @@ class ListGroup extends DomainObject {
      *
      * @return ListGroup
      */
-    public function setListElements(Doctrine\Common\Collections\Collection $list_elements = null) {
+    public function setListElements(Collection $list_elements = null) {
         if ($list_elements !== null) {
             foreach ($list_elements as $list_element) {
                 $list_element->setListGroup($this);
