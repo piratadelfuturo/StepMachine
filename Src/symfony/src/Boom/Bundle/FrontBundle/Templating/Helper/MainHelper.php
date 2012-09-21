@@ -5,6 +5,7 @@ namespace Boom\Bundle\FrontBundle\Templating\Helper;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\Cache\PhpFileCache;
 
 class MainHelper extends Helper {
 
@@ -24,6 +25,17 @@ class MainHelper extends Helper {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:User');
         return $repo->getLatestCollaborators($number);
+    }
+
+    public function getDailySeven() {
+        $FileCache = new PhpFileCache(
+                        $this->container->get('kernel')->getCacheDir(),
+                        '.dailySeven.php');
+        $dailySeven = $FileCache->fetch('dailySeven');
+        if ($dailySeven == false) {
+            $dailySeven = array();
+        }
+        return $dailySeven;
     }
 
     public function getWidgetBlock($block_name) {

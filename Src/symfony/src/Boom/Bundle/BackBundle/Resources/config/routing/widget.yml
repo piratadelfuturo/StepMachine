@@ -22,9 +22,16 @@ BoomBackBundle_widget_new:
     defaults: { _controller: "BoomBackBundle:Widget:new" }
     requirements: { _method: get }
 
-BoomBackBundle_widget_dailyseven:
+BoomBackBundle_widget_dailyseven_form:
     pattern:  /dailyseven
     defaults: { _controller: "BoomBackBundle:Widget:dailySeven" }
+    options:
+        expose: true
+
+BoomBackBundle_widget_dailyseven_ajax_save:
+    pattern:  /dailyseven.json
+    defaults: { _controller: "BoomBackBundle:Widget:dailySevenSave" }
+    requirements: { _method: POST }
     options:
         expose: true
 
