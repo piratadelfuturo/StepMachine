@@ -51,7 +51,7 @@ class WidgetController extends Controller {
 
     public function dailySevenSaveAction() {
         $dailySeven = $this->getDailySevenData();
-        $form = $this->createForm(new DailySevenType(), &$dailySeven);
+        $form = $this->createForm(new DailySevenType(), $dailySeven);
         $request = $this->getRequest();
         $form->bind($request);
         if ($form->isValid()) {
