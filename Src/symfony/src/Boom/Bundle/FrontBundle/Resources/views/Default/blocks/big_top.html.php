@@ -8,7 +8,7 @@
     }
     foreach ($list as $element):
         $position++;
-        $image = isset($element['image']['path']) ? $element['image']['path'] : 'http://placekitten.com/g/677/381'?>
+        $image = isset($element['image']) ? $view['boom_image']->getBoomImageUrl($element['image'],680,382) : 'http://placekitten.com/g/680/382'?>
         <div class="slide <?php echo $position == 1 ? 'active' : '' ?> cf">
             <div class="img-container">
                 <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
