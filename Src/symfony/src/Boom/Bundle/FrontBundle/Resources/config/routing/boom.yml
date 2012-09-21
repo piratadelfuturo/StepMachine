@@ -2,6 +2,11 @@ BoomFrontBundle_boom_reorder:
     pattern:  /reordena/{slug}
     defaults: { _controller: "BoomFrontBundle:Boom:reorder" }
 
+BoomFrontBundle_boom_image:
+    pattern:  /imagen.json
+    defaults: { _controller: "BoomFrontBundle:Boom:ajaxImage" }
+    requirements: { _method: post }
+
 BoomFrontBundle_boom_reply:
     pattern:  /responde/{slug}
     defaults: { _controller: "BoomFrontBundle:Boom:reply" }

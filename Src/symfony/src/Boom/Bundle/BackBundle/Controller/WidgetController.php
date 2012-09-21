@@ -10,23 +10,64 @@ use Boom\Bundle\LibraryBundle\Entity\Widget;
 use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\BackBundle\Form\WidgetType;
 use Boom\Bundle\BackBundle\Form\DailySevenType;
+use Doctrine\Common\Cache\PhpFileCache;
 
 class WidgetController extends Controller {
 
+    private function getDailySevenData() {
+        $FileCache = new PhpFileCache(
+                        $this->get('kernel')->getCacheDir(),
+                        '.dailySeven.php');
+        $dailySeven = $FileCache->fetch('dailySeven');
+        if ($dailySeven == false) {
+            $dailySeven = array(
+                'name' => '',
+                'list' => array_fill(
+                        1, 7, array(
+                    'line_1' => '',
+                    'line_2' => ''
+                        )
+                )
+            );
+        }
+        return $dailySeven;
+    }
 
-    public function dailySevenAction(){
+    private function setDailySevenData(array $data,$ttl = 86400) {
+        $FileCache = new PhpFileCache(
+                        $this->get('kernel')->getCacheDir(),
+                        '.dailySeven.php');
+        return $FileCache->save('dailySeven', $data,$ttl);
+    }
 
+    public function dailySevenAction() {
 
-
-        $form = $this->createForm(new DailySevenType());
-        $request = $this->getRequest();
-        $form->bind($request);
-
+        $dailySeven = $this->getDailySevenData();
+        $form = $this->createForm(new DailySevenType(), $dailySeven);
         return $this->render('BoomBackBundle:Widget:dailySeven.html.php', array(
                     'form' => $form->createView(),
                 ));
+    }
 
+    public function dailySevenSaveAction() {
+        $dailySeven = $this->getDailySevenData();
+        $form = $this->createForm(new DailySevenType(), $dailySeven);
+        $request = $this->getRequest();
+        $form->bind($request);
+        if ($form->isValid()) {
+            $dailySeven = $form->getData();
+            $this->setDailySevenData($dailySeven);
+            $result = $dailySeven;
+        } else {
+            $result = $form->getErrors();
+        }
 
+        $response = new Response(
+                        json_encode($result)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**

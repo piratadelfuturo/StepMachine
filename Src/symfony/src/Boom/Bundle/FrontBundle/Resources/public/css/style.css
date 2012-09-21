@@ -2004,7 +2004,7 @@ footer p{
 
 .boomie.on .accordion_content {
   max-height: 2000px;
-  border: 2px inset;  
+  border: 2px inset;
 }
 
 .single-boom .boom .boom-content a {
@@ -2607,7 +2607,7 @@ label[for=boom_bundle_frontbundle_boomtype_category] {
 }
 
 #nsfw-sc input[type='checkbox']:checked + label {
-  background: url(../images/sprite-chckbx.png) no-repeat 85px 0;  
+  background: url(../images/sprite-chckbx.png) no-repeat 85px 0;
   display: block;
 }
 
@@ -2792,7 +2792,7 @@ button.submit {
   width:100px;
 }
 .paginador li .pagina-next{
-  width: 50px; 
+  width: 50px;
   text-indent:-9999px;}
 .paginador li .pagina-next:before{
   background-position: -46px 0;
