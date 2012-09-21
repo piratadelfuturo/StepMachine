@@ -4,6 +4,7 @@ namespace Boom\Bundle\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\Boomelement;
 use Boom\Bundle\FrontBundle\Form\BoomType;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,18 +18,50 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class BoomController extends Controller {
 
-    /**
-     * Lists all Boom entities.
-     *
-     */
     public function reorderAction() {
-        $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BoomLibraryBundle:Boom')->findAll();
+        $result = array();
 
-        return $this->render('BoomFrontBundle:Boom:index.html.php', array(
-                    'entities' => $entities,
-                ));
+        $response = new Response(
+                        json_encode($result)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function ajaxImageAction() {
+        $entity = new Image();
+        $request = $this->getRequest();
+        $file = $request->files->get($request->query->get('path'), null, true);
+        if ($file instanceOf \Symfony\Component\HttpFoundation\File\UploadedFile) {
+            $entity['file'] = $file;
+            $sessionToken = $this->get('security.context')->getToken();
+
+            if ($sessionToken->getUser() instanceof User) {
+                $entity->setUser($sessionToken->getUser());
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+            $imgHelper = $this->get('boom_library.image.helper');
+            $result = array(
+                'id' => $entity['id'],
+                'path' => $imgHelper->getBoomImageUrl(
+                        $entity['path'], $request->query->get('w', 158), $request->query->get('h', 90)
+                )
+            );
+        } else {
+            $result = null;
+        }
+
+        $response = new Response(
+                        json_encode($result)
+        );
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -196,7 +229,7 @@ class BoomController extends Controller {
         }
 
         if ($entity['user']['id'] !== $sessionUser['id']) {
-            throw new HttpException(401,'Unauthorized access.');
+            throw new HttpException(401, 'Unauthorized access.');
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
@@ -225,7 +258,7 @@ class BoomController extends Controller {
         }
 
         if ($entity['user']['id'] !== $sessionUser['id']) {
-            throw new HttpException(401,'Unauthorized access.');
+            throw new HttpException(401, 'Unauthorized access.');
         }
 
 
