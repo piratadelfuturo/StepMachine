@@ -16,6 +16,28 @@
             return false;
         });
 
+        //Carrusel
+
+        var car = $('#main-car .slide-container'),
+            carNav = $('#main-car car-nav'),
+            prev = $('#main-car .prev'),
+            next = $('#main-car .next');
+
+        next.click(function(){
+          var divOn = car.find('div.slide.active');
+
+          divOn.next().addClass('r-to-l');
+          divOn.animate({
+            marginLeft: '-=1024'
+          }, 500, function(){
+            divOn.removeClass('active');
+            car.find('div.r-to-l').addClass('active').removeClass('.r-to-l');
+          });
+
+          return false;
+
+        });
+
         //BOOMIES
         $('li.boom:first-child').ready(function(){
           $('li.boom:first-child').addClass("on");
