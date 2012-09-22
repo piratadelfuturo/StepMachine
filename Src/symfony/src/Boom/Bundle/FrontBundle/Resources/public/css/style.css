@@ -876,12 +876,12 @@ header{position:relative;}
 
 #main-car .prev, #cat-car .prev {
   background: url('../images/boom_31.png');
-  left: 0;
+  left: -1px;
 }
 
 #main-car .next, #cat-car .next {
   background: url('../images/boom_34.png');
-  right: 0;
+  right: -1px;
 }
 
 .slide-container {
@@ -896,15 +896,17 @@ header{position:relative;}
 }
 
 #main-car div.slide {
-  display: block;
+  display: none;
   float: left;
   width: 1024px;
   position: absolute;
+  margin-left: 0;
   left: -100%;
   z-index: -1;
 }
 
 #main-car div.slide.active {
+  display: block;
   position: relative;
   left: 0;
   z-index: 8;
@@ -912,6 +914,13 @@ header{position:relative;}
 
 #main-car div.slide.r-to-l {
   position: relative;
+  display: block;
+  left: 0;
+}
+
+#main-car div.slide.l-to-r {
+  position: relative;
+  display: block;
   left: 0;
 }
 
@@ -958,6 +967,12 @@ header{position:relative;}
 
 #car-thumbs li:first-child {
   margin-left: 10px;
+}
+
+#car-thumbs li a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 #car-thumbs li img {
