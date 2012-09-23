@@ -25,10 +25,14 @@
   </div>
   <div id="car-thumbs">
     <ul>
-      <?php foreach ($list as $element): ?>
+      <?php
+        $position = 0;
+        foreach ($list as $element):
+          $position++;
+      ?>
       <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/g/158/90'?>
-      <li>
-        <a href="<?php echo $element['url'] ?>">
+      <li class="<?php echo $position == 1 ? 'active' : '' ?>">
+        <a href="# <?php //echo $element['url'] ?>">
           <p><?php echo $view->escape($element['title']) ?></p>
           <img src="http://placehold.it/133x75" alt="<?php echo $view->escape($element['title']) ?>" />
         </a>

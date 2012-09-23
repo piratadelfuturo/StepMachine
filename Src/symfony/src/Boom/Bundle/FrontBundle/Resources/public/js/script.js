@@ -21,18 +21,76 @@
         var car = $('#main-car .slide-container'),
             carNav = $('#main-car car-nav'),
             prev = $('#main-car .prev'),
-            next = $('#main-car .next');
+            next = $('#main-car .next'),
+            thumbs = $('#car-thumbs');
+
+        //Thumb select
+        thumbs.find('li a').click(function(){
+          var divOn = car.find('div.slide.active'),
+              thInd = $(this).parents('li').index(),
+              thuOn = thumbs.find('li.active');
+
+          if(divOn.index() > thInd){
+            thuOn.removeClass('active').siblings('li').eq(thInd).addClass('active');
+            car.find('div.slide').eq(thInd).addClass('l-to-r').stop(true, true).animate({
+              marginLeft: '0'
+            }, 500, function(){
+              divOn.removeClass('active');
+              car.find('div.l-to-r').addClass('active').removeClass('l-to-r');
+            });
+          }else if(divOn.index() < thInd){
+            car.find('div.slide').eq(thInd).addClass('r-to-l').stop(true, true).animate({
+              marginLeft: '0'
+            }, 500, function(){
+              divOn.removeClass('active');
+              car.find('div.r-to-l').addClass('active').removeClass('r-to-l');
+              thuOn.removeClass('active').siblings('li').eq(thInd - 1).addClass('active');
+            });
+          }
+
+          return false;
+
+        });
 
         next.click(function(){
-          var divOn = car.find('div.slide.active');
+          var divOn = car.find('div.slide.active'),
+              ind = $('#main-car div.active').index(),
+              thuOn = thumbs.find('li.active');
 
-          divOn.next().addClass('r-to-l');
-          divOn.animate({
-            marginLeft: '-=1024'
-          }, 500, function(){
-            divOn.removeClass('active');
-            car.find('div.r-to-l').addClass('active').removeClass('.r-to-l');
-          });
+          if(divOn.next().index() != -1){
+            thuOn.removeClass('active').siblings('li').eq(ind).addClass('active');
+            divOn.next().addClass('r-to-l');
+
+            divOn.stop(true, true).animate({
+              marginLeft: '-1024'
+            }, 500, function(){
+              divOn.removeClass('active').css('margin-left', '-1024');
+              car.find('div.r-to-l').addClass('active').removeClass('r-to-l');
+            });
+          }else{
+            console.log('D:');
+          }
+
+          return false;
+
+        });
+
+        prev.click(function(){
+          var divOn = car.find('div.slide.active'),
+              ind = $('#main-car div.active').index(),
+              thuOn = thumbs.find('li.active');
+
+          if(divOn.prev().index() != -1){
+            thuOn.removeClass('active').prev().addClass('active');
+            divOn.prev().addClass('l-to-r').stop(true, true).animate({
+              marginLeft: '0',
+            }, 500, function(){
+              divOn.removeClass('active').css('margin-left', '-=1024');
+              car.find('div.l-to-r').addClass('active').removeClass('l-to-r');
+            });
+          }else{
+            console.log('D:');
+          }
 
           return false;
 
