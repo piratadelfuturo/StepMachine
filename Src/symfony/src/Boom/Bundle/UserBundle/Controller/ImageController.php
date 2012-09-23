@@ -9,4 +9,7 @@ class ImageController extends Controller
     {
         return $this->render('BoomUserBundle:Default:index.html.twig', array('name' => $name));
     }
+
+
+
 }
