@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:fb="http://ogp.me/ns/fb#"
       xmlns:og="http://opengraphprotocol.org/schema/">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# seven_boom_mx: http://ogp.me/ns/fb/seven_boom_mx#">
         <?php
         $title = $view['slots']->get('title', null);
         ?>
         <title>7boom <?php echo $title !== null ? '- ' . $title : ''; ?></title>
 
         <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
-        <?php $canonical_url = $view['slots']->get('canonical_url', null); ?>
-        <?php if ($canonical_url !== null): ?>
-            <link rel="canonical" href="<?php echo $canonical_url ?>"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
+        <?php if ($fb_boom_graph_data !== null): ?>
+            <meta property="fb:app_id" content="349118228506488" />
+            <meta property="og:type"   content="seven_boom_mx:boom" />
+            <meta property="og:url"    content="<?php echo $view->escape($fb_boom_graph_data['url']) ?>" />
+            <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
+            <meta property="og:image"  content="<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
         <?php endif; ?>
 
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
@@ -40,21 +44,20 @@
         <?php
         echo $view['facebook']->initialize(
                 array(
-                    'xfbml' => true,
-                    'fbAsyncInit' => 'window.onFbInit()',
-                    'oauth' => true),
-                'BoomFrontBundle::blocks/facebook/initialize.html.php'
+            'xfbml' => true,
+            'fbAsyncInit' => 'window.onFbInit()',
+            'oauth' => true), 'BoomFrontBundle::blocks/facebook/initialize.html.php'
         );
         ?>
         <header>
             <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
         </header>
         <?php
-            if($view['security']->isGranted('ROLE_USER') == false){
-                echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
-            }else{
-                echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
-            }
+        if ($view['security']->isGranted('ROLE_USER') == false) {
+            echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
+        } else {
+            echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
+        }
         ?>
         <div id="container" class="<?php $view['slots']->output('layout_container_css_class', '') ?>">
             <?php $view['slots']->output('_content') ?>

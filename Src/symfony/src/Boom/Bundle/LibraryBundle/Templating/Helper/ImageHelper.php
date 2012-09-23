@@ -32,8 +32,10 @@ class ImageHelper extends Helper {
             $image_path = explode('.',$image_path);
             $image_path = $image_path[0].'/'.$w.'_'.$h.'.'.$image_path[1];
         }
-        return $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
-
+        $request    = $this->container->get('request');
+        $assetUrl   = $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
+        $finalUrl   = $request->getUriForPath($assetUrl);
+        return $finalUrl;
     }
 
     public function getBoomImageSizes(){

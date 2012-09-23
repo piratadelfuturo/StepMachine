@@ -26,7 +26,6 @@ class FacebookHelper extends Helper
     protected $facebook;
     protected $container;
 
-
     public function __construct(EngineInterface $templating, BaseFacebook $facebook, $logging = true, $culture = 'en_US', array $scope = array(), ContainerInterface $container = null)
     {
         $this->templating  = $templating;

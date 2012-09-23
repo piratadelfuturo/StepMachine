@@ -5,7 +5,10 @@ $sidebar = $view->render(
     'entity' => $entity
         )
 );
-$canonical_url = $view['router']->generate(
+$fb_boom_graph_data = array();
+$fb_boom_graph_data['title'] = $entity['title'];
+$fb_boom_graph_data['image'] = $view['boom_image']->getBoomImageUrl($entity['image']['path']);
+$fb_boom_graph_data['url'] = $view['router']->generate(
         'BoomFrontBundle_boom_show', array(
     'category_slug' => $entity['category']['slug'],
     'slug' => $entity['slug']
@@ -13,16 +16,15 @@ $canonical_url = $view['router']->generate(
 );
 
 $view['slots']->set('sidebar_top', $sidebar);
-$view['slots']->set('canonical_url', $canonical_url);
-
+$view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 ?>
 
 <div class="musica single-boom">
     <div class="boom-main">
-      <h3 class="title-flag <?php echo $category['slug'] ?>">
-          <span><?php echo $view->escape($category['name']) ?></span>
-      </h3>
-      <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path'])?>">
+        <h3 class="title-flag <?php echo $category['slug'] ?>">
+            <span><?php echo $view->escape($category['name']) ?></span>
+        </h3>
+        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path']) ?>">
     </div>
     <div class="boom-info">
         <h2><?php echo $view->escape($entity['title']) ?></h2>
@@ -48,30 +50,30 @@ $view['slots']->set('canonical_url', $canonical_url);
     </div>
     <div class="booms">
         <ul>
-<?php
-$elements = array_reverse($entity['elements']->toArray());
-foreach ($elements as $element):
-    ?>
-      <li class="boom">
+            <?php
+            $elements = array_reverse($entity['elements']->toArray());
+            foreach ($elements as $element):
+                ?>
+                <li class="boom">
                     <div class="boom-info cf">
                         <span class="place">
-    <?php echo $element['position'] ?>
+                            <?php echo $element['position'] ?>
                         </span>
                         <div class="float-container cf">
-                          <img src="http://placehold.it/151x86" height="87px" width="151px" />
-                          <p class="boom-ti"><?php echo $element['title'] ?></p>
+                            <img src="http://placehold.it/151x86" height="87px" width="151px" />
+                            <p class="boom-ti"><?php echo $element['title'] ?></p>
                         </div>
                     </div>
                     <div class="boom-content">
-                      <div class="boom-text">
-                        <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
-                        <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
-                      </div>
-                      <div class="comments"><div class="fb-comments" data-href="<?php echo $canonical_url ?>" data-num-posts="2" data-width="648"></div></div>
+                        <div class="boom-text">
+                            <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
+                            <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
+                        </div>
+                        <div class="comments"><div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div></div>
                     </div>
                     <span class="tab"><a href=""><span>TAB</span></a></span>
                 </li>
-<?php endforeach; ?>
+            <?php endforeach; ?>
         </ul>
         <div class="boom-tags"><p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p></div>
         <div class="social">
