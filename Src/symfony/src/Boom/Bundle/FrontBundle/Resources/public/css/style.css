@@ -1918,11 +1918,6 @@ footer p{
   content: '';
   display: block;
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-position: -74px 0;
-  top: 0;
-  right: 0;
 }
 
 .single-boom .social .btn-fav:hover:after {
@@ -1981,9 +1976,9 @@ footer p{
   padding: 0;
 }
 
-.single-boom .booms .boom-info{
+.single-boom .booms .boom-info {
   position: relative;
-  padding:25px 0 3px 0;
+  padding: 25px 0 3px 0;
 }
 
 .booms .place {
