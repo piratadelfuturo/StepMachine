@@ -9,40 +9,48 @@
  */
 
 (function() {
+
+
+
     tinymce.create('tinymce.plugins.BoomPlugin', {
         init : function(ed, url) {
-            var t = this, dialect = ed.getParam('bbcode_dialect', 'punbb').toLowerCase();
+            var t = this;
             ed.onBeforeSetContent.add(function(ed, o) {
-                o.content = t['_' + dialect + '_bbcode2html'](o.content);
+                o.content = t['_bbcode2html'](o.content);
             });
             ed.onPostProcess.add(function(ed, o) {
                 if (o.set){
-                    o.content = t['_' + dialect + '_bbcode2html'](o.content);
+                    o.content = t['_bbcode2html'](o.content);
                 }
                 if (o.get){
-                    o.content = t['_' + dialect + '_html2bbcode'](o.content);
+                    o.content = t['_html2bbcode'](o.content);
                 }
             });
 
+            ed.addCommand('boomVideo', function() {
+                var embedPrompt = $.prompt(
+                'Codigo embed de video', '',
+                function(txt){
+                    console.log(txt);
+                    ed.execCommand('mceInsertContent',false,txt);
+                    ed.execCommand('mceCodeEditor');
+                } );
+            });
             ed.addCommand('boomImage', function() {
-
                 ed.execCommand('mceInsertContent',false,'<img alt="$img_title" src="$link/img/sadrzaj/$file" />');
-                ed.execCommand('mceInsertContent',false,'<a href="http://www.sevenboom.com" >hello</a>');
-                ed.execCommand('mceInsertContent',false,'<b>hello</b>');
-                ed.execCommand('mceInsertContent',false,'mimimimimi');
-
-                ed.execCommand('mceCodeEditor');
+            });
+            ed.addCommand('boomGallery', function() {
+                ed.execCommand('mceInsertContent',false,'<img alt="$img_title" src="$link/img/sadrzaj/$file" />');
             });
 
             // Register example button
             ed.addButton('boom_image', {
-                title : 'example.desc',
-                cmd : 'boomImage',
+                title : 'Agrega un video',
+                cmd : 'boomVideo',
                 image : url + '/img/portuguese.gif'
             });
 
         },
-
         getInfo : function() {
             return {
                 longname : 'Boom Plugin',
@@ -56,7 +64,7 @@
         // Private methods
 
         // HTML -> BBCode in PunBB dialect
-        _punbb_html2bbcode : function(s) {
+        _html2bbcode : function(s) {
             s = tinymce.trim(s);
 
             function rep(re, str) {
@@ -64,6 +72,8 @@
             };
 
             // example: <strong> to [b]
+            rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
+            rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
 
@@ -71,7 +81,7 @@
         },
 
         // BBCode -> HTML from PunBB dialect
-        _punbb_bbcode2html : function(s) {
+        _bbcode2html : function(s) {
             s = tinymce.trim(s);
 
             function rep(re, str) {
@@ -82,6 +92,8 @@
             rep(/\[url=([^\]]+)\](.*?)\[\/url\]/gi,"<a href=\"$1\">$2</a>");
             rep(/\[url\](.*?)\[\/url\]/gi,"<a href=\"$1\">$1</a>");
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
+            rep(/\[youtube=([^\]]+)\](.*?)\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
+            rep(/\[vimeo=([^\]]+)\](.*?)\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
 
             return s;
         }
@@ -89,4 +101,6 @@
 
     // Register plugin
     tinymce.PluginManager.add('boom', tinymce.plugins.BoomPlugin);
+
+
 })();

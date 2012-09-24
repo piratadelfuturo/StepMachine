@@ -14,7 +14,7 @@
                 "img[!src|alt|title|width|height|!insert-id],"+
                 "a[!href|!target:_blank],"+
                 "div[!class<gallery|!insert-id|!insert-type],"+
-                "ul,ol,li,table,tr,td,th,thead,tbody",
+                "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,

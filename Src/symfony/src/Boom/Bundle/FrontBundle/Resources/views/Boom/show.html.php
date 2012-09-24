@@ -67,6 +67,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <div class="boom-content">
                         <div class="boom-text">
                             <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
+                            <?php echo $content ?>
                             <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
                         </div>
                         <div class="comments"><div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div></div>

@@ -107,16 +107,16 @@ doctrine:
               dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
 
 fm_bbcode:
-#    config:
-#      filters:
-#        - { classname: magic, class: \Boom\Bundle\LibraryBundle\Decoda\Filter\MagicFilter }
-#      templates:
-#        - path: %kernel.root_dir%/Resources/Decoda/templates/
+    config:
+      filters:
+        - { classname: boom_video, class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomVideoFilter }
+      templates:
+        - path: %kernel.root_dir%/Resources/Decoda/templates/
     filter_sets:
         default:
           locale: es
           xhtml: true
-          filters: [ default, quote, magic, img, youtube, list, li, olist ]
+          filters: [ default, quote, magic, img, boom_video, list, li, olist ]
 
 # Swiftmailer Configuration
 swiftmailer:
