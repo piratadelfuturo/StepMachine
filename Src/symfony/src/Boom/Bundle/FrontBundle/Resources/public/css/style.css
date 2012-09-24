@@ -1872,70 +1872,85 @@ footer p{
   margin:0 5px;
 }
 
-.single-boom .social .btn-fb{
+.single-boom .social .btn-fb {
   width: 30px;
   height:30px;
 }
-.single-boom .social .btn-fb:hover{
+
+.single-boom .social .btn-fb:hover {
   background-position:0 -31px;
 }
+
 .single-boom .social .btn-tw{
   width:42px;
   height:30px;
   background-position: -31px 0;
 }
-.single-boom .social .btn-tw:hover{
+
+.single-boom .social .btn-tw:hover {
   background-position: -31px -31px;
 }
 
-.single-boom .social .btn-fav{
+.single-boom .social .btn-fav {
   width: 30px;
   height: 30px;
   background-position: -74px 0;
 }
-.single-boom .social .btn-fav:hover{
+
+.single-boom .social .btn-fav:hover {
   background-position: -74px -31px;
 }
-.single-boom .social .fav{
+
+.single-boom .social .fav {
   float:right;
   border-left:1px solid #dfdfdf;
   padding-left: 10px;
 }
-.single-boom .autor{
+
+.single-boom .autor {
   position:relative;
   height:85px;
   margin-bottom: 10px;
 }
-.single-boom .autor img, .single-boom .autor h3, .single-boom .autor p{
+
+.single-boom .autor img, .single-boom .autor h3, .single-boom .autor p {
   display:block;
 }
-.single-boom .autor img{
+
+.single-boom .autor img {
   float: left;
   margin-right:15px;
+  width: 85px;
 }
-.single-boom .autor span{
-  position:absolute;
-  bottom:0;
-  width:535px;
+
+.single-boom .autor span {
 }
-.single-boom .autor h3{
+
+.single-boom .autor h3 {
   font: 16px 'Museo500', sans-serif;
   color: #828282;
 }
-.single-boom .autor .ver-moar, .single-boom .autor p{
+
+.single-boom .autor .ver-moar, .single-boom .autor p {
   font: 13px 'Museo500', sans-serif;
 }
-.single-boom .autor .ver-moar{text-indent:5px;}
-.single-boom .booms{
+
+.single-boom .autor .ver-moar {
+  text-indent:5px;
+}
+
+.single-boom .booms {
   padding:0 25px 0 0;
   margin-bottom:15px;
 }
-.single-boom ul{
+
+.single-boom ul {
   border-left:none;
   border-right:none;
   padding:0;
 }
-.single-boom .booms .boom-info{
+
+.single-boom .booms .boom-info {
   position: relative;
   padding:25px 0 3px 0;
 }
