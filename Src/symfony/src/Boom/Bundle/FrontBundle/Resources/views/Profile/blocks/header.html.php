@@ -38,7 +38,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
                 <div id="filter">
                     <form id="usr-category-pref">
                         <p>Filtro por categoría:</p>
-                        <ul>
+                        <ul class="cf">
                             <?php foreach ($categories as $category): ?>
                                 <li class="<?php echo $category['a_slug'] ?>">
                                     <?php //echo $view['form']->widget(''); ?>

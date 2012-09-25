@@ -627,6 +627,7 @@ header{position:relative;}
 
 #usm-pro #filter li{
   width:142px;
+  height: 20px;
   font: 12px 'Proxima', sans-serif;
   padding-left:8px;
   line-height:19px;
@@ -634,6 +635,7 @@ header{position:relative;}
   text-transform:uppercase;
   position: relative;
   color:#fff;
+  float: left;
 }
 
 
@@ -654,36 +656,33 @@ header{position:relative;}
 /* #usm-pro #filter li input{margin-right:20px;} */
 
 #usm-pro #filter ul{
-  -moz-column-count:2; /* Firefox */
-  -webkit-column-count:2; /* Safari and Chrome */
-  column-count:2;
   margin-bottom: 17px;
 }
 #usm-pro #filter li{
   margin-bottom:10px;
 }
 
-#usm-pro #filter li input[type='checkbox']{
+#usm-pro #filter li input[type='checkbox'] {
   width: 18px;
-  margin: 0;
+  margin: 0 -19px 0 2px;
   clear: none;
   opacity:0;
   float: left;
-  margin-right:-19px;
   cursor: pointer;
+  height: 21px;
 }
-#usm-pro #filter li input[type='checkbox']+label{
-  background: url(../images/sprite-chckbx.png) no-repeat 0 -17px;
-  height: 19px;
-  display: block;
-  line-height: 19px;
+#usm-pro #filter li input[type='checkbox']+label {
+  background: url(../images/sprite-chckbx.png) no-repeat 0 -23px;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
 }
 
 #usm-pro #filter li input[type='checkbox']:checked + label {
-  background: url(../images/sprite-chckbx.png) no-repeat 0 0;
-  height: 19px;
-  display: block;
-  line-height: 19px;
+  background: url(../images/sprite-chckbx.png) no-repeat 0 1px;
+  height: 20px;
+  display: inline-block;
+  line-height: 20px;
 }
 
 #usm-pro #filter li label{
@@ -2653,17 +2652,17 @@ label[for=boom_bundle_frontbundle_boomtype_category] {
   clear: none;
   opacity:0;
   float: right;
-  margin: 4px 13px 0 0;
+  margin: 8px 7px 0 0;
   cursor: pointer;
 }
 #nsfw-sc input[type='checkbox']+label {
-  background: url(../images/sprite-chckbx.png) no-repeat 85px -17px;
+  background: url(../images/sprite-chckbx.png) no-repeat 85px -20px;
   display: block;
   width: 105px;
 }
 
 #nsfw-sc input[type='checkbox']:checked + label {
-  background: url(../images/sprite-chckbx.png) no-repeat 85px 0;
+  background: url(../images/sprite-chckbx.png) no-repeat 85px 4px;
   display: block;
 }
 
