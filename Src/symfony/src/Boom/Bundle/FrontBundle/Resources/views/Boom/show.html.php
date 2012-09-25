@@ -19,16 +19,17 @@ $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 ?>
 <div class="musica single-boom">
-    <div class="boom-main">
-        <h3 class="title-flag <?php echo $category['slug'] ?>">
-            <span><?php echo $view->escape($category['name']) ?></span>
-        </h3>
-        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path']) ?>">
-    </div>
+  <div class="boom-main">
+    <h3 class="title-flag <?php echo $category['slug'] ?>">
+      <span><?php echo $view->escape($category['name']) ?></span>
+    </h3>
+    <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path']) ?>">
+  </div>
+  <div class="boom-else">
     <div class="boom-info">
-        <h2><?php echo $view->escape($entity['title']) ?></h2>
-        <p><?php echo $view['bbcode']->filter((string) $entity['summary'], 'default') ?></p>
-        <a class="boom-moar" href="#">Publicado el <date>fecha </date></a>
+      <h2><?php echo $view->escape($entity['title']) ?></h2>
+      <p><?php echo $view['bbcode']->filter((string) $entity['summary'], 'default') ?></p>
+      <a class="boom-moar" href="#">Publicado el <date>fecha </date></a>
     </div>
     <div class="social cf">
       <p>Comparte:</p>
@@ -44,44 +45,53 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         </div>
     </div>
     <div class="booms">
-        <ul>
-            <?php
-            $elements = array_reverse($entity['elements']->toArray());
-            foreach ($elements as $element):
-                ?>
-                <li class="boom">
-                    <div class="boom-info cf">
-                        <span class="place">
-                            <?php echo $element['position'] ?>
-                        </span>
-                        <div class="float-container cf">
-                            <img src="http://placehold.it/151x86" height="87px" width="151px" />
-                            <p class="boom-ti"><?php echo $element['title'] ?></p>
-                        </div>
-                    </div>
-                    <div class="boom-content">
-                        <div class="boom-text">
-                            <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
-                            <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
-                        </div>
-                        <div class="comments"><div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div></div>
-                    </div>
-                    <span class="tab"><a href=""><span>TAB</span></a></span>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <div class="boom-tags">
-          <p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p>
-        </div>
-        <div class="social cf">
-          <p>Comparte:</p>
-          <a href="#" class="btn-fb">facebook</a>
-          <a href="#" class="btn-tw">twitter</a>
-          <a href="#" class="btn-fav">Marcar como favorito:</a>
-        </div>
-        <div class="boom-nav">
-            <a href="#"><span class="prv-boom">Boom Anterior</span></a>
-            <a href="#"><span class="nxt-boom">Siguiente Boom</span></a>
-        </div>
+      <ul>
+      <?php
+        $elements = array_reverse($entity['elements']->toArray());
+        foreach ($elements as $element):
+      ?>
+        <li class="boom">
+          <div class="boom-info cf">
+            <span class="place">
+              <?php echo $element['position'] ?>
+            </span>
+            <div class="float-container cf">
+            <?php if(isset($element['image']['path'])){ ?>
+              <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path']); ?>" height="87px" width="151px" />
+            <?php } ?>
+              <p class="boom-ti"><?php echo $element['title'] ?></p>
+            </div>
+          </div>
+          <div class="boom-content">
+            <div class="boom-text">
+              <p><?php $content = $element['content'] === null ? '' : $element['content']; ?></p>
+              <p><?php echo $view['bbcode']->filter((string) $content, 'default') ?></p>
+            </div>
+            <div class="comments">
+              <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
+            </div>
+          </div>
+          <span class="tab"><a href=""><span>TAB</span></a></span>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+      <div class="boom-tags">
+      <p>Tags:
+      <?php $tags = array_reverse($entity['tags']->toArray());
+        $numTags = count($tags);
+        $ind = 0;
+        foreach ($tags as $tag):?>
+          <a href="<?php echo $view['router']->generate('BoomFrontBundle_list_tag',array('slug' => $tag['slug'])); ?>"><?php echo  $view->escape($tag['name']) ?></a><?php if( ++$ind != $numTags){ echo ","; }?>
+        <?php endforeach ?>
+      </p>
+      </div>
+      <div class="social cf">
+        <p>Comparte:</p>
+        <a href="#" class="btn-fb">facebook</a>
+        <a href="#" class="btn-tw">twitter</a>
+        <a href="#" class="btn-fav">Marcar como favorito:</a>
+      </div>
     </div>
+  </div>
 </div>
+
