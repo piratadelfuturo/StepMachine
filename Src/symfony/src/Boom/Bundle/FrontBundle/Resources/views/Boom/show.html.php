@@ -56,7 +56,9 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
               <?php echo $element['position'] ?>
             </span>
             <div class="float-container cf">
-              <img src="http://placehold.it/151x86" height="87px" width="151px" />
+            <?php if(isset($element['image']['path'])){ ?>
+              <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path']); ?>" height="87px" width="151px" />
+            <?php } ?>
               <p class="boom-ti"><?php echo $element['title'] ?></p>
             </div>
           </div>
@@ -85,3 +87,4 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
     </div>
   </div>
 </div>
+
