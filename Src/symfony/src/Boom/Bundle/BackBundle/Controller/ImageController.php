@@ -79,6 +79,22 @@ class ImageController extends Controller {
                 ));
     }
 
+    public function ajaxNewAction(){
+        $entity = new Image();
+        $form = $this->createForm($this->get('boom_library.ajax_image.type'), $entity);
+        $request = $this->getRequest();
+        if($request->isXmlHttpRequest() == false){
+            return $this->createNotFoundException('Only ajax request');
+        }else{
+            return $this->render('BoomBackBundle:Image:ajax_new.html.php', array(
+                'entity' => $entity,
+                'form' => $form->createView(),
+            ));
+        }
+
+
+    }
+
     public function ajaxCreateAction() {
         $entity = new Image();
         $request = $this->getRequest();

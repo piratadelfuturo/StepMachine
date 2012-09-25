@@ -29,7 +29,7 @@
         <![endif]-->
 
         <!-- Use Google CDN for jQuery and jQuery UI -->
-        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.7.2.min.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.8.2.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-ui-1.8.22.custom.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.cookie.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.blockUI.js') ?>"></script>

@@ -170,11 +170,12 @@ $.alert = function (content, options) {
 		container.attr('title', options.text.header);
 	}
 
+        console.log(options);
 	//fill the container
 	container.html(content.replace(/\n/g, '<br>'));
 	//display the dialog
 	container.dialog(options);
-	
+
 	return{
 		close:function(callback){
 			container.dialog('close');
@@ -189,7 +190,7 @@ $.alert = function (content, options) {
 		},
 		set:function(option, value){
 			container.dialog("option", option, value);
-		}	
+		}
 	}
 
 
@@ -258,7 +259,7 @@ $.msg = function (content, options) {
 			}
 		}).trigger('scroll.wl_msg');
 	}
-	
+
 	//stop if no content is set
 	if(!content)return false;
 
@@ -332,7 +333,7 @@ $.msg = function (content, options) {
 
 	//create the messsage
 	create();
-	
+
 	return {
 		close:function(callback){
 			close(msgbox,callback);
@@ -347,7 +348,7 @@ $.msg = function (content, options) {
 			container.fadeOutSlide(options.fadeTime, function(){
 				if($.isFunction(callback)) callback.call(this);
 			});
-		}	
+		}
 	}
 
 };
