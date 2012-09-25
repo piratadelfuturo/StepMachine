@@ -1918,6 +1918,11 @@ footer p{
   content: '';
   display: block;
   position: absolute;
+  width: 30px;
+  height: 30px;
+  background-position: -74px 0;
+  top: 0;
+  right: 0;
 }
 
 .single-boom .social .btn-fav:hover:after {
@@ -2358,7 +2363,7 @@ footer p{
   margin-top: 2px;
 }
 .drag-booms li .boom-info{
-  width: 165px;
+  width: 160px;
   margin: 0 5px;
 
 }
