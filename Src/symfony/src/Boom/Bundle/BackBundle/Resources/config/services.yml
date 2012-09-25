@@ -3,7 +3,6 @@ parameters:
     boom_back.widget_block_type.class: Boom\Bundle\BackBundle\Form\Type\WidgetBlockType
     boom_back.user_provider.admin.class: Boom\Bundle\BackBundle\Security\AdminProvider
     boom_back.boom_bundle_backbundle_listelementtype.type.class: Boom\Bundle\BackBundle\Form\ListElementType
-    boom_back.ajax_image.type.class:  Boom\Bundle\LibraryBundle\Form\BoomType
 
 services:
     form.type.widget_block_type:
@@ -22,8 +21,3 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: boom_bundle_backbundle_listelementtype }
-    boom_back.boom_back_type.type:
-        class: %boom_back.ajax_image.type.class%
-        arguments: ["@doctrine.orm.entity_manager"]
-        tags:
-            - { name: form.type, alias: boom_back }

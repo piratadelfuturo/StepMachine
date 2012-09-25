@@ -121,9 +121,24 @@
             var iImageFile  = container.find('input[id$="image_file"]',0).val('');
             var iImageImg   = container.find('img[id$="image_img"]',0).attr('src',data.image_path);
             var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length);
-            if(window.ajaxUploadCreate){
-                window.ajaxUploadCreate.apply(iImageFile);
-            }
+
+            $(iImageFile).boomAjaxUpload({
+                url: Routing.generate(
+                    'BoomBackBundle_image_ajax_create',
+                    {
+                        _format: 'json',
+                        path: iImageFile.attr('name'),
+                        w: 158,
+                        h: 90
+                    }),
+                done:function(e, data){
+                    if(data.result.id){
+                        $(elem).siblings('img[id$=image_img]').eq(0).attr('src',data.result.path);
+                    }
+
+                }
+
+            });
 
             return false;
         }

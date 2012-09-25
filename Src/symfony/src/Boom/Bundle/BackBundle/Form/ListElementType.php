@@ -5,9 +5,9 @@ namespace Boom\Bundle\BackBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementImageTransformer;
-use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementBoomTransformer;
-use Boom\Bundle\BackBundle\Form\DataTransformer\ListElementCategoryTransformer;
+use Boom\Bundle\LibraryBundle\Form\DataTransformer\HiddenImageTransformer;
+use Boom\Bundle\LibraryBundle\Form\DataTransformer\HiddenBoomTransformer;
+use Boom\Bundle\LibraryBundle\Form\DataTransformer\HiddenCategoryTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ListElementType extends AbstractType {
@@ -30,15 +30,17 @@ class ListElementType extends AbstractType {
                 ->add('position', 'hidden', array('required' => true))
                 ->add('title', 'text', array('required' => true))
                 ->add('summary', 'text', array('required' => false))
-                ->add('url', 'text', array('required' => true))
-                ->add('image', 'ajax_image', array('required' => false))
+                ->add('url', 'text', array('required' => true));
+        $ajax_image =   $builder->create('image', 'ajax_image', array('required' => false));
+
+        $builder->add($ajax_image)
                 ->add(
                         $builder->create('boom', 'hidden', array('required' => false))
-                        ->prependNormTransformer(new ListElementBoomTransformer($this->om))
+                        ->prependNormTransformer(new HiddenBoomTransformer($this->om))
                 )
                 ->add(
                         $builder->create('category', 'hidden', array('required' => false))
-                        ->prependNormTransformer(new ListElementCategoryTransformer($this->om))
+                        ->prependNormTransformer(new HiddenCategoryTransformer($this->om))
         );
     }
 
