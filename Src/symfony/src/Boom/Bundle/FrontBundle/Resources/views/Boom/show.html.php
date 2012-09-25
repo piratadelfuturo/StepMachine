@@ -18,7 +18,6 @@ $fb_boom_graph_data['url'] = $view['router']->generate(
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 ?>
-
 <div class="musica single-boom">
     <div class="boom-main">
         <h3 class="title-flag <?php echo $category['slug'] ?>">
@@ -31,22 +30,18 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         <p><?php echo $view['bbcode']->filter((string) $entity['summary'], 'default') ?></p>
         <a class="boom-moar" href="#">Publicado el <date>fecha </date></a>
     </div>
-    <div class="social">
-        <span class="comparte">comparte:
-            <a href="#"><span class="btn-fb">facebook</span></a>
-            <a href="#"><span class="btn-tw">twitter</span></a>
-        </span>
-        <span class="fav">marcar como favorito:
-            <a href="#"><span class="btn-fav">fav</span></a>
-        </span>
+    <div class="social cf">
+      <p>Comparte:</p>
+      <a href="#" class="btn-fb">facebook</a>
+      <a href="#" class="btn-tw">twitter</a>
+      <a href="#" class="btn-fav">Marcar como favorito:</a>
     </div>
-    <div class="autor">
-        <img src="http://placekitten.com/85/85">
-        <span>
-            <h3>Publicado por <a rel="author" href="#"><?php echo $entity['user']['username'] ?></a></h3>
-            <p>Phillip k. Dick es un escritor de California. Su literatura está influenciada por la narrativa policiaca de Raymond Chandler y los textos futuristas de William Gibson. K. Dick es quizá el autor más adaptado al cine...<a class="ver-moar" href="#">Leer más</a></p>
-
-        </span>
+    <div class="autor cf">
+        <a href="#" class="autor-thumb"><img src="http://placekitten.com/85/87" alt="Placeholder" /></a>
+        <div class="txt-container">
+          <h3>Publicado por <a rel="author" href="#"><?php echo $entity['user']['username'] ?></a></h3>
+          <p>Phillip k. Dick es un escritor de California. Su literatura está influenciada por la narrativa policiaca de Raymond Chandler y los textos futuristas de William Gibson. K. Dick es quizá el autor más adaptado al cine...<a class="ver-moar" href="#">Leer más</a></p>
+        </div>
     </div>
     <div class="booms">
         <ul>
@@ -76,15 +71,14 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                 </li>
             <?php endforeach; ?>
         </ul>
-        <div class="boom-tags"><p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p></div>
-        <div class="social">
-            <span class="comparte">comparte:
-                <a href="#"><span class="btn-fb">facebook</span></a>
-                <a href="#"><span class="btn-tw">twitter</span></a>
-            </span>
-            <span class="fav">marcar como favorito:
-                <a href="#"><span class="btn-fav">fav</span></a>
-            </span>
+        <div class="boom-tags">
+          <p>Tags: <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a>, <a href="#">Tag</a></p>
+        </div>
+        <div class="social cf">
+          <p>Comparte:</p>
+          <a href="#" class="btn-fb">facebook</a>
+          <a href="#" class="btn-tw">twitter</a>
+          <a href="#" class="btn-fav">Marcar como favorito:</a>
         </div>
         <div class="boom-nav">
             <a href="#"><span class="prv-boom">Boom Anterior</span></a>
