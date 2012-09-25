@@ -37,8 +37,9 @@
         <!-- some basic functions -->
         <?php
         $js = array(
-            'js/lib/jquery-1.7.2.min.js',
-            'js/lib/jquery-ui-1.8.22.custom.min.js',
+            'js/lib/jquery-1.8.2.js',
+            'js/lib/jquery-ui-1.8.23.custom.min.js',
+            'js/lib/jquery.boomAjaxUpload.js',
             'js/lib/tiny_mce/tiny_mce.js',
             'js/lib/tiny_mce/jquery.tinymce.js',
             'js/lib/file_upload/js/jquery.iframe-transport.js',

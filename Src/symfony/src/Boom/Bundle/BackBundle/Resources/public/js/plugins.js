@@ -95,7 +95,7 @@
  * Thanks to: Seamus Leahy for adding deltaX and deltaY
  *
  * Version: 3.0.6
- * 
+ *
 /*----------------------------------------------------------------------*/
 
 (function($) {
@@ -118,7 +118,7 @@ $.event.special.mousewheel = {
             this.onmousewheel = handler;
         }
     },
-    
+
     teardown: function() {
         if ( this.removeEventListener ) {
             for ( var i=types.length; i; ) {
@@ -134,7 +134,7 @@ $.fn.extend({
     mousewheel: function(fn) {
         return fn ? this.bind("mousewheel", fn) : this.trigger("mousewheel");
     },
-    
+
     unmousewheel: function(fn) {
         return this.unbind("mousewheel", fn);
     }
@@ -145,27 +145,27 @@ function handler(event) {
     var orgEvent = event || window.event, args = [].slice.call( arguments, 1 ), delta = 0, returnValue = true, deltaX = 0, deltaY = 0;
     event = $.event.fix(orgEvent);
     event.type = "mousewheel";
-    
+
     // Old school scrollwheel delta
     if ( orgEvent.wheelDelta ) { delta = orgEvent.wheelDelta/120; }
     if ( orgEvent.detail     ) { delta = -orgEvent.detail/3; }
-    
+
     // New school multidimensional scroll (touchpads) deltas
     deltaY = delta;
-    
+
     // Gecko
     if ( orgEvent.axis !== undefined && orgEvent.axis === orgEvent.HORIZONTAL_AXIS ) {
         deltaY = 0;
         deltaX = -1*delta;
     }
-    
+
     // Webkit
     if ( orgEvent.wheelDeltaY !== undefined ) { deltaY = orgEvent.wheelDeltaY/120; }
     if ( orgEvent.wheelDeltaX !== undefined ) { deltaX = -1*orgEvent.wheelDeltaX/120; }
-    
+
     // Add event and delta to the front of the arguments
     args.unshift(event, delta, deltaX, deltaY);
-    
+
     return ($.event.dispatch || $.event.handle).apply(this, args);
 }
 
@@ -180,7 +180,7 @@ function handler(event) {
 /*
 /* !!! I did some modifications on that plugin! !!!
 /*----------------------------------------------------------------------*/
-	
+
 
 
 (function ($) {
@@ -216,7 +216,7 @@ function handler(event) {
 					height: this.$element[0].offsetHeight
 				});
 				if(this.options.appendTo != 'body')pos.top = pos.left = 0;
-				
+
 				var actualWidth = $tip[0].offsetWidth,
 					actualHeight = $tip[0].offsetHeight;
 				var gravity = (typeof this.options.gravity == 'function') ? this.options.gravity.call(this.$element[0]) : this.options.gravity;
@@ -264,7 +264,7 @@ function handler(event) {
 						tp.left = pos.left + pos.width - actualWidth + 5;
 					}
 				}
-				
+
 				if(this.options.followMouse){
 					$(document).bind('mousemove.tipsy',function(e){
 						var x = e.pageX+mp.left, y = e.pageY+mp.top;
@@ -274,7 +274,7 @@ function handler(event) {
 						});
 					});
 				}
-				
+
 				$tip.css(tp).addClass('tipsy-' + gravity);
 				if (this.options.fade) {
 					$tip.stop().css({
@@ -319,7 +319,7 @@ function handler(event) {
 			title = ('' + title).replace(/(^\s*|\s*$)/, "");
 			return title || o.fallback;
 		},
-		
+
 		setTitel: function(title) {
 			this.options.fallback = title;
 		},
@@ -449,11 +449,11 @@ function handler(event) {
 
 /*----------------------------------------------------------------------*/
 /* jQuery Uniform v1.7.5
-/* Copyright © 2009 Josh Pyles / Pixelmatrix Design LLC
+/* Copyright ï¿½ 2009 Josh Pyles / Pixelmatrix Design LLC
 /* http://pixelmatrixdesign.com
 /* License: MIT License - http://www.opensource.org/licenses/mit-license.php
 /*----------------------------------------------------------------------*/
-	
+
 
 (function($) {
   $.uniform = {
@@ -500,50 +500,50 @@ function handler(event) {
         setTimeout(resetThis, 10);
       });
     }
-    
+
     function doInput(elem){
       $el = $(elem);
       $el.addClass($el.attr("type"));
       storeElement(elem);
     }
-    
+
     function doTextarea(elem){
       $(elem).addClass("uniform");
       storeElement(elem);
     }
-    
+
     function doButton(elem){
       var $el = $(elem);
-      
+
       var divTag = $("<div>"),
           spanTag = $("<span>");
-      
+
       divTag.addClass(options.buttonClass);
-      
+
       if(options.useID && $el.attr("id") != "") divTag.attr("id", options.idPrefix+"-"+$el.attr("id"));
-      
+
       var btnText;
-      
+
       if($el.is("a") || $el.is("button")){
         btnText = $el.text();
       }else if($el.is(":submit") || $el.is(":reset") || $el.is("input[type=button]")){
         btnText = $el.attr("value");
       }
-      
+
       btnText = btnText == "" ? $el.is(":reset") ? "Reset" : "Submit" : btnText;
-      
+
       spanTag.html(btnText);
-      
+
       $el.css("opacity", 0);
       $el.wrap(divTag);
       $el.wrap(spanTag);
-      
+
       //redefine variables
       divTag = $el.closest("div");
       spanTag = $el.closest("span");
-      
+
       if($el.is(":disabled")) divTag.addClass(options.disabledClass);
-      
+
       divTag.bind({
         "mouseenter.uniform": function(){
           divTag.addClass(options.hoverClass);
@@ -559,7 +559,7 @@ function handler(event) {
           divTag.removeClass(options.activeClass);
         },
         "click.uniform touchend.uniform": function(e){
-          if($(e.target).is("span") || $(e.target).is("div")){    
+          if($(e.target).is("span") || $(e.target).is("div")){
             if(elem[0].dispatchEvent){
               var ev = document.createEvent('MouseEvents');
               ev.initEvent( 'click', true, true );
@@ -570,7 +570,7 @@ function handler(event) {
           }
         }
       });
-      
+
       elem.bind({
         "focus.uniform": function(){
           divTag.addClass(options.focusClass);
@@ -579,18 +579,18 @@ function handler(event) {
           divTag.removeClass(options.focusClass);
         }
       });
-      
+
       $.uniform.noSelect(divTag);
       storeElement(elem);
-      
+
     }
 
     function doSelect(elem){
       var $el = $(elem);
-      
+
       var divTag = $('<div />'),
           spanTag = $('<span />');
-      
+
       if(!$el.css("display") == "none" && options.autoHide){
         divTag.hide();
       }
@@ -600,13 +600,13 @@ function handler(event) {
       if(options.useID && elem.attr("id") != ""){
         divTag.attr("id", options.idPrefix+"-"+elem.attr("id"));
       }
-      
+
       var selected = elem.find(":selected:first");
       if(selected.length == 0){
         selected = elem.find("option:first");
       }
       spanTag.html(selected.html());
-      
+
       elem.css('opacity', 0);
       elem.wrap(divTag);
       elem.before(spanTag);
@@ -647,14 +647,14 @@ function handler(event) {
           spanTag.text(elem.find(":selected").html());
         }
       });
-      
+
       //handle disabled state
       if($(elem).attr("disabled")){
         //box is checked by default, check our box
         divTag.addClass(options.disabledClass);
       }
       $.uniform.noSelect(spanTag);
-      
+
       storeElement(elem);
 
     }
@@ -663,11 +663,11 @@ function handler(event) {
       var $el = $(elem);
       var divTag = $('<div />'),
           spanTag = $('<span />');
-      
+
       if(!$el.css("display") == "none" && options.autoHide){
         divTag.hide();
       }
-      
+
       divTag.addClass(options.checkboxClass);
 
       //assign the id of the element
@@ -716,7 +716,7 @@ function handler(event) {
           divTag.removeClass(options.activeClass);
         }
       });
-      
+
       //handle defaults
       if($(elem).attr("checked")){
         //box is checked by default, check our box
@@ -734,10 +734,10 @@ function handler(event) {
 
     function doRadio(elem){
       var $el = $(elem);
-      
+
       var divTag = $('<div />'),
           spanTag = $('<span />');
-          
+
       if(!$el.css("display") == "none" && options.autoHide){
         divTag.hide();
       }
@@ -816,7 +816,7 @@ function handler(event) {
       var divTag = $('<div />'),
           filenameTag = $('<span>'+options.fileDefaultText+'</span>'),
           btnTag = $('<span>'+options.fileBtnText+'</span>');
-      
+
       if(!$el.css("display") == "none" && options.autoHide){
         divTag.hide();
       }
@@ -908,19 +908,19 @@ function handler(event) {
         //box is checked by default, check our box
         divTag.addClass(options.disabledClass);
       }
-      
+
       $.uniform.noSelect(filenameTag);
       $.uniform.noSelect(btnTag);
-      
+
       storeElement(elem);
 
     }
-    
+
     $.uniform.restore = function(elem){
       if(elem == undefined){
         elem = $($.uniform.elements);
       }
-      
+
       $(elem).each(function(){
         if($(this).is(":checkbox")){
           //unwrap from span and div
@@ -942,13 +942,13 @@ function handler(event) {
           //unwrap from span and div
           $(this).unwrap().unwrap();
         }
-        
+
         //unbind events
         $(this).unbind(".uniform");
-        
+
         //reset inline style
         $(this).css("opacity", "1");
-        
+
         //remove item from list of uniformed elements
         var index = $.inArray($(elem), $.uniform.elements);
         $.uniform.elements.splice(index, 1);
@@ -966,7 +966,7 @@ function handler(event) {
         $.uniform.elements.push(elem);
       }
     }
-    
+
     //noSelect v1.0
     $.uniform.noSelect = function(elem) {
       function f() {
@@ -1059,15 +1059,15 @@ function handler(event) {
         }else if($e.is(":submit") || $e.is(":reset") || $e.is("button") || $e.is("a") || elem.is("input[type=button]")){
           var divTag = $e.closest("div");
           divTag.removeClass(options.hoverClass+" "+options.focusClass+" "+options.activeClass);
-          
+
           if($e.is(":disabled")){
             divTag.addClass(options.disabledClass);
           }else{
             divTag.removeClass(options.disabledClass);
           }
-          
+
         }
-        
+
       });
     };
 
@@ -1099,7 +1099,7 @@ function handler(event) {
         }else if(elem.is("a") || elem.is(":submit") || elem.is(":reset") || elem.is("button") || elem.is("input[type=button]")){
           doButton(elem);
         }
-          
+
       }
     });
   };
@@ -1114,10 +1114,10 @@ function handler(event) {
 /*----------------------------------------------------------------------*/
 
 
-(function(jQuery){ 
-	jQuery.fn.extend({  
+(function(jQuery){
+	jQuery.fn.extend({
 		elastic: function() {
-		
+
 			//	We will create a div clone of the textarea
 			//	by copying these attributes from the textarea to the div.
 			var mimics = [
@@ -1130,14 +1130,14 @@ function handler(event) {
 				'fontFamily',
 				'width',
 				'fontWeight'];
-			
+
 			return this.each( function() {
-				
+
 				// Elastic only works on textareas
 				if ( this.type != 'textarea' ) {
 					return false;
 				}
-				
+
 				var $textarea	=	jQuery(this),
 					$twin		=	jQuery('<div />').css({'position': 'absolute','display':'none','word-wrap':'break-word'}),
 					lineHeight	=	parseInt($textarea.css('line-height'),10) || parseInt($textarea.css('font-size'),'10'),
@@ -1145,48 +1145,48 @@ function handler(event) {
 					maxheight	=	parseInt($textarea.css('max-height'),10) || Number.MAX_VALUE,
 					goalheight	=	0,
 					i 			=	0;
-				
+
 				// Opera returns max-height of -1 if not set
 				if (maxheight < 0) { maxheight = Number.MAX_VALUE; }
-					
+
 				// Append the twin to the DOM
 				// We are going to meassure the height of this, not the textarea.
 				$twin.appendTo($textarea.parent());
-				
+
 				// Copy the essential styles (mimics) from the textarea to the twin
 				var i = mimics.length;
 				while(i--){
 					$twin.css(mimics[i].toString(),$textarea.css(mimics[i].toString()));
 				}
-				
-				
+
+
 				// Sets a given height and overflow state on the textarea
 				function setHeightAndOverflow(height, overflow){
 					curratedHeight = Math.floor(parseInt(height,10));
 					if($textarea.height() != curratedHeight){
 						$textarea.css({'height': curratedHeight + 'px','overflow':overflow});
-						
+
 					}
 				}
-				
-				
-				// This function will update the height of the textarea if necessary 
+
+
+				// This function will update the height of the textarea if necessary
 				function update() {
-					
+
 					// Get curated content from the textarea.
 					var textareaContent = $textarea.val().replace(/&/g,'&amp;').replace(/  /g, '&nbsp;').replace(/<|>/g, '&gt;').replace(/\n/g, '<br />');
-					
+
 					// Compare curated content with curated twin.
 					var twinContent = $twin.html().replace(/<br>/ig,'<br />');
-					
+
 					if(textareaContent+'&nbsp;' != twinContent){
-					
+
 						// Add an extra white space so new rows are added when you are at the end of a row.
 						$twin.html(textareaContent+'&nbsp;');
-						
+
 						// Change textarea height if twin plus the height of one line differs more than 3 pixel from textarea height
 						if(Math.abs($twin.height() + lineHeight - $textarea.height()) > 3){
-							
+
 							var goalheight = $twin.height()+lineHeight;
 							if(goalheight >= maxheight) {
 								setHeightAndOverflow(maxheight,'auto');
@@ -1195,21 +1195,21 @@ function handler(event) {
 							} else {
 								setHeightAndOverflow(goalheight,'hidden');
 							}
-							
+
 						}
-						
+
 					}
-					
+
 				}
-				
+
 				// Hide scrollbars
 				$textarea.css({'overflow':'hidden'});
-				
+
 				// Update textarea size on keyup, change, cut and paste
 				$textarea.bind('keyup change cut paste', function(){
-					update(); 
+					update();
 				});
-				
+
 				// Compact textarea on blur
 				// Lets animate this....
 				$textarea.bind('blur',function(){
@@ -1221,18 +1221,18 @@ function handler(event) {
 						}
 					}
 				});
-				
+
 				// And this line is to catch the browser paste event
-				$textarea.live('input paste',function(e){ setTimeout( update, 250); });				
-				
+				$textarea.live('input paste',function(e){ setTimeout( update, 250); });
+
 				// Run update once when elastic is initialized
 				update();
-				
+
 			});
-			
-		} 
-	}); 
-})(jQuery);	
+
+		}
+	});
+})(jQuery);
 
 /*----------------------------------------------------------------------*/
 /* jQuery miniColors: A small color selector
@@ -1376,7 +1376,7 @@ function handler(event) {
 				//
 				if (input.attr('disabled')) return false;
 
-				// Hide all other instances 
+				// Hide all other instances
 				hide();
 
 				// Generate the selector
@@ -1844,7 +1844,7 @@ function handler(event) {
 
 
 /*----------------------------------------------------------------------*/
-/* 
+/*
 /*----------------------------------------------------------------------*/
 
 
@@ -2027,7 +2027,7 @@ function handler(event) {
     // "add" method are uploaded immediately, but it is possible to override
     // the "add" callback option to queue file uploads.
     $.widget('blueimp.fileupload', {
-        
+
         options: {
             // The namespace used for event handler binding on the dropZone and
             // fileInput collections.
@@ -2078,7 +2078,7 @@ function handler(event) {
             // global progress calculation. Set the following option to false to
             // prevent recalculating the global progress data:
             recalculateProgress: true,
-            
+
             // Additional form data to be sent along with the file uploads can be set
             // using this option, which accepts an array of objects with name and
             // value properties, a function returning such an array, a FormData
@@ -2087,7 +2087,7 @@ function handler(event) {
             formData: function (form) {
                 return form.serializeArray();
             },
-            
+
             // The add callback is invoked as soon as files are added to the fileupload
             // widget (via file input selection, drag & drop or add API call).
             // If the singleFileUploads option is enabled, this callback will be
@@ -2104,7 +2104,7 @@ function handler(event) {
             add: function (e, data) {
                 data.submit();
             },
-            
+
             // Other callbacks:
             // Callback for the start of each file upload request:
             // send: function (e, data) {}, // .bind('fileuploadsend', func);
@@ -2128,14 +2128,14 @@ function handler(event) {
             // drop: function (e, data) {}, // .bind('fileuploaddrop', func);
             // Callback for dragover events of the dropZone collection:
             // dragover: function (e) {}, // .bind('fileuploaddragover', func);
-            
+
             // The plugin options are used as settings object for the ajax calls.
             // The following are jQuery ajax settings required for the file uploads:
             processData: false,
             contentType: false,
             cache: false
         },
-        
+
         // A list of options that require a refresh after assigning a new value:
         _refreshOptionsList: ['namespace', 'dropZone', 'fileInput'],
 
@@ -2261,14 +2261,14 @@ function handler(event) {
             // Blob reference is not needed anymore, free memory:
             options.blob = null;
         },
-        
+
         _initIframeSettings: function (options) {
             // Setting the dataType to iframe enables the iframe transport:
             options.dataType = 'iframe ' + (options.dataType || '');
             // The iframe transport accepts a serialized array as form data:
             options.formData = this._getFormData(options);
         },
-        
+
         _initDataSettings: function (options) {
             if (this._isXHRUpload(options)) {
                 if (!this._chunkedUpload(options, true)) {
@@ -2281,7 +2281,7 @@ function handler(event) {
                 this._initIframeSettings(options);
             }
         },
-        
+
         _initFormSettings: function (options) {
             // Retrieve missing options from the input field and the
             // associated form, if available:
@@ -2302,7 +2302,7 @@ function handler(event) {
                 options.type = 'POST';
             }
         },
-        
+
         _getAJAXSettings: function (data) {
             var options = $.extend({}, this.options, data);
             this._initFormSettings(options);
@@ -2511,7 +2511,7 @@ function handler(event) {
             }
             return send();
         },
-        
+
         _onAdd: function (e, data) {
             var that = this,
                 result = true,
@@ -2533,7 +2533,7 @@ function handler(event) {
                 return this._trigger('add', e, data);
             }
         },
-        
+
         // File Normalization for Gecko 1.9.1 (Firefox 3.5) support:
         _normalizeFile: function (index, file) {
             if (file.name === undefined && file.size === undefined) {
@@ -2558,7 +2558,7 @@ function handler(event) {
                 return el;
             });
         },
-        
+
         _onChange: function (e) {
            var that = e.data.fileupload,
                 data = {
@@ -2573,7 +2573,7 @@ function handler(event) {
                 data.files = [{name: e.target.value.replace(/^.*\\/, '')}];
             }
             // Store the form reference as jQuery data for other event handlers,
-            // as the form property is not available after replacing the file input: 
+            // as the form property is not available after replacing the file input:
             if (data.form.length) {
                 data.fileInput.data('blueimp.fileupload.form', data.form);
             } else {
@@ -2587,7 +2587,7 @@ function handler(event) {
                 return false;
             }
         },
-        
+
         _onDrop: function (e) {
             var that = e.data.fileupload,
                 dataTransfer = e.dataTransfer = e.originalEvent.dataTransfer,
@@ -2603,7 +2603,7 @@ function handler(event) {
             }
             e.preventDefault();
         },
-        
+
         _onDragOver: function (e) {
             var that = e.data.fileupload,
                 dataTransfer = e.dataTransfer = e.originalEvent.dataTransfer;
@@ -2615,7 +2615,7 @@ function handler(event) {
             }
             e.preventDefault();
         },
-        
+
         _initEventHandlers: function () {
             var ns = this.options.namespace || this.name;
             this.options.dropZone
@@ -2633,11 +2633,11 @@ function handler(event) {
             this.options.fileInput
                 .unbind('change.' + ns, this._onChange);
         },
-        
+
         _beforeSetOption: function (key, value) {
             //this._destroyEventHandlers();
         },
-        
+
         _afterSetOption: function (key, value) {
             var options = this.options;
             if (!options.fileInput) {
@@ -2648,7 +2648,7 @@ function handler(event) {
             }
             this._initEventHandlers();
         },
-        
+
         _setOption: function (key, value) {
             var refresh = $.inArray(key, this._refreshOptionsList) !== -1;
             if (refresh) {
@@ -2675,7 +2675,7 @@ function handler(event) {
             this._active = this._loaded = this._total = 0;
             this._initEventHandlers();
         },
-        
+
         destroy: function () {
            // this._destroyEventHandlers();
             //$.Widget.prototype.destroy.call(this);
@@ -2685,7 +2685,7 @@ function handler(event) {
             $.Widget.prototype.enable.call(this);
             this._initEventHandlers();
         },
-        
+
         disable: function () {
            this._destroyEventHandlers();
             $.Widget.prototype.disable.call(this);
@@ -2702,7 +2702,7 @@ function handler(event) {
             data.files = $.each($.makeArray(data.files), this._normalizeFile);
             this._onAdd(null, data);
         },
-        
+
         // This method is exposed to the widget API and allows sending files
         // using the fileupload API. The data parameter accepts an object which
         // must have a files property and can contain additional options:
@@ -2717,9 +2717,9 @@ function handler(event) {
             }
             return this._getXHRPromise(false, data && data.context);
         }
-        
+
     });
-    
+
 }(jQuery));
 
 
@@ -2728,10 +2728,10 @@ function handler(event) {
 * Simple and fancy lightbox alternative
 *
 * Examples and documentation at: http://fancybox.net
-* 
+*
 * Copyright (c) 2008 - 2010 Janis Skarnelis
 * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
-* 
+*
 * Version: 1.3.4 (11/11/2010)
 * Requires: jQuery v1.3+
 *
@@ -2768,7 +2768,7 @@ d.padding))},typeof a=="number"?a:200)}};b.fancybox.init=function(){if(!b("#fanc
 D.append(j=b('<div id="fancybox-content"></div>'),E=b('<a id="fancybox-close"></a>'),n=b('<div id="fancybox-title"></div>'),z=b('<a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a>'),A=b('<a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a>'));E.click(b.fancybox.close);t.click(b.fancybox.cancel);z.click(function(a){a.preventDefault();b.fancybox.prev()});A.click(function(a){a.preventDefault();b.fancybox.next()});
 b.fn.mousewheel&&f.bind("mousewheel.fb",function(a,c){if(h)a.preventDefault();else if(b(a.target).get(0).clientHeight==0||b(a.target).get(0).scrollHeight===b(a.target).get(0).clientHeight){a.preventDefault();b.fancybox[c>0?"prev":"next"]()}});b.support.opacity||f.addClass("fancybox-ie");if(M){t.addClass("fancybox-ie6");f.addClass("fancybox-ie6");b('<iframe id="fancybox-hide-sel-frame" src="'+(/^https/i.test(window.location.href||"")?"javascript:void(false)":"about:blank")+'" scrolling="no" border="0" frameborder="0" tabindex="-1"></iframe>').prependTo(D)}}};
 b.fn.fancybox.defaults={padding:10,margin:40,opacity:false,modal:false,cyclic:false,scrolling:"auto",width:560,height:340,autoScale:true,autoDimensions:true,centerOnScroll:false,ajax:{},swf:{wmode:"transparent"},hideOnOverlayClick:true,hideOnContentClick:false,overlayShow:true,overlayOpacity:0.7,overlayColor:"#777",titleShow:true,titlePosition:"float",titleFormat:null,titleFromAlt:false,transitionIn:"fade",transitionOut:"fade",speedIn:300,speedOut:300,changeSpeed:300,changeFade:"fast",easingIn:"swing",
-easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:true,enableKeyboardNav:true,onStart:function(){},onCancel:function(){},onComplete:function(){},onCleanup:function(){},onClosed:function(){},onError:function(){}};b(document).ready(function(){b.fancybox.init()})})(jQuery);	
+easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:true,enableKeyboardNav:true,onStart:function(){},onCancel:function(){},onComplete:function(){},onCleanup:function(){},onClosed:function(){},onError:function(){}};b(document).ready(function(){b.fancybox.init()})})(jQuery);
 
 
 
@@ -2800,7 +2800,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
 /**
  * $.jStorage
- * 
+ *
  * USAGE:
  *
  * jStorage requires Prototype, MooTools or jQuery! If jQuery is used, then
@@ -2821,34 +2821,34 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
  *
  * -flush()
  * $.jStorage.flush() -> clears the cache
- * 
+ *
  * -storageObj()
  * $.jStorage.storageObj() -> returns a read-ony copy of the actual storage
- * 
+ *
  * -storageSize()
  * $.jStorage.storageSize() -> returns the size of the storage in bytes
  *
  * -index()
  * $.jStorage.index() -> returns the used keys as an array
- * 
+ *
  * -storageAvailable()
  * $.jStorage.storageAvailable() -> returns true if storage is available
- * 
+ *
  * -reInit()
  * $.jStorage.reInit() -> reloads the data from browser storage
- * 
+ *
  * <value> can be any JSON-able value, including objects and arrays.
  *
  **/
- 
+
 
 (function($){
     if(!$ || !($.toJSON || Object.toJSON || window.JSON) && !$.browser.msie){
         throw new Error("jQuery, MooTools or Prototype needs to be loaded before jStorage!");
     }
-    
+
     var
-        /* This is the object, that holds the cached values */ 
+        /* This is the object, that holds the cached values */
         _storage = {},
 
         /* Actual browser storage (localStorage or globalStorage['domain']) */
@@ -2856,7 +2856,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
         /* DOM element for older IE versions, holds userData behavior */
         _storage_elm = null,
-        
+
         /* How much space does the storage take */
         _storage_size = 0,
 
@@ -2867,10 +2867,10 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
         json_decode = $.evalJSON || (window.JSON && (JSON.decode || JSON.parse)) || function(str){
             return String(str).evalJSON();
         },
-        
+
         /* which backend is currently used */
         _backend = false;
-        
+
         /**
          * XML encoding and decoding as XML nodes can't be JSON'ized
          * XML nodes are encoded and decoded if the node is the value to be saved
@@ -2880,7 +2880,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
          *   $.jStorage.set("key", {xml: xmlNode}); // NOT OK
          */
         _XMLService = {
-            
+
             /**
              * Validates a XML node to be XML
              * based on jQuery.isXML function
@@ -2889,7 +2889,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
                 var documentElement = (elm ? elm.ownerDocument || elm : 0).documentElement;
                 return documentElement ? documentElement.nodeName !== "HTML" : false;
             },
-            
+
             /**
              * Encodes a XML node to string
              * based on http://www.mercurytide.co.uk/news/article/issues-when-working-ajax/
@@ -2907,7 +2907,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
                 }
                 return false;
             },
-            
+
             /**
              * Decodes a XML node from string
              * loosely based on http://outwestmedia.com/jquery-plugins/xmldom/
@@ -2981,7 +2981,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
         _load_storage();
     }
-    
+
     /**
      * Loads the data from the storage based on the supported mechanism
      * @returns undefined
@@ -2995,7 +2995,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
         }else{
             _storage_service.jStorage = "{}";
         }
-        _storage_size = _storage_service.jStorage?String(_storage_service.jStorage).length:0;    
+        _storage_size = _storage_service.jStorage?String(_storage_service.jStorage).length:0;
     }
 
     /**
@@ -3032,7 +3032,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
         /**
          * Sets a key's value.
-         * 
+         *
          * @param {String} key - Key to set. If this value is not set or not
          *              a string an exception is raised.
          * @param value - Value to set. This can be any value that is JSON
@@ -3048,10 +3048,10 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
             _save();
             return value;
         },
-        
+
         /**
          * Looks up a key in cache
-         * 
+         *
          * @param {String} key - Key to look up.
          * @param {mixed} def - Default value to return, if key didn't exist.
          * @returns the key value, default value or <null>
@@ -3069,10 +3069,10 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
             }
             return typeof(def) == 'undefined' ? null : def;
         },
-        
+
         /**
          * Deletes a key from cache.
-         * 
+         *
          * @param {String} key - Key to delete.
          * @returns true if key existed or false if it didn't
          */
@@ -3088,7 +3088,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
         /**
          * Deletes everything in cache.
-         * 
+         *
          * @returns true
          */
         flush: function(){
@@ -3096,10 +3096,10 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
             _save();
             return true;
         },
-        
+
         /**
          * Returns a read-only copy of _storage
-         * 
+         *
          * @returns Object
         */
         storageObj: function(){
@@ -3107,11 +3107,11 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
             F.prototype = _storage;
             return new F();
         },
-        
+
         /**
          * Returns an index of all used keys as an array
          * ['key1', 'key2',..'keyN']
-         * 
+         *
          * @returns Array
         */
         index: function(){
@@ -3123,47 +3123,47 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
             }
             return index;
         },
-        
+
         /**
          * How much space in bytes does the storage take?
-         * 
+         *
          * @returns Number
          */
         storageSize: function(){
             return _storage_size;
         },
-        
+
         /**
          * Which backend is currently in use?
-         * 
+         *
          * @returns String
          */
         currentBackend: function(){
             return _backend;
         },
-        
+
         /**
          * Test if storage is available
-         * 
+         *
          * @returns Boolean
          */
         storageAvailable: function(){
             return !!_backend;
         },
-        
+
         /**
          * Reloads the data from browser storage
-         * 
+         *
          * @returns undefined
          */
         reInit: function(){
             var new_storage_elm, data;
             if(_storage_elm && _storage_elm.addBehavior){
                 new_storage_elm = document.createElement('link');
-                
+
                 _storage_elm.parentNode.replaceChild(new_storage_elm, _storage_elm);
                 _storage_elm = new_storage_elm;
-                
+
                 /* Use a DOM element to act as userData storage */
                 _storage_elm.style.behavior = 'url(#default#userData)';
 
@@ -3178,7 +3178,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
                 _storage_service.jStorage = data;
                 _backend = "userDataBehavior";
             }
-            
+
             _load_storage();
         }
     };
@@ -3190,7 +3190,7 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 
 /**
  * jQuery custom checkboxes
- * 
+ *
  * Copyright (c) 2008 Khavilo Dmitry (http://widowmaker.kiev.ua/checkbox/)
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
@@ -3209,50 +3209,50 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 		e.cancelBubble = true;
 		if (e.stopPropagation) e.stopPropagation();
 	};
-	
+
 	$.fn.checkbox = function(options) {
-		
+
 		/* Default settings */
 		var settings = {
 			cls: 'jquery-checkbox'  /* checkbox  */
 		};
-		
+
 		/* Processing settings */
 		settings = $.extend(settings, options || {});
-		
+
 		/* Adds check/uncheck & disable/enable events */
 		var addEvents = function(object)
 		{
 			var checked = object.checked;
 			var disabled = object.disabled;
 			var $object = $(object);
-			
+
 			if ( object.stateInterval )
 				clearInterval(object.stateInterval);
-			
+
 			object.stateInterval = setInterval(
-				function() 
+				function()
 				{
 					if ( object.disabled != disabled )
 						$object.trigger( (disabled = !!object.disabled) ? 'disable' : 'enable');
 					if ( object.checked != checked )
 						$object.trigger( (checked = !!object.checked) ? 'check' : 'uncheck');
-				}, 
+				},
 				10 /* in miliseconds. Low numbers this can decrease performance on slow computers, high will increase responce time */
 			);
 			return $object;
 		};
-		
+
 		/* Wrapping all passed elements */
-		return this.each(function() 
+		return this.each(function()
 		{
 			var ch = this; /* Reference to DOM Element*/
 			var $ch = addEvents(ch),/* Adds custom events and returns, jQuery enclosed object */
-				elClass = ($(ch).is(':radio')) ? 'radio' : 'checkbox'; 
-			
+				elClass = ($(ch).is(':radio')) ? 'radio' : 'checkbox';
+
 			/* Removing wrapper if already applied  */
 			if (ch.wrapper) ch.wrapper.remove();
-			
+
 			/* Creating wrapper for checkbox and assigning "hover" event */
 			ch.wrapper = $('<span class="' + settings.cls + ' ' + elClass + '"><span><span class="checkboxplaceholder"></span></span></span>');
 			ch.wrapperInner = ch.wrapper.children('span:eq(0)');
@@ -3263,10 +3263,10 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 				"mousedown" : function(e) { ch.wrapperInner.addClass('pressed'); },
 				"mouseup" : function(e) { ch.wrapperInner.removeClass('pressed'); }
 			});
-			
+
 			/* Wrapping checkbox */
 			$ch.css({position: 'absolute', zIndex: -1, visibility: 'hidden'}).after(ch.wrapper);
-			
+
 			/* Ttying to find "our" label */
 			var label = false;
 /*			if ($ch.attr('id')) {
@@ -3287,19 +3287,19 @@ easingOut:"swing",showCloseButton:true,showNavArrows:true,enableEscapeButton:tru
 					"mouseup" : function(e) { ch.wrapper.removeClass('pressed'); }
 				});
 			}
-			
+
 			$ch.bind('disable', function() { ch.wrapperInner.addClass('disabled');}).bind('enable', function() { ch.wrapperInner.removeClass( 'disabled' );});
 			$ch.bind('check', function() { ch.wrapper.addClass('checked' );}).bind('uncheck', function() { ch.wrapper.removeClass( 'checked' );});
-			
+
 			/* Firefox antiselection hack */
 			if ( window.getSelection )
 				ch.wrapper.css('MozUserSelect', 'none');
-			
+
 			/* Applying checkbox state */
 			if ( ch.checked )
 				ch.wrapper.addClass('checked');
 			if ( ch.disabled )
-				ch.wrapperInner.addClass('disabled');			
+				ch.wrapperInner.addClass('disabled');
 		});
 	}
 })(jQuery);

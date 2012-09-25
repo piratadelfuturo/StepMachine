@@ -640,35 +640,26 @@ window.myAutocompleteFunction = function(){
 /*----------------------------------------------------------------------*/
 /* Ajax Image upload
 /*----------------------------------------------------------------------*/
-window.ajaxUploadCreate = function(){
-            var _this = $(this);
-            var _parent = _this.parent();
-            _this.fileupload({
-                dataType: 'json',
-                paramName: _this.attr('name'),
+
+(function(document,$){
+    $(document).ready(function(){
+        $('input[type=file].ajax-image-uploader').each(function(index,elem){
+            $(elem).boomAjaxUpload({
                 url: Routing.generate(
                     'BoomBackBundle_image_ajax_create',
                     {
                         _format: 'json',
-                        path: _this.attr('name'),
+                        path: $(this).attr('name'),
                         w: 158,
                         h: 90
                     }),
-                done: function (e, data) {
+                done:function(e, data){
                     if(data.result.id){
-                        _parent.children('input[type=hidden]').eq(0).val(data.result.id)
-                        _parent.children('img[id$=image_img]').eq(0).attr('src',data.result.path);
+                        $(elem).siblings('img[id$=image_img]').eq(0).attr('src',data.result.path);
                     }
-                },
-                submit: function(e, data){
-                    _this.fadeOut();
+
                 }
             });
-
-        };
-
-(function(document,$){
-    $(document).ready(function(){
-        $('input[type=file].ajax-image-uploader').each(window.ajaxUploadCreate);
+        });
     });
 })(document,jQuery);

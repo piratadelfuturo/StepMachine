@@ -116,7 +116,7 @@ fm_bbcode:
         default:
           locale: es
           xhtml: true
-          filters: [ default, quote, magic, img, boom_video, list, li, olist ]
+          filters: [ default, quote, url, image, boom_video, list, li, olist, p]
 
 # Swiftmailer Configuration
 swiftmailer:

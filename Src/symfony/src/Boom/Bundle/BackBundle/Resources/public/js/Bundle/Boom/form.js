@@ -6,13 +6,13 @@
             mode : "specific_textareas",
             editor_selector : "boom-wysiwyg",
             width: "100%",
-            plugins : "bbcode,autoresize,boom",
-            theme_advanced_buttons1 : "bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,boom_image",
+            plugins : "autoresize,boom",
+            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             valid_elements: "strong/b,i/em,u,blockquote/quote,"+
                 "img[!src|alt|title|width|height|!insert-id],"+
-                "a[!href|!target:_blank],"+
+                "a[*],"+
                 "div[!class<gallery|!insert-id|!insert-type],"+
                 "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
             theme_advanced_toolbar_location : "top",
@@ -20,6 +20,8 @@
             theme_advanced_resizing : true,
             //content_css : "css/bbcode.css",
             entity_encoding : "raw",
+            relative_urls : false,
+            remove_script_host : false,
             add_unload_trigger : false,
             remove_linebreaks : false,
             inline_styles : false,
@@ -59,7 +61,7 @@
 (function(document,$){
     $(document).ready(function(){
 
-        var elements = $( "#boom_bundle_backbundle_boomtype_elements",document );
+        var elements = $( "#boom_elements",document );
         elements.children('.widget').each(function(){
             var _this = $(this);
             var title = _this.find('> .handle > span');
@@ -96,14 +98,12 @@
                 });
             },
             start: function(e, ui){
-                console.log(this);
                 $(this).find('.boom-wysiwyg').each(function(){
                     tinyMCE.execCommand( 'mceRemoveControl', false, $(this).attr('id') );
                     $(this).attr('readonly','readonly');
                 });
             },
             stop: function(e,ui) {
-                console.log(this);
                 $(this).find('.boom-wysiwyg').each(function(){
                     $(this).removeAttr('readonly');
                     tinyMCE.execCommand( 'mceAddControl', true, $(this).attr('id') );

@@ -20,6 +20,14 @@ BoomBackBundle_image_ajax_create:
     options:
         expose: true
 
+BoomBackBundle_image_ajax_new:
+    pattern:  /image
+    defaults: { _controller: "BoomBackBundle:Image:ajaxNew" }
+    requirements:
+      _method: get
+    options:
+        expose: true
+
 BoomBackBundle_image_new:
     pattern:  /new
     defaults: { _controller: "BoomBackBundle:Image:new" }
