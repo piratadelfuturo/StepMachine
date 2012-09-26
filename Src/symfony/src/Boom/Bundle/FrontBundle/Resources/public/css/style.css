@@ -1169,11 +1169,11 @@ aside .crea-boom:before{
   top: 63px;
   left: 0;
 }
-aside .sb-bloque{
-  border:1px solid #dfdfdf;
-  padding:10px;
-  width:298px;
-  margin:10px 0;
+aside .sb-bloque {
+  border: 1px solid #dfdfdf;
+  padding: 10px;
+  width: 298px;
+  margin-bottom: 10px;
 }
 
 .sb-bloque > h3{
@@ -2883,4 +2883,22 @@ ul.paginador, ul.paginador {
 }
 
 /* END PAGINADOR */
+
+
+/* SLIDER CAT */
+
+#cat-car .slide .img-container {
+}
+
+#cat-car .slide .info-container {
+  display: block;
+  width: 680px;
+  height: 281px;
+  float: none;
+  padding: 0;
+}
+
+#cat-car .slide .info-container date, #cat-car .slide .info-container p {
+  color: #828282;
+}
 

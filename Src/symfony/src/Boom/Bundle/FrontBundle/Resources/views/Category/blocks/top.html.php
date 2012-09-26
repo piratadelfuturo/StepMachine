@@ -2,8 +2,8 @@
     <a href="#" class="car-btn prev">prev</a>
     <a href="#" class="car-btn next">next</a>
     <h3 class="title-flag"><span><?php echo $view->escape($category['name']) ?></span></h3>
-    <ul>
-        <?php
+    <div class="slide-container cf">
+      <?php
         $position = 0;
         if (!isset($list) || ($list === null || empty($list))) {
             $list = array();
@@ -13,19 +13,21 @@
             $position++;
             ?>
             <?php $image = isset($element['image']) ? $view['boom_image']->getBoomImageUrl($element['image']['path']) : 'http://placekitten.com/680/382' ?>
-            <li class="<?php echo $position == 1 ? 'active' : ''; ?>">
-                <img src="<?php echo $image ?>">
-                <div class="boom-info">
-                    <h2><?php echo $view->escape($element['title']) ?></h2>
-                    <p><?php echo $view->escape($element['summary']) ?></p>
-                    <?php if ($element['boom'] !== NULL): ?>
-                        <?php if ($element['boom']['user'] !== NULL): ?>
-                        <a href="#" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?>.</a>
-                        <?php endif; ?>
-                        <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
-                    <?php endif; ?>
-                </div>
-            </li>
+            <div class="slide <?php echo $position == 1 ? 'active' : ''; ?> cf">
+              <a href="#" class="img-container">
+                <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
+              </a>
+              <div class="info-container">
+                <h2><?php echo $view->escape($element['title']) ?></h2>
+                <p><?php echo $view->escape($element['summary']) ?></p>
+                <?php if ($element['boom'] !== NULL): ?>
+                  <?php if ($element['boom']['user'] !== NULL): ?>
+                    <a href="#" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?>.</a>
+                  <?php endif; ?>
+                  <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
+                <?php endif; ?>
+              </div>
+            </div>
         <?php endforeach; ?>
-    </ul>
+    </div>
 </div>
