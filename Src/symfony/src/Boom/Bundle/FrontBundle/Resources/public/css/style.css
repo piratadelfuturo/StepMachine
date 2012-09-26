@@ -2886,19 +2886,27 @@ ul.paginador, ul.paginador {
 
 
 /* SLIDER CAT */
-
-#cat-car .slide .img-container {
+#main-car.cat-car {
+  width: 680px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
-#cat-car .slide .info-container {
+#main-car.cat-car .slide .img-container {
+  float: none;
+  overflow: hidden;
+}
+
+#main-car.cat-car .slide .info-container {
   display: block;
   width: 680px;
   height: 281px;
   float: none;
   padding: 0;
+  height: auto;
 }
 
-#cat-car .slide .info-container date, #cat-car .slide .info-container p {
+.cat-car .slide .info-container date, #cat-car .slide .info-container p {
   color: #828282;
 }
 

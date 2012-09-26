@@ -1,4 +1,4 @@
-<div id="cat-car">
+<div id="main-car" class="cat-car">
     <a href="#" class="car-btn prev">prev</a>
     <a href="#" class="car-btn next">next</a>
     <h3 class="title-flag"><span><?php echo $view->escape($category['name']) ?></span></h3>
