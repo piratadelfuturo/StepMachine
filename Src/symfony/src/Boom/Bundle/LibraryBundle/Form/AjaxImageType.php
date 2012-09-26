@@ -42,7 +42,8 @@ class AjaxImageType extends AbstractType {
         $resolver->setDefaults(
                 array(
                     'csrf_protection' => false,
-                    'required'  => false
+                    'required'  => false,
+                    'data_class' => null
                 )
         );
     }

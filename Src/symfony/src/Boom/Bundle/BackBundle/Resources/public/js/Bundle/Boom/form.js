@@ -13,7 +13,7 @@
             valid_elements: "strong/b,i/em,u,blockquote/quote,"+
                 "img[!src|alt|title|width|height|!insert-id],"+
                 "a[*],"+
-                "div[!class<gallery|!insert-id|!insert-type],"+
+                "div[!class<gallery|!insert-id],"+
                 "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",

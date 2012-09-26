@@ -1,3 +1,36 @@
+BoomBackBundle_gallery_ajax_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomBackBundle:Gallery:ajaxEdit" }
+    requirements:
+      _method: get
+    options:
+        expose: true
+
+BoomBackBundle_gallery_ajax_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomBackBundle:Gallery:ajaxUpdate" }
+    requirements:
+      _method: post
+    options:
+        expose: true
+
+BoomBackBundle_gallery_ajax_create:
+    pattern:  /create.{_format}
+    defaults: { _controller: "BoomBackBundle:Gallery:ajaxCreate" , _format: json}
+    requirements:
+      _method: post
+      _format: json
+    options:
+        expose: true
+
+BoomBackBundle_gallery_ajax_new:
+    pattern:  /new_form
+    defaults: { _controller: "BoomBackBundle:Gallery:ajaxNew" }
+    requirements:
+      _method: get
+    options:
+        expose: true
+
 BoomBackBundle_gallery_index:
     pattern:  list.{_format}
     defaults: { _controller: "BoomBackBundle:Gallery:index", _format: html }

@@ -79,26 +79,29 @@ class ImageController extends Controller {
                 ));
     }
 
-    public function ajaxNewAction(){
+    public function ajaxNewAction() {
+
+        if ($this->getRequest()->isXmlHttpRequest() == false) {
+            throw $this->createNotFoundException('Only ajax request');
+        }
+
         $entity = new Image();
         $form = $this->createForm($this->get('boom_library.ajax_image.type'), $entity);
         $request = $this->getRequest();
-        if($request->isXmlHttpRequest() == false){
-            return $this->createNotFoundException('Only ajax request');
-        }else{
-            return $this->render('BoomBackBundle:Image:ajax_new.html.php', array(
-                'entity' => $entity,
-                'form' => $form->createView(),
-            ));
-        }
-
-
+        return $this->render('BoomBackBundle:Image:ajax_new.html.php', array(
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
     }
 
     public function ajaxCreateAction() {
+        if ($this->getRequest()->isXmlHttpRequest() == false) {
+            throw $this->createNotFoundException('Only ajax request');
+        }
+
         $entity = new Image();
         $request = $this->getRequest();
-        $file = $request->files->get($request->query->get('path'),null,true);
+        $file = $request->files->get($request->query->get('path'), null, true);
         if ($file instanceOf \Symfony\Component\HttpFoundation\File\UploadedFile) {
             $entity['file'] = $file;
             $sessionToken = $this->get('security.context')->getToken();
@@ -114,10 +117,8 @@ class ImageController extends Controller {
             $result = array(
                 'id' => $entity['id'],
                 'path' => $imgHelper->getBoomImageUrl(
-                        $entity['path'],
-                        $request->query->get('w',158),
-                        $request->query->get('h',90)
-                        )
+                        $entity['path'], $request->query->get('w', 158), $request->query->get('h', 90)
+                )
             );
         } else {
             $result = null;

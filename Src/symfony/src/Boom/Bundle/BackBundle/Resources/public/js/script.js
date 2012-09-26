@@ -657,7 +657,6 @@ window.myAutocompleteFunction = function(){
                     if(data.result.id){
                         $(elem).siblings('img[id$=image_img]').eq(0).attr('src',data.result.path);
                     }
-
                 }
             });
         });

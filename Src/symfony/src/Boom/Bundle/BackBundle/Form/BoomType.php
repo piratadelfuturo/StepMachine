@@ -68,8 +68,7 @@ class BoomType extends AbstractType {
 
         $builder->add(
                 'image', 'ajax_image', array(
-            'required' => false,
-            'data_class' => null
+            'required' => true
                 )
         );
 

@@ -73,17 +73,120 @@
             });
 
             ed.addCommand('boomGallery', function() {
-                //ed.execCommand('mceInsertContent',false,'<img alt="$img_title" src="$link/img/sadrzaj/$file" />');
+                var form, formRoute = {},response,
+                dialog = $(document.createElement('div')),
+                node = ed.selection.getNode();
+                formRoute['form'] = {};
+                formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_new';
+                formRoute['form']['vars'] = {};
+                formRoute['save'] = {};
+                formRoute['save']['name'] = 'BoomBackBundle_gallery_ajax_create';
+                formRoute['save']['vars'] = {
+                    '_format': 'json'
+                };
+                if($(node).hasClass('gallery') && $(node).attr('insert-id')){
+                    formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_edit';
+                    formRoute['form']['vars'] = {
+                        'id' : $(node).attr('insert-id')
+                        };
+                    formRoute['save']['name'] = 'BoomBackBundle_gallery_ajax_update';
+                    formRoute['save']['vars'] = {
+                        'id' : $(node).attr('insert-id'),
+                        '_format': 'json'
+                    };
+                }
+
+                dialog.dialog({
+                    title:'Galería',
+                    autoOpen: false,
+                    width: 500,
+                    height: 500,
+                    resizable: false,
+                    modal: true,
+                    buttons: {
+                        'Cerrar': function() {
+                            dialog.dialog( "close" )
+                        }
+                    }
+                });
+                dialog.dialog('open');
+
+                $.get(
+                    Routing.generate(formRoute['form']['name'],formRoute['form']['vars']),
+                    function(data){
+                        dialog.append(data);
+                        form = dialog.find('form',0);
+                        var buttons= {
+                            'Agregar Imagen' : function(){
+                                var fieldset = form.find('fieldset',0);
+                                var number = fieldset.children().length;
+                                var prototype = fieldset.attr('data-prototype');
+                                var transferElement = $(prototype.replace(/__name__/g, number));
+                                fieldset.append(transferElement);
+                                var input = transferElement.find("input[type=file].ajax-image-uploader",0);
+                                var img = input.siblings('img[id$=_img]').eq(0);
+                                input.boomAjaxUpload({
+                                    url: Routing.generate(
+                                        'BoomBackBundle_image_ajax_create',
+                                        {
+                                            _format: 'json',
+                                            path: input.attr('name'),
+                                            w: 158,
+                                            h: 90
+                                        }),
+                                    done: function(e,data){
+                                        if(data.result.id){
+                                            img.attr('src',data.result.path);
+                                        }
+
+                                    }
+                                });
+                            },
+                            'Guardar': function(){
+                                $.post(
+                                    Routing.generate(formRoute['save']['name'],formRoute['save']['vars']),
+                                    $(form).serialize(),
+                                    function(data){
+                                        var html = '<div class="gallery" insert-id="'+data.id+'"></div>';
+                                        ed.execCommand('mceInsertContent',false,html);
+                                        dialog.dialog( "close" );
+                                    }
+                                    );
+                            },
+                            'Cancelar': function() {
+                                dialog.dialog( "close" );
+                            }
+                        }
+                        dialog.dialog( "option","buttons",buttons);
+
+                        form.find('input[type=file].ajax-image-uploader').each(function(i,e){
+                            var img = $(e).siblings('img[id$=_img]').eq(0);
+                            $(e).boomAjaxUpload({
+                                url: Routing.generate(
+                                    'BoomBackBundle_image_ajax_create',
+                                    {
+                                        _format: 'json',
+                                        path: $(e).attr('name'),
+                                        w: 158,
+                                        h: 90
+                                    }),
+                                done: function(e, data){
+                                    if(data.result.id){
+                                        img.attr('src',data.result.path);
+                                    }
+                                }
+                            });
+                        });
+                    });
             });
 
             ed.addCommand('boomLink', function() {
                 $.prompt(
                     'Link hacia algun boom', '',
                     function(txt){
-                        console.log(txt);
                         ed.execCommand('mceInsertLink',false, txt);
                     });
-                });
+            });
 
             // Register example button
             ed.addButton('boom_video', {
