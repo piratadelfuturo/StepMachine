@@ -1,6 +1,6 @@
 <?php
 
-namespace Boom\Bundle\BackBundle\Form\DataTransformer;
+namespace Boom\Bundle\LibraryBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -12,7 +12,7 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
  *
  * @author daniel
  */
-abstract class AbstractListElementEntityTransformer implements DataTransformerInterface {
+abstract class AbstractHiddenEntityTransformer implements DataTransformerInterface {
 
     protected $entityName;
 

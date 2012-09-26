@@ -1,6 +1,6 @@
 <?php
 
-namespace Boom\Bundle\BackBundle\Form\DataTransformer;
+namespace Boom\Bundle\LibraryBundle\Form\DataTransformer;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * @author daniel
  */
-class ListElementCategoryTransformer extends AbstractListElementEntityTransformer {
+class HiddenCategoryTransformer extends AbstractHiddenEntityTransformer {
 
     public function __construct(ObjectManager $om) {
         parent::__construct($om);

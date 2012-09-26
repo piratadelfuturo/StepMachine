@@ -7,15 +7,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Boom\Bundle\BackBundle\Form\EventListener\ImageFileSubscriber;
 
-class ImageType extends AbstractType {
+class AjaxGalleryType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('title')
-                ->add('description')
-                ->add('nsfw',null,array('required' => false));
+        $builder->add('images','collection',array('type' => AjaxImageType()));
 
-        $subscriber = new ImageFileSubscriber($builder->getFormFactory());
-        $builder->addEventSubscriber($subscriber);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
@@ -32,7 +28,7 @@ class ImageType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_librarybundle_imagetype';
+        return 'ajax_gallery';
     }
 
 }

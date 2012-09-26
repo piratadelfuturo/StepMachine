@@ -20,12 +20,12 @@ class Gallery extends DomainObject{
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=140)
+     * @ORM\Column(type="string", length=140, nullable=true)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $description;
 
@@ -55,6 +55,7 @@ class Gallery extends DomainObject{
     public function __construct()
     {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->nsfw = false;
     }
 
     /**
