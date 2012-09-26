@@ -857,8 +857,9 @@ header{position:relative;}
 /* MAIN CAR */
 #main-car {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   margin: 0 0 10px;
+  width: 1024px;
 }
 
 #main-car .prev, #cat-car .prev,
@@ -895,19 +896,15 @@ header{position:relative;}
 }
 
 #main-car div.slide {
-  display: none;
   float: left;
   width: 1024px;
-  position: absolute;
+  position: relative;
   margin-left: 0;
-  left: -100%;
-  z-index: -1;
 }
 
 #main-car div.slide.active {
   display: block;
   position: relative;
-  left: 0;
   z-index: 8;
 }
 
