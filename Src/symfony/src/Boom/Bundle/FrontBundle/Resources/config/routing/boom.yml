@@ -1,6 +1,7 @@
-BoomFrontBundle_boom_reorder:
-    pattern:  /reordena/{slug}
-    defaults: { _controller: "BoomFrontBundle:Boom:reorder" }
+BoomFrontBundle_Boom_reorder:
+    pattern:  /reordena/{slug}.{_format}
+    defaults: { _controller: "BoomFrontBundle:Boom:reorder", _format: "json" }
+    requirements: { _method: post }
 
 BoomFrontBundle_boom_image:
     pattern:  /imagen.json

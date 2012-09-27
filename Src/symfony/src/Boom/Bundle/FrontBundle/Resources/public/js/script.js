@@ -1,3 +1,4 @@
+"use strict";
 (function(document,$){
 
     $(document).ready(function(){
@@ -17,65 +18,69 @@
         });
 
         var maincar = $("#main-car"),
-            canvas = maincar.find('.slide-container'),
-            slides = maincar.find('div.slide');
+        canvas = maincar.find('.slide-container'),
+        slides = maincar.find('div.slide');
 
         $.showSlide = function( index ) {
 
-              var current = typeof(index) == 'number' ? slides.eq( index ) : slides.filter('.active').next(),
-              size = slides.first().outerWidth();
+            var current = typeof(index) == 'number' ? slides.eq( index ) : slides.filter('.active').next(),
+            size = slides.first().outerWidth();
 
-          if( !current.length ) {
-            index = 0;
-          } else {
-            index = slides.index( current );
-          }
+            if( !current.length ) {
+                index = 0;
+            } else {
+                index = slides.index( current );
+            }
 
-          canvas.stop(true, true).animate({
-            marginLeft: (size * (index) ) * -1
-          });
+            canvas.stop(true, true).animate({
+                marginLeft: (size * (index) ) * -1
+            });
 
-          var target = maincar.find("#car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
-              thumbs = target.closest("#car-thumbs").find("li");
+            var target = maincar.find("#car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
+            thumbs = target.closest("#car-thumbs").find("li");
 
-          thumbs.removeClass('active');
-          slides.removeClass('active');
-          target.addClass('active');
+            thumbs.removeClass('active');
+            slides.removeClass('active');
+            target.addClass('active');
 
-          return false;
+            return false;
 
         };
 
-        $.timer = window.setInterval(function(){ $.showSlide(); }, 5000);
+        $.timer = window.setInterval(function(){
+            $.showSlide();
+        }, 5000);
 
         maincar.mouseenter(function(){
-          window.clearInterval($.timer);
+            window.clearInterval($.timer);
         });
 
         maincar.mouseleave(function(){
-          $.timer = window.setInterval(function(){ $.showSlide(); }, 5000);
+            $.timer = window.setInterval(function(){
+                $.showSlide();
+            }, 5000);
         });
 
         $("#car-thumbs a").click(function(){
-          var index = $("#car-thumbs a").index(this);
-          return $.showSlide(index);
+            var index = $("#car-thumbs a").index(this);
+            return $.showSlide(index);
         });
 
         $("#main-car a.car-btn").click(function() {
 
-          var btnNext = $(this).hasClass('next'),
-              current = maincar.find("div.slide.active"),
-              target  = btnNext ? current.next() : current.prev(),
-              index   = 0;
+            var btnNext = $(this).hasClass('next'),
+            current = maincar.find("div.slide.active"),
+            target  = btnNext ? current.next() : current.prev(),
+            index   = 0;
 
-          if ( !target.length && btnNext ) {
-          } else if ( !target.length && !btnNext ) {
-            index = slides.length - 1;
-          } else {
-            index = slides.index( target );
-          }
+            if ( !target.length && btnNext ) {
+            } else if ( !target.length && !btnNext ) {
+                index = slides.length - 1;
+            } else {
+                index = slides.index( target );
+            }
 
-          return $.showSlide( index );
+            return $.showSlide( index );
 
         });
 
@@ -111,24 +116,12 @@
                 $(this).siblings('a').toggleClass('on');
                 onCont.fadeOut(300, function() {
                     $(this).toggleClass('on').siblings().toggleClass('on').fadeIn(300)
-                    });
+                });
                 arrow.css('left', sum);
             }
 
             return false;
 
-        });
-
-        //DRAGnDROP widgt
-        $("#usr-booms .dyna-content > .drag-booms").dragsort({
-            dragSelector: '.drag-booms li',
-            dragEnd: function(){
-                $(".dyna-content.on .drag-booms").children().each(function(index){
-                    $(this).children(".pos").html(index+1);
-                });
-            },
-            dragBetween: false,
-            placeHolderTemplate: "<li class='empty'></li>"
         });
 
         //DRAGnDROP boomies
@@ -272,9 +265,47 @@
     });
 })(document,jQuery);
 
+(function(document,$){
+    $(document).ready(function(){
+
+        var order = {};
+
+        //DRAGnDROP widgt
+        $("#usr-booms .dyna-content > .drag-booms").dragsort({
+            dragSelector: '.drag-booms li',
+            dragEnd: function(){
+                $(this).siblings().each(function(index){
+                    $(this).children(".pos").html(index+1);
+                    order[$(this).attr('original-position')] = {
+                        'original'  : $(this).attr('original-position'),
+                        'final'     : index+1
+                    };
+                });
+
+                $.ajax({
+                    url: $(this).parent().attr('reorder-url'),
+                    data: order,
+                    type: 'POST',
+                    statusCode:{
+                        200: function(data){
+                            console.log(data);
+                        },
+                        302:function(){
+
+                        }
+                    }
+                });
+            },
+            dragBetween: false,
+            placeHolderTemplate: "<li class='empty'></li>"
+        });
+    });
+})(document,jQuery);
+
+
 /*
- * FB Login
- */
+     * FB Login
+     */
 
 (function(window, document, $ ){
     window.onFbInit = function(){
