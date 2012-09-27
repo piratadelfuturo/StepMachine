@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\Image;
 use Boom\Bundle\LibraryBundle\Entity\Boomelement;
+use Boom\Bundle\LibraryBundle\Entity\BoomelementRank;
 use Boom\Bundle\FrontBundle\Form\BoomType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,12 +19,41 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class BoomController extends Controller {
 
-    public function reorderAction() {
+    public function reorderAction($slug) {
 
-        $result = array();
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $boomRank = $em->getRepository('BoomLibraryBundle:Boom');
+        $repoRank = $em->getRepository('BoomLibraryBundle:BoomelementRank');
+
+        $boom = $boomRank->findOneBy($slug);
+
+        $ranks = $repoRank->findBy(array(
+            'boom' => $boom,
+            'user' => $sessionUser
+        ),array(
+            'position' => 'ASC'
+        ));
+
+        $request = $this->getRequest();
+        $newOrder = array();
+        if(empty($ranks)){
+            //create ranks
+            foreach($newOrder as $original => $order){
+                $ranks[] = new BoomelementRank($boom,$boom['elements'][$original],$order);
+            }
+        }else{
+            //update ranks
+            foreach($newOrder as $original => $order){
+                $ranks[$original]['position'] = $order;
+            }
+        }
+
 
         $response = new Response(
-                        json_encode($result)
+                        json_encode($ranks)
         );
         $response->headers->set('Content-Type', 'application/json');
 

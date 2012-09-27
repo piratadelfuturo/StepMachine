@@ -13,17 +13,20 @@ use Symfony\Component\Validator\ExecutionContext;
 /**
  * @Gedmo\Tree(type="nested")
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\BoomRepository")
- * @ORM\Table(name="boom")
+ * @ORM\Table(name="boom",
+ * uniqueConstraints={@ORM\UniqueConstraint(name="boom_unique_slug",columns={"slug"})},
+ *      indexes={@ORM\Index(name="boom_slug_idx", columns={"slug"})}
+ * )
  * @ORM\HasLifecycleCallbacks
  */
 class Boom extends DomainObject {
 
-    const STATUS_DRAFT      = 0;
-    const STATUS_REVIEW     = 1;
-    const STATUS_PUBLIC     = 2;
-    const STATUS_PRIVATE    = 3;
-    const STATUS_DELETE     = 4;
-    const STATUS_BLOCK      = 5;
+    const STATUS_DRAFT = 0;
+    const STATUS_REVIEW = 1;
+    const STATUS_PUBLIC = 2;
+    const STATUS_PRIVATE = 3;
+    const STATUS_DELETE = 4;
+    const STATUS_BLOCK = 5;
 
     static private $_StatusEnumFieldValues = null;
 
@@ -87,7 +90,6 @@ class Boom extends DomainObject {
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true )
      * */
     protected $user;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="booms")
@@ -168,8 +170,6 @@ class Boom extends DomainObject {
      * @ORM\OneToMany(targetEntity="ListElement", mappedBy="boom", fetch="EXTRA_LAZY" )
      */
     protected $list_elements;
-
-
     protected $element_amount;
 
     public function __construct() {
@@ -191,7 +191,6 @@ class Boom extends DomainObject {
             $element->setPosition($i);
             $this->elements[] = $element;
         }
-
     }
 
     /**
@@ -503,7 +502,6 @@ class Boom extends DomainObject {
      *
      * @return Boom
      */
-
     public function setTags(\Doctrine\Common\Collections\Collection $tags) {
         foreach ($tags as $tag) {
             $tag->addBoom($this);
@@ -854,8 +852,7 @@ class Boom extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
      * @return Boom
      */
-    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
-    {
+    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
         $this->list_elements[] = $listElements;
         return $this;
     }
@@ -865,8 +862,7 @@ class Boom extends DomainObject {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
      */
-    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
-    {
+    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
         $this->list_elements->removeElement($listElements);
     }
 
@@ -875,8 +871,7 @@ class Boom extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getListElements()
-    {
+    public function getListElements() {
         return $this->list_elements;
     }
 
