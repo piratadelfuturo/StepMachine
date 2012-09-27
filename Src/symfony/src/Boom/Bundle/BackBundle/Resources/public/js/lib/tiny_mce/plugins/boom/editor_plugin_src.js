@@ -238,7 +238,9 @@
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
             rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
             rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
+            rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
             rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<\/(strong|b)>/gi,"[/b]");
             rep(/<(strong|b)>/gi,"[b]");
             rep(/<\/(em|i)>/gi,"[/i]");
