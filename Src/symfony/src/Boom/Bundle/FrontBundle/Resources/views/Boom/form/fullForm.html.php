@@ -31,6 +31,9 @@
         <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
           <form>
             <label>
+              <div class="balloon">
+                <p>arrastrar</p>
+              </div>
               <span class="place"><?php echo "{$element['position']->vars['value']}"; ?></span>
             </label>
             <input class="up-pic" type="file multiple" name="boom-pic" placeholder="Arrastra tu foto">

@@ -2513,6 +2513,7 @@ footer p{
   font: 24px 'Museo500', sans-serif;
   text-transform: uppercase;
   color: #2d2c2c;
+  position: relative;
 }
 #form-boom .boomie-resumen {
   width: 630px;
@@ -2541,6 +2542,10 @@ footer p{
   margin-top: 10px;
   padding: 10px 0;
 }
+#boom_bundle_frontbundle_boomtype_elements li {
+  position: relative;
+}
+
 
 #boom_bundle_frontbundle_boomtype .grad-border {
   margin: 0;
@@ -2909,4 +2914,3 @@ ul.paginador, ul.paginador {
 .cat-car .slide .info-container date, #cat-car .slide .info-container p {
   color: #828282;
 }
-
