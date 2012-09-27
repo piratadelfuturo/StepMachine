@@ -54,6 +54,16 @@ class MainHelper extends Helper {
         return $out;
     }
 
+    public function getGallery($tag) {
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Gallery');
+        $gallery = $repo->findOneById($tag['attributes']['default']);
+        return $this->container->get('templating')->render('BoomFrontBundle:Gallery:inline.html.php', array(
+                    'entity' => $gallery
+                        )
+        );
+    }
+
     public function getName() {
         return 'boom_front';
     }

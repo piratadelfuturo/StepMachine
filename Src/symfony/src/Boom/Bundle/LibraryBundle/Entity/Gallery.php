@@ -5,12 +5,11 @@ namespace Boom\Bundle\LibraryBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="gallery")
  */
-class Gallery extends DomainObject{
+class Gallery extends DomainObject {
 
     /**
      * @ORM\Id
@@ -29,12 +28,10 @@ class Gallery extends DomainObject{
      */
     protected $description;
 
-
     /**
      * @ORM\Column(type="boolean")
      */
     protected $nsfw;
-
 
     /**
      *
@@ -47,14 +44,20 @@ class Gallery extends DomainObject{
     protected $images;
 
     /**
+     * @ORM\OneToMany(targetEntity="GalleryImageRelation", mappedBy="gallery", cascade={"all"})
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    protected $galleryimagerelations;
+
+    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="galleries")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * */
     protected $user;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryimagerelations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->nsfw = false;
     }
 
@@ -63,8 +66,7 @@ class Gallery extends DomainObject{
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -74,8 +76,7 @@ class Gallery extends DomainObject{
      * @param string $title
      * @return Gallery
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
         return $this;
     }
@@ -85,8 +86,7 @@ class Gallery extends DomainObject{
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -96,8 +96,7 @@ class Gallery extends DomainObject{
      * @param Boom\Bundle\LibraryBundle\Entity\Image $images
      * @return Gallery
      */
-    public function addImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
+    public function addImage(\Boom\Bundle\LibraryBundle\Entity\Image $images) {
         $this->images[] = $images;
         return $this;
     }
@@ -107,8 +106,7 @@ class Gallery extends DomainObject{
      *
      * @param <variableType$images
      */
-    public function removeImage(\Boom\Bundle\LibraryBundle\Entity\Image $images)
-    {
+    public function removeImage(\Boom\Bundle\LibraryBundle\Entity\Image $images) {
         $this->images->removeElement($images);
     }
 
@@ -117,8 +115,7 @@ class Gallery extends DomainObject{
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getImages()
-    {
+    public function getImages() {
         return $this->images;
     }
 
@@ -128,8 +125,7 @@ class Gallery extends DomainObject{
      * @param Boom\Bundle\LibraryBundle\Entity\User $user
      * @return Gallery
      */
-    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null)
-    {
+    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null) {
         $this->user = $user;
         return $this;
     }
@@ -139,8 +135,97 @@ class Gallery extends DomainObject{
      *
      * @return Boom\Bundle\LibraryBundle\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Gallery
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription() {
+        return $this->description;
+    }
+
+    /**
+     * Set nsfw
+     *
+     * @param boolean $nsfw
+     * @return Gallery
+     */
+    public function setNsfw($nsfw) {
+        $this->nsfw = $nsfw;
+
+        return $this;
+    }
+
+    /**
+     * Get nsfw
+     *
+     * @return boolean
+     */
+    public function getNsfw() {
+        return $this->nsfw;
+    }
+
+    /**
+     * Add galleryimagerelations
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations
+     * @return Gallery
+     */
+    public function setGalleryimagerelations(array $galleryimagerelations = array()) {
+        $this->galleryimagerelations->clear();
+        foreach ($galleryimagerelations as $relation) {
+                $this->addGalleryimagerelation($relation);
+        }
+        return $this;
+    }
+
+    /**
+     * Add galleryimagerelations
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations
+     * @return Gallery
+     */
+    public function addGalleryimagerelation(\Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations) {
+        $this->galleryimagerelations[] = $galleryimagerelations;
+        if($galleryimagerelations['gallery'] !== $this){
+            $galleryimagerelations->setGallery($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryimagerelations
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations
+     */
+    public function removeGalleryimagerelation(\Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations) {
+        $this->galleryimagerelations->removeElement($galleryimagerelations);
+    }
+
+    /**
+     * Get galleryimagerelations
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryimagerelations() {
+        return $this->galleryimagerelations;
+    }
+
 }

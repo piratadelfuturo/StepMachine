@@ -10,3 +10,10 @@ Boom\Bundle\LibraryBundle\Entity\User:
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]
+
+Boom\Bundle\LibraryBundle\Entity\Image:
+    properties:
+      file:
+        - File:
+                maxSize: 5120k
+                mimeTypes: [image/png, image/jpeg, image/gif]

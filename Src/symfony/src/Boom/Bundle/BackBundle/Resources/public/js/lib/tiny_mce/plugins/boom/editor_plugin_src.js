@@ -9,6 +9,7 @@
  */
 
 (function() {
+    var uploader_forms = {};
 
     tinymce.create('tinymce.plugins.BoomPlugin', {
         init : function(ed, url) {
@@ -33,49 +34,54 @@
                     } );
             });
             ed.addCommand('boomImage', function() {
-                var dialog = $(document.createElement('div'));
-                dialog.dialog({
-                    title:'Agregar imagen',
-                    autoOpen: false,
-                    width: 500,
-                    resizable: false,
-                    modal: true,
-                    buttons: {
-                        'Cerrar': function() {
-                            $( this ).dialog( "close" );
-                        }
-                    }
-                });
-                dialog.dialog('open');
-                $.get(
-                    Routing.generate('BoomBackBundle_image_ajax_new'),
-                    function(data){
-                        dialog.append(data);
-                        dialog.find('input[type=file].ajax-image-uploader').each(function(i,e){
-                            $(e).boomAjaxUpload({
-                                url: Routing.generate(
-                                    'BoomBackBundle_image_ajax_create',
-                                    {
-                                        _format: 'json',
-                                        path: $(this).attr('name'),
-                                        w: 158,
-                                        h: 90
-                                    }),
-                                done: function(e, data){
-                                    if(data.result.id){
-                                        ed.execCommand('mceInsertContent',false,'<img src="'+data.result.path+'" />');
-                                        dialog.dialog('close');
-                                    }
-                                }
-                            });
-                        });
+                var formImageUpload,inputImageUpload;
+                if(uploader_forms[ed.id]){
+                    formImageUpload = uploader_forms[ed.id]
+                    inputImageUpload = formImageUpload.find('input[type=file]')
+                }else{
+                    formImageUpload = $(document.createElement('form')).attr('method','post')
+                    .attr('id',ed.id+'_uploader').hide();
+                    inputImageUpload = $(document.createElement('input')).attr({
+                        'name':'files',
+                        'type':'file',
+                        'multiple':'multiple'
                     });
+                    formImageUpload.append(inputImageUpload);
+                    uploader_forms[ed.id] = formImageUpload;
+                    inputImageUpload.boomAjaxUpload({
+                        url: Routing.generate(
+                            'BoomBackBundle_image_ajax_create',
+                            {
+                                _format: 'json',
+                                path: inputImageUpload.attr('name'),
+                                w: 158,
+                                h: 90
+                            }),
+                        done: function(e, data){
+                            if(data.result.id){
+                                ed.execCommand('mceInsertContent',false,'<img src="'+data.result.path+'" />');
+                                dialog.dialog('close');
+                            }
+                        }
+                    });
+                    $(document).append(formImageUpload);
+                }
+                inputImageUpload.click();
             });
 
             ed.addCommand('boomGallery', function() {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
-                node = ed.selection.getNode();
+                node = ed.selection.getNode(),
+                formUpload = $(document.createElement('form')).attr('method','post').hide(),
+                inputUpload = $(document.createElement('input')).attr({
+                    'name':'files',
+                    'type':'file',
+                    'multiple':'multiple'
+                });
+                formUpload.append(inputUpload);
+                dialog.append(formUpload);
+
                 formRoute['form'] = {};
                 formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_new';
                 formRoute['form']['vars'] = {};
@@ -88,7 +94,7 @@
                     formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_edit';
                     formRoute['form']['vars'] = {
                         'id' : $(node).attr('insert-id')
-                        };
+                    };
                     formRoute['save']['name'] = 'BoomBackBundle_gallery_ajax_update';
                     formRoute['save']['vars'] = {
                         'id' : $(node).attr('insert-id'),
@@ -99,14 +105,17 @@
                 dialog.dialog({
                     title:'Galería',
                     autoOpen: false,
-                    width: 500,
-                    height: 500,
+                    width: 680,
+                    height: 400,
                     resizable: false,
                     modal: true,
                     buttons: {
                         'Cerrar': function() {
                             dialog.dialog( "close" )
                         }
+                    },
+                    close:function(){
+                        dialog.remove();
                     }
                 });
                 dialog.dialog('open');
@@ -118,29 +127,7 @@
                         form = dialog.find('form',0);
                         var buttons= {
                             'Agregar Imagen' : function(){
-                                var fieldset = form.find('fieldset',0);
-                                var number = fieldset.children().length;
-                                var prototype = fieldset.attr('data-prototype');
-                                var transferElement = $(prototype.replace(/__name__/g, number));
-                                fieldset.append(transferElement);
-                                var input = transferElement.find("input[type=file].ajax-image-uploader",0);
-                                var img = input.siblings('img[id$=_img]').eq(0);
-                                input.boomAjaxUpload({
-                                    url: Routing.generate(
-                                        'BoomBackBundle_image_ajax_create',
-                                        {
-                                            _format: 'json',
-                                            path: input.attr('name'),
-                                            w: 158,
-                                            h: 90
-                                        }),
-                                    done: function(e,data){
-                                        if(data.result.id){
-                                            img.attr('src',data.result.path);
-                                        }
-
-                                    }
-                                });
+                                inputUpload.click();
                             },
                             'Guardar': function(){
                                 $.post(
@@ -156,26 +143,38 @@
                             'Cancelar': function() {
                                 dialog.dialog( "close" );
                             }
-                        }
+                        },list = form.find('ul',0);
                         dialog.dialog( "option","buttons",buttons);
+                        list.sortable({
+                            tolerance: 'pointer',
+                            stop: function(event, ui){
+                                var elements = $(ui.item).parent().find('input[type=hidden][id$=_position]');
+                                elements.each(function(i){
+                                    $(this).val(i);
+                                });
+                            }
+                        }).disableSelection();
 
-                        form.find('input[type=file].ajax-image-uploader').each(function(i,e){
-                            var img = $(e).siblings('img[id$=_img]').eq(0);
-                            $(e).boomAjaxUpload({
-                                url: Routing.generate(
-                                    'BoomBackBundle_image_ajax_create',
-                                    {
-                                        _format: 'json',
-                                        path: $(e).attr('name'),
-                                        w: 158,
-                                        h: 90
-                                    }),
-                                done: function(e, data){
-                                    if(data.result.id){
-                                        img.attr('src',data.result.path);
-                                    }
+                        inputUpload.boomAjaxUpload({
+                            url: Routing.generate(
+                                'BoomBackBundle_image_ajax_create',
+                                {
+                                    _format: 'json',
+                                    path: inputUpload.attr('name'),
+                                    w: 116,
+                                    h: 116
+                                }),
+                            done: function(e,data){
+                                if(data.result.id){
+                                    var number = list.children().length;
+                                    var prototype = list.attr('data-prototype');
+                                    var transferElement = $(prototype.replace(/__name__/g, number));
+                                    transferElement.find('img',0).attr('src',data.result.path);
+                                    transferElement.find('input[type=hidden][id$=_image]',0).val(data.result.id);
+                                    transferElement.find('input[type=hidden][id$=_position]',0).val(number);
+                                    list.append(transferElement);
                                 }
-                            });
+                            }
                         });
                     });
             });
@@ -235,6 +234,7 @@
             };
 
             // example: <strong> to [b]
+            rep(/<div.*?class=\"gallery\".*?insert-id=\"(.*?)\".*?>.*?<\/div>/gi,"[gallery=\"$1\"][/gallery]");
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
             rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
             rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
@@ -282,6 +282,7 @@
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\](.*?)\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\](.*?)\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
+            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
             return s;
         }

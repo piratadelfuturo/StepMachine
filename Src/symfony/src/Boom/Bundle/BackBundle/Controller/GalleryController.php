@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity\Gallery;
 use Boom\Bundle\LibraryBundle\Entity\User;
-use Boom\Bundle\LibraryBundle\Form\AjaxGalleryType;
+use Boom\Bundle\LibraryBundle\Form\GalleryType;
 
 class GalleryController extends Controller {
 
@@ -18,7 +18,7 @@ class GalleryController extends Controller {
         }
 
         $entity = new Gallery();
-        $form = $this->createForm(new AjaxGalleryType(), $entity);
+        $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
 
         return $this->render('BoomBackBundle:Gallery:ajax_new.html.php', array(
@@ -33,7 +33,7 @@ class GalleryController extends Controller {
         }
 
         $entity = new Gallery();
-        $form = $this->createForm(new AjaxGalleryType(), $entity);
+        $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
 
@@ -45,6 +45,11 @@ class GalleryController extends Controller {
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $relations = $entity['galleryimagerelations']->toArray();
+            $entity['galleryimagerelations']->clear();
+            $em->persist($entity);
+            $em->flush();
+            $entity['galleryimagerelations'] = $relations;
             $em->persist($entity);
             $em->flush();
             $result = array(
@@ -68,12 +73,12 @@ class GalleryController extends Controller {
         }
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
+        $entity = $em->getRepository('BoomLibraryBundle:Gallery')->findOneById($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find entity.');
         }
 
-        $form = $this->createForm(new AjaxGalleryType(), $entity);
+        $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
 
         return $this->render('BoomBackBundle:Gallery:ajax_new.html.php', array(
@@ -88,33 +93,34 @@ class GalleryController extends Controller {
         }
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
+        $entity = $em->getRepository('BoomLibraryBundle:Gallery')->findOneById($id);
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find entity.');
         }
-        $newImages = array();
-        $originalImages = array();
+        $relations = $entity['galleryimagerelations']->toArray();
 
-        foreach ($entity['images'] as $image)
-            $originalImages[] = $image;
-
-        $form = $this->createForm(new AjaxGalleryType(), $entity);
+        $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
 
         if ($form->isValid()) {
-            $newImages = &$entity['images'];
-            foreach ($newImages as $n_img) {
-                foreach ($originalImages as $key => $o_img) {
-                    if ($o_img['id'] === $n_img['id']) {
-                        unset($originalImages[$key]);
+            $newRelations = $entity['galleryimagerelations']->toArray();
+            $entity['galleryimagerelations']->clear();
+
+            foreach ($newRelations as $n_r) {
+                foreach ($relations as $key => $o_r) {
+                    if ($o_r['image']['id'] === $n_r['image']['id'] ) {
+                        unset($relations[$key]);
                     }
                 }
             }
-            foreach ($originalImages as $ole) {
-                $em->remove($ole);
+            foreach ($relations as $or) {
+                $em->remove($or);
             }
 
+            $em->persist($entity);
+            $em->flush();
+            $entity['galleryimagerelations'] = $newRelations;
             $em->persist($entity);
             $em->flush();
             $result = array(

@@ -110,13 +110,14 @@ fm_bbcode:
     config:
       filters:
         - { classname: boom_video, class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomVideoFilter }
+        - { classname: boom_gallery, class: "@boom_front.gallery.decoda.filter" }
       templates:
         - path: %kernel.root_dir%/Resources/Decoda/templates/
     filter_sets:
         default:
           locale: es
           xhtml: true
-          filters: [ default, quote, url, image, boom_video, list, li, olist, p]
+          filters: [ default, quote, url, image, boom_video, boom_gallery, list, li, olist, p]
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -130,6 +131,7 @@ boom_library:
     boom_image_sizes:
       - { width: 680, height: 382 }
       - { width: 133, height: 75  }
+      - { width: 116, height: 116  }
       - { width: 158, height: 90  }
       - { width: 72 , height: 72  }
 services:

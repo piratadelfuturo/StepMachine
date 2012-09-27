@@ -121,7 +121,7 @@ class ImageController extends Controller {
                 )
             );
         } else {
-            $result = null;
+            $result = '';
         }
 
         $response = new Response(

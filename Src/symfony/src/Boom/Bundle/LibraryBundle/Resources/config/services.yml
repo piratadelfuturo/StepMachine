@@ -6,6 +6,7 @@ parameters:
   boom_library.ajax_image.type.class:         Boom\Bundle\LibraryBundle\Form\AjaxImageType
   boom_library.ajax_gallery.type.class:       Boom\Bundle\LibraryBundle\Form\AjaxGalleryType
   boom_library.ajax_image_upload.type.class:  Boom\Bundle\LibraryBundle\Form\AjaxImageUploadType
+  boom_library.gallery_image.type.class:      Boom\Bundle\LibraryBundle\Form\GalleryImageType
 
 services:
   boom_library.image_upload_persist.listener:
@@ -57,6 +58,13 @@ services:
             image_helper: "@boom_library.image.helper"
         tags:
             - { name: form.type, alias: ajax_image_upload }
+  boom_library.hidden_image.type:
+        class: %boom_library.gallery_image.type.class%
+        arguments:
+            om: "@doctrine.orm.entity_manager"
+            image_helper: "@boom_library.image.helper"
+        tags:
+            - { name: form.type, alias: gallery_image }
 
 #  boom_library.boom_category_update.listener:
 #        class: Boom\Bundle\LibraryBundle\Listener\BoomCategoryListener

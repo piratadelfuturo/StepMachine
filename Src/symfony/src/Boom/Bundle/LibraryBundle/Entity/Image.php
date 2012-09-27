@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\ImageRepository")
  * @ORM\Table(name="image")
@@ -69,6 +68,11 @@ class Image extends DomainObject {
      */
     protected $galleries;
 
+    /*
+     * @ORM\OneToMany(targetEntity="GalleryImageRelation", mappedBy="image", cascade={"remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
+     */
+    //protected $galleryimagerelations;
+
     /**
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
@@ -79,15 +83,14 @@ class Image extends DomainObject {
      * @ORM\Column(type="boolean")
      */
     protected $nsfw;
-
     protected $file;
-
 
     public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
         $this->boomelements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->list_elements = new \Doctrine\Common\Collections\ArrayCollection();
         $this->galleries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->galleryimagerelations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->date_created = new \DateTime();
         $this->nsfw = false;
     }
@@ -357,8 +360,7 @@ class Image extends DomainObject {
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
      * @return Image
      */
-    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
-    {
+    public function addListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
         $this->list_elements[] = $listElements;
         return $this;
     }
@@ -368,8 +370,7 @@ class Image extends DomainObject {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
      */
-    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements)
-    {
+    public function removeListElements(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
         $this->list_elements->removeElement($listElements);
     }
 
@@ -378,10 +379,69 @@ class Image extends DomainObject {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getListElements()
-    {
+    public function getListElements() {
         return $this->list_elements;
     }
 
+    /**
+     * Get nsfw
+     *
+     * @return boolean
+     */
+    public function getNsfw() {
+        return $this->nsfw;
+    }
+
+    /**
+     * Add list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     * @return Image
+     */
+    public function addListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
+        $this->list_elements[] = $listElements;
+
+        return $this;
+    }
+
+    /**
+     * Remove list_elements
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\ListElement $listElements
+     */
+    public function removeListElement(\Boom\Bundle\LibraryBundle\Entity\ListElement $listElements) {
+        $this->list_elements->removeElement($listElements);
+    }
+
+    /**
+     * Add galleryimagerelations
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations
+     * @return Image
+     */
+    public function addGalleryimagerelation(\Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations) {
+        $galleryimagerelations->setImage($this);
+        $this->boomsgalleryimagerelations[] = $galleryimagerelations;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryimagerelations
+     *
+     * @param Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations
+     */
+    public function removeGalleryimagerelation(\Boom\Bundle\LibraryBundle\Entity\GalleryImageRelation $galleryimagerelations) {
+        $this->galleryimagerelations->removeElement($galleryimagerelations);
+    }
+
+    /**
+     * Get galleryimagerelations
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryimagerelations() {
+        return $this->galleryimagerelations;
+    }
 
 }

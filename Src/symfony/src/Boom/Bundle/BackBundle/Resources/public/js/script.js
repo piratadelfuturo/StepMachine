@@ -649,7 +649,7 @@ window.myAutocompleteFunction = function(){
                     'BoomBackBundle_image_ajax_create',
                     {
                         _format: 'json',
-                        path: $(this).attr('name'),
+                        path: $(elem).attr('name'),
                         w: 158,
                         h: 90
                     }),

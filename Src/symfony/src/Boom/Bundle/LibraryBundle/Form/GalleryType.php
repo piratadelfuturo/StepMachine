@@ -1,22 +1,22 @@
 <?php
-
 namespace Boom\Bundle\LibraryBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Boom\Bundle\BackBundle\Form\EventListener\ImageFileSubscriber;
 
-class AjaxGalleryType extends AbstractType {
+class GalleryType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add(
-                'images', 'collection', array(
-            'type' => 'ajax_image',
+        $hiddenImageCollection = $builder->create(
+                'galleryimagerelations', 'collection', array(
+            'type' => 'gallery_image',
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => false
+            'by_reference' => true
         ));
+
+        $builder->add($hiddenImageCollection);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
@@ -29,7 +29,7 @@ class AjaxGalleryType extends AbstractType {
     }
 
     public function getName() {
-        return 'ajax_gallery';
+        return 'boom_gallery';
     }
 
 }

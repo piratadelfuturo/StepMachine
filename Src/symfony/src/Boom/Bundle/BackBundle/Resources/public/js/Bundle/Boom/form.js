@@ -7,7 +7,7 @@
             editor_selector : "boom-wysiwyg",
             width: "100%",
             plugins : "autoresize,boom",
-            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup",
+            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,code",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             valid_elements: "strong/b,i/em,u,blockquote/quote,"+
