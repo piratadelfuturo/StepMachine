@@ -644,6 +644,7 @@ window.myAutocompleteFunction = function(){
 (function(document,$){
     $(document).ready(function(){
         $('input[type=file].ajax-image-uploader').each(function(index,elem){
+            var img = $(elem).siblings('img[id$=_img]').eq(0);
             $(elem).boomAjaxUpload({
                 url: Routing.generate(
                     'BoomBackBundle_image_ajax_create',
@@ -655,7 +656,7 @@ window.myAutocompleteFunction = function(){
                     }),
                 done:function(e, data){
                     if(data.result.id){
-                        $(elem).siblings('img[id$=image_img]').eq(0).attr('src',data.result.path);
+                        img.attr('src',data.result.path);
                     }
                 }
             });
