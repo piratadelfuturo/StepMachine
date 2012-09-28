@@ -133,7 +133,7 @@
                     }),
                 done:function(e, data){
                     if(data.result.id){
-                        $(elem).siblings('img[id$=image_img]').eq(0).attr('src',data.result.path);
+                        iImageImg.attr('src',data.result.path);
                     }
 
                 }
