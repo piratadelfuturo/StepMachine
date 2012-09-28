@@ -34,14 +34,18 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('boom_image_path')
                     ->defaultValue('%boom_library.content_upload_path%boom-img/')
                 ->end()
+                ->scalarNode('boom_image_background')
+                    ->defaultValue('%kernel.root_dir%/../web/pattern.png')
+                ->end()
                 ->arrayNode('boom_image_sizes')
                     ->canBeUnset()
                     ->ignoreExtraKeys()
                     ->defaultValue(array(
                         array(
-                            'width' => 100,
-                            'height'=> 100,
-                            'quality' => 90
+                            'width'     => 100,
+                            'height'    => 100,
+                            'quality'   => 90,
+                            'thumbnail' => true
                         ),
                     ))
                     ->prototype('array')
@@ -50,6 +54,9 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('height')->end()
                             ->scalarNode('quality')
                                 ->defaultValue(90)
+                            ->end()
+                            ->booleanNode('thumbnail')
+                                ->defaultValue(true)
                             ->end()
                         ->end()
                     ->end()
