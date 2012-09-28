@@ -147,13 +147,15 @@ class ImageUploadListener implements ContainerAwareInterface {
             } else {
                 $imageSize = $imagick->getImageGeometry();
                 //if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
-                    $imageClone = clone($imagick);
-                    $imageClone->adaptiveResizeImage( $size['width'] , $size['height'] , true);
-                    $imageClone->writeImage(
-                            $thumbPath.$size['width'].'_'.$size['height'].'.'.$fileExt
-                            );
-                    $imageClone->clear();
-                    $imageClone->destroy();
+                $imageClone = clone($imagick);
+                $imageClone->cropThumbnailImage($size['width'], $size['height']);
+                $imageClone->setImagePage(0, 0, 0, 0);
+
+                $imageClone->writeImage(
+                        $thumbPath . $size['width'] . '_' . $size['height'] . '.' . $fileExt
+                );
+                $imageClone->clear();
+                $imageClone->destroy();
                 //}
             }
         }
@@ -161,20 +163,20 @@ class ImageUploadListener implements ContainerAwareInterface {
         $imagick->destroy();
     }
 
-    protected function resizeGif(Imagick $imagickObj , $fileExt , $thumbPath , array $size) {
+    protected function resizeGif(Imagick $imagickObj, $fileExt, $thumbPath, array $size) {
         $imagick = clone($imagickObj);
         $imagick = $imagick->coalesceImages();
         $imageSize = $imagick->getImageGeometry();
         do {
-            if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
-                $imagick->adaptiveResizeImage( $size['width'] , $size['height'] , true);
+            if (!($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height'])) {
+                $imagick->cropThumbnailImage($size['width'], $size['height']);
+                $imagick->setImagePage(0, 0, 0, 0);
             }
         } while ($imagick->nextImage());
         $imagick = $imagick->deconstructImages();
         $imagick->writeImages(
-                $thumbPath.$size['width'].'_'.$size['height'].'.'.$fileExt,
-                true
-                );
+                $thumbPath . $size['width'] . '_' . $size['height'] . '.' . $fileExt, true
+        );
         $imagick->clear();
         $imagick->destroy();
         return $imagickObj;
