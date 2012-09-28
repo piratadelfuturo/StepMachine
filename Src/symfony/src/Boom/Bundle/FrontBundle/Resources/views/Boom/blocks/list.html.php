@@ -11,7 +11,7 @@
         );
         ?>
         <li class="boom">
-            <img src="<?php echo $element['image']['path'] ?>" width="158px" height="90px" >
+            <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) ?>" width="158px" height="90px" >
             <div class="boom-info">
                 <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                 <p class="boom-ti">
