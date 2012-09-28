@@ -891,8 +891,9 @@ header{position:relative;}
 #main-car div.slide .img-container {
   float: left;
   height: 382px;
-  width: 677px;
+  width: 680px;
   display: block;
+  overflow: hidden;
 }
 
 #main-car div.slide {
