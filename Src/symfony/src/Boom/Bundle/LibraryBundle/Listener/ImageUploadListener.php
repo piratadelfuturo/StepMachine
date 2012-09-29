@@ -143,14 +143,12 @@ class ImageUploadListener implements ContainerAwareInterface {
 
         foreach ($sizes as $size) {
             if ($imagick->getImageFormat() == 'GIF') {
-                $this->resizeGif($imagick, $fileExt, $thumbPath, $size);
+                $this->resizeGif($imagick, $fileExt, $thumbPath, $size, $background);
             } else {
                 $imageSize = $imagick->getImageGeometry();
                 //if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
                 $imageClone = clone($imagick);
-                $imageClone->cropThumbnailImage($size['width'], $size['height']);
-                $imageClone->setImagePage(0, 0, 0, 0);
-
+                $imageClone = $this->resizeOperation($imageClone,$size['width'], $size['height'],$size['thumbnail']);
                 $imageClone->writeImage(
                         $thumbPath . $size['width'] . '_' . $size['height'] . '.' . $fileExt
                 );
@@ -163,15 +161,14 @@ class ImageUploadListener implements ContainerAwareInterface {
         $imagick->destroy();
     }
 
-    protected function resizeGif(Imagick $imagickObj, $fileExt, $thumbPath, array $size) {
+    protected function resizeGif(Imagick $imagickObj, $fileExt, $thumbPath, array $size, \Imagick $background = null) {
         $imagick = clone($imagickObj);
         $imagick = $imagick->coalesceImages();
         $imageSize = $imagick->getImageGeometry();
         do {
-            if (!($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height'])) {
-                $imagick->cropThumbnailImage($size['width'], $size['height']);
-                $imagick->setImagePage(0, 0, 0, 0);
-            }
+            //if (!($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height'])) {
+            $imagick = $this->resizeOperation($imagick,$size['width'], $size['height'],$size['thumbnail']);
+            //}
         } while ($imagick->nextImage());
         $imagick = $imagick->deconstructImages();
         $imagick->writeImages(
@@ -180,6 +177,26 @@ class ImageUploadListener implements ContainerAwareInterface {
         $imagick->clear();
         $imagick->destroy();
         return $imagickObj;
+    }
+
+    protected function resizeOperation(\Imagick $imagick,$width,$height,$thumbnail = false){
+
+            if ($thumbnail == true) {
+                $imagick->cropThumbnailImage($width, $height);
+                $imagick->setImagePage(0, 0, 0, 0);
+            } else {
+                $background = new \Imagick($this->container->getParameter('boom_library.boom_image_background'));
+                $background->cropImage($width, $height,0,0);
+                $imagick->adaptiveResizeImage($width, $height, true);
+                $imageSize = $imagick->getImageGeometry();
+                $x = ($width/2)-($imageSize['width']/2);
+                $y = ($height/2)-($imageSize['height']/2);
+                $background->compositeImage($imagick, \Imagick::COMPOSITE_OVER, $x, $y);
+                $imagick->setImage($background);
+                $background->clear();
+                $background->destroy();
+            }
+        return $imagick;
     }
 
 }
