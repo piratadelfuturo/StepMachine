@@ -20,7 +20,7 @@ if (!isset($list)) {
                     <?php endif; ?>
                     <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
                     <?php if ($element['boom'] !== null): ?>
-                        <a href="<?php ?>" class="boom-moar">Por <?php echo $view->escape($element['user']['username']) ?></a>
+                        <a href="<?php ?>" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?></a>
                         <date><?php echo $element['boom']['publish_date']->format('D, d M y'); ?></date>
                     <?php endif; ?>
                 </div>
