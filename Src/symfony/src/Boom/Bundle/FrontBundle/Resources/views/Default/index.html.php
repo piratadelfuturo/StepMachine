@@ -13,12 +13,12 @@ $view['slots']->stop();
     $blocks = array();
     $blocks['weekly'] = array(
                   'title'   => $weekly['name'],
-                  'list'    => $weekly['listelements'],
+                  'list'    => !empty($weekly['listelements']) ? $weekly['listelements'] : array(),
                   'template'=> 'BoomFrontBundle:Boom:blocks/long_numbered_list.html.php'
     );
     $blocks['user_booms'] = array(
                   'title' => 'booms de usuarios',
-                  'list'  => array(),
+                  'list'  => $users,
                   'more_url' => $view['router']->generate('BoomFrontBundle_list_users'),
                   'template'=> 'BoomFrontBundle:Boom:blocks/block_list.html.php'
     );

@@ -21,7 +21,7 @@ if (!isset($list)) {
                     <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
                     <?php if ($element['boom'] !== null): ?>
                         <a href="<?php ?>" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?></a>
-                        <date><?php echo $element['boom']['publishdate']->format('D, d M y'); ?></date>
+                        <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
                     <?php endif; ?>
                 </div>
             </li>
