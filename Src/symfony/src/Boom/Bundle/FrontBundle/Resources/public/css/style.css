@@ -939,14 +939,14 @@ header{position:relative;}
   padding-left: 3px;
 }
 
-#car-thumbs ul {
+.car-thumbs ul {
   width: 1024px;
   display: inline-block;
   background: #000;
   margin-top: 3px;
 }
 
-#car-thumbs li {
+.car-thumbs li {
   width: 133px;
   height: 75px;
   padding: 0;
@@ -957,25 +957,25 @@ header{position:relative;}
   border: 3px solid #000000;
 }
 
-#car-thumbs li:hover, #car-thumbs li.active {
+.car-thumbs li:hover, .car-thumbs li.active {
   border:3px solid #faa634;
 }
 
-#car-thumbs li:first-child {
+.car-thumbs li:first-child {
   margin-left: 10px;
 }
 
-#car-thumbs li a {
+.car-thumbs li a {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-#car-thumbs li img {
+.car-thumbs li img {
   position: relative;
 }
 
-#car-thumbs li p {
+.car-thumbs li p {
   text-align: center;
   position: absolute;
   background: rgba(0,0,0,0.7);
@@ -2920,34 +2920,39 @@ ul.paginador, ul.paginador {
   width: 580px;
   margin: 0 34px;
   overflow-x: hidden;
+  background: #000;
 }
 
+#main-car.gal-car .slide {
+  height: 374px;
+}
 #main-car.gal-car .slide img {
   width: 580px;
 }
 
-#main-car.gal-car .gal-thumbs ul{
-  background: #000;
-  height: 80px;
+#main-car.gal-car .car-thumbs ul {
 }
 
-#main-car.gal-car .gal-thumbs li{
+#main-car.gal-car .car-thumbs li {
+  height: 78px;
   display: inline-block;
+  width: 78px;
+  margin: 5px -1px 5px 0px
 }
 
-#main-car.gal-car .gal-thumbs li img {
+#main-car.gal-car .car-thumbs li img {
   width: 78px;
   height: 78px;
 }
 
-#main-car.gal-car .car-nav .gal-btn{
+#main-car.gal-car .car-nav .car-btn {
   background: url('../images/gal_button.png');
   width: 26px;
   height: 49px;
-  top: 138px;
+  top: 165px;
 }
 
-#main-car.gal-car .car-nav .gal-btn.next {
+#main-car.gal-car .car-nav .car-btn.next {
  -webkit-transform: rotate(180deg);
  -moz-transform: rotate(180deg);
  -ms-transform: rotate(180deg);

@@ -23,7 +23,7 @@
     </div>
     <?php endforeach; ?>
   </div>
-  <div id="car-thumbs">
+  <div class="car-thumbs">
     <ul>
       <?php
         $position = 0;
