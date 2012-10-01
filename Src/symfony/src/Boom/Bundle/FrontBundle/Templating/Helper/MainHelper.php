@@ -55,6 +55,9 @@ class MainHelper extends Helper {
     }
 
     public function getGallery($tag) {
+        if(!isset($tag['attributes']['default'])){
+            return '';
+        }
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Gallery');
         $gallery = $repo->findOneById($tag['attributes']['default']);
