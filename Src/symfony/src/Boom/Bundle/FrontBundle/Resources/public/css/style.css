@@ -1017,6 +1017,7 @@ header{position:relative;}
   float:left;
   height:90px;
   display:block;
+  width: 158px;
 }
 .boomer h3 span, .top-semanal h3 span{
   background:url('../images/boom_39.png') no-repeat;
@@ -1106,7 +1107,10 @@ header{position:relative;}
   margin: 2px 0;
   color: #474747;
 }
-
+.list-grid .boom-ti a{
+  color: #474747;
+  
+}
 .list-grid .date {
   color:#8d8d8d;
 }

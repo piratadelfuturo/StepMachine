@@ -12,10 +12,12 @@ if (!isset($list)) {
                     'BoomFrontBundle_boom_show', array(
                 'category_slug' => $element['category']['slug'], 'slug' => $element['slug']
                     )
-            );
+                  );
+            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/120/75';
+
             ?>
             <li class="boom">
-                <img src="<?php echo $element['image']['path'] ?>" width="158px" height="90px" >
+                <a href="<?php echo $elementUrl ?>"><img src="<?php echo $image ?>" width="158px" height="90px" ></a>
                 <div class="boom-info">
                     <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                     <p class="boom-ti">
