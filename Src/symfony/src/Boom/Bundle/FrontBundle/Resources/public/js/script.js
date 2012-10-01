@@ -274,12 +274,12 @@
         $("#usr-booms .dyna-content > .drag-booms").dragsort({
             dragSelector: '.drag-booms li',
             dragEnd: function(){
-                $(this).siblings().each(function(index){
+                $(this).parent().children().each(function(index){
                     $(this).children(".pos").html(index+1);
-                    order[$(this).attr('original-position')] = {
+                    /*order[$(this).attr('original-position')] = {
                         'original'  : $(this).attr('original-position'),
                         'final'     : index+1
-                    };
+                    };*/
                 });
 
                 $.ajax({
