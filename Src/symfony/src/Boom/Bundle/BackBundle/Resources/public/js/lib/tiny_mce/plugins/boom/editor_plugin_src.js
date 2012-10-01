@@ -26,6 +26,8 @@
                 }
             });
 
+            t._selectVideo(ed);
+
             ed.addCommand('boomVideo', function() {
                 var embedPrompt = $.prompt(
                     'Codigo embed de video', '',
@@ -90,7 +92,7 @@
                 formRoute['save']['vars'] = {
                     '_format': 'json'
                 };
-                if($(node).hasClass('gallery') && $(node).attr('insert-id')){
+                if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
                     formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_edit';
                     formRoute['form']['vars'] = {
                         'id' : $(node).attr('insert-id')
@@ -100,6 +102,7 @@
                         'id' : $(node).attr('insert-id'),
                         '_format': 'json'
                     };
+                    ed.dom.remove(node);
                 }
 
                 dialog.dialog({
@@ -136,7 +139,7 @@
                                     function(data){
                                         var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="'+Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
                                             'id' : data.id
-                                            })+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
+                                        })+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
                                         ed.execCommand('mceInsertContent',false,html);
                                         dialog.dialog( "close" );
                                     }
@@ -226,7 +229,18 @@
         },
 
         // Private methods
+        _selectVideo: function(ed){
+            ed.onClick.add(function(ed, e) {
+                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
+            });
 
+        },
+        _selectImage: function(ed){
+            ed.onClick.add(function(ed, e) {
+                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
+            });
+
+        },
         // HTML -> BBCode in PunBB dialect
         _html2bbcode : function(s) {
             s = tinymce.trim(s);
