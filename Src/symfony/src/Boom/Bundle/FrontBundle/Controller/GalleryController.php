@@ -1,6 +1,6 @@
 <?php
 
-namespace Boom\Bundle\BackBundle\Controller;
+namespace Boom\Bundle\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\ORM\Query;
@@ -21,7 +21,7 @@ class GalleryController extends Controller {
         $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
 
-        return $this->render('BoomBackBundle:Gallery:ajax_new.html.php', array(
+        return $this->render('BoomFrontBundle:Gallery:ajax_new.html.php', array(
                         'entity' => $entity,
                         'form' => $form->createView(),
                     ));
@@ -81,7 +81,7 @@ class GalleryController extends Controller {
         $form = $this->createForm(new GalleryType(), $entity);
         $request = $this->getRequest();
 
-        return $this->render('BoomBackBundle:Gallery:ajax_new.html.php', array(
+        return $this->render('BoomFrontBundle:Gallery:ajax_new.html.php', array(
                         'entity' => $entity,
                         'form' => $form->createView(),
                     ));
@@ -143,7 +143,7 @@ class GalleryController extends Controller {
             throw $this->createNotFoundException('Unable to find entity.');
         }
 
-        return $this->render('BoomBackBundle:Gallery:preview.html.php', array(
+        return $this->render('BoomFrontBundle:Gallery:preview.html.php', array(
                     'entity' => $entity
                 ));
     }

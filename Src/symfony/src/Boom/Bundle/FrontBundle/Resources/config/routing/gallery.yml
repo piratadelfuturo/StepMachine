@@ -1,0 +1,32 @@
+BoomFrontBundle_gallery_ajax_new:
+    pattern:  /new_form
+    defaults: { _controller: "BoomFrontBundle:Gallery:ajaxNew" }
+    requirements:
+      _method: get
+
+BoomFrontBundle_gallery_ajax_create:
+    pattern:  /create.{_format}
+    defaults: { _controller: "BoomFrontBundle:Gallery:ajaxCreate" , _format: json}
+    requirements:
+      _method: post
+      _format: json
+
+BoomFrontBundle_gallery_ajax_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BoomFrontBundle:Gallery:ajaxEdit" }
+    requirements:
+      _method: get
+
+BoomFrontBundle_gallery_ajax_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BoomFrontBundle:Gallery:ajaxUpdate" }
+    requirements:
+      _method: post
+
+BoomFrontBundle_gallery_iframe_preview:
+    pattern:  /preview/{id}
+    defaults: { _controller: "BoomFrontBundle:Gallery:preview" , id: 0}
+    requirements:
+      _method: get
+    options:
+      expose: true

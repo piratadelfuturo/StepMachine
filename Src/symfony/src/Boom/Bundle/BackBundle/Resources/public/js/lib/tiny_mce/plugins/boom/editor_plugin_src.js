@@ -26,6 +26,8 @@
                 }
             });
 
+            t._selectVideo(ed);
+
             ed.addCommand('boomVideo', function() {
                 var embedPrompt = $.prompt(
                     'Codigo embed de video', '',
@@ -90,7 +92,7 @@
                 formRoute['save']['vars'] = {
                     '_format': 'json'
                 };
-                if($(node).hasClass('gallery') && $(node).attr('insert-id')){
+                if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
                     formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_edit';
                     formRoute['form']['vars'] = {
                         'id' : $(node).attr('insert-id')
@@ -100,6 +102,7 @@
                         'id' : $(node).attr('insert-id'),
                         '_format': 'json'
                     };
+                    ed.dom.remove(node);
                 }
 
                 dialog.dialog({
@@ -134,7 +137,9 @@
                                     Routing.generate(formRoute['save']['name'],formRoute['save']['vars']),
                                     $(form).serialize(),
                                     function(data){
-                                        var html = '<div class="gallery" insert-id="'+data.id+'"></div>';
+                                        var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="'+Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
+                                            'id' : data.id
+                                        })+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
                                         ed.execCommand('mceInsertContent',false,html);
                                         dialog.dialog( "close" );
                                     }
@@ -224,7 +229,18 @@
         },
 
         // Private methods
+        _selectVideo: function(ed){
+            ed.onClick.add(function(ed, e) {
+                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
+            });
 
+        },
+        _selectImage: function(ed){
+            ed.onClick.add(function(ed, e) {
+                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
+            });
+
+        },
         // HTML -> BBCode in PunBB dialect
         _html2bbcode : function(s) {
             s = tinymce.trim(s);
@@ -235,12 +251,13 @@
 
             // example: <strong> to [b]
             rep(/<div.*?class=\"gallery\".*?insert-id=\"(.*?)\".*?>.*?<\/div>/gi,"[gallery=\"$1\"][/gallery]");
+            rep(/<iframe class=\"gallery-preview\" insert-id=\"(.*?)\".*?>.*?<\/iframe>/gi,"[gallery=\"$1\"][/gallery]");
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
             rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
-            rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
-            rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
-            rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
-            rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>(.*?)<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
+            rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
+            rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<\/(strong|b)>/gi,"[/b]");
             rep(/<(strong|b)>/gi,"[b]");
             rep(/<\/(em|i)>/gi,"[/i]");
@@ -282,8 +299,9 @@
             rep(/\[url=([^\]]+)\](.*?)\[\/url\]/gi,"<a href=\"$1\">$2</a>");
             rep(/\[url\](.*?)\[\/url\]/gi,"<a href=\"$1\">$1</a>");
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
-            rep(/\[youtube="([^\]]+)"\](.*?)\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
-            rep(/\[vimeo="([^\]]+)"\](.*?)\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
+            rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
+            rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
+            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+Routing.generate('BoomFrontBundle_gallery_iframe_preview')+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
             return s;

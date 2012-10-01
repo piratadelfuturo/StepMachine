@@ -1,0 +1,12 @@
+BoomFrontBundle_image_ajax_create:
+    pattern:  /upload.{_format}
+    defaults: { _controller: "BoomFrontBundle:Image:ajaxCreate" , _format: json}
+    requirements:
+      _method: post
+      _format: json
+
+BoomFrontBundle_image_ajax_new:
+    pattern:  /image
+    defaults: { _controller: "BoomFrontBundle:Image:ajaxNew" }
+    requirements:
+      _method: get

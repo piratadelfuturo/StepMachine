@@ -42,7 +42,7 @@
             'js/lib/file_upload/js/jquery.iframe-transport.js',
             'js/lib/file_upload/js/jquery.fileupload.js',
             'js/lib/jquery.boomAjaxUpload.js',
-            'js/lib/tiny_mce/tiny_mce.js',
+            'js/lib/tiny_mce/tiny_mce_src.js',
             'js/lib/tiny_mce/jquery.tinymce.js',
             'js/jquery.pagination.js',
             'js/functions.js',
