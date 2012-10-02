@@ -13,10 +13,12 @@ if (!isset($list)) {
                 'category_slug' => $element['category']['slug'],
                 'slug' => $element['slug']
                     )
-            );
+                  );
+            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/120/75';
+
             ?>
             <li>
-                <img src="<?php echo $element['image']['path'] ?>" width="158px" height="90px" >
+                <a href="<?php echo $elementUrl ?>"><img src="<?php echo $image ?>" width="158px" height="90px" ></a>
                 <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                 <p class="boom-ti">
                     <a href="<?php echo $elementUrl ?>" class="boom-moar">
@@ -27,7 +29,6 @@ if (!isset($list)) {
                 <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
             </li>
         <?php endforeach; ?>
-
         <a href="<?php echo $more_url ?>"><span class="moar">ver más</span></a>
     </ul>
 </div>

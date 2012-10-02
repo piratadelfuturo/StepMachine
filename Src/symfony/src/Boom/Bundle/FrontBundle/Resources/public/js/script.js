@@ -36,8 +36,8 @@
                 marginLeft: (size * (index) ) * -1
             });
 
-            var target = maincar.find("#car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
-            thumbs = target.closest("#car-thumbs").find("li");
+            var target = maincar.find(".car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
+            thumbs = target.closest(".car-thumbs").find("li");
 
             thumbs.removeClass('active');
             slides.removeClass('active');
@@ -61,8 +61,8 @@
             }, 5000);
         });
 
-        $("#car-thumbs a").click(function(){
-            var index = $("#car-thumbs a").index(this);
+        $(".car-thumbs a").click(function(){
+            var index = $(".car-thumbs a").index(this);
             return $.showSlide(index);
         });
 
@@ -274,12 +274,12 @@
         $("#usr-booms .dyna-content > .drag-booms").dragsort({
             dragSelector: '.drag-booms li',
             dragEnd: function(){
-                $(this).siblings().each(function(index){
+                $(this).parent().children().each(function(index){
                     $(this).children(".pos").html(index+1);
-                    order[$(this).attr('original-position')] = {
+                    /*order[$(this).attr('original-position')] = {
                         'original'  : $(this).attr('original-position'),
                         'final'     : index+1
-                    };
+                    };*/
                 });
 
                 $.ajax({

@@ -130,11 +130,12 @@ swiftmailer:
 boom_library:
     boom_image_sizes:
       - { width: 680, height: 382 , thumbnail: false}
+      - { width: 590, height: 380 }
       - { width: 133, height: 75  }
-      - { width: 116, height: 116  }
+      - { width: 116, height: 116 }
       - { width: 158, height: 90  }
       - { width: 72 , height: 72  }
-#      - { width: 78 , height: 78  }
+      - { width: 78 , height: 53  }
 
 services:
     cache.apc:
