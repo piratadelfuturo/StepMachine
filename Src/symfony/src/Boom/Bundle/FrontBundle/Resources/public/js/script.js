@@ -276,7 +276,7 @@
             dragEnd: function(){
                 $(this).parent().children().each(function(index){
                     $(this).children(".pos").html(index+1);
-                    /*order[$(this).attr('original-position')] = {
+                /*order[$(this).attr('original-position')] = {
                         'original'  : $(this).attr('original-position'),
                         'final'     : index+1
                     };*/
@@ -303,10 +303,9 @@
 })(document,jQuery);
 
 
-/*
-     * FB Login
-     */
-
+/**
+* FB Login
+*/
 (function(window, document, $ ){
     window.onFbInit = function(){
         if(!!FB){
@@ -324,3 +323,24 @@
         }
     }
 })(window,document,jQuery);
+
+/**
+ * IMAGE UPLOAD
+ */
+(function(document,$){
+    $(document).ready(function(){
+        $('input[type=file].image-uploader').each(function(index,elem){
+            var img = $(elem).siblings('img[id$=_img]').eq(0);
+            $(elem).boomAjaxUpload({
+                url: $(elem).attr('upload-path'),
+                done:function(e, data){
+                    if(data.result.id){
+                        img.attr('src',data.result.path);
+                    }
+                }
+            });
+        });
+
+    });
+})(document,jQuery);
+
