@@ -12,5 +12,14 @@
                 )
         );
         ?>
+        <script type="text/javascript">
+            window.onclick = function(){
+                if(window.parent.parent.tinymce){
+                    window.tinymce = window.parent.parent.tinymce;
+                    tinymce.execCommand('mceSelectNode', false,window.frameElement);
+                    tinymce.execCommand('boomGallery');
+                }
+            }
+        </script>
     </body>
 </html>

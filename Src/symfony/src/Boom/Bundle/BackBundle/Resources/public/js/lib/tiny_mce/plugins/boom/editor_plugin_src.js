@@ -83,7 +83,9 @@
                 });
                 formUpload.append(inputUpload);
                 dialog.append(formUpload);
-
+                if(console.log){
+                    console.log(node);
+                }
                 formRoute['form'] = {};
                 formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_new';
                 formRoute['form']['vars'] = {};

@@ -22,9 +22,9 @@ class GalleryController extends Controller {
         $request = $this->getRequest();
 
         return $this->render('BoomFrontBundle:Gallery:ajax_new.html.php', array(
-                        'entity' => $entity,
-                        'form' => $form->createView(),
-                    ));
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
     }
 
     public function ajaxCreateAction() {
@@ -82,9 +82,9 @@ class GalleryController extends Controller {
         $request = $this->getRequest();
 
         return $this->render('BoomFrontBundle:Gallery:ajax_new.html.php', array(
-                        'entity' => $entity,
-                        'form' => $form->createView(),
-                    ));
+                    'entity' => $entity,
+                    'form' => $form->createView(),
+                ));
     }
 
     public function ajaxUpdateAction($id) {
@@ -109,7 +109,7 @@ class GalleryController extends Controller {
 
             foreach ($newRelations as $n_r) {
                 foreach ($relations as $key => $o_r) {
-                    if ($o_r['image']['id'] === $n_r['image']['id'] ) {
+                    if ($o_r['image']['id'] === $n_r['image']['id']) {
                         unset($relations[$key]);
                     }
                 }
@@ -126,7 +126,7 @@ class GalleryController extends Controller {
             $result = array(
                 'id' => $entity['id']
             );
-        }else{
+        } else {
             $result = $form->getErrorsAsString();
         }
         $response = new Response(
@@ -136,7 +136,10 @@ class GalleryController extends Controller {
         return $response;
     }
 
-    public function previewAction($id){
+    public function previewAction($id) {
+        if ($this->container->has('profiler')) {
+            $this->container->get('profiler')->disable();
+        }
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Gallery')->findOneById($id);
         if (!$entity) {

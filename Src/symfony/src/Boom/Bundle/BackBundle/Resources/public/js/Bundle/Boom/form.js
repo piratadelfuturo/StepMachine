@@ -18,14 +18,14 @@
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
-            //content_css : "css/bbcode.css",
+            content_css : "css/editor.css",
             entity_encoding : "raw",
             relative_urls : false,
             remove_script_host : false,
             add_unload_trigger : false,
             remove_linebreaks : false,
             inline_styles : false,
-            convert_fonts_to_spans : false
+            convert_fonts_to_spans : true
         });
 
         $form = $('#boom_bundle_backbundle_boomtype');

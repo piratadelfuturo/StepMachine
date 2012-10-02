@@ -191,7 +191,9 @@ class ImageUploadListener implements ContainerAwareInterface {
                 $imageSize = $imagick->getImageGeometry();
                 $x = ($width/2)-($imageSize['width']/2);
                 $y = ($height/2)-($imageSize['height']/2);
+                //$background->flattenImages();
                 $background->compositeImage($imagick, \Imagick::COMPOSITE_OVER, $x, $y);
+                $background->flattenImages();
                 $imagick->setImage($background);
                 $background->clear();
                 $background->destroy();
