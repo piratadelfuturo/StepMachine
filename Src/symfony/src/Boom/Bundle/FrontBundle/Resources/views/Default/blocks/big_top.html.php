@@ -17,7 +17,7 @@
           <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
         </a>
         <div class="info-container">
-          <a href="<?php echo $element['url'] ?>"><h2><?php echo $view->escape($element['title']) ?></h2></a>
+          <h2><a href="<?php echo $element['url'] ?>"><?php echo $view->escape($element['title']) ?></a></h2>
           <p><?php echo $view->escape($element['summary']) ?></p>
         </div>
     </div>
@@ -32,8 +32,12 @@
       ?>
       <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/g/158/90'?>
       <li class="<?php echo $position == 1 ? 'active' : '' ?>">
+        <p>
+          <a href="# <?php //echo $element['url'] ?>">
+            <?php echo $view->escape($element['title']) ?>
+          </a>
+        </p>
         <a href="# <?php //echo $element['url'] ?>">
-          <p><?php echo $view->escape($element['title']) ?></p>
           <img src="http://placehold.it/133x75" alt="<?php echo $view->escape($element['title']) ?>" />
         </a>
       </li>

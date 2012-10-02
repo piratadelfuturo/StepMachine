@@ -783,7 +783,7 @@ header{position:relative;}
   margin: 5px 20px 0 20px;
 }
 
-.boom-info .boom-ti{
+.boom-info .boom-ti, .boom-info .boom-ti a {
   font:bold 18px Helvetica;
   margin:5px 0;
   color:#474747;
@@ -929,7 +929,7 @@ header{position:relative;}
   padding: 85px 40px 15px;
 }
 
-#main-car div.slide h2, #cat-car div.slide h2, .single-boom .boom-info h2 {
+#main-car div.slide h2 a, #cat-car div.slide h2, .single-boom .boom-info h2 {
   font: 37px 'Museo500';
   color: #231f20;
   letter-spacing: -2px;
@@ -970,6 +970,7 @@ header{position:relative;}
   display: block;
   width: 100%;
   height: 100%;
+  color: white;
 }
 
 .car-thumbs li img {

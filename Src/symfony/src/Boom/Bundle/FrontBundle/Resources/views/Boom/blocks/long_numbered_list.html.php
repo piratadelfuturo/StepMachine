@@ -18,7 +18,7 @@ if (!isset($list)) {
                     <?php if ($element['boom'] !== null): ?>
                         <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                     <?php endif; ?>
-                    <a href="<?php echo $element['url']?>"><p class="boom-ti"><?php echo $view->escape($element['title']) ?></p></a>
+                    <p class="boom-ti"><a href="<?php echo $element['url']?>"><?php echo $view->escape($element['title']) ?></a></p>
                     <?php if ($element['boom'] !== null): ?>
                         <a href="<?php ?>" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?></a>
                         <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
