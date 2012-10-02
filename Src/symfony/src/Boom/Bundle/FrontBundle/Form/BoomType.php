@@ -32,7 +32,10 @@ class BoomType extends AbstractType {
         );
 
         $builder->add(
-                'image', 'hidden');
+                'image',
+                'ajax_image',
+                array('required' => true)
+                );
 
         $builder->add(
                 'tags', 'tags_selector', array()
@@ -55,7 +58,7 @@ class BoomType extends AbstractType {
     }
 
     public function getName() {
-        return 'boom_bundle_frontbundle_boomtype';
+        return 'front__boom';
     }
 
 }
