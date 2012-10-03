@@ -7,7 +7,8 @@
             <?php
             echo $view['form']->widget($form['title'], array(
                 'attr' => array(
-                    'placeholder' => 'Título de tu Boom'
+                  'placeholder' => 'Título de tu Boom',
+                  'class' => 'titulo-deboom'
                     )))
             ?>
         </div>
@@ -42,22 +43,25 @@
             <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
                     <label>
                         <div class="balloon">
-                            <p>arrastrar</p>
+                            <p>Arrastra tu foto</p>
                         </div>
                         <span class="place"><?php echo (string) $element['position']->vars['value']; ?></span>
                     </label>
-                    <input class="up-pic" type="file multiple"  placeholder="Arrastra tu foto">
-                    <?php
-                    echo $view['form']->widget(
-                            $element['image'], array(
-                        'attr' => array(
-                            'class' => 'up-pic image-uploader',
-                            'placeholder' => "Arrastra tu foto",
-                            'multiple' => 'multiple'
-                        )
-                            )
-                    );
-                    echo $view['form']->widget(
+                    <div class="uploader">
+                      <p class="instrucciones">Arrastra tu foto</p>
+                      <!-- <input class="up-pic" type="file multiple"  placeholder="Arrastra tu foto"> -->
+                      <?php
+                      echo $view['form']->widget(
+                              $element['image'], array(
+                          'attr' => array(
+                              'class' => 'up-pic image-uploader',
+                              'placeholder' => "Arrastra tu foto",
+                              'multiple' => 'multiple'
+                          )
+                              )
+                            ) ?>
+                    </div>
+                    <?php echo $view['form']->widget(
                             $element['title'], array(
                         'attr' => array(
                             'class' => 'boomie-title-input',

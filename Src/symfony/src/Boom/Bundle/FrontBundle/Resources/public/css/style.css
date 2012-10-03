@@ -2553,12 +2553,12 @@ footer p{
 }
 
 
-#boom_bundle_frontbundle_boomtype .grad-border {
+#front__boom .grad-border {
   margin: 0;
   width: 640px;
 }
 
-#boom_bundle_frontbundle_boomtype_title {
+#front__boom_title {
   width: 636px;
   font: 20px 'Museo500', sans-serif;
   line-height: 34px;
@@ -2570,6 +2570,32 @@ footer p{
 .boomie {
   padding: 10px 0;
 }
+
+.uploader{
+  display: inline-block;
+  width: 158px;
+  height: 84px;
+  overflow:hidden;
+  position: relative;
+  border: 2px solid;
+  vertical-align: top;
+  margin: 0 !important;
+  border-style: inset;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.uploader .instrucciones {
+  position: absolute;
+  font: 20px 'Museo500', sans-serif;
+  top: 30px;
+  left: 5px;
+  color: #a9a9a9;
+}
+.uploader img, .up-pic{
+  position: absolute;
+  top: 0;
+}
 .up-pic, .boomie-title-input {
   height: 74px;
   vertical-align: top;
@@ -2580,7 +2606,8 @@ footer p{
   padding:5px;
 }
 .up-pic{
-  width: 150px;
+  width: 148px;
+  opacity: 0;
 }
 .boomie-title-input {
   width: 394px;
@@ -2602,7 +2629,7 @@ footer p{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1f1f1f',GradientType=0 );
   padding: 10px 15px !important;
 }
-.wyswyg-menu li {
+.wyswyg-menu li a{
   width: 33px;
   height: 33px;
   display: block;
@@ -2610,16 +2637,20 @@ footer p{
   background:url('../images/sprite_wyswyg.png') no-repeat center 0px;
   text-indent:-9999px;
 }
-.wyswyg-menu li.picture {
+
+.wyswyg-menu li.picture a {
   background-position: center -33px;
 }
-.wyswyg-menu li.embed {
+
+.wyswyg-menu li.embed a {
   background-position: center -66px;
 }
-.wyswyg-menu li.gallery {
+
+.wyswyg-menu li.gallery a {
   background-position: center -99px;
 }
-.wyswyg-menu li.video {
+
+.wyswyg-menu li.video a {
   background-position: center -132px;
 }
 
@@ -2659,14 +2690,17 @@ label[for=boom_bundle_frontbundle_boomtype_category] {
 #nsfw-sc {
  width: 110px;
  float: left;
+ position: relative;
 }
 #nsfw-sc input[type='checkbox'] {
   width: 18px;
   clear: none;
   opacity:0;
-  float: right;
   margin: 8px 7px 0 0;
   cursor: pointer;
+  position: absolute;
+  right: 0;
+  z-index: 2;
 }
 #nsfw-sc input[type='checkbox']+label {
   background: url(../images/sprite-chckbx.png) no-repeat 85px -20px;
