@@ -2324,7 +2324,7 @@ footer p{
   z-index: 9;
   top: 50%;
   left: -120px;
-  text-transform: capitalize;
+  text-transform: none;
 }
 
 .balloon:after {
@@ -2341,6 +2341,12 @@ footer p{
 
 .drag-booms .balloon {
   margin-top: -14px;
+}
+
+#nsfw-sc .balloon {
+  width: 150px;
+  top: -53px;
+  left: -210px;
 }
 
 *:hover > .balloon {
@@ -2629,6 +2635,10 @@ footer p{
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1f1f1f',GradientType=0 );
   padding: 10px 15px !important;
 }
+
+.wyswyg-menu li{
+  position: relative;
+}
 .wyswyg-menu li a{
   width: 33px;
   height: 33px;
@@ -2713,12 +2723,15 @@ label[for=boom_bundle_frontbundle_boomtype_category] {
   display: block;
 }
 
-#boom_bundle_frontbundle_boomtype_tags {
+#front__boom_tags {
   width: 630px;
   font: 20px 'Museo500', sans-serif;
   line-height: 34px;
   text-align: left;
   padding: 0 10px;
+  -webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
 }
 
 button.submit {

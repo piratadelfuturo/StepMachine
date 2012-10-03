@@ -35,7 +35,13 @@
             );
             ?></div>
         </section>
-        <section id="nsfw-sc"><?php echo $view['form']->widget($form['nsfw']) ?><label>NSFW:</label></section>
+        <section id="nsfw-sc">
+          <div class="balloon">
+            <p>Un material es NSFW (not safe for work) si contien desnudos o material explícito que no puedan ver menores de edad ni godínez bajo vigilancia labora.</p>
+          </div>
+          <?php echo $view['form']->widget($form['nsfw']) ?>
+          <label>NSFW:</label>
+        </section>
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: ')) ?>
     </fieldset>
     <ul id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
@@ -72,11 +78,26 @@
                     ?>
                     <div class="accordion_content">
                         <ul class="wyswyg-menu">
-                            <li class="hyperlink"><a>Hipervinculo</a></li>
-                            <li class="picture"><a>Foto</a></li>
-                            <li class="embed"><a>Embed</a></li>
-                            <li class="gallery"><a>Galería</a></li>
-                            <li class="video"><a>Video</a></li>
+                            <li class="hyperlink">
+                              <div class="balloon">Hipervinculo</div>
+                              <a>Hipervinculo</a>
+                            </li>
+                            <li class="picture">
+                              <div class="balloon">Foto</div>
+                              <a>Foto</a>
+                            </li>
+                            <li class="embed">
+                              <div class="balloon">Embed</div>
+                              <a>Embed</a>
+                            </li>
+                            <li class="gallery">
+                              <div class="balloon">Galería</div>
+                              <a>Galería</a>
+                            </li>
+                            <li class="video">
+                              <div class="balloon">Video</div>
+                              <a>Video</a>
+                            </li>
                         </ul>
                         <?php
                         echo $view['form']->widget(
@@ -104,7 +125,7 @@
     echo $view['form']->row(
             $form['tags'], array(
         'attr' => array(
-            'label' => 'Tags:',
+            'label' => 'Tags\:',
             'placeholder' => 'Escribe tus tags separados por comas...'
         )
             )

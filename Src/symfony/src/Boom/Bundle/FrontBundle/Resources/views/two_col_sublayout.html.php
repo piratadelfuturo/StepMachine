@@ -12,7 +12,7 @@
     }
     ?>
     <div class="banner1 sb-bloque">
-        BANNER
+        <a href="#"><img src="http://placekitten.com/300/550"></a>
     </div>
     <?php echo $view->render('BoomFrontBundle:Widget:facebook.html.php'); ?>
     <?php echo $view->render('BoomFrontBundle:Widget:twitter.html.php'); ?>
