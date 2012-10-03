@@ -2051,6 +2051,9 @@ footer p{
   -o-transition: max-height 400ms;
 }
 
+fieldset.on .accordion_content { overflow: visible;}
+
+
 .single-boom .boom.on, .sort-elements .boom.on {
   max-height: 2000px;
 }
@@ -2347,6 +2350,10 @@ footer p{
   width: 150px;
   top: -53px;
   left: -210px;
+}
+
+.wyswyg-menu li .balloon{
+  top: -7px
 }
 
 *:hover > .balloon {
