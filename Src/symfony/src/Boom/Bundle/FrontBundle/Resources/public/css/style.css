@@ -2351,6 +2351,11 @@ fieldset.on .accordion_content { overflow: visible;}
   top: -53px;
   left: -210px;
 }
+.sort-elements .boomie .balloon{
+  width: 80px;
+  top: 13px;
+  left: -140px;
+}
 
 .wyswyg-menu li .balloon{
   top: -7px

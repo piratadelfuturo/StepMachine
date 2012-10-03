@@ -125,8 +125,8 @@
         });
 
         //DRAGnDROP boomies
-        $("#boom_bundle_frontbundle_boomtype_elements.sort-elements").dragsort({
-            dragSelector: '#boom_bundle_frontbundle_boomtype_elements .boomie .place',
+        $("#front__boom_elements.sort-elements").dragsort({
+            dragSelector: '#front__boom_elements .boomie .place',
             dragEnd: function(){
                 $('.sort-elements').children().each(function(index){
                     $(this).find('.place').html(index+1);
