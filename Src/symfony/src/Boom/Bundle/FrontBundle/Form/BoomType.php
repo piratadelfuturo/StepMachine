@@ -58,7 +58,7 @@ class BoomType extends AbstractType {
     }
 
     public function getName() {
-        return 'front__boom';
+        return 'front_boom';
     }
 
 }

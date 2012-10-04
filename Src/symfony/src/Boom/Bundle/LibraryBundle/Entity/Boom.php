@@ -527,7 +527,8 @@ class Boom extends DomainObject {
 
     public function validations(ExecutionContext $context) {
         if ($this->getElements()->count() !== 7) {
-            $context->addViolationAtSubPath('elements', 'Invalid quantity of elements');
+            $number = $this->getElements()->count();
+            $context->addViolationAtSubPath('elements', 'Invalid quantity of elements: '.$number);
         }
     }
 

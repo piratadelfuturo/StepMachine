@@ -33,20 +33,20 @@ class BoomController extends Controller {
         $ranks = $repoRank->findBy(array(
             'boom' => $boom,
             'user' => $sessionUser
-        ),array(
+                ), array(
             'position' => 'ASC'
-        ));
+                ));
 
         $request = $this->getRequest();
         $newOrder = array();
-        if(empty($ranks)){
+        if (empty($ranks)) {
             //create ranks
-            foreach($newOrder as $original => $order){
-                $ranks[] = new BoomelementRank($boom,$boom['elements'][$original],$order);
+            foreach ($newOrder as $original => $order) {
+                $ranks[] = new BoomelementRank($boom, $boom['elements'][$original], $order);
             }
-        }else{
+        } else {
             //update ranks
-            foreach($newOrder as $original => $order){
+            foreach ($newOrder as $original => $order) {
                 $ranks[$original]['position'] = $order;
             }
         }
@@ -115,10 +115,10 @@ class BoomController extends Controller {
      *
      */
     public function createAction() {
-        $form = $this->createForm(new BoomType());
+        $entity = new Boom();
+        $form = $this->createForm(new BoomType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-        $entity = $form->getData();
 
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
@@ -133,15 +133,15 @@ class BoomController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomBackBundle_boom_edit', array(
-                                'id' => $entity->getId()
+                                    'BoomFrontBundle_boom_edit', array(
+                                'slug' => $entity['slug']
                                     )
                             )
             );
         }
 
 
-        return $this->render('BoomBackBundle:Boom:new.html.php', array(
+        return $this->render('BoomFrontBundle:Boom:new.html.php', array(
                     'entity' => $entity,
                     'form' => $form->createView(),
                 ));
@@ -179,12 +179,10 @@ class BoomController extends Controller {
         foreach ($clonedBoomValues as $clBoomV) {
             $entity[$clBoomV] = $foundEntity[$clBoomV];
         }
-        foreach ($entity['elements'] as $entElem) {
-            $element = new Boomelement();
+        foreach ($entity['elements'] as $o_index => $entElem) {
             foreach ($clonedBoomelementValues as $clBoomelV) {
-                $element[$clBoomelV] = $entElem[$clBoomelV];
+                $entity['elements'][$o_index][$clBoomelV] = $entElem[$clBoomelV];
             }
-            $entity->addElement($element);
         }
         $form = $this->createForm(new BoomType(), $entity);
 
@@ -211,7 +209,8 @@ class BoomController extends Controller {
         $sessionUser = $sessionToken->getUser();
 
         $request = $this->getRequest();
-        $form = $this->createForm(new BoomType());
+        $entity = new Boom();
+        $form = $this->createForm(new BoomType(),$entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
