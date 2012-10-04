@@ -80,23 +80,36 @@
                         <ul class="wyswyg-menu">
                             <li class="hyperlink">
                               <div class="balloon">Hipervinculo</div>
-                              <a>Hipervinculo</a>
+                              <a href="#" >Hipervinculo</a>
                             </li>
                             <li class="picture">
                               <div class="balloon">Foto</div>
-                              <a>Foto</a>
+                              <a href="#" image-path="<?php echo $view['router']->generate('BoomFrontBundle_image_ajax_create')?>" >
+                                  Foto
+                              </a>
                             </li>
+                            <!--
                             <li class="embed">
                               <div class="balloon">Embed</div>
-                              <a>Embed</a>
+                              <a href="#" >Embed</a>
                             </li>
+                            -->
                             <li class="gallery">
                               <div class="balloon">Galería</div>
-                              <a>Galería</a>
+                              <a
+                                  href="#"
+                                  image-path="<?php echo $view['router']->generate('BoomFrontBundle_image_ajax_create')?>"
+                                  gallery-new-path="<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_new')?>"
+                                  gallery-create-path="<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_create')?>"
+                                  gallery-edit-path="<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_edit',array('id' => '__id__'))?>"
+                                  gallery-update-path="<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_update',array('id' => '__id__'))?>"
+                                  >
+                                  Galería
+                              </a>
                             </li>
                             <li class="video">
                               <div class="balloon">Video</div>
-                              <a>Video</a>
+                              <a href="#" >Video</a>
                             </li>
                         </ul>
                         <?php
@@ -106,7 +119,9 @@
                                 'class' => 'boomie-position-input'
                             )
                                 )
-                        );
+                        );?>
+                        <div class="wysiwyg-container">
+                        <?php
                         echo $view['form']->widget(
                                 $element['content'], array(
                             'attr' => array(
@@ -116,8 +131,9 @@
                                 )
                         );
                         ?>
+                        </div>
                     </div>
-                    <span class="tab"><a href=""><span>TAB</span></a></span>
+                    <span class="tab"><a href="#"><span>TAB</span></a></span>
                 </fieldset></li>
         <?php endforeach; ?>
     </ul>

@@ -26,8 +26,6 @@
                 }
             });
 
-            t._selectVideo(ed);
-
             ed.addCommand('boomVideo', function() {
                 var embedPrompt = $.prompt(
                     'Codigo embed de video', '',
@@ -62,7 +60,6 @@
                         done: function(e, data){
                             if(data.result.id){
                                 ed.execCommand('mceInsertContent',false,'<img src="'+data.result.path+'" />');
-                                dialog.dialog('close');
                             }
                         }
                     });
@@ -132,7 +129,7 @@
                         form = dialog.find('form',0);
                         var buttons= {
                             'Agregar Imagen' : function(){
-                                inputUpload.click();
+                                formUpload.find('input[type=file]',0).click();
                             },
                             'Guardar': function(){
                                 $.post(
@@ -228,20 +225,6 @@
                 infourl : 'http://www.brutalcontent.com',
                 version : tinymce.majorVersion + "." + tinymce.minorVersion
             };
-        },
-
-        // Private methods
-        _selectVideo: function(ed){
-            ed.onClick.add(function(ed, e) {
-                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
-            });
-
-        },
-        _selectImage: function(ed){
-            ed.onClick.add(function(ed, e) {
-                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
-            });
-
         },
         // HTML -> BBCode in PunBB dialect
         _html2bbcode : function(s) {

@@ -1111,7 +1111,7 @@ header{position:relative;}
 }
 .list-grid .boom-ti a{
   color: #474747;
-  
+
 }
 .list-grid .date {
   color:#8d8d8d;
@@ -2551,9 +2551,8 @@ fieldset.on .accordion_content { overflow: visible;}
 #form-boom .accordion_content {
   padding:0;
   margin:10px 0;
-  -webkit-border-radius:0 8px 8px 0;
-  -moz-border-radius: 0 8px 8px 0;
-  border-radius: 0 8px 8px 0;
+  border: 0px !important;
+  position: relative;
 }
 
 #boom_bundle_frontbundle_boomtype_elements {
@@ -2629,6 +2628,8 @@ fieldset.on .accordion_content { overflow: visible;}
 .wyswyg-menu {
   width: 33px;
   display: inline-block;
+  position:relative;
+  float:left;
   height: 240px;
   vertical-align: top;
   border:none !important;
@@ -2671,12 +2672,18 @@ fieldset.on .accordion_content { overflow: visible;}
   background-position: center -132px;
 }
 
+.wysiwyg-container{
+  width: 585px;
+  padding:0px;
+  margin:0px !important;
+  border:0px;
+  overflow: hidden;
+}
+
 .boom-wysiwyg {
   width: 564px;
   padding: 10px;
   max-width: 564px;
-  max-height: 238px;
-  resize: none;
   font: 16px 'Helvetica', sans-serif;
   line-height: 20px;
   margin-left: -2px;
@@ -3035,7 +3042,7 @@ ul.paginador, ul.paginador {
   background: -o-linear-gradient(left,  #e35344 0%,#faa635 100%);
   background: -ms-linear-gradient(left,  #e35344 0%,#faa635 100%);
   background: linear-gradient(to right,  #e35344 0%,#faa635 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e35344', endColorstr='#faa635',GradientType=1 );   
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e35344', endColorstr='#faa635',GradientType=1 );
 }
 
 .gal-car .car-thumbs li:hover:after, .gal-car .car-thumbs li.active:after {
@@ -3067,3 +3074,18 @@ ul.paginador, ul.paginador {
  transform: rotate(180deg);
 }
 
+form#boom_gallery ul{
+    border-radius: 4px 4px 4px 4px;
+    overflow: auto;
+    padding: 3px;
+}
+
+form#boom_gallery ul li{
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    list-style: none outside none;
+    margin: 4px;
+    overflow: hidden;
+    padding: 8px;
+    position: relative;
+}

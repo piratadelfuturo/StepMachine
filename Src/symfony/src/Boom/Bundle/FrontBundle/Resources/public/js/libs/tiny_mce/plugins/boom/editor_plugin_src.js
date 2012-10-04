@@ -26,16 +26,61 @@
                 }
             });
 
-            t._selectVideo(ed);
-
             ed.addCommand('boomVideo', function() {
-                var embedPrompt = $.prompt(
-                    'Codigo embed de video', '',
-                    function(txt){
-                        ed.execCommand('mceInsertContent',false,txt);
-                    } );
+                var videoForm, videoLabel, videoText;
+                videoForm = $(document.createElement('form')).css({
+                    height:'100%'
+                });
+                videoLabel = $(document.createElement('label')).text('Pega el iframe embed de Vimeo o Youtube:');
+                videoText = $(document.createElement('textarea')).css({
+                    resize:'none',
+                    width:'100%',
+                    height:'85%'
+                });
+                videoForm.append(videoLabel,videoText);
+                var dialog = $(document.createElement('div'));
+                dialog.dialog({
+                    title:'Video',
+                    autoOpen: false,
+                    width: 680,
+                    height: 200,
+                    resizable: false,
+                    modal: true,
+                    buttons: {
+                        'Insertar' : function(){
+                            var wrap = $(document.createElement('div')).append(videoText.val());
+                            var iframe = wrap.find('iframe',0);
+                            var clean = $(document.createElement('div')).append(iframe);
+                            var allowed = [
+                                'http://www.youtube.com',
+                                'https://www.youtube.com',
+                                'http://player.vimeo.com',
+                                'https://player.vimeo.com'
+                            ],i=0;
+                            for(i=0;i<=allowed.length-1;i++){
+                                if(clean.html() !== '' && iframe.attr('src').indexOf(allowed[i]) == 0){
+                                    ed.focus();
+                                    ed.execCommand('mceInsertContent',false,clean.html());
+                                    dialog.dialog( "close" )
+                                    return true;
+                                    break;
+                                }
+                            }
+                            return false;
+                        },
+                        'Cerrar': function() {
+                            dialog.dialog( "close" )
+                            return true;
+                        }
+                    },
+                    close:function(){
+                        dialog.remove();
+                        return true;
+                    }
+                });
+                dialog.append(videoForm).dialog('open');
             });
-            ed.addCommand('boomImage', function() {
+            ed.addCommand('boomImage', function(flag,image_url) {
                 var formImageUpload,inputImageUpload;
                 if(uploader_forms[ed.id]){
                     formImageUpload = uploader_forms[ed.id]
@@ -50,19 +95,18 @@
                     });
                     formImageUpload.append(inputImageUpload);
                     uploader_forms[ed.id] = formImageUpload;
+                    var builtUrl = image_url+'?'+$.param(
+                    {
+                        path: inputImageUpload.attr('name'),
+                        _format:'json',
+                        w: 158,
+                        h: 90
+                    });
                     inputImageUpload.boomAjaxUpload({
-                        url: Routing.generate(
-                            'BoomBackBundle_image_ajax_create',
-                            {
-                                _format: 'json',
-                                path: inputImageUpload.attr('name'),
-                                w: 158,
-                                h: 90
-                            }),
+                        url: builtUrl,
                         done: function(e, data){
                             if(data.result.id){
                                 ed.execCommand('mceInsertContent',false,'<img src="'+data.result.path+'" />');
-                                dialog.dialog('close');
                             }
                         }
                     });
@@ -71,7 +115,8 @@
                 inputImageUpload.click();
             });
 
-            ed.addCommand('boomGallery', function() {
+
+            ed.addCommand('boomGallery', function(flag,image_url) {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
                 node = ed.selection.getNode(),
@@ -83,29 +128,22 @@
                 });
                 formUpload.append(inputUpload);
                 dialog.append(formUpload);
-                if(console.log){
-                    console.log(node);
-                }
                 formRoute['form'] = {};
-                formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_new';
-                formRoute['form']['vars'] = {};
+                formRoute['form']['name'] = image_url['new'];
                 formRoute['save'] = {};
-                formRoute['save']['name'] = 'BoomBackBundle_gallery_ajax_create';
-                formRoute['save']['vars'] = {
-                    '_format': 'json'
-                };
+                formRoute['save']['name'] = image_url['create'];
                 if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
-                    formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_edit';
-                    formRoute['form']['vars'] = {
-                        'id' : $(node).attr('insert-id')
-                    };
-                    formRoute['save']['name'] = 'BoomBackBundle_gallery_ajax_update';
-                    formRoute['save']['vars'] = {
-                        'id' : $(node).attr('insert-id'),
-                        '_format': 'json'
-                    };
+                    formRoute['form']['name'] = image_url['edit'].replace('__id__',$(node).attr('insert-id'));
+                    formRoute['save']['name'] = image_url['update'].replace('__id__',$(node).attr('insert-id'));
                     ed.dom.remove(node);
                 }
+                formRoute['image'] = image_url['image']+'?'+$.param(
+                {
+                    path: inputUpload.attr('name'),
+                    _format:'json',
+                    w: 116,
+                    h: 116
+                });
 
                 dialog.dialog({
                     title:'Galería',
@@ -124,77 +162,124 @@
                     }
                 });
                 dialog.dialog('open');
-
                 $.get(
-                    Routing.generate(formRoute['form']['name'],formRoute['form']['vars']),
-                    function(data){
-                        dialog.append(data);
-                        form = dialog.find('form',0);
-                        var buttons= {
-                            'Agregar Imagen' : function(){
-                                inputUpload.click();
-                            },
-                            'Guardar': function(){
-                                $.post(
-                                    Routing.generate(formRoute['save']['name'],formRoute['save']['vars']),
-                                    $(form).serialize(),
-                                    function(data){
-                                        var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="'+Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
-                                            'id' : data.id
-                                        })+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
-                                        ed.execCommand('mceInsertContent',false,html);
-                                        dialog.dialog( "close" );
-                                    }
-                                    );
-                            },
-                            'Cancelar': function() {
+                formRoute['form']['name'],
+                function(data){
+                    dialog.append(data);
+                    form = dialog.find('form',0);
+                    var buttons= {
+                        'Agregar Imagen' : function(){
+                            formUpload.find('input[type=file]',0).click();
+                        },
+                        'Guardar': function(){
+                            $.post(
+                            formRoute['save']['name'],
+                            $(form).serialize(),
+                            function(data){
+                                var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
+                                ed.execCommand('mceInsertContent',false,html);
                                 dialog.dialog( "close" );
                             }
-                        },list = form.find('ul',0);
-                        dialog.dialog( "option","buttons",buttons);
-                        list.sortable({
-                            tolerance: 'pointer',
-                            stop: function(event, ui){
-                                var elements = $(ui.item).parent().find('input[type=hidden][id$=_position]');
-                                elements.each(function(i){
-                                    $(this).val(i);
-                                });
-                            }
-                        }).disableSelection();
+                        );
+                        },
+                        'Cancelar': function() {
+                            dialog.dialog( "close" );
+                        }
+                    },list = form.find('ul',0);
+                    dialog.dialog( "option","buttons",buttons);
+                    list.sortable({
+                        tolerance: 'pointer',
+                        stop: function(event, ui){
+                            var elements = $(ui.item).parent().find('input[type=hidden][id$=_position]');
+                            elements.each(function(i){
+                                $(this).val(i);
+                            });
+                        }
+                    }).disableSelection();
 
-                        inputUpload.boomAjaxUpload({
-                            url: Routing.generate(
-                                'BoomBackBundle_image_ajax_create',
-                                {
-                                    _format: 'json',
-                                    path: inputUpload.attr('name'),
-                                    w: 116,
-                                    h: 116
-                                }),
-                            done: function(e,data){
-                                if(data.result.id){
-                                    var number = list.children().length;
-                                    var prototype = list.attr('data-prototype');
-                                    var transferElement = $(prototype.replace(/__name__/g, number));
-                                    transferElement.find('img',0).attr('src',data.result.path);
-                                    transferElement.find('input[type=hidden][id$=_image]',0).val(data.result.id);
-                                    transferElement.find('input[type=hidden][id$=_position]',0).val(number);
-                                    list.append(transferElement);
-                                }
+                    inputUpload.boomAjaxUpload({
+                        url: formRoute['image'],
+                        done: function(e,data){
+                            if(data.result.id){
+                                var number = list.children().length;
+                                var prototype = list.attr('data-prototype');
+                                var transferElement = $(prototype.replace(/__name__/g, number));
+                                transferElement.find('img',0).attr('src',data.result.path);
+                                transferElement.find('input[type=hidden][id$=_image]',0).val(data.result.id);
+                                transferElement.find('input[type=hidden][id$=_position]',0).val(number);
+                                list.append(transferElement);
                             }
-                        });
+                        }
                     });
+                });
             });
 
             ed.addCommand('boomLink', function() {
-                $.prompt(
-                    'Link hacia algun boom', '',
-                    function(txt){
-                        ed.execCommand('mceInsertLink',false, txt);
+                var linkForm, linkLabel, linkText, node, buttons;
+                linkForm = $(document.createElement('form')).css({
+                    height:'100%'
+                });
+                linkLabel = $(document.createElement('label')).text('Inserta una liga hacia algun boom:');
+                linkText = $(document.createElement('textarea')).css({
+                    resize:'none',
+                    width:'100%',
+                    height:'85%'
+                });
+                linkForm.append(linkLabel,linkText);
+                node = $(ed.selection.getNode());
+                buttons = [
+                    {
+                        text: 'Insertar',
+                        click: function(){
+                            var value = linkText.val();
+                            if(value.indexOf(window.location.protocol+'//'+window.location.hostname) == 0){
+                                ed.focus();
+                                ed.execCommand('mceInsertLink',false,value);
+                                dialog.dialog( "close" )
+                                return true;
+                            }
+                        }
+                    },
+                    {
+                        text: 'Cerrar',
+                        click: function() {
+                            dialog.dialog( "close" )
+                            return true;
+                        }
+                    }
+                ];
+
+                if(node.attr('href')){
+                    linkText.val(node.attr('href'));
+                    buttons.unshift({
+                        text: 'Quitar',
+                        click: function(){
+                            ed.focus();
+                            ed.formatter.remove('link');
+                            dialog.dialog( "close" )
+                            return true
+                        }
                     });
+                }
+                var dialog = $(document.createElement('div'));
+                dialog.dialog({
+                    title:'Link',
+                    autoOpen: false,
+                    width: 500,
+                    height: 200,
+                    resizable: false,
+                    modal: true,
+                    buttons: buttons,
+                    close:function(){
+                        dialog.remove();
+                        return true;
+                    }
+                });
+                dialog.append(linkForm).dialog('open');
             });
 
             // Register example button
+            /*
             ed.addButton('boom_video', {
                 title : 'Agrega un video',
                 cmd : 'boomVideo',
@@ -218,6 +303,7 @@
                 cmd : 'boomLink',
                 image : url + '/img/glyphicons_050_link.png'
             });
+             */
 
         },
         getInfo : function() {
@@ -228,20 +314,6 @@
                 infourl : 'http://www.brutalcontent.com',
                 version : tinymce.majorVersion + "." + tinymce.minorVersion
             };
-        },
-
-        // Private methods
-        _selectVideo: function(ed){
-            ed.onClick.add(function(ed, e) {
-                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
-            });
-
-        },
-        _selectImage: function(ed){
-            ed.onClick.add(function(ed, e) {
-                //console.debug('Editor was clicked: ' + e.target.nodeName,e,ed);
-            });
-
         },
         // HTML -> BBCode in PunBB dialect
         _html2bbcode : function(s) {
@@ -260,6 +332,8 @@
             rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
             rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?>.*?<\/iframe>/gi,"");
+            rep(/<div.*?>(.*?)<\/div>/gi,"$1");
             rep(/<\/(strong|b)>/gi,"[/b]");
             rep(/<(strong|b)>/gi,"[b]");
             rep(/<\/(em|i)>/gi,"[/i]");
@@ -303,7 +377,7 @@
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
-            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+Routing.generate('BoomFrontBundle_gallery_iframe_preview')+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
+            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\"/gal/preview/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
             return s;

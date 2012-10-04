@@ -32,12 +32,13 @@
         <!-- Use Google CDN for jQuery and jQuery UI -->
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/modernizr-1.7.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.8.2.min.js') ?>"></script>
-        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-ui-1.8.22.custom.min.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-ui-1.8.23.custom.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/file_upload/js/jquery.iframe-transport.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/file_upload/js/jquery.fileupload.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.cookie.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.boomAjaxUpload.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery.blockUI.js') ?>"></script>
+        <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/tiny_mce/tiny_mce_src.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/jquery.dragsort-0.5.1.min.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/plugins.js') ?>"></script>
         <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/script.js') ?>"></script>
