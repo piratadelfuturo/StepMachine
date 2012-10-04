@@ -176,7 +176,7 @@
                             formRoute['save']['name'],
                             $(form).serialize(),
                             function(data){
-                                var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
+                                var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
                                 ed.execCommand('mceInsertContent',false,html);
                                 dialog.dialog( "close" );
                             }
