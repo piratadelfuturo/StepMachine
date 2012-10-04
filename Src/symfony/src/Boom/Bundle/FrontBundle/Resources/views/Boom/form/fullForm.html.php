@@ -1,6 +1,7 @@
 <?php $view['form']->setTheme($form, array('BoomFrontBundle:Form')) ?>
-<form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $form_enctype ?> >
+<form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
     <fieldset>
+        <?php echo $view['form']->errors($form) ?>
         <?php echo $view['form']->widget($form['_token']) ?>
         <?php echo $view['form']->label($form['title'], 'Título de tu boom') ?>
         <div class="grad-border">
@@ -55,7 +56,6 @@
                     </label>
                     <div class="uploader">
                       <p class="instrucciones">Arrastra tu foto</p>
-                      <!-- <input class="up-pic" type="file multiple"  placeholder="Arrastra tu foto"> -->
                       <?php
                       echo $view['form']->widget(
                               $element['image'], array(

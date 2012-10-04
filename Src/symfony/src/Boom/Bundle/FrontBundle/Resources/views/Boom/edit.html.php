@@ -14,8 +14,7 @@
     <?php
     echo $view->render(
         'BoomFrontBundle:Boom:form/fullForm.html.php', array(
-          'form_url' => $view['router']->generate('BoomFrontBundle_boom_create'),
-          'form_enctype' => $view['form']->enctype($edit_form),
+          'form_url' => $view['router']->generate('BoomFrontBundle_boom_edit',array('slug' => $entity['slug'])),
           'form' => $edit_form
         )
     );

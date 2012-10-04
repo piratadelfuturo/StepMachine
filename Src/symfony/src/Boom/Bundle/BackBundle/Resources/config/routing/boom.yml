@@ -32,11 +32,12 @@ BoomBackBundle_boom_new:
 BoomBackBundle_boom_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "BoomBackBundle:Boom:edit" }
+    requirements: { _method: get }
     options:
         expose: true
 
 BoomBackBundle_boom_update:
-    pattern:  /{id}/update
+    pattern:  /{id}/edit
     defaults: { _controller: "BoomBackBundle:Boom:update" }
     requirements: { _method: post }
     options:

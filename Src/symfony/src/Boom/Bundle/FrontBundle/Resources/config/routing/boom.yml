@@ -15,6 +15,7 @@ BoomFrontBundle_boom_reply:
 BoomFrontBundle_boom_new:
     pattern:  /nuevo
     defaults: { _controller: "BoomFrontBundle:Boom:new" }
+    requirements: { _method: get }
 
 BoomFrontBundle_boom_create:
     pattern:  /nuevo
