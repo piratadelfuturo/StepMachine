@@ -11,6 +11,8 @@
             _parent = _this.parent();
 
             _this.fileupload({
+                pasteZone: null,
+                dropZone: _this,
                 dataType: 'json',
                 paramName: _this.attr('name'),
                 url: _base.options.url,
