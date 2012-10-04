@@ -2356,7 +2356,7 @@ fieldset.on .accordion_content { overflow: visible;}
   left: -140px;
 }
 
-.wyswyg-menu li .balloon{
+.sort-elements .wyswyg-menu li .balloon{
   top: -7px
 }
 
@@ -2569,12 +2569,12 @@ fieldset.on .accordion_content { overflow: visible;}
 }
 
 
-#front__boom .grad-border {
+#front_boom .grad-border {
   margin: 0;
   width: 640px;
 }
 
-#front__boom_title {
+.titulo-deboom {
   width: 636px;
   font: 20px 'Museo500', sans-serif;
   line-height: 34px;
@@ -2634,7 +2634,7 @@ fieldset.on .accordion_content { overflow: visible;}
   display: inline-block;
   position:relative;
   float:left;
-  height: 240px;
+  height: 288px;
   vertical-align: top;
   border:none !important;
   background: #504f4f;
@@ -2741,7 +2741,7 @@ label[for=boom_bundle_frontbundle_boomtype_category] {
   display: block;
 }
 
-#front__boom_tags {
+#front_boom_tags {
   width: 630px;
   font: 20px 'Museo500', sans-serif;
   line-height: 34px;
