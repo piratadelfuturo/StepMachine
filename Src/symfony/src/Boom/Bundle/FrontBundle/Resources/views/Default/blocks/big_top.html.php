@@ -30,7 +30,7 @@
         foreach ($list as $element):
           $position++;
       ?>
-      <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/g/158/90'?>
+      <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],133,75) : 'http://placekitten.com/g/158/90'?>
       <li class="<?php echo $position == 1 ? 'active' : '' ?>">
         <p>
           <a href="# <?php //echo $element['url'] ?>">
@@ -38,7 +38,7 @@
           </a>
         </p>
         <a href="# <?php //echo $element['url'] ?>">
-          <img src="http://placehold.it/133x75" alt="<?php echo $view->escape($element['title']) ?>" />
+          <img src="<?php echo $image?>" alt="<?php echo $view->escape($element['title']) ?>" />
         </a>
       </li>
       <?php endforeach; ?>
