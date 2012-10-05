@@ -1835,15 +1835,21 @@ footer p{
   background-position: right -144px;
 }
 
+.single-boom .title-flag span:before {
+  border: none;
+}
 
-.single-boom .title-flag span:before{
-  border:none;
+.single-boom date {
+  line-height: 25px;
 }
-.single-boom date{
-  line-height:25px;
-}
-.single-boom p{
+
+.single-boom p {
   color: #828282;
+}
+
+.single-boom p iframe {
+  display: block;
+  margin: 15px auto;
 }
 
 #container.interior-boom aside{width:330px;}
