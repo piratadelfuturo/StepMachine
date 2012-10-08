@@ -974,6 +974,8 @@ header{position:relative;}
 
 .car-thumbs li img {
   position: relative;
+  width: 133px;
+  height: 75px;
 }
 
 .car-thumbs li p {
@@ -1076,7 +1078,7 @@ header{position:relative;}
   float:left;
 }
 
-#booms-container .list-grid span.moar{
+#booms-container .list-grid a.moar{
   width:159px;
   height:180px;
   background: url('../images/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
@@ -1497,6 +1499,8 @@ footer p{
   float:left;
 }
 .lista-colaboradores img{
+  width: 147px;
+  height: 147px;
   margin-right:20px;
 }
 .lista-colaboradores h3{
@@ -1519,8 +1523,8 @@ footer p{
 .lista-colaboradores p{
   font: 14px 'Museo500', sans-serif;
   color:#828282;
-  width:480px;
   display:block;
+  padding-right: 30px;
 }
 .lista-colaboradores .seguir{
   font: 15px 'Proxima', sans-serif;
@@ -2299,6 +2303,11 @@ fieldset.on .accordion_content { overflow: visible;}
 .drag-booms li .boom-info, .drag-booms li img, .drag-booms li .pos {
   display: inline-block;
   vertical-align: top;
+}
+
+.drag-booms li img{
+  width: 72px;
+  height: 72px;
 }
 
 .drag-booms li .pos {

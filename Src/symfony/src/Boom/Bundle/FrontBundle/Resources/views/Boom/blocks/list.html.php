@@ -8,10 +8,11 @@
                 'BoomFrontBundle_boom_show', array(
             'category_slug' => $element['category']['slug'], 'slug' => $element['slug']
                 )
-        );
+              );
+    $image =  isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/158/90';
         ?>
         <li class="boom">
-            <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) ?>" width="158px" height="90px" >
+            <img src="<?php echo $image?>" width="158px" height="90px" >
             <div class="boom-info">
                 <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                 <p class="boom-ti">

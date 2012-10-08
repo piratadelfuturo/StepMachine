@@ -58,7 +58,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                             </span>
                             <div class="float-container cf">
                                 <?php if (isset($element['image']['path'])) { ?>
-                                    <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path']); ?>" height="87px" width="151px" />
+                                    <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90); ?>" height="87px" width="153px" />
                                 <?php } ?>
                                 <p class="boom-ti"><?php echo $element['title'] ?></p>
                             </div>
