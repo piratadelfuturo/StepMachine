@@ -29,7 +29,7 @@ foreach ($entity['elements'] as $el) {
                             <p>arrastrar</p>
                         </div>
                         <p class="pos"><span><?php echo $view->escape($elementposition) ?></span></p>
-                        <img src="http://placehold.it/72x72">
+                        <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path'],72,72) ?>">
                         <h4 class="boom-info">
                             <span><?php echo $view->escape($element['title']) ?></span>
                         </h4>

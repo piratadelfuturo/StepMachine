@@ -974,6 +974,8 @@ header{position:relative;}
 
 .car-thumbs li img {
   position: relative;
+  width: 133px;
+  height: 75px;
 }
 
 .car-thumbs li p {
@@ -2299,6 +2301,11 @@ fieldset.on .accordion_content { overflow: visible;}
 .drag-booms li .boom-info, .drag-booms li img, .drag-booms li .pos {
   display: inline-block;
   vertical-align: top;
+}
+
+.drag-booms li img{
+  width: 72px;
+  height: 72px;
 }
 
 .drag-booms li .pos {
