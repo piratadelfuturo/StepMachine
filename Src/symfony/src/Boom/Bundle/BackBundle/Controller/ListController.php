@@ -121,26 +121,22 @@ class ListController extends Controller {
             throw $this->createNotFoundException('Unable to find entity.');
         }
 
-        $newListElements = array();
-        $originalListElements = array();
-
-        foreach ($entity['listelements'] as $listelement)
-            $originalListElements[] = $listelement;
-
+        $originalListElements = $entity['listelements']->toArray();
 
         $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
 
-        if ($form->isValid()) {
-            $newListElements = &$entity['listelements'];
-            foreach ($newListElements as $nle) {
-                foreach ($originalListElements as $key => $ole) {
-                    if ($ole['id'] === $nle['id']) {
-                        unset($originalListElements[$key]);
-                    }
+        $newListElements = &$entity['listelements'];
+        foreach ($newListElements as $nle) {
+            foreach ($originalListElements as $key => $ole) {
+                if ($ole['id'] === $nle['id']) {
+                    unset($originalListElements[$key]);
                 }
             }
+        }
+
+        if ($form->isValid()) {
             foreach ($originalListElements as $ole) {
                 $em->remove($ole);
             }
@@ -154,7 +150,6 @@ class ListController extends Controller {
                             )
             );
         }
-
 
         return $this->render(
                         'BoomBackBundle:List:edit.html.php', array(

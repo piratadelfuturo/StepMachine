@@ -3,17 +3,78 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: slug
         - Callback:
             methods:   [validations]
+    properties:
+        slug:
+          - NotBlank: ~
+          - NotNull: ~
+          - Type:
+              type: string
+        title:
+          - NotBlank: ~
+          - NotNull: ~
+          - Type:
+              type: string
+        elements:
+          - Count:
+                min: 7
+                max: 7
+          - Valid: ~
+        date_created:
+          - NotBlank: ~
+          - DateTime: ~
+        date_published:
+          - NotNull: ~
+          - DateTime: ~
+        nsfw:
+          - NotBlank: ~
+          - Type:
+              type: bool
+        reply_enabled:
+          - NotBlank: ~
+          - Type:
+              type: bool
+        status:
+          - Type:
+              type: integer
+          - Range:
+              min: 0
+              max: 5
+        image:
+          - NotNull: ~
+        user:
+          - NotNull: ~
+        category:
+          - NotNull: ~
+        featured:
+          - Blank: ~
+          - DateTime: ~
 
 Boom\Bundle\LibraryBundle\Entity\User:
     properties:
       profile_image:
+        - Blank: ~
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]
 
 Boom\Bundle\LibraryBundle\Entity\Image:
     properties:
+      path:
+        - NotBlank: ~
       file:
+        - Blank: ~
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]
+
+Boom\Bundle\LibraryBundle\Entity\ListGroup:
+    properties:
+      list_elements:
+        - Valid: ~
+
+Boom\Bundle\LibraryBundle\Entity\ListElement:
+    properties:
+      title:
+        - NotBlank: ~
+      url:
+        - NotBlank: ~

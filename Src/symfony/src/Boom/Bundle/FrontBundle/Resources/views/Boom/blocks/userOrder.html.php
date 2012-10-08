@@ -4,6 +4,10 @@ foreach ($entity['elements'] as $el) {
     $position = $el['communityposition'] == 0 ? $el['position'] : $el['communityposition'];
     $elements[$position] = $el;
 }
+$userElements = array();
+var_dump($app->getUser());
+exit;
+var_dump($view['boom_front']->getUserBoomOrder($app->getUser()->getId(),$entity['id']));
 ?>
 
 <div id="usr-booms">

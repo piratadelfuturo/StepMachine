@@ -67,6 +67,15 @@ class MainHelper extends Helper {
         );
     }
 
+    public function getUserBoomOrder($user_id, $boom_id){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:BoomelementRank');
+        return $repo->findBy(array(
+            'user' => $user_id,
+            'boom' => $boom_id
+        ));
+    }
+
     public function getName() {
         return 'boom_front';
     }

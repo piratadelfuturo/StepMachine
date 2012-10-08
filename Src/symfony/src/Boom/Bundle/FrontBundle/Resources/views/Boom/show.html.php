@@ -85,7 +85,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     foreach ($tags as $tag):
                         ?>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_list_tag', array('slug' => $tag['slug'])); ?>"><?php echo $view->escape($tag['name']) ?></a><?php echo $coma = (++$ind != $numTags) ? ',' : '.'; ?>
-<?php endforeach ?>
+                    <?php endforeach ?>
                 </p>
             </div>
             <div class="social cf">

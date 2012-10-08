@@ -28,10 +28,10 @@ class ListElementType extends AbstractType {
 
         $builder
                 ->add('position', 'hidden', array('required' => true))
-                ->add('title', 'text', array('required' => true))
-                ->add('summary', 'text', array('required' => false))
-                ->add('url', 'text', array('required' => true));
-        $ajax_image =   $builder->create('image', 'ajax_image', array('required' => false));
+                ->add('title', 'text', array('required' => false,'label' => 'Título'))
+                ->add('summary', 'text', array('required' => false,'label' => 'Sumario'))
+                ->add('url', 'text', array('required' => false,'label' => 'URL'));
+        $ajax_image =   $builder->create('image', 'ajax_image', array('required' => false,'label' => 'Imagen'));
 
         $builder->add($ajax_image)
                 ->add(

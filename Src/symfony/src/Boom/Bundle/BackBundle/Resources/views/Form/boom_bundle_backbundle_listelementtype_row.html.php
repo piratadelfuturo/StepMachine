@@ -5,11 +5,6 @@
         <a title="remove" class="collapse remove"></a>
     </h3>
     <fieldset>
-        <?php
-        if (isset($element['id'])) {
-            //echo $view['form']->row($element['id']);
-        }
-        ?>
         <?php echo $view['form']->widget($form); ?>
     </fieldset>
 </fieldset>
