@@ -29,6 +29,6 @@ if (!isset($list)) {
                 <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
             </li>
         <?php endforeach; ?>
-        <a href="<?php echo $more_url ?>"><span class="moar">ver más</span></a>
+        <a href="<?php echo $more_url ?>" class="moar">ver más</a>
     </ul>
 </div>

@@ -1078,7 +1078,7 @@ header{position:relative;}
   float:left;
 }
 
-#booms-container .list-grid span.moar{
+#booms-container .list-grid a.moar{
   width:159px;
   height:180px;
   background: url('../images/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
@@ -1499,6 +1499,8 @@ footer p{
   float:left;
 }
 .lista-colaboradores img{
+  width: 147px;
+  height: 147px;
   margin-right:20px;
 }
 .lista-colaboradores h3{
@@ -1521,8 +1523,8 @@ footer p{
 .lista-colaboradores p{
   font: 14px 'Museo500', sans-serif;
   color:#828282;
-  width:480px;
   display:block;
+  padding-right: 30px;
 }
 .lista-colaboradores .seguir{
   font: 15px 'Proxima', sans-serif;

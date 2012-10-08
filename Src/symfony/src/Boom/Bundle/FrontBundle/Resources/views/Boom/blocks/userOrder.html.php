@@ -23,13 +23,15 @@ foreach ($entity['elements'] as $el) {
                             '_format' => 'json'
                         )
                     ); ?>">
-                <?php foreach ($elements as $elementposition => $element): ?>
+                <?php foreach ($elements as $elementposition => $element): 
+                      $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],72,72) : 'http://placekitten.com/72/72';
+                        ?>
                     <li original-position="<?php echo $view->escape($element['position']) ?>">
                         <div class="balloon">
                             <p>arrastrar</p>
                         </div>
                         <p class="pos"><span><?php echo $view->escape($elementposition) ?></span></p>
-                        <img src="<?php echo $view['boom_image']->getBoomImageUrl($element['image']['path'],72,72) ?>">
+                        <img src="<?php echo $image ?>">
                         <h4 class="boom-info">
                             <span><?php echo $view->escape($element['title']) ?></span>
                         </h4>
