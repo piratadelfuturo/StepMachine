@@ -5,9 +5,7 @@ foreach ($entity['elements'] as $el) {
     $elements[$position] = $el;
 }
 $userElements = array();
-var_dump($app->getUser());
-exit;
-var_dump($view['boom_front']->getUserBoomOrder($app->getUser()->getId(),$entity['id']));
+//var_dump($view['boom_front']->getUserBoomOrder($app->getUser()->getId(),$entity['id']));
 ?>
 
 <div id="usr-booms">
@@ -27,7 +25,7 @@ var_dump($view['boom_front']->getUserBoomOrder($app->getUser()->getId(),$entity[
                             '_format' => 'json'
                         )
                     ); ?>">
-                <?php foreach ($elements as $elementposition => $element): 
+                <?php foreach ($elements as $elementposition => $element):
                       $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],72,72) : 'http://placekitten.com/72/72';
                         ?>
                     <li original-position="<?php echo $view->escape($element['position']) ?>">
