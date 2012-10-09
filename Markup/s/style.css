@@ -893,7 +893,7 @@ h1 a {
   float:left;
 }
 
-#booms-container .list-grid span.moar{
+#booms-container .list-grid a.moar{
   width:159px;
   height:180px;
   background: url('../images/boom_rightarrow.png') no-repeat center 87px, #EAEAEA;
@@ -2344,11 +2344,16 @@ content: '';
   font: 14px 'Museo500', sans-serif;
   margin:0 10px;
 }
-.lista-colaboradores .colab .usr-options{
+
+.lista-colaboradores .boton{
   position:absolute;
   bottom: 0;
   left: 0;
 }
+.lista-colaboradores .boton.ver-perfil{
+  left: 90px;
+}
+
 .lista-colaboradores .colab .boton{
   display:inline-block;
   margin:0;
@@ -2362,7 +2367,7 @@ content: '';
   width:480px;
   display:block;
 }
-.lista-colaboradores .seguir{
+.lista-colaboradores .boton.seguir, .lista-colaboradores .boton.ver-perfil{
   font: 15px 'Proxima', sans-serif;
   line-height:25px;
   color:#FFF;

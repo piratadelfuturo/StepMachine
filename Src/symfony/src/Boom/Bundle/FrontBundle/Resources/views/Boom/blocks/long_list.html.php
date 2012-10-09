@@ -5,7 +5,7 @@ if (!isset($list)) {
 ?>
 <div class="boomer ultimos">
     <h3 class="title-flag"><span>ultimos</span></h3>
-    <ul class="list">
+    <ul class="list cf">
         <?php
         foreach ($list as $element):
             $elementUrl = $view['router']->generate(
@@ -36,6 +36,6 @@ if (!isset($list)) {
                 </div>
             </li>
         <?php endforeach; ?>
-        <a href="<?php echo $more_url ?>" class="moar">ver más</a>
+        <li><a href="<?php echo $more_url ?>" class="moar">ver más</a></li>
     </ul>
 </div>

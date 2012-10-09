@@ -32,7 +32,7 @@
         </li>
     <?php endforeach; ?>
     <?php if (isset($more_url)): ?>
-        <a href="<?php echo $more_url ?>"><span class="moar">ver más</span></a>
+        <a href="<?php echo $more_url ?>" class="moar">ver más</a>
     <?php endif; ?>
     <li class="pags">
       <ul class="paginador">

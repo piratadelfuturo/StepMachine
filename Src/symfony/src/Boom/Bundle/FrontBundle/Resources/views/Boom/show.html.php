@@ -39,7 +39,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
             <a href="#" class="btn-fav">Marcar como favorito:</a>
         </div>
         <div class="autor cf">
-            <a href="#" class="autor-thumb"><img src="http://placekitten.com/85/87" alt="Placeholder" /></a>
+            <a href="#" class="autor-thumb"><img src="<?php echo $entity['user']['imagepath'] ?>"></a>
             <div class="txt-container">
                 <h3>Publicado por <a rel="author" href="#"><?php echo $entity['user']['username'] ?></a></h3>
                 <p>Phillip k. Dick es un escritor de California. Su literatura está influenciada por la narrativa policiaca de Raymond Chandler y los textos futuristas de William Gibson. K. Dick es quizá el autor más adaptado al cine...<a class="ver-moar" href="#">Leer más</a></p>
@@ -97,4 +97,3 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         </div>
     </div>
 </div>
-

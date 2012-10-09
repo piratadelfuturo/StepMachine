@@ -1948,11 +1948,15 @@ footer p{
 .single-boom .autor img, .single-boom .autor h3, .single-boom .autor p {
   display: block;
 }
-
+.single-boom  .autor-thumb{
+  text-align: center;
+  width: 87px;
+  display: inline-block;
+  overflow-x: hidden;
+}
 .single-boom .autor img {
   float: left;
   margin-right: 15px;
-  width: 85px;
   height: 87px;
 }
 
@@ -1976,9 +1980,10 @@ footer p{
 }
 
 .single-boom .autor div {
-  float: left;
   width: 590px;
   padding-top: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .single-boom .booms {

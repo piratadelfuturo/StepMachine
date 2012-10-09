@@ -5,7 +5,7 @@ if (!isset($list)) {
 ?>
 <div class="boomer">
     <h3 class="title-flag"><span><?php echo $view->escape($title); ?></span></h3>
-    <ul class="list-grid">
+    <ul class="list-grid cf">
         <?php
         foreach ($list as $element):
             $elementUrl = $view['router']->generate(
@@ -29,6 +29,6 @@ if (!isset($list)) {
                 <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
             </li>
         <?php endforeach; ?>
-        <a href="<?php echo $more_url ?>" class="moar">ver más</a>
+        <li><a href="<?php echo $more_url ?>" class="moar">ver más</a></li>
     </ul>
 </div>
