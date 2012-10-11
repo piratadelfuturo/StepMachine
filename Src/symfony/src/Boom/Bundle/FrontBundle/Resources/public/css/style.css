@@ -1847,8 +1847,12 @@ footer p{
   line-height: 25px;
 }
 
+.single-boom .boom-else > .boom-info p {
+  font-size: 14px;
+}
 .single-boom p {
-  color: #828282;
+  color: #313131;
+  font-size: 13px;
 }
 
 .single-boom p iframe {
@@ -3009,7 +3013,7 @@ ul.paginador, ul.paginador {
 /* SLIDER GAL */
 .gal-car {
   width: 590px;
-  margin: 0 34px;
+  margin: 15px 34px;
   overflow-x: hidden;
   background: #000;
   position: relative;
@@ -3073,6 +3077,8 @@ ul.paginador, ul.paginador {
 }
 
 .gal-car .car-thumbs li img {
+  width: 78px;
+  height: 53px;
 }
 
 .gal-car .car-nav .car-btn {
