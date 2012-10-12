@@ -5,6 +5,7 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use Boom\Bundle\LibraryBundle\Entity\Category;
 use Boom\Bundle\LibraryBundle\Entity\Tag;
+use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class BoomRepository extends NestedTreeRepository {
@@ -378,6 +379,20 @@ class BoomRepository extends NestedTreeRepository {
 
         return $result;
 
+    }
+
+    public function isFavoriteUser(Boom $boom,User $user){
+
+        $cb = $this->createQueryBuilder('boom');
+        $cb->select('boom.id');
+        $cb->join('boom.favorite_users', 'favorite');
+        $cb->andWhere(
+                $cb->expr()->eq('boom.id', $boom['id']),
+                $cb->expr()->in('favorite.id', $user['id'])
+        );
+        $query = $cb->getQuery();
+        $result = (bool) $query->getScalarResult();
+        return $result;
     }
 
 }

@@ -19,7 +19,7 @@ $userElements = array();
         <div class="dyna-content tend-cont on">
             <h3>nuestros usuarios dicen</h3>
             <ul class="drag-booms" reorder-url="<?php echo $view['router']->generate(
-                        'BoomFrontBundle_Boom_reorder',
+                        'BoomFrontBundle_boom_reorder',
                         array(
                             'slug' => $entity['slug'],
                             '_format' => 'json'

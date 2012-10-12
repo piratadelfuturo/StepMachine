@@ -2,13 +2,6 @@
 <html xmlns:fb="http://ogp.me/ns/fb#"
       xmlns:og="http://opengraphprotocol.org/schema/">
     <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# seven_boom_mx: http://ogp.me/ns/fb/seven_boom_mx#">
-        <?php
-        $title = $view['slots']->get('title', null);
-        ?>
-        <title>7boom <?php echo $title !== null ? '- ' . $title : ''; ?></title>
-
-        <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
         <?php if ($fb_boom_graph_data !== null): ?>
             <meta property="fb:app_id" content="349118228506488" />
@@ -18,7 +11,13 @@
             <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
             <meta property="og:image"  content="<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
         <?php endif; ?>
+        <?php
+        $title = $view['slots']->get('title', null);
+        ?>
+        <title>7boom <?php echo $title !== null ? '- ' . $title : ''; ?></title>
 
+        <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
 
         <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('/bundles/boomfront/css/boomfront-theme/jquery-ui-1.8.22.custom.css'); ?>" />

@@ -1,7 +1,17 @@
-BoomFrontBundle_Boom_reorder:
-    pattern:  /reordena/{slug}.{_format}
+BoomFrontBundle_boom_reorder:
+    pattern:  /{slug}/reordena.{_format}
     defaults: { _controller: "BoomFrontBundle:Boom:reorder", _format: "json" }
     requirements: { _method: post }
+
+BoomFrontBundle_boom_fav:
+    pattern:  /{slug}/fav
+    defaults: { _controller: "BoomFrontBundle:Boom:favorite", _format: "json" }
+    requirements: { _method: get }
+
+BoomFrontBundle_boom_favstatus:
+    pattern:  /{slug}/favstat
+    defaults: { _controller: "BoomFrontBundle:Boom:favoriteStatus", _format: "json" }
+    requirements: { _method: get }
 
 BoomFrontBundle_boom_image:
     pattern:  /imagen.json

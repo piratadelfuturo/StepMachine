@@ -19,6 +19,46 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class BoomController extends Controller {
 
+    public function favoriteStatusAction($slug) {
+
+        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
+        /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
+        $em = $this->getDoctrine()->getManager();
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $entity = $boomRepo->findOneBySlug($slug);
+
+        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+            throw $this->createNotFoundException('Unable to find Boom entity.');
+        }
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+        $fav = $boomRepo->isFavoriteUser($entity, $sessionUser);
+        return new Response(json_encode($fav));
+    }
+
+    public function favoriteAction($slug) {
+        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
+        /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
+        $em = $this->getDoctrine()->getManager();
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $entity = $boomRepo->findOneBySlug($slug);
+
+        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+            throw $this->createNotFoundException('Unable to find Boom entity.');
+        }
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+        $fav = $boomRepo->isFavoriteUser($entity, $sessionUser);
+        if ($fav) {
+            $sessionUser->removeFavorite($entity);
+        } else {
+            $sessionUser->addFavorite($entity);
+        }
+        $em->persist($sessionUser);
+        $em->flush();
+        return new Response(json_encode(!$fav));
+    }
+
     public function reorderAction($slug) {
 
         $sessionToken = $this->get('security.context')->getToken();
@@ -28,7 +68,7 @@ class BoomController extends Controller {
         $boomRank = $em->getRepository('BoomLibraryBundle:Boom');
         $repoRank = $em->getRepository('BoomLibraryBundle:BoomelementRank');
 
-        $boom = $boomRank->findOneBy($slug);
+        $boom = $boomRank->findOneBySlug($slug);
 
         $ranks = $repoRank->findBy(array(
             'boom' => $boom,
@@ -210,7 +250,7 @@ class BoomController extends Controller {
 
         $request = $this->getRequest();
         $entity = new Boom();
-        $form = $this->createForm(new BoomType(),$entity);
+        $form = $this->createForm(new BoomType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {

@@ -16,6 +16,18 @@ $fb_boom_graph_data['url'] = $view['router']->generate(
         ), true
 );
 
+$twitter = array(
+    'url'      => $fb_boom_graph_data['url'],
+    'text'    => $fb_boom_graph_data['title'],
+    'related'  => '7_boom',
+    'counturl' => $fb_boom_graph_data['url'],
+    'hashtags' => $category['slug']
+);
+
+$twitterUrl = 'https://twitter.com/share?'.http_build_query($twitter);
+
+$favUrl = $view['router']->generate('BoomFrontBundle_boom_fav',array('slug'=>$entity['slug']));
+
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 ?>
@@ -34,9 +46,10 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         </div>
         <div class="social cf">
             <p>Comparte:</p>
+            <div class="fb-like" data-href="<?php $fb_boom_graph_data['url'] ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
             <a href="#" class="btn-fb">facebook</a>
-            <a href="#" class="btn-tw">twitter</a>
-            <a href="#" class="btn-fav">Marcar como favorito:</a>
+            <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
+            <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav">Marcar como favorito:</a>
         </div>
         <div class="autor cf">
             <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $entity['user']['imagepath'] ?>"></a>
@@ -57,7 +70,6 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     endif;
                     $elementContent = $element['content'] === null ? '' : $element['content'];
                     ?></p>
-                    ?>
                     <li class="boom">
                         <div class="boom-info cf">
                             <span class="place">
@@ -97,9 +109,10 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
             </div>
             <div class="social cf">
                 <p>Comparte:</p>
-                <a href="#" class="btn-fb">facebook</a>
-                <a href="#" class="btn-tw">twitter</a>
-                <a href="#" class="btn-fav">Marcar como favorito:</a>
+                <div class="fb-like" data-href="<?php $fb_boom_graph_data['url'] ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                <a href="#" class="btn-fb" >facebook</a>
+                <a href="<?php echo $twitterUrl ?>" class="btn-tw" >twitter</a>
+                <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav" >Marcar como favorito:</a>
             </div>
         </div>
     </div>
