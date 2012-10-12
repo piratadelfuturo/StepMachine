@@ -11,17 +11,21 @@
 
 namespace Boom\Bundle\UserBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
-class SecurityController extends ContainerAware
-{
-    public function loginAction()
-    {
-        $request = $this->container->get('request');
+class SecurityController extends Controller {
+
+    public function loginAction() {
         /* @var $request \Symfony\Component\HttpFoundation\Request */
-        $session = $request->getSession();
         /* @var $session \Symfony\Component\HttpFoundation\Session */
+        /* @var $security \Symfony\Component\Security\Core\SecurityContext */
+        $security = $this->container->get('security.context');
+        $request = $this->container->get('request');
+        $session = $request->getSession();
+        if ($security->isGranted('IS_AUTHENTICATED_FULLY') === true) {
+            return $this->redirect($this->generateUrl('BoomFrontBundle_homepage'));
+        }
 
         // get the error if any (works with forward and redirect -- see below)
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
@@ -44,10 +48,10 @@ class SecurityController extends ContainerAware
 
         //return $this->renderLogin(array(
         return $this->container->get('templating')->renderResponse('BoomUserBundle:Security:login.html.php', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'csrf_token' => $csrfToken,
-        ));
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+                    'csrf_token' => $csrfToken,
+                ));
     }
 
     /**
@@ -57,20 +61,18 @@ class SecurityController extends ContainerAware
      * @param array $data
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected function renderLogin(array $data)
-    {
+    protected function renderLogin(array $data) {
         $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
 
         return $this->container->get('templating')->renderResponse($template, $data);
     }
 
-    public function checkAction()
-    {
+    public function checkAction() {
         throw new \RuntimeException('You must configure the check path to be handled by the firewall using form_login in your security firewall configuration.');
     }
 
-    public function logoutAction()
-    {
+    public function logoutAction() {
         throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
     }
+
 }

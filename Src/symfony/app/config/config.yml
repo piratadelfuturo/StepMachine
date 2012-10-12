@@ -23,7 +23,7 @@ fos_user:
     firewall_name: boom_area
     user_class: Boom\Bundle\LibraryBundle\Entity\User
     template:
-        engine: twig
+        engine: php
     group:
         group_class: Boom\Bundle\LibraryBundle\Entity\Group
     from_email:

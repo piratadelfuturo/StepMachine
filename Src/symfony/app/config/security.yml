@@ -31,11 +31,11 @@ security:
                  providers:
                   - in_memory
                   - boom_fos_admin_provider
-        #boom_chain_provider:
-        #    chain:
-        #         providers:
-        #          - boom_fos_facebook_provider
-        #          - fos_userbundle_provider
+        boom_chain_provider:
+            chain:
+                 providers:
+                  - boom_fos_facebook_provider
+                  - fos_userbundle_provider
 
     firewalls:
         dev:
@@ -43,9 +43,6 @@ security:
             security: false
         admin_login:
             pattern:  ^/admin/login$
-            anonymous: ~
-        boom_login:
-            pattern:  ^/login$
             anonymous: ~
         admin_area:
             pattern:    ^/admin
@@ -64,9 +61,9 @@ security:
             remember_me:
               key:      "%secret%"
               lifetime: 3600
-              path:     /
+              path:     /login
             form_login:
-                provider: fos_userbundle_provider
+                provider: boom_chain_provider
                 csrf_provider: form.csrf_provider
             fos_facebook:
                 check_path: /login_check_fb
@@ -85,6 +82,8 @@ security:
           roles: IS_AUTHENTICATED_ANONYMOUSLY
         - path: ^/admin
           roles: ROLE_ADMIN
+        - path: ^/login
+          roles: IS_AUTHENTICATED_ANONYMOUSLY
         - path: ^/(boom|actividad|tu_sitio)
           roles: IS_AUTHENTICATED_FULLY
         - path: ^/
