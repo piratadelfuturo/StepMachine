@@ -1910,6 +1910,16 @@ footer p{
   background-position: 0 -31px;
 }
 
+.fb-like {
+  position: absolute !important;
+  left: 100px;
+  border: 1px solid red;
+  margin-top: 4px;
+  opacity: 0.5;
+  width: 26px;
+  overflow: hidden;
+}
+
 .single-boom .social .btn-tw {
   width: 42px;
   height: 30px;
@@ -1945,8 +1955,8 @@ footer p{
 }
 
 .single-boom .autor {
-  position: relative;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .single-boom .autor img, .single-boom .autor h3, .single-boom .autor p {
@@ -1954,14 +1964,16 @@ footer p{
 }
 .single-boom  .autor-thumb{
   text-align: center;
-  width: 87px;
+  width: 55px;
   display: inline-block;
   overflow-x: hidden;
+  float: left;
+  margin-right: 10px;
 }
 .single-boom .autor img {
   float: left;
   margin-right: 15px;
-  height: 87px;
+  height: 55px;
 }
 
 .single-boom .autor span {
@@ -1971,8 +1983,9 @@ footer p{
 }
 
 .single-boom .autor h3 {
-  font: 16px 'Museo500', sans-serif;
+  font: 24px 'Museo500', sans-serif;
   color: #828282;
+  line-height: 55px;
 }
 
 .single-boom .autor .ver-moar, .single-boom .autor p {
@@ -1993,11 +2006,10 @@ footer p{
 .single-boom .booms {
   padding: 0 25px 0 0;
   margin-bottom: 15px;
+  border-top: 1px solid #DFDFDF;
 }
 
 .single-boom ul {
-  border-left: none;
-  border-right: none;
   padding: 0;
 }
 

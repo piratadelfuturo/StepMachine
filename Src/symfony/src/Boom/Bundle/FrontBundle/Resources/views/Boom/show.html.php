@@ -53,10 +53,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         </div>
         <div class="autor cf">
             <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $entity['user']['imagepath'] ?>"></a>
-            <div class="txt-container">
-                <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['username']) ?></a></h3>
-                <p><?php echo $view->escape($entity['user']['bio']) ?>...<a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>">Leer más</a></p>
-            </div>
+            <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['username']) ?></a></h3>
         </div>
         <div class="booms">
             <ul>
@@ -69,7 +66,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                         $elementImage = '';
                     endif;
                     $elementContent = $element['content'] === null ? '' : $element['content'];
-                    ?></p>
+                    ?>
                     <li class="boom">
                         <div class="boom-info cf">
                             <span class="place">
