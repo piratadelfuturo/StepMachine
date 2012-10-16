@@ -885,6 +885,7 @@ header{position:relative;}
 
 .slide-container {
   width: 1400%;
+  overflow: hidden;
 }
 
 #main-car div.slide .img-container {
@@ -1299,6 +1300,7 @@ aside .sb-bloque {
   background: -ms-linear-gradient(top,  #faa635 0%,#e35344 100%);   background: linear-gradient(top,  #faa635 0%,#e35344 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 );
 }
+
 .colab-wdgt .ver-all p{
   background: url('../images/boom_verall.png') no-repeat 290px center;
   padding-right: 20px;
@@ -1307,6 +1309,7 @@ aside .sb-bloque {
 .diarios{
   background:#f1f1f1;
 }
+
 .diarios h3:before{
   border-left: 14px solid #f1f1f1;
 }

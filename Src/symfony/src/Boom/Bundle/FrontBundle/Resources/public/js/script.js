@@ -19,9 +19,9 @@
 
         /* GAL-CAR */
 
-        var galcar = $(".gal-car"),
-        gcanvas = galcar.find('.slide-container'),
-        gslides = galcar.find('div.slide');
+        //var galcar = $(".gal-car"),
+        //gcanvas = galcar.find('.slide-container'),
+        //gslides = galcar.find('div.slide');
 
         $.showSlideG = function( index ) {
             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),
@@ -47,7 +47,10 @@
         };
 
         $(".gal-car a.car-btn").click(function() {
-
+            var galcar = $(this).parents("div.gal-car"),
+            gcanvas = galcar.find('.slide-container'),
+            gslides = galcar.find('div.slide');
+            console.log(galcar);
             var btnNext = $(this).hasClass('next'),
             current = galcar.find("div.slide.active"),
             target  = btnNext ? current.next() : current.prev(),
@@ -59,18 +62,58 @@
             } else {
                 index = gslides.index( target );
             }
-            console.log(index);
+            var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),
+            size = gslides.first().outerWidth();
 
-            return $.showSlideG( index );
+            if( !current.length ) {
+                index = 0;
+            } else {
+                index = gslides.index( current );
+            }
+            gcanvas.stop(true, true).animate({
+                marginLeft: (size * (index) ) * -1
+            });
+
+            var target = galcar.find(".car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
+            thumbs = target.closest(".car-thumbs").find("li");
+
+            thumbs.removeClass('active');
+            gslides.removeClass('active');
+            target.addClass('active');
+
+            return false;
+
 
         });
 
 
 
         $(".gal-car .car-thumbs li").click(function(){
+            var galcar = $(this).parents("div.gal-car"),
+            gcanvas = galcar.find('.slide-container'),
+            gslides = galcar.find('div.slide');
+
             var index = $(".car-thumbs li").index(this);
-            console.log(index);
-            return $.showSlideG(index);
+             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),
+            size = gslides.first().outerWidth();
+
+            if( !current.length ) {
+                index = 0;
+            } else {
+                index = gslides.index( current );
+            }
+            gcanvas.stop(true, true).animate({
+                marginLeft: (size * (index) ) * -1
+            });
+
+            var target = galcar.find(".car-thumbs li:eq(" + index + "), .slide-container div.slide:eq(" + index + ")"),
+            thumbs = target.closest(".car-thumbs").find("li");
+
+            thumbs.removeClass('active');
+            gslides.removeClass('active');
+            target.addClass('active');
+
+            return false;
         });
 
 
