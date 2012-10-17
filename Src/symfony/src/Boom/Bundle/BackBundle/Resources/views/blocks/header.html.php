@@ -16,13 +16,13 @@ $User = $app->getUser();
                             <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
                     </li>
-                    <?php if ($view['session']->hasFlash('notice')): ?>
-                        <li>
+                    <?php foreach ($view['session']->getFlashBag()->get('notice') as $message): ?>
+                    <li>
                             <div class="alert note">
                                 <?php $this->get('session')->setFlash('notice', 'Boom guardado!'); ?>
                             </div>
                         </li>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </ul>
             </li>
         </ul>
