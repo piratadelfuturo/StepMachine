@@ -13,18 +13,4 @@ echo $view->render(
 );
 ?>
 
-<!--
-<form action="<?php $view['router']->generate('BoomBackBundle_boom_delete', array('id' => $entity['id'])) ?>" method="post">
-    <?php echo $view['form']->widget($delete_form) ?>
-    <fieldset>
-        <label>Eliminar</label>
-        <section>
-            <div>
-                <button type="submit">Aceptar</button>
-            </div>
-        </section>
-    </fieldset>
-</form>
--->
-
 <script type="text/javascript" src="<?php echo $view['assets']->getUrl('/bundles/boomback/js/Bundle/Boom/form.js') ?>"></script>
