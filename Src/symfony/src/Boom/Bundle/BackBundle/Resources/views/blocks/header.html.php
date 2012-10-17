@@ -16,19 +16,6 @@ $User = $app->getUser();
                             <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
                     </li>
-                    <?php
-                    if ($view['session']->hasFlash('notice')):
-                        foreach ($view['session']->getFlash('notice') as $message):
-                            ?>
-                            <li>
-                                <div class="alert note">
-                                    <?php echo $view->escape($message); ?>
-                                </div>
-                            </li>
-                            <?php
-                        endforeach;
-                    endif;
-                    ?>
                 </ul>
             </li>
         </ul>
