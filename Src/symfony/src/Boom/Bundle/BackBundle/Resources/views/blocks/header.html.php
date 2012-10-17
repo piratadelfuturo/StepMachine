@@ -22,7 +22,7 @@ $User = $app->getUser();
                             ?>
                             <li>
                                 <div class="alert note">
-                                    <?php echo $view->escape(); ?>
+                                    <?php echo $view->escape($message); ?>
                                 </div>
                             </li>
                             <?php
