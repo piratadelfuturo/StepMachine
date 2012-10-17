@@ -19,7 +19,7 @@ $User = $app->getUser();
                     <?php foreach ($view['session']->getFlashBag()->get('notice') as $message): ?>
                     <li>
                             <div class="alert note">
-                                <?php $this->get('session')->setFlash('notice', 'Boom guardado!'); ?>
+                                <?php echo $view->escape($message); ?>
                             </div>
                         </li>
                     <?php endforeach; ?>
