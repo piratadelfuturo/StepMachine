@@ -268,7 +268,6 @@ class BoomController extends Controller {
         return $this->render('BoomBackBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
                     'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }
