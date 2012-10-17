@@ -17,6 +17,7 @@ $fb_boom_graph_data['url'] = $view['router']->generate(
 );
 
 $view['slots']->set('title', $entity['title']);
+$view['slots']->set('description', $entity['summary']);
 
 $twitter = array(
     'url'      => $fb_boom_graph_data['url'],
