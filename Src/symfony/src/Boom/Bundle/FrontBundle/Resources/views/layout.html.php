@@ -11,11 +11,11 @@
             <meta property="og:image"  content="<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
         <?php endif; ?>
         <?php
-        $title = $view['slots']->get('title', null);
+        $title = $view->escape($view['slots']->get('title', null));
         ?>
         <title><?php echo $title !== null ? $title.' - '  : ''; ?>7boom</title>
 
-        <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
+        <meta name="description" content="<?php echo $view->escape($view['slots']->get('description', '')) ?>">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
 
