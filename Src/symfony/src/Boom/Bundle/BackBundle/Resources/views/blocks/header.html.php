@@ -10,12 +10,19 @@ $User = $app->getUser();
             <li>
                 <ul>
                     <li><a href="#"><?php echo $User->getUsername() ?></a>
-                        <?php $score = rand(2,11)?>
+                        <?php $score = rand(2, 11) ?>
                         <span><?php echo $score ?></span>
                         <ul>
                             <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
                     </li>
+                    <?php if ($view['session']->hasFlash('notice')): ?>
+                        <li>
+                            <div class="alert note">
+                                <?php $this->get('session')->setFlash('notice', 'Boom guardado!'); ?>
+                            </div>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </li>
         </ul>
