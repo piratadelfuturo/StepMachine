@@ -198,7 +198,7 @@ class BoomController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
             return $this->redirect(
                             $this->generateUrl(
                                     'BoomBackBundle_boom_edit', array(
@@ -261,14 +261,13 @@ class BoomController extends Controller {
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
             return $this->redirect($this->generateUrl('BoomBackBundle_boom_edit', array('id' => $id)));
         }
 
         return $this->render('BoomBackBundle:Boom:edit.html.php', array(
                     'entity' => $entity,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
                     'ajax_image_form' => $this->createAjaxImageForm()->createView()
                 ));
     }

@@ -7,11 +7,12 @@
     <ul>
         <?php
         if (isset($data['list'])):
+            $count = 1;
             foreach ($data['list'] as $key => $element):
                 $key++;
                 ?>
-                <li class="<?php echo $key % 2 == 0 ? 'bgray' : ''; ?>">
-                    <span class="place"><?php echo $key ?></span>
+                <li class="<?php echo $count % 2 == 0 ? 'bgray' : ''; ?>">
+                    <span class="place"><?php echo $count++ ?></span>
                     <p class="punto"><?php echo $element['line_1']; ?></p>
                     <p class="excerpt"><?php echo $element['line_2'] ?></p>
                 </li>

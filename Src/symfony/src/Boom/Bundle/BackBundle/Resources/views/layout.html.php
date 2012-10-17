@@ -92,6 +92,20 @@
         <?php echo $view->render('BoomBackBundle::blocks/nav.html.php'); ?>
 
         <section id="content">
+            <?php
+            if ($view['session']->hasFlash('notice')):
+                foreach ($view['session']->getFlash('notice') as $message):
+                    ?>
+                    <div class="g12">
+                        <div class="alert note">
+                            <?php echo $view->escape($message); ?>
+                        </div>
+                    </div>
+                    <?php
+                endforeach;
+            endif;
+            ?>
+
             <div class="g12">
                 <?php $view['slots']->output('_content') ?>
             </div>

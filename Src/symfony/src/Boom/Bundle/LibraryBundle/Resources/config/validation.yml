@@ -26,11 +26,9 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
           - NotNull: ~
           - DateTime: ~
         nsfw:
-          - NotBlank: ~
           - Type:
               type: bool
         reply_enabled:
-          - NotBlank: ~
           - Type:
               type: bool
         status:
