@@ -100,7 +100,10 @@ class DefaultController extends Controller {
                 )
         );
 
-        if (!$entity || $entity['category']['slug'] !== $category_slug) {
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find.');
+        }
+        if($entity['category']['slug'] !== $category_slug){
             throw $this->createNotFoundException('Unable to find.');
         }
 
