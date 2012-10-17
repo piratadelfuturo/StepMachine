@@ -885,6 +885,7 @@ header{position:relative;}
 
 .slide-container {
   width: 1400%;
+  overflow: hidden;
 }
 
 #main-car div.slide .img-container {
@@ -1299,6 +1300,7 @@ aside .sb-bloque {
   background: -ms-linear-gradient(top,  #faa635 0%,#e35344 100%);   background: linear-gradient(top,  #faa635 0%,#e35344 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 );
 }
+
 .colab-wdgt .ver-all p{
   background: url('../images/boom_verall.png') no-repeat 290px center;
   padding-right: 20px;
@@ -1307,6 +1309,7 @@ aside .sb-bloque {
 .diarios{
   background:#f1f1f1;
 }
+
 .diarios h3:before{
   border-left: 14px solid #f1f1f1;
 }
@@ -1910,6 +1913,16 @@ footer p{
   background-position: 0 -31px;
 }
 
+.fb-like {
+  position: absolute !important;
+  left: 100px;
+  border: 1px solid red;
+  margin-top: 4px;
+  opacity: 0.5;
+  width: 26px;
+  overflow: hidden;
+}
+
 .single-boom .social .btn-tw {
   width: 42px;
   height: 30px;
@@ -1946,7 +1959,8 @@ footer p{
 
 .single-boom .autor {
   position: relative;
-  margin-bottom: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #DFDFDF;
 }
 
 .single-boom .autor img, .single-boom .autor h3, .single-boom .autor p {
@@ -1954,14 +1968,16 @@ footer p{
 }
 .single-boom  .autor-thumb{
   text-align: center;
-  width: 87px;
+  width: 55px;
   display: inline-block;
   overflow-x: hidden;
+  float: left;
+  margin-right: 10px;
 }
 .single-boom .autor img {
   float: left;
   margin-right: 15px;
-  height: 87px;
+  height: 55px;
 }
 
 .single-boom .autor span {
@@ -1971,8 +1987,9 @@ footer p{
 }
 
 .single-boom .autor h3 {
-  font: 16px 'Museo500', sans-serif;
+  font: 24px 'Museo500', sans-serif;
   color: #828282;
+  line-height: 55px;
 }
 
 .single-boom .autor .ver-moar, .single-boom .autor p {
@@ -1996,14 +2013,17 @@ footer p{
 }
 
 .single-boom ul {
-  border-left: none;
-  border-right: none;
   padding: 0;
+  border-bottom: 1px solid #DFDFDF;
 }
 
 .single-boom .booms .boom-info {
   position: relative;
   padding: 25px 0 3px 0;
+}
+
+.single-boom li.boom:first-child .boom-info {
+  padding-top: 0;
 }
 
 .booms .place {
