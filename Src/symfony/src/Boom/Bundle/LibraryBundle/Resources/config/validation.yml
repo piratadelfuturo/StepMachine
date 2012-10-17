@@ -44,7 +44,6 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
         category:
           - NotNull: ~
         featured:
-          - Blank: ~
           - DateTime: ~
 
 Boom\Bundle\LibraryBundle\Entity\User:
