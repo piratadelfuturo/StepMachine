@@ -5,7 +5,6 @@
         <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
         <?php if ($fb_boom_graph_data !== null): ?>
             <meta property="fb:app_id" content="349118228506488" />
-            <meta property="og:type"   content="seven_boom_mx:boom" />
             <meta property="og:type"   content="<?php echo $view->escape($fb_boom_graph_data['type']) ?>" />
             <meta property="og:url"    content="<?php echo $view->escape($fb_boom_graph_data['url']) ?>" />
             <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
@@ -14,7 +13,7 @@
         <?php
         $title = $view['slots']->get('title', null);
         ?>
-        <title>7boom <?php echo $title !== null ? '- ' . $title : ''; ?></title>
+        <title><?php echo $title !== null ? $title.' - '  : ''; ?>7boom</title>
 
         <meta name="description" content="<?php echo $view['slots']->get('description', '') ?>">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
