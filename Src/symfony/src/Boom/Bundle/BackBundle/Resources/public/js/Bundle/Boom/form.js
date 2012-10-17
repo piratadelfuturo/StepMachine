@@ -15,6 +15,7 @@
                 "a[*],"+
                 "div[!class<gallery|!insert-id],"+
                 "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
+            invalid_elements : "span",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
