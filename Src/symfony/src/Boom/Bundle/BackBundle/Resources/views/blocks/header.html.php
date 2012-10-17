@@ -10,19 +10,19 @@ $User = $app->getUser();
             <li>
                 <ul>
                     <li><a href="#"><?php echo $User->getUsername() ?></a>
-                        <?php $score = rand(2, 11) ?>
+                        <?php $score = rand(2,11)?>
                         <span><?php echo $score ?></span>
                         <ul>
                             <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
                     </li>
-                    <?php foreach ($view['session']->getFlashBag()->get('notice') as $message): ?>
+                    <?php if ($view['session']->hasFlash('notice')): ?>
                     <li>
-                            <div class="alert note">
-                                <?php echo $view->escape($message); ?>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
+                        <div class="alert note">
+                        <?php echo $view->escape($view['session']->getFlash('notice')); ?>
+                        </div>
+                    </li>
+                    <?php endif; ?>
                 </ul>
             </li>
         </ul>
