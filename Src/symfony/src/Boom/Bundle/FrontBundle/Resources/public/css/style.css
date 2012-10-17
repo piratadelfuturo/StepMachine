@@ -1958,8 +1958,9 @@ footer p{
 }
 
 .single-boom .autor {
-  margin-bottom: 10px;
   position: relative;
+  padding: 10px 0;
+  border-top: 1px solid #DFDFDF;
 }
 
 .single-boom .autor img, .single-boom .autor h3, .single-boom .autor p {
@@ -2009,16 +2010,20 @@ footer p{
 .single-boom .booms {
   padding: 0 25px 0 0;
   margin-bottom: 15px;
-  border-top: 1px solid #DFDFDF;
 }
 
 .single-boom ul {
   padding: 0;
+  border-bottom: 1px solid #DFDFDF;
 }
 
 .single-boom .booms .boom-info {
   position: relative;
   padding: 25px 0 3px 0;
+}
+
+.single-boom li.boom:first-child .boom-info {
+  padding-top: 0;
 }
 
 .booms .place {

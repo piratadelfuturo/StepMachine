@@ -54,10 +54,6 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
             <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
             <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav">Marcar como favorito:</a>
         </div>
-        <div class="autor cf">
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $entity['user']['imagepath'] ?>"></a>
-            <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['username']) ?></a></h3>
-        </div>
         <div class="booms">
             <ul>
                 <?php
@@ -76,8 +72,9 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                                 <?php echo $element['position'] ?>
                             </span>
                             <div class="float-container cf">
-
+                            <?php if(isset($element['image']['path'])):?>
                                 <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
+                            <?php endif;?>
                                 <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
                             </div>
                         </div>
@@ -107,6 +104,12 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <?php endforeach; ?>
                 </p>
             </div>
+            <div class="autor cf">
+                <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $entity['user']['imagepath'] ?>"></a>
+                <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['username']) ?></a></h3>
+<!--                <p><?php // echo $view->escape($entity['user']['bio']) ?>...<a class="ver-moar" href="<?php // echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>">Leer más</a></p> -->
+            </div>
+
             <div class="social cf">
                 <p>Comparte:</p>
                 <div class="fb-like" data-href="<?php $fb_boom_graph_data['url'] ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
