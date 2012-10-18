@@ -180,9 +180,9 @@ class BoomController extends Controller {
 
     /**
      * Creates a new Boom entity.
-     *
      */
     public function createAction() {
+        /* @var */
 
         $entity = new BoomEntity\Boom();
         $form = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
@@ -208,6 +208,8 @@ class BoomController extends Controller {
             );
         }else{
             $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
+            $form->getErrorsAsString();
+            exit;
         }
 
 
