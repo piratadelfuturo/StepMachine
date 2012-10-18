@@ -208,7 +208,7 @@ class BoomController extends Controller {
             );
         }else{
             $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
-            $form->getErrorsAsString();
+            echo $form->getErrorsAsString();
             exit;
         }
 
