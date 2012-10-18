@@ -5,8 +5,6 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
             methods:   [validations]
     properties:
         slug:
-          - NotBlank: ~
-          - NotNull: ~
           - Type:
               type: string
         title:
@@ -20,10 +18,8 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
                 max: 7
           - Valid: ~
         date_created:
-          - NotBlank: ~
           - DateTime: ~
         date_published:
-          - NotNull: ~
           - DateTime: ~
         nsfw:
           - Type:
@@ -38,28 +34,19 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
               min: 0
               max: 5
         image:
-          - NotNull: ~
+          - Valid: ~
         user:
-          - NotNull: ~
+          - Valid: ~
         category:
-          - NotNull: ~
+          - Valid: ~
         featured:
           - DateTime: ~
-
-Boom\Bundle\LibraryBundle\Entity\User:
-    properties:
-      profile_image:
-        - Blank: ~
-        - File:
-                maxSize: 5120k
-                mimeTypes: [image/png, image/jpeg, image/gif]
 
 Boom\Bundle\LibraryBundle\Entity\Image:
     properties:
       path:
         - NotBlank: ~
       file:
-        - Blank: ~
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]
@@ -75,3 +62,11 @@ Boom\Bundle\LibraryBundle\Entity\ListElement:
         - NotBlank: ~
       url:
         - NotBlank: ~
+
+Boom\Bundle\LibraryBundle\Entity\User:
+    properties:
+      profile_image:
+        - Blank: ~
+        - File:
+                maxSize: 5120k
+                mimeTypes: [image/png, image/jpeg, image/gif]
