@@ -206,6 +206,8 @@ class BoomController extends Controller {
                                     )
                             )
             );
+        }else{
+            $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
         }
 
 
@@ -263,6 +265,8 @@ class BoomController extends Controller {
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
             return $this->redirect($this->generateUrl('BoomBackBundle_boom_edit', array('id' => $id)));
+        }else{
+            $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
         }
 
         return $this->render('BoomBackBundle:Boom:edit.html.php', array(
