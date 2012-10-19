@@ -78,5 +78,5 @@ $userElements = array();
             </ul>
         </div>
     </div>
-    <a href="#" id="editalo">¿Estás de acuerdo?<span>¡edítalo!</span></a>
+    <a href="#" id="editalo"><span>Guardar</span></a>
 </div>

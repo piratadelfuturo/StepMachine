@@ -1876,6 +1876,7 @@ footer p{
   font: 12px 'Museo500', sans-serif;
   text-transform: uppercase;
   padding: 5px 15px;
+  position: relative;
 }
 
 .single-boom .social p, .single-boom .social a {
@@ -1892,9 +1893,8 @@ footer p{
 }
 
 .single-boom .social .btn-fb {
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
+  width: 26px;
+  height: 26px;
 }
 
 .single-boom .social .btn-tw:before {
@@ -1906,28 +1906,73 @@ footer p{
   left: -10px;
   height: 28px;
   width: 0px;
-  border-left: 1px solid #DFDFDF;
 }
 
 .single-boom .social .btn-fb:hover {
   background-position: 0 -31px;
 }
-
-.fb-like {
-  position: absolute !important;
-  left: 100px;
-  border: 1px solid red;
-  margin-top: 4px;
-  opacity: 0.5;
-  width: 26px;
-  overflow: hidden;
+.fb-share, .tw-share {
+  position: relative;
+  display: inline-block;
+  height: 26px;
+  padding-left: 10px;
+  width: auto;
+}
+.social .fb-share p, .social .tw-share p {
+  margin-left: 10px;
+  color: #ff7815;
+  font-size: 18px;
 }
 
+.tw-share {
+  border-left: 1px solid #DFDFDF;
+  margin-left: 10px;
+}
+.fb-like-balloon, .tw-like-balloon {
+  position: absolute;
+  left: -41px;
+  top: -55px;
+  border: 1px solid #ff7815;
+  margin-top: 4px;
+  padding: 10px 15px;
+  background: #FFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  display: none;
+}
+
+.fb-like-balloon:before,  .tw-like-balloon:before {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 8px solid #FF7815;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 42px;
+  right: 57px;
+}
+
+.fb-like-balloon:after, .tw-like-balloon:after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 8px solid #FFF;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 41px;
+  right: 57px;
+}
+
+.fb-share:hover .fb-like-balloon, .tw-share:hover .tw-like-balloon{
+  display: block;
+}
+
+
 .single-boom .social .btn-tw {
-  width: 42px;
+  width: 30px;
   height: 30px;
   background-position: -31px 0;
-  margin-left: 20px;
 }
 
 .single-boom .social .btn-tw:hover {
@@ -1948,13 +1993,13 @@ footer p{
   position: absolute;
   width: 30px;
   height: 30px;
-  background-position: -74px 0;
+  background-position: -63px 0;
   top: 0;
   right: 0;
 }
 
 .single-boom .social .btn-fav:hover:after {
-  background-position: -74px -31px;
+  background-position: -63px -31px;
 }
 
 .single-boom .autor {
@@ -2012,7 +2057,7 @@ footer p{
   margin-bottom: 15px;
 }
 
-.single-boom ul {
+.single-boom ul.lista-booms {
   padding: 0;
   border-bottom: 1px solid #DFDFDF;
 }
@@ -3068,11 +3113,12 @@ ul.paginador, ul.paginador {
 }
 
 .gal-car .car-thumbs ul {
+  border: none;
 }
 
 .gal-car .car-thumbs li {
   height: 53px;
-  display: inline-block;
+  display: inlineº-block;
   width: 78px;
   margin: 2px 1px;
   border: none;
