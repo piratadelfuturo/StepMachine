@@ -227,8 +227,8 @@
         });
 
         //DRAGnDROP boomies
-        $("#front__boom_elements.sort-elements").dragsort({
-            dragSelector: '#front__boom_elements .boomie .place',
+        $("#front_boom_elements.sort-elements").dragsort({
+            dragSelector: '#front_boom_elements .boomie .place',
             dragEnd: function(){
                 $('.sort-elements').children().each(function(index){
                     $(this).find('.place').html(index+1);
