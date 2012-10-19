@@ -11,15 +11,13 @@
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             valid_elements: "strong/b,i/em,u,blockquote/quote,"+
-                "img[!src|alt|title|width|height|!insert-id],"+
-                "a[*],"+
-                "div[!class<gallery|!insert-id],"+
-                "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
-            invalid_elements : "span",
+            "img[!src|alt|title|width|height|!insert-id],"+
+            "a[*],p,br"+
+            "div[!class<gallery|!insert-id],"+
+            "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
-            //content_css : "css/editor.css",
             object_resizing : false,
             entity_encoding : "raw",
             relative_urls : false,
@@ -40,19 +38,19 @@
             $form
             .attr('target','_self')
             .attr(
-            'action',
-            Routing.generate('BoomBackBundle_boom_update', {
-                id: $entityId.val()
-            }));
+                'action',
+                Routing.generate('BoomBackBundle_boom_update', {
+                    id: $entityId.val()
+                }));
         });
 
         $preview.click(function(){
             $form.attr('target','_blank')
             .attr(
-            'action',
-            Routing.generate('BoomBackBundle_boom_preview', {
-                id: $preview.val()
-            }));
+                'action',
+                Routing.generate('BoomBackBundle_boom_preview', {
+                    id: $preview.val()
+                }));
 
         });
 

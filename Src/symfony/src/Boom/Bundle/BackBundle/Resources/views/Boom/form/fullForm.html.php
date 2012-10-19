@@ -1,12 +1,4 @@
-<?php if(isset($ajax_image_form)){
-   /*echo $view['form']->widget($ajax_image_form['file'],array(
-       'attr' => array(
-           'data-url' => $view['router']->generate('BoomBackBundle_image_create'),
-           'multiple' => 'multiple',
-           'style'    => 'display:none'
-       )
-   ));*/
-}?>
+<?php echo $view['form']->errors($form) ?>
 <form id="<?php echo $form->getName() ?>" action="<?php echo $form_url ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
     <fieldset>
         <label><?php echo $form_title ?></label>
