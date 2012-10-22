@@ -136,9 +136,13 @@
                                     Routing.generate(formRoute['save']['name'],formRoute['save']['vars']),
                                     $(form).serialize(),
                                     function(data){
-                                        var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="'+Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
+                                        var html = '<iframe class="gallery-preview" insert-id="' +
+                                        data.id +
+                                        '" src="' +
+                                        Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
                                             'id' : data.id
-                                        })+'" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
+                                            })+
+                                        '" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
                                         ed.execCommand('mceInsertContent',false,html);
                                         dialog.dialog( "close" );
                                     }
@@ -274,7 +278,7 @@
                 s = s.replace(re, str);
             };
 
-            rep(/\n/gi,"<br />");
+            rep(/\n/gi,"<br/>");
             rep(/\[b\]/gi,"<strong>");
             rep(/\[\/b\]/gi,"</strong>");
             rep(/\[i\]/gi,"<em>");

@@ -1,6 +1,6 @@
 (function(document,$){
     $(document).ready(function(){
-        var textareas = $('form#boom_bundle_backbundle_boomtype #boom_bundle_backbundle_boomtype_elements textarea');
+        //var textareas = $('form#boom_bundle_backbundle_boomtype #boom_bundle_backbundle_boomtype_elements textarea');
         tinyMCE.init({
             theme : "advanced",
             mode : "specific_textareas",
@@ -10,22 +10,20 @@
             theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,code",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
-            valid_elements: "strong/b,i/em,u,blockquote/quote,"+
+            invalid_elements: "span",
+            valid_elements: "br,strong/b,i/em,u,blockquote/quote,"+
             "img[!src|alt|title|width|height|!insert-id],"+
-            "a[*],p,br"+
+            "a[*],p"+
             "div[!class<gallery|!insert-id],"+
             "ul,ol,li,table,tr,td,th,thead,tbody,iframe[*]",
             theme_advanced_toolbar_location : "top",
             theme_advanced_toolbar_align : "left",
             theme_advanced_resizing : true,
             object_resizing : false,
-            entity_encoding : "raw",
             relative_urls : false,
             remove_script_host : false,
             add_unload_trigger : false,
-            remove_linebreaks : false,
-            inline_styles : false,
-            convert_fonts_to_spans : true
+            inline_styles : false
         });
 
         $form = $('#boom_bundle_backbundle_boomtype');
