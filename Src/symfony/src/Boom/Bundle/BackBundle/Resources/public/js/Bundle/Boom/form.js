@@ -7,11 +7,11 @@
             editor_selector : "boom-wysiwyg",
             width: "100%",
             plugins : "autoresize,boom",
-            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,underline,undo,redo,forecolor,styleselect,removeformat,cleanup,code",
+            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,undo,redo,forecolor,styleselect,removeformat,cleanup,code",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             invalid_elements: "span",
-            valid_elements: "br,strong/b,i/em,u,blockquote/quote,"+
+            valid_elements: "br,strong/b,i/em,blockquote/quote,"+
             "img[!src|alt|title|width|height|!insert-id],"+
             "a[*],p"+
             "div[!class<gallery|!insert-id],"+
@@ -23,7 +23,8 @@
             relative_urls : false,
             remove_script_host : false,
             add_unload_trigger : false,
-            inline_styles : false
+            inline_styles : false,
+            valid_children : "strong[em|#text],em[strong|#text]"
         });
 
         $form = $('#boom_bundle_backbundle_boomtype');
