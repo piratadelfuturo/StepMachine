@@ -3384,3 +3384,26 @@ form#boom_gallery ul li{
     padding: 8px;
     position: relative;
 }
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .balloon::after {
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    left: -11px;
+  }
+
+  #nsfw-sc .balloon {
+    left: 112px;
+  }
+  
+  .sort-elements .boomie .balloon {
+    left: 75px;
+  }
+  
+  .sort-elements .wyswyg-menu li .balloon {
+    left: 50px;
+  }
+}
