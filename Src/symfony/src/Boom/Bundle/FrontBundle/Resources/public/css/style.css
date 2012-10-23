@@ -520,7 +520,7 @@ header{position:relative;}
   width: 290px;
   height: 671px;
   position: relative;
-  margin-bottom: 5px;
+  margin-bottom: 32px;
 }
 
 /* USER MENU */
@@ -2286,6 +2286,7 @@ fieldset.on .accordion_content { overflow: visible;}
 /* WIDGET: EDITAR BOOM */
 #usr-booms {
   border: 3px solid #f47b20;
+  position: relative;
   background: #313131;
   padding: 12px;
   margin-bottom: 10px;
@@ -2347,13 +2348,20 @@ fieldset.on .accordion_content { overflow: visible;}
 }
 
 
-#usr-booms h3 {
+#usr-booms .dyna-content h3 {
   width: 287px;
-  height: 59px;
+  height: 80px;
   text-align: center;
-  background: url(../images/boom_trend.png) center 0 no-repeat;
   overflow: hidden;
   text-indent: -9000px;
+}
+
+#usr-booms .tend-cont h3{
+  background: url(../images/boom_trend.png) center 0 no-repeat;
+}
+
+#usr-booms .miboom-cont h3{
+  background: url(../images/tu_dices.png) center 15px no-repeat;
 }
 
 .drag-booms{
@@ -2504,10 +2512,10 @@ fieldset.on .accordion_content { overflow: visible;}
   border-radius: 3px;
 }
 
-#editalo {
+.editalo {
   display: block;
   padding: 10px 0;
-  font: 14px 'Proxima', sans-serif;
+  font: 32px 'Proxima', sans-serif;
   text-align: center;
   text-transform: uppercase;
   color: #FFF;
@@ -2526,13 +2534,205 @@ fieldset.on .accordion_content { overflow: visible;}
   clear: both;
 }
 
-#editalo span {
+.editalo span {
   font-size: 32px;
   display: block;
 }
 
 .ui-dialog-titlebar {
   display: none;
+}
+
+.info-blocks {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.info-blocks.on {
+  display: block;
+}
+
+.share-boom, .sign-in {
+  display: block;
+  position: absolute;
+  border-top: 3px solid #fff;
+  width: 100%;
+  height: auto;
+  bottom: -500px;
+  left: 0;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  background: #f57b20;
+  background: -moz-linear-gradient(top,  #f57b20 0%, #e35344 56%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f57b20), color-stop(56%,#e35344));
+  background: -webkit-linear-gradient(top,  #f57b20 0%,#e35344 56%);
+  background: -o-linear-gradient(top,  #f57b20 0%,#e35344 56%);
+  background: -ms-linear-gradient(top,  #f57b20 0%,#e35344 56%);
+  background: linear-gradient(to bottom,  #f57b20 0%,#e35344 56%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f57b20', endColorstr='#e35344',GradientType=0 );
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  z-index: 6;
+}
+
+.share-boom.on, .sign-in.on  {
+  bottom: 0;
+}
+
+.share-boom h3, .sign-in h3{
+  font: 26px 'Proxima', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.sign-in h3{
+  font-size: 40px;
+  margin: 15px 0;
+}
+
+.share-boom form {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  margin: 5px 32px;
+  padding: 0 45px;
+}
+
+.sign-in p {
+  color: #fff;
+  font: 14px 'Museo500', sans-serif;
+  padding: 0 45px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  margin: 5px 32px;
+  padding: 10px 15px;
+  font: 17px 'Museo500', sans-serif;
+  text-align: center;
+}
+
+
+.share-boom input[type="checkbox"] {
+  width: 18px;
+  margin: 10px -20px 0 2px;
+  clear: none;
+  opacity: 0;
+  float: left;
+  cursor: pointer;
+  height: 27px;
+}
+
+.share-boom input[type="checkbox"] + label {
+  background: url(../images/check_share_off.png) no-repeat 0 4px;
+  display: inline-block;
+  height: 27px;
+  line-height: 27px;
+  margin: 10px 0;
+}
+
+.share-boom input[type="checkbox"]:checked + label {
+  background: url(../images/check_share_on.png) no-repeat 0 4px;
+}
+
+.share-boom  label span{
+  padding-left:30px;
+  width: 137px;
+  height: 27px;
+  display: inline-block;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.share-boom  label[for="twitter"] span{
+  background: url(../images/share_tw.png) 30px center no-repeat;
+}
+
+.share-boom  label[for="facebook"] span{
+  background: url(../images/share_fb.png) 30px center no-repeat;
+}
+
+.grey-btn {
+  display: inline-block;
+  background: #313131;
+  font: 32px 'Proxima', sans-serif;
+  color: #f57b20;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border: 2px solid #FFF;
+  width: auto;
+  margin: 20px 50px;
+}
+
+.shade {
+  width: 100%;
+  height: 100%;
+  background: url(../images/shade.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99;
+  opacity: 0;
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+
+}
+
+.shade.on {
+  opacity: 0.999;
+  z-index: 5;
+}
+
+.boom-clean {
+  width: 290px;
+  height: 675px;
+  background: #313131;
+  position: absolute;
+  bottom: -700px;
+  left: 0;
+  z-index: 7;
+  font: 31px 'Proxima', sans-serif;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -ms-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+}
+
+.boom-clean.on {
+  top: 91px;
+  bottom: auto;
+}
+.boom-clean p {
+  margin-top: 155px;
+}
+
+.boom-clean p span {
+  font-size: 53px;
+  line-height: 40px;
+}
+
+.boom-clean .editalo {
+  margin-top: 15px;
 }
 
 /* CREA TU BOOM */
@@ -3183,4 +3383,27 @@ form#boom_gallery ul li{
     overflow: hidden;
     padding: 8px;
     position: relative;
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .balloon::after {
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    left: -11px;
+  }
+
+  #nsfw-sc .balloon {
+    left: 112px;
+  }
+  
+  .sort-elements .boomie .balloon {
+    left: 75px;
+  }
+  
+  .sort-elements .wyswyg-menu li .balloon {
+    left: 50px;
+  }
 }
