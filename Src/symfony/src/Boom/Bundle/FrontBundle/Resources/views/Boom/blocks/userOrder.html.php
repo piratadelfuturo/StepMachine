@@ -74,9 +74,52 @@ $userElements = array();
                     <h4 class="boom-info">
                         <span>Sustituir este bloque por contenido real</span>
                     </h4>
+                </li>                
+                <li>
+                    <div class="balloon">
+                        <p>arrastrar</p>
+                    </div>
+                    <p class="pos"><span>1</span></p>
+                    <img src="http://placehold.it/72x72">
+                    <h4 class="boom-info">
+                        <span>Sustituir este bloque por contenido real</span>
+                    </h4>
                 </li>
-
+                <li>
+                    <div class="balloon">
+                        <p>arrastrar</p>
+                    </div>
+                    <p class="pos"><span>2</span></p>
+                    <img src="http://placehold.it/72x72">
+                    <h4 class="boom-info">
+                        <span>Sustituir este bloque por contenido real</span>
+                    </h4>
+                </li>
+                <li>
+                    <div class="balloon">
+                        <p>arrastrar</p>
+                    </div>
+                    <p class="pos"><span>3</span></p>
+                    <img src="http://placehold.it/72x72">
+                    <h4 class="boom-info">
+                        <span>Sustituir este bloque por contenido real</span>
+                    </h4>
+                </li>
+                <li>
+                    <div class="balloon">
+                        <p>arrastrar</p>
+                    </div>
+                    <p class="pos"><span>3</span></p>
+                    <img src="http://placehold.it/72x72">
+                    <h4 class="boom-info">
+                        <span>Sustituir este bloque por contenido real</span>
+                    </h4>
+                </li>
             </ul>
+            <div class="boom-clean on">
+              <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
+              <a href="#" class="editalo">¡Edítalo!</a>
+            </div>
         </div>
     </div>
     <a href="#" class="editalo">Guardar</a>
@@ -93,10 +136,6 @@ $userElements = array();
         <h3>¡Alto ahí!</h3>
         <p>Nos encantó cómo quedó tu boom, pero para guardarlo, compartir y usar todos nuestros ósom features, debes registrarte primero.</p>
         <a href="#" class="grey-btn">Regístrate</a>
-      </div>
-      <div class="boom-clean">
-        <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
-        <a href="#" class="editalo">¡Edítalo!</a>
       </div>
   </div>
 </div>

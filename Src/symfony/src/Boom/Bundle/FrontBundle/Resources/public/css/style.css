@@ -2299,7 +2299,6 @@ fieldset.on .accordion_content { overflow: visible;}
   -ms-transition: height 300ms;
   -o-transition: height 300ms;
   height: auto;
-  overflow: hidden;
 }
 
 #usr-booms .botones {
@@ -2703,7 +2702,7 @@ fieldset.on .accordion_content { overflow: visible;}
 
 .boom-clean {
   width: 290px;
-  height: 667px;
+  height: 675px;
   background: #313131;
   position: absolute;
   bottom: -700px;
@@ -2711,7 +2710,6 @@ fieldset.on .accordion_content { overflow: visible;}
   z-index: 7;
   font: 31px 'Proxima', sans-serif;
   color: #fff;
-  margin: 0 12px;
   text-align: center;
   -webkit-transition: all 400ms ease;
   -moz-transition: all 400ms ease;
@@ -2721,10 +2719,11 @@ fieldset.on .accordion_content { overflow: visible;}
 }
 
 .boom-clean.on {
-  bottom: 8px;
+  top: 91px;
+  bottom: auto;
 }
 .boom-clean p {
-  margin-top: 135px;
+  margin-top: 155px;
 }
 
 .boom-clean p span {
