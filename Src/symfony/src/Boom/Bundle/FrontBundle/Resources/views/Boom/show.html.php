@@ -128,15 +128,20 @@ if($tw_boom_tweets['count'] == 0)
                 <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['username']) ?></a></h3>
 <!--                <p><?php // echo $view->escape($entity['user']['bio']) ?>...<a class="ver-moar" href="<?php // echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>">Leer más</a></p> -->
             </div>
-
             <div class="social cf">
-                <p>Comparte:</p>
-                <div class="fb-like" data-href="<?php $fb_boom_graph_data['url'] ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-                <a href="#" class="btn-fb" >facebook</a><p>200</p>
-                <a href="<?php echo $twitterUrl ?>" class="btn-tw" >twitter</a><p>200</p>
-
-                <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav" >Marcar como favorito:</a>
-            </div>
+              <p>Comparte:</p>
+              <div class="fb-share">
+                <div class="fb-like-balloon"><div class="fb-like" data-href="<?php  ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
+                <a href="#" class="btn-fb">facebook</a>
+                <?php echo !empty($fb_boom_likes) ? '<p>' . $fb_boom_likes. '</p>' : '' ?>
+              </div>
+              <div class="tw-share">
+                <div class="tw-like-balloon"><div class="fb-like" data-href="<?php  ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
+                <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
+                <p><?php echo $tw_boom_tweets['count'] ?></p>
+              </div>
+              <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav">Marcar como favorito:</a>
+          </div>
         </div>
     </div>
 </div>
