@@ -13,9 +13,11 @@ if (!isset($list)) {
                 'category_slug' => $element['category']['slug'],
                 'slug' => $element['slug']
                     )
-                  );
-            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/120/75';
+            );
+            $userUrl = $view['router']->generate(
+                    'BoomFrontBundle_user_profile', array('username' => $element['user']['username']));
 
+            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 158, 90) : 'http://placekitten.com/120/75';
             ?>
             <li>
                 <a href="<?php echo $elementUrl ?>"><img src="<?php echo $image ?>" width="158px" height="90px" ></a>
@@ -25,7 +27,7 @@ if (!isset($list)) {
                         <?php echo $view->escape($element['title']) ?>
                     </a>
                 </p>
-                <a href="<?php echo $elementUrl ?>" class="boom-moar">Por <?php echo $element['user']['username'] ?>.</a>
+                <a href="<?php echo $userUrl ?>" class="boom-moar">Por <?php echo $element['user']['name'] ?>.</a>
                 <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
             </li>
         <?php endforeach; ?>

@@ -64,9 +64,22 @@ Boom\Bundle\LibraryBundle\Entity\ListElement:
         - NotBlank: ~
 
 Boom\Bundle\LibraryBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: nickname
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
     properties:
+      firstname:
+        - NotBlank: ~
+      lastname:
+        - NotBlank: ~
+      name:
+        - NotBlank: ~
+      nickname:
+        - NotBlank: ~
+      email:
+        - NotBlank: ~
+        - Email: ~
       profile_image:
-        - Blank: ~
         - File:
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]

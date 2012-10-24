@@ -1,11 +1,13 @@
-<?php //$view->extend('BoomBackBundle::layout.html.php') ?>
-<?php //$view['form']->setTheme($edit_form, array('BoomBackBundle:Form')) ?>
+<?php $view->extend('BoomFrontBundle::layout.html.php') ?>
+<?php $view['form']->setTheme($form, array('BoomFrontBundle:Form')) ?>
 
-<form action="<?php echo $view['router']->generate('BoomBackBundle_user_update', array('id' => $entity['id'])) ?>" method="post" <?php echo $view['form']->enctype($edit_form) ?> >
+<form action="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
     <fieldset>
-        <label><?php echo $form_title ?></label>
-        <?php echo $view['form']->row($edit_form['_token']) ?>
-        <?php echo $view['form']->rest($edit_form) ?>
+        <?php echo $view['form']->row($form['_token']) ?>
+        <div class="usr-pic">
+            <img src="<?php echo $entity['imagepath'] ?>" id="user-img" height="150px" width="150px"/>
+        </div>
+        <?php echo $view['form']->rest($form) ?>
     </fieldset>
     <fieldset>
         <section>

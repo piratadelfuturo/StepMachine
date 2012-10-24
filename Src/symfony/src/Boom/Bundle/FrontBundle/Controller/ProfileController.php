@@ -2,12 +2,59 @@
 
 namespace Boom\Bundle\FrontBundle\Controller;
 
+use Boom\Bundle\FrontBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ProfileController extends Controller {
+
+    public function indexAction() {
+        $data = array();
+
+        return $this->render(
+                        'BoomFrontBundle:Profile:index.html.php', array(
+                    'data' => $data
+                        )
+        );
+    }
+
+    public function editAction() {
+
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $form = $this->createForm(new UserType(), $sessionUser);
+
+
+        return $this->render(
+                        'BoomFrontBundle:Profile:edit.html.php', array(
+                    'form' => $form->createView(),
+                    'entity' => $sessionUser
+                        )
+        );
+    }
+
+    public function recentAction($page) {
+
+    }
+
+    public function boomsAction($page) {
+
+    }
+
+    public function recommendAction($page) {
+
+    }
+
+    public function followingsAction($page) {
+
+    }
+
+    public function followersAction($page) {
+
+    }
 
     public function userBlockAction() {
         $response = new Response();
@@ -48,41 +95,15 @@ class ProfileController extends Controller {
 
         $scope = $this->container->getParameter('fos_facebook.permissions');
         $facebook = $this->get('fos_facebook.api');
-        $fbLoginCheck = $this->get('router')->generate('BoomFrontBundle_login_check_fb',array('referer' => $referer),true);
+        $fbLoginCheck = $this->get('router')->generate('BoomFrontBundle_login_check_fb', array('referer' => $referer), true);
 
         $loginUrl = $facebook->getLoginUrl(
                 array(
-                    'scope' => implode(',',$scope),
-                    'redirect_uri'=>$fbLoginCheck)
-                );
+                    'scope' => implode(',', $scope),
+                    'redirect_uri' => $fbLoginCheck)
+        );
 
         return new RedirectResponse($loginUrl);
-    }
-
-    public function editAction() {
-
-    }
-
-    public function siteAction() {
-        $data = array();
-
-        return $this->render(
-                        'BoomFrontBundle:Profile:index.html.php', array(
-                    'data' => $data
-                        )
-        );
-    }
-
-    public function recentAction() {
-
-    }
-
-    public function myAction() {
-
-    }
-
-    public function recommendAction() {
-
     }
 
 }

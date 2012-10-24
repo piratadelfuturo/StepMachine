@@ -9,7 +9,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
             <ul id="close-tab">
                 <li>
                     <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
-                        Bienvenido <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile',array('username' => $user['username'])) ?>">
+                        Bienvenido <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_index') ?>">
                             <?php echo $view->escape($user['username']); ?>
                         </a>
                     <?php endif; ?>

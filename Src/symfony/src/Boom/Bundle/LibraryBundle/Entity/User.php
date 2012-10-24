@@ -172,6 +172,10 @@ class User extends BaseUser implements \ArrayAccess {
         $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setImageOption(self::IMAGE_PATH);
         $this->collaborator = false;
+        $this->firstname = '';
+        $this->lastname = '';
+        $this->name = '';
+        $this->bio = '';
     }
 
     public function serialize() {
@@ -277,13 +281,7 @@ class User extends BaseUser implements \ArrayAccess {
             $this->setLastname($fbdata['last_name']);
         }
 
-        if ($this->getUsername() == null || $this->getUsername() == '') {
-            //$this->setUsername($fbdata['username']);
-        }
-
-        if (isset($fbdata['email'])) {
-            //$this->setEmail($fbdata['email']);
-        }
+        $this->setName($this->firstname.' '.$this->lastname);
     }
 
     /**

@@ -51,7 +51,7 @@ class FacebookProvider implements UserProviderInterface {
         return $user;
     }
 
-    public function processUser($fbId){
+    public function processUser($fbId) {
 
         $loggedUser = null;
         $user = null;
@@ -59,7 +59,7 @@ class FacebookProvider implements UserProviderInterface {
         $userToken = $this->container->get('security.context')->getToken();
         if ($userToken !== null) {
             $loggedUser = $userToken->getUser();
-        }else{
+        } else {
             $user = $this->findUserByFbId($fbId);
         }
 
@@ -79,7 +79,6 @@ class FacebookProvider implements UserProviderInterface {
                 if (isset($fbdata['email'])) {
                     $user->setEmail($fbdata['email']);
                 }
-                // TODO use http://developers.facebook.com/docs/api/realtime
                 $user->setFBData($fbdata);
                 $user->setImageOption(User::IMAGE_FACEBOOK);
                 $user->addRole('ROLE_FACEBOOK');
@@ -91,9 +90,10 @@ class FacebookProvider implements UserProviderInterface {
                 if (!$user->hasRole('ROLE_FACEBOOK')) {
                     $user->addRole('ROLE_FACEBOOK');
                     $user->addRole('ROLE_SOCIAL');
-                    $user->setFBData($fbdata);
+                    if (isset($fbdata['id'])) {
+                        $user->setFacebookId($fbdata['id']);
+                    }
                     if (count($this->validator->validate($user, 'Facebook')) > 0) {
-                        // TODO: the user was found obviously, but doesnt match our expectations, do something smart
                         throw new UsernameNotFoundException('The facebook user could not be stored');
                     } else {
                         $this->userManager->updateUser($user);

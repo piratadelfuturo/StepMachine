@@ -9,6 +9,9 @@
             'category_slug' => $element['category']['slug'], 'slug' => $element['slug']
                 )
               );
+        $userUrl = $view['router']->generate(
+                'BoomFrontBundle_user_profile',array('username' => $element['user']['username']));
+
     $image =  isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],158,90) : 'http://placekitten.com/158/90';
         ?>
         <li class="boom">
@@ -20,12 +23,8 @@
                         <?php echo $view->escape($element['title']); ?>
                     </a>
                 </p>
-                <a href="<?php echo $elementUrl ?>" class="boom-moar">
-                    Por <?php
-                    echo $view->escape(
-                            !empty($element['user']['nickname']) || $element['user']['nickname'] == null ? $element['user']['username'] : $element['user']['nickname']
-                    )
-                    ?>
+                <a href="<?php echo $userUrl ?>" class="boom-moar">
+                    Por <?php echo $view->escape($element['user']['name']) ?>
                 </a>
                 <date><?php echo $view->escape($element['datecreated']->format('D, d M y')) ?></date>
             </div>
