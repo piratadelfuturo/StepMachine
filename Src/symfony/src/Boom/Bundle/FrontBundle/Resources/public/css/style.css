@@ -1529,7 +1529,7 @@ footer p{
   display:block;
   padding-right: 30px;
 }
-.lista-colaboradores .seguir{
+.lista-colaboradores .seguir, .author-profile .seguir{
   font: 15px 'Proxima', sans-serif;
   line-height:25px;
   color:#FFF;
@@ -1908,7 +1908,7 @@ footer p{
   width: 0px;
 }
 
-.single-boom .social .btn-fb:hover {
+.single-boom .social .btn-fb:hover,  {
   background-position: 0 -31px;
 }
 .fb-share, .tw-share {
@@ -3384,6 +3384,92 @@ form#boom_gallery ul li{
     padding: 8px;
     position: relative;
 }
+
+
+/* PROFILE */
+
+.author-profile .author-info {
+  border: 1px solid #dfdfdf;
+  padding: 10px 0;
+  position: relative;
+}
+
+.author-profile img {
+  float: left;
+  margin: 0 30px;
+}
+
+.author-profile h4 {
+  color: #231f20;
+  font: 40px 'Museo500', sans-serif;
+  display: inline-block;
+}
+
+.author-profile .boom-n{
+  display: inline-block;
+  font: 25px 'Museo500', sans-serif;
+  color: #828282;
+  margin-left: 10px;
+}
+.author-profile ul {
+  margin: 5px 0;
+}
+.author-profile li {
+  margin: 5px 0;
+}
+
+.author-profile li, .author-profile li a  {
+  color: #828282;
+  font: 25px 'Museo500', sans-serif;
+  line-height: 30px;
+  margin-right: 10px;
+}
+
+.author-profile .seguir {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+}
+
+.author-profile .btn-fb, .author-profile .btn-tw{
+  display: block;
+  position: relative;
+  float: left;
+  color: black;
+  background: url('../images/sprite_redes.png') no-repeat 0 0;
+  text-indent: -9000px;
+}
+
+.author-profile .btn-fb {
+  width: 26px;
+  height: 26px;
+}
+
+.author-profile .btn-fb:hover {
+  width: 26px;
+  height: 26px;
+  background-position-y: -31px;
+}
+
+
+.author-profile .btn-tw {
+  background-position-x: -31px;
+  width: 30px;
+  height: 30px;
+}
+
+.profile .btn-tw:hover {
+  background-position: -31px -31px;
+}
+
+.author-profile .author-bio {
+  color: #828282;
+  font: 14px 'Museo500', sans-serif;
+  margin: 20px 0;
+  padding: 0 22px;
+}
+
+
 
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
   .balloon::after {
