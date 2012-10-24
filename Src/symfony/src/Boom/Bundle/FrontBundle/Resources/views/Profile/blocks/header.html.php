@@ -10,12 +10,12 @@ $categories = $view['boom_front']->getFeaturedCategories();
                 <li>
                     <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
                         Bienvenido <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_index') ?>">
-                            <?php echo $view->escape($user['username']); ?>
+                            <?php echo $view->escape($user['firstname'].' '.$user['lastname']); ?>
                         </a>
                     <?php endif; ?>
                 </li>
                 <li id="user-activity-strean" >
-                    <a href="#"><?php echo $user['firstname'] ?></a> ama este sitio.
+                    <a href="#"><?php echo $user['name'] ?></a> ama este sitio.
                 </li>
             </ul>
             <ul id="open-tab">
