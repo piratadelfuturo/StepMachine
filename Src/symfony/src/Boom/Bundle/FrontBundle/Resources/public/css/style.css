@@ -3436,6 +3436,10 @@ form#boom_gallery ul li{
   margin-right: 10px;
 }
 
+.author-links li a:hover {
+  color: #F87937;
+}
+
 .author-profile .seguir {
   position: absolute;
   right: 15px;
