@@ -3164,7 +3164,7 @@ button.submit {
   height: 90px;
   display: block;
 }
-#booms-container .list .boom img, #booms-container .list .boom .boom-info {
+#booms-container .list .boom img, .list .boom .boom-info {
   float: left;
   display: block;
 }
@@ -3177,7 +3177,6 @@ button.submit {
 #booms-container .list .boom .boom-info .boom-ti a{
   color: #474747;
 }
-
 
 #booms-container .list .pags {
   margin-top: 20px;
@@ -3387,6 +3386,16 @@ form#boom_gallery ul li{
 
 
 /* PROFILE */
+.profile .title-flag {
+  height: 44px;
+  line-height: 44px;
+}
+
+.profile .title-flag:before {
+  border-top: 26px solid transparent;
+  border-bottom: 26px solid transparent;
+  border-left: 16px solid white;
+}
 
 .author-profile .author-info {
   border: 1px solid #dfdfdf;
@@ -3394,7 +3403,9 @@ form#boom_gallery ul li{
   position: relative;
 }
 
-.author-profile img {
+.author-profile .author-info img {
+  width: 147px;
+  height: 147px;
   float: left;
   margin: 0 30px;
 }
@@ -3411,14 +3422,14 @@ form#boom_gallery ul li{
   color: #828282;
   margin-left: 10px;
 }
-.author-profile ul {
+.author-links{
   margin: 5px 0;
 }
-.author-profile li {
+.author-links li {
   margin: 5px 0;
 }
 
-.author-profile li, .author-profile li a  {
+.author-links li, .author-links li a  {
   color: #828282;
   font: 25px 'Museo500', sans-serif;
   line-height: 30px;
@@ -3469,8 +3480,110 @@ form#boom_gallery ul li{
   padding: 0 22px;
 }
 
+.profile-booms .title-flag h3 {
+  display: inline-block;
+}
+
+.profile-booms .display-menu {
+  border-left: 1px solid #FBBE88;
+  line-height: 38px;
+  padding: 0 20px;
+  display: inline-block;
+  float: right;
+  padding: 0 8px !important;
+}
+.profile-booms .display-menu li {
+  display: inline-block;
+  padding: 0 8px;
+  line-height: 18px;
+  position: relative;
+}
+
+.profile-booms .display-menu li.off {
+  zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.profile-booms .display-menu li:hover {
+  zoom: 1;
+	filter: alpha(opacity=100);
+	opacity: 0.9999;
+}
+
+.profile-booms .display-menu li.disp{
+  border-right: 1px solid #FBBE88;
+}
+
+.profile-booms .display-menu li.disp.on:after{
+  content: ' ';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 10px solid white;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  margin-left: -9%;
+}
+
+.profile-booms .display-menu li.disp:first-child {
+  border-left: 1px solid #FBBE88;
+} 
 
 
+.profile-booms .display-menu li.disp a {
+  font: 18px 'Proxima', sans-serif;
+}
+.profile-booms .display-menu li.arrange {
+  padding: 0 4px;
+}
+
+.profile-booms .display-menu a {
+  text-transform: none;
+  color: #fff;
+  font: 14px 'Museo500', sans-serif;
+}
+
+.profile-booms .display-menu a {
+  display: inline-block;
+}
+
+.profile-booms .display-menu a.disp-list {
+  width: 60px;
+  background: url(../images/disp_list.png) right center no-repeat;
+}
+.profile-booms .display-menu a.disp-mosaico {
+  width: 90px;
+  background: url(../images/disp_tile.png) right center no-repeat;
+}
+
+#booms-container .profile-booms ul.list {
+  border: 1px solid #DFDFDF;
+  border-top: none;
+  padding-top: 20px;
+}
+
+#booms-container .profile-booms .list .boom {
+  padding: 0 30px;
+  height: auto;
+}
+
+#booms-container .profile-booms .list .boom .boom-info {
+  width: 415px;
+}
+
+#booms-container .profile-booms .list .boom .boom-info-mas {
+  display: inline-block;
+  margin: 10px 0 20px;
+  color: #8d8d8c;
+}
+
+#booms-container .profile-booms .list .boom .boom-info-mas span{
+  color: #f57b20;
+}
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
   .balloon::after {
     -moz-transform:rotate(180deg);
