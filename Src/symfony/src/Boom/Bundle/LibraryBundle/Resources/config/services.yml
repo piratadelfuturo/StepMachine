@@ -1,7 +1,6 @@
 parameters:
   boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
   boom_library.image.helper.class:            Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
-  boom_library.pagination.helper.class:       Boom\Bundle\LibraryBundle\Templating\Helper\PaginationHelper
   boom_library.tags_selector.type.class:      Boom\Bundle\LibraryBundle\Form\Type\TagsSelectorType
   boom_library.ajax_image.type.class:         Boom\Bundle\LibraryBundle\Form\AjaxImageType
   boom_library.ajax_gallery.type.class:       Boom\Bundle\LibraryBundle\Form\AjaxGalleryType
@@ -26,12 +25,6 @@ services:
             container:    "@service_container"
         tags:
             - { name: templating.helper, alias: boom_image }
-  boom_library.pagination.helper:
-        class: %boom_library.pagination.helper.class%
-        arguments:
-            container:    "@service_container"
-        tags:
-            - { name: templating.helper, alias: boom_pagination }
   boom_library.tags_selector.type:
         class: %boom_library.tags_selector.type.class%
         arguments: ["@doctrine.orm.entity_manager"]

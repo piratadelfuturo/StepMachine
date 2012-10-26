@@ -9,7 +9,11 @@ BoomFrontBundle_user_collaborators:
       page: \d+
 
 BoomFrontBundle_user_profile:
-    pattern:  /{username}/{page}
-    defaults: { _controller: "BoomFrontBundle:User:profile", page: 1 }
+    pattern:  /{username}/{listname}/{page}
+    defaults:
+        _controller: "BoomFrontBundle:User:profile"
+        page: 1
+        listname: creados
     requirements:
+      listname: creados|modificados
       page: \d+

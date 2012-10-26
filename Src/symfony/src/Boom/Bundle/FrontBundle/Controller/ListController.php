@@ -144,9 +144,10 @@ class ListController extends Controller {
                 ));
     }
 
-    public function userCategoryAction($slug, $page = 1) {
+    public function usersCategoryAction($slug, $page = 1) {
+        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
+        /* @var $catRepo \Boom\Bundle\LibraryBundle\Repository\CategoryRepository */
         $limit = 14;
-
         $em = $this->getDoctrine()->getManager();
         $catRepo = $em->getRepository('BoomLibraryBundle:Category');
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
@@ -156,8 +157,8 @@ class ListController extends Controller {
         if (is_null($thisCat) || $thisCat == false) {
             throw $this->createNotFoundException('Categoría no existente');
         }
-
-        $list = $boomRepo->findUserBoomsByCategory(
+        $boomRepo->
+                $list = $boomRepo->findUserBoomsByCategory(
                 $thisCat
                 , array(
             'boom.date_published' => 'DESC'
@@ -183,7 +184,8 @@ class ListController extends Controller {
                 ));
     }
 
-    public function userAction($page = 1) {
+    public function usersAction($page = 1) {
+        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
         $limit = 14;
 
         $em = $this->getDoctrine()->getManager();
@@ -275,13 +277,13 @@ class ListController extends Controller {
                 , $limit * ($page - 1)
                 , array(
             'status' => Boom::STATUS_PUBLIC
-                ),false,true
+                ), false, true
         );
 
         $total = $boomRepo->totalUsersBooms(
                 array(
-                    'status' => Boom::STATUS_PUBLIC
-                ),false, true
+            'status' => Boom::STATUS_PUBLIC
+                ), false, true
         );
 
 
@@ -291,7 +293,6 @@ class ListController extends Controller {
                     'list' => $list
                 ));
     }
-
 
     public function tagAction($slug, $page = 1) {
 
@@ -323,6 +324,46 @@ class ListController extends Controller {
                     'list' => $latest,
                     'entity' => $thisTag
                 ));
+    }
+
+    public function userAction($username, $listname, $page = 1) {
+
+        $limit = 7;
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BoomLibraryBundle:User')->findOneByUsername($username);
+        if (!$entity) {
+            throw $this->createNotFoundException('Usuario no existente.');
+        }
+
+        $list = $em->getRepository('BoomLibraryBundle:Boom')->findBy(
+                array(
+            'user' => $entity,
+            'status' => Boom::STATUS_PUBLIC
+                ), array('date_published' => 'DESC'), $limit, $limit * ($page - 1)
+        );
+
+        $query = $em->createQuery('
+            SELECT COUNT(b.id)
+            FROM BoomLibraryBundle:Boom b
+            WHERE
+                b.status = ?0
+                AND
+                b.user = ?1');
+        $query->setParameters(
+                array(
+                    Boom::STATUS_PUBLIC,
+                    $entity)
+        );
+        $total = $query->getSingleScalarResult();
+
+        return $this->render(
+                        'BoomFrontBundle:List:user.html.php', array(
+                    'list' => $list,
+                    'total' => $total,
+                    'limit' => $limit,
+                    'page' => $page
+                        )
+        );
     }
 
 }

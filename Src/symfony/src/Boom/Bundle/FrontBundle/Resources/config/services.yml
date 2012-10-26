@@ -3,6 +3,8 @@ parameters:
     boom_front.main.helper.class: Boom\Bundle\FrontBundle\Templating\Helper\MainHelper
     boom_front.facebook.auth_handler.class: Boom\Bundle\FrontBundle\Security\Http\Authentication\FacebookAuthenticationHandler
     boom_front.gallery.decoda.filter.class: Boom\Bundle\FrontBundle\Decoda\Filter\BoomGalleryFilter
+    boom_front.pagination.helper.class:     Boom\Bundle\FrontBundle\Templating\Helper\PaginationHelper
+
 
 services:
     boom_front.facebook.user:
@@ -21,6 +23,13 @@ services:
             container:    "@service_container"
         tags:
             - { name: templating.helper, alias: boom_front }
+    boom_library.pagination.helper:
+        class: %boom_front.pagination.helper.class%
+        arguments:
+            container:    "@service_container"
+        tags:
+            - { name: templating.helper, alias: boom_pagination }
+
     boom_front.gallery.decoda.filter:
         class: %boom_front.gallery.decoda.filter.class%
         arguments:

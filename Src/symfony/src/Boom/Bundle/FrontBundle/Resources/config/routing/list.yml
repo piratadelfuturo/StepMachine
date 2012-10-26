@@ -24,13 +24,13 @@ BoomFrontBundle_list_latest:
 
 BoomFrontBundle_list_category_users:
     pattern:  /usuarios/{slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:userCategory",page: 1 }
+    defaults: { _controller: "BoomFrontBundle:List:usersCategory",page: 1 }
     requirements:
       page: \d+
 
 BoomFrontBundle_list_users:
     pattern:  /usuarios/{page}
-    defaults: { _controller: "BoomFrontBundle:List:user",page: 1 }
+    defaults: { _controller: "BoomFrontBundle:List:users",page: 1 }
     requirements:
       page: \d+
 
@@ -50,4 +50,14 @@ BoomFrontBundle_list_tag:
     pattern:  /tag/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:tag",page: 1 }
     requirements:
+      page: \d+
+
+BoomFrontBundle_list_user:
+    pattern:  /usuario/{username}/{listname}/{page}
+    defaults:
+      _controller: "BoomFrontBundle:List:usersCategory"
+      page: 1
+      listname: creados
+    requirements:
+      listname: creados|modificados
       page: \d+
