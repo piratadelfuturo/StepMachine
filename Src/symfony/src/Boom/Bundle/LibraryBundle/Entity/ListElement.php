@@ -49,7 +49,7 @@ class ListElement extends DomainObject{
     protected $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="list_elements")
+     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="list_elements", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="boom_id", referencedColumnName="id", nullable=true)
      */
     protected $boom;

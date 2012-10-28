@@ -2,6 +2,8 @@
 
 namespace Boom\Bundle\FrontBundle\Templating\Helper;
 
+use Boom\Bundle\LibraryBundle\Entity\User;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -19,6 +21,12 @@ class MainHelper extends Helper {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Category');
         return $repo->findFeaturedCategories();
+    }
+
+    public function getUserBoomReply(User $user, Boom $boom){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        return $repo->getUserBoomReply($user,$boom);
     }
 
     public function getLatestCollaborators($number = 7) {

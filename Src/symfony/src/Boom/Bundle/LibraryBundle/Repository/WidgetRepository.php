@@ -3,6 +3,7 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Boom\Bundle\LibraryBundle\Entity\Widget;
+use Doctrine\ORM\Mapping as ORM;
 
 
 class WidgetRepository extends EntityRepository {

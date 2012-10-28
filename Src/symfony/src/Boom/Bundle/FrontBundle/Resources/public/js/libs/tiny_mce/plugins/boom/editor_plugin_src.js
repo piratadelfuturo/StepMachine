@@ -332,8 +332,6 @@
             rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
             rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
-            rep(/<iframe.*?>.*?<\/iframe>/gi,"");
-            rep(/<div.*?>(.*?)<\/div>/gi,"$1");
             rep(/<\/(strong|b)>/gi,"[/b]");
             rep(/<(strong|b)>/gi,"[b]");
             rep(/<\/(em|i)>/gi,"[/i]");
@@ -353,7 +351,6 @@
             rep(/&lt;/gi,"<");
             rep(/&gt;/gi,">");
             rep(/&amp;/gi,"&");
-
             return s;
         },
 
@@ -365,7 +362,7 @@
                 s = s.replace(re, str);
             };
 
-            rep(/\n/gi,"<br />");
+            rep(/\n/gi,"<br/>");
             rep(/\[b\]/gi,"<strong>");
             rep(/\[\/b\]/gi,"</strong>");
             rep(/\[i\]/gi,"<em>");
@@ -377,7 +374,7 @@
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
-            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\"/gal/preview/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
+            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+Routing.generate('BoomFrontBundle_gallery_iframe_preview')+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
             return s;

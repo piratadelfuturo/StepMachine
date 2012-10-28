@@ -5,13 +5,11 @@ namespace Boom\Bundle\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\Image;
-use Boom\Bundle\LibraryBundle\Entity\Boomelement;
 use Boom\Bundle\LibraryBundle\Entity\BoomelementRank;
 use Boom\Bundle\FrontBundle\Form\BoomType;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use UnauthorizedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Boom controller.
@@ -33,7 +31,18 @@ class BoomController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
         $fav = $boomRepo->isFavoriteUser($entity, $sessionUser);
-        return new Response(json_encode($fav));
+        $request = $this->getRequest();
+
+        if ($request->isXmlHttpRequest()) {
+            return new Response(json_encode($fav));
+        } else {
+            return $this->redirect($this->generateUrl(
+                                    'BoomFrontBundle_boom_show', array(
+                                'category_slug' => $entity['category']['slug'],
+                                'slug' => $entity['slug']
+                                    )
+                            ));
+        }
     }
 
     public function favoriteAction($slug) {
@@ -61,14 +70,19 @@ class BoomController extends Controller {
 
     public function reorderAction($slug) {
 
+        $request = $this->getRequest();
+        if (!$request->isXmlHttpRequest()) {
+            return new AccessDeniedHttpException('Forbidden method');
+        }
+
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
         $em = $this->getDoctrine()->getManager();
-        $boomRank = $em->getRepository('BoomLibraryBundle:Boom');
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
         $repoRank = $em->getRepository('BoomLibraryBundle:BoomelementRank');
 
-        $boom = $boomRank->findOneBySlug($slug);
+        $boom = $boomRepo->findOneBySlug($slug);
 
         $ranks = $repoRank->findBy(array(
             'boom' => $boom,
@@ -77,20 +91,20 @@ class BoomController extends Controller {
             'position' => 'ASC'
                 ));
 
-        $request = $this->getRequest();
-        $newOrder = array();
+        $newOrder = $request->request->get('order');
         if (empty($ranks)) {
-            //create ranks
             foreach ($newOrder as $original => $order) {
-                $ranks[] = new BoomelementRank($boom, $boom['elements'][$original], $order);
+                $ranks[$order['final']] = new BoomelementRank($boom, $sessionUser, $boom['elements'][$order['original']-1], $order['final']);
+                $em->persist($ranks[$order['final']]);
             }
         } else {
-            //update ranks
             foreach ($newOrder as $original => $order) {
-                $ranks[$original]['position'] = $order;
+                $ranks[$order['original']-1]['position'] = $order['final'];
+                $em->persist($ranks[$order['original']-1]);
             }
         }
 
+        $em->flush();
 
         $response = new Response(
                         json_encode($ranks)
@@ -196,8 +210,15 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
-        if (!$entity || $entity['status'] !== Boom::STATUS_PUBLIC) {
+        if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
+        }
+
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        if ($sessionUser['id'] == $foundEntity['user']['id']) {
+            throw new AccessDeniedHttpException('No puedes responder tus propios booms');
         }
 
         $clonedBoomValues = array(
@@ -219,15 +240,21 @@ class BoomController extends Controller {
         foreach ($clonedBoomValues as $clBoomV) {
             $entity[$clBoomV] = $foundEntity[$clBoomV];
         }
-        foreach ($entity['elements'] as $o_index => $entElem) {
+        foreach ($foundEntity['elements']->toArray() as $o_index => $entElem) {
             foreach ($clonedBoomelementValues as $clBoomelV) {
                 $entity['elements'][$o_index][$clBoomelV] = $entElem[$clBoomelV];
             }
         }
+
         $form = $this->createForm(new BoomType(), $entity);
 
         return $this->render('BoomFrontBundle:Boom:new.html.php', array(
                     'entity' => $entity,
+                    'form_url' => $this->generateUrl(
+                            'BoomFrontBundle_boom_replied', array(
+                        'slug' => $foundEntity['slug']
+                            )
+                    ),
                     'form' => $form->createView(),
                 ));
     }
@@ -248,6 +275,11 @@ class BoomController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
+        if ($sessionUser['id'] == $foundEntity['user']['id']) {
+            throw new AccessDeniedHttpException('No puedes responder tus propios booms');
+        }
+
+
         $request = $this->getRequest();
         $entity = new Boom();
         $form = $this->createForm(new BoomType(), $entity);
@@ -260,15 +292,12 @@ class BoomController extends Controller {
             $entity['status'] = Boom::STATUS_PRIVATE;
 
             $em->persist($entity);
-            $sessionToken = $this->get('security.context')->getToken();
-            $entity->setUser($sessionToken->getUser());
-
             $em->flush();
 
             return $this->redirect(
                             $this->generateUrl(
                                     'BoomFrontBundle_boom_show', array(
-                                'slug_category' => $entity['category']['name'],
+                                'category_slug' => $entity['category']['slug'],
                                 'slug' => $entity['slug']
                                     )
                             )
@@ -277,6 +306,11 @@ class BoomController extends Controller {
 
         return $this->render('BoomFrontBundle:Boom:new.html.php', array(
                     'entity' => $entity,
+                    'form_url' => $this->generateUrl(
+                            'BoomFrontBundle_boom_replied', array(
+                        'slug' => $slug
+                            )
+                    ),
                     'form' => $form->createView(),
                 ));
     }

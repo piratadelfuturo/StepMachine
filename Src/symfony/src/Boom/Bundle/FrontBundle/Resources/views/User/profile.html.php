@@ -16,9 +16,9 @@
 
             </ul>
             <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
-                <?php ?>
+                <?php if($app->getUser()->getUsername() !== $entity['username']):?>
                 <a href="#" class="seguir">seguir</a>
-                <?php ?>
+                <?php endif;?>
             <?php endif; ?>
         </div>
         <p class="author-bio"><?php echo $view->escape($entity['bio']) ?></p>

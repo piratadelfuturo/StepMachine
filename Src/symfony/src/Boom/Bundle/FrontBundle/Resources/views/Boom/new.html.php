@@ -11,9 +11,13 @@
     <span id="creatuboom"><h3>crea tu boom</h3></span>
     <div id="form-boom">
         <?php
+        if (!isset($form_url)) {
+            $form_url = $view['router']->generate('BoomFrontBundle_boom_create');
+        }
+
         echo $view->render(
                 'BoomFrontBundle:Boom:form/fullForm.html.php', array(
-            'form_url' => $view['router']->generate('BoomFrontBundle_boom_create'),
+            'form_url' => $form_url,
             'form' => $form
                 )
         );

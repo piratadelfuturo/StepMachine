@@ -96,7 +96,9 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.category', 'category');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('boom.category', $category['id']),
+                $cb->expr()->eq('user.collaborator', (int) $collaborator),
+                $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -123,6 +125,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('boom');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
+                $cb->expr()->eq('user.id', $user['id']),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($modified == true) {
@@ -152,6 +155,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('count(boom)');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
+                $cb->expr()->eq('user.id', $user['id']),
                 $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($modified == true) {
@@ -439,6 +443,25 @@ class BoomRepository extends NestedTreeRepository {
         $query = $cb->getQuery();
         $result = (bool) $query->getScalarResult();
         return $result;
+    }
+
+    public function getUserBoomReply(User $user,Boom $boom){
+
+        $cb = $this->createQueryBuilder('boom');
+
+        $cb->select('boom');
+        $cb->join('boom.user', 'user');
+        $cb->andWhere(
+                $cb->expr()->in('user.id', $user['id']),
+                $cb->expr()->in('boom.parent', $boom['id'])
+        );
+        $cb->setFirstResult((int) 0)->setMaxResults((int) 1);
+
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+
+        return $result;
+
     }
 
 }

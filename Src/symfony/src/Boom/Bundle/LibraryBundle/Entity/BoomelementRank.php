@@ -26,7 +26,6 @@ class BoomelementRank extends DomainObject{
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Boomelement", inversedBy="boomelementranks")
      * @ORM\JoinColumn(name="boomelement_id", referencedColumnName="id", nullable=false)
-     * @Gedmo\SortableGroup
      */
     protected $boomelement;
 
@@ -44,8 +43,11 @@ class BoomelementRank extends DomainObject{
     */
     protected $position;
 
-    public function __construct(){
-        parent::__construct();
+    public function __construct(Boom $boom, User $user,  Boomelement $boomelement ,$final){
+        $this->setBoom($boom);
+        $this->setUser($user);
+        $this->setBoomelement($boomelement);
+        $this->setPosition($final);
     }
 
     /**

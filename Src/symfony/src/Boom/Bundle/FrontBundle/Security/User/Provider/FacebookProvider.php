@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use \BaseFacebook;
 use \FacebookApiException;
+use Gedmo\Sluggable\Util\Urlizer;
 
 class FacebookProvider implements UserProviderInterface {
     /*
@@ -69,13 +70,20 @@ class FacebookProvider implements UserProviderInterface {
             $fbdata = null;
         }
 
-        if (empty($user) || $user === null) {
+        if ($user === null || empty($user)) {
             if (!empty($fbdata) && $fbdata !== null) {
 
                 $user = $this->userManager->createUser();
+
                 $user->setEnabled(true);
                 $user->setPassword('');
-                $user->setUsername($fbdata['username']);
+                if(isset($fbdata['username'])){
+                    $username = $fbdata['username'];
+                }else{
+                    $username = Urlizer::urlize($fbdata['name'], '_');
+                }
+                $user->setUsername($username);
+
                 if (isset($fbdata['email'])) {
                     $user->setEmail($fbdata['email']);
                 }
@@ -83,6 +91,7 @@ class FacebookProvider implements UserProviderInterface {
                 $user->setImageOption(User::IMAGE_FACEBOOK);
                 $user->addRole('ROLE_FACEBOOK');
                 $user->addRole('ROLE_SOCIAL');
+
                 $this->userManager->updateUser($user);
             }
         } elseif (!empty($loggedUser) || $loggedUser !== null) {

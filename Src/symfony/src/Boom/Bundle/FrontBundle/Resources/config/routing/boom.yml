@@ -1,5 +1,5 @@
 BoomFrontBundle_boom_reorder:
-    pattern:  /{slug}/reordena.{_format}
+    pattern:  /{slug}/reordena
     defaults: { _controller: "BoomFrontBundle:Boom:reorder", _format: "json" }
     requirements: { _method: post }
 
@@ -14,13 +14,19 @@ BoomFrontBundle_boom_favstatus:
     requirements: { _method: get }
 
 BoomFrontBundle_boom_image:
-    pattern:  /imagen.json
-    defaults: { _controller: "BoomFrontBundle:Boom:ajaxImage" }
+    pattern:  /imagen
+    defaults: { _controller: "BoomFrontBundle:Boom:ajaxImage", _format: "json"  }
     requirements: { _method: post }
 
 BoomFrontBundle_boom_reply:
-    pattern:  /responde/{slug}
+    pattern:  /{slug}/responde
     defaults: { _controller: "BoomFrontBundle:Boom:reply" }
+    requirements: { _method: get }
+
+BoomFrontBundle_boom_replied:
+    pattern:  /{slug}/responde
+    defaults: { _controller: "BoomFrontBundle:Boom:replied" }
+    requirements: { _method: post }
 
 BoomFrontBundle_boom_new:
     pattern:  /nuevo
@@ -35,9 +41,10 @@ BoomFrontBundle_boom_create:
 BoomFrontBundle_boom_edit:
     pattern:  /{slug}/editar
     defaults: { _controller: "BoomFrontBundle:Boom:edit" }
+    requirements: { _method: get }
 
 BoomFrontBundle_boom_update:
-    pattern:  /{slug}/actualizar
+    pattern:  /{slug}/editar
     defaults: { _controller: "BoomFrontBundle:Boom:update" }
     requirements: { _method: post }
 
