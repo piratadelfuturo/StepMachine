@@ -127,7 +127,7 @@
                             'attr' => array(
                                 'class' => 'boom-wysiwyg',
                                 'placeholder' => 'Escribe aquí tu boom...',
-                                'gallery-preview' => $view['routing']->generate('BoomFrontBundle_gallery_iframe_preview')
+                                'gallery-preview' => $view['router']->generate('BoomFrontBundle_gallery_iframe_preview')
                             )
                                 )
                         );
