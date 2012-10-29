@@ -1464,6 +1464,7 @@ footer{
   font:normal 12px Helvetica;
   padding:3px 1px 3px 5px;
 }
+
 #f-cont input[type="submit"]{
   background: none;
   border: none;
@@ -1471,12 +1472,20 @@ footer{
   color:#F87937;
   font: bold 18px Helvetica;
 }
-footer p{
+
+footer p {
   margin:10px 0;
   font:12px Helvetica;
   color:#4c4a4a;
 }
-#copyright{text-align:center;}
+
+#copyright {
+  text-align: center;
+}
+
+#copyright a {
+  color: #4C4A4A;
+}
 
 /* PAGINA: COLABORADORES */
 
