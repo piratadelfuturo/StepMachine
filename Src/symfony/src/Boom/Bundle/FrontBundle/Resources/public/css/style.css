@@ -91,6 +91,17 @@ body {
   left: -2px;
 }
 
+.title-flag.gris {
+  background: #3a3a3a;
+  border-top: 1px solid #3a3a3a;
+  height: 46px;
+  line-height: 46px;
+}
+
+.title-flag.gris:before {
+  border-top: 28px solid transparent;
+  border-bottom: 28px solid transparent;
+}
 /*END BODY*/
 
 /*HEADER*/
@@ -3436,7 +3447,7 @@ form#boom_gallery ul li{
   margin-right: 10px;
 }
 
-.author-links li a:hover {
+.author-links li a:hover{
   color: #F87937;
 }
 
@@ -3588,13 +3599,69 @@ form#boom_gallery ul li{
 #booms-container .profile-booms .list .boom .boom-info-mas span{
   color: #f57b20;
 }
-@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+
+/* EDITAR PERFIL */
+
+.editar-perfil form {
+  border: 1px solid #dfdfdf;
+}
+
+.editar-perfil fieldset{
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 0 22px;
+  padding: 20px 0;
+}
+
+.editar-perfil .usr-pic {
+  float: left;
+  border: 8px solid #f2f2f2;
+}
+
+.editar-perfil label {
+  display: none;
+}
+
+.editar-perfil input[type=text] {
+  font: 17px 'Museo500', sans-serif;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  margin: 10px 0 0 25px;
+  width: 420px;
+  padding: 10px 15px;
+}
+
+#front_user_profile_image {
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+
+#front_user_bio {
+  width: 630px;
+  height: 120px;
+  padding: 10px;
+  font: 16px 'Museo500', sans-serif;
+  line-height: 20px;
+  resize: none;
+  overflow: auto;
+  border: 2px inset;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
   .balloon::after {
     -moz-transform:rotate(180deg);
     -webkit-transform:rotate(180deg);
     -o-transform:rotate(180deg);
     -ms-transform:rotate(180deg);
-    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2)
+    ;
     left: -11px;
   }
 

@@ -19,20 +19,16 @@ class UserType extends AbstractType {
                         'text'
                         )
                 ->add(
-                        'name',
+                        'username',
                         'text'
-                        )
+                      )
                 ->add(
-                        'nickname',
-                        'text'
+                        'profile_image',
+                        'file', array ('label' => 'Sube una imagen de 150X150 pixeles para que sea tu ávatar en 7Boom.')
                         )
                 ->add(
                         'bio',
-                        'textarea', array('label' => 'Bio'))
-                ->add(
-                        'profile_image',
-                        'file'
-                        );
+                        'textarea', array('label' => 'Bio'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
