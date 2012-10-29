@@ -87,6 +87,10 @@ Boom\Bundle\LibraryBundle\Entity\User:
       email:
         - NotBlank: ~
         - Email: ~
+      collaborator:
+        - Type:
+            type: bool
+            groups: [admin]
       profile_image:
         - File:
                 maxSize: 5120k

@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 use Boom\Bundle\BackBundle\Form\UserType;
 
-
 class UserController extends Controller {
 
     /**
@@ -110,7 +109,7 @@ class UserController extends Controller {
 
         return $this->render('BoomBackBundle:User:show.html.php', array(
                     'entity' => $entity
-                    ));
+                ));
     }
 
     /**
@@ -197,23 +196,20 @@ class UserController extends Controller {
 
 
         $editForm = $this->createForm(new UserType(), $entity);
-
         $request = $this->getRequest();
-
         $editForm->bindRequest($request);
 
-        if ($editForm->isValid()) {
+        if ($this->get('validator')->validate($entity, array('admin'))) {
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect(
-                    $this->generateUrl(
-                            'BoomBackBundle_user_edit',
-                            array(
+                            $this->generateUrl(
+                                    'BoomBackBundle_user_edit', array(
                                 'id' => $id
+                                    )
                             )
-                            )
-                    );
+            );
         }
 
         return $this->render('BoomBackBundle:User:edit.html.php', array(
