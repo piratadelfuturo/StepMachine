@@ -11,11 +11,16 @@ class ActivityController extends Controller {
     public function checkFollowStatusAction($username) {
         $request = $this->getRequest();
         if (!$request->isXmlHttpRequest()) {
-            //throw new AccessDeniedHttpException('Forbidden method');
+            throw new AccessDeniedHttpException('Forbidden method');
         }
+
+
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
+        if ($username == $sessionUser['username']) {
+            throw new AccessDeniedHttpException('Forbidden method');
+        }
 
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('BoomLibraryBundle:User');
@@ -42,6 +47,13 @@ class ActivityController extends Controller {
             throw new AccessDeniedHttpException('Forbidden method');
         }
 
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        if ($username == $sessionUser['username']) {
+            throw new AccessDeniedHttpException('Forbidden method');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('BoomLibraryBundle:User');
         $entity = $userRepo->findOneByUsername($username);
@@ -49,9 +61,6 @@ class ActivityController extends Controller {
         if (!$entity) {
             throw $this->createNotFoundException('Usuario inexistente.');
         }
-
-        $sessionToken = $this->get('security.context')->getToken();
-        $sessionUser = $sessionToken->getUser();
 
         $sessionUser->addFollowing($entity);
 

@@ -530,22 +530,24 @@
 
 (function(document,$){
     $(document).ready(function(){
-        var favTag = function(url,btn){
-            $(btn).fadeOut();
+        var social = $('.social.cf');
+        var placeh = social.find('.fav-placeholder');
+        var favTag = function(url){
+            placeh.fadeOut();
             $.ajax({
                 url: url ,
                 success: function(response){
-                    $(btn).fadeIn();
+                    placeh.fadeIn();
                     if(response.text){
-                        btn.addClass('btn-fav').text(response.text);
+                        placeh.addClass('btn-fav').text(response.text);
                         if(response.fav === true){
-                            btn.addClass('active');
+                            placeh.addClass('active');
                         }else{
-                            btn.removeClass('active');
+                            placeh.removeClass('active');
                         }
-                        btn.click(function(e){
+                        placeh.click(function(e){
                             e.preventDefault();
-                            favTag(response.url,btn);
+                            favTag(response.url);
                             return false;
                         })
                     }
@@ -553,10 +555,8 @@
             });
 
         }
-        var social = $('.social.cf');
-        var placeh = social.find('.fav-placeholder');
         if(placeh.length > 0){
-            favTag(placeh.attr('href'),placeh);
+            favTag(placeh.attr('href'));
         }
     });
 })(document,jQuery);
