@@ -34,11 +34,11 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
               min: 0
               max: 5
         image:
-          - Valid: ~
+          - NotNull: ~
         user:
-          - Valid: ~
+          - NotNull: ~
         category:
-          - Valid: ~
+          - NotNull: ~
         featured:
           - DateTime: ~
 
