@@ -61,6 +61,7 @@
         } else {
             echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
         }
+
         ?>
         <div id="container" class="<?php $view['slots']->output('layout_container_css_class', '') ?>">
             <?php $view['slots']->output('_content') ?>

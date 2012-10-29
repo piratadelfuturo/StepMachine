@@ -1,6 +1,6 @@
 <?php $view->extend('BoomBackBundle::layout.html.php') ?>
 <div class="g12">
-    <h1>Booms</h1>
+    <h1>Usuarios</h1>
     <table id="boomTable" class="datatable">
         <thead>
             <tr>
