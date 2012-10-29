@@ -4,8 +4,6 @@
 $user = $app->getUser();
 $categories = $view['boom_front']->getFeaturedCategories();
 $activities = $view['boom_front']->getFollowedActivities($app->getUser());
-var_dump($activities);
-exit;
 ?>
 <div id="usr-cnt">
     <a href="#" class="mostrar"><span>Tu Panel</span></a>
@@ -62,7 +60,7 @@ exit;
                             <?php foreach ($followings as $following): ?>
                                 <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $following['username'])) ?>">
                                         <span>
-                                            <img src="<?php echo $following['imagepath'] ?>" alt="<?php echo $following['username'] ?>"/>
+                                            <img src="<?php echo $following['imagepath'] ?>" alt="<?php echo $following['username'] ?>" height="40px" width="40px"/>
                                         </span>
                                     </a>
                                 </li>
@@ -111,7 +109,7 @@ exit;
                                 else:
                                     $elementImage = '';
                                 endif;
-                                $elementUrl = $view->generate(
+                                $elementUrl = $view['router']->generate(
                                         'BoomFrontBundle_boom_show', array(
                                     'category_slug' => '',
                                     'slug' => ''
@@ -126,7 +124,7 @@ exit;
                                         <a href="<?php echo $elementUrl ?>" class="boom-moar">Leer Boom</a>
                                     </div>
                                     <ul class="boom-pub">
-                                        <li class="pub-date">Publicado el<a href="<?php echo $elementUrl ?>"> <?php echo $element['datepublished'] ?></a></li>
+                                        <li class="pub-date">Publicado el<a href="<?php echo $elementUrl ?>"> <?php $element['datepublished'] ?></a></li>
                                     </ul>
                                 </li>
                             <?php endforeach; ?>

@@ -23,8 +23,8 @@ class BoomController extends Controller {
             throw new AccessDeniedHttpException('Forbidden method');
         }
 
-        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
-        /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
+        /** @var Boom\Bundle\LibraryBundle\Repository\BoomRepository $boomRepo */
+        /** @var Boom\Bundle\LibraryBundle\Entity\Boom $entity */
         $em = $this->getDoctrine()->getManager();
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
         $entity = $boomRepo->findOneBySlug($slug);
@@ -38,7 +38,21 @@ class BoomController extends Controller {
         $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest()) {
-            return new Response(json_encode($fav));
+            $response = array(
+                'fav' => $fav,
+                'url' => $this->generateUrl(
+                        'BoomFrontBundle_boom_fav', array(
+                    'slug' => $slug,
+                    '_format' => 'json'
+                        )
+                )
+            );
+            if ($fav == true) {
+                $response['text'] = 'Quitar de favoritos.';
+            } else {
+                $response['text'] = 'Marcar como favorito.';
+            }
+            return new Response(json_encode($response));
         } else {
             return $this->redirect($this->generateUrl(
                                     'BoomFrontBundle_boom_show', array(
@@ -55,8 +69,8 @@ class BoomController extends Controller {
             throw new AccessDeniedHttpException('Forbidden method');
         }
 
-        /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
-        /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
+        /** @var Boom\Bundle\LibraryBundle\Repository\BoomRepository $boomRepo */
+        /** @var Boom\Bundle\LibraryBundle\Entity\Boom $entity */
         $em = $this->getDoctrine()->getManager();
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
         $entity = $boomRepo->findOneBySlug($slug);
@@ -74,7 +88,24 @@ class BoomController extends Controller {
         }
         $em->persist($sessionUser);
         $em->flush();
-        return new Response(json_encode(!$fav));
+
+        $response = array(
+            'fav' => !$fav,
+            'url' => $this->generateUrl(
+                    'BoomFrontBundle_boom_fav', array(
+                'slug' => $slug,
+                '_format' => 'json'
+                    )
+            )
+        );
+        if (!$fav == true) {
+            $response['text'] = 'Quitar de favoritos.';
+        } else {
+            $response['text'] = 'Marcar como favorito.';
+        }
+
+
+        return new Response(json_encode($response));
     }
 
     public function reorderAction($slug) {
@@ -103,13 +134,13 @@ class BoomController extends Controller {
         $newOrder = $request->request->get('order');
         if (empty($ranks)) {
             foreach ($newOrder as $original => $order) {
-                $ranks[$order['final']] = new BoomelementRank($boom, $sessionUser, $boom['elements'][$order['original']-1], $order['final']);
+                $ranks[$order['final']] = new BoomelementRank($boom, $sessionUser, $boom['elements'][$order['original'] - 1], $order['final']);
                 $em->persist($ranks[$order['final']]);
             }
         } else {
             foreach ($newOrder as $original => $order) {
-                $ranks[$order['original']-1]['position'] = $order['final'];
-                $em->persist($ranks[$order['original']-1]);
+                $ranks[$order['original'] - 1]['position'] = $order['final'];
+                $em->persist($ranks[$order['original'] - 1]);
             }
         }
 

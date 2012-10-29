@@ -370,7 +370,9 @@
 (function(document,$){
     $(document).ready(function(){
 
-        var data = {order:{}};
+        var data = {
+            order:{}
+        };
 
         //DRAGnDROP widgt
         $("#usr-booms .dyna-content.tend-cont > .drag-booms").dragsort({
@@ -390,19 +392,19 @@
 
         $("#usr-booms > a.editalo").click(function(e){
             e.preventDefault();
-                $.ajax({
-                    url: $(this).attr('href'),
-                    data: data,
-                    type: 'POST',
-                    statusCode:{
-                        200: function(data){
+            $.ajax({
+                url: $(this).attr('href'),
+                data: data,
+                type: 'POST',
+                statusCode:{
+                    200: function(data){
 
-                        },
-                        302:function(){
+                    },
+                    302:function(){
 
-                        }
                     }
-                });
+                }
+            });
 
         })
     });
@@ -415,26 +417,31 @@
 (function(window, document, $ ){
     window.onFbInit = function(){
         if(!!FB){
-            $("a#fb-login-check").click(function(){
-                var _a = $(this);
-                FB.login(function(response){
-                    if(response.status == 'connected'){
-                        window.location = _a.attr('registration-url');
-                    }
-                },{
-                    scope:_a.attr('scope')
-                });
-                return false;
-            });
-        /*$(".btn-fb").click(function(e){
+            $(window).trigger("fbInit")
+        }
+
+    /*$(".btn-fb").click(function(e){
                 e.preventDefault();
                 FB.api('/me/og.likes',function(){
                     console.log(arguments);
                 });
                 return false;
             });*/
-        }
     }
+    $(window).bind("fbInit",function(){
+        $("a#fb-login-check").click(function(e){
+            e.preventDefault();
+            var _a = $(this);
+            FB.login(function(response){
+                if(response.status == 'connected'){
+                    window.location = _a.attr('registration-url');
+                }
+            },{
+                scope:_a.attr('scope')
+            });
+            return false;
+        });
+    })
 })(window,document,jQuery);
 
 /**
@@ -454,6 +461,114 @@
             });
         });
 
+    });
+})(document,jQuery);
+/**
+ * follow
+ */
+(function(document,$){
+    $(document).ready(function(){
+        var profile = $('.author-profile .author-info').eq(0);
+        if(profile.length > 0){
+            $.ajax({
+                url: profile.attr('follow-url'),
+                dataTypeString:'json',
+                success: function(response){
+                    var resp = response;
+                    var link = $(document.createElement('a')).addClass('seguir');
+                    if(response.follow === true || response.follow === false){
+                        link.text(response.follow === false ? 'seguir' : 'dejar de seguir');
+                        link.attr('href','#');
+                        link.click(function(e){
+                            e.preventDefault();
+                            link.fadeOut();
+                            $.ajax({
+                                url:resp.url,
+                                type:'json',
+                                success:function(r){
+                                    resp = r;
+                                    link.text(resp.follow === true ? 'dejar de seguir' : 'seguir');
+                                    link.fadeIn();
+                                },
+                                error:function(){
+                                    link.fadeIn();
+                                }
+                            });
+                        })
+                        profile.append(link);
+                    }
+                },
+                error:function(a,s,d){
+                    console.log(d);
+                }
+            });
+
+        }
+    });
+})(document,jQuery);
+
+(function(document,$){
+    $(document).ready(function(){
+        var tw = $('.tw-share');
+        var url = tw.eq(0).attr('tw-count');
+        if(url){
+            $.ajax({
+                url: url,
+                success: function(response){
+                    if(response.count){
+                        console.log(response.count);
+                        tw.each(function(){
+                            var p = $(document.createElement('p')).text(response.count);
+                            $(this).append(p);
+                        });
+                    }
+                }
+            });
+        }
+    });
+})(document,jQuery);
+
+(function(document,$){
+    $(document).ready(function(){
+        var favTag = function(url,btn){
+            $(btn).fadeOut();
+            $.ajax({
+                url: url ,
+                success: function(response){
+                    $(btn).fadeIn();
+                    if(response.text){
+                        btn.addClass('btn-fav').text(response.text);
+                        if(response.fav === true){
+                            btn.addClass('active');
+                        }else{
+                            btn.removeClass('active');
+                        }
+                        btn.click(function(e){
+                            e.preventDefault();
+                            favTag(response.url,btn);
+                            return false;
+                        })
+                    }
+                }
+            });
+
+        }
+        var social = $('.social.cf');
+        var placeh = social.find('.fav-placeholder');
+        if(placeh.length > 0){
+            favTag(placeh.attr('href'),placeh);
+        }
+    });
+})(document,jQuery);
+
+(function(document,$){
+    $(window).bind("fbInit",function(){
+        FB.api('/'+window.location,function(response){
+            if(response.likes){
+                var p = $(document,createElement('p')).text(response.likes);
+                $('.fb-share').append(p);
+            }
+        });
     });
 })(document,jQuery);
 

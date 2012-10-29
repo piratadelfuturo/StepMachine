@@ -29,21 +29,17 @@ $twitter = array(
 
 $twitterUrl = 'https://twitter.com/share?' . http_build_query($twitter);
 
-$favUrl = $view['router']->generate('BoomFrontBundle_boom_fav', array('slug' => $entity['slug']));
+$favUrl = $view['router']->generate('BoomFrontBundle_boom_favstatus', array('slug' => $entity['slug']));
+$twUrl = $view['router']->generate(
+        'BoomFrontBundle_boom_twit_count',
+        array(
+            'slug' => $entity['slug'],
+            'category_slug' => $entity['category']['slug']
+            )
+        );
 
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
-
-$fb_boom_likes_data = json_decode(file_get_contents("http://graph.facebook.com/&ids=" . $fb_boom_graph_data['url']), true);
-if (in_array('shares', $fb_boom_likes_data)) {
-    $fb_boom_likes = $fb_boom_likes_data[$fb_boom_graph_data['url']]['shares'];
-} else {
-    $fb_boom_likes = '';
-}
-$tw_boom_tweets = json_decode(file_get_contents("http://urls.api.twitter.com/1/urls/count.json?url=" . $fb_boom_graph_data['url']), true);
-if ($tw_boom_tweets['count'] == 0){
-    $tw_boom_tweets['count'] = '';
-}
 ?>
 <div class="musica single-boom">
     <div class="boom-main">
@@ -63,16 +59,12 @@ if ($tw_boom_tweets['count'] == 0){
             <div class="fb-share">
                 <div class="fb-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
                 <a href="#" class="btn-fb">facebook</a>
-<?php echo!empty($fb_boom_likes) ? '<p>' . $fb_boom_likes . '</p>' : '' ?>
             </div>
-            <div class="tw-share">
+            <div class="tw-share" tw-count="<?php echo $twUrl ?>">
                 <div class="tw-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
                 <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
-                <p><?php echo $tw_boom_tweets['count'] ?></p>
             </div>
-            <?php if($view['security']->isGranted('ROLE_USER') == true):?>
-            <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav">Marcar como favorito:</a>
-            <?php endif;?>
+            <a href="<?php echo $favUrl ?>" target="_blank" class="fav-placeholder"></a>
         </div>
         <div class="booms">
             <ul class="lista-booms">
@@ -139,7 +131,6 @@ foreach ($tags as $tag):
                 <div class="tw-share">
                     <div class="tw-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
                     <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
-                    <p><?php echo $tw_boom_tweets['count'] ?></p>
                 </div>
                 <a href="<?php echo $favUrl ?>" target="_blank" class="btn-fav">Marcar como favorito:</a>
             </div>

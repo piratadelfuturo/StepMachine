@@ -91,8 +91,32 @@ class UserRepository extends EntityRepository {
         $cb->orderBy('activity.date', 'DESC');
         $cb->setParameter('user_id', $user['id']);
         $query = $cb->getQuery();
+        $query->useResultCache(true, 120, 'front_user_activities_cache_'.$user['id'].'_'.$limit);
         $result = $query->getResult();
         return $result;
+    }
+
+    public function checkFollowStatus($username,$friend_username){
+        /* @var Doctrine\ORM\Query $query */
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('
+            friend.id friend_id
+            ');
+        $cb->leftJoin('user.following', 'friend');
+        $cb->andWhere(
+                $cb->expr()->eq('user.username', ':username'),
+                $cb->expr()->eq('friend.username', ':friend_username')
+        );
+        $cb->setFirstResult(0)->setMaxResults(1);
+        $cb->setParameter('username', $username);
+        $cb->setParameter('friend_username', $friend_username);
+        $query = $cb->getQuery();
+        try{
+            $result = $query->getSingleScalarResult();
+            return true;
+        }catch(\Exception $e){
+            return false;
+        }
     }
 
 }

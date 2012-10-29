@@ -42,6 +42,12 @@ BoomFrontBundle_list:
     requirements:
         _method:  GET
 
+BoomFrontBundle_boom_twit_count:
+    pattern:  /tc/{category_slug}/{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:twitCount", _format: "json" }
+    requirements:
+        _method:  GET
+
 BoomFrontBundle_category_show:
     pattern:  /{slug}
     defaults: { _controller: "BoomFrontBundle:Default:category" }

@@ -156,4 +156,14 @@ class DefaultController extends Controller {
                 ));
     }
 
+    public function twitCountAction($category_slug, $slug){
+        return new Response(file_get_contents('http://urls.api.twitter.com/1/urls/count.json?url='.$this->generateUrl(
+                'BoomFrontBundle_boom_show',
+                array(
+                    'category_slug' => $category_slug,
+                    'slug' => $slug
+                )
+                ,true)));
+    }
+
 }

@@ -1998,7 +1998,7 @@ footer p{
   right: 0;
 }
 
-.single-boom .social .btn-fav:hover:after {
+.single-boom .social .btn-fav:hover:after, .single-boom .social .btn-fav.active:after {
   background-position: -63px -31px;
 }
 
@@ -3535,7 +3535,7 @@ form#boom_gallery ul li{
 
 .profile-booms .display-menu li.disp:first-child {
   border-left: 1px solid #FBBE88;
-} 
+}
 
 
 .profile-booms .display-menu li.disp a {
@@ -3601,11 +3601,11 @@ form#boom_gallery ul li{
   #nsfw-sc .balloon {
     left: 112px;
   }
-  
+
   .sort-elements .boomie .balloon {
     left: 75px;
   }
-  
+
   .sort-elements .wyswyg-menu li .balloon {
     left: 50px;
   }

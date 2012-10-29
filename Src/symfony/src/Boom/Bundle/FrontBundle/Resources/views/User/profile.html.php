@@ -5,7 +5,7 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
 <div class="profile">
     <div class="author-profile">
         <h3 class="title-flag">Perfil</h3>
-        <div class="author-info cf">
+        <div class="author-info cf" follow-url="<?php echo $view['router']->generate('BoomFrontBundle_activity_follow_check',array('username'=> $entity['username'])) ;?>" >
             <img src="<?php echo $entity['imagepath'] ?>" height="147px" width="147px" >
             <h4><?php echo $view->escape($entity['firstname'] . ' ' . $entity['lastname']) ?></h4><p class="boom-n">(<?php echo $entity['booms']->count() ?> Booms)</p>
             <ul class="author-links">
@@ -17,11 +17,6 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
                 <?php endif; ?>
 
             </ul>
-            <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
-                <?php if($app->getUser()->getUsername() !== $entity['username']):?>
-                <a href="#" class="seguir">seguir</a>
-                <?php endif;?>
-            <?php endif; ?>
         </div>
         <p class="author-bio"><?php echo $view->escape($entity['bio']) ?></p>
     </div>

@@ -2,11 +2,19 @@ BoomFrontBundle_activity_list:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:Activity:list" }
 
+BoomFrontBundle_activity_follow_check:
+    pattern:  /{username}/validar_seguir
+    defaults: { _controller: "BoomFrontBundle:Activity:checkFollowStatus", _format: "json" }
+
 BoomFrontBundle_activity_follow:
-    pattern:  /follow/{username}
-    defaults: { _controller: "BoomFrontBundle:Activity:follow" }
+    pattern:  /{username}/seguir
+    defaults: { _controller: "BoomFrontBundle:Activity:follow", _format: "json" }
+
+BoomFrontBundle_activity_unfollow:
+    pattern:  /{username}/no_seguir
+    defaults: { _controller: "BoomFrontBundle:Activity:unfollow", _format: "json" }
 
 BoomFrontBundle_activity_recommend:
     pattern:  /recommendar/{slug}
-    defaults: { _controller: "BoomFrontBundle:Activity:recommend" }
+    defaults: { _controller: "BoomFrontBundle:Activity:recommend", _format: "json" }
 
