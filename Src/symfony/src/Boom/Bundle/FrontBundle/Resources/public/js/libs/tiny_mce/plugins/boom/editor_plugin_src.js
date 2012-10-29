@@ -12,8 +12,10 @@
     var uploader_forms = {};
 
     tinymce.create('tinymce.plugins.BoomPlugin', {
+        _galleryPreviewUrl: null,
         init : function(ed, url) {
             var t = this;
+            t['_galleryPreviewUrl'] = $(ed.id).attr('gallery-preview');
             ed.onBeforeSetContent.add(function(ed, o) {
                 o.content = t['_bbcode2html'](o.content);
             });
@@ -278,33 +280,6 @@
                 dialog.append(linkForm).dialog('open');
             });
 
-            // Register example button
-            /*
-            ed.addButton('boom_video', {
-                title : 'Agrega un video',
-                cmd : 'boomVideo',
-                image : url + '/img/glyphicons_008_film.png'
-            });
-
-            ed.addButton('boom_image', {
-                title : 'Agrega un video',
-                cmd : 'boomImage',
-                image : url + '/img/glyphicons_011_camera.png'
-            });
-
-            ed.addButton('boom_gallery', {
-                title : 'Agrega una galería',
-                cmd : 'boomGallery',
-                image : url + '/img/glyphicons_056_projector.png'
-            });
-
-            ed.addButton('boom_link', {
-                title : 'Agrega un link a 7boom',
-                cmd : 'boomLink',
-                image : url + '/img/glyphicons_050_link.png'
-            });
-             */
-
         },
         getInfo : function() {
             return {
@@ -374,7 +349,7 @@
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
-            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+Routing.generate('BoomFrontBundle_gallery_iframe_preview')+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
+            rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+this['_galleryPreviewUrl']+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
             return s;
