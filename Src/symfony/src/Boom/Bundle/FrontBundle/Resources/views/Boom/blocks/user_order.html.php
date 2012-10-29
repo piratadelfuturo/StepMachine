@@ -49,21 +49,20 @@ endif;
             $replyMessage = true;
             if ($view['security']->isGranted('ROLE_USER') == true):
                 $replyEntity = $view['boom_front']->getUserBoomReply($app->getUser(), $entity);
-                if (!empty($replyEntity)):
+                if ($replyEntity !== null && !empty($replyEntity)):
                     $replyMessage = false;
                     ?>
-                    <ul>
+                    <ul class="drag-booms">
                         <?php
+                        $myBoomPos = 1;
                         foreach ($replyEntity['elements'] as $element):
+                            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : 'http://placekitten.com/72/72';
                             ?>
                             <li>
-                                <div class="balloon">
-                                    <p>arrastrar</p>
-                                </div>
-                                <p class="pos"><span>1</span></p>
-                                <img src="http://placehold.it/72x72">
+                                <p class="pos"><span><?php echo $myBoomPos++; ?></span></p>
+                                <img src="<?php echo $image ?>" height="72px" width="72px">
                                 <h4 class="boom-info">
-                                    <span>Sustituir este bloque por contenido real</span>
+                                    <span><?php echo $element['title'] ?></span>
                                 </h4>
                             </li>
                             <?php

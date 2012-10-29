@@ -373,7 +373,7 @@
         var data = {order:{}};
 
         //DRAGnDROP widgt
-        $("#usr-booms .dyna-content > .drag-booms").dragsort({
+        $("#usr-booms .dyna-content.tend-cont > .drag-booms").dragsort({
             dragSelector: '.drag-booms li',
             dragEnd: function(){
                 $(this).parent().children().each(function(index){
@@ -396,7 +396,7 @@
                     type: 'POST',
                     statusCode:{
                         200: function(data){
-                            
+
                         },
                         302:function(){
 

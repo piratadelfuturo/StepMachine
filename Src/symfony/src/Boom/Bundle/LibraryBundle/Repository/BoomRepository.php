@@ -455,11 +455,13 @@ class BoomRepository extends NestedTreeRepository {
                 $cb->expr()->in('user.id', $user['id']),
                 $cb->expr()->in('boom.parent', $boom['id'])
         );
-        $cb->setFirstResult((int) 0)->setMaxResults((int) 1);
 
         $query = $cb->getQuery();
-        $result = $query->getResult();
-
+        try{
+            $result = $query->getSingleResult();
+        }catch(\Exception $e){
+            $result = null;
+        }
         return $result;
 
     }

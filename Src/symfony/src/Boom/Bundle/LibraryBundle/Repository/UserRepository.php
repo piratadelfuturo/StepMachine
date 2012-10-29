@@ -4,6 +4,7 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\User;
 
 class UserRepository extends EntityRepository {
 
@@ -17,7 +18,7 @@ class UserRepository extends EntityRepository {
         /**
          * Set to default
          */
-        $return = Utils::processAjaxTable($this,$get,$flag);
+        $return = Utils::processAjaxTable($this, $get, $flag);
 
         return $return;
     }
@@ -34,8 +35,7 @@ class UserRepository extends EntityRepository {
         return $aResultTotal[0][1];
     }
 
-
-    public function getLatestCollaborators($number = 7){
+    public function getLatestCollaborators($number = 7) {
         $qString = "
             SELECT
                 user user_record,
@@ -63,9 +63,36 @@ class UserRepository extends EntityRepository {
         $result = $query->execute();
 
         return $result;
+    }
 
-
-
+    public function getFollowedActivities(User $user, $limit = 14) {
+        /* @var Doctrine\ORM\Query $query */
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('
+            friend.id user_id,
+            friend.username user_username,
+            friend.name user_name,
+            activity.date activity_date,
+            activity.data activity_data,
+            boom.title boom_title,
+            boom.slug boom_slug,
+            boom.date_published boom_date,
+            category.name category_name,
+            category.slug category_slug
+            ');
+        $cb->join('user.following', 'friend');
+        $cb->join('friend.activities', 'activity');
+        $cb->leftJoin('activity.boom', 'boom');
+        $cb->leftJoin('boom.category', 'category');
+        $cb->andWhere(
+                $cb->expr()->eq('user.id', ':user_id')
+        );
+        $cb->setFirstResult(0)->setMaxResults((int) $limit);
+        $cb->orderBy('activity.date', 'DESC');
+        $cb->setParameter('user_id', $user['id']);
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+        return $result;
     }
 
 }

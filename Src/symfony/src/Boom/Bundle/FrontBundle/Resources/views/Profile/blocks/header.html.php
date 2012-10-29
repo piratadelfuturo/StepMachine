@@ -1,6 +1,11 @@
 <?php
+/* @var \Doctrine\Common\Collections\ArrayCollection $user['activities'] */
+/* @var \Doctrine\Common\Collections\ArrayCollection $user['favorites'] */
 $user = $app->getUser();
 $categories = $view['boom_front']->getFeaturedCategories();
+$activities = $view['boom_front']->getFollowedActivities($app->getUser());
+var_dump($activities);
+exit;
 ?>
 <div id="usr-cnt">
     <a href="#" class="mostrar"><span>Tu Panel</span></a>
@@ -10,7 +15,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
                 <li>
                     <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
                         Bienvenido <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_index') ?>">
-                            <?php echo $view->escape($user['firstname'].' '.$user['lastname']); ?>
+                            <?php echo $view->escape($user['firstname'] . ' ' . $user['lastname']); ?>
                         </a>
                     <?php endif; ?>
                 </li>
@@ -31,7 +36,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
                     </div>
                     <div class="usr-data">
                         <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
-                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile',array('username' => $user['username'])) ?>" class="ver">Ver perfil</a>
+                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $user['username'])) ?>" class="ver">Ver perfil</a>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" class="ver">Cambiar foto</a>
                     </div>
                 </div>
@@ -55,9 +60,9 @@ $categories = $view['boom_front']->getFeaturedCategories();
                         <p>Boomers que sigues:</p>
                         <ul>
                             <?php foreach ($followings as $following): ?>
-                                <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile',array('username' => $following['username'])) ?>">
+                                <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $following['username'])) ?>">
                                         <span>
-                                            <img src="<?php echo $following['imagepath']?>" alt="<?php echo $following['username'] ?>"/>
+                                            <img src="<?php echo $following['imagepath'] ?>" alt="<?php echo $following['username'] ?>"/>
                                         </span>
                                     </a>
                                 </li>
@@ -72,40 +77,64 @@ $categories = $view['boom_front']->getFeaturedCategories();
             </div>
             <div id="rt-cont">
                 <div id="rt-user-activities">
-                <?php if($user['activities']->count() > 0): ?>
-                <ul>
-                    <?php foreach($user['activities'] as $activity): ?>
-                    <li class="boom-li">
-                        <img href="#" src="http://placehold.it/160x88" alt="placeholder"/>
-                        <div class="boom-info">
-                            <span class="sm-flag sexo">sexo</span>
-                            <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
-                            <a href="#" class="boom-moar">Leer Boom</a>
-                        </div>
-                        <ul class="boom-pub">
-                            <li class="pub-date">Publicado el<a href="#"> 20/04/2012</a></li>
-                            <li class="seen"> - <span>420</span> veces visto</li>
-                            <li class="comments"> - <a href="#"><span>10</span> comments</a></li>
-                            <li class="mods"> - <a href="#"><span>3</span> modificaciones</a></li>
+                    <?php if (count($activities) > 0): ?>
+                        <ul>
+                            <?php foreach ($activities as $activity): ?>
+                                <li class="boom-li">
+                                    <img href="#" src="http://placehold.it/160x88" alt="placeholder"/>
+                                    <div class="boom-info">
+                                        <span class="sm-flag sexo">sexo</span>
+                                        <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
+                                        <a href="#" class="boom-moar">Leer Boom</a>
+                                    </div>
+                                    <ul class="boom-pub">
+                                        <li class="pub-date">Publicado el<a href="#"> 20/04/2012</a></li>
+                                        <li class="seen"> - <span>420</span> veces visto</li>
+                                        <li class="comments"> - <a href="#"><span>10</span> comments</a></li>
+                                        <li class="mods"> - <a href="#"><span>3</span> modificaciones</a></li>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                <div class="ver-mas-block">
-                    <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver Todos</a>
-                </div>
-                <?php endif; ?>
+                        <div class="ver-mas-block">
+                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver Todos</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div id="rt-user-recommended" style="display:none">
-                <?php if($user['activities']->count() > 0): ?>
-                <ul>
-                    <?php foreach($user['favorites'] as $favorite): ?>
-                    <?php endforeach; ?>
-                </ul>
-                <div class="ver-mas-block">
-                    <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_recommend') ?> ">Ver Todos</a>
-                </div>
-                <?php endif; ?>
+                    <?php if ($user['favorites']->count() > 0): ?>
+                        <ul>
+                            <?php
+                            foreach ($user['favorites']->slice(0, 7) as $element):
+                                if (isset($element['image']['path'])):
+                                    $elementImage = $view['boom_image']->getBoomImageUrl($element['image']['path'], 158, 90);
+                                else:
+                                    $elementImage = '';
+                                endif;
+                                $elementUrl = $view->generate(
+                                        'BoomFrontBundle_boom_show', array(
+                                    'category_slug' => '',
+                                    'slug' => ''
+                                        )
+                                );
+                                ?>
+                                <li class="boom-li">
+                                    <img src="<?php echo $elementImage ?>" alt="placeholder"/>
+                                    <div class="boom-info">
+                                        <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $element['category']['name'] ?></span>
+                                        <p class="boom-ti"><?php echo $element['title'] ?></p>
+                                        <a href="<?php echo $elementUrl ?>" class="boom-moar">Leer Boom</a>
+                                    </div>
+                                    <ul class="boom-pub">
+                                        <li class="pub-date">Publicado el<a href="<?php echo $elementUrl ?>"> <?php echo $element['datepublished'] ?></a></li>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="ver-mas-block">
+                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_recommend') ?> ">Ver Todos</a>
+                        </div>
+                    <?php endif; ?>
                 </div
             </div>
         </div>

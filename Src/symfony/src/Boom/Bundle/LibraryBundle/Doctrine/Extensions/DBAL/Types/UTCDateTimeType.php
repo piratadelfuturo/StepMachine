@@ -6,12 +6,11 @@ use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 
-class UTCDateTimeType extends DateTimeType
-{
+class UTCDateTimeType extends DateTimeType {
+
     static private $utc = null;
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
-    {
+    public function convertToDatabaseValue($value, AbstractPlatform $platform) {
         if ($value === null) {
             return null;
         }
@@ -25,8 +24,7 @@ class UTCDateTimeType extends DateTimeType
         return $value->format($platform->getDateTimeFormatString());
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
-    {
+    public function convertToPHPValue($value, AbstractPlatform $platform) {
         if ($value === null) {
             return null;
         }
@@ -43,4 +41,5 @@ class UTCDateTimeType extends DateTimeType
 
         return $val;
     }
+
 }

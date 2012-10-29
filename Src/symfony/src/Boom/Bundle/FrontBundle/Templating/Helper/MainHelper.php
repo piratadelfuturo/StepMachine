@@ -4,6 +4,7 @@ namespace Boom\Bundle\FrontBundle\Templating\Helper;
 
 use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\Activity;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,6 +28,23 @@ class MainHelper extends Helper {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         return $repo->getUserBoomReply($user,$boom);
+    }
+
+    public function getFollowedActivities(User $user, $limit = 14){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:User');
+        return $repo->getFollowedActivities($user,$limit);
+    }
+
+    public function createActivity(User $user, $text = '', Boom $boom = null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $act = new Activity($user,$text);
+        if($boom !== null){
+            $act['boom'] = $boom;
+        }
+
+        $em->persist($act);
+        $em->flush();
     }
 
     public function getLatestCollaborators($number = 7) {

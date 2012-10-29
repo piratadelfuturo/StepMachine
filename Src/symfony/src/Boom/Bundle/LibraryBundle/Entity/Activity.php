@@ -30,6 +30,7 @@ class Activity extends DomainObject{
     protected $user;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     protected $date;
@@ -39,6 +40,11 @@ class Activity extends DomainObject{
      */
     protected $data;
 
+
+    public function __construct(User $user,$data) {
+        $this->user = $user;
+        $this->data = $data;
+    }
 
 
     /**

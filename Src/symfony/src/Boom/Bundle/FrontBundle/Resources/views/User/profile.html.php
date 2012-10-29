@@ -1,5 +1,7 @@
-<?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php') ?>
-<?php $view['slots']->set('layout_container_css_class', 'colaboradores'); ?>
+<?php
+$view->extend('BoomFrontBundle::two_col_sublayout.html.php');
+$view['slots']->set('layout_container_css_class', 'colaboradores');
+?>
 <div class="profile">
     <div class="author-profile">
         <h3 class="title-flag">Perfil</h3>

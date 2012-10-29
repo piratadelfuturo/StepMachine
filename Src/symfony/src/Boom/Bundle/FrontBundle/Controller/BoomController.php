@@ -18,6 +18,10 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 class BoomController extends Controller {
 
     public function favoriteStatusAction($slug) {
+        $request = $this->getRequest();
+        if (!$request->isXmlHttpRequest()) {
+            throw new AccessDeniedHttpException('Forbidden method');
+        }
 
         /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
         /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
@@ -46,6 +50,11 @@ class BoomController extends Controller {
     }
 
     public function favoriteAction($slug) {
+        $request = $this->getRequest();
+        if (!$request->isXmlHttpRequest()) {
+            throw new AccessDeniedHttpException('Forbidden method');
+        }
+
         /* @var $boomRepo \Boom\Bundle\LibraryBundle\Repository\BoomRepository */
         /* @var $entity \Boom\Bundle\LibraryBundle\Entity\Boom */
         $em = $this->getDoctrine()->getManager();
@@ -72,7 +81,7 @@ class BoomController extends Controller {
 
         $request = $this->getRequest();
         if (!$request->isXmlHttpRequest()) {
-            return new AccessDeniedHttpException('Forbidden method');
+            throw new AccessDeniedHttpException('Forbidden method');
         }
 
         $sessionToken = $this->get('security.context')->getToken();
