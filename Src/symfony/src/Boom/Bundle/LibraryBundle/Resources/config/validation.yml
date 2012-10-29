@@ -65,16 +65,24 @@ Boom\Bundle\LibraryBundle\Entity\ListElement:
 
 Boom\Bundle\LibraryBundle\Entity\User:
     constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: nickname
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
     properties:
       firstname:
+        - MaxLength: 100
+        - MinLength: 8
         - NotBlank: ~
       lastname:
+        - MaxLength: 100
+        - MinLength: 8
         - NotBlank: ~
       name:
+        - MaxLength: 100
+        - MinLength: 8
         - NotBlank: ~
-      nickname:
+      username:
+        - MaxLength: 64
+        - MinLength: 8
         - NotBlank: ~
       email:
         - NotBlank: ~
