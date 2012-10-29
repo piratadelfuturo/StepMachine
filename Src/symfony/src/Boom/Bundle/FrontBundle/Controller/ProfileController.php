@@ -27,7 +27,28 @@ class ProfileController extends Controller {
 
         $form = $this->createForm(new UserType(), $sessionUser);
 
+        return $this->render(
+                        'BoomFrontBundle:Profile:edit.html.php', array(
+                    'form' => $form->createView(),
+                    'entity' => $sessionUser
+                        )
+        );
+    }
 
+    public function updateAction() {
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $form = $this->createForm(new UserType(), $sessionUser);
+        $request = $this->getRequest();
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em->persist($sessionUser);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit', array('id' => $id)));
+        }
         return $this->render(
                         'BoomFrontBundle:Profile:edit.html.php', array(
                     'form' => $form->createView(),
@@ -41,18 +62,6 @@ class ProfileController extends Controller {
     }
 
     public function boomsAction($page) {
-
-    }
-
-    public function recommendAction($page) {
-
-    }
-
-    public function followingsAction($page) {
-
-    }
-
-    public function followersAction($page) {
 
     }
 

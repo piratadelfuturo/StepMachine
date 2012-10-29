@@ -1475,6 +1475,7 @@ footer{
   font:normal 12px Helvetica;
   padding:3px 1px 3px 5px;
 }
+
 #f-cont input[type="submit"]{
   background: none;
   border: none;
@@ -1482,12 +1483,20 @@ footer{
   color:#F87937;
   font: bold 18px Helvetica;
 }
-footer p{
+
+footer p {
   margin:10px 0;
   font:12px Helvetica;
   color:#4c4a4a;
 }
-#copyright{text-align:center;}
+
+#copyright {
+  text-align: center;
+}
+
+#copyright a {
+  color: #4C4A4A;
+}
 
 /* PAGINA: COLABORADORES */
 
@@ -1706,7 +1715,7 @@ footer p{
   float:left;
   display:block;
 }
-#container.category .boomer .list .moar{
+#container.category .boomer .list .moar{<D-º>
   width:663px;
   height:50px;
   display: block;
@@ -3397,12 +3406,12 @@ form#boom_gallery ul li{
 
 
 /* PROFILE */
-.profile .title-flag {
+.profile .title-flag, .profile-booms .title-flag {
   height: 44px;
   line-height: 44px;
 }
 
-.profile .title-flag:before {
+.profile .title-flag:before, .profile-booms .title-flag:before {
   border-top: 26px solid transparent;
   border-bottom: 26px solid transparent;
   border-left: 16px solid white;
