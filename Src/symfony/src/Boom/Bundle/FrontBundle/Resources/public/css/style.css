@@ -15,11 +15,11 @@ ul, li {
 
 /* clearfix */
 
-.cf:before, .cf:after { 
-	content: "\0020"; 
-	display: block; 
-	height: 0; 
-	overflow: hidden; 
+.cf:before, .cf:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden;
 }
 
 .cf:after { clear: both; }
@@ -564,7 +564,7 @@ header { position:relative; }
   height: 470px;
   float: left;
   padding: 0 30px;
-  background: #ffffff;     
+  background: #ffffff;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlN2U3ZTciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
   background: -moz-linear-gradient(top,  #ffffff 5%, #e7e7e7 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#ffffff), color-stop(100%,#e7e7e7));
@@ -573,7 +573,7 @@ header { position:relative; }
   background: -ms-linear-gradient(top,  #ffffff 5%,#e7e7e7 100%);   background: linear-gradient(to bottom,  #ffffff 5%,#e7e7e7 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e7e7e7',GradientType=0 );
   border-width: 0px 0px 0px 1px;
-} 
+}
 
 .usm-info{
   height:145px;
@@ -635,7 +635,7 @@ header { position:relative; }
 #rt-cont .boom-li span.sm-flag{
   display:block;
 }
- 
+
 /* #usm-pro #filter li input{margin-right:20px;} */
 
 #usm-pro #filter ul{
@@ -1444,8 +1444,22 @@ footer p {
 
 .lista-colaboradores .colab-info{
   display: block;
+  overflow: hidden;
+  height: 110px;
 }
-.lista-colaboradores li img,.lista-colaboradores li h3,.lista-colaboradores li p{
+
+.lista-colaboradores .colab-info p{
+    margin: 5px;
+    height: 20px;
+}
+
+.lista-colaboradores .colab-info > *{
+    float:left;
+    clear:left;
+}
+.lista-colaboradores li img,
+.lista-colaboradores li h3,
+.lista-colaboradores li p{
   float:left;
 }
 .lista-colaboradores img{

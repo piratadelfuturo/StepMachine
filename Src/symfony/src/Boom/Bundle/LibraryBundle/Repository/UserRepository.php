@@ -119,4 +119,41 @@ class UserRepository extends EntityRepository {
         }
     }
 
+    public function getFollowers(User $user,$offset = 0, $limit = 14){
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('user');
+        $cb->leftJoin('user.following', 'following');
+        $cb->andWhere(
+                $cb->expr()->eqs('following.id', ':user_id')
+        );
+        $cb->setFirstResult($offset)->setMaxResults($limit);
+        $cb->setParameter('user_id', $user['id']);
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function totalFollowers(User $user){
+        return $user['followers']->count();
+    }
+
+    public function getFollowing(User $user,$offset = 0, $limit = 14){
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('user');
+        $cb->leftJoin('user.followers', 'follower');
+        $cb->andWhere(
+                $cb->expr()->eq('follower.id', ':user_id')
+        );
+        $cb->setFirstResult($offset)->setMaxResults($limit);
+        $cb->setParameter('user_id', $user['id']);
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+        return $result;
+
+    }
+
+    public function totalFollowing(User $user){
+        return $user['following']->count();
+    }
+
 }

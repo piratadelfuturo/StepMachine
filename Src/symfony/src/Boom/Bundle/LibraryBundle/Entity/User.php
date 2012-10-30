@@ -17,11 +17,9 @@ use Symfony\Component\Filesystem\Exception\IOException;
  */
 class User extends BaseUser implements \ArrayAccess {
 
-
     const IMAGE_PATH = 0;
     const IMAGE_FACEBOOK = 1;
     const IMAGE_TWITTER = 2;
-
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
@@ -86,7 +84,6 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $collaborator;
 
-
     /**
      * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      * */
@@ -130,7 +127,6 @@ class User extends BaseUser implements \ArrayAccess {
      */
     protected $favorites;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="followers", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="follow",
@@ -139,7 +135,6 @@ class User extends BaseUser implements \ArrayAccess {
      *      )
      */
     protected $following;
-
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="following", fetch="EXTRA_LAZY")
@@ -155,8 +150,6 @@ class User extends BaseUser implements \ArrayAccess {
      * @ORM\Column(type="integer", nullable=false)
      */
     protected $image_option;
-
-
     protected $profile_image;
 
     public function __construct() {
@@ -196,39 +189,39 @@ class User extends BaseUser implements \ArrayAccess {
         parent::unserialize($parentData);
     }
 
-    public function setImagePath( $path ){
+    public function setImagePath($path) {
         $this->setImageOption(self::IMAGE_PATH);
         $this->image_path = $path;
         return $this;
     }
 
-    public function getImagePath( ){
+    public function getImagePath() {
         return $this->image_path;
     }
 
-    public function setImageOption($option){
-        switch($option){
+    public function setImageOption($option) {
+        switch ($option) {
             case($option == self::IMAGE_FACEBOOK):
-                if(!empty($this->facebookId)){
+                if (!empty($this->facebookId)) {
                     $this->image_path = "http://graph.facebook.com/{$this->facebookId}/picture?type=large";
                     $this->image_option = $option;
                 }
-            break;
+                break;
             case($option == self::IMAGE_TWITTER):
-                if(!empty($this->facebookId)){
+                if (!empty($this->facebookId)) {
                     $this->image_path = "https://api.twitter.com/1/users/profile_image?screen_name={$this->twitterId}&size=bigger ";
                     $this->image_option = $option;
                 }
-            break;
+                break;
             case(self::IMAGE_PATH):
                 $this->image_option = $option;
-            break;
+                break;
         }
 
         return $this;
     }
 
-    public function getImageOption($option){
+    public function getImageOption($option) {
         $this->image_option = $option;
     }
 
@@ -239,8 +232,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @return User
      */
-    public function setAdmin($boolean)
-    {
+    public function setAdmin($boolean) {
         if (true === $boolean) {
             $this->addRole(static::ROLE_ADMIN);
         } else {
@@ -250,22 +242,19 @@ class User extends BaseUser implements \ArrayAccess {
         return $this;
     }
 
-
     /**
      * Tells if the the given user has the admin role.
      *
      * @return Boolean
      */
-    public function isAdmin()
-    {
+    public function isAdmin() {
         return $this->hasRole(static::ROLE_ADMIN);
     }
 
     /*
-    public function getAdmin($admin = false){
-        return (bool) $this->isSuperAdmin();
-    }*/
-
+      public function getAdmin($admin = false){
+      return (bool) $this->isSuperAdmin();
+      } */
 
     /**
      * @param Array
@@ -281,7 +270,7 @@ class User extends BaseUser implements \ArrayAccess {
             $this->setLastname($fbdata['last_name']);
         }
 
-        $this->setName($this->firstname.' '.$this->lastname);
+        $this->setName($this->firstname . ' ' . $this->lastname);
     }
 
     /**
@@ -588,42 +577,40 @@ class User extends BaseUser implements \ArrayAccess {
         //$user->setFirstname($info->name);
     }
 
-    public function setFollowers(\Doctrine\Common\Collections\Collection $followers){
+    public function setFollowers(\Doctrine\Common\Collections\Collection $followers) {
         $this->followers = $followers;
         return $this;
     }
 
-    public function getFollowers(){
+    public function getFollowers() {
         return $this->followers;
     }
 
-    public function addFollower(User $follower){
+    public function addFollower(User $follower) {
         $this->followers[] = $follower;
         return $this;
-
     }
 
-    public function removeFollower(User $follower){
+    public function removeFollower(User $follower) {
         $this->followers->removeElement($follower);
     }
 
-    public function setFollowing(\Doctrine\Common\Collections\Collection $following){
+    public function setFollowing(\Doctrine\Common\Collections\Collection $following) {
         $this->following = $following;
         return $this;
     }
 
-    public function getFollowing(){
+    public function getFollowing() {
         return $this->following;
     }
 
-    public function addFollowing(User $following){
+    public function addFollowing(User $following) {
         $this->following[] = $following;
     }
 
-    public function removeFollowing(User $following){
+    public function removeFollowing(User $following) {
         $this->following->removeElement($following);
     }
-
 
     public function offsetExists($offset) {
         // In this example we say that exists means it is not null
@@ -645,16 +632,13 @@ class User extends BaseUser implements \ArrayAccess {
         throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
     }
 
-
-
     /**
      * Add boomelementranks
      *
      * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
      * @return User
      */
-    public function addBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
-    {
+    public function addBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks) {
         $this->boomelementranks[] = $boomelementranks;
         return $this;
     }
@@ -664,8 +648,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
      */
-    public function removeBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks)
-    {
+    public function removeBoomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks) {
         $this->boomelementranks->removeElement($boomelementranks);
     }
 
@@ -674,8 +657,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getBoomelementranks()
-    {
+    public function getBoomelementranks() {
         return $this->boomelementranks;
     }
 
@@ -685,8 +667,7 @@ class User extends BaseUser implements \ArrayAccess {
      * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
      * @return User
      */
-    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
-    {
+    public function addActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities) {
         $this->activities[] = $activities;
         return $this;
     }
@@ -696,8 +677,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Activity $activities
      */
-    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities)
-    {
+    public function removeActivity(\Boom\Bundle\LibraryBundle\Entity\Activity $activities) {
         $this->activities->removeElement($activities);
     }
 
@@ -706,8 +686,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getActivities()
-    {
+    public function getActivities() {
         return $this->activities;
     }
 
@@ -715,12 +694,10 @@ class User extends BaseUser implements \ArrayAccess {
      * Set activities
      *
      */
-    public function setActivities(\Doctrine\Common\Collections\Collection $activities)
-    {
+    public function setActivities(\Doctrine\Common\Collections\Collection $activities) {
         $this->activities = $activities;
         return $this;
     }
-
 
     /**
      * Add favorites
@@ -728,8 +705,7 @@ class User extends BaseUser implements \ArrayAccess {
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
      * @return User
      */
-    public function addFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
-    {
+    public function addFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites) {
         $this->favorites[] = $favorites;
         return $this;
     }
@@ -739,8 +715,7 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @param Boom\Bundle\LibraryBundle\Entity\Boom $favorites
      */
-    public function removeFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites)
-    {
+    public function removeFavorite(\Boom\Bundle\LibraryBundle\Entity\Boom $favorites) {
         $this->favorites->removeElement($favorites);
     }
 
@@ -749,27 +724,24 @@ class User extends BaseUser implements \ArrayAccess {
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    public function getFavorites()
-    {
+    public function getFavorites() {
         return $this->favorites;
     }
 
-    public function getProfileImage(){
+    public function getProfileImage() {
         return $this->profile_image;
     }
 
-    public function setProfileImage(\Symfony\Component\HttpFoundation\File\File $profile_image){
+    public function setProfileImage(\Symfony\Component\HttpFoundation\File\File $profile_image) {
         $this->profile_image = $profile_image;
         return $this;
     }
-
 
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function preUpload()
-    {
+    public function preUpload() {
         if (null !== $this->getProfileImage()) {
             $this->path = $this->getProfileImage()->guessExtension();
         }
@@ -779,8 +751,7 @@ class User extends BaseUser implements \ArrayAccess {
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
      */
-    public function upload()
-    {
+    public function upload() {
         $image = $this->getProfileImage();
         if (null === $image) {
             return;
@@ -789,7 +760,7 @@ class User extends BaseUser implements \ArrayAccess {
         // you must throw an exception here if the file cannot be moved
         // so that the entity is not persisted to the database
         // which the UploadedFile move() method does
-        $path = $this->container->getParameter('boom_library.profile_image_path').$this->id.'.'.$image->guessExtension();
+        $path = $this->container->getParameter('boom_library.profile_image_path') . $this->id . '.' . $image->guessExtension();
         $this->setImagePath($path);
         $image->move($this->getUploadRootDir(), $path);
         $this->setImageOption(self::IMAGE_PATH);
@@ -797,31 +768,28 @@ class User extends BaseUser implements \ArrayAccess {
         unset($image);
     }
 
-
-    protected function getUploadRootDir()
-    {
+    protected function getUploadRootDir() {
         // the absolute directory path where uploaded documents should be saved
         $fs = new Filesystem();
-        $image_path = $this->container->getParameter('boom_library.web_path').$this->container->getParameter('boom_library.profile_image_path');
-        if(!$fs->exists($image_path)){
+        $image_path = $this->container->getParameter('boom_library.web_path') . $this->container->getParameter('boom_library.profile_image_path');
+        if (!$fs->exists($image_path)) {
             $fs->mkdir($image_path, 0664);
         }
 
         return $image_path;
     }
 
-    public function setCollaborator($collaborator){
+    public function setCollaborator($collaborator) {
         $this->collaborator = (bool) $collaborator;
         return $this;
     }
 
-    public function isCollaborator($collaborator){
+    public function isCollaborator($collaborator) {
         return (bool) $this->collaborator;
     }
 
-    public function getCollaborator(){
+    public function getCollaborator() {
         return (bool) $this->collaborator;
     }
-
 
 }

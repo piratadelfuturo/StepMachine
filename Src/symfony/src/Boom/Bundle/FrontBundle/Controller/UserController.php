@@ -21,7 +21,8 @@ class UserController extends Controller {
         $query = $em->createQuery('SELECT COUNT(u.id) FROM BoomLibraryBundle:User u WHERE u.collaborator = true');
         $total = $query->getSingleScalarResult();
 
-        return $this->render('BoomFrontBundle:User:collaborators.html.php', array(
+        return $this->render('BoomFrontBundle:User:user_list.html.php', array(
+                    'page_title' => 'colaboradores',
                     'list' => $result,
                     'total' => $total,
                     'limit' => $limit,

@@ -17,9 +17,31 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         </a>
                     <?php endif; ?>
                 </li>
+            </ul>
+            <ul>
+                <?php
+                foreach($activities as $activity):
+                    $userUrl = $view['router']->generate(
+                            'BoomFrontBundle_user_profile',
+                            array('username' => $activity['user_username'])
+                            );
+                    ?>
                 <li id="user-activity-strean" >
-                    <a href="#"><?php echo $user['name'] ?></a> ama este sitio.
+                    <a href="<?php echo $userUrl ?>"><?php echo $activity['user_username'] ?></a>
+                    <span><?php echo $view->escape($activity['activity_data']) ?> </span>
+                    <?php if($activity['boom_slug'] !== null):
+                            $boomUrl = $view['router']->generate(
+                                    'BoomFrontBundle_boom_show',
+                                    array(
+                                        'category_slug' => $activitiy['category_slug'],
+                                        'slug' => $activitiy['boom_slug']
+                                    )
+                                    );
+                        ?>
+                        <a href="<?php $boomUrl ?>">boom >></a>
+                    <?php endif; ?>
                 </li>
+                <?php endforeach; ?>
             </ul>
             <ul id="open-tab">
                 <li class="on"><a href="#">Actividad</a><span>.</span></li>
@@ -67,7 +89,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             <?php endforeach; ?>
                         </ul>
                         <div class="ver-mas-block">
-                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_followings'); ?> ">Ver Todos</a>
+                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_following'); ?> ">Ver Todos</a>
                         </div>
                     <?php endif; ?>
                 </div>

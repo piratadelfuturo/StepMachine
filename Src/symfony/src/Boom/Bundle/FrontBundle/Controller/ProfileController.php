@@ -115,4 +115,38 @@ class ProfileController extends Controller {
         return new RedirectResponse($loginUrl);
     }
 
+    public function followingAction($page) {
+        $limit = 14;
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $result = $sessionUser['following']->slice(($page-1) * $limit,$limit);
+        $total = $sessionUser['following']->count();
+        return $this->render('BoomFrontBundle:User:user_list.html.php', array(
+                    'page_title' => 'Sigues',
+                    'list' => $result,
+                    'total' => $total,
+                    'limit' => $limit,
+                    'page' => $page
+                ));
+    }
+
+    public function followersAction($page) {
+
+        $limit = 14;
+        $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+
+        $result = $sessionUser['followers']->slice(($page-1) * $limit,$limit);
+        $total = $sessionUser['followers']->count();
+
+        return $this->render('BoomFrontBundle:User:user_list.html.php', array(
+                    'page_title' => 'Seguidores',
+                    'list' => $result,
+                    'total' => $total,
+                    'limit' => $limit,
+                    'page' => $page
+                ));
+    }
+
 }

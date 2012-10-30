@@ -19,7 +19,7 @@
         ?>
         <?php
         foreach ($pagination['segment_pages'] as $pageNum):
-            $pageParam = $routeParams;
+            $pageParam = $route_params;
             $pageParam['page'] = $pageNum;
             $pageUrl = $view['router']->generate(
                     $route_name, $pageParam
