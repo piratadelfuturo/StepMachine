@@ -26,14 +26,15 @@ class ListController extends Controller {
                 , array(Boom::STATUS_PUBLIC)
         );
 
-        $total = $boomRepo->findFeaturedBooms(array(Boom::STATUS_PUBLIC));
+        $total = $boomRepo->totalFeaturedBooms(array(Boom::STATUS_PUBLIC));
 
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'page_title' => 'Recomendados',
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit' => $limit
                 ));
     }
 
@@ -67,7 +68,10 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $latest,
-                    'entity' => $thisCat
+                    'entity' => $thisCat,
+                    'limit'      => $limit,
+                    'page_title' => 'recomendados'
+
                 ));
     }
 
@@ -95,11 +99,12 @@ class ListController extends Controller {
                 )
         );
 
-
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
-                    'total' => $total,
-                    'page' => $page,
-                    'list' => $list
+                    'total'      => $total,
+                    'page'       => $page,
+                    'list'       => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'últimos'
                 ));
     }
 
@@ -140,7 +145,10 @@ class ListController extends Controller {
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'últimos'
+
                 ));
     }
 
@@ -180,7 +188,10 @@ class ListController extends Controller {
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'usuarios'
+
                 ));
     }
 
@@ -213,7 +224,10 @@ class ListController extends Controller {
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'usuarios'
+
                 ));
     }
 
@@ -252,7 +266,9 @@ class ListController extends Controller {
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'colaboradores'
                 ));
     }
 
@@ -290,7 +306,9 @@ class ListController extends Controller {
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
-                    'list' => $list
+                    'list' => $list,
+                    'limit'      => $limit,
+                    'page_title' => 'colaboradores'
                 ));
     }
 

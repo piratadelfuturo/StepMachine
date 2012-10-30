@@ -212,10 +212,9 @@ class BoomController extends Controller {
         $entity = new Boom();
         $form = $this->createForm(new BoomType(), $entity);
         $request = $this->getRequest();
-        $form->bind($request);
-
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -285,6 +284,7 @@ class BoomController extends Controller {
                 $entity['elements'][$o_index][$clBoomelV] = $entElem[$clBoomelV];
             }
         }
+        $entity['user'] = $sessionUser;
 
         $form = $this->createForm(new BoomType(), $entity);
 
@@ -322,15 +322,14 @@ class BoomController extends Controller {
 
         $request = $this->getRequest();
         $entity = new Boom();
+        $entity['parent'] = $foundEntity;
+        $entity['user'] = $sessionUser;
+        $entity['status'] = Boom::STATUS_PRIVATE;
         $form = $this->createForm(new BoomType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity['parent'] = $foundEntity;
-            $entity['user'] = $sessionUser;
-            $entity['status'] = Boom::STATUS_PRIVATE;
-
             $em->persist($entity);
             $em->flush();
 

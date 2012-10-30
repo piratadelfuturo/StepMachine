@@ -26,7 +26,7 @@ services:
     boom_library.pagination.helper:
         class: %boom_front.pagination.helper.class%
         arguments:
-            container:    "@service_container"
+            container:    "@templating"
         tags:
             - { name: templating.helper, alias: boom_pagination }
 
