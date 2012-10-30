@@ -58,6 +58,7 @@ fos_facebook:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    exception_controller: Boom\Bundle\LibraryBundle\Controller\ExceptionController::displayAction
 
 # Assetic Configuration
 assetic:

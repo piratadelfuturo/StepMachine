@@ -9,6 +9,9 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
+twig:
+    exception_controller: Boom\Bundle\LibraryBundle\Controller\ExceptionController::displayAction
+
 monolog:
     handlers:
         main:

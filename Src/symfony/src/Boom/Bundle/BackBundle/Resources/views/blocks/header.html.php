@@ -11,7 +11,7 @@ $User = $app->getUser();
                 <ul>
                     <li><a href="#"><?php echo $User->getUsername() ?></a>
                         <?php $score = rand(2, 11) ?>
-                        <span><?php echo $score ?></span>
+                        <!-- <span><?php echo $score ?></span> -->
                         <ul>
                             <li><a href="#">Score: <?php echo $score ?></a></li>
                         </ul>
