@@ -392,20 +392,20 @@ header { position:relative; }
 }
 
 .sexo { background-position: 0px 0; }
-.tecnologia { background-position: 0px -20px; }
+.tech-vg { background-position: 0px -20px; }
 .musica { background-position: 0px -40px; }
 .comida { background-position: 0px -60px; }
 .deportes { background-position: 0px -80px; }
 .cine { background-position: 0px -100px; }
 .humor { background-position: 0px -120px; }
 
-#filter li.sexo { background-position: 30px 0; }
-#filter li.tecnologia { background-position: 30px -20px; }
-#filter li.musica { background-position: 30px -40px; }
-#filter li.comida { background-position: 30px -60px; }
-#filter li.deportes { background-position: 30px -80px; }
-#filter li.cine { background-position: 30px -100px; }
-#filter li.humor { background-position: 30px -120px; }
+#filter li.sexo { background-position: 30px 1px; }
+#filter li.tech-vg { background-position: 30px -19px; }
+#filter li.musica { background-position: 30px -39px; }
+#filter li.comida { background-position: 30px -59px; }
+#filter li.deportes { background-position: 30px -79px; }
+#filter li.cine { background-position: 30px -99px; }
+#filter li.humor { background-position: 30px -119px; }
 
 /*END FLAGS*/
 
@@ -438,6 +438,11 @@ header { position:relative; }
   position: absolute;
 }
 
+#usr-bar ul:first-child,
+#usr-bar #close-tab {
+  padding-top: 8px;
+}
+
 #usr-bar #close-tab {
   display: none;
   float: left;
@@ -450,7 +455,7 @@ header { position:relative; }
 
 #usr-bar #close-tab li a { color: #F87937; }
 
-#usr-bar ul { padding-top: 8px; }
+#usr-bar ul { padding-top: 4px; }
 
 #usr-bar li {
   border-left: 1px solid #939393;
@@ -641,20 +646,23 @@ header { position:relative; }
 #usm-pro #filter ul{
   margin-bottom: 17px;
 }
+
 #usm-pro #filter li{
-  margin-bottom:10px;
+  margin-bottom: 10px;
+  float: left;
 }
 
 #usm-pro #filter li input[type='checkbox'] {
   width: 18px;
   margin: 0 -19px 0 2px;
   clear: none;
-  opacity:0;
+  opacity: 0;
   float: left;
   cursor: pointer;
   height: 21px;
 }
-#usm-pro #filter li input[type='checkbox']+label {
+
+#usm-pro #filter li input[type='checkbox'] + label {
   background: url(../images/sprite-chckbx.png) no-repeat 0 -23px;
   display: inline-block;
   height: 20px;
