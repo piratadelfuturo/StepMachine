@@ -22,17 +22,18 @@ BoomFrontBundle_list_latest:
     requirements:
       page: \d+
 
+BoomFrontBundle_list_users:
+    pattern:  /usuarios/{page}
+    defaults: { _controller: "BoomFrontBundle:List:users",page: 1 }
+    requirements:
+      page: \d+
+
 BoomFrontBundle_list_category_users:
     pattern:  /usuarios/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:usersCategory",page: 1 }
     requirements:
       page: \d+
 
-BoomFrontBundle_list_users:
-    pattern:  /usuarios/{page}
-    defaults: { _controller: "BoomFrontBundle:List:users",page: 1 }
-    requirements:
-      page: \d+
 
 BoomFrontBundle_list_category_collaborator:
     pattern:  /colaborador/{slug}/{page}

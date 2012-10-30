@@ -38,7 +38,6 @@ BoomFrontBundle_profile:
 
 BoomFrontBundle_list:
     resource: "@BoomFrontBundle/Resources/config/routing/list.yml"
-    prefix:   /
     requirements:
         _method:  GET
 
