@@ -75,10 +75,12 @@ class ExceptionController extends TwigExceptionController {
         }
         $bundles = array();
         if ($this->container->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $bundles[] = 'BoomBackBundle';
+            //$bundles[] = 'BoomBackBundle';
         } else {
-            $bundles[] = 'BoomFrontBundle';
+            //$bundles[] = 'BoomFrontBundle';
         }
+        $bundles[] = 'BoomFrontBundle';
+
         $bundles[] = 'TwigBundle';
 
         $engines = array('php', 'twig');
