@@ -1064,6 +1064,10 @@ header { position:relative; }
   background-color: #EAEAEA;
 }
 
+#booms-container ul.list li.error{
+  font: 18px 'Museo500';
+  color: #828282;
+}
 
 #container {
   position: relative;

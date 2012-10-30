@@ -1,9 +1,27 @@
-<?php $view->extend('BoomFrontBundle::layout.html.php'); ?>
-<h1>Oops! An Error Occurred</h1>
-<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+<?php $view->extend('BoomFrontBundle::two_col_sublayout.html.php'); ?>
+<?php
+if (!isset($list)) {
+    $list = array();
+}
+ $blocks = array();
+ $blocks['featured'] = array(
+                  'title'   => 'recomendados',
+                  'list'    =>  $featured,
+                  'more_url'=>  $view['router']->generate('BoomFrontBundle_list_recommended'),
+                  'template'=> 'BoomFrontBundle:Boom:blocks/block_list.html.php'
+    );
+ foreach($blocks as $block):?>
 
-<div>
-    Something is broken. Please e-mail us at [email] and let us know
-    what you were doing when this error occurred. We will fix it as soon
-    as possible. Sorry for any inconvenience caused.
+
+<div class="boomer">
+    <h3 class="title-flag"><span>Error</span></h3>
+    <ul class="list cf">
+      <li class="error">No encontramos la página que estás buscando</li>
+      <li class="error">pero aquí están estas que podrían interesarte:</li>
+    </ul>
 </div>
+
+<?php echo $view->render($block['template'],
+              $block
+            );?>
+<?php endforeach; ?>
