@@ -573,7 +573,7 @@ header { position:relative; }
   background: -ms-linear-gradient(top,  #ffffff 5%,#e7e7e7 100%);   background: linear-gradient(to bottom,  #ffffff 5%,#e7e7e7 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e7e7e7',GradientType=0 );
   border-width: 0px 0px 0px 1px;
-}
+} 
 
 .usm-info{
   height:145px;
