@@ -5,7 +5,7 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
 <div class="profile">
     <div class="author-profile">
         <h3 class="title-flag">Perfil</h3>
-        <div class="author-info cf" follow-url="<?php echo $view['router']->generate('BoomFrontBundle_activity_follow_check',array('username'=> $entity['username'])) ;?>" >
+        <div class="author-info cf" follow-url="<?php echo $view['router']->generate('BoomFrontBundle_activity_follow_check', array('username' => $entity['username'])); ?>" >
             <img src="<?php echo $entity['imagepath'] ?>" height="147px" width="147px" >
             <h4><?php echo $view->escape($entity['firstname'] . ' ' . $entity['lastname']) ?></h4><p class="boom-n">(<?php echo $entity['booms']->count() ?> Booms)</p>
             <ul class="author-links">
@@ -22,7 +22,6 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
     </div>
 </div>
 <?php
-$routeParams = $app->getRequest()->get('_route_params');
 echo $view->render(
         'BoomFrontBundle:List:user.html.php', array(
     'list' => $list,
@@ -30,11 +29,6 @@ echo $view->render(
     'page' => $page
         )
 );
-?>
-<?php
-if ($total > $limit):
-    $pagination = $view['boom_pagination']->paginationValues($page, $total);
-    var_dump($pagination);
-endif;
+echo $view['boom_pagination']->renderPaginationBlock($app->getRequest()->get('_route'), $app->getRequest()->get('_route_params'), $total, $page);
 ?>
 

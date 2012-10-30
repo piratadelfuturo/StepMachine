@@ -33,17 +33,4 @@
     <?php if (isset($more_url)): ?>
         <a href="<?php echo $more_url ?>" class="moar">ver más</a>
     <?php endif; ?>
-    <li class="pags">
-      <ul class="paginador">
-        <li><a href="#"><span class="pagina-prev">prev</span></a></li>
-        <li><a href="#"><span class="pagina">1</span></a></li>
-        <li><a href="#"><span class="pagina even">2</span></a></li>
-        <li><a href="#"><span class="pagina">3</span></a></li>
-        <li><a href="#"><span class="pagina even">4</span></a></li>
-        <li><a href="#"><span class="pagina on">5</span></a></li>
-        <li><a href="#"><span class="pagina even">60</span></a></li>
-        <li><a href="#"><span class="pagina">70</span></a></li>
-        <li><a href="#"><span class="pagina-next">next</span></a></li>
-      </ul>
-    </li>
 </ul>

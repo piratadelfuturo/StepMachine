@@ -9,6 +9,7 @@ use Boom\Bundle\BackBundle\Form\BoomType;
 use Boom\Bundle\LibraryBundle\Form\AjaxImageType;
 use Boom\Bundle\LibraryBundle\Entity as BoomEntity;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
+use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\LibraryBundle\Entity\Image;
 
 class BoomController extends Controller {
@@ -184,15 +185,14 @@ class BoomController extends Controller {
     public function createAction() {
         /* @var */
 
-        $entity = new BoomEntity\Boom();
+        $entity = new Boom();
         $form = $this->createForm(new BoomType($this->getDoctrine()->getManager()), $entity);
         $request = $this->getRequest();
-        $form->bind($request);
         $sessionToken = $this->get('security.context')->getToken();
-        if ($sessionToken->getUser() instanceof BoomEntity\User) {
-            $sessionUser = $sessionToken->getUser();
-            $entity['user'] = $sessionUser;
+        if ($sessionToken->getUser() instanceof User) {
+            $entity['user'] = $sessionToken->getUser();
         }
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();

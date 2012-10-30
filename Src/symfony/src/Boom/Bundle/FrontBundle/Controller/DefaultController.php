@@ -20,12 +20,12 @@ class DefaultController extends Controller {
 
         $users = $repo->findUsersBooms();
 
-        $featured = $repo->findBy(
+        $featured = $repo->findFeaturedBooms(
+                7,0,
                 array(
             'status' => Boom::STATUS_PUBLIC
-                ), array(
-            'featured' => 'ASC',
-            'date_published' => 'ASC'), 7, 0);
+                )
+                );
 
         $top = $listRepo->findOneBy(
                 array(

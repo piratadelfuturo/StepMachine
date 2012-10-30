@@ -8,12 +8,13 @@
             <li class="colab">
                 <img src="<?php echo $element['imagepath'] ?>" height="147px" width="147px" >
                 <div class="colab-info">
-                    <h3 class="colaborador"><?php echo $element['lastname'] . ' ' . $element['firstname'] ?></h3>
+                    <h3 class="colaborador"><?php echo $element['firstname'] . ' ' . $element['lastname'] ?></h3>
                     <a class="no-booms" href="#">(<?php echo $element['booms']->count() ?> Booms)</a>
                     <p><?php echo $element['bio'] ?></p>
-                    <span class="usr-options">
+                    <div class="usr-options">
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_activity_follow', array('username' => $element['username'])) ?>" class="boton"><span class="seguir">seguir</span></a>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $element['username'])) ?>" class="boton"><span class="seguir">ver perfil</span></a>
+                </div>
                 </div>
             </li>
         <?php endforeach; ?>

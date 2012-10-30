@@ -34,13 +34,18 @@ Boom\Bundle\LibraryBundle\Entity\Boom:
               min: 0
               max: 5
         image:
-          - NotNull: ~
+          - NotNull:
+              message: 'Error en imágen'
         user:
-          - NotNull: ~
+          - NotNull:
+              message: 'Error en usuario'
         category:
-          - NotNull: ~
+          - NotNull:
+              message: 'Error en categoría'
         featured:
-          - DateTime: ~
+          - DateTime:
+              message: 'Fecha no válida'
+
 
 Boom\Bundle\LibraryBundle\Entity\Image:
     properties:
