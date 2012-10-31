@@ -31,9 +31,9 @@ BoomFrontBundle_profile_recommend:
     requirements:
       page: \d+
 
-BoomFrontBundle_profile_followings:
+BoomFrontBundle_profile_following:
     pattern:  /siguiendo/{page}
-    defaults: { _controller: "BoomFrontBundle:Profile:followings", page: 1 }
+    defaults: { _controller: "BoomFrontBundle:Profile:following", page: 1 }
     requirements:
       page: \d+
 

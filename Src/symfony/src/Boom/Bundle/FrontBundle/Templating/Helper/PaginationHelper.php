@@ -25,7 +25,6 @@ class PaginationHelper extends Helper {
             if ($last_segment > $total_pages) {
                 $last_segment = $total_pages;
             }
-            var_dump($first_segment, $last_segment);
             $pages = range(
                     $first_segment, $last_segment
             );

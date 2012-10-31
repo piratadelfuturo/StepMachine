@@ -65,38 +65,39 @@ class UserRepository extends EntityRepository {
         return $result;
     }
 
-    public function getFollowedActivities(User $user, $limit = 14) {
+    public function getFollowedActivities(User $user, $offset = 0, $limit = 14) {
         /* @var Doctrine\ORM\Query $query */
-        $cb = $this->createQueryBuilder('user');
-        $cb->select('
-            friend.id user_id,
-            friend.username user_username,
-            friend.name user_name,
-            activity.date activity_date,
-            activity.data activity_data,
-            boom.title boom_title,
-            boom.slug boom_slug,
-            boom.date_published boom_date,
-            category.name category_name,
-            category.slug category_slug
+        $cb1 = $this->createQueryBuilder('u');
+        $cb1->select('
+            friend.id
             ');
-        $cb->join('user.following', 'friend');
-        $cb->join('friend.activities', 'activity');
-        $cb->leftJoin('activity.boom', 'boom');
-        $cb->leftJoin('boom.category', 'category');
-        $cb->andWhere(
-                $cb->expr()->eq('user.id', ':user_id')
+        $cb1->join('u.following', 'friend');
+        $cb1->where(
+                $cb1->expr()->eq('u.id', ':user_id')
         );
-        $cb->setFirstResult(0)->setMaxResults((int) $limit);
-        $cb->orderBy('activity.date', 'DESC');
-        $cb->setParameter('user_id', $user['id']);
-        $query = $cb->getQuery();
-        $query->useResultCache(true, 120, 'front_user_activities_cache_'.$user['id'].'_'.$limit);
+
+        $cb2 = $this->_em->createQueryBuilder();
+        $cb2->select('activity')
+                ->from('BoomLibraryBundle:Activity', 'activity');
+        $cb2->join('activity.user', 'user');
+        $cb2->leftJoin('activity.boom', 'boom');
+        $cb2->leftJoin('boom.category', 'category');
+        $cb2->where(
+                $cb2->expr()->in(
+                        'user.id', $cb1->getDQL()
+                )
+        );
+        $cb2->setFirstResult((int) $offset)->setMaxResults((int) $limit);
+        $cb2->orderBy('activity.date', 'DESC');
+        $cb2->setParameter('user_id', $user['id']);
+
+        $query = $cb2->getQuery();
+        $query->useResultCache(true, 120, 'front_user_activities_cache_' . $user['id'] . '_' . $limit);
         $result = $query->getResult();
         return $result;
     }
 
-    public function checkFollowStatus($username,$friend_username){
+    public function checkFollowStatus($username, $friend_username) {
         /* @var Doctrine\ORM\Query $query */
         $cb = $this->createQueryBuilder('user');
         $cb->select('
@@ -104,19 +105,54 @@ class UserRepository extends EntityRepository {
             ');
         $cb->leftJoin('user.following', 'friend');
         $cb->andWhere(
-                $cb->expr()->eq('user.username', ':username'),
-                $cb->expr()->eq('friend.username', ':friend_username')
+                $cb->expr()->eq('user.username', ':username'), $cb->expr()->eq('friend.username', ':friend_username')
         );
         $cb->setFirstResult(0)->setMaxResults(1);
         $cb->setParameter('username', $username);
         $cb->setParameter('friend_username', $friend_username);
         $query = $cb->getQuery();
-        try{
+        try {
             $result = $query->getSingleScalarResult();
             return true;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function getFollowers(User $user, $offset = 0, $limit = 14) {
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('user');
+        $cb->leftJoin('user.following', 'following');
+        $cb->andWhere(
+                $cb->expr()->eqs('following.id', ':user_id')
+        );
+        $cb->setFirstResult($offset)->setMaxResults($limit);
+        $cb->setParameter('user_id', $user['id']);
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function totalFollowers(User $user) {
+        return $user['followers']->count();
+    }
+
+    public function getFollowing(User $user, $offset = 0, $limit = 14) {
+        $cb = $this->createQueryBuilder('user');
+        $cb->select('user');
+        $cb->leftJoin('user.followers', 'follower');
+        $cb->andWhere(
+                $cb->expr()->eq('follower.id', ':user_id')
+        );
+        $cb->setFirstResult($offset)->setMaxResults($limit);
+        $cb->setParameter('user_id', $user['id']);
+        $query = $cb->getQuery();
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function totalFollowing(User $user) {
+        return $user['following']->count();
     }
 
 }

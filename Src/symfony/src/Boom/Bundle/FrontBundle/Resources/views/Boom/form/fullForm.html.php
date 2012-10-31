@@ -49,9 +49,6 @@
         <?php foreach ($form['elements'] as $element): ?>
             <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
                     <label>
-                        <div class="balloon">
-                            <p>Arrastra este boomie</p>
-                        </div>
                         <span class="place"><?php echo (string) $element['position']->vars['value']; ?></span>
                     </label>
                     <div class="uploader">

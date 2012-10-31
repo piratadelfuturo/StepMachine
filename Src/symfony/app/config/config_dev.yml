@@ -10,7 +10,7 @@ web_profiler:
     intercept_redirects: false
 
 twig:
-    exception_controller: Boom\Bundle\LibraryBundle\Controller\ExceptionController::displayAction
+    exception_controller: ~
 
 monolog:
     handlers:

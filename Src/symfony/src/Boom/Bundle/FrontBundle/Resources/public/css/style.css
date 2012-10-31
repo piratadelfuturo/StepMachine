@@ -15,11 +15,11 @@ ul, li {
 
 /* clearfix */
 
-.cf:before, .cf:after { 
-	content: "\0020"; 
-	display: block; 
-	height: 0; 
-	overflow: hidden; 
+.cf:before, .cf:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden;
 }
 
 .cf:after { clear: both; }
@@ -389,20 +389,20 @@ header { position:relative; }
 
 #filter li { float: left; }
 .sexo { background-position: 0px 0; }
-.tecnologia { background-position: 0px -20px; }
+.tech-vg { background-position: 0px -20px; }
 .musica { background-position: 0px -40px; }
 .comida { background-position: 0px -60px; }
 .deportes { background-position: 0px -80px; }
 .cine { background-position: 0px -100px; }
 .humor { background-position: 0px -120px; }
 
-#filter li.sexo { background-position: 30px 0; }
-#filter li.tecnologia { background-position: 30px -20px; }
-#filter li.musica { background-position: 30px -40px; }
-#filter li.comida { background-position: 30px -60px; }
-#filter li.deportes { background-position: 30px -80px; }
-#filter li.cine { background-position: 30px -100px; }
-#filter li.humor { background-position: 30px -120px; }
+#filter li.sexo { background-position: 30px 1px; }
+#filter li.tech-vg { background-position: 30px -19px; }
+#filter li.musica { background-position: 30px -39px; }
+#filter li.comida { background-position: 30px -59px; }
+#filter li.deportes { background-position: 30px -79px; }
+#filter li.cine { background-position: 30px -99px; }
+#filter li.humor { background-position: 30px -119px; }
 
 /*END FLAGS*/
 
@@ -435,6 +435,11 @@ header { position:relative; }
   position: absolute;
 }
 
+#usr-bar ul:first-child,
+#usr-bar #close-tab {
+  padding-top: 8px;
+}
+
 #usr-bar #close-tab {
   display: none;
   float: left;
@@ -447,7 +452,7 @@ header { position:relative; }
 
 #usr-bar #close-tab li a { color: #F87937; }
 
-#usr-bar ul { padding-top: 8px; }
+#usr-bar ul { padding-top: 4px; }
 
 #usr-bar li {
   border-left: 1px solid #939393;
@@ -478,6 +483,11 @@ header { position:relative; }
   margin-left: -10px;
   overflow: hidden;
   position: absolute;
+}
+
+#usr-bar #user-activity-stream{
+    color: #ffffff !important;
+    padding: 0px;
 }
 
 #usr-bar li:first-child { border-right: none; }
@@ -561,7 +571,7 @@ header { position:relative; }
   height: 470px;
   float: left;
   padding: 0 30px;
-  background: #ffffff;     
+  background: #ffffff;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlN2U3ZTciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
   background: -moz-linear-gradient(top,  #ffffff 5%, #e7e7e7 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#ffffff), color-stop(100%,#e7e7e7));
@@ -570,7 +580,7 @@ header { position:relative; }
   background: -ms-linear-gradient(top,  #ffffff 5%,#e7e7e7 100%);   background: linear-gradient(to bottom,  #ffffff 5%,#e7e7e7 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e7e7e7',GradientType=0 );
   border-width: 0px 0px 0px 1px;
-} 
+}
 
 .usm-info {
   height: 145px;
@@ -627,12 +637,13 @@ header { position:relative; }
   margin-bottom: 5px;
 }
 
+
 #rt-cont .boom-li span.sm-flag { display:block; }
  
 /* #usm-pro #filter li input{margin-right:20px;} */
 
 #usm-pro #filter ul { margin-bottom: 17px; }
-#usm-pro #filter li { margin-bottom:10px; }
+#usm-pro #filter li { margin-bottom:10px; float: left; }
 
 #usm-pro #filter li input[type='checkbox'] {
   width: 18px;
@@ -644,7 +655,7 @@ header { position:relative; }
   height: 20px;
 }
 
-#usm-pro #filter li input[type='checkbox']+label {
+#usm-pro #filter li input[type='checkbox'] + label {
   background: url(../images/sprite-chckbx.png) no-repeat 0 -23px;
   display: inline-block;
   height: 20px;
@@ -1424,11 +1435,27 @@ footer p {
   margin-left: 10px;
 }
 
-.lista-colaboradores .colab-info { display: block; }
+.lista-colaboradores .colab-info {
+  display: block;
+  overflow: hidden;
+  height: 110px;
+}
+
+.lista-colaboradores .colab-info p {
+    margin: 5px;
+    height: 20px;
+}
+
+.lista-colaboradores .colab-info > * {
+    float:left;
+    clear:left;
+}
 
 .lista-colaboradores li img,
 .lista-colaboradores li h3,
-.lista-colaboradores li p { float:left; }
+.lista-colaboradores li p {
+  float:left;
+}
 
 .lista-colaboradores img {
   width: 147px;

@@ -12,7 +12,7 @@
                         'category_slug' => $collaborator['category_slug'],
                         'slug' => $collaborator['boom_slug']))?>">
                 <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
-                <h4 class="autor"><?php  echo $collaborator['user_record']['lastname'].' '.$collaborator['user_record']['firstname'] ?></h4>
+                <h4 class="autor"><?php  echo $collaborator['user_record']['firstname'].' '.$collaborator['user_record']['lastname'] ?></h4>
                 <p class="last-boom"><?php echo $collaborator['boom_title']?></p>
             </a>
           </li>
