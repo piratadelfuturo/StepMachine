@@ -438,11 +438,6 @@ header { position:relative; }
   position: absolute;
 }
 
-#usr-bar ul:first-child,
-#usr-bar #close-tab {
-  padding-top: 8px;
-}
-
 #usr-bar #close-tab {
   display: none;
   float: left;
