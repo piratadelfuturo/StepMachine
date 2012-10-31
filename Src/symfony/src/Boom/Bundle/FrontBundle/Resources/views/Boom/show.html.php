@@ -51,7 +51,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         <div class="boom-info">
             <h2><?php echo $view->escape($entity['title']) ?></h2>
             <p><?php echo $view->escape($entity['summary']); ?></p>
-            <a class="boom-moar" href="#">Publicado el <date><?php echo $entity['datepublished']->format('D, d M y') ?></date></a>
+            <a class="boom-moar" href="#">Publicado el <date><?php echo $entity['datepublished']->format('EEE, d MMM, yyyy') ?></date></a>
         </div>
         <div class="social cf">
             <p>Comparte:</p>
