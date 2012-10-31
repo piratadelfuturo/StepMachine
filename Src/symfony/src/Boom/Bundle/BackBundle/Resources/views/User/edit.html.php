@@ -5,6 +5,14 @@
     <fieldset>
         <label><?php echo $entity['username'] ?></label>
         <?php echo $view['form']->row($edit_form['_token']) ?>
+        <section>
+            <section>
+                <label>Nombre</label>
+            </section>
+            <div>
+                <?php echo $entity['firstname'].' '.$entity['lastname'].' ('.$entity['name'].')'; ?>
+            </div>
+        </section>
         <?php echo $view['form']->row($edit_form['bio']) ?>
         <?php if(!empty($entity['password'])): ?>
             <?php echo $view['form']->row($edit_form['admin']) ?>
