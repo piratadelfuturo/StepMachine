@@ -447,6 +447,7 @@ header { position:relative; }
   display: none;
   float: left;
   z-index: 8;
+  margin-left: 10px;
 }
 
 #usr-bar #close-tab li { color: #FFF; }
@@ -455,7 +456,7 @@ header { position:relative; }
 
 #usr-bar #close-tab li a { color: #F87937; }
 
-#usr-bar ul { padding-top: 4px; }
+#usr-bar ul { padding-top: 8px; }
 
 #usr-bar li {
   border-left: 1px solid #939393;
@@ -464,7 +465,7 @@ header { position:relative; }
   float: left;
   height: 28px;
   line-height: 28px;
-  padding: 0 20px;
+  padding: 0 10px;
   position: relative;
 }
 #usr-bar li:last-child { border-right: 1px solid #939393; }

@@ -17,6 +17,9 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         </a>
                     <?php endif; ?>
                 </li>
+                <li>
+                  <a href="#">Cerrar Sesión</a>
+                </li>
             </ul>
             <ul>
                 <?php
