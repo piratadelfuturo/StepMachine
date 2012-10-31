@@ -7,12 +7,12 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>URL</th>
-                <th>Categoría</th>
-                <th>Fecha</th>
-                <th>NSFW</th>
-                <th>Usuario</th>
-                <th style="width:90px" >Recomendado</th>
-                <th style="width:60px">Acciones</th>
+                <th style="width:65px" >Categoría</th>
+                <th style="width:100px" >Fecha</th>
+                <th style="width:45px" > NSFW</th>
+                <th style="width:50px" >Usuario</th>
+                <th style="width:120px" >Recomendado</th>
+                <th style="width:50px">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +21,12 @@
 </div>
 <script type="text/javascript">
     (function(document,$){
+
+        function formatDate(now) {
+            var then = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+            then += '@'+now.getHours()+':'+now.getMinutes();
+            return then;
+        }
 
         var ed = $(document.createElement('a'))
         .attr('title','Editar')
@@ -40,7 +46,7 @@
 
         var feat = $(document.createElement('a'))
         .attr('title','Recomendar')
-        .addClass('btn i_facebook_like small nt');
+        .addClass('btn i_facebook_like icon small');
 
         $(document).ready(function() {
             $('#boomTable.datatable').dataTable( {
@@ -63,8 +69,7 @@
                         "bSortable": true,
                         "fnCreatedCell": function (nTd,val)
                         {
-                            var date = new Date(val);
-                            $(nTd).empty().text(date.toString('dd/mm/yy HH:MM'));
+                            $(nTd).empty().text(formatDate(new Date(val)));
                         }
                     },
                     null,
@@ -75,20 +80,34 @@
                         "bSortable": true,
                         "fnCreatedCell": function (nTd,val,obj)
                         {
-                            var text = $(document.createElement('strong'));
+                            var op = false,
+                            featB = feat.clone();
                             $(nTd).empty();
+
                             if(val != ''){
-                                var date = new Date(val);
-                                $(nTd).append(text.text(date.toString('dd/mm/yy HH:MM')));
+                                featB.text(formatDate(new Date(val)));
+                            }else{
+                                featB.text('No');
                             }
-                            var featB = feat.clone();
                             featB.click(function(e){
                                 e.preventDefault();
+                                if(op === true){
+                                    return false
+                                }else{
+                                    op = true;
+                                }
+                                featB.fadeOut();
                                 $.ajax({
                                     url: Routing.generate('BoomBackBundle_boom_feature',{id: obj[0]}),
+                                    dataType: 'json',
                                     success: function(response){
-                                        var date = new Date(response);
-                                        text.text(date.toString('dd/mm/yy HH:MM'));
+                                        featB.text(formatDate(new Date(response)));
+                                        featB.fadeIn();
+                                        op = false;
+                                    },
+                                    error: function(){
+                                        featB.fadeIn();
+                                        op = false;
                                     }
                                 })
                             })

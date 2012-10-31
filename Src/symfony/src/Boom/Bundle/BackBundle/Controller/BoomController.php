@@ -23,7 +23,9 @@ class BoomController extends Controller {
         $entity['featured'] = new \DateTime();
         $em->persist($entity);
         $em->flush();
-        return new Response(json_encode($entity['featured']->format(\DateTime::RFC2822)));
+        $response = new Response(json_encode($entity['featured']->format(\DateTime::RFC2822)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     public function previewAction($id) {

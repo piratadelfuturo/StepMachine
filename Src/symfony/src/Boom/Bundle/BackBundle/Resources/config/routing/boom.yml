@@ -21,7 +21,7 @@ BoomBackBundle_boom_preview:
 
 BoomBackBundle_boom_feature:
     pattern:  /{id}/feature
-    defaults: { _controller: "BoomBackBundle:Boom:feature", format: "json" }
+    defaults: { _controller: "BoomBackBundle:Boom:feature", _format: "json" }
     requirements:
       _method: get
       _format: json
