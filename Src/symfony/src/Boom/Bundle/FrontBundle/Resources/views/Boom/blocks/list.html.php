@@ -26,7 +26,7 @@
                 <a href="<?php echo $userUrl ?>" class="boom-moar">
                     Por <?php echo $view->escape($element['user']['name']) ?>
                 </a>
-                <date><?php echo $view->escape($element['datecreated']->format('EEE, d MMM, yyyy')) ?></date>
+                <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($element['datepublished'], 'EEE, d MMM, yyyy' )) ?></date>
             </div>
         </li>
     <?php endforeach; ?>

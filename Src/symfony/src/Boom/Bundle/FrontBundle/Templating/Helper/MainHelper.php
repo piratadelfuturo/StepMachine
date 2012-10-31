@@ -8,7 +8,6 @@ use Boom\Bundle\LibraryBundle\Entity\Activity;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Cache\PhpFileCache;
-use Symfony\Component\Locale\Locale;
 
 class MainHelper extends Helper {
 
@@ -24,22 +23,22 @@ class MainHelper extends Helper {
         return $repo->findFeaturedCategories();
     }
 
-    public function getUserBoomReply(User $user, Boom $boom){
+    public function getUserBoomReply(User $user, Boom $boom) {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
-        return $repo->getUserBoomReply($user,$boom);
+        return $repo->getUserBoomReply($user, $boom);
     }
 
-    public function getFollowedActivities(User $user, $offset = 0, $limit = 14){
+    public function getFollowedActivities(User $user, $offset = 0, $limit = 14) {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:User');
-        return $repo->getFollowedActivities($user,$offset,$limit);
+        return $repo->getFollowedActivities($user, $offset, $limit);
     }
 
-    public function createActivity(User $user, $text = '', Boom $boom = null){
+    public function createActivity(User $user, $text = '', Boom $boom = null) {
         $em = $this->container->get('doctrine')->getEntityManager();
-        $act = new Activity($user,$text);
-        if($boom !== null){
+        $act = new Activity($user, $text);
+        if ($boom !== null) {
             $act['boom'] = $boom;
         }
 
@@ -81,7 +80,7 @@ class MainHelper extends Helper {
     }
 
     public function getGallery($tag) {
-        if(!isset($tag['attributes']['default'])){
+        if (!isset($tag['attributes']['default'])) {
             return '';
         }
         $em = $this->container->get('doctrine')->getEntityManager();
@@ -93,20 +92,25 @@ class MainHelper extends Helper {
         );
     }
 
-    public function getUserBoomOrder($user_id, $boom_id){
+    public function getUserBoomOrder($user_id, $boom_id) {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:BoomelementRank');
         return $repo->findBy(array(
-            'user' => $user_id,
-            'boom' => $boom_id
-        ));
+                    'user' => $user_id,
+                    'boom' => $boom_id
+                ));
     }
 
-    public function getLocaleFormatDate(\DateTime $date, $format = '', \Locale $locale){
-        $session = $this->container->get('session');
-        var_dump($session);
-        exit;
-   }
+    public function getLocaleFormatDate(\DateTime $date, $format = '', \Locale $locale = null) {
+        $locale = $locale !== null ? $locale : \Locale::getDefault();
+        $ftm = new \IntlDateFormatter(
+                        $locale,
+                        \IntlDateFormatter::FULL,
+                        \IntlDateFormatter::FULL
+        );
+        $ftm->setPattern($string);
+        return $ftm->format($date);
+    }
 
     public function getName() {
         return 'boom_front';

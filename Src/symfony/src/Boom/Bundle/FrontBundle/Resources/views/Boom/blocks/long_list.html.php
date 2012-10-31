@@ -32,7 +32,7 @@ if (!isset($list)) {
                     <a href="<?php echo $userUrl ?>" class="boom-moar">
                         <?php echo $view->escape($element['user']['firstname'].' '.$element['user']['lastname']) ?>
                     </a>
-                    <date><?php echo $view->escape($element['datecreated']->format('EEE, d MMM, yyyy')) ?></date>
+                    <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($element['datepublished'], 'EEE, d MMM, yyyy' )) ?></date>
                 </div>
             </li>
         <?php endforeach; ?>
