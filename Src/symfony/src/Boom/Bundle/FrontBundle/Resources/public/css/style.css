@@ -1389,7 +1389,7 @@ aside .sb-bloque {
   color: #f47b20;
 }
 
-.colab-wdgt .last-boom {
+.colab-wdgt .last-boom, .colab-wdgt .last-boom a {
   font-size: 14px;
   color: #828282;
   margin-top: 7px;
@@ -1495,11 +1495,6 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1e1e1e',GradientType=0 );
 }
 
-.f-cont ul {
-  display: inline-block;
-  margin: 15px 10px;
-}
-
 .f-cont > li{
   width:330px;
   height:175px;
@@ -1568,7 +1563,7 @@ footer {
 }
 
 .f-cont li p {
-  margin: 0px 15px;
+  padding: 0px 15px;
   color: #FFF;
 }
 
