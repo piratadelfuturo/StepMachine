@@ -23,6 +23,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         </a>
 <?php endif; ?>
                 </li>
+                <?php if(!empty($activities)):?>
                 <li>
                   <a href="#">Cerrar Sesión</a>
                 </li>
@@ -54,6 +55,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <?php endforeach; ?>
                     </ul>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <ul id="open-tab">

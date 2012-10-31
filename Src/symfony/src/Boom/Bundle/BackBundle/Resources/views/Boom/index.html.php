@@ -11,7 +11,8 @@
                 <th>Fecha</th>
                 <th>NSFW</th>
                 <th>Usuario</th>
-                <th style="width:160px">Acciones</th>
+                <th style="width:90px" >Recomendado</th>
+                <th style="width:60px">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,10 @@
         .attr('title','Preview')
         .addClass('btn i_magnifying_glass small nt');
 
+        var feat = $(document.createElement('a'))
+        .attr('title','Recomendar')
+        .addClass('btn i_facebook_like small nt');
+
         $(document).ready(function() {
             $('#boomTable.datatable').dataTable( {
                 "bProcessing": true,
@@ -59,11 +64,38 @@
                         "fnCreatedCell": function (nTd,val)
                         {
                             var date = new Date(val);
-                            $(nTd).empty().text(date.toLocaleString());
+                            $(nTd).empty().text(date.toString('dd/mm/yy HH:MM'));
                         }
                     },
                     null,
                     null,
+                    {     // fifth column (Edit link)
+                        "sName": "featured",
+                        "bSearchable": false,
+                        "bSortable": true,
+                        "fnCreatedCell": function (nTd,val,obj)
+                        {
+                            var text = $(document.createElement('strong'));
+                            $(nTd).empty();
+                            if(val != ''){
+                                var date = new Date(val);
+                                $(nTd).append(text.text(date.toString('dd/mm/yy HH:MM')));
+                            }
+                            var featB = feat.clone();
+                            featB.click(function(e){
+                                e.preventDefault();
+                                $.ajax({
+                                    url: Routing.generate('BoomBackBundle_boom_feature',{id: obj[0]}),
+                                    success: function(response){
+                                        var date = new Date(response);
+                                        text.text(date.toString('dd/mm/yy HH:MM'));
+                                    }
+                                })
+                            })
+                            $(nTd).append(featB);
+
+                        }
+                    },
                     {     // fifth column (Edit link)
                         "sName": "action_id",
                         "bSearchable": false,
@@ -77,21 +109,21 @@
 
                             prevB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_preview', { id: val })
-                            )
+                            Routing.generate('BoomBackBundle_boom_preview', { id: val })
+                        )
                             .attr('target','_blank');
                             edB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_edit', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_edit', { id: val })
+                        );
                             delB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_delete', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_delete', { id: val })
+                        );
                             viewB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_show', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_show', { id: val })
+                        );
 
                             $(nTd).empty().append(edB);
                         }
