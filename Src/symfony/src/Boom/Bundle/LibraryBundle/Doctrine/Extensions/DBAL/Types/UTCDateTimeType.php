@@ -34,7 +34,7 @@ class UTCDateTimeType extends DateTimeType {
             self::$utc = new \DateTimeZone('UTC');
         }
 
-        $val = DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
+        $val = \DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
         //$val = new DateTime($fromFormat->format(\DateTime::RFC2822),self::$utc);
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());
