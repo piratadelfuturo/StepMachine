@@ -28,7 +28,7 @@ if (!isset($list)) {
                     </a>
                 </p>
                 <a href="<?php echo $userUrl ?>" class="boom-moar">Por <?php echo $element['user']['name'] ?>.</a>
-                <p><date><?php echo $element['datepublished']->format('D, d M y') ?></date></p>
+                <p><date><?php echo $element['datepublished']->format( 'EEE, d MMM, yyyy' ) ?></date></p>
             </li>
         <?php endforeach; ?>
         <li><a href="<?php echo $more_url ?>" class="moar">ver más</a></li>

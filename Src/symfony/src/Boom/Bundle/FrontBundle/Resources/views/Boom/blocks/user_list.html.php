@@ -21,7 +21,7 @@
                 </p>
                 <a href="<?php echo $elementUrl ?>" class="boom-moar">Leer Boom</a>
             </div>
-            <p class="boom-info-mas">Publicado el <date><?php echo $element['datecreated']->format('D, d M y') ?></date> - <span><?php echo count($element['children']) ?></span> modificaciones</p>
+            <p class="boom-info-mas">Publicado el <date><?php echo $element['datecreated']->format('EEE, d MMM, yyyy') ?></date> - <span><?php echo count($element['children']) ?></span> modificaciones</p>
     </li>
 <?php endforeach; ?>
 </ul>

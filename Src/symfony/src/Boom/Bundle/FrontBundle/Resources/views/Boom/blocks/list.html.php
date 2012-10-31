@@ -26,7 +26,7 @@
                 <a href="<?php echo $userUrl ?>" class="boom-moar">
                     Por <?php echo $view->escape($element['user']['name']) ?>
                 </a>
-                <date><?php echo $view->escape($element['datecreated']->format('D, d M y')) ?></date>
+                <date><?php echo $view->escape($element['datecreated']->format('EEE, d MMM, yyyy')) ?></date>
             </div>
         </li>
     <?php endforeach; ?>

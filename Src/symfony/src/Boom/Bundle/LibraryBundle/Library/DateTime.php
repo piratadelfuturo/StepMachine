@@ -24,12 +24,12 @@ class DateTime extends \DateTime {
         return $this->extendedFormat($string, $locale);
     }
 
-    private function extendedFormat($string, \Locale $locale) {
-        $locale = isset($locale) ? $locale : Locale::getDefault();
-        $ftm = new IntlDateFormatter(
+    private function extendedFormat($string, \Locale $locale = null) {
+        $locale = $locale !== null ? $locale : \Locale::getDefault();
+        $ftm = new \IntlDateFormatter(
                         $locale,
-                        IntlDateFormatter::LONG,
-                        IntlDateFormatter::SHORT
+                        \IntlDateFormatter::LONG,
+                        \IntlDateFormatter::SHORT
         );
         $ftm->setPattern($string);
         return $ftm->format($this);
