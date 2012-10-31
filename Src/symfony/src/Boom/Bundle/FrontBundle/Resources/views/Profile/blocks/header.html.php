@@ -19,7 +19,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             )
                     )
                         ?>">
-                        <?php echo $view->escape($user['firstname'] . ' ' . $user['lastname']); ?>
+                        <?php echo $view->escape($user['name']); ?>
                         </a>
 <?php endif; ?>
                 </li>
