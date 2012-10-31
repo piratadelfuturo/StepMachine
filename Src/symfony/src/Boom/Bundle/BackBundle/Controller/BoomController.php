@@ -102,7 +102,7 @@ class BoomController extends Controller {
         $rResult = array_map(function($value) {
                     $value = array_map(function($value) {
                                 if ($value instanceof \DateTime) {
-                                    $value = $value->format("yyyy-MM-dd'T'HH:mm:ssZZZZZ");
+                                    $value = $value->format(\DateTime::RFC2822);
                                 }
                                 return $value;
                             }, $value);
