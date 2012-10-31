@@ -26,7 +26,7 @@ if (!isset($list)) {
                         );
                         ?>
                         <a href="<?php echo $userUrl ?>" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['name']) ?></a>
-                        <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($element['datepublished'], 'EEE, d MMM, yyyy' )) ?></date>
+                        <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($element['boom']['datepublished'], 'EEE, d MMM, yyyy' )) ?></date>
     <?php endif; ?>
                 </div>
             </li>
