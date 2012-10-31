@@ -30,10 +30,10 @@ class MainHelper extends Helper {
         return $repo->getUserBoomReply($user,$boom);
     }
 
-    public function getFollowedActivities(User $user, $limit = 14){
+    public function getFollowedActivities(User $user, $offset = 0, $limit = 14){
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:User');
-        return $repo->getFollowedActivities($user,$limit);
+        return $repo->getFollowedActivities($user,$offset,$limit);
     }
 
     public function createActivity(User $user, $text = '', Boom $boom = null){

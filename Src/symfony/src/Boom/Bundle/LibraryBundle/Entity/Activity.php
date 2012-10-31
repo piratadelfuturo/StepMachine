@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\ActivityRepository")
  * @ORM\Table(name="activity")
  * @ORM\HasLifecycleCallbacks
  */

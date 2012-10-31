@@ -368,6 +368,10 @@ class User extends BaseUser implements \ArrayAccess {
      * @return string
      */
     public function getName() {
+        if(empty($this->name) || $this->name === null){
+            return $this->firstname.' '.$this->lastname;
+        }
+
         return $this->name;
     }
 

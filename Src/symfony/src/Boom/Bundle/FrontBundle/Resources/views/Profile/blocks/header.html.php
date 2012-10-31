@@ -12,37 +12,47 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
             <ul id="close-tab">
                 <li>
                     <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
-                        Bienvenido <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_index') ?>">
-                            <?php echo $view->escape($user['firstname'] . ' ' . $user['lastname']); ?>
+                        Bienvenido <a href="<?php
+                    echo $view['router']->generate(
+                            'BoomFrontBundle_user_profile', array(
+                        'username' => $user['username']
+                            )
+                    )
+                        ?>">
+                        <?php echo $view->escape($user['firstname'] . ' ' . $user['lastname']); ?>
                         </a>
-                    <?php endif; ?>
+<?php endif; ?>
                 </li>
-            </ul>
-            <ul>
-                <?php
-                foreach($activities as $activity):
-                    $userUrl = $view['router']->generate(
-                            'BoomFrontBundle_user_profile',
-                            array('username' => $activity['user_username'])
+                <li>
+                    <ul id="user-activity-stream">
+                        <?php
+                        foreach ($activities as $activity):
+                            $userUrl = $view['router']->generate(
+                                    'BoomFrontBundle_user_profile', array('username' => $activity['user']['username'])
                             );
-                    ?>
-                <li id="user-activity-strean" >
-                    <a href="<?php echo $userUrl ?>"><?php echo $activity['user_username'] ?></a>
-                    <span><?php echo $view->escape($activity['activity_data']) ?> </span>
-                    <?php if($activity['boom_slug'] !== null):
-                            $boomUrl = $view['router']->generate(
-                                    'BoomFrontBundle_boom_show',
-                                    array(
-                                        'category_slug' => $activitiy['category_slug'],
-                                        'slug' => $activitiy['boom_slug']
-                                    )
+                            ?>
+                            <li>
+                                <a href="<?php echo $userUrl ?>">
+                                    <?php echo $activity['user']['name'] ?>
+                                </a>
+                                <?php echo $view->escape($activity['data']) ?>
+                                <?php
+                                if ($activity['boom'] !== null):
+                                    $boomUrl = $view['router']->generate(
+                                            'BoomFrontBundle_boom_show', array(
+                                        'category_slug' => $activitiy['boom']['category']['slug'],
+                                        'slug' => $activitiy['boom']['slug']
+                                            )
                                     );
-                        ?>
-                        <a href="<?php $boomUrl ?>">boom >></a>
-                    <?php endif; ?>
+                                    ?>
+                                    <a href="<?php $boomUrl ?>">boom >></a>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </li>
-                <?php endforeach; ?>
             </ul>
+
             <ul id="open-tab">
                 <li class="on"><a href="#">Actividad</a><span>.</span></li>
                 <li><a href="#">Recomendados</a><span>.</span></li>

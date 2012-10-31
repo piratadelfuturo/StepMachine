@@ -488,6 +488,11 @@ header { position:relative; }
   position: absolute;
 }
 
+#usr-bar #user-activity-stream{
+    color: #ffffff !important;
+    padding: 0px;
+}
+
 #usr-bar li:first-child { border-right: none; }
 
 #usr-bar li a { color: #fff; }
