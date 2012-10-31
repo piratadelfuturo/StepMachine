@@ -75,7 +75,8 @@
                 )
                     )
             );
-            ?>
+?>
+          <?php //echo $view['form']->widget($form['social_visible']) ?>
         </fieldset>
 
         <fieldset>
