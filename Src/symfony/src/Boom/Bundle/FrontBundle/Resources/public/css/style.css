@@ -438,11 +438,6 @@ header { position:relative; }
   position: absolute;
 }
 
-#usr-bar ul:first-child,
-#usr-bar #close-tab {
-  padding-top: 8px;
-}
-
 #usr-bar #close-tab {
   display: none;
   float: left;
@@ -455,7 +450,7 @@ header { position:relative; }
 
 #usr-bar #close-tab li a { color: #F87937; }
 
-#usr-bar ul { padding-top: 4px; }
+#usr-bar ul { padding-top: 8px; }
 
 #usr-bar li {
   border-left: 1px solid #939393;
