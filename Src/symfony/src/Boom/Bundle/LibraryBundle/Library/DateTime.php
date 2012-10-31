@@ -28,8 +28,8 @@ class DateTime extends \DateTime {
         $locale = $locale !== null ? $locale : \Locale::getDefault();
         $ftm = new \IntlDateFormatter(
                         $locale,
-                        \IntlDateFormatter::LONG,
-                        \IntlDateFormatter::SHORT
+                        \IntlDateFormatter::FULL,
+                        \IntlDateFormatter::FULL
         );
         $ftm->setPattern($string);
         return $ftm->format($this);
