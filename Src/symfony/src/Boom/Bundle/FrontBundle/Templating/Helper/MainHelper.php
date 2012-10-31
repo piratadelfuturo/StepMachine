@@ -108,7 +108,7 @@ class MainHelper extends Helper {
                         \IntlDateFormatter::FULL,
                         \IntlDateFormatter::FULL
         );
-        $ftm->setPattern($string);
+        $ftm->setPattern($format);
         return $ftm->format($date);
     }
 
