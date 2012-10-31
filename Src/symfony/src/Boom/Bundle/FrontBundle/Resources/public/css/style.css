@@ -3604,6 +3604,22 @@ form#boom_gallery ul li{
   padding: 20px 0;
 }
 
+.editar-perfil fieldset h3{
+  font: 24px 'Museo500', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.editar-perfil fieldset p{
+  width: 300px;
+  float: right;
+  text-align: right;
+  font: 17px 'Museo500', sans-serif;
+  color: #b4b4b4;
+  margin-top: -16px;
+  margin-right: 170px;
+}
+
 .editar-perfil .usr-pic {
   float: left;
   border: 8px solid #f2f2f2;
@@ -3618,17 +3634,40 @@ form#boom_gallery ul li{
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  margin: 10px 0 0 25px;
-  width: 420px;
   padding: 10px 15px;
+  width: 400px;
+}
+
+.editar-perfil .basic-info input[type=text] {
+  width: 417px;
+  margin: 10px 0 0 25px;
+  
 }
 
 #front_user_profile_image {
-  width: 100%;
-  padding: 20px 0;
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 20px;
+  width: 240px;
+  padding-top: 20px;
 }
+
+#front_user_username {
+  margin: 0;
+}
+
+.editar-perfil fieldset div+div+div+div+div{
+  width: 240px;
+}
+
+.editar-perfil .grad-border {
+  display: inline-block;
+  margin: 0;
+  width: auto;
+  margin-left: -5px;
+}
+
+.editar-perfil .basic-info .grad-border {
+  margin-left: 18px;
+}
+
 
 #front_user_bio {
   width: 630px;
