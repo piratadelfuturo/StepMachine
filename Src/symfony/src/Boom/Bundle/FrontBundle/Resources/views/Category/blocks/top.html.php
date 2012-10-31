@@ -14,11 +14,11 @@
             ?>
             <?php $image = isset($element['image']) ? $view['boom_image']->getBoomImageUrl($element['image']['path']) : 'http://placekitten.com/680/382' ?>
             <div class="slide <?php echo $position == 1 ? 'active' : ''; ?> cf">
-              <a href="#" class="img-container">
+              <a href="<?php echo $element['url'] ?>" class="img-container">
                 <img src="<?php echo $image ?>" class="main-img" alt="<?php echo $view->escape($element['title']) ?>"/>
               </a>
               <div class="info-container">
-                <h2><?php echo $view->escape($element['title']) ?></h2>
+                <h2><a href="<?php echo $element['url'] ?>"><?php echo $view->escape($element['title']) ?></a></h2>
                 <p><?php echo $view->escape($element['summary']) ?></p>
                 <?php if ($element['boom'] !== NULL): ?>
                   <?php if ($element['boom']['user'] !== NULL): ?>

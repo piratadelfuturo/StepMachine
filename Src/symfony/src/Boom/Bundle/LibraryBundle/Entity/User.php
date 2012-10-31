@@ -85,6 +85,11 @@ class User extends BaseUser implements \ArrayAccess {
     protected $collaborator;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $social_visible;
+
+    /**
      * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="user", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      * */
     protected $boomelementranks;
@@ -368,8 +373,8 @@ class User extends BaseUser implements \ArrayAccess {
      * @return string
      */
     public function getName() {
-        if(empty($this->name) || $this->name === null){
-            return $this->firstname.' '.$this->lastname;
+        if (empty($this->name) || $this->name === null) {
+            return $this->firstname . ' ' . $this->lastname;
         }
 
         return $this->name;
@@ -794,6 +799,25 @@ class User extends BaseUser implements \ArrayAccess {
 
     public function getCollaborator() {
         return (bool) $this->collaborator;
+    }
+
+    public function setSocialVisible($social_visible) {
+        $this->social_visible = (bool) $social_visible;
+        return $this;
+    }
+
+    public function isSocialVisible($social_visible) {
+        if (empty($this->social_visible) || $this->social_visible === null) {
+            return false;
+        }
+        return (bool) $this->social_visible;
+    }
+
+    public function getSocialVisible() {
+        if (empty($this->social_visible) || $this->social_visible === null) {
+            return false;
+        }
+        return (bool) $this->social_visible;
     }
 
 }

@@ -163,7 +163,7 @@ a, #usr-booms .botones a.on, #usr-booms .botones a:hover,
 }
 
 #filter p, .boomers p, #booms-container ul.list li.error, .colab-wdgt .ver-all, .diarios h4,
-#f-cont li h3, .pass-page .lab, .pass-page input {
+.f-cont li h3, .pass-page .lab, .pass-page input {
   font: 18px 'Museo500', sans-serif;
 }
 
@@ -650,15 +650,11 @@ button.submit, .editalo {
   position: absolute;
 }
 
-#usr-bar ul:first-child,
-#usr-bar #close-tab {
-  padding-top: 8px;
-}
-
 #usr-bar #close-tab {
   display: none;
   float: left;
   z-index: 8;
+  margin-left: 10px;
 }
 
 #usr-bar #close-tab li, #usr-bar li a, #usr-opt p a {
@@ -679,7 +675,7 @@ button.submit, .editalo {
   float: left;
   height: 28px;
   line-height: 28px;
-  padding: 0 20px;
+  padding: 0 10px;
   position: relative;
 }
 
@@ -1486,10 +1482,11 @@ footer {
   margin-bottom: 100px;
 }
 
-#f-cont {
+.f-cont{
+  padding: 10px;
   background: #504f4f;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj08MS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwNGY0ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxZTFlMWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top, #504f4f 0%, #1e1e1e 100%);
+  background: -moz-linear-gradient(top,  #504f4f 0%, #1e1e1e 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#504f4f), color-stop(100%,#1e1e1e));
   background: -webkit-linear-gradient(top, #504f4f 0%,#1e1e1e 100%);
   background: -o-linear-gradient(top, #504f4f 0%,#1e1e1e 100%);
@@ -1498,31 +1495,31 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1e1e1e',GradientType=0 );
 }
 
-#f-cont ul {
+.f-cont ul {
   display: inline-block;
   margin: 15px 10px;
 }
 
-#f-cont li {
-  width: 330px;
-  height: 175px;
-  display: inline-block;
+.f-cont > li{
+  width:330px;
+  height:175px;
+  display:inline-block;
   float: left;
   position: relative;
   margin-right: 3px;
 }
 
-#f-cont li.contact {
+.f-cont li.contact{
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 3px;
 }
 
-#f-cont li.newsletter {
+.f-cont li.newsletter {
   margin-right:0;
 }
 
-#f-cont li h3 {
+.f-cont li h3 {
   width: 330px;
   height: 60px;
   text-align: center;
@@ -1538,7 +1535,7 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 );
 }
 
-#f-cont li h3:after {
+.f-cont li h3:after{
   display: inline-block;
   width: 60px;
   height: 59px;
@@ -1549,55 +1546,83 @@ footer {
   content: '';
 }
 
-#f-cont li.about h3:after {
+.f-cont li.about h3:after {
   background: url('../images/boom_47.png') no-repeat;
 }
 
-#f-cont li.contact h3:after {
+.f-cont li.contact h3:after {
   background: url('../images/boom_50.png') no-repeat;
 }
 
-#f-cont li.newsletter h3:after {
+.f-cont li.newsletter h3:after {
   background: url('../images/boom_52.png') no-repeat;
 }
 
-#f-cont li h3 a {
+.f-cont li h3 a {
   color: #FFF;
   line-height: 60px;
 }
 
-#f-cont li.newsletter h3 a {
+.f-cont li.newsletter h3 a {
   margin-left: -40px;
 }
 
-#f-cont li p {
-  margin: 10px 45px;
+.f-cont li p {
+  margin: 0px 15px;
   color: #FFF;
 }
 
-#f-cont #fb-btn, #f-cont #tw-btn {
-  width: 89px;
-  height: 20px;
+.bc-site {
+  padding: 0 15px;
+}
+
+.bc-site li{
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 9px;
+}
+
+.bc-site li p {
+  font: 11px 'Proxima', sans-serif;
+  width: 70px;
+  padding: 0;
+  margin: 0 5px;
+  text-transform: uppercase;
+}
+
+.bc-site li p span {
+  font-size: 13px;
+}
+
+.bc-site .bc-logo {
+  width: 99px;
+  display: block;
+  background: url('../images/bc_logo.png') 0  0px no-repeat;
+  height: 37px;
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+.fb-btn, .tw-btn {
+  width:26px;
+  height: 26px;
   display: inline-block;
   text-indent: -9000px;
   overflow: hidden;
-  position: absolute;
-  bottom: 0;
-  left: 45px;
+  padding-right: 8px;
 }
 
-#fb-btn {
-  background: url('../images/fb-footer.png') no-repeat;
-  border-right: 1px solid #FFF;
+.fb-btn {
+  background: url('../images/share_fb.png') 0  0px no-repeat;
 }
 
-#f-cont #tw-btn {
-  width: 100px;
-  background: url('../images/tw-footer.png') no-repeat;
-  left: 140px;
+.f-cont .tw-btn {
+  width: 32px;
+  background: url('../images/share_tw.png') no-repeat;
+  border-right: 1px solid #f57b20;
 }
 
-#f-cont form input {
+.f-cont form input {
   width: 270px;
   border: 1px solid #ef5b22;
   margin: 12px 25px 0;
@@ -1605,11 +1630,11 @@ footer {
   padding: 3px 1px 3px 5px;
 }
 
-#f-cont input[type="submit"] {
+.f-cont input[type="submit"] {
   background: none;
   border: none;
   text-align: left;
-  color:#F87937;
+  color: #F87937;
   font: bold 18px Helvetica;
 }
 
@@ -3685,27 +3710,70 @@ form#boom_gallery ul li {
   padding: 20px 0;
 }
 
+.editar-perfil fieldset h3{
+  font: 24px 'Museo500', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.editar-perfil fieldset p{
+  width: 300px;
+  float: right;
+  text-align: right;
+  font: 17px 'Museo500', sans-serif;
+  color: #b4b4b4;
+  margin-top: -16px;
+  margin-right: 170px;
+}
+
 .editar-perfil .usr-pic {
   float: left;
   border: 8px solid #f2f2f2;
 }
 
-.editar-perfil input[type=text] {
+.editar-perfil label {
+  display: none;
+}
+
+.editar-perfil input[type=text], .editar-perfil input[type=email] {
   font: 17px 'Museo500', sans-serif;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  margin: 10px 0 0 25px;
-  width: 420px;
   padding: 10px 15px;
+  width: 400px;
+}
+
+.editar-perfil .basic-info input[type=text] {
+  width: 417px;
+  margin: 10px 0 0 25px;
+  
 }
 
 #front_user_profile_image {
-  width: 100%;
-  padding: 20px 0;
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 20px;
+  width: 240px;
+  padding-top: 20px;
 }
+
+#front_user_username {
+  margin: 0;
+}
+
+.editar-perfil fieldset div+div+div+div+div{
+  width: 240px;
+}
+
+.editar-perfil .grad-border {
+  display: inline-block;
+  margin: 0;
+  width: auto;
+  margin-left: -5px;
+}
+
+.editar-perfil .basic-info .grad-border {
+  margin-left: 18px;
+}
+
 
 #front_user_bio {
   width: 630px;

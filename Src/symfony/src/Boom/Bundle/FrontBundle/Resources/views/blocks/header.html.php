@@ -12,7 +12,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
         <div id="top-bar" class="gradient">
             <ul id="mini-nav">
                 <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_new'); ?>">CREA TU <span>boom</span></a></li>
-                <li><a href="#">Especiales</a></li>
+                <!-- <li><a href="#">Especiales</a></li> -->
                 <li class="last"><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_collaborators') ?>">Colaboradores</a></li>
             </ul>
             <div id="tb-rb">

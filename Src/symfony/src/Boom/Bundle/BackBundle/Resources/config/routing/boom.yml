@@ -19,6 +19,15 @@ BoomBackBundle_boom_preview:
     options:
         expose: true
 
+BoomBackBundle_boom_feature:
+    pattern:  /{id}/feature
+    defaults: { _controller: "BoomBackBundle:Boom:feature", _format: "json" }
+    requirements:
+      _method: get
+      _format: json
+    options:
+        expose: true
+
 BoomBackBundle_boom_create:
     pattern:  /new
     defaults: { _controller: "BoomBackBundle:Boom:create" }

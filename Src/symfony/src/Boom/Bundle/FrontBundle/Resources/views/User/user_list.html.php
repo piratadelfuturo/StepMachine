@@ -10,7 +10,7 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
                 <img src="<?php echo $element['imagepath'] ?>" height="147px" width="147px" >
                 <div class="colab-info">
                     <h3 class="colaborador"><?php echo $element['firstname'] . ' ' . $element['lastname'] ?></h3>
-                    <p>omnomnom<?php echo $view->escape($element['bio']) ?></p>
+                    <p><?php echo $view->escape($element['bio']) ?></p>
                 </div>
                 <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $element['username'])) ?>" class="boton">
                     <span class="seguir">ver perfil</span>

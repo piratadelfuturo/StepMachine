@@ -19,12 +19,16 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             )
                     )
                         ?>">
-                        <?php echo $view->escape($user['firstname'] . ' ' . $user['lastname']); ?>
+                        <?php echo $view->escape($user['name']); ?>
                         </a>
 <?php endif; ?>
                 </li>
+                <?php if(!empty($activities)):?>
                 <li>
-                    <ul id="user-activity-stream">
+                  <a href="#">Cerrar Sesión</a>
+                </li>
+            </ul>
+            <ul id="user-activity-stream">
                         <?php
                         foreach ($activities as $activity):
                             $userUrl = $view['router']->generate(
@@ -51,6 +55,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <?php endforeach; ?>
                     </ul>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <ul id="open-tab">

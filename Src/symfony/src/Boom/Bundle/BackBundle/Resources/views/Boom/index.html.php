@@ -7,11 +7,12 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>URL</th>
-                <th>Categoría</th>
-                <th>Fecha</th>
-                <th>NSFW</th>
-                <th>Usuario</th>
-                <th style="width:160px">Acciones</th>
+                <th style="width:65px" >Categoría</th>
+                <th style="width:100px" >Fecha</th>
+                <th style="width:45px" > NSFW</th>
+                <th style="width:50px" >Usuario</th>
+                <th style="width:120px" >Recomendado</th>
+                <th style="width:50px">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,12 @@
 </div>
 <script type="text/javascript">
     (function(document,$){
+
+        function formatDate(now) {
+            var then = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+            then += '@'+now.getHours()+':'+now.getMinutes();
+            return then;
+        }
 
         var ed = $(document.createElement('a'))
         .attr('title','Editar')
@@ -36,6 +43,10 @@
         var prev = $(document.createElement('a'))
         .attr('title','Preview')
         .addClass('btn i_magnifying_glass small nt');
+
+        var feat = $(document.createElement('a'))
+        .attr('title','Recomendar')
+        .addClass('btn i_facebook_like icon small');
 
         $(document).ready(function() {
             $('#boomTable.datatable').dataTable( {
@@ -58,12 +69,52 @@
                         "bSortable": true,
                         "fnCreatedCell": function (nTd,val)
                         {
-                            var date = new Date(val);
-                            $(nTd).empty().text(date.toLocaleString());
+                            $(nTd).empty().text(formatDate(new Date(val)));
                         }
                     },
                     null,
                     null,
+                    {     // fifth column (Edit link)
+                        "sName": "featured",
+                        "bSearchable": false,
+                        "bSortable": true,
+                        "fnCreatedCell": function (nTd,val,obj)
+                        {
+                            var op = false,
+                            featB = feat.clone();
+                            $(nTd).empty();
+
+                            if(val != ''){
+                                featB.text(formatDate(new Date(val)));
+                            }else{
+                                featB.text('No');
+                            }
+                            featB.click(function(e){
+                                e.preventDefault();
+                                if(op === true){
+                                    return false
+                                }else{
+                                    op = true;
+                                }
+                                featB.fadeOut();
+                                $.ajax({
+                                    url: Routing.generate('BoomBackBundle_boom_feature',{id: obj[0]}),
+                                    dataType: 'json',
+                                    success: function(response){
+                                        featB.text(formatDate(new Date(response)));
+                                        featB.fadeIn();
+                                        op = false;
+                                    },
+                                    error: function(){
+                                        featB.fadeIn();
+                                        op = false;
+                                    }
+                                })
+                            })
+                            $(nTd).append(featB);
+
+                        }
+                    },
                     {     // fifth column (Edit link)
                         "sName": "action_id",
                         "bSearchable": false,
@@ -77,21 +128,21 @@
 
                             prevB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_preview', { id: val })
-                            )
+                            Routing.generate('BoomBackBundle_boom_preview', { id: val })
+                        )
                             .attr('target','_blank');
                             edB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_edit', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_edit', { id: val })
+                        );
                             delB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_delete', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_delete', { id: val })
+                        );
                             viewB.attr(
                             'href',
-                                Routing.generate('BoomBackBundle_boom_show', { id: val })
-                            );
+                            Routing.generate('BoomBackBundle_boom_show', { id: val })
+                        );
 
                             $(nTd).empty().append(edB);
                         }
