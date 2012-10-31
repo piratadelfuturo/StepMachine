@@ -150,6 +150,7 @@ class User extends BaseUser implements \ArrayAccess {
      * @ORM\Column(type="integer", nullable=false)
      */
     protected $image_option;
+
     protected $profile_image;
 
     public function __construct() {
