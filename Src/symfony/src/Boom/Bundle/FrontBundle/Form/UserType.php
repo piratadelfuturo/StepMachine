@@ -35,6 +35,10 @@ class UserType extends AbstractType {
                         'email'
                       )
                 ->add(
+                        'social_visible',
+                        'boolean'
+                      )
+                ->add(
                         'profile_image',
                         'file', array ('label' => 'Sube una imagen de 150X150 pixeles para que sea tu ávatar en 7Boom.')
                         )
