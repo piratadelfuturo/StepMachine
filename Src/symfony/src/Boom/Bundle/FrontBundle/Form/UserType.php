@@ -36,7 +36,7 @@ class UserType extends AbstractType {
                       )
                 ->add(
                         'social_visible',
-                        'boolean'
+                        'checkbox'
                       )
                 ->add(
                         'profile_image',
