@@ -14,11 +14,21 @@ use Boom\Bundle\LibraryBundle\Entity\Image;
 
 class BoomController extends Controller {
 
+    public function featureAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
+        if (!$entity) {
+            $entity = new BoomEntity\Boom();
+        }
+        $entity['featured'] = new \DateTime();
+        $em->persist($entity);
+        $em->flush();
+        return new Response(json_encode($entity['featured']->format(\DateTime::RFC2822)));
+    }
+
     public function previewAction($id) {
 
-
         $request = $this->getRequest();
-
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
 
@@ -78,6 +88,7 @@ class BoomController extends Controller {
                     'username'
                 )
             ),
+            'featured',
             'id action_id'
         );
         $get['columns'] = $columns;

@@ -23,6 +23,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         </a>
 <?php endif; ?>
                 </li>
+                <?php if(!empty($activities)):?>
                 <li>
                     <ul id="user-activity-stream">
                         <?php
@@ -51,6 +52,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <?php endforeach; ?>
                     </ul>
                 </li>
+                <?php endif; ?>
             </ul>
 
             <ul id="open-tab">
