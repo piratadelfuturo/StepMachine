@@ -3629,7 +3629,7 @@ form#boom_gallery ul li{
   display: none;
 }
 
-.editar-perfil input[type=text] {
+.editar-perfil input[type=text], .editar-perfil input[type=email] {
   font: 17px 'Museo500', sans-serif;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;

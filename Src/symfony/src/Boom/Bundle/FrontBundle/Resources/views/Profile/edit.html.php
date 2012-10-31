@@ -63,6 +63,16 @@
         </fieldset>
         <fieldset>
           <h3>cambiar correo</h3>
+          <?php
+            echo $view['form']->row(
+                    $form['email'], array(
+                'label' => 'Twitter',
+                'attr' => array(
+                    'placeholder' => '@twitter'
+                )
+                    )
+            );
+            ?>
         </fieldset>
         <fieldset>
           <h3>Conecta con twitter</h3>
@@ -71,12 +81,11 @@
                     $form['twitter_username'], array(
                 'label' => 'Twitter',
                 'attr' => array(
-                    'placeholder' => '@Twitter'
+                    'placeholder' => '@twitter'
                 )
                     )
             );
-?>
-          <?php //echo $view['form']->widget($form['social_visible']) ?>
+            ?>
         </fieldset>
 
         <fieldset>
