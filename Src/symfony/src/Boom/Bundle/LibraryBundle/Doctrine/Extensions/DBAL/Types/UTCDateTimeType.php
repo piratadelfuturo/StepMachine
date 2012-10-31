@@ -5,6 +5,7 @@ namespace Boom\Bundle\LibraryBundle\Doctrine\Extensions\DBAL\Types;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
+use Boom\Bundle\LibraryBundle\Library\DateTime;
 
 class UTCDateTimeType extends DateTimeType {
 
@@ -33,7 +34,7 @@ class UTCDateTimeType extends DateTimeType {
             self::$utc = new \DateTimeZone('UTC');
         }
 
-        $val = \DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
+        $val = DateTime::createFromFormat($platform->getDateTimeFormatString(), $value, self::$utc);
 
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());

@@ -6,9 +6,9 @@ use Boom\Bundle\LibraryBundle\Entity\User;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\Activity;
 use Symfony\Component\Templating\Helper\Helper;
-use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Cache\PhpFileCache;
+use Symfony\Component\Locale\Locale;
 
 class MainHelper extends Helper {
 
@@ -101,6 +101,12 @@ class MainHelper extends Helper {
             'boom' => $boom_id
         ));
     }
+
+    public function getLocaleFormatDate(\DateTime $date, $format = '', \Locale $locale){
+        $session = $this->container->get('session');
+        var_dump($session);
+        exit;
+   }
 
     public function getName() {
         return 'boom_front';
