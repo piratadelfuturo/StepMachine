@@ -34,7 +34,8 @@ class ImageHelper extends Helper {
         }
         $request    = $this->container->get('request');
         $assetUrl   = $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
-        $finalUrl   = $request->getUriForPath($assetUrl);
+        //$finalUrl   = $request->getUriForPath($assetUrl);
+        $finalUrl   = $assetUrl;
         return $finalUrl;
     }
 
