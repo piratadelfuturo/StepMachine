@@ -42,9 +42,7 @@ class FacebookProvider implements UserProviderInterface {
     }
 
     public function loadUserByUsername($fbId) {
-
         $user = $this->processUser($fbId);
-
         if (empty($user) || $user === null) {
             throw new UsernameNotFoundException('The user is not authenticated on facebook');
         }
@@ -70,6 +68,7 @@ class FacebookProvider implements UserProviderInterface {
             $fbdata = null;
         }
 
+
         if ($user === null || empty($user)) {
             if (!empty($fbdata) && $fbdata !== null) {
 
@@ -77,11 +76,12 @@ class FacebookProvider implements UserProviderInterface {
 
                 $user->setEnabled(true);
                 $user->setPassword('');
-                if(isset($fbdata['username'])){
+                if (isset($fbdata['username'])) {
                     $username = $fbdata['username'];
-                }else{
+                } else {
                     $username = Urlizer::urlize($fbdata['name'], '_');
                 }
+                $user->setName($fbdata['name']);
                 $user->setUsername($username);
 
                 if (isset($fbdata['email'])) {
@@ -91,7 +91,6 @@ class FacebookProvider implements UserProviderInterface {
                 $user->setImageOption(User::IMAGE_FACEBOOK);
                 $user->addRole('ROLE_FACEBOOK');
                 $user->addRole('ROLE_SOCIAL');
-
                 $this->userManager->updateUser($user);
             }
         } elseif (!empty($loggedUser) || $loggedUser !== null) {

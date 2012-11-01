@@ -12,7 +12,7 @@ class UserController extends Controller {
     }
 
     public function collaboratorsAction($page) {
-        $limit = 20;
+        $limit = 14;
         $em = $this->getDoctrine()->getManager();
         $result = $em->getRepository('BoomLibraryBundle:User')->findBy(
                 array('collaborator' => true), array('username' => 'DESC'), $limit, $limit * ($page - 1)
