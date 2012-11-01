@@ -60,7 +60,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
 
             <ul id="open-tab">
                 <li class="on"><a href="#">Actividad</a><span>.</span></li>
-                <li><a href="#">Recomendados</a><span>.</span></li>
+                <li><a href="#">Favoritos</a><span>.</span></li>
             </ul>
         </div>
         <div id="usr-roll">
@@ -72,7 +72,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <div class="usr-data">
                         <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $user['username'])) ?>" class="ver">Ver perfil</a>
-                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" class="ver">Cambiar foto</a>
+                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" class="ver">Editar Perfil</a>
                     </div>
                 </div>
                 <div id="filter">

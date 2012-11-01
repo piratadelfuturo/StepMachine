@@ -14,6 +14,7 @@
                     <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
                     <h4 class="autor"><?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?></h4>
                 </a>
+                    <p>Último Boom</p>
                     <p class="last-boom">
                         <a href="<?php
                echo $view['router']->generate(
