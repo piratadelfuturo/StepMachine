@@ -176,7 +176,9 @@ a, #usr-booms .botones a.on, #usr-booms .botones a:hover,
 
 #top-bar li a, .fb-share:hover .fb-like-balloon, .tw-share:hover .tw-like-balloon, .single-boom .autor img,
 .single-boom .autor h3, .single-boom .autor p, *:hover > .balloon , .info-blocks.on,
-.gal-car .car-thumbs li:hover:after, .gal-car .car-thumbs li.active:after, .dyna-content.on {
+.gal-car .car-thumbs li:hover:after, .gal-car .car-thumbs li.active:after, .dyna-content.on,
+#rt-cont .boom-li span.sm-flag, #container.category .boomer .boom img,
+#container.category .boomer .boom .boom-info {
   display: block;
 }
 
@@ -189,7 +191,9 @@ header, #container, .single-boom, #usr-site, .wyswyg-menu li {
   position: relative;
 }
 
-.colab-wdgt ul li img, .colab-wdgt li h4, .colab-wdgt .last-boom, #hd-mn h1, #filter li {
+.colab-wdgt ul li img, .colab-wdgt li h4, .colab-wdgt .last-boom, #hd-mn h1, #filter li,
+.lista-colaboradores li img, .lista-colaboradores li h3, .lista-colaboradores li p,
+#container.category .boomer .boom img, #container.category .boomer .boom .boom-info {
   float: left;
 }
 
@@ -412,7 +416,7 @@ button.submit, .editalo {
   border-bottom: 13px solid #231f20;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  content:' ';
+  content: ' ';
   font-size: 0px;
   height: 0;
   position: absolute;
@@ -425,7 +429,7 @@ button.submit, .editalo {
   border-bottom: 13px solid #FAA635;
   border-left: 11px solid transparent;
   border-right: 11px solid transparent;
-  content:' ';
+  content: ' ';
   font-size: 0px;
   height: 0;
   position: absolute;
@@ -844,10 +848,6 @@ width: 0;
   margin-bottom: 5px;
 }
 
-#rt-cont .boom-li span.sm-flag {
-  display:block;
-}
-
 /* #usm-pro #filter li input{margin-right:20px;}*/
 
 #usm-pro #filter ul {
@@ -958,11 +958,11 @@ width: 0;
 }
 
 .boom-moar {
-  font-weight:bold;
+  font-weight: bold;
 }
 
 .boom-pub {
-  height:115px;
+  height: 115px;
 }
 
 .boom-pub, .boom-pub a {
@@ -1111,7 +1111,7 @@ width: 0;
 }
 
 .car-thumbs li:hover, .car-thumbs li.active {
-  border:3px solid #faa634;
+  border: 3px solid #faa634;
 }
 
 .car-thumbs li:first-child {
@@ -1148,7 +1148,7 @@ width: 0;
 }
 
 #booms-container .boomer {
-  margin-bottom:15px;
+  margin-bottom: 15px;
 }
 
 #booms-container .boomer ul {
@@ -1239,7 +1239,7 @@ width: 0;
 }
 
 .list-grid .date {
-  color:#8d8d8d;
+  color: #8d8d8d;
 }
 
 .boomer .list li img, .list-grid li img {
@@ -1357,7 +1357,7 @@ aside .sb-bloque {
   width: 150px;
   display: block;
   overflow: hidden;
-  text-indent:-9000px;
+  text-indent: -9000px;
 }
 
 .tw-wdgt > h3 span {
@@ -1377,7 +1377,7 @@ aside .sb-bloque {
 }
 
 .colab-wdgt ul li.bgrey {
-  background:#f2f2f2;
+  background: #f2f2f2;
 }
 
 .colab-wdgt li h4, .colab-wdgt .last-boom {
@@ -1406,15 +1406,15 @@ aside .sb-bloque {
 .colab-wdgt .ver-all {
   width: 300px;
   display: block;
-  padding:0;
+  padding: 0;
   line-height: 30px;
   text-align: right;
-  margin:0 0 -10px -10px;
+  margin: 0 0 -10px -10px;
   padding: 0 9px;
-  border-top:1px solid #f57b20;
+  border-top: 1px solid #f57b20;
 }
 
-.colab-wdgt .ver-all a{
+.colab-wdgt .ver-all a {
   color: #FFF;
 }
 
@@ -1422,7 +1422,7 @@ aside .sb-bloque {
   content: '';
   display: inline-block;
   width: 15px;
-  height:15px;
+  height: 15px;
   background: url('../images/boom_verall.png') right center no-repeat;
 }
 
@@ -1448,7 +1448,7 @@ aside .sb-bloque {
 }
 
 .diarios li.bgrey {
-  background:#e5e5e5;
+  background: #e5e5e5;
 }
 
 .diarios .place {
@@ -1492,7 +1492,7 @@ footer {
   margin-bottom: 100px;
 }
 
-.f-cont{
+.f-cont {
   padding: 10px;
   background: #504f4f;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj08MS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwNGY0ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxZTFlMWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -1505,23 +1505,23 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#504f4f', endColorstr='#1e1e1e',GradientType=0 );
 }
 
-.f-cont > li{
-  width:330px;
-  height:175px;
-  display:inline-block;
+.f-cont > li {
+  width: 330px;
+  height: 175px;
+  display: inline-block;
   float: left;
   position: relative;
   margin-right: 3px;
 }
 
-.f-cont li.contact{
+.f-cont li.contact {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 3px;
 }
 
 .f-cont li.newsletter {
-  margin-right:0;
+  margin-right: 0;
 }
 
 .f-cont li h3 {
@@ -1540,7 +1540,7 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 );
 }
 
-.f-cont li h3:after{
+.f-cont li h3:after {
   display: inline-block;
   width: 60px;
   height: 59px;
@@ -1602,7 +1602,7 @@ footer {
 .bc-site .bc-logo {
   width: 99px;
   display: block;
-  background: url('../images/bc_logo.png') 0  0px no-repeat;
+  background: url('../images/bc_logo.png') 0 0px no-repeat;
   height: 37px;
   overflow: hidden;
   text-indent: -9999px;
@@ -1618,7 +1618,7 @@ footer {
 }
 
 .fb-btn {
-  background: url('../images/share_fb.png') 0  0px no-repeat;
+  background: url('../images/share_fb.png') 0 0px no-repeat;
 }
 
 .f-cont .tw-btn {
@@ -1685,14 +1685,8 @@ footer p {
 }
 
 .lista-colaboradores .colab-info > * {
-  float:left;
-  clear:left;
-}
-
-.lista-colaboradores li img,
-.lista-colaboradores li h3,
-.lista-colaboradores li p {
-  float:left;
+  float: left;
+  clear: left;
 }
 
 .lista-colaboradores img {
@@ -1758,7 +1752,7 @@ footer p {
 }
 
 #cat-car .next, #cat-car .prev {
-  top:207px;
+  top: 207px;
 }
 
 #cat-car ul {
@@ -1781,11 +1775,11 @@ footer p {
 }
 
 #cat-car li .boom-info a, #cat-car li .boom-info date {
-  line-height:25px;
+  line-height: 25px;
 }
 
 #container.category #booms-container .title-flag {
-  border-top:none;
+  border-top: none;
 }
 
 #container.category #booms-container.musica .title-flag {
@@ -1920,12 +1914,6 @@ footer p {
   margin: 0 20px;
 }
 
-#container.category .boomer .boom img,
-#container.category .boomer .boom .boom-info {
-  float:left;
-  display:block;
-}
-
 #container.category .boomer .list .moar {
   width: 663px;
   height: 50px;
@@ -1942,7 +1930,7 @@ footer p {
 
 /* INTERIOR BOOM */
 #container.interior-boom #booms-container {
-  width:680px;
+  width: 680px;
 }
 
 #booms-container .boom-main {
@@ -2082,11 +2070,11 @@ footer p {
 }
 
 #container.interior-boom aside {
-  width:330px;
+  width: 330px;
 }
 
 #container.interior-boom aside .sb-bloque {
-  width:308px;
+  width: 308px;
 }
 
 #container.interior-boom aside .colab-wdgt ul li {
@@ -3085,7 +3073,7 @@ fieldset.on .accordion_content {
   float:left;
   height: 288px;
   vertical-align: top;
-  border:none !important;
+  border: none !important;
   padding: 10px 15px !important;
 }
 
@@ -3095,7 +3083,7 @@ fieldset.on .accordion_content {
   display: block;
   overflow: hidden;
   background: url('../images/sprite_wyswyg.png') no-repeat center 0px;
-  text-indent:-9999px;
+  text-indent: -9999px;
 }
 
 .wyswyg-menu li.picture a {
@@ -3336,7 +3324,7 @@ button.submit {
 }
 
 .paginador li span:before {
-  content:' ';
+  content: ' ';
   display: block;
   width: 23px;
   height: 47px;
@@ -3369,7 +3357,7 @@ button.submit {
 }
 
 .paginador li .on {
-  color:#ef4d30;
+  color: #ef4d30;
 }
 
 .paginador li .on:after,.paginador li:hover .pagina:after {
