@@ -13,13 +13,15 @@
             ?>">
                     <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
                 </a>
-                <a href="<?php
+                <h4 class="autor">
+                  <a href="<?php
                   echo $view['router']->generate(
                           'BoomFrontBundle_user_profile', array(
                       'username' => $collaborator['user_record']['username']))
                       ?>">
-                    <h4 class="autor"><?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?></h4>
+                    <?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?>
                 </a>
+                </h4>
                     <p class="last-subtitle">Último Boom:</p>
                     <p class="last-boom">
                         <a href="<?php
