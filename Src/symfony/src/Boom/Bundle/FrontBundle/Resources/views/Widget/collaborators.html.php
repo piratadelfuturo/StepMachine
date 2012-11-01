@@ -14,8 +14,9 @@
                     <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
                     <h4 class="autor"><?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?></h4>
                 </a>
-                <p class="last-boom">
-                    <a href="<?php
+                    <p class="last-subtitle">Último Boom:</p>
+                    <p class="last-boom">
+                        <a href="<?php
                echo $view['router']->generate(
                        'BoomFrontBundle_boom_show', array(
                    'category_slug' => $collaborator['category_slug'],
