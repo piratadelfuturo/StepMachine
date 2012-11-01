@@ -1,4 +1,5 @@
 parameters:
+  security.exception_listener.class:          Boom\Bundle\LibraryBundle\Security\Firewall\ExceptionListener
   boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
   boom_library.image.helper.class:            Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
   boom_library.tags_selector.type.class:      Boom\Bundle\LibraryBundle\Form\Type\TagsSelectorType
