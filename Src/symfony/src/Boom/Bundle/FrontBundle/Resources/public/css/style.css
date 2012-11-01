@@ -1190,7 +1190,7 @@ width: 0;
 
 .top-semanal .boom .boom-info {
   margin: 0 20px;
-  width: 402px;
+  width: 310px;
 }
 
 .top-semanal .boom .boom-info date {
@@ -1392,11 +1392,17 @@ aside .sb-bloque {
 .colab-wdgt .last-boom, .colab-wdgt .last-boom a {
   font-size: 14px;
   color: #828282;
-  margin-top: 7px;
 }
 
 .colab-wdgt ul li img {
   margin-left: 20px;
+}
+
+.last-subtitle {
+  margin: 30px 0 0 90px;
+  color: #666;
+  font-family: 'Museo500', sans-serif;
+  line-height: 12px;
 }
 
 .colab-wdgt .ver-all {
