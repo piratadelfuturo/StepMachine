@@ -1,5 +1,5 @@
 <div class="colab-wdgt sb-bloque">
-    <h3><span>colaboradores</span></h3>
+    <h3>colaboradores</h3>
     <ul>
         <?php
         $collaborators = $view['boom_front']->getLatestCollaborators();
@@ -12,6 +12,12 @@
             'username' => $collaborator['user_record']['username']))
             ?>">
                     <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
+                </a>
+                <a href="<?php
+                  echo $view['router']->generate(
+                          'BoomFrontBundle_user_profile', array(
+                      'username' => $collaborator['user_record']['username']))
+                      ?>">
                     <h4 class="autor"><?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?></h4>
                 </a>
                     <p class="last-subtitle">Último Boom:</p>
@@ -28,5 +34,5 @@
             </li>
         <?php endforeach; ?>
     </ul>
-    <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_collaborators'); ?>"><span class="ver-all"><p>Ver todos<p></span></a>
+    <div class="ver-all"><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_collaborators'); ?>">Ver todos</a></div>
 </div>

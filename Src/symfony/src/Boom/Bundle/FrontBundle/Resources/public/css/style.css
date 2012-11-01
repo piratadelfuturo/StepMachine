@@ -1307,11 +1307,9 @@ aside .sb-bloque {
   font: 24px 'Proxima', sans-serif;
   line-height: 45px;
   text-transform: uppercase;
+  padding-left:35px;
 }
 
-.sb-bloque > h3 span {
-  margin-left:35px;
-}
 
 .fb-wdgt > h3 {
   border-bottom: 1px solid #c6cedf;
@@ -1325,7 +1323,7 @@ aside .sb-bloque {
   background: -ms-linear-gradient(top, #2e55a2 0%,#193772 100%);
   background: linear-gradient(top, #2e55a2 0%,#193772 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e55a2', endColorstr='#193772',GradientType=0 );
-  width: 300px;
+  width: 265px;
 }
 
 .tw-wdgt > h3 {
@@ -1411,15 +1409,21 @@ aside .sb-bloque {
   padding:0;
   line-height: 30px;
   text-align: right;
-  padding-right: 20px;
-  padding-top: 2px;
   margin:0 0 -10px -10px;
+  padding: 0 9px;
   border-top:1px solid #f57b20;
 }
 
-.colab-wdgt .ver-all p {
-  background: url('../images/boom_verall.png') no-repeat 290px center;
-  padding-right: 20px;
+.colab-wdgt .ver-all a{
+  color: #FFF;
+}
+
+.colab-wdgt .ver-all:after {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height:15px;
+  background: url('../images/boom_verall.png') right center no-repeat;
 }
 
 .diarios {
