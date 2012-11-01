@@ -174,7 +174,7 @@ a, #usr-booms .botones a.on, #usr-booms .botones a:hover,
   text-transform: uppercase;
 }
 
-#top-bar li a, .fb-share:hover .fb-like-balloon, .tw-share:hover .tw-like-balloon, .single-boom .autor img, 
+#top-bar li a, .fb-share:hover .fb-like-balloon, .tw-share:hover .tw-like-balloon, .single-boom .autor img,
 .single-boom .autor h3, .single-boom .autor p, *:hover > .balloon , .info-blocks.on,
 .gal-car .car-thumbs li:hover:after, .gal-car .car-thumbs li.active:after, .dyna-content.on {
   display: block;
@@ -748,9 +748,9 @@ width: 0;
 
 .big-container {
   width: 290px;
-  height: 671px;
+  height: auto;
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 15px;
 }
 
 /* USER MENU */
@@ -855,7 +855,7 @@ width: 0;
 }
 
 #usm-pro #filter li {
-  margin-bottom:10px; 
+  margin-bottom:10px;
   float: left;
 }
 
@@ -2199,7 +2199,7 @@ footer p {
 }
 
 .single-boom .social .btn-tw:hover {
-  background-position: -31px -31px; 
+  background-position: -31px -31px;
 }
 
 .single-boom .social .btn-fav {
@@ -3748,7 +3748,7 @@ form#boom_gallery ul li {
 .editar-perfil .basic-info input[type=text] {
   width: 417px;
   margin: 10px 0 0 25px;
-  
+
 }
 
 #front_user_profile_image {
@@ -3803,13 +3803,13 @@ form#boom_gallery ul li {
   #nsfw-sc .balloon {
     left: 112px;
   }
-  
+
   .sort-elements .boomie .balloon {
     left: 75px;
   }
-  
+
   .sort-elements .wyswyg-menu li .balloon {
     left: 50px;
   }
-  
+
 }

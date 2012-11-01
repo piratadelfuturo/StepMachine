@@ -461,20 +461,19 @@ class BoomRepository extends NestedTreeRepository {
     public function getUserBoomReply(User $user,Boom $boom){
 
         $cb = $this->createQueryBuilder('boom');
-
         $cb->select('boom');
+        $cb->join('boom.parent', 'parent');
         $cb->join('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->in('user.id', $user['id']),
-                $cb->expr()->in('boom.parent', $boom['id'])
+                $cb->expr()->eq('parent.id', ':boom_id'),
+                $cb->expr()->eq('user.id', ':user_id')
         );
+        $cb->setFirstResult(0)->setMaxResults(1);
 
         $query = $cb->getQuery();
-        try{
-            $result = $query->getSingleResult();
-        }catch(\Exception $e){
-            $result = null;
-        }
+        $query->setParameter('user_id', $user['id']);
+        $query->setParameter('boom_id', $boom['id']);
+        $result = $query->getOneOrNullResult();
         return $result;
 
     }
