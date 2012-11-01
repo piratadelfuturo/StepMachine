@@ -41,7 +41,7 @@ endif;
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo">Guardar</a>
+            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">

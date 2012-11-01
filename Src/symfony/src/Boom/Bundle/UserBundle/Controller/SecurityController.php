@@ -13,6 +13,8 @@ namespace Boom\Bundle\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SecurityController extends Controller {
 
@@ -23,6 +25,10 @@ class SecurityController extends Controller {
         $security = $this->container->get('security.context');
         $request = $this->container->get('request');
         $session = $request->getSession();
+        if($request->isXmlHttpRequest() === true){
+            throw new HttpException(403, 'Unauthorized access.');
+        }
+
         if ($security->isGranted('IS_AUTHENTICATED_FULLY') === true) {
             return $this->redirect($this->generateUrl('BoomFrontBundle_homepage'));
         }

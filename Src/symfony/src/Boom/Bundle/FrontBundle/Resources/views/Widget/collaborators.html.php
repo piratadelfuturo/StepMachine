@@ -13,26 +13,27 @@
             ?>">
                     <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
                 </a>
-                <h4 class="autor">
-                  <a href="<?php
-                  echo $view['router']->generate(
-                          'BoomFrontBundle_user_profile', array(
-                      'username' => $collaborator['user_record']['username']))
-                      ?>">
-                    <?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?>
-                </a>
-                </h4>
-                    <p class="last-subtitle">Último Boom:</p>
-                    <p class="last-boom">
-                        <a href="<?php
-               echo $view['router']->generate(
-                       'BoomFrontBundle_boom_show', array(
-                   'category_slug' => $collaborator['category_slug'],
-                   'slug' => $collaborator['boom_slug']))
-            ?>">
-                           <?php echo $collaborator['boom_title'] ?>
-                    </a>
-                </p>
+                <div class="colab-info">
+                 <h4 class="autor">
+                    <a href="<?php
+                    echo $view['router']->generate(
+                            'BoomFrontBundle_user_profile', array(
+                        'username' => $collaborator['user_record']['username']))
+                        ?>">
+                      <?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?>
+                  </a>
+                  </h4>
+                      <p class="last-subtitle">Último Boom:</p>
+                      <p class="last-boom">
+                          <a href="<?php
+                 echo $view['router']->generate(
+                         'BoomFrontBundle_boom_show', array(
+                     'category_slug' => $collaborator['category_slug'],
+                     'slug' => $collaborator['boom_slug']))
+              ?>">
+                             <?php echo $collaborator['boom_title'] ?>
+                      </a>
+                  </p>
             </li>
         <?php endforeach; ?>
     </ul>

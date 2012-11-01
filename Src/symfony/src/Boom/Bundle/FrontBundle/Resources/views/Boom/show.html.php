@@ -40,7 +40,7 @@ $twUrl = $view['router']->generate(
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 ?>
-<div class="musica single-boom">
+<div class="<?php echo $category['slug'] ?> single-boom">
     <div class="boom-main">
         <h3 class="title-flag <?php echo $category['slug'] ?>">
             <span><?php echo $view->escape($category['name']) ?></span>
