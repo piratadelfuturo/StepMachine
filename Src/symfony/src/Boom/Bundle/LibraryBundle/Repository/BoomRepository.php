@@ -96,9 +96,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.category', 'category');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('boom.category', $category['id']),
-                $cb->expr()->eq('user.collaborator', (int) $collaborator),
-                $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -118,15 +116,14 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function findBoomsByUser(User $user, $modified = false, array $status = array(), $limit = 7, $offset = 0,  $sort = array('boom.date_published' => 'DESC')) {
+    public function findBoomsByUser(User $user, $modified = false, array $status = array(), $limit = 7, $offset = 0, $sort = array('boom.date_published' => 'DESC')) {
 
         $statusFilter = $this->validateStatus($status);
         $cb = $this->createQueryBuilder('boom');
         $cb->select('boom');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.id', $user['id']),
-                $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('user.id', $user['id']), $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($modified == true) {
             $cb->andWhere(
@@ -155,8 +152,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('count(boom)');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.id', $user['id']),
-                $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('user.id', $user['id']), $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($modified == true) {
             $cb->andWhere(
@@ -183,7 +179,8 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.category', 'category');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (string) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('boom.category', $category['id']),
+                $cb->expr()->eq('user.collaborator', (string) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -227,10 +224,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb = $this->createQueryBuilder('boom');
         $cb->select('count(boom)');
         $cb->andWhere(
-                $cb->expr()->in('boom.status', $statusFilter)
-        );
-        $cb->andWhere(
-                $cb->expr()->isNotNull('boom.featured')
+                $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNotNull('boom.featured')
         );
 
         $query = $cb->getQuery();
@@ -239,61 +233,47 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function findBoomsByTag(Tag $tag, $sort = array('date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array()) {
-
-        $sortKey = \key($sort);
-        $sortValue = \current($sort);
+    public function findBoomsByTag(Tag $tag, $sort = array('boom.date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array()) {
 
         $statusFilter = $this->validateStatus($status);
-
-        $qString = "
-            SELECT
-                boom
-            FROM
-                BoomLibraryBundle:Boom boom
-            LEFT JOIN
-                boom.tags tag
-            WHERE
-                :tag
-            MEMBER OF
-                boom.tags
-            AND
-                boom.status IN (:status)
-            ORDER BY boom.{$sortKey} {$sortValue}";
-
-        $em = $this->getEntityManager();
-        $query = $em->createQuery($qString);
-        $query->setParameters(array('tag' => $tag, 'status' => $statusFilter));
+        $cb = $this->createQueryBuilder('boom');
+        $cb->select('boom');
+        $cb->leftJoin('boom.tags', 'tag');
+        $cb->andWhere(
+                $cb->expr()->eq('tag.id', ':tag_id'), $cb->expr()->in('boom.status', ':status')
+        );
+        foreach ($sort as $sv => $sk) {
+            $cb->addOrderBy($sv, $sk);
+        }
+        $query = $cb->getQuery();
+        $query->setParameters(
+                array(
+                    'tag_id' => $tag['id'], 'status' => $statusFilter
+                )
+        );
         $query->setFirstResult($offset);
         $query->setMaxResults($limit);
-        $result = $query->execute();
-
+        $result = $query->getResult();
         return $result;
     }
 
     public function totalBoomsByTag(Tag $tag, array $status = array()) {
 
+
         $statusFilter = $this->validateStatus($status);
-
-        $qString = "
-            SELECT
-                count(boom)
-            FROM
-                BoomLibraryBundle:Boom boom
-            LEFT JOIN
-                boom.tags tags
-            WHERE
-                :tag
-            MEMBER OF
-                boom.tags
-            AND
-                boom.status IN (:status)";
-
-        $em = $this->getEntityManager();
-        $query = $em->createQuery($qString);
-        $query->setParameters(array('tag' => $tag, 'status' => $statusFilter));
+        $cb = $this->createQueryBuilder('boom');
+        $cb->select('count(boom)');
+        $cb->leftJoin('boom.tags', 'tag');
+        $cb->andWhere(
+                $cb->expr()->eq('tag.id', ':tag_id'), $cb->expr()->in('boom.status', ':status')
+        );
+        $query = $cb->getQuery();
+        $query->setParameters(
+                array(
+                    'tag_id' => $tag['id'], 'status' => $statusFilter
+                )
+        );
         $result = $query->getSingleScalarResult();
-
         return $result;
     }
 
@@ -322,10 +302,10 @@ class BoomRepository extends NestedTreeRepository {
         $query = $cb->getQuery();
         $query->setParameters(
                 array(
-                    'collaborator'  => $collaborator,
-                    'status'        => $statusFilter
+                    'collaborator' => $collaborator,
+                    'status' => $statusFilter
                 )
-                );
+        );
 
 
         $result = $query->execute();
@@ -374,7 +354,6 @@ class BoomRepository extends NestedTreeRepository {
     }
 
     public function findBoomsByLike($query = '', $limit = 7, $offset = 0) {
-
         $qString = "
             SELECT
                 boom.title,
@@ -458,15 +437,14 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function getUserBoomReply(User $user,Boom $boom){
+    public function getUserBoomReply(User $user, Boom $boom) {
 
         $cb = $this->createQueryBuilder('boom');
         $cb->select('boom');
         $cb->join('boom.parent', 'parent');
         $cb->join('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('parent.id', ':boom_id'),
-                $cb->expr()->eq('user.id', ':user_id')
+                $cb->expr()->eq('parent.id', ':boom_id'), $cb->expr()->eq('user.id', ':user_id')
         );
         $cb->setFirstResult(0)->setMaxResults(1);
 
@@ -475,8 +453,6 @@ class BoomRepository extends NestedTreeRepository {
         $query->setParameter('boom_id', $boom['id']);
         $result = $query->getOneOrNullResult();
         return $result;
-
     }
-
 
 }

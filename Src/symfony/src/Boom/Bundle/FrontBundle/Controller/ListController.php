@@ -69,9 +69,8 @@ class ListController extends Controller {
                     'page' => $page,
                     'list' => $latest,
                     'entity' => $thisCat,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'recomendados'
-
                 ));
     }
 
@@ -100,10 +99,10 @@ class ListController extends Controller {
         );
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
-                    'total'      => $total,
-                    'page'       => $page,
-                    'list'       => $list,
-                    'limit'      => $limit,
+                    'total' => $total,
+                    'page' => $page,
+                    'list' => $list,
+                    'limit' => $limit,
                     'page_title' => 'últimos'
                 ));
     }
@@ -146,9 +145,8 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'últimos'
-
                 ));
     }
 
@@ -189,9 +187,8 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'usuarios'
-
                 ));
     }
 
@@ -220,14 +217,12 @@ class ListController extends Controller {
                 )
         );
 
-
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'usuarios'
-
                 ));
     }
 
@@ -267,7 +262,7 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'colaboradores'
                 ));
     }
@@ -307,7 +302,7 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
-                    'limit'      => $limit,
+                    'limit' => $limit,
                     'page_title' => 'colaboradores'
                 ));
     }
@@ -328,7 +323,7 @@ class ListController extends Controller {
 
         $latest = $boomRepo->findBoomsByTag(
                 $thisTag
-                , array('date_created' => 'DESC')
+                , array('boom.date_published' => 'DESC')
                 , $limit
                 , $limit * ($page - 1)
                 , array(Boom::STATUS_PUBLIC)
@@ -340,7 +335,8 @@ class ListController extends Controller {
                     'total' => $total,
                     'page' => $page,
                     'list' => $latest,
-                    'entity' => $thisTag
+                    'entity' => $thisTag,
+                    'limit' => $limit
                 ));
     }
 
