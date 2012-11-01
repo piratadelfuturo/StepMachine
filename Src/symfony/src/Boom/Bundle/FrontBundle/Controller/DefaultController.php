@@ -10,17 +10,18 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
 class DefaultController extends Controller {
 
     public function indexAction() {
-
+        /** @var \Boom\Bundle\LibraryBundle\Repository\BoomRepository $repo */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
 
         $latest = $repo->findBy(
-                array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'ASC'), 7, 0);
+                array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'DESC'), 7, 0);
 
         $users = $repo->findUsersBooms();
 
         $featured = $repo->findFeaturedBooms(
+                array('boom.date_published' => 'DESC'),
                 7,0,
                 array(
             'status' => Boom::STATUS_PUBLIC

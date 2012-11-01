@@ -204,12 +204,17 @@ class BoomRepository extends NestedTreeRepository {
         $cb = $this->createQueryBuilder('boom');
         $cb->select('boom');
         $cb->andWhere(
-                $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNotNull('boom.featured')
+                $cb->expr()->in('boom.status', ':status'), $cb->expr()->isNotNull('boom.featured')
         );
         $cb->orderBy('boom.featured', 'DESC');
         $cb->orderBy('boom.date_published', 'DESC');
         $cb->setFirstResult((int) $offset)->setMaxResults((int) $limit);
+        foreach ($sort as $aSortKey => $aSortValue) {
+            $cb->orderBy($aSortKey, $aSortValue);
+        }
+
         $query = $cb->getQuery();
+        $query->setParameters(array('status' => $statusFilter));
         $result = $query->execute();
 
         return $result;
@@ -300,7 +305,8 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('boom');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('user.collaborator', ':collaborator'),
+                $cb->expr()->in('boom.status', ':status')
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -313,8 +319,15 @@ class BoomRepository extends NestedTreeRepository {
             }
         }
         $cb->setFirstResult((int) $offset)->setMaxResults((int) $limit);
-
         $query = $cb->getQuery();
+        $query->setParameters(
+                array(
+                    'collaborator'  => $collaborator,
+                    'status'        => $statusFilter
+                )
+                );
+
+
         $result = $query->execute();
 
         return $result;
