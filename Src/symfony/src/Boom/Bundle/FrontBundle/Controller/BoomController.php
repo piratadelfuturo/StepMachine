@@ -143,8 +143,9 @@ class BoomController extends Controller {
                 $em->persist($ranks[$order['original'] - 1]);
             }
         }
-
         $em->flush();
+
+        $repoRank->calculatePublicRank($boom);
 
         $response = new Response(
                         json_encode($ranks)

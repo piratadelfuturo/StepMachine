@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\BoomelementRankRepository")
  * @ORM\Table(name="boomelement_rank",
  *  uniqueConstraints={@ORM\UniqueConstraint(name="search_primary", columns={"user_id","boom_id", "boomelement_id"})},
  *  indexes={@ORM\Index(name="primary_index", columns={"user_id","boom_id", "boomelement_id"})}
