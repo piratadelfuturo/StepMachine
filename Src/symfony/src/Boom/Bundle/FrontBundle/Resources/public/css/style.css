@@ -2713,6 +2713,10 @@ fieldset.on .accordion_content {
   display: block;
 }
 
+.dyna-content .editalo.disabled{
+    background: linear-gradient(to bottom, #C6C6C6 0%, #444444 100%) repeat scroll 0 0 transparent;
+}
+
 .info-blocks {
   overflow: hidden;
   width: 100%;
@@ -2866,12 +2870,8 @@ fieldset.on .accordion_content {
 
 .boom-clean {
   width: 290px;
-  height: 675px;
+  height: 375px;
   background: #313131;
-  position: absolute;
-  bottom: -700px;
-  left: 0;
-  z-index: 7;
   font: 31px 'Proxima', sans-serif;
   color: #fff;
   text-align: center;
@@ -2883,8 +2883,7 @@ fieldset.on .accordion_content {
 }
 
 .boom-clean.on {
-  top: 91px;
-  bottom: auto;
+
 }
 
 .boom-clean p span {
@@ -2893,7 +2892,7 @@ fieldset.on .accordion_content {
 }
 
 .boom-clean p {
-  margin-top: 155px;
+  margin: 120px 0px 0px 0px;
 }
 
 .boom-clean .editalo {

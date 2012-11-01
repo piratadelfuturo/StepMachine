@@ -1,5 +1,15 @@
 "use strict";
 (function(document,$){
+    $.ajaxSetup({
+        complete: onRequestCompleted
+    });
+    function onRequestCompleted(xhr,textStatus) {
+        if (xhr.status !== 200) {
+        //return false;
+        }
+    }
+})(document,jQuery);
+(function(document,$){
 
     $(document).ready(function(){
         var dialog = $('<div></div>')
@@ -373,11 +383,25 @@
         var data = {
             order:{}
         };
+        var _root = $('#usr-booms'),
+        _drag = $(".dyna-content.tend-cont > .drag-booms",_root),
+        _dragBase = $(".dyna-content.tend-cont",_root),
+        _editalo = $("> .editalo",_dragBase),
+        op = false,
+        _infoBlocks = $('.info-blocks',_root),
+        _registerBlock = $('.sign-in',_infoBlocks),
+        _shareBlock = $('.share-boom',_infoBlocks)
+        ;
 
         //DRAGnDROP widgt
-        $("#usr-booms .dyna-content.tend-cont > .drag-booms").dragsort({
+
+        _drag.dragsort({
             dragSelector: '.drag-booms li',
             dragEnd: function(){
+                if(op === true){
+                    return false;
+                }
+                _editalo.removeClass('disabled');
                 $(this).parent().children().each(function(index){
                     $(this).children(".pos").html(index+1);
                     data.order[$(this).attr('original-position')] = {
@@ -390,30 +414,82 @@
             placeHolderTemplate: "<li class='empty'></li>"
         });
 
-        $("#usr-booms > a.editalo").click(function(e){
+        _editalo.click(function(e){
             e.preventDefault();
+            if(_editalo.hasClass('disabled') || op === true){
+                return false;
+            }
+            _editalo.addClass('disabled');
+            op = true;
             $.ajax({
                 url: $(this).attr('href'),
                 data: data,
+                dataType:'json',
                 type: 'POST',
-                statusCode:{
-                    200: function(data){
+                success: function(){
+                    _infoBlocks.show(10,function(){
+                        _shareBlock.animate({
+                            bottom: '0'
+                        })
+                    });
+                    op = false;
+                    _editalo.removeClass('disabled');
+                    _drag.dragsort("destroy");
+                    _drag.find('div.balloon').remove();
+                },
+                error: function(response){
+                    _infoBlocks.show(10,function(){
+                        _registerBlock.animate({
+                            bottom: '0'
+                        });
+                    });
 
-                    },
-                    302:function(){
-
-                    }
+                    op = false;
+                    _editalo.removeClass('disabled');
                 }
             });
 
         })
+
+        $('.grey-btn',_registerBlock).click(function(e){
+            e.preventDefault();
+            $('a#fb-login-check').eq(0).click();
+            return false;
+        })
+
+        $('.grey-btn',_shareBlock).click(function(e){
+            e.preventDefault();
+            console.log(!!$('.twitter',_shareBlock).attr('checked'));
+            if(!!$('.twitter',_shareBlock).attr('checked')){
+                var share = "https://twitter.com/share?text=Acabo de votar en 7boom&url="+window.location.href;
+                window.open(share);
+            }
+            if(!!$('.facebook',_shareBlock).attr('checked')){
+                console.log(window.location.href);
+                var obj = {
+                    method: 'feed',
+                    link: window.location.href
+                };
+                FB.ui(
+                    obj
+                    );
+            }
+            _shareBlock.animate({
+                bottom: '-500px'
+            },500,function(){
+                _infoBlocks.hide();
+                _editalo.hide();
+            });
+            return false;
+        })
+
     });
 })(document,jQuery);
 
 
 /**
-* FB Login
-*/
+ * FB Login
+ */
 (function(window, document, $ ){
     window.onFbInit = function(){
         if(!!FB){
