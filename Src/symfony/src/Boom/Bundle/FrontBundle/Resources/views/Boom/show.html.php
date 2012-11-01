@@ -60,7 +60,6 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                 <a href="#" class="btn-fb">facebook</a>
             </div>
             <div class="tw-share" tw-count="<?php echo $twUrl ?>">
-                <div class="tw-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
                 <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
             </div>
             <a href="<?php echo $favUrl ?>" target="_blank" class="fav-placeholder"></a>
@@ -128,7 +127,6 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <?php echo!empty($fb_boom_likes) ? '<p>' . $fb_boom_likes . '</p>' : '' ?>
                 </div>
                 <div class="tw-share">
-                    <div class="tw-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
                     <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
                 </div>
                 <a href="<?php echo $favUrl ?>" target="_blank" class="fav-placeholder"></a>
