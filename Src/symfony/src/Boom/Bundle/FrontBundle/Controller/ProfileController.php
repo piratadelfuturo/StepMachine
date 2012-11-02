@@ -36,6 +36,8 @@ class ProfileController extends Controller {
     }
 
     public function updateAction() {
+        $em = $this->getDoctrine()->getEntityManager();
+
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
@@ -43,7 +45,7 @@ class ProfileController extends Controller {
         $request = $this->getRequest();
         $form->bindRequest($request);
 
-        if ($form->isValid()) {
+        if ($this->get('validator')->validate($sessionUser, array('front_edit'))) {
             $em->persist($sessionUser);
             $em->flush();
 
