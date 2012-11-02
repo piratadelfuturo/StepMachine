@@ -28,9 +28,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('content_upload_path')
                     ->defaultValue('content/')
                 ->end()
-                ->scalarNode('profile_image_path')
-                    ->defaultValue('%boom_library.content_upload_path%user/')
-                ->end()
                 ->scalarNode('boom_image_path')
                     ->defaultValue('%boom_library.content_upload_path%boom-img/')
                 ->end()
@@ -44,6 +41,36 @@ class Configuration implements ConfigurationInterface
                         array(
                             'width'     => 100,
                             'height'    => 100,
+                            'quality'   => 90,
+                            'thumbnail' => true
+                        ),
+                    ))
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('width')->end()
+                            ->scalarNode('height')->end()
+                            ->scalarNode('quality')
+                                ->defaultValue(90)
+                            ->end()
+                            ->booleanNode('thumbnail')
+                                ->defaultValue(true)
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->scalarNode('profile_image_path')
+                    ->defaultValue('%boom_library.content_upload_path%user/')
+                ->end()
+                ->scalarNode('profile_image_background')
+                    ->defaultValue('%kernel.root_dir%/../web/pattern.png')
+                ->end()
+                ->arrayNode('profile_image_sizes')
+                    ->canBeUnset()
+                    ->ignoreExtraKeys()
+                    ->defaultValue(array(
+                        array(
+                            'width'     => 150,
+                            'height'    => 150,
                             'quality'   => 90,
                             'thumbnail' => true
                         ),

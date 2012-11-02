@@ -19,42 +19,42 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             )
                     )
                         ?>">
-                        <?php echo $view->escape($user['name']); ?>
+                                          <?php echo $view->escape($user['name']); ?>
                         </a>
-<?php endif; ?>
+                    <?php endif; ?>
                 </li>
-                <?php if(!empty($activities)):?>
                 <li>
-                  <a href="#">Cerrar Sesión</a>
+                    <a href="#">Cerrar Sesión</a>
                 </li>
-            </ul>
-            <ul id="user-activity-stream">
-                        <?php
-                        foreach ($activities as $activity):
-                            $userUrl = $view['router']->generate(
-                                    'BoomFrontBundle_user_profile', array('username' => $activity['user']['username'])
-                            );
-                            ?>
-                            <li>
-                                <a href="<?php echo $userUrl ?>">
-                                    <?php echo $activity['user']['name'] ?>
-                                </a>
-                                <?php echo $view->escape($activity['data']) ?>
-                                <?php
-                                if ($activity['boom'] !== null):
-                                    $boomUrl = $view['router']->generate(
-                                            'BoomFrontBundle_boom_show', array(
-                                        'category_slug' => $activitiy['boom']['category']['slug'],
-                                        'slug' => $activitiy['boom']['slug']
-                                            )
-                                    );
-                                    ?>
-                                    <a href="<?php $boomUrl ?>">boom >></a>
-                                <?php endif; ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </li>
+                <?php if (!empty($activities)): ?>
+                    <li>
+                        <ul id="user-activity-stream">
+                            <?php
+                            foreach ($activities as $activity):
+                                $userUrl = $view['router']->generate(
+                                        'BoomFrontBundle_user_profile', array('username' => $activity['user']['username'])
+                                );
+                                ?>
+                                <li>
+                                    <a href="<?php echo $userUrl ?>">
+                                        <?php echo $activity['user']['name'] ?>
+                                    </a>
+                                    <?php echo $view->escape($activity['data']) ?>
+                                    <?php
+                                    if ($activity['boom'] !== null):
+                                        $boomUrl = $view['router']->generate(
+                                                'BoomFrontBundle_boom_show', array(
+                                            'category_slug' => $activitiy['boom']['category']['slug'],
+                                            'slug' => $activitiy['boom']['slug']
+                                                )
+                                        );
+                                        ?>
+                                        <a href="<?php $boomUrl ?>">boom >></a>
+                                    <?php endif; ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
                 <?php endif; ?>
             </ul>
 

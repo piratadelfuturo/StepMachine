@@ -1,5 +1,5 @@
 parameters:
-  security.exception_listener.class:          Boom\Bundle\LibraryBundle\Security\Firewall\ExceptionListener
+  boom_library.user_image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\UserImageUploadListener
   boom_library.image_upload_persist.listener.class: Boom\Bundle\LibraryBundle\Listener\ImageUploadListener
   boom_library.image.helper.class:            Boom\Bundle\LibraryBundle\Templating\Helper\ImageHelper
   boom_library.tags_selector.type.class:      Boom\Bundle\LibraryBundle\Form\Type\TagsSelectorType
@@ -11,6 +11,17 @@ parameters:
 services:
   boom_library.image_upload_persist.listener:
         class: %boom_library.image_upload_persist.listener.class%
+        arguments:
+            container:  "@service_container"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist  }
+            - { name: doctrine.event_listener, event: preUpdate   }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate  }
+            - { name: doctrine.event_listener, event: postRemove  }
+            - { name: doctrine.event_listener, event: preRemove   }
+  boom_library.user_image_upload_persist.listener:
+        class: %boom_library.user_image_upload_persist.listener.class%
         arguments:
             container:  "@service_container"
         tags:

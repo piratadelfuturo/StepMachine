@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Boom\Bundle\LibraryBundle\Entity\Image;
 
 class ProfileController extends Controller {
 
@@ -21,7 +22,6 @@ class ProfileController extends Controller {
     }
 
     public function editAction() {
-
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
