@@ -54,12 +54,15 @@ class ImageHelper extends Helper {
     }
 
 
-    public function getUserImagePath(){
-        return $this->container->getParameter('boom_library.boom_user_path');
+    public function getProfileImagePath(){
+        return $this->container->getParameter('boom_library.profile_image_path');
     }
 
-    public function getUserImageUrl($image_path, $size = null,$default = ''){
-        $path = $this->container->getParameter('boom_library.boom_user_path');
+    public function getProfileImageUrl($image_path, $size = null,$default = ''){
+        if(strpos($image_path,'http://') == 0){
+            return $image_path;
+        }
+        $path = $this->container->getParameter('boom_library.profile_image_path');
         if($size !== null && !empty($size) && count($size) == 2){
             $image_path = explode('.',$image_path);
             $image_path = $image_path[0].'/'.(int)$size[0].'_'.(int)$size[1].'.'.$image_path[1];

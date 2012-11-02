@@ -75,15 +75,15 @@ Boom\Bundle\LibraryBundle\Entity\User:
     properties:
       firstname:
         - MaxLength: {limit: 100, groups: [front_edit]}
-        - MinLength: {limit: 8, groups: [front_edit]}
+        - MinLength: {limit: 1, groups: [front_edit]}
         - NotBlank: {groups: [front_edit]}
       lastname:
         - MaxLength: {limit: 100, groups: [front_edit]}
-        - MinLength: {limit: 8, groups: [front_edit]}
+        - MinLength: {limit: 1, groups: [front_edit]}
         - NotBlank: {groups: [front_edit]}
       name:
         - MaxLength: {limit: 150, groups: [front_edit]}
-        - MinLength: {limit: 8, groups: [front_edit]}
+        - MinLength: {limit: 1, groups: [front_edit]}
         - NotBlank: {groups: [front_edit]}
       username:
         - MaxLength: {limit: 64, groups: [front_edit]}

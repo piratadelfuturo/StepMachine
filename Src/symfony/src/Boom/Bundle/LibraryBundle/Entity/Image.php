@@ -83,7 +83,10 @@ class Image extends DomainObject {
      * @ORM\Column(type="boolean")
      */
     protected $nsfw;
+
     protected $file;
+
+    protected $previous_path;
 
     public function __construct() {
         $this->booms = new \Doctrine\Common\Collections\ArrayCollection();
@@ -151,6 +154,9 @@ class Image extends DomainObject {
      * @return Image
      */
     public function setPath($path) {
+        if($path == null){
+            $this->setPreviousPath($this->path);
+        }
         $this->path = $path;
         return $this;
     }
@@ -443,5 +449,17 @@ class Image extends DomainObject {
     public function getGalleryimagerelations() {
         return $this->galleryimagerelations;
     }
+
+    public function getPreviousPath() {
+        return $this->previous_path;
+    }
+
+    public function setPreviousPath($previous_path) {
+        $this->previous_path = $previous_path;
+    }
+
+
+
+
 
 }
