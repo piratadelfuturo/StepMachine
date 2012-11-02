@@ -93,8 +93,7 @@ body {
 }
 
 .title-flag.gris:before {
-  border-top: 28px solid transparent;
-  border-bottom: 28px solid transparent;
+  background-position: -103px 0;
 }
 
 /*END BODY*/
