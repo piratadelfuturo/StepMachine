@@ -3707,6 +3707,11 @@ form#boom_gallery ul li {
     border-radius: 6px;
 }
 
+
+.tweets {
+  margin-top: -35px;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
     .balloon::after {
