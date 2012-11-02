@@ -6,5 +6,11 @@ $view->extend('BoomFrontBundle::two_col_sublayout.html.php');
 echo $view->render('BoomFrontBundle:Boom:blocks/list.html.php', array(
     'list' => $list
 ));
-echo $view['boom_pagination']->renderPaginationBlock($app->getRequest()->get('_route'),$app->getRequest()->get('_route_params'),$total, $page);
+echo $view['boom_pagination']->renderPaginationBlock(
+        $app->getRequest()->get('_route'),
+        $app->getRequest()->get('_route_params'),
+        $total,
+        $page,
+        $limit
+        );
 ?>

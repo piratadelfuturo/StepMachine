@@ -1,5 +1,4 @@
 <?php
-
 namespace Boom\Bundle\LibraryBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -54,8 +53,6 @@ class ActivityRepository extends EntityRepository {
         $query = $cb->getQuery();
         //$query->useResultCache(true, 120, 'front_user_activities_cache_'.$user['id'].'_'.$limit);
         $result = $query->getResult();
-        var_dump($query->getSQL());
-        exit;
 
         return $result;
     }

@@ -20,4 +20,10 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
         <?php endforeach; ?>
     </ul>
 </div>
-<?php echo $view['boom_pagination']->renderPaginationBlock($app->getRequest()->get('_route'),$app->getRequest()->get('_route_params'),$total, $page); ?>
+<?php echo $view['boom_pagination']->renderPaginationBlock(
+        $app->getRequest()->get('_route'),
+        $app->getRequest()->get('_route_params'),
+        $total,
+        $page,
+        $limit
+        ); ?>

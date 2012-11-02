@@ -169,6 +169,7 @@ class User extends BaseUser implements \ArrayAccess {
         $this->favorites = new \Doctrine\Common\Collections\ArrayCollection();
         $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
         $this->setImageOption(self::IMAGE_PATH);
+        $this->social_visible = true;
         $this->collaborator = false;
         $this->firstname = '';
         $this->lastname = '';
