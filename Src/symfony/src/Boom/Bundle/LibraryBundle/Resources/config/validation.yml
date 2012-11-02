@@ -74,29 +74,30 @@ Boom\Bundle\LibraryBundle\Entity\User:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
     properties:
       firstname:
-        - MaxLength: 100
-        - MinLength: 8
-        - NotBlank: ~
+        - MaxLength: {limit: 100, groups: [front_edit]}
+        - MinLength: {limit: 8, groups: [front_edit]}
+        - NotBlank: {groups: [front_edit]}
       lastname:
-        - MaxLength: 100
-        - MinLength: 8
-        - NotBlank: ~
+        - MaxLength: {limit: 100, groups: [front_edit]}
+        - MinLength: {limit: 8, groups: [front_edit]}
+        - NotBlank: {groups: [front_edit]}
       name:
-        - MaxLength: 100
-        - MinLength: 8
-        - NotBlank: ~
+        - MaxLength: {limit: 150, groups: [front_edit]}
+        - MinLength: {limit: 8, groups: [front_edit]}
+        - NotBlank: {groups: [front_edit]}
       username:
-        - MaxLength: 64
-        - MinLength: 8
-        - NotBlank: ~
+        - MaxLength: {limit: 64, groups: [front_edit]}
+        - MinLength: {limit: 8, groups: [front_edit]}
+        - NotBlank: {groups: [front_edit]}
       email:
-        - NotBlank: ~
-        - Email: ~
+        - NotBlank: {groups: [front_edit]}
+        - Email: {groups: [front_edit]}
       collaborator:
         - Type:
             type: bool
             groups: [admin]
       profile_image:
         - File:
+                groups: [front_edit]
                 maxSize: 5120k
                 mimeTypes: [image/png, image/jpeg, image/gif]

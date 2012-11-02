@@ -11,40 +11,36 @@ class UserType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
                 ->add(
-                        'firstname',
-                        'text'
-                        )
+                        'firstname', 'text'
+                )
                 ->add(
-                        'lastname',
-                        'text'
-                        )
+                        'lastname', 'text'
+                )
                 ->add(
-                        'username',
-                        'text'
-                      )
+                        'username', 'text'
+                )
                 ->add(
-                        'name',
-                        'text'
-                      )
+                        'name', 'text'
+                )
                 ->add(
-                        'twitter_username',
-                        'text'
-                      )
+                        'twitter_username', 'text'
+                )
                 ->add(
-                        'email',
-                        'email'
-                      )
+                        'email', 'email'
+                )
                 ->add(
-                        'social_visible',
-                        'checkbox'
-                      )
+                        'social_visible', 'checkbox'
+                )
                 ->add(
                         'profile_image',
-                        'file', array ('label' => 'Sube una imagen de 150X150 pixeles para que sea tu ávatar en 7Boom.')
-                        )
+                        'file',
+                        array(
+                            'label' => 'Sube una imagen de 150X150 pixeles para que sea tu ávatar en 7Boom.',
+                            'required' => false
+                            )
+                )
                 ->add(
-                        'bio',
-                        'textarea', array('label' => 'Bio'));
+                        'bio', 'textarea', array('label' => 'Bio'));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

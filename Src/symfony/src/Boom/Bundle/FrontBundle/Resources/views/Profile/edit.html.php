@@ -5,81 +5,75 @@
     <form action="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
         <fieldset class="basic-info">
             <?php echo $view['form']->row($form['_token']) ?>
-            <div class="usr-pic">
-                <img src="<?php echo $entity['imagepath'] ?>" id="user-img" height="150px" width="150px"/>
+            <div class="user-card">
+                <div class="user-image-block">
+                    <div class="user-image">
+                        <img src="<?php echo $entity['imagepath'] ?>" id="user-img" width="150px"/>
+                    </div>
+                </div>
+                <div class="user-personal-data">
+                    <?php
+                    echo $view['form']->widget(
+                            $form['username'], array(
+                        'label' => 'nombre de usuario',
+                        'attr' => array(
+                            'placeholder' => 'Nombre de usuario'
+                        )
+                            )
+                    );
+                    echo $view['form']->widget(
+                            $form['name'], array(
+                        'label' => 'Nombre público',
+                        'attr' => array(
+                            'placeholder' => 'Nombre público',
+                        )
+                    ));
+                    echo $view['form']->widget(
+                            $form['firstname'], array(
+                        'label' => 'Nombre',
+                        'attr' => array(
+                            'placeholder' => 'Nombre',
+                        )
+                    ));
+                    echo $view['form']->widget(
+                            $form['lastname'], array(
+                        'label' => 'apellido',
+                        'attr' => array(
+                            'placeholder' => 'Apellido'
+                        )
+                            )
+                    );
+                    ?>
+                    <div class="image-row">
+                        <?php
+                        echo $view['form']->label(
+                                $form['profile_image']
+                        );
+                        echo $view['form']->widget(
+                                $form['profile_image']);
+                        ?>
+                    </div>
+                </div>
             </div>
-            <div class="grad-border">
             <?php
-              echo $view['form']->row(
-                      $form['username'], array(
-                  'label' => 'nombre de usuario',
-                  'attr' => array(
-                      'placeholder' => 'Username'
-                  )
-                      )
-                    );?>
-            </div>
-            <?php
-            echo $view['form']->row(
-                    $form['firstname'], array(
-                'label' => 'Nombre',
-                'attr' => array(
-                  'placeholder' => 'Nombre',
-                )
-            ));
-            echo $view['form']->row(
-                    $form['lastname'], array(
-                'label' => 'apellido',
-                'attr' => array(
-                    'placeholder' => 'Apellido'
-                )
-                    )
-            );
-                       echo $view['form']->row(
-                    $form['profile_image'], array(
-                'label' => 'imagen',
-                'attr' => array(
-                  'placeholder' => 'placeholder'
-                )
-                    )
-                  ); 
-            ?>
-            <p>Sube una imagen de 150X150 pixeles para que sea tu ávatar en 7Boom.</p>
-          </fieldset>
-          <fieldset>
-            <div class="grad-border">
-
-          <?php 
             echo $view['form']->row(
                     $form['bio'], array(
-                'label' => 'bio',
                 'attr' => array(
                     'placeholder' => 'Tu descripción o Bio. No te excedas, a nadie le importa, realmente...'
                 )
                     )
-                  ); 
-?>
-</div>
-        </fieldset>
-        <fieldset>
-          <h3>cambiar correo</h3>
-          <?php
+            );
             echo $view['form']->row(
                     $form['email'], array(
-                'label' => 'Twitter',
+                'label' => 'E-mail',
                 'attr' => array(
                     'placeholder' => '@twitter'
                 )
                     )
             );
-            ?>
-        </fieldset>
-        <fieldset>
-          <h3>Conecta con twitter</h3>
-          <?php
             echo $view['form']->row(
                     $form['twitter_username'], array(
-                'label' => 'Twitter',
+                'label' => 'Conecta con twitter',
                 'attr' => array(
                     'placeholder' => '@twitter'
                 )

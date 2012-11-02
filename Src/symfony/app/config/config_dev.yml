@@ -9,8 +9,6 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
-twig:
-    exception_controller: ~
 
 monolog:
     handlers:

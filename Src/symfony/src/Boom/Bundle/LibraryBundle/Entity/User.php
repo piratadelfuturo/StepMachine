@@ -219,8 +219,8 @@ class User extends BaseUser implements \ArrayAccess {
                     $this->image_option = $option;
                 }
                 break;
-            case(self::IMAGE_PATH):
-                $this->image_option = $option;
+            default:
+                $this->image_option = self::IMAGE_PATH;
                 break;
         }
 
@@ -745,48 +745,6 @@ class User extends BaseUser implements \ArrayAccess {
     public function setProfileImage(\Symfony\Component\HttpFoundation\File\File $profile_image) {
         $this->profile_image = $profile_image;
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload() {
-        if (null !== $this->getProfileImage()) {
-            $this->path = $this->getProfileImage()->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload() {
-        $image = $this->getProfileImage();
-        if (null === $image) {
-            return;
-        }
-
-        // you must throw an exception here if the file cannot be moved
-        // so that the entity is not persisted to the database
-        // which the UploadedFile move() method does
-        $path = $this->container->getParameter('boom_library.profile_image_path') . $this->id . '.' . $image->guessExtension();
-        $this->setImagePath($path);
-        $image->move($this->getUploadRootDir(), $path);
-        $this->setImageOption(self::IMAGE_PATH);
-        unlink($image->getRealPath());
-        unset($image);
-    }
-
-    protected function getUploadRootDir() {
-        // the absolute directory path where uploaded documents should be saved
-        $fs = new Filesystem();
-        $image_path = $this->container->getParameter('boom_library.web_path') . $this->container->getParameter('boom_library.profile_image_path');
-        if (!$fs->exists($image_path)) {
-            $fs->mkdir($image_path, 0664);
-        }
-
-        return $image_path;
     }
 
     public function setCollaborator($collaborator) {

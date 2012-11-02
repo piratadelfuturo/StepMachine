@@ -216,11 +216,11 @@ class BoomController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
         $form->bind($request);
+        $entity['user'] = $sessionUser;
+        $entity['status'] = Boom::STATUS_PRIVATE;
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity['user'] = $sessionUser;
-            $entity['status'] = Boom::STATUS_PRIVATE;
 
             $em->persist($entity);
             $em->flush();
