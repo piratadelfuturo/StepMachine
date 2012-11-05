@@ -11,6 +11,18 @@ class UserController extends Controller {
 
     }
 
+    public function mailAction() {
+        $message = \Swift_Message::newInstance()
+                ->setSubject('Hello Email')
+                ->setFrom('me@echo.com.mx')
+                ->setTo('daniel.maldonado@gmail.com')
+                ->setBody('Ace of base rules');
+        $this->get('mailer')->send($message);
+
+        $response = new \Symfony\Component\HttpFoundation\Response(json_encode('miau'));
+        return $response;
+    }
+
     public function collaboratorsAction($page) {
         $limit = 14;
         $em = $this->getDoctrine()->getManager();
