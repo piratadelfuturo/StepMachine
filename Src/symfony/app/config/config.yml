@@ -121,10 +121,10 @@ fm_bbcode:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
+    transport: gmail
     host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    username:  'no-reply@7boom.mx'
+    password:  '7boom2012-noreply'
     spool:     { type: memory }
 
 boom_library:
