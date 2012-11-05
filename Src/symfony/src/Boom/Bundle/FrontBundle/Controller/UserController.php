@@ -14,8 +14,8 @@ class UserController extends Controller {
     public function mailAction() {
         $message = \Swift_Message::newInstance()
                 ->setSubject('Hello Email')
-                ->setFrom('me@echo.com.mx')
-                ->setTo('daniel.maldonado@gmail.com')
+                ->setFrom('server@7boom.mx')
+                ->setTo('eder@brutalcontent.com')
                 ->setBody('Ace of base rules');
         $this->get('mailer')->send($message);
 
