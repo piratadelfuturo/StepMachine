@@ -106,10 +106,14 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
                 $newValue = substr(md5(uniqid($entity->{$this->entityGetIdMethod}(), true)), 0, 8) .
                         '.' .
                         $entity->{$this->entityGetFileMethod}()->guessExtension();
-                $args->setNewValue($this->entityPathProperty, $newValue);
-                $em = $args->getEntityManager();
-                $uow = $em->getUnitOfWork();
-                $uow->recomputeSingleEntityChangeSet($meta, $entity);
+                if ($args instanceof PreUpdateEventArgs) {
+                    $args->setNewValue($this->entityPathProperty, $newValue);
+                    $em = $args->getEntityManager();
+                    $uow = $em->getUnitOfWork();
+                    $uow->recomputeSingleEntityChangeSet($meta, $entity);
+                } else {
+                    $entity->setPath($newValue);
+                }
             }
         }
     }
