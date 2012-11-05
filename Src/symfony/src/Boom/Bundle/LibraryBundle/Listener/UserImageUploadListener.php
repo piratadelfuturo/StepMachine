@@ -19,6 +19,10 @@ class UserImageUploadListener extends BaseImageUploadListener {
         $this->uploadDir    = $this->container->getParameter('boom_library.profile_image_path');
         $this->entityClassName = 'Boom\Bundle\LibraryBundle\Entity\User';
         $this->entityGetPathMethod = 'getImagePath';
+        $this->entitySetPathMethod = 'setImagePath';
+        $this->entityPathProperty  = 'image_path';
         $this->entityGetFileMethod = 'getProfileImage';
+        $this->entityGetPreviousPathMethod = 'getPreviousImagePathMethod';
+
     }
 }

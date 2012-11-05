@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Boom\Bundle\LibraryBundle\Entity\Image;
+use Boom\Bundle\LibraryBundle\Entity\User;
 
 class ProfileController extends Controller {
 
@@ -36,25 +37,28 @@ class ProfileController extends Controller {
     }
 
     public function updateAction() {
-        $em = $this->getDoctrine()->getEntityManager();
 
         $sessionToken = $this->get('security.context')->getToken();
-        $sessionUser = $sessionToken->getUser();
+        $entity = $sessionToken->getUser();
 
-        $form = $this->createForm(new UserType(), $sessionUser);
+        $form = $this->createForm(new UserType(), $entity);
         $request = $this->getRequest();
         $form->bindRequest($request);
+        if($entity['profileimage'] !== null){
+            $entity['imageoption'] = User::IMAGE_PATH;
+            $entity['imagepath'] = null;
+        }
 
-        if ($this->get('validator')->validate($sessionUser, array('front_edit'))) {
-            $em->persist($sessionUser);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit'));
         }
         return $this->render(
                         'BoomFrontBundle:Profile:edit.html.php', array(
                     'form' => $form->createView(),
-                    'entity' => $sessionUser
+                    'entity' => $entity
                         )
         );
     }
@@ -122,7 +126,7 @@ class ProfileController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
-        $result = $sessionUser['following']->slice(($page-1) * $limit,$limit);
+        $result = $sessionUser['following']->slice(($page - 1) * $limit, $limit);
         $total = $sessionUser['following']->count();
         return $this->render('BoomFrontBundle:User:user_list.html.php', array(
                     'page_title' => 'Sigues',
@@ -139,7 +143,7 @@ class ProfileController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
 
-        $result = $sessionUser['followers']->slice(($page-1) * $limit,$limit);
+        $result = $sessionUser['followers']->slice(($page - 1) * $limit, $limit);
         $total = $sessionUser['followers']->count();
 
         return $this->render('BoomFrontBundle:User:user_list.html.php', array(

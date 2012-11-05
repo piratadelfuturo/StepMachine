@@ -3,7 +3,7 @@
 namespace Boom\Bundle\LibraryBundle\Listener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Boom\Bundle\LibraryBundle\Entity\Image;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -25,13 +25,19 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
     protected $entityClassName;
     protected $entityGetFileMethod;
     protected $entityGetPathMethod;
+    protected $entitySetPathMethod;
+    protected $entityPathProperty;
     protected $entityGetIdMethod;
+    protected $entityGetPreviousPathMethod;
 
     public function __construct(ContainerInterface $container) {
         $this->setContainer($container);
         $this->entityGetFileMethod = 'getFile';
         $this->entityGetPathMethod = 'getPath';
-        $this->entityGetIdMethod   = 'getId';
+        $this->entitySetPathMethod = 'setPath';
+        $this->entityPathProperty = 'path';
+        $this->entityGetIdMethod = 'getId';
+        $this->entityGetPreviousPathMethod = 'getPreviousPathMethod';
     }
 
     public function setContainer(ContainerInterface $container = null) {
@@ -52,13 +58,24 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         }
     }
 
-    private function markRemove(Image $entity) {
-        $this->fileForRemove[spl_object_hash($entity)] = $this->getAbsolutePath($entity->{$this->entityGetPathMethod}());
+    private function markRemove($entity) {
+        $previous = $entity->{$this->entityGetPreviousPathMethod}();
+        if (!empty($previous) && !is_null($previous)) {
+            $this->fileForRemove[(string) spl_object_hash($entity)] = (string) $this->getAbsolutePath($entity->{$this->entityGetPreviousPathMethod}());
+        }
     }
 
-    private function removeMarked(Image $entity) {
-        if ($this->fileForRemove[spl_object_hash($entity)]) {
-            unlink($this->fileForRemove[spl_object_hash($entity)]);
+    private function unlink($path) {
+        try {
+            return unlink($path);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    private function removeMarked($entity) {
+        if (isset($this->fileForRemove[(string) spl_object_hash($entity)]) && !is_null($this->fileForRemove[(string) spl_object_hash($entity)])) {
+            $this->unlink($this->fileForRemove[(string) spl_object_hash($entity)]);
         }
     }
 
@@ -70,7 +87,7 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         $this->upload($args);
     }
 
-    public function preUpdate(LifecycleEventArgs $args) {
+    public function preUpdate(PreUpdateEventArgs $args) {
         $this->preUpload($args);
     }
 
@@ -81,15 +98,18 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
     public function preUpload(LifecycleEventArgs $args) {
         $entity = $args->getEntity();
         if (get_class($entity) == $this->entityClassName) {
+
             if (null !== $entity->{$this->entityGetPathMethod}()) {
                 $this->markRemove($entity);
             }
             if (null !== $entity->{$this->entityGetFileMethod}()) {
-                $entity->setPath(
-                        substr(md5(uniqid($entity->{$this->entityGetIdMethod}(), true)), 0, 8) .
+                $newValue = substr(md5(uniqid($entity->{$this->entityGetIdMethod}(), true)), 0, 8) .
                         '.' .
-                        $entity->{$this->entityGetFileMethod}()->guessExtension()
-                );
+                        $entity->{$this->entityGetFileMethod}()->guessExtension();
+                $args->setNewValue($this->entityPathProperty, $newValue);
+                $em = $args->getEntityManager();
+                $uow = $em->getUnitOfWork();
+                $uow->recomputeSingleEntityChangeSet($meta, $entity);
             }
         }
     }
@@ -99,14 +119,14 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         if (get_class($entity) == $this->entityClassName) {
             $image = $entity->{$this->entityGetFileMethod}();
             if (null === $image) {
-                return;
+                return false;
             }
 
             $image->move($this->getUploadRootDir(), $entity->{$this->entityGetPathMethod}());
             $this->thumbGenerator($this->getAbsolutePath($entity->{$this->entityGetPathMethod}()), $entity->{$this->entityGetPathMethod}());
             $this->removeMarked($entity);
 
-            if (file_exists($image->getRealPath())) {
+            if (file_exists($image->getRealPath()) === true) {
                 unlink($image->getRealPath());
             }
             unset($image);
@@ -137,6 +157,7 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         $sizes = $this->sizesList;
         $fileName = $pathImage;
         $fileName = explode('.', $fileName);
+
         $thumbPath = $this->getUploadRootDir() . $fileName[0] . '/';
         $fileExt = $fileName[1];
 

@@ -2,13 +2,16 @@
 <?php $view['form']->setTheme($form, array('BoomFrontBundle:Form')) ?>
 <div class="editar-perfil">
     <h3 class="title-flag gris">Configuración de la Cuenta</h3>
-    <form action="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
+    <form action="<?php echo $view['router']->generate('BoomFrontBundle_profile_update') ?>" method="post" <?php echo $view['form']->enctype($form) ?> >
         <fieldset class="basic-info">
             <?php echo $view['form']->row($form['_token']) ?>
+            <div>
+                <?php echo $view['form']->errors($form)?>
+            </div>
             <div class="user-card">
                 <div class="user-image-block">
                     <div class="user-image">
-                        <img src="<?php echo $entity['imagepath'] ?>" id="user-img" width="150px"/>
+                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['imagepath'],array(150,150)) ?>" id="user-img" width="150px"/>
                     </div>
                 </div>
                 <div class="user-personal-data">

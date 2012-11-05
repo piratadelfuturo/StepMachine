@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use FOS\UserBundle\Model\GroupInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Filesystem\Exception\IOException;
 
 /**
  * @ORM\Entity(repositoryClass="Boom\Bundle\LibraryBundle\Repository\UserRepository")
@@ -155,7 +153,10 @@ class User extends BaseUser implements \ArrayAccess {
      * @ORM\Column(type="integer", nullable=false)
      */
     protected $image_option;
+
     protected $profile_image;
+
+    protected $previous_image_path;
 
     public function __construct() {
         parent::__construct();
@@ -196,6 +197,9 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
     public function setImagePath($path) {
+        if($path == null){
+            $this->setPreviousImagePath($this->image_path);
+        }
         $this->setImageOption(self::IMAGE_PATH);
         $this->image_path = $path;
         return $this;
@@ -629,8 +633,8 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
     public function offsetSet($offset, $value) {
-        //$this->{"set$offset"}($value);
-        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+        $this->{"set$offset"}($value);
+        //throw new \BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
     }
 
     public function offsetGet($offset) {
@@ -638,8 +642,8 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
     public function offsetUnset($offset) {
-        //$this->{"set$offset"}(null);
-        throw new BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
+        $this->{"set$offset"}(null);
+        //throw new \BadMethodCallException("Array access of class " . get_class($this) . " is read-only!");
     }
 
     /**
@@ -778,5 +782,15 @@ class User extends BaseUser implements \ArrayAccess {
         }
         return (bool) $this->social_visible;
     }
+
+    public function getPreviousImagePath() {
+        return $this->previous_image_path;
+    }
+
+    public function setPreviousImagePath($previous_image_path) {
+        $this->previous_image_path = $previous_image_path;
+    }
+
+
 
 }

@@ -2,16 +2,15 @@ BoomFrontBundle_profile_index:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:Profile:index" }
 
+BoomFrontBundle_profile_update:
+    pattern:  /perfil
+    defaults: { _controller: "BoomFrontBundle:Profile:update" }
+    requirements: { _method: post }
+
 BoomFrontBundle_profile_edit:
     pattern:  /perfil
     defaults: { _controller: "BoomFrontBundle:Profile:edit" }
     requirements: { _method: get }
-
-
-BoomFrontBundle_profile_update:
-    pattern:  /perfil
-    defaults: { _controller: "BoomFrontBundle:Profile:edit" }
-    requirements: { _method: post }
 
 BoomFrontBundle_profile_recent:
     pattern:  /reciente/{page}

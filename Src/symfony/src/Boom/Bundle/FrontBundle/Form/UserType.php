@@ -23,7 +23,7 @@ class UserType extends AbstractType {
                         'name', 'text'
                 )
                 ->add(
-                        'twitter_username', 'text'
+                        'twitter_username', 'text', array('required' => false)
                 )
                 ->add(
                         'email', 'email'
@@ -45,7 +45,8 @@ class UserType extends AbstractType {
 
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\User'
+            'data_class' => 'Boom\Bundle\LibraryBundle\Entity\User',
+            'validation_groups' => array('front_edit')
         ));
     }
 
