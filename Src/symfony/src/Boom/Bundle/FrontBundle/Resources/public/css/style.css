@@ -94,8 +94,7 @@ body {
 }
 
 .title-flag.gris:before {
-    border-top: 28px solid transparent;
-    border-bottom: 28px solid transparent;
+  background-position: -103px 0;
 }
 
 /*END BODY*/
@@ -579,7 +578,7 @@ button.submit, .editalo {
     background-position: 0px -40px;
 }
 
-.comida {
+.tv {
     background-position: 0px -60px;
 }
 
@@ -607,7 +606,7 @@ button.submit, .editalo {
     background-position: 30px -39px;
 }
 
-#filter li.comida {
+#filter li.tv {
     background-position: 30px -59px;
 }
 
@@ -1885,7 +1884,7 @@ footer p {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ac2c05', endColorstr='#f16c43',GradientType=1 );
 }
 
-.single-boom .title-flag.comida {
+.single-boom .title-flag.tv {
     background: #e72b2b;
     background: -moz-linear-gradient(left, #591010 0%, #e72b2b 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,#591010), color-stop(100%,#e72b2b));
@@ -1945,7 +1944,7 @@ footer p {
     background-position: right -72px;
 }
 
-.single-boom .title-flag.comida:after {
+.single-boom .title-flag.tv:after {
     background-position: right -108px;
 }
 
