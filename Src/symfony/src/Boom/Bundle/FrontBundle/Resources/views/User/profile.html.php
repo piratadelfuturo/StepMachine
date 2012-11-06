@@ -6,7 +6,7 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
     <div class="author-profile">
         <h3 class="title-flag">Perfil</h3>
         <div class="author-info cf" follow-url="<?php echo $view['router']->generate('BoomFrontBundle_activity_follow_check', array('username' => $entity['username'])); ?>" >
-            <img src="<?php echo $entity['imagepath'] ?>" height="147px" width="147px" >
+            <img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['imagepath'],array(150,150)) ?>" height="147px" width="147px" >
             <h4><?php echo $view->escape($entity['firstname'] . ' ' . $entity['lastname']) ?></h4><p class="boom-n">(<?php echo $entity['booms']->count() ?> Booms)</p>
             <ul class="author-links">
                 <?php if (!is_null($entity['facebookId']) || !empty($entity['facebookId'])): ?>

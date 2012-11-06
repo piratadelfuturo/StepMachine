@@ -24,7 +24,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <?php endif; ?>
                 </li>
                 <li>
-                    <a href="#">Cerrar Sesión</a>
+                    <a href="<?php echo '' ?>">Cerrar Sesión</a>
                 </li>
                 <?php if (!empty($activities)): ?>
                     <li>
@@ -67,7 +67,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
             <div id="usm-pro">
                 <div class="usm-info">
                     <div class="usr-pic">
-                        <img src="<?php echo $user['imagepath'] ?>" id="user-img" height="150px" width="150px"/>
+                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($user['imagepath'],array(150,150)) ?>" id="user-img" height="150px" width="150px"/>
                     </div>
                     <div class="usr-data">
                         <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>

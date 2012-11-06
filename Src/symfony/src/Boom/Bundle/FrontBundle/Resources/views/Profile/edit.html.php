@@ -11,7 +11,7 @@
             <div class="user-card">
                 <div class="user-image-block">
                     <div class="user-image">
-                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['imagepath'],array(150,150)) ?>" id="user-img" width="150px"/>
+                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['imagepath'], array(150, 150)) ?>" id="user-img" width="150px"/>
                     </div>
                 </div>
                 <div class="user-personal-data">

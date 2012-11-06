@@ -84,7 +84,7 @@ class AdminProvider implements UserProviderInterface {
      * @return UserInterface|null
      */
     protected function findUser($username) {
-        $user = $this->userManager->findUserByUsername($username);
+        $user = $this->userManager->findUserByUsernameOrEmail($username);
         if(!$this->isAuthorizedAdmin($user)){
             $user = null;
         }

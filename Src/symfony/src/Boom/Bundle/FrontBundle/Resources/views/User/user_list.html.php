@@ -7,7 +7,7 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
     <ul>
         <?php foreach ($list as $element): ?>
             <li class="colab">
-                <img src="<?php echo $element['imagepath'] ?>" height="147px" width="147px" >
+                <img src="<?php echo $view['boom_image']->getProfileImageUrl($element['imagepath'],array(150,150)) ?>" height="147px" width="147px" >
                 <div class="colab-info">
                     <h3 class="colaborador"><?php echo $element['firstname'] . ' ' . $element['lastname'] ?></h3>
                     <p><?php echo $view->escape($element['bio']) ?></p>

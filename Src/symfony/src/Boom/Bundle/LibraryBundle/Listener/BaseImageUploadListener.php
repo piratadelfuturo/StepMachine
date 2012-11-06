@@ -60,8 +60,11 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
 
     private function markRemove($entity) {
         $previous = $entity->{$this->entityGetPreviousPathMethod}();
+        $current = $entity->{$this->entityGetPathMethod}();
         if (!empty($previous) && !is_null($previous)) {
             $this->fileForRemove[(string) spl_object_hash($entity)] = (string) $this->getAbsolutePath($entity->{$this->entityGetPreviousPathMethod}());
+        }elseif(!empty($current) && !is_null($current)){
+
         }
     }
 
@@ -80,29 +83,42 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
     }
 
     public function postPersist(LifecycleEventArgs $args) {
-        $this->upload($args);
+        $this->upload($args->getEntity());
     }
 
     public function postUpdate(LifecycleEventArgs $args) {
-        $this->upload($args);
+        $this->upload($args->getEntity());
     }
 
     public function preUpdate(PreUpdateEventArgs $args) {
-        $this->preUpload($args);
+        $this->preUpdatePreUpload($args);
     }
 
     public function prePersist(LifecycleEventArgs $args) {
-        $this->preUpload($args);
+        $this->preUpload($args->getEntity());
     }
 
-    public function preUpload(LifecycleEventArgs $args) {
+    public function preUpload($entity) {
+        if (get_class($entity) == $this->entityClassName) {
+            if (null !== $entity->{$this->entityGetFileMethod}()) {
+                if (null !== $entity->{$this->entityGetPathMethod}()) {
+                    $this->markRemove($entity);
+                }
+                $newValue = substr(md5(uniqid($entity->{$this->entityGetIdMethod}(), true)), 0, 8) .
+                        '.' .
+                        $entity->{$this->entityGetFileMethod}()->guessExtension();
+                $entity->{$this->entitySetPathMethod}($newValue);
+            }
+        }
+    }
+
+    public function preUpdatePreUpload(PreUpdateEventArgs $args) {
         $entity = $args->getEntity();
         if (get_class($entity) == $this->entityClassName) {
-
-            if (null !== $entity->{$this->entityGetPathMethod}()) {
-                $this->markRemove($entity);
-            }
             if (null !== $entity->{$this->entityGetFileMethod}()) {
+                if (null !== $entity->{$this->entityGetPathMethod}()) {
+                    $this->markRemove($entity);
+                }
                 $newValue = substr(md5(uniqid($entity->{$this->entityGetIdMethod}(), true)), 0, 8) .
                         '.' .
                         $entity->{$this->entityGetFileMethod}()->guessExtension();
@@ -114,8 +130,7 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         }
     }
 
-    public function upload(LifecycleEventArgs $args) {
-        $entity = $args->getEntity();
+    public function upload($entity) {
         if (get_class($entity) == $this->entityClassName) {
             $image = $entity->{$this->entityGetFileMethod}();
             if (null === $image) {
@@ -157,6 +172,7 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         $sizes = $this->sizesList;
         $fileName = $pathImage;
         $fileName = explode('.', $fileName);
+        $background = new \Imagick($this->backgroundImage);
 
         $thumbPath = $this->getUploadRootDir() . $fileName[0] . '/';
         $fileExt = $fileName[1];
@@ -173,15 +189,13 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
                 $this->resizeGif($imagick, $fileExt, $thumbPath, $size, $background);
             } else {
                 $imageSize = $imagick->getImageGeometry();
-                //if( !($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height']) ){
                 $imageClone = clone($imagick);
-                $imageClone = $this->resizeOperation($imageClone, $size['width'], $size['height'], $size['thumbnail']);
+                $imageClone = $this->resizeOperation($imageClone, $size['width'], $size['height'], $size['thumbnail'], $background);
                 $imageClone->writeImage(
                         $thumbPath . $size['width'] . '_' . $size['height'] . '.' . $fileExt
                 );
                 $imageClone->clear();
                 $imageClone->destroy();
-                //}
             }
         }
         $imagick->clear();
@@ -193,9 +207,9 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         $imagick = $imagick->coalesceImages();
         $imageSize = $imagick->getImageGeometry();
         do {
-            //if (!($imageSize['width'] <= $size['width'] && $imageSize['height'] <= $size['height'])) {
-            $imagick = $this->resizeOperation($imagick, $size['width'], $size['height'], $size['thumbnail']);
-            //}
+            $imagick = $this->resizeOperation(
+                    $imagick, $size['width'], $size['height'], $size['thumbnail'], $background
+            );
         } while ($imagick->nextImage());
         $imagick = $imagick->deconstructImages();
         $imagick->writeImages(
@@ -206,13 +220,12 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         return $imagickObj;
     }
 
-    protected function resizeOperation(\Imagick $imagick, $width, $height, $thumbnail = false) {
-
+    protected function resizeOperation(\Imagick $imagick, $width, $height, $thumbnail = false, \Imagick $backgroundParam = null) {
         if ($thumbnail == true) {
             $imagick->cropThumbnailImage($width, $height);
             $imagick->setImagePage(0, 0, 0, 0);
         } else {
-            $background = new \Imagick($this->backgroundImage);
+            $background = clone($backgroundParam);
             $background->cropImage($width, $height, 0, 0);
             $imagick->adaptiveResizeImage($width, $height, true);
             $imageSize = $imagick->getImageGeometry();

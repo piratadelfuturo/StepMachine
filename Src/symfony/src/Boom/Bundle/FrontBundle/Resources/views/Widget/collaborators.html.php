@@ -11,7 +11,7 @@
                 'BoomFrontBundle_user_profile', array(
             'username' => $collaborator['user_record']['username']))
             ?>">
-                    <img src="<?php echo $collaborator['user_record']['imagepath'] ?>" height="60px" width="60px" />
+                    <img src="<?php echo $view['boom_image']->getProfileImageUrl($collaborator['user_record']['imagepath'],array(150,150)) ?>" height="60px" width="60px" />
                 </a>
                 <div class="colab-info">
                  <h4 class="autor">

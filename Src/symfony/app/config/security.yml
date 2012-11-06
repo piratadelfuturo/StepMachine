@@ -25,7 +25,7 @@ security:
         #fos_twitter_provider:
         #    id: boom_library.twitter.user
         fos_userbundle_provider:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
         admin_chain_provider:
             chain:
                  providers:
