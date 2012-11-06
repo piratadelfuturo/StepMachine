@@ -3616,6 +3616,10 @@ form#boom_gallery ul li {
 
 /* EDITAR PERFIL */
 
+.author-profile {
+  margin-bottom: 20px;
+}
+
 .editar-perfil form {
   border: 1px solid #dfdfdf;
 }
