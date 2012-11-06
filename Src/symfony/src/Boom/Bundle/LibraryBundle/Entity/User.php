@@ -778,7 +778,7 @@ class User extends BaseUser implements \ArrayAccess {
 
     public function getSocialVisible() {
         if (empty($this->social_visible) || $this->social_visible === null) {
-            return false;
+            return true;
         }
         return (bool) $this->social_visible;
     }
