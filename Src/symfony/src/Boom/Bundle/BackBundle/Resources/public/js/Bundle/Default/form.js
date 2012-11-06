@@ -113,7 +113,7 @@
                     );
             }
             var iTitle      = container.find('input[id$="title"]',0).val(data.title||'');
-            var iSummary    = container.find('input[id$="summary"]',0).val(data.summery||'');
+            var iSummary    = container.find('input[id$="summary"]',0).val(data.summary||'');
             var iUrl        = container.find('input[id$="url"]',0).val(urlVal||'');
             var iBoom       = container.find('input[id$="boom"]',0).val(data.id||'');
             var iCategory   = container.find('input[id$="category"]',0).val(data.category_id||'');
@@ -135,7 +135,6 @@
                     if(data.result.id){
                         iImageImg.attr('src',data.result.path);
                     }
-
                 }
 
             });

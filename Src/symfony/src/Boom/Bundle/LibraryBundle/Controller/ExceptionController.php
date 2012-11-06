@@ -82,7 +82,6 @@ class ExceptionController extends TwigExceptionController {
         $bundles[] = 'BoomFrontBundle';
 
         $bundles[] = 'TwigBundle';
-
         $engines = array('php', 'twig');
 
         foreach ($bundles as $bundle) {
