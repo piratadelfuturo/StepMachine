@@ -37,23 +37,25 @@ class ProfileController extends Controller {
     }
 
     public function updateAction() {
-
+        /** @var $upload_listener Boom\Bundle\LibraryBundle\Listener\UserImageUploadListener */
         $sessionToken = $this->get('security.context')->getToken();
         $entity = $sessionToken->getUser();
+        $uploadListener = $this->get('boom_library.user_image_upload_persist.listener');
 
         $form = $this->createForm(new UserType(), $entity);
         $request = $this->getRequest();
         $form->bindRequest($request);
         if($entity['profileimage'] !== null){
             $entity['imageoption'] = User::IMAGE_PATH;
-            $entity['imagepath'] = null;
         }
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+            $uploadListener->preUpload($entity);
             $em->persist($entity);
             $em->flush();
-            //return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit'));
+            $uploadListener->upload($entity);
+            return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit'));
         }
         return $this->render(
                         'BoomFrontBundle:Profile:edit.html.php', array(

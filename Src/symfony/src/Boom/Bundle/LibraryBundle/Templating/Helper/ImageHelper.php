@@ -59,7 +59,7 @@ class ImageHelper extends Helper {
     }
 
     public function getProfileImageUrl($image_path, $size = null,$default = ''){
-        if(strpos($image_path,'http://') == 0){
+        if(strpos($image_path,'http://') === 0){
             return $image_path;
         }
         $path = $this->container->getParameter('boom_library.profile_image_path');
@@ -67,7 +67,8 @@ class ImageHelper extends Helper {
             $image_path = explode('.',$image_path);
             $image_path = $image_path[0].'/'.(int)$size[0].'_'.(int)$size[1].'.'.$image_path[1];
         }
-        return $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
+        $return = $this->container->get('templating.helper.assets')->getUrl($path.$image_path);
+        return $return;
     }
 
     public function imageExists(){

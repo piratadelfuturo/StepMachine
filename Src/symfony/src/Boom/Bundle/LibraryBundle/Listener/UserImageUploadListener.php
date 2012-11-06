@@ -22,7 +22,7 @@ class UserImageUploadListener extends BaseImageUploadListener {
         $this->entitySetPathMethod = 'setImagePath';
         $this->entityPathProperty  = 'image_path';
         $this->entityGetFileMethod = 'getProfileImage';
-        $this->entityGetPreviousPathMethod = 'getPreviousImagePathMethod';
+        $this->entityGetPreviousPathMethod = 'getPreviousImagePath';
 
     }
 }

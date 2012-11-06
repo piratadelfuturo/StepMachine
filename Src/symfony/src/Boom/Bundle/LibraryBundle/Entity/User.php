@@ -197,7 +197,7 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
     public function setImagePath($path) {
-        if($path == null){
+        if($path == null && $this->image_path !== null){
             $this->setPreviousImagePath($this->image_path);
         }
         $this->setImageOption(self::IMAGE_PATH);
