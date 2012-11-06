@@ -17,8 +17,8 @@ $view['slots']->set('layout_container_css_class', 'colaboradores');
                 <?php endif; ?>
 
             </ul>
+            <p class="author-bio"><?php echo $view->escape($entity['bio']) ?></p>
         </div>
-        <p class="author-bio"><?php echo $view->escape($entity['bio']) ?></p>
     </div>
 </div>
 <?php
