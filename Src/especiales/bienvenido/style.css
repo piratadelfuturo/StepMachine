@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+body {
+  background-color: #3186a7;
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  background: #3186a7 url('images/bg.jpg') no-repeat left top;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  width: 1024px;
+  z-index: 10;
+}
+
+.wrapper section {
+  height: auto;
+  position: relative;
+  width: 1024px;
+  z-index: 9;
+}
+
+div.slide {
+  height: 700px;
+  position: relative;
+  width: 1024px;
+}
+
+div.item {
+  display: block;
+  position: absolute;
+  z-index: 7;
+}
+
+/*SLIDERS CON GRADIENTE*/
+
+div#sld2, div#sld4, div#sld6{
+  background: #e35344;
+  background: -moz-linear-gradient(left, #e35344 0%, #f57b20 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e35344), color-stop(100%,#f57b20));
+  background: -webkit-linear-gradient(left, #e35344 0%, #f57b20 100%);
+  background: -o-linear-gradient(left, #e35344 0%, #f57b20 100%);
+  background: -ms-linear-gradient(left, #e35344 0%, #f57b20 100%);
+  background: linear-gradient(to right, #e35344 0%, #f57b20 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e35344', endColorstr='#f57b20',GradientType=1 );
+}
+
+div#sld2 h1, div#sld4 h1, div#sld6 h1 {
+  font-size: 65px;
+  display: block;
+  margin: 0px auto;
+  padding: 250px 0 0;
+  text-align: center;
+  width: 60%;
+}
+
+div#sld4 h1 {
+  width: 75%;  
+}
+
+div#sld6 h1 {
+  width: 55%;  
+}
+
+/*FLAGS*/
+
+h2 {
+  background: #faa637;
+  background: -moz-linear-gradient(left, #f17524 0%, #faa637 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f17524), color-stop(100%,#faa637));
+  background: -webkit-linear-gradient(left, #f17524 0%, #faa637 100%);
+  background: -o-linear-gradient(left, #f17524 0%, #faa637 100%);
+  background: -ms-linear-gradient(left, #f17524 0%, #faa637 100%);
+  background: linear-gradient(to right, #f17524 0%, #faa637 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f17524', endColorstr='#faa637',GradientType=1 );
+  display: block;
+  float: left;
+  height: 61px;
+  margin-top: 30px;
+  padding: 0 30px;
+  width: auto;
+}
+
+h2::after {
+  background: url('images/flag-end.png') no-repeat 0 0;
+  height: 61px;
+  width: 22px;
+  display: block;
+}
+/*SLIDE 1*/
+
+div#sld1 div#ribbon-top {
+  background: url('images/ribbon-top.png') no-repeat left top;
+  height: 104px;
+  margin: 0 auto;
+  width: 877px;
+  z-index: 8;
+  top: 85px;
+  left: 85px;
+}
+
+div#sld1 div#ribbon-bottom {
+  background: url('images/ribbon-bottom.png') no-repeat left top;
+  height: 91px;
+  margin: 0 auto;
+  width: 948px;
+  z-index: 8;
+  top: 490px;
+  left: 40px;
+}
+
+div#sld1 div#itm1 {
+  background: url('images/itm-1.png') no-repeat left top;
+  height: 84px;
+  width: 66px;
+}
+
+div#sld1 div#itm2 {
+  background: url('images/itm-2.png') no-repeat left top;
+  height: 94px;
+  width: 103px;
+}
+
+div#sld1 div#itm3 {
+  background: url('images/itm-3.png') no-repeat left top;
+  height: 49px;
+  width: 42px;
+}
+
+div#sld1 div#itm4 {
+  background: url('images/itm-4.png') no-repeat left top;
+  height: 137px;
+  width: 116px;
+}
+
+div#sld1 div#itm5 {
+  background: url('images/itm-5.png') no-repeat left top;
+  height: 65px;
+  width: 51px;
+}
+
+div#sld1 div#itm6 {
+  background: url('images/itm-6.png') no-repeat left top;
+  height: 50px;
+  width: 40px;
+}
+
+div#sld1 div#itm7 {
+  background: url('images/itm-7.png') no-repeat left top;
+  height: 34px;
+  width: 35px;
+}
+
+div#sld1 div#itm8 {
+  background: url('images/itm-8.png') no-repeat left top;
+  height: 77px;
+  width: 57px;
+}
+
+div#sld1 div#itm9 {
+  background: url('images/itm-9.png') no-repeat left top;
+  height: 77px;
+  width: 22px;
+}
+
+div#sld1 div#itm10 {
+  background: url('images/itm-10.png') no-repeat left top;
+  height: 70px;
+  width: 17px;
+}
+
+div#sld1 div#itm11 {
+  background: url('images/itm-11.png') no-repeat left top;
+  height: 36px;
+  width: 91px;
+}
+
+div#sld1 div#itm12 {
+  background: url('images/itm-12.png') no-repeat left top;
+  height: 59px;
+  width: 95px;
+}
+
+div#sld1 div#itm13 {
+  background: url('images/itm-13.png') no-repeat left top;
+  height: 23px;
+  width: 67px;
+}
+
+div#sld1 div#itm14 {
+  background: url('images/itm-14.png') no-repeat left top;
+  height: 16px;
+  width: 15px;
+}
+
+div#sld1 div#itm15 {
+  background: url('images/itm-15.png') no-repeat left top;
+  height: 24px;
+  width: 24px;
+}
+
+div#sld1 div#itm16 {
+  background: url('images/itm-16.png') no-repeat left top;
+  height: 24px;
+  width: 67px;
+}
+
+div#sld1 div#itm17 {
+  background: url('images/itm-17.png') no-repeat left top;
+  height: 49px;
+  width: 106px;
+}
+
+div#sld1 div#itm18 {
+  background: url('images/itm-18.png') no-repeat left top;
+  height: 48px;
+  width: 27px;
+}
+
+div#sld1 div#itm19 {
+  background: url('images/itm-19.png') no-repeat left top;
+  height: 30px;
+  width: 18px;
+}
+
+div#sld1 div#itm20 {
+  background: url('images/itm-20.png') no-repeat left top;
+  height: 25px;
+  width: 69px;
+}
+
+div#sld1 div#itm20 {
+  background: url('images/itm-20.png') no-repeat left top;
+  height: 25px;
+  width: 69px;
+}
+
+div#sld1 div#itm21 {
+  background: url('images/itm-21.png') no-repeat left top;
+  height: 21px;
+  width: 34px;
+}
+
+div#sld1 div#itm22 {
+  background: url('images/itm-22.png') no-repeat left top;
+  height: 69px;
+  width: 21px;
+}
+
+div#sld1 div#itm23 {
+  background: url('images/itm-23.png') no-repeat left top;
+  height: 161px;
+  width: 72px;
+}
+
+div#sld1 div#itm24 {
+  background: url('images/itm-24.png') no-repeat left top;
+  height: 216px;
+  width: 85px;
+}
+
+div#sld1 div#itm25 {
+  background: url('images/itm-25.png') no-repeat left top;
+  height: 222px;
+  width: 84px;
+}
+
+div#sld1 div#itm26 {
+  background: url('images/itm-26.png') no-repeat left top;
+  height: 80px;
+  width: 101px;
+}
+
+div#sld1 div#itm27 {
+  background: url('images/itm-27.png') no-repeat left top;
+  height: 97px;
+  width: 99px;
+}
+
+div#sld1 div#itm28 {
+  background: url('images/itm-28.png') no-repeat left top;
+  height: 71px;
+  width: 25px;
+}
+
+div#sld1 div#itm29 {
+  background: url('images/itm-29.png') no-repeat left top;
+  height: 103px;
+  width: 93px;
+}
+
+div#sld1 div#itm30 {
+  background: url('images/itm-30.png') no-repeat left top;
+  height: 76px;
+  width: 65px;
+}
+
+div#sld1 div#itm31 {
+  background: url('images/itm-31.png') no-repeat left top;
+  height: 23px;
+  width: 51px;
+}
