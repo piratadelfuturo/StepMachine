@@ -13,7 +13,7 @@
     <li class="contact">
       <h3><a href="#">Tu marca en 7Boom</a></h3>
       <p>¿Te interesa anunciarte en 7Boom?</p>
-      <p>Contactanos en <a href="mailto:contacto@7boom.mx">Contacto@7boom.mx</a></p>
+      <p>Contactanos en <a href="mailto:contacto@7boom.mx">contacto@7boom.mx</a></p>
     </li>
     <li class="newsletter">
       <h3><a href="#">Recibe nuestro newsletter</a></h3>

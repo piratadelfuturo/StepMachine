@@ -42,7 +42,7 @@ body {
   display: block;
   font: normal 12px 'Helvetica', 'Arial', sans-serif;
   margin: 0 auto;
-  padding-top: 39px;
+  padding-top: 25px;
   width: 1024px;
 }
 
@@ -455,9 +455,8 @@ button.submit, .editalo {
   background: -ms-linear-gradient(top, #e3e4e5 0%,#ededee 100%);
   background: linear-gradient(top, #e3e4e5 0%,#ededee 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e4e5', endColorstr='#ededee',GradientType=0 );
-  height: auto;
+  height: 100px;
   margin-bottom: 10px;
-  overflow: auto;
   padding: 17px 0 10px 17px;
   position: relative;
 }
@@ -469,6 +468,19 @@ button.submit, .editalo {
   text-indent: -9999px;
   width: 280px;
 }
+
+h1 a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 117px;
+  height: 143px;
+  background: url(../images/beta.png) 0 0 no-repeat;
+  z-index: 9;
+  top: -18px;
+  left: -27px;
+}
+
 
 .hd-social-list {
   display: block;
@@ -1500,7 +1512,6 @@ aside .sb-bloque {
 footer {
   display: inline-block;
   width: 100%;
-  margin-bottom: 100px;
 }
 
 .f-cont {
