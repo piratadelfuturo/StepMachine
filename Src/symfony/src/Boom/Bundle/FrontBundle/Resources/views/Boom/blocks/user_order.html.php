@@ -1,8 +1,10 @@
 <?php
 $elements = array();
+$elementCounter = 1;
 foreach ($entity['elements'] as $el) {
-    $position = $el['communityposition'] == 0 ? $el['position'] : $el['communityposition'];
+    $position = $el['communityposition'] == 0 || $el['communityposition'] === null ? $elementCounter : $el['communityposition'];
     $elements[$position] = $el;
+    $elementCounter++;
 }
 $userElements = array();
 $isOwner = false;

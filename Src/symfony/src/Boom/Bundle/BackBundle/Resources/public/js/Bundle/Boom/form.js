@@ -24,7 +24,10 @@
             remove_script_host : false,
             add_unload_trigger : false,
             inline_styles : false,
-            valid_children : "strong[br|em|#text],em[br|strong|#text]"
+            valid_children : "strong[br|em|#text],em[br|strong|#text]",
+            force_br_newlines : true,
+            force_p_newlines : false,
+            forced_root_block : ''
         });
 
         $form = $('#boom_bundle_backbundle_boomtype');
