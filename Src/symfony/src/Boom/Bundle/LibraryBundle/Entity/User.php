@@ -197,7 +197,7 @@ class User extends BaseUser implements \ArrayAccess {
     }
 
     public function setImagePath($path) {
-        if($path == null){
+        if($path == null && $this->image_path !== null){
             $this->setPreviousImagePath($this->image_path);
         }
         $this->setImageOption(self::IMAGE_PATH);
@@ -778,7 +778,7 @@ class User extends BaseUser implements \ArrayAccess {
 
     public function getSocialVisible() {
         if (empty($this->social_visible) || $this->social_visible === null) {
-            return false;
+            return true;
         }
         return (bool) $this->social_visible;
     }

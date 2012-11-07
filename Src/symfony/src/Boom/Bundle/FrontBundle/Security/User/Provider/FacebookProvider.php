@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use \BaseFacebook;
 use \FacebookApiException;
 use Gedmo\Sluggable\Util\Urlizer;
+use Symfony\Component\HttpFoundation\File\File;
 
 class FacebookProvider implements UserProviderInterface {
     /*
@@ -50,8 +51,18 @@ class FacebookProvider implements UserProviderInterface {
         return $user;
     }
 
-    public function processUser($fbId) {
+    public function grabImage($url) {
+        $fp = tmpfile();
+        $meta = stream_get_meta_data($fp);
+        fwrite($fp, file_get_contents($url));
+        fseek($fp, 0);
+        $name = $meta['uri'];
+        $name .= image_type_to_extension(exif_imagetype($name));
+        rename($meta['uri'],$name);
+        return $name;
+    }
 
+    public function processUser($fbId) {
         $loggedUser = null;
         $user = null;
 
@@ -71,7 +82,7 @@ class FacebookProvider implements UserProviderInterface {
 
         if ($user === null || empty($user)) {
             if (!empty($fbdata) && $fbdata !== null) {
-
+                $uploadListener = $this->container->get('boom_library.user_image_upload_persist.listener');
                 $user = $this->userManager->createUser();
 
                 $user->setEnabled(true);
@@ -91,7 +102,11 @@ class FacebookProvider implements UserProviderInterface {
                 $user->setImageOption(User::IMAGE_FACEBOOK);
                 $user->addRole('ROLE_FACEBOOK');
                 $user->addRole('ROLE_SOCIAL');
+                $tmp = new File($this->grabImage($user->getImagePath()));
+                $user->setProfileImage($tmp);
+                $uploadListener->preUpload($user);
                 $this->userManager->updateUser($user);
+                $uploadListener->upload($user);
             }
         } elseif (!empty($loggedUser) || $loggedUser !== null) {
             if (!empty($fbdata) && $fbdata !== null) {

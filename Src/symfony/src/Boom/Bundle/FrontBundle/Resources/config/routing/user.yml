@@ -1,3 +1,7 @@
+BoomFrontBundle_user_mail:
+    pattern:  /mail
+    defaults: { _controller: "BoomFrontBundle:User:mail", _format: "html" }
+
 BoomFrontBundle_user_list:
     pattern:  /
     defaults: { _controller: "BoomFrontBundle:User:list" }
