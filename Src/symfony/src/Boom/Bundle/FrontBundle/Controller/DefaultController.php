@@ -13,59 +13,55 @@ class DefaultController extends Controller {
         /** @var \Boom\Bundle\LibraryBundle\Repository\BoomRepository $repo */
         $response = new Response();
         $response->setMaxAge(600);
+        $response->setSharedMaxAge(600);
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
             $response->setPrivate();
         } else {
             $response->setPublic();
         }
 
-        if ($response->isNotModified($this->getRequest())) {
-            // return the 304 Response immediately
-            return $response;
-        } else {
-            $date = new \DateTime();
-            $date->modify('+600 seconds');
-            $response->setExpires($date);
+        $date = new \DateTime();
+        $date->modify('+600 seconds');
+        $response->setExpires($date);
 
-            $em = $this->getDoctrine()->getManager();
-            $repo = $em->getRepository('BoomLibraryBundle:Boom');
-            $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
 
-            $latest = $repo->findBy(
-                    array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'DESC'), 7, 0);
+        $latest = $repo->findBy(
+                array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'DESC'), 7, 0);
 
-            $users = $repo->findUsersBooms();
+        $users = $repo->findUsersBooms();
 
-            $featured = $repo->findFeaturedBooms(
-                    array('boom.date_published' => 'DESC'), 7, 0, array(
-                'status' => Boom::STATUS_PUBLIC
-                    )
-            );
+        $featured = $repo->findFeaturedBooms(
+                array('boom.date_published' => 'DESC'), 7, 0, array(
+            'status' => Boom::STATUS_PUBLIC
+                )
+        );
 
-            $top = $listRepo->findOneBy(
-                    array(
-                        'block' => 'home_page',
-                        'name' => 'top'
-                    ));
+        $top = $listRepo->findOneBy(
+                array(
+                    'block' => 'home_page',
+                    'name' => 'top'
+                ));
 
-            $weekly = $listRepo->findOneBy(
-                    array(
-                        'block' => 'home_page',
-                        'name' => 'semanal'
-                    ));
+        $weekly = $listRepo->findOneBy(
+                array(
+                    'block' => 'home_page',
+                    'name' => 'semanal'
+                ));
 
-            $viewVars = array(
-                'top' => $top,
-                'weekly' => $weekly,
-                'users' => $users,
-                'featured' => $featured,
-                'latest' => $latest
-            );
+        $viewVars = array(
+            'top' => $top,
+            'weekly' => $weekly,
+            'users' => $users,
+            'featured' => $featured,
+            'latest' => $latest
+        );
 
-            //var_dump($viewVars);
-            //exit;
-            return $this->render('BoomFrontBundle:Default:index.html.php', $viewVars, $response);
-        }
+        //var_dump($viewVars);
+        //exit;
+        return $this->render('BoomFrontBundle:Default:index.html.php', $viewVars, $response);
     }
 
     public function testAction() {
