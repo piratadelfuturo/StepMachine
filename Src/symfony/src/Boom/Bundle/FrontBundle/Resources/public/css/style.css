@@ -1836,6 +1836,7 @@ footer p {
   height: 35px;
   line-height: 35px;
   position: absolute;
+  margin-left: 0;
   padding-right: 80px;
   bottom: 30px;
 }
