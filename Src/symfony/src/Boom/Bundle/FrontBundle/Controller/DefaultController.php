@@ -23,10 +23,10 @@ class DefaultController extends Controller {
             // return the 304 Response immediately
             return $response;
         } else {
-            $date = new DateTime();
+            $date = new \DateTime();
             $date->modify('+600 seconds');
             $response->setExpires($date);
-            
+
             $em = $this->getDoctrine()->getManager();
             $repo = $em->getRepository('BoomLibraryBundle:Boom');
             $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
