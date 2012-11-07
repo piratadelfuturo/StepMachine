@@ -292,6 +292,10 @@ button.submit, .editalo {
 
 /*HEADER*/
 
+header {
+  margin-bottom: 5px;
+}
+
 #top-bar {
   background: #373737;
   height: 40px;
