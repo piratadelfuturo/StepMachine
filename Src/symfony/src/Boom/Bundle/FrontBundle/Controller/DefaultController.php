@@ -11,6 +11,20 @@ class DefaultController extends Controller {
 
     public function indexAction() {
         /** @var \Boom\Bundle\LibraryBundle\Repository\BoomRepository $repo */
+        $response = new Response();
+        /*
+        $response->setMaxAge(600);
+        $response->setSharedMaxAge(600);
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            $response->setPrivate();
+        } else {
+            $response->setPublic();
+        }
+
+        $date = new \DateTime();
+        $date->modify('+600 seconds');
+        $response->setExpires($date);
+        */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
@@ -21,12 +35,10 @@ class DefaultController extends Controller {
         $users = $repo->findUsersBooms();
 
         $featured = $repo->findFeaturedBooms(
-                array('boom.date_published' => 'DESC'),
-                7,0,
-                array(
+                array('boom.date_published' => 'DESC'), 7, 0, array(
             'status' => Boom::STATUS_PUBLIC
                 )
-                );
+        );
 
         $top = $listRepo->findOneBy(
                 array(
@@ -50,7 +62,7 @@ class DefaultController extends Controller {
 
         //var_dump($viewVars);
         //exit;
-        return $this->render('BoomFrontBundle:Default:index.html.php', $viewVars);
+        return $this->render('BoomFrontBundle:Default:index.html.php', $viewVars, $response);
     }
 
     public function testAction() {
@@ -104,7 +116,7 @@ class DefaultController extends Controller {
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find.');
         }
-        if($entity['category']['slug'] !== $category_slug){
+        if ($entity['category']['slug'] !== $category_slug) {
             throw $this->createNotFoundException('Unable to find.');
         }
 
@@ -157,14 +169,21 @@ class DefaultController extends Controller {
                 ));
     }
 
-    public function twitCountAction($category_slug, $slug){
-        return new Response(file_get_contents('http://urls.api.twitter.com/1/urls/count.json?url='.$this->generateUrl(
-                'BoomFrontBundle_boom_show',
-                array(
-                    'category_slug' => $category_slug,
-                    'slug' => $slug
+    public function twitCountAction($category_slug, $slug) {
+        $cache = $this->get('cache.apc');
+        $url = $this->generateUrl(
+                'BoomFrontBundle_boom_show', array(
+            'category_slug' => $category_slug,
+            'slug' => $slug
                 )
-                ,true)));
+                , true);
+        $count = $cache->fetch(md5($url));
+        if ($count == false) {
+            $count = file_get_contents('http://urls.api.twitter.com/1/urls/count.json?url=' . $url);
+            $cache->save(md5($url), $count, 120);
+        }
+
+        return new Response($count);
     }
 
 }
