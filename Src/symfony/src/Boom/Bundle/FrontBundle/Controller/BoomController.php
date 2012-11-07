@@ -226,7 +226,8 @@ class BoomController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomFrontBundle_boom_edit', array(
+                                    'BoomFrontBundle_boom_show', array(
+                                'category_slug' => $entity['category']['slug'],
                                 'slug' => $entity['slug']
                                     )
                             )

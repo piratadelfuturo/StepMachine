@@ -45,7 +45,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         <h3 class="title-flag <?php echo $category['slug'] ?>">
             <span><?php echo $view->escape($category['name']) ?></span>
         </h3>
-        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path']) ?>">
+        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path'],680,382) ?>">
     </div>
     <div class="boom-else">
         <div class="boom-info">
