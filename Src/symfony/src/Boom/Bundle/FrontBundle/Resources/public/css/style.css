@@ -1345,7 +1345,7 @@ aside .sb-bloque {
 }
 
 .sb-bloque > h3:before {
-  background: url('../images/flags-sprt.png') no-repeat -67px 0;
+  background: url('../images/flags-sprt.png') no-repeat -67px 0, #FFF;
   content: ' ';
   display: block;
   height: 45px;
@@ -3728,7 +3728,7 @@ form#boom_gallery ul li {
 
 
 .tweets {
-  margin-top: -35px;
+  margin-top: -36px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
