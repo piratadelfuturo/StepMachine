@@ -3693,8 +3693,10 @@ form#boom_gallery ul li {
 }
 
 #front_user_profile_image {
+  display: block;
   width: 240px;
-  padding-top: 20px;
+  margin-top: 5px;
+  padding: 0;
 }
 
 .editar-perfil .grad-border {
@@ -3726,7 +3728,6 @@ form#boom_gallery ul li {
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
-
 
 .tweets {
   margin-top: -36px;
