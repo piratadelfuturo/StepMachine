@@ -12,6 +12,7 @@ class DefaultController extends Controller {
     public function indexAction() {
         /** @var \Boom\Bundle\LibraryBundle\Repository\BoomRepository $repo */
         $response = new Response();
+        /*
         $response->setMaxAge(600);
         $response->setSharedMaxAge(600);
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
@@ -23,7 +24,7 @@ class DefaultController extends Controller {
         $date = new \DateTime();
         $date->modify('+600 seconds');
         $response->setExpires($date);
-
+        */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
