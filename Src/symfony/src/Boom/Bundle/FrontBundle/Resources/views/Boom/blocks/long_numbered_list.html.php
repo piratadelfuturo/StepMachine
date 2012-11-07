@@ -18,7 +18,7 @@ if (!isset($list)) {
                     <?php if ($element['boom'] !== null): ?>
                         <span class="sm-flag <?php echo $element['category']['slug'] ?>"><?php echo $view->escape($element['category']['name']) ?></span>
                     <?php endif; ?>
-                    <p class="boom-ti"><a href="<?php echo $element['url'] ?>"><?php echo $view->escape($element['title']) ?></a></p>
+                    <p class="boom-ti"><a href="<?php echo $element['url'] ?>"><?php echo $view['boom_front']->ellipsis($view->escape($element['title']),65) ?></a></p>
                     <?php if ($element['boom'] !== null): ?>
                         <?php
                         $userUrl = $view['router']->generate(

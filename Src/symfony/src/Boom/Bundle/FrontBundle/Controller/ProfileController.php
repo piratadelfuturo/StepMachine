@@ -40,15 +40,14 @@ class ProfileController extends Controller {
         /** @var $upload_listener Boom\Bundle\LibraryBundle\Listener\UserImageUploadListener */
         $sessionToken = $this->get('security.context')->getToken();
         $entity = $sessionToken->getUser();
+        $entity['name'] = $entity['name'];
         $uploadListener = $this->get('boom_library.user_image_upload_persist.listener');
-
         $form = $this->createForm(new UserType(), $entity);
         $request = $this->getRequest();
-        $form->bindRequest($request);
+        $form->bind($request);
         if($entity['profileimage'] !== null){
             $entity['imageoption'] = User::IMAGE_PATH;
         }
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $uploadListener->preUpload($entity);
