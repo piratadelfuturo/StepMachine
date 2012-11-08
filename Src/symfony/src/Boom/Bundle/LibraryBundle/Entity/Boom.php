@@ -80,31 +80,31 @@ class Boom extends DomainObject {
     protected $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="booms")
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="booms", fetch="EAGER")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=false)
      * */
     protected $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="booms", fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="booms", fetch="EAGER")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true )
      * */
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="booms")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="booms", fetch="EAGER" )
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      */
     protected $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms", cascade={"persist"}, fetch="EAGER")
      * @ORM\JoinTable(name="booms_tags")
      * */
     protected $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"all"}, orphanRemoval=true, fetch="EAGER" )
      * @ORM\OrderBy({"position" = "ASC"})
      * */
     protected $elements;
@@ -155,13 +155,13 @@ class Boom extends DomainObject {
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="children", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
      */
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boom", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Boom", mappedBy="parent", fetch="EXTRA_LAZY")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;

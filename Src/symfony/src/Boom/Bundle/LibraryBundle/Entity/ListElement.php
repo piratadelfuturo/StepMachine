@@ -43,7 +43,7 @@ class ListElement extends DomainObject{
     protected $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="list_elements")
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="list_elements", fetch="EAGER")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=false)
      */
     protected $image;
@@ -55,13 +55,13 @@ class ListElement extends DomainObject{
     protected $boom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_elements", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_elements", fetch="EAGER")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     protected $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ListGroup", inversedBy="list_elements")
+     * @ORM\ManyToOne(targetEntity="ListGroup", inversedBy="list_elements", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="list_group_id", referencedColumnName="id", nullable=false)
      * @Gedmo\SortableGroup
      */

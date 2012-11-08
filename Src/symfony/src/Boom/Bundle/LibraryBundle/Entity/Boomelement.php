@@ -40,20 +40,20 @@ class Boomelement extends DomainObject{
     protected $community_position;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="elements")
+     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="elements", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=false)
      * @Gedmo\SortableGroup
      **/
     protected $boom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Image", inversedBy="boomelements")
+     * @ORM\ManyToOne(targetEntity="Image", inversedBy="boomelements", fetch="EAGER")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
      **/
     protected $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="boomelement", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="boomelement", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      **/
     protected $boomelementranks;
 
