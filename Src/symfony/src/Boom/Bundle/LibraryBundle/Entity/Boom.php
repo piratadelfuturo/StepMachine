@@ -98,13 +98,13 @@ class Boom extends DomainObject {
     protected $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms", cascade={"persist"}, fetch="LAZY")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="booms", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="booms_tags")
      * */
     protected $tags;
 
     /**
-     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"all"}, orphanRemoval=true, fetch="EAGER" )
+     * @ORM\OneToMany(targetEntity="Boomelement", mappedBy="boom", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY" )
      * @ORM\OrderBy({"position" = "ASC"})
      * */
     protected $elements;
