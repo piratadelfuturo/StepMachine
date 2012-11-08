@@ -2567,6 +2567,7 @@ span.arrow {
 
 #usr-booms .miboom-cont h3 {
   background: url(../images/tu_dices.png) center 15px no-repeat;
+  margin-bottom: 50px;
 }
 
 .drag-booms {
@@ -2879,7 +2880,7 @@ span.arrow {
 .boom-clean {
   display: block;
   width: 290px;
-  height: 375px;
+  height: 628px;
   background: #313131;
   font: 31px 'Proxima', sans-serif;
   color: #fff;
@@ -2898,10 +2899,6 @@ span.arrow {
 .boom-clean p span {
   font-size: 53px;
   line-height: 40px;
-}
-
-.boom-clean p {
-  margin: 120px 0px 0px 0px;
 }
 
 .boom-clean .editalo {
@@ -3720,20 +3717,33 @@ form#boom_gallery ul li {
   border: 1px solid #dfdfdf;
 }
 
+.editar-perfil input,
+.editar-perfil textarea {
+  color: #666;
+}
+
 .editar-perfil fieldset {
   border: none;
   border-bottom: 1px solid #e5e5e5;
   margin: 20px 0px 0px 20px;
 }
 
-.editar-perfil fieldset label, .editar-perfil fieldset h3{
+.editar-perfil fieldset label, .editar-perfil fieldset h3, .chpass{
   width: 100%;
   font: 24px 'Museo500', sans-serif;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  color: #333;
 }
 
-.editar-perfil fieldset p{
+.chpass {
+  color: #333;
+}
+
+.chpass:hover {
+  color: #F87937;
+}
+
+.editar-perfil fieldset p {
   width: 300px;
   float: right;
   text-align: right;
@@ -3743,9 +3753,13 @@ form#boom_gallery ul li {
   margin-right: 170px;
 }
 
-.editar-perfil .user-card{
+.editar-perfil .user-card {
   position:relative;
   overflow:hidden;
+}
+
+.editar-perfil .user-card + div > div {
+  margin-bottom: 15px;
 }
 
 .editar-perfil .user-image-block{

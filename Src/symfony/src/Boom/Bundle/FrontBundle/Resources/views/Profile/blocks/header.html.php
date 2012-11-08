@@ -24,7 +24,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <?php endif; ?>
                 </li>
                 <li>
-                    <a href="<?php echo '' ?>">Cerrar Sesión</a>
+                    <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
                 </li>
                 <?php if (!empty($activities)): ?>
                     <li>
