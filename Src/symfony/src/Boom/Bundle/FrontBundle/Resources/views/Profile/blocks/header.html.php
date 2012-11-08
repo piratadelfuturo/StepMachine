@@ -7,7 +7,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
 ?>
 <div id="usr-cnt">
     <a href="#" class="mostrar"><span>Tu Panel</span></a>
-    <div id="usr-box">
+    <div id="usr-box" class="hook">
         <div id="usr-bar">
             <ul id="close-tab">
                 <li>
@@ -58,10 +58,11 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                 <?php endif; ?>
             </ul>
 
-            <ul id="open-tab">
-                <li class="on"><a href="#">Actividad</a><span>.</span></li>
-                <li><a href="#">Favoritos</a><span>.</span></li>
-            </ul>
+            <div id="open-tab" class="botones">
+                <a href="#" class="on">Actividad</a>
+                <a href="#">Favoritos</a>
+                <span class="arrow">.</span>
+            </div>
         </div>
         <div id="usr-roll">
             <div id="usm-pro">
@@ -111,7 +112,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
 
             </div>
             <div id="rt-cont">
-                <div id="rt-user-activities">
+                <div id="rt-user-activities" class="on">
                     <?php if (count($activities) > 0): ?>
                         <ul>
                             <?php foreach ($activities as $activity): ?>
@@ -134,6 +135,15 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <div class="ver-mas-block">
                             <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver Todos</a>
                         </div>
+                    <?php else: ?>
+                    <div class="no-content">
+                      <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
+                      <p>Es hora de darle vida a tu perfil:</p>
+                      <p><a href=""><strong>Crea tus propios booms</strong></a></p>
+                      <p><a href=""><strong>Modifica nuestros destacados</strong></a></p>
+                      <p><a href=""><strong>Invita a tus amigos</strong></a> y comparte tu opinión.</p>
+                      <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
+                    </div>
                     <?php endif; ?>
                 </div>
                 <div id="rt-user-recommended" style="display:none">
@@ -168,6 +178,11 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         </ul>
                         <div class="ver-mas-block">
                             <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_recommend') ?> ">Ver Todos</a>
+                        </div>
+                        <?php else: ?>
+                        <div class="no-content">
+                          <p><strong>Parece que aun no tienes favoritos</strong></p>
+                          <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
                 </div
