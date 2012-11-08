@@ -9,7 +9,12 @@
     if(!isset($list) || ($list === null || empty($list))){
         $list = array();
     }
-    foreach ($list as $element):
+    $sortedList = array();
+    foreach ($list as $element){
+        $sortedList[$element['position']] = $element;
+    }
+    ksort($sortedList);
+    foreach ($sortedList as $element):
         $position++;
         $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],680,382) : 'http://placekitten.com/g/680/382'?>
     <div class="slide <?php echo $position == 1 ? 'active' : '' ?> cf">
@@ -33,11 +38,11 @@
       <?php $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],133,75) : 'http://placekitten.com/g/158/90'?>
       <li class="<?php echo $position == 1 ? 'active' : '' ?>">
         <p>
-          <a href="# <?php //echo $element['url'] ?>">
+          <a href="<?php echo $element['url'] ?>">
             <?php echo $view->escape($element['title']) ?>
           </a>
         </p>
-        <a href="# <?php //echo $element['url'] ?>">
+        <a href="<?php echo $element['url'] ?>">
           <img src="<?php echo $image?>" alt="<?php echo $view->escape($element['title']) ?>" />
         </a>
       </li>
