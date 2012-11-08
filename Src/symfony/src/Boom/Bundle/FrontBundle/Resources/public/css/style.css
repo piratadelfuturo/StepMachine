@@ -102,7 +102,8 @@ body {
 
 a, #usr-booms .botones a.on, #usr-booms .botones a:hover, #open-tab a:hover,
 #tb-rb a span, #usr-bar #close-tab li a, #usr-bar li.on a, #open-tab a.on,
-.boom-pub span, .single-boom .booms .boom-nav a:hover, .author-links li a:hover {
+.boom-pub span, .single-boom .booms .boom-nav a:hover, .author-links li a:hover,
+#rt-cont > div ul ul span {
   color: #F87937;
   text-decoration: none;
 }
@@ -1024,6 +1025,34 @@ h1 a:before {
   width: 80px;
 }
 
+.boom-li ul li {
+  display: inline-block;
+  position: relative;
+  font: lighter 12px 'Helvetica', 'Arial', sans-serif;
+  color: #8D8D8C;
+  margin-left: 15px;
+}
+
+.boom-li ul li:before {
+  content: '-';
+  position: absolute;
+  display: block;
+  left: -10px;
+}
+
+.boom-li ul li:first-child {
+  margin-left: 0;
+}
+
+.boom-li ul li:first-child:before {
+  display: none;
+}
+
+#rt-cont > div .boom-moar {
+  width: auto;
+  padding-right: 15px;
+}
+
 .boom-moar {
   font-weight: bold;
 }
@@ -1259,7 +1288,8 @@ h1 a:before {
   width: 310px;
 }
 
-.top-semanal .boom .boom-info date {
+.top-semanal .boom .boom-info date,
+#rt-cont > div date {
   font: 200 12px 'Helvetica';
   color: #8d8d8c;
 }

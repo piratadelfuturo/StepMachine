@@ -210,33 +210,6 @@
             return false;
         });
 
-        //usr-booms selector
-        /*var onSelector = $('#usr-booms .botones'),
-        arrow = onSelector.children('span.arrow');
-
-        onSelector.children('a').click(function() {
-
-            var pos = $(this).position(),
-                wd = $(this).innerWidth() / 2,
-                sum = parseInt(pos.left + wd - 9),
-                onCont = onSelector.parents('#usr-booms').find('div.dyna-content.on');
-
-            if( $(this).hasClass('on') ){
-                arrow.css('left', sum);
-                return false;
-            } else {
-                $(this).toggleClass('on');
-                $(this).siblings('a').toggleClass('on');
-                onCont.fadeOut(300, function() {
-                    $(this).toggleClass('on').siblings().toggleClass('on').fadeIn(300)
-                });
-                arrow.css('left', sum);
-            }
-
-            return false;
-
-        });*/
-
         //Arrow Movement
         $.contentSelector = function( activeClick, index, activeContent ){
 

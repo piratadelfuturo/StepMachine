@@ -117,17 +117,45 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <ul>
                             <?php foreach ($activities as $activity): ?>
                                 <li class="boom-li">
-                                    <img href="#" src="http://placehold.it/160x88" alt="placeholder"/>
+                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
                                     <div class="boom-info">
-                                        <span class="sm-flag sexo">sexo</span>
-                                        <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
+                                        <span class="sm-flag sexo">Sexo</span>
+                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
                                         <a href="#" class="boom-moar">Leer Boom</a>
                                     </div>
-                                    <ul class="boom-pub">
-                                        <li class="pub-date">Publicado el<a href="#"> 20/04/2012</a></li>
-                                        <li class="seen"> - <span>420</span> veces visto</li>
-                                        <li class="comments"> - <a href="#"><span>10</span> comments</a></li>
-                                        <li class="mods"> - <a href="#"><span>3</span> modificaciones</a></li>
+                                    <ul>
+                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
+                                      <li><p><span>420</span> veces visto</p></li>
+                                      <li><p><span>42</span> comentarios</p></li>
+                                      <li><p><a>4</a> modificaciones</p></li>
+                                    </ul>
+                                </li>
+                                <li class="boom-li">
+                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
+                                    <div class="boom-info">
+                                        <span class="sm-flag sexo">Sexo</span>
+                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
+                                        <a href="#" class="boom-moar">Leer Boom</a>
+                                    </div>
+                                    <ul>
+                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
+                                      <li><p><span>420</span> veces visto</p></li>
+                                      <li><p><span>42</span> comentarios</p></li>
+                                      <li><p><a>4</a> modificaciones</p></li>
+                                    </ul>
+                                </li>
+                                <li class="boom-li">
+                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
+                                    <div class="boom-info">
+                                        <span class="sm-flag sexo">Sexo</span>
+                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
+                                        <a href="#" class="boom-moar">Leer Boom</a>
+                                    </div>
+                                    <ul>
+                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
+                                      <li><p><span>420</span> veces visto</p></li>
+                                      <li><p><span>42</span> comentarios</p></li>
+                                      <li><p><a>4</a> modificaciones</p></li>
                                     </ul>
                                 </li>
                             <?php endforeach; ?>
