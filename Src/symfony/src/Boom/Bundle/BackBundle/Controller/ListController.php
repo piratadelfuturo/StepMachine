@@ -126,8 +126,7 @@ class ListController extends Controller {
         $form = $this->createForm(new ListGroupType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-
-        $newListElements = &$entity['listelements'];
+        $newListElements = $entity['listelements']->toArray();
         foreach ($newListElements as $nle) {
             foreach ($originalListElements as $key => $ole) {
                 if ($ole['id'] === $nle['id']) {
@@ -140,7 +139,6 @@ class ListController extends Controller {
             foreach ($originalListElements as $ole) {
                 $em->remove($ole);
             }
-
             $em->persist($entity);
             $em->flush();
             return $this->redirect($this->generateUrl('BoomBackBundle_list_edit', array(

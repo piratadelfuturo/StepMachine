@@ -4,7 +4,7 @@
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p, span {
   color: #fff;
   font-family: 'Open Sans', sans-serif;
   font-weight: 800;
@@ -28,9 +28,9 @@ body {
 
 .wrapper section {
   height: auto;
-  position: relative;
   width: 1024px;
-  z-index: 9;
+  float: left;
+  margin-top: -4900px;
 }
 
 div.slide {
@@ -88,6 +88,8 @@ h2 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f17524', endColorstr='#faa637',GradientType=1 );
   display: block;
   float: left;
+  font-size: 28px;
+  line-height: 55px;
   height: 61px;
   margin-top: 30px;
   padding: 0 30px;
@@ -96,10 +98,14 @@ h2 {
 
 h2::after {
   background: url('images/flag-end.png') no-repeat 0 0;
+  content: ' ';
+  display: block;
   height: 61px;
   width: 22px;
-  display: block;
+  float: right;
+  margin: 0px -52px 0 0;
 }
+
 /*SLIDE 1*/
 
 div#sld1 div#ribbon-top {
@@ -312,4 +318,308 @@ div#sld1 div#itm31 {
   background: url('images/itm-31.png') no-repeat left top;
   height: 23px;
   width: 51px;
+}
+
+/*SLIDE 3*/
+
+div#sld3 > p {
+  display: block;
+  float: left;
+  font-size: 26px;
+  line-height: 30px;
+  margin: 25px 0 0 30px;
+  width: 480px;
+}
+
+div#sld3 > p span {
+  font-size: 34px;
+  text-align: justify;
+}
+
+div#sld3 div#num1 {
+  background: url('images/num1.png') no-repeat left top;
+  width: 200px;
+  height: 218px;
+  left: 683px;
+  top: 363px;
+}
+
+div#sld3 div#num2 {
+  background: url('images/num2.png') no-repeat left top;
+  width: 167px;
+  height: 175px;
+  left: 577px;
+  top: 194px;
+}
+
+div#sld3 div#num3 {
+  background: url('images/num3.png') no-repeat left top;
+  width: 137px;
+  height: 164px;
+  left: 457px;
+  top: 352px;
+}
+
+div#sld3 div#num4 {
+  background: url('images/num4.png') no-repeat left top;
+  width: 125px;
+  height: 132px;
+  left: 400px;
+  top: 210px;
+}
+
+div#sld3 div#num5 {
+  background: url('images/num5.png') no-repeat left top;
+  width: 84px;
+  height: 91px;
+  top: 345px;
+  left: 345px;
+}
+
+div#sld3 div#num6 {
+  background: url('images/num6.png') no-repeat left top;
+  width: 72px;
+  height: 70px;
+  top: 270px;
+  left: 270px;
+}
+
+div#sld3 div#num7 {
+  background: url('images/num7.png') no-repeat left top;
+  width: 68px;
+  height: 59px;
+  top: 340px;
+  left: 200px;
+}
+
+div#sld3 div#boombar, div#sld5 div#boombar {
+  background: url('images/boom-bar.png') no-repeat left top;
+  width: 285px;
+  height: 600px;
+  top: 50px;
+  left: 715px;
+  z-index: 6;
+}
+
+/*SLIDE 5*/
+
+div#sld5 div#cmt2, div#sld5 div#cmt3, div#sld5 div#cmt4, div#sld5 div#cmt5 {
+  height: 78px;
+  width: 480px;
+  z-index: 6;
+}
+
+div#sld5 div#cmt1 {
+  background: url('images/cmt1.png') no-repeat left top;
+  width: 481px;
+  height: 134px;
+  top: 129px;
+  left: 47px;
+  z-index: 6;
+}
+
+div#sld5 div#cmt2 {
+  background: url('images/cmt2.png') no-repeat left top;
+  top: 270px;
+  left: 183px;
+}
+
+div#sld5 div#cmt3 {
+  background: url('images/cmt3.png') no-repeat left top;
+  top: 363px;
+  left: 33px;
+}
+
+div#sld5 div#cmt4 {
+  background: url('images/cmt4.png') no-repeat left top;
+  top: 460px;
+  left: 200px;
+}
+
+div#sld5 div#cmt5 {
+  background: url('images/cmt5.png') no-repeat left top;
+  top: 573px;
+  left: 33px;
+}
+
+div#sld5 div#blah1 {
+  background: url('images/blah1.png') no-repeat left top;
+  top: 100px;
+  left: 479px;
+  height: 109px;
+  width: 220px;
+}
+
+div#sld5 div#blah2 {
+  background: url('images/blah2.png') no-repeat left top;
+  top: 248px;
+  left: 585px;
+  height: 63px;
+  width: 176px;
+}
+
+div#sld5 div#blah3 {
+  background: url('images/blah3.png') no-repeat left top;
+  top: 316px;
+  left: 346px;
+  height: 94px;
+  width: 165px;
+}
+
+div#sld5 div#blah4 {
+  background: url('images/blah4.png') no-repeat left top;
+  top: 230px;
+  left: 30px;
+  height: 120px;
+  width: 181px;
+}
+
+div#sld5 div#blah5 {
+  background: url('images/blah5.png') no-repeat left top;
+  top: 456px;
+  left: 30px;
+  height: 109px;
+  width: 212px;
+}
+
+div#sld5 div#blah6 {
+  background: url('images/blah6.png') no-repeat left top;
+  top: 403px;
+  left: 575px;
+  height: 91px;
+  width: 157px;
+}
+
+div#sld5 div#blah7 {
+  background: url('images/blah7.png') no-repeat left top;
+  top: 535px;
+  left: 471px;
+  height: 97px;
+  width: 221px;
+}
+
+/*SLIDE 7*/
+
+div#sld7 div#tv {
+  background: url('images/tv.png') no-repeat left top;
+  width: 235px;
+  height: 157px;
+  left: 75px;
+  top: 157px;
+}
+
+div#sld7 div#tv div {
+  background: url('images/7-tv.png') no-repeat left top;
+  width: 89px;
+  height: 84px;
+  left: 70px;
+  top: 20px;
+}
+
+div#sld7 div#imac1 {
+  background: url('images/imac1.png') no-repeat left top;
+  width: 286px;
+  height: 229px;
+  top: 68px;
+  left: 596px;
+}
+ 
+div#sld7 div#imac1 div {
+  background: url('images/7-imac1.png') no-repeat left top;
+  width: 72px;
+  height: 90px;
+  top: 17px;
+  left: 70px;
+}
+
+div#sld7 div#imac2 {
+  background: url('images/imac2.png') no-repeat left top;
+  width: 241px;
+  height: 198px;
+  left: 78px;
+  top: 348px;
+}
+
+div#sld7 div#ipad {
+  background: url('images/ipad.png') no-repeat left top;
+  width: 110px;
+  height: 138px;
+  left: 778px;
+  top: 300px;
+}
+
+div#sld7 div#iphone {
+  background: url('images/iphone.png') no-repeat left top;
+  width: 174px;
+  height: 97px;
+  left: 606px;
+  top: 453px;
+}
+
+div#sld7 div#smartphone {
+  background: url('images/smartphone.png') no-repeat left top;
+  width: 135px;
+  height: 80px;
+  left: 834px;
+  top: 483px;
+}
+
+div#sld7 div#tablet {
+  background: url('images/tablet.png') no-repeat left top;
+  width: 129px;
+  height: 66px;
+  left: 250px;
+  top: 595px;
+}
+
+/*SLIDE 8*/
+
+div#sld8 {
+  overflow: hidden;
+}
+
+div#sld8 div#circle {
+  background-color: #8d3e59;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#db3848), to(#8d3e59));
+  background: -webkit-linear-gradient(top, #db3848, #8d3e59);
+  background: -moz-linear-gradient(top, #db3848, #8d3e59);
+  background: -ms-linear-gradient(top, #db3848, #8d3e59);
+  background: -o-linear-gradient(top, #db3848, #8d3e59);
+  border-radius: 50em;
+  -webkit-border-radius: 50em;
+  -moz-border-radius: 50em;
+  height: 320px;
+  width: 320px;
+  position: relative;
+  margin: 0 auto;
+  top: 195px;
+}
+
+div#sld8 div#circle p {
+  display: block;
+  width: auto;
+  font-size: 24px;
+  line-height: 20px;
+  text-align: right;
+}
+
+div#sld8 div#circle p > strong {
+  font-size: 28px;
+}
+
+div#sld8 div#circle p > span {
+  font-weight: 400;
+  font-size: 18px;  
+}
+
+div#sld8 div#circle p > span strong {
+  font-weight: 800;
+}
+
+div#sld8 div#circle.big {
+  width: 1300px;
+  height: 1300px;
+  top: -36%;
+  left: -14%;
+  margin: 0;
 }

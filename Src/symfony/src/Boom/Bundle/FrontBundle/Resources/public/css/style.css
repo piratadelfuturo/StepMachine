@@ -601,7 +601,7 @@ h1 a:before {
   background-position: 0px -40px;
 }
 
-.tv {
+.comida {
   background-position: 0px -60px;
 }
 
@@ -609,7 +609,7 @@ h1 a:before {
   background-position: 0px -80px;
 }
 
-.cine {
+.cine-tv {
   background-position: 0px -100px;
 }
 
@@ -629,7 +629,7 @@ h1 a:before {
   background-position: 30px -39px;
 }
 
-#filter li.tv {
+#filter li.comida {
   background-position: 30px -59px;
 }
 
@@ -637,7 +637,7 @@ h1 a:before {
   background-position: 30px -79px;
 }
 
-#filter li.cine {
+#filter li.cine-tv {
   background-position: 30px -99px;
 }
 
@@ -1957,7 +1957,7 @@ footer p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ac2c05', endColorstr='#f16c43',GradientType=1 );
 }
 
-.single-boom .title-flag.tv {
+.single-boom .title-flag.comida {
   background: #e72b2b;
   background: -moz-linear-gradient(left, #591010 0%, #e72b2b 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#591010), color-stop(100%,#e72b2b));
@@ -1979,7 +1979,7 @@ footer p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e8f3f', endColorstr='#72c460',GradientType=1 );
 }
 
-.single-boom .title-flag.cine {
+.single-boom .title-flag.cine-tv {
   background: #ddcc0e;
   background: -moz-linear-gradient(left, #ddcc0e 0%, #a79b32 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ddcc0e), color-stop(100%,#a79b32));
@@ -2017,7 +2017,7 @@ footer p {
   background-position: right -72px;
 }
 
-.single-boom .title-flag.tv:after {
+.single-boom .title-flag.comida:after {
   background-position: right -108px;
 }
 
@@ -2025,7 +2025,7 @@ footer p {
   background-position: right -144px;
 }
 
-.single-boom .title-flag.cine:after {
+.single-boom .title-flag.cine-tv:after {
   background-position: right -180px;
 }
 
