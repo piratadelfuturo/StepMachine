@@ -3566,9 +3566,9 @@ form#boom_gallery ul li {
 }
 
 .author-profile .seguir {
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
+  position: relative;
+  float: right;
+  margin-right: 10px;
 }
 
 .author-profile .btn-fb, .author-profile .btn-tw {
