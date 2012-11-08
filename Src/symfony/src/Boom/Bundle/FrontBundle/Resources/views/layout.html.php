@@ -52,7 +52,7 @@
             'oauth' => true), 'BoomFrontBundle::blocks/facebook/initialize.html.php'
         );
         ?>
-        <header>
+        <header class="cf">
             <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
         </header>
         <?php

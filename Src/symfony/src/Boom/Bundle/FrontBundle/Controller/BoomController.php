@@ -215,10 +215,9 @@ class BoomController extends Controller {
         $request = $this->getRequest();
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
-        $form->bind($request);
         $entity['user'] = $sessionUser;
         $entity['status'] = Boom::STATUS_PRIVATE;
-
+        $form->bind($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -227,7 +226,8 @@ class BoomController extends Controller {
 
             return $this->redirect(
                             $this->generateUrl(
-                                    'BoomFrontBundle_boom_edit', array(
+                                    'BoomFrontBundle_boom_show', array(
+                                'category_slug' => $entity['category']['slug'],
                                 'slug' => $entity['slug']
                                     )
                             )

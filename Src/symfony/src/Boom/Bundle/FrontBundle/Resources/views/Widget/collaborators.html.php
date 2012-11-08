@@ -20,7 +20,7 @@
                             'BoomFrontBundle_user_profile', array(
                         'username' => $collaborator['user_record']['username']))
                         ?>">
-                      <?php echo $collaborator['user_record']['firstname'] . ' ' . $collaborator['user_record']['lastname'] ?>
+                      <?php echo $view->escape($collaborator['user_record']['name']) ?>
                   </a>
                   </h4>
                       <p class="last-subtitle">Último Boom:</p>
@@ -31,7 +31,7 @@
                      'category_slug' => $collaborator['category_slug'],
                      'slug' => $collaborator['boom_slug']))
               ?>">
-                             <?php echo $collaborator['boom_title'] ?>
+                             <?php echo $view->escape($collaborator['boom_title']) ?>
                       </a>
                   </p>
             </li>

@@ -45,7 +45,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
         <h3 class="title-flag <?php echo $category['slug'] ?>">
             <span><?php echo $view->escape($category['name']) ?></span>
         </h3>
-        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path']) ?>">
+        <img src="<?php echo $view['boom_image']->getBoomImageUrl($entity['image']['path'],680,382) ?>">
     </div>
     <div class="boom-else">
         <div class="boom-info">
@@ -68,6 +68,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
             <ul class="lista-booms">
                 <?php
                 $elements = array_reverse($entity['elements']->toArray());
+                $boomieCount = count($elements);
                 foreach ($elements as $element):
                     if (isset($element['image']['path'])):
                         $elementImage = $view['boom_image']->getBoomImageUrl($element['image']['path'], 158, 90);
@@ -79,7 +80,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <li class="boom">
                         <div class="boom-info cf">
                             <span class="place">
-                                <?php echo $element['position'] ?>
+                                <?php echo $boomieCount ?>
                             </span>
                             <div class="float-container cf">
                                 <?php if (isset($element['image']['path'])): ?>
@@ -93,12 +94,15 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                                 <p><?php echo $view['bbcode']->filter((string) $elementContent, 'default') ?></p>
                             </div>
                             <div class="comments">
-                                <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
+                                <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'].'#'.$boomieCount ?>" data-num-posts="2" data-width="648"></div>
                             </div>
                         </div>
                         <span class="tab"><a href=""><span>TAB</span></a></span>
                     </li>
-                <?php endforeach; ?>
+                <?php
+                $boomieCount--;
+                endforeach;
+                ?>
             </ul>
             <div class="boom-tags">
                 <p>Tags:

@@ -60,6 +60,16 @@ class UserRepository extends EntityRepository {
         $query->setParameters(array(Boom::STATUS_PUBLIC));
         $query->setFirstResult(0);
         $query->setMaxResults($number);
+        $query->useResultCache(
+                true, 120, implode(
+                        '_', array(
+                    'front_user_collaborators_widget',
+                    Boom::STATUS_PUBLIC,
+                    $number
+                        )
+                )
+        );
+
         $result = $query->execute();
 
         return $result;
@@ -92,7 +102,16 @@ class UserRepository extends EntityRepository {
         $cb2->setParameter('user_id', $user['id']);
 
         $query = $cb2->getQuery();
-        $query->useResultCache(true, 120, 'front_user_activities_cache_' . $user['id'] . '_' . $limit);
+        $query->useResultCache(
+                true, 120, implode(
+                        '_', array(
+                    'front_user_activities_cache',
+                    $user['id'],
+                    $offset,
+                    $limit
+                        )
+                )
+        );
         $result = $query->getResult();
         return $result;
     }
