@@ -2877,6 +2877,7 @@ span.arrow {
 }
 
 .boom-clean {
+  display: block;
   width: 290px;
   height: 375px;
   background: #313131;
