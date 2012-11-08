@@ -56,7 +56,7 @@ class ListGroup extends DomainObject {
     protected $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group", cascade={"all"}, orphanRemoval=true )
+     * @ORM\OneToMany(targetEntity="ListElement", mappedBy="list_group", cascade={"all"}, orphanRemoval=true,fetch="EAGER" )
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $list_elements;
