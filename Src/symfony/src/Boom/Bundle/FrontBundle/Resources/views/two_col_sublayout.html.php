@@ -16,7 +16,7 @@
     </div>
     <?php echo $view->render('BoomFrontBundle:Widget:facebook.html.php'); ?>
     <?php echo $view->render('BoomFrontBundle:Widget:twitter.html.php'); ?>
-    <?php echo $view['actions']->render('BoomFrontBundle:Widget:collaborators'); ?>
+    <?php echo $view->render('BoomFrontBundle:Widget:collaborators.html.php'); ?>
     <?php
     $widgets = $view['boom_front']->getWidgetBlock('lower_sidebar');
     foreach ($widgets as $widget) {
