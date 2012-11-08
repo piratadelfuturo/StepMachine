@@ -13,21 +13,23 @@
             removeElement(this);
             return false;
         })
+        console.log(elements);
         elements.sortable({
             axis: "y",
             handle: ".handle",
             items: "> fieldset",
             update: function( event, ui ) {
                 var position = 1;
-                $(this)
+                $(elements)
                 .children('fieldset')
                 .each(function(){
-                    $(this)
-                    .find('input.boomie-position-input').first()
-                    .val(position);
+                    var pos = $(this)
+                    .find('input[id$=_position]').eq(0);
+                    console.log(pos);
+                    pos.val(position);
 
-                    $(this).find('> label > strong').first()
-                    .text("B"+position)
+                    $(this).find('> h3 > span').first()
+                    .text(position)
                     position++
                 });
             }
