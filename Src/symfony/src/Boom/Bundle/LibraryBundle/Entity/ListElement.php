@@ -22,8 +22,8 @@ class ListElement extends DomainObject{
 
 
     /**
-     * @Gedmo\SortablePosition
      * @ORM\Column(type="integer")
+     * @Gedmo\SortablePosition
      */
     protected $position;
 
@@ -55,7 +55,7 @@ class ListElement extends DomainObject{
     protected $boom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_elements")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="list_elements", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     protected $category;

@@ -9,7 +9,11 @@
     if(!isset($list) || ($list === null || empty($list))){
         $list = array();
     }
-    foreach ($list as $element):
+    $sortedList = array();
+    foreach ($list as $element){
+        $sortedList[$element['position']] = $element;
+    }
+    foreach ($sortedList as $element):
         $position++;
         $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'],680,382) : 'http://placekitten.com/g/680/382'?>
     <div class="slide <?php echo $position == 1 ? 'active' : '' ?> cf">
