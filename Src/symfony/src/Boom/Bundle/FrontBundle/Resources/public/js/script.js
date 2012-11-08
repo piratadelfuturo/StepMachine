@@ -210,7 +210,7 @@
             return false;
         });
 
-        //Arrow Movement
+        //Content Selector
         $.contentSelector = function( activeClick, index, activeContent ){
 
           var pos = activeClick.position(),
@@ -220,7 +220,7 @@
           activeClick.siblings('span.arrow').css('left', sum);
           activeClick.toggleClass('on').siblings('a').toggleClass('on');
           activeContent.fadeOut(300, function() {
-              $(this).toggleClass('on').siblings().toggleClass('on').fadeIn(300);
+              $(this).toggleClass('on').siblings('div').toggleClass('on').fadeIn(300);
           });
 
           return false;
@@ -238,7 +238,7 @@
             if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
               var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
             } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
-              var activeContent = $(this).parents('#usr-booms').find('div.on');
+              var activeContent = $(this).parents('#usr-booms').find('div.big-container').children('on');
             }
 
             return $.contentSelector( activeClick, index, activeContent );

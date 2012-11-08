@@ -75,7 +75,7 @@ endif;
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($replyMessage == true): ?>
-                    <div class="boom-clean on">
+                    <div class="boom-clean">
                         <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reply', array('slug' => $entity['slug'])) ?>" target="_blank" class="editalo">¡Edítalo!</a>
                     </div>
