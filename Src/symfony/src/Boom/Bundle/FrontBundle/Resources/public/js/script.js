@@ -238,7 +238,7 @@
             if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
               var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
             } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
-              var activeContent = $(this).parents('#usr-booms').find('div.big-container').children('on');
+              var activeContent = $(this).parents('#usr-booms').find('div.big-container .on');
             }
 
             return $.contentSelector( activeClick, index, activeContent );
