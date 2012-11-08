@@ -35,6 +35,10 @@ BoomBackBundle_dashboard:
     pattern:  /
     defaults: { _controller: BoomBackBundle:Default:dashboard }
 
+BoomBackBundle_default_clearcache:
+    pattern:  /clear_cache
+    defaults: { _controller: BoomBackBundle:Default:clearCache}
+
 BoomBackBundle_list:
     resource: "@BoomBackBundle/Resources/config/routing/list.yml"
     prefix: /list
