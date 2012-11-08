@@ -13,7 +13,7 @@ if ($view['security']->isGranted('ROLE_USER') == true && $entity['user']['id'] =
 endif;
 ?>
 
-<div id="usr-booms">
+<div id="usr-booms" class="hook">
     <div class="shade">shade</div>
     <div class="botones">
         <a href="#" class="on" id="tendencia">Tendencias</a>

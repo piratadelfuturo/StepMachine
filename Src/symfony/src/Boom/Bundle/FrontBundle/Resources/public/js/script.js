@@ -211,19 +211,20 @@
         });
 
         //usr-booms selector
-        var onSelector = $('#usr-booms .botones'),
+        /*var onSelector = $('#usr-booms .botones'),
         arrow = onSelector.children('span.arrow');
 
         onSelector.children('a').click(function() {
 
             var pos = $(this).position(),
-            wd = $(this).innerWidth() / 2,
-            sum = parseInt(pos.left + wd - 9),
-            onCont = onSelector.parents('#usr-booms').find('div.dyna-content.on');
-            if($(this).hasClass('on')){
+                wd = $(this).innerWidth() / 2,
+                sum = parseInt(pos.left + wd - 9),
+                onCont = onSelector.parents('#usr-booms').find('div.dyna-content.on');
+
+            if( $(this).hasClass('on') ){
                 arrow.css('left', sum);
                 return false;
-            }else{
+            } else {
                 $(this).toggleClass('on');
                 $(this).siblings('a').toggleClass('on');
                 onCont.fadeOut(300, function() {
@@ -234,7 +235,44 @@
 
             return false;
 
+        });*/
+
+        //Arrow Movement
+        $.contentSelector = function( activeClick, index, activeContent ){
+
+          var pos = activeClick.position(),
+              wd = activeClick.innerWidth() / 2,
+              sum = parseInt( pos.left + wd - 9 );
+
+          activeClick.siblings('span.arrow').css('left', sum);
+          activeClick.toggleClass('on').siblings('a').toggleClass('on');
+          activeContent.fadeOut(300, function() {
+              $(this).toggleClass('on').siblings().toggleClass('on').fadeIn(300);
+          });
+
+          return false;
+
+        }
+
+        $('div.botones a').click( function(){
+
+          if( $(this).hasClass('on') ){
+            return false;
+          } else {
+            var index = $(this).index(),
+                activeClick = $(this);
+
+            if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
+              var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
+            } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
+              var activeContent = $(this).parents('#usr-booms').find('div.on');
+            }
+
+            return $.contentSelector( activeClick, index, activeContent );
+          }
+
         });
+
 
         //DRAGnDROP boomies
         $("#front_boom_elements.sort-elements").dragsort({
