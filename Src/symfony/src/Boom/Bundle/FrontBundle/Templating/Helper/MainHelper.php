@@ -23,6 +23,17 @@ class MainHelper extends Helper {
         return $repo->findFeaturedCategories();
     }
 
+    public function getFeaturedBooms() {
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $featured = $repo->findFeaturedBooms(
+                array('boom.date_published' => 'DESC'), 7, 0, array(
+            'status' => Boom::STATUS_PUBLIC
+                )
+        );
+        return $featured;
+    }
+
     public function getUserBoomReply(User $user, Boom $boom) {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
