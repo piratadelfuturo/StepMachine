@@ -30,8 +30,8 @@
                 'new'       : "<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_new') ?>",
                 'create'    : "<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_create') ?>",
                 'edit'      : "<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_edit', array('id' => '__id__')) ?>",
-                'update'    : "<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_update', array('id' => '__id__')) ?>"
-
+                'update'    : "<?php echo $view['router']->generate('BoomFrontBundle_gallery_ajax_update', array('id' => '__id__')) ?>",
+                'iframe'    : window.frameElement
             };
             domready(function(){
                 if(window.parent.parent.tinymce){
@@ -39,7 +39,7 @@
                     listen('click',window,function(){
                         if(window.tinymce){
                             tinymce.execCommand('mceSelectNode', false,window.frameElement);
-                            tinymce.execCommand('boomGallery',false,urlObject,window.frameElement);
+                            tinymce.execCommand('boomGallery',false,urlObject);
                         }
                     });
                 }
