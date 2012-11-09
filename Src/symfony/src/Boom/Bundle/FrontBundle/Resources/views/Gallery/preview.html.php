@@ -39,7 +39,7 @@
                     listen('click',window,function(){
                         if(window.tinymce){
                             tinymce.execCommand('mceSelectNode', false,window.frameElement);
-                            tinymce.execCommand('boomGallery',false,urlObject);
+                            tinymce.execCommand('boomGallery',false,urlObject,window.frameElement);
                         }
                     });
                 }

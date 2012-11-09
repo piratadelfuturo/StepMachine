@@ -118,7 +118,7 @@
             });
 
 
-            ed.addCommand('boomGallery', function(flag,image_url) {
+            ed.addCommand('boomGallery', function(flag,image_url,frameElement) {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
                 node = ed.selection.getNode(),
@@ -130,6 +130,9 @@
                 });
                 formUpload.append(inputUpload);
                 dialog.append(formUpload);
+                if(frameElement){
+                    node = frameElement;
+                }
                 formRoute['form'] = {};
                 formRoute['form']['name'] = image_url['new'];
                 formRoute['save'] = {};
@@ -137,7 +140,6 @@
                 if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
                     formRoute['form']['name'] = image_url['edit'].replace('__id__',$(node).attr('insert-id'));
                     formRoute['save']['name'] = image_url['update'].replace('__id__',$(node).attr('insert-id'));
-                    ed.dom.remove(node);
                 }
                 formRoute['image'] = image_url['image']+'?'+$.param(
                 {
@@ -171,7 +173,7 @@
                     form = dialog.find('form',0);
                     var buttons= {
                         'Agregar Imagen' : function(){
-                            formUpload.find('input[type=file]',0).click();
+                            inputUpload.click();
                         },
                         'Guardar': function(){
                             $.post(
@@ -179,6 +181,7 @@
                             $(form).serialize(),
                             function(data){
                                 var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
+                                ed.dom.remove(node);
                                 ed.execCommand('mceInsertContent',false,html);
                                 dialog.dialog( "close" );
                             }
