@@ -45,7 +45,7 @@ class ProfileController extends Controller {
         $form = $this->createForm(new UserType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-        if($entity['profileimage'] !== null){
+        if ($entity['profileimage'] !== null) {
             $entity['imageoption'] = User::IMAGE_PATH;
         }
         if ($form->isValid()) {
@@ -64,22 +64,24 @@ class ProfileController extends Controller {
         );
     }
 
-    public function favoritesAction($page){
+    public function favoritesAction($page) {
         $limit = 20;
         $em = $this->getDoctrine()->getManager();
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
         $sessionToken = $this->get('security.context')->getToken();
         $entity = $sessionToken->getUser();
 
-        $list = $boomRepo->findFavoriteBoomsByUser(
-                $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
-        );
+        /* $list = $boomRepo->findFavoriteBoomsByUser(
+          $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
+          ); */
+        $list = $entity['favorites']->slice($limit * ($page - 1),$limit * $page);
 
-        $total = $boomRepo->totalFavoriteBoomsByUser(
-                $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
-        );
+        /* $total = $boomRepo->totalFavoriteBoomsByUser(
+          $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
+          ); */
+        $total-> $entity['favorites']->count();
 
-       return $this->render('BoomFrontBundle:List:booms.html.php', array(
+        return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
                     'page' => $page,
                     'list' => $list,
