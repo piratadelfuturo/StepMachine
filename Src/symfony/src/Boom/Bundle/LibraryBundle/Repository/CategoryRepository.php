@@ -9,7 +9,7 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class CategoryRepository extends EntityRepository {
 
-    
+
     /**
      * @param array $get
      * @param bool $flag
@@ -42,9 +42,9 @@ class CategoryRepository extends EntityRepository {
                 ->select(array('a.slug', 'a.name', 'a.position'))
                 ->select(array('a'))
                 ->orderBy('a.position','ASC')
-                ->where('a.featured = 1')
+                ->where('a.featured',true)
                 ->getQuery();
-        //$query->useResultCache(true,600,'boom_category_featured');
+        $query->useResultCache(true,120);
         $result = $query->setHydrationMode(Query::HYDRATE_SCALAR)
                 ->execute();
 
