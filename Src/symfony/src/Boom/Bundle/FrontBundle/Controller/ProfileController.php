@@ -64,6 +64,30 @@ class ProfileController extends Controller {
         );
     }
 
+    public function favoritesAction($page){
+        $limit = 20;
+        $em = $this->getDoctrine()->getManager();
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $sessionToken = $this->get('security.context')->getToken();
+        $entity = $sessionToken->getUser();
+
+        $list = $boomRepo->findFavoriteBoomsByUser(
+                $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
+        );
+
+        $total = $boomRepo->totalFavoriteBoomsByUser(
+                $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
+        );
+
+       return $this->render('BoomFrontBundle:List:booms.html.php', array(
+                    'total' => $total,
+                    'page' => $page,
+                    'list' => $list,
+                    'limit' => $limit,
+                    'page_title' => 'favoritos'
+                ));
+    }
+
     public function recentAction($page) {
 
     }

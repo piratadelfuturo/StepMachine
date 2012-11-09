@@ -130,34 +130,6 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                                       <li><p><a>4</a> modificaciones</p></li>
                                     </ul>
                                 </li>
-                                <li class="boom-li">
-                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
-                                    <div class="boom-info">
-                                        <span class="sm-flag sexo">Sexo</span>
-                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
-                                        <a href="#" class="boom-moar">Leer Boom</a>
-                                    </div>
-                                    <ul>
-                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
-                                      <li><p><span>420</span> veces visto</p></li>
-                                      <li><p><span>42</span> comentarios</p></li>
-                                      <li><p><a>4</a> modificaciones</p></li>
-                                    </ul>
-                                </li>
-                                <li class="boom-li">
-                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
-                                    <div class="boom-info">
-                                        <span class="sm-flag sexo">Sexo</span>
-                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
-                                        <a href="#" class="boom-moar">Leer Boom</a>
-                                    </div>
-                                    <ul>
-                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
-                                      <li><p><span>420</span> veces visto</p></li>
-                                      <li><p><span>42</span> comentarios</p></li>
-                                      <li><p><a>4</a> modificaciones</p></li>
-                                    </ul>
-                                </li>
                             <?php endforeach; ?>
                         </ul>
                         <div class="ver-mas-block">
@@ -205,7 +177,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             <?php endforeach; ?>
                         </ul>
                         <div class="ver-mas-block">
-                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_recommend') ?> ">Ver Todos</a>
+                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_favorites') ?> ">Ver Todos</a>
                         </div>
                         <?php else: ?>
                         <div class="no-content">
