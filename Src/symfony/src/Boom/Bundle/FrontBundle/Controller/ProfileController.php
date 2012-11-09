@@ -79,7 +79,7 @@ class ProfileController extends Controller {
         /* $total = $boomRepo->totalFavoriteBoomsByUser(
           $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
           ); */
-        $total-> $entity['favorites']->count();
+        $total = $entity['favorites']->count();
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(
                     'total' => $total,
