@@ -10,7 +10,7 @@ if(count($pagination['segment_pages']) > 0):
 <div class="pags">
     <ul class="paginador">
         <?php
-        if ($page !== 0 && !($page > 0)) {
+        if ($page !== 0 && $page > 1) {
             $prevParams = $route_params;
             $prevParams['page'] = $page - 1;
             $prevRoute = $view['router']->generate($route_name, $prevParams);
