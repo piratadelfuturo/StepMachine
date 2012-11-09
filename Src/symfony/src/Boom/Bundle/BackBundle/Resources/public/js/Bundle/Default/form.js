@@ -3,33 +3,39 @@
 
     $(document).ready(function(){
 
-        var removeElement = function(button){
-            $(button).parent().parent().remove();
+        var renumberElements = function(root){
+                var position = 1;
+                $(root)
+                .children('fieldset')
+                .each(function(){
+                    var pos = $(this)
+                    .find('input[id$=_position]').eq(0);
+                    pos.val(position);
+
+                    $(this).find('> h3 > span').eq(0)
+                    .text(position)
+                    position++
+                });
+
         }
 
         var elements = $( "#boom_bundle_backbundle_listgrouptype_list_elements",document );
-        elements.on("click",".widget .handle .remove",function(e){
-            e.preventDefault();
-            removeElement(this);
-            return false;
+        elements.children().each(function(){
+            var _this = $(this);
+            _this.on("click",".widget .handle .remove",function(e){
+                e.preventDefault();
+                _this.remove();
+                renumberElements(_this);
+                return false;
+            })
         })
+
         elements.sortable({
             axis: "y",
             handle: ".handle",
             items: "> fieldset",
             update: function( event, ui ) {
-                var position = 1;
-                $(this)
-                .children('fieldset')
-                .each(function(){
-                    $(this)
-                    .find('input.boomie-position-input').first()
-                    .val(position);
-
-                    $(this).find('> label > strong').first()
-                    .text("B"+position)
-                    position++
-                });
+                renumberElements(elements)
             }
         })
         .disableSelection()
@@ -120,7 +126,7 @@
             var iImageId    = container.find('input[id$="image_id"]',0).val(data.image_id||'');
             var iImageFile  = container.find('input[id$="image_file"]',0).val('');
             var iImageImg   = container.find('img[id$="image_img"]',0).attr('src',data.image_path);
-            var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length);
+            var iPosition   = container.find('input[id$="position"]',0).val(sortable.children().length+1);
 
             $(iImageFile).boomAjaxUpload({
                 url: Routing.generate(

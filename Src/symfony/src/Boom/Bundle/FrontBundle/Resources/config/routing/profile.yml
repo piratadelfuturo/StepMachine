@@ -17,27 +17,32 @@ BoomFrontBundle_profile_recent:
     defaults: { _controller: "BoomFrontBundle:Profile:recent", page: 1  }
     requirements:
       page: \d+
+      _method: get
 
 BoomFrontBundle_profile_booms:
     pattern:  /mis_booms/{page}
     defaults: { _controller: "BoomFrontBundle:Profile:booms", page: 1  }
     requirements:
       page: \d+
+      _method: get
 
-BoomFrontBundle_profile_recommend:
-    pattern:  /recomendados/{page}
-    defaults: { _controller: "BoomFrontBundle:Profile:recommended", page: 1  }
+BoomFrontBundle_profile_favorites:
+    pattern:  /favoritos/{page}
+    defaults: { _controller: "BoomFrontBundle:Profile:favorites", page: 1  }
     requirements:
       page: \d+
+      _method: get
 
 BoomFrontBundle_profile_following:
     pattern:  /siguiendo/{page}
     defaults: { _controller: "BoomFrontBundle:Profile:following", page: 1 }
     requirements:
       page: \d+
+      _method: get
 
 BoomFrontBundle_profile_followers:
     pattern:  /seguidores/{page}
     defaults: { _controller: "BoomFrontBundle:Profile:followers", page: 1 }
     requirements:
       page: \d+
+      _method: get

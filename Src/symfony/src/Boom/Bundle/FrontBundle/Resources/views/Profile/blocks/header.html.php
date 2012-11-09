@@ -7,7 +7,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
 ?>
 <div id="usr-cnt">
     <a href="#" class="mostrar"><span>Tu Panel</span></a>
-    <div id="usr-box">
+    <div id="usr-box" class="hook">
         <div id="usr-bar">
             <ul id="close-tab">
                 <li>
@@ -24,7 +24,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <?php endif; ?>
                 </li>
                 <li>
-                    <a href="<?php echo '' ?>">Cerrar Sesión</a>
+                    <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
                 </li>
                 <?php if (!empty($activities)): ?>
                     <li>
@@ -58,10 +58,11 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                 <?php endif; ?>
             </ul>
 
-            <ul id="open-tab">
-                <li class="on"><a href="#">Actividad</a><span>.</span></li>
-                <li><a href="#">Favoritos</a><span>.</span></li>
-            </ul>
+            <div id="open-tab" class="botones">
+                <a href="#" class="on">Actividad</a>
+                <a href="#">Favoritos</a>
+                <span class="arrow">.</span>
+            </div>
         </div>
         <div id="usr-roll">
             <div id="usm-pro">
@@ -111,22 +112,22 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
 
             </div>
             <div id="rt-cont">
-                <div id="rt-user-activities">
+                <div id="rt-user-activities" class="on">
                     <?php if (count($activities) > 0): ?>
                         <ul>
                             <?php foreach ($activities as $activity): ?>
                                 <li class="boom-li">
-                                    <img href="#" src="http://placehold.it/160x88" alt="placeholder"/>
+                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
                                     <div class="boom-info">
-                                        <span class="sm-flag sexo">sexo</span>
-                                        <p class="boom-ti">Lorem ipsum dolor blabla bla bla</p>
+                                        <span class="sm-flag sexo">Sexo</span>
+                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
                                         <a href="#" class="boom-moar">Leer Boom</a>
                                     </div>
-                                    <ul class="boom-pub">
-                                        <li class="pub-date">Publicado el<a href="#"> 20/04/2012</a></li>
-                                        <li class="seen"> - <span>420</span> veces visto</li>
-                                        <li class="comments"> - <a href="#"><span>10</span> comments</a></li>
-                                        <li class="mods"> - <a href="#"><span>3</span> modificaciones</a></li>
+                                    <ul>
+                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
+                                      <li><p><span>420</span> veces visto</p></li>
+                                      <li><p><span>42</span> comentarios</p></li>
+                                      <li><p><a>4</a> modificaciones</p></li>
                                     </ul>
                                 </li>
                             <?php endforeach; ?>
@@ -134,13 +135,22 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <div class="ver-mas-block">
                             <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver Todos</a>
                         </div>
+                    <?php else: ?>
+                    <div class="no-content">
+                      <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
+                      <p>Es hora de darle vida a tu perfil:</p>
+                      <p><a href=""><strong>Crea tus propios booms</strong></a></p>
+                      <p><a href=""><strong>Modifica nuestros destacados</strong></a></p>
+                      <p><a href=""><strong>Invita a tus amigos</strong></a> y comparte tu opinión.</p>
+                      <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
+                    </div>
                     <?php endif; ?>
                 </div>
                 <div id="rt-user-recommended" style="display:none">
                     <?php if ($user['favorites']->count() > 0): ?>
                         <ul>
                             <?php
-                            foreach ($user['favorites']->slice(0, 7) as $element):
+                            foreach ($user['favorites']->slice(0, 3) as $element):
                                 if (isset($element['image']['path'])):
                                     $elementImage = $view['boom_image']->getBoomImageUrl($element['image']['path'], 158, 90);
                                 else:
@@ -167,7 +177,12 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                             <?php endforeach; ?>
                         </ul>
                         <div class="ver-mas-block">
-                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_recommend') ?> ">Ver Todos</a>
+                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_favorites') ?> ">Ver Todos</a>
+                        </div>
+                        <?php else: ?>
+                        <div class="no-content">
+                          <p><strong>Parece que aun no tienes favoritos</strong></p>
+                          <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
                 </div

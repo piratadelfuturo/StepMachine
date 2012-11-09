@@ -16,7 +16,7 @@ class BoomelementRank extends DomainObject{
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="booomelementranks")
+     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="booomelementranks", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="boom_id", referencedColumnName="id", nullable=false)
      * @Gedmo\SortableGroup
      */
@@ -24,14 +24,14 @@ class BoomelementRank extends DomainObject{
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Boomelement", inversedBy="boomelementranks")
+     * @ORM\ManyToOne(targetEntity="Boomelement", inversedBy="boomelementranks", fetch="EAGER")
      * @ORM\JoinColumn(name="boomelement_id", referencedColumnName="id", nullable=false)
      */
     protected $boomelement;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="boomelementranks")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="boomelementranks", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * @Gedmo\SortableGroup
      */

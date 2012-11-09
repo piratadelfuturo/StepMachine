@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Boom\Bundle\LibraryBundle\Entity\Image;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\User;
 
 class ProfileController extends Controller {
@@ -45,7 +45,7 @@ class ProfileController extends Controller {
         $form = $this->createForm(new UserType(), $entity);
         $request = $this->getRequest();
         $form->bind($request);
-        if($entity['profileimage'] !== null){
+        if ($entity['profileimage'] !== null) {
             $entity['imageoption'] = User::IMAGE_PATH;
         }
         if ($form->isValid()) {
@@ -62,6 +62,35 @@ class ProfileController extends Controller {
                     'entity' => $entity
                         )
         );
+    }
+
+    public function favoritesAction($page) {
+        $limit = 20;
+        $em = $this->getDoctrine()->getManager();
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $sessionToken = $this->get('security.context')->getToken();
+        $entity = $sessionToken->getUser();
+
+        /* $list = $boomRepo->findFavoriteBoomsByUser(
+          $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
+          ); */
+        $list = $entity['favorites']->slice($limit * ($page - 1),$limit * $page);
+        if(count($list) <= 0){
+            throw $this->createNotFoundException('Página no existente');
+        }
+
+        /* $total = $boomRepo->totalFavoriteBoomsByUser(
+          $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
+          ); */
+        $total = $entity['favorites']->count();
+
+        return $this->render('BoomFrontBundle:List:booms.html.php', array(
+                    'total' => $total,
+                    'page' => $page,
+                    'list' => $list,
+                    'limit' => $limit,
+                    'page_title' => 'favoritos'
+                ));
     }
 
     public function recentAction($page) {

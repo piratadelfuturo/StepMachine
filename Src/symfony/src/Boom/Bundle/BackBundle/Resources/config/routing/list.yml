@@ -19,24 +19,25 @@ BoomBackBundle_list_preview:
     options:
         expose: true
 
-BoomBackBundle_list_create:
-    pattern:  /new/{block}/{name}
-    defaults: { _controller: "BoomBackBundle:List:create" }
-    requirements: { _method: post }
-
 BoomBackBundle_list_new:
     pattern:  /new/{block}/{name}
     defaults: { _controller: "BoomBackBundle:List:new" }
     requirements: { _method: get }
 
+BoomBackBundle_list_create:
+    pattern:  /new/{block}/{name}
+    defaults: { _controller: "BoomBackBundle:List:create" }
+    requirements: { _method: post }
+
 BoomBackBundle_list_edit:
     pattern:  /{block}/{name}/edit
     defaults: { _controller: "BoomBackBundle:List:edit" }
+    requirements: { _method: get }
     options:
         expose: true
 
 BoomBackBundle_list_update:
-    pattern:  /{block}/{name}/update
+    pattern:  /{block}/{name}/edit
     defaults: { _controller: "BoomBackBundle:List:update" }
     requirements: { _method: post }
     options:

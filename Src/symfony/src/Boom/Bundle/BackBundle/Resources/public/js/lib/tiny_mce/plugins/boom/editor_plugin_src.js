@@ -68,10 +68,10 @@
                 inputImageUpload.click();
             });
 
-            ed.addCommand('boomGallery', function() {
+            ed.addCommand('boomGallery', function(flag,params) {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
-                node = ed.selection.getNode(),
+                node = params.iframe || ed.selection.getNode(),
                 formUpload = $(document.createElement('form')).attr('method','post').hide(),
                 inputUpload = $(document.createElement('input')).attr({
                     'name':'files',
@@ -101,7 +101,6 @@
                         'id' : $(node).attr('insert-id'),
                         '_format': 'json'
                     };
-                    ed.dom.remove(node);
                 }
 
                 dialog.dialog({
@@ -128,6 +127,11 @@
                         dialog.append(data);
                         form = dialog.find('form',0);
                         var buttons= {
+                            'Borrar': function(){
+                                if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
+                                    ed.dom.remove(node);
+                                }
+                            },
                             'Agregar Imagen' : function(){
                                 formUpload.find('input[type=file]',0).click();
                             },
@@ -141,9 +145,13 @@
                                         '" src="' +
                                         Routing.generate('BoomFrontBundle_gallery_iframe_preview',{
                                             'id' : data.id
-                                            })+
+                                        })+
                                         '" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>';
-                                        ed.execCommand('mceInsertContent',false,html);
+                                        if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
+                                            node.contentDocument.location.reload(true);
+                                        }else{
+                                            ed.selection.setContent(html);
+                                        }
                                         dialog.dialog( "close" );
                                     }
                                     );

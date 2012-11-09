@@ -15,7 +15,7 @@
         _galleryPreviewUrl: null,
         init : function(ed, url) {
             var t = this;
-            t['_galleryPreviewUrl'] = $(ed.id).attr('gallery-preview');
+            t['_galleryPreviewUrl'] = $(ed.getElement()).attr('gallery-preview');
             ed.onBeforeSetContent.add(function(ed, o) {
                 o.content = t['_bbcode2html'](o.content);
             });
@@ -54,10 +54,10 @@
                             var iframe = wrap.find('iframe',0);
                             var clean = $(document.createElement('div')).append(iframe);
                             var allowed = [
-                                'http://www.youtube.com',
-                                'https://www.youtube.com',
-                                'http://player.vimeo.com',
-                                'https://player.vimeo.com'
+                            'http://www.youtube.com',
+                            'https://www.youtube.com',
+                            'http://player.vimeo.com',
+                            'https://player.vimeo.com'
                             ],i=0;
                             for(i=0;i<=allowed.length-1;i++){
                                 if(clean.html() !== '' && iframe.attr('src').indexOf(allowed[i]) == 0){
@@ -118,10 +118,10 @@
             });
 
 
-            ed.addCommand('boomGallery', function(flag,image_url) {
+            ed.addCommand('boomGallery', function(flag,image_url,frameElement) {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
-                node = ed.selection.getNode(),
+                node = image_url.iframe||ed.selection.getNode(),
                 formUpload = $(document.createElement('form')).attr('method','post').hide(),
                 inputUpload = $(document.createElement('input')).attr({
                     'name':'files',
@@ -137,7 +137,6 @@
                 if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
                     formRoute['form']['name'] = image_url['edit'].replace('__id__',$(node).attr('insert-id'));
                     formRoute['save']['name'] = image_url['update'].replace('__id__',$(node).attr('insert-id'));
-                    ed.dom.remove(node);
                 }
                 formRoute['image'] = image_url['image']+'?'+$.param(
                 {
@@ -165,55 +164,64 @@
                 });
                 dialog.dialog('open');
                 $.get(
-                formRoute['form']['name'],
-                function(data){
-                    dialog.append(data);
-                    form = dialog.find('form',0);
-                    var buttons= {
-                        'Agregar Imagen' : function(){
-                            formUpload.find('input[type=file]',0).click();
-                        },
-                        'Guardar': function(){
-                            $.post(
-                            formRoute['save']['name'],
-                            $(form).serialize(),
-                            function(data){
-                                var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
-                                ed.execCommand('mceInsertContent',false,html);
+                    formRoute['form']['name'],
+                    function(data){
+                        dialog.append(data);
+                        form = dialog.find('form',0);
+                        var buttons= {
+                            'Borrar': function(){
+                                if($(node).hasClass('gallery-preview') && $(node).attr('insert-id')){
+                                    ed.dom.remove(node);
+                                }
+                            },
+                            'Agregar Imagen' : function(){
+                                inputUpload.click();
+                            },
+                            'Guardar': function(){
+                                $.post(
+                                    formRoute['save']['name'],
+                                    $(form).serialize(),
+                                    function(data){
+                                        var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
+                                        if(image_url.iframe){
+                                            image_url.iframe.contentDocument.location.reload(true);
+                                        }else{
+                                            ed.selection.setContent(html);
+                                        }
+                                        dialog.dialog( "close" );
+                                    }
+                                    );
+                            },
+                            'Cancelar': function() {
                                 dialog.dialog( "close" );
                             }
-                        );
-                        },
-                        'Cancelar': function() {
-                            dialog.dialog( "close" );
-                        }
-                    },list = form.find('ul',0);
-                    dialog.dialog( "option","buttons",buttons);
-                    list.sortable({
-                        tolerance: 'pointer',
-                        stop: function(event, ui){
-                            var elements = $(ui.item).parent().find('input[type=hidden][id$=_position]');
-                            elements.each(function(i){
-                                $(this).val(i);
-                            });
-                        }
-                    }).disableSelection();
-
-                    inputUpload.boomAjaxUpload({
-                        url: formRoute['image'],
-                        done: function(e,data){
-                            if(data.result.id){
-                                var number = list.children().length;
-                                var prototype = list.attr('data-prototype');
-                                var transferElement = $(prototype.replace(/__name__/g, number));
-                                transferElement.find('img',0).attr('src',data.result.path);
-                                transferElement.find('input[type=hidden][id$=_image]',0).val(data.result.id);
-                                transferElement.find('input[type=hidden][id$=_position]',0).val(number);
-                                list.append(transferElement);
+                        },list = form.find('ul',0);
+                        dialog.dialog( "option","buttons",buttons);
+                        list.sortable({
+                            tolerance: 'pointer',
+                            stop: function(event, ui){
+                                var elements = $(ui.item).parent().find('input[type=hidden][id$=_position]');
+                                elements.each(function(i){
+                                    $(this).val(i);
+                                });
                             }
-                        }
+                        }).disableSelection();
+
+                        inputUpload.boomAjaxUpload({
+                            url: formRoute['image'],
+                            done: function(e,data){
+                                if(data.result.id){
+                                    var number = list.children().length;
+                                    var prototype = list.attr('data-prototype');
+                                    var transferElement = $(prototype.replace(/__name__/g, number));
+                                    transferElement.find('img',0).attr('src',data.result.path);
+                                    transferElement.find('input[type=hidden][id$=_image]',0).val(data.result.id);
+                                    transferElement.find('input[type=hidden][id$=_position]',0).val(number);
+                                    list.append(transferElement);
+                                }
+                            }
+                        });
                     });
-                });
             });
 
             ed.addCommand('boomLink', function() {
@@ -230,25 +238,25 @@
                 linkForm.append(linkLabel,linkText);
                 node = $(ed.selection.getNode());
                 buttons = [
-                    {
-                        text: 'Insertar',
-                        click: function(){
-                            var value = linkText.val();
-                            if(value.indexOf(window.location.protocol+'//'+window.location.hostname) == 0){
-                                ed.focus();
-                                ed.execCommand('mceInsertLink',false,value);
-                                dialog.dialog( "close" )
-                                return true;
-                            }
-                        }
-                    },
-                    {
-                        text: 'Cerrar',
-                        click: function() {
+                {
+                    text: 'Insertar',
+                    click: function(){
+                        var value = linkText.val();
+                        if(value.indexOf(window.location.protocol+'//'+window.location.hostname) == 0){
+                            ed.focus();
+                            ed.execCommand('mceInsertLink',false,value);
                             dialog.dialog( "close" )
                             return true;
                         }
                     }
+                },
+                {
+                    text: 'Cerrar',
+                    click: function() {
+                        dialog.dialog( "close" )
+                        return true;
+                    }
+                }
                 ];
 
                 if(node.attr('href')){

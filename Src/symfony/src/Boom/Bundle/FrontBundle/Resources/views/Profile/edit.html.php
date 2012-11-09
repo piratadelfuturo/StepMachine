@@ -58,31 +58,34 @@
                     </div>
                 </div>
             </div>
-            <?php
-            echo $view['form']->row(
-                    $form['bio'], array(
-                'attr' => array(
-                    'placeholder' => 'Tu descripción o Bio. No te excedas, a nadie le importa, realmente...'
-                )
-                    )
-            );
-            echo $view['form']->row(
-                    $form['email'], array(
-                'label' => 'E-mail',
-                'attr' => array(
-                    'placeholder' => '@twitter'
-                )
-                    )
-            );
-            echo $view['form']->row(
-                    $form['twitter_username'], array(
-                'label' => 'Conecta con twitter',
-                'attr' => array(
-                    'placeholder' => '@twitter'
-                )
-                    )
-            );
-            ?>
+            <div>
+              <?php
+              echo $view['form']->row(
+                      $form['bio'], array(
+                  'attr' => array(
+                      'placeholder' => 'Tu descripción o Bio. No te excedas, a nadie le importa, realmente...'
+                  )
+                      )
+              );
+              echo $view['form']->row(
+                      $form['email'], array(
+                  'label' => 'E-mail',
+                  'attr' => array(
+                      'placeholder' => '@twitter'
+                  )
+                      )
+              );
+              echo $view['form']->row(
+                      $form['twitter_username'], array(
+                  'label' => 'Conecta con twitter',
+                  'attr' => array(
+                      'placeholder' => '@twitter'
+                  )
+                      )
+              );
+              ?>
+              <a href="/resetting/request" class="chpass">Cambia tu contraseña</a>
+            </div>
         </fieldset>
 
         <fieldset>

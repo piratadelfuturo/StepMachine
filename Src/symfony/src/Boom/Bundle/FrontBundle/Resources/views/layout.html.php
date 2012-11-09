@@ -59,7 +59,8 @@
         if ($view['security']->isGranted('ROLE_USER') == false) {
             echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
         } else {
-            echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
+            //echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
+            echo $view->render('BoomFrontBundle:Profile:blocks/header.html.php');
         }
 
         ?>

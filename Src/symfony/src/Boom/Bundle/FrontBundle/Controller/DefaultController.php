@@ -13,18 +13,18 @@ class DefaultController extends Controller {
         /** @var \Boom\Bundle\LibraryBundle\Repository\BoomRepository $repo */
         $response = new Response();
         /*
-        $response->setMaxAge(600);
-        $response->setSharedMaxAge(600);
-        if ($this->get('security.context')->isGranted('ROLE_USER')) {
-            $response->setPrivate();
-        } else {
-            $response->setPublic();
-        }
+          $response->setMaxAge(600);
+          $response->setSharedMaxAge(600);
+          if ($this->get('security.context')->isGranted('ROLE_USER')) {
+          $response->setPrivate();
+          } else {
+          $response->setPublic();
+          }
 
-        $date = new \DateTime();
-        $date->modify('+600 seconds');
-        $response->setExpires($date);
-        */
+          $date = new \DateTime();
+          $date->modify('+600 seconds');
+          $response->setExpires($date);
+         */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $listRepo = $em->getRepository('BoomLibraryBundle:ListGroup');
@@ -32,12 +32,17 @@ class DefaultController extends Controller {
         $latest = $repo->findBy(
                 array('status' => Boom::STATUS_PUBLIC), array('date_published' => 'DESC'), 7, 0);
 
-        $users = $repo->findUsersBooms();
+        $users = $repo->findUsersBooms(
+                array(
+            'boom.date_published' => 'DESC'
+                )
+                , 7
+                , 0
+                , array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
+        );
 
         $featured = $repo->findFeaturedBooms(
-                array('boom.date_published' => 'DESC'), 7, 0, array(
-            'status' => Boom::STATUS_PUBLIC
-                )
+                array('boom.date_published' => 'DESC'), 7, 0, array(Boom::STATUS_PUBLIC)
         );
 
         $top = $listRepo->findOneBy(

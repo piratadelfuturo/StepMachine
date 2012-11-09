@@ -41,7 +41,7 @@ class Image extends DomainObject {
     protected $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="images" , fetch="LAZY")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="images" , fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      * */
     protected $user;
@@ -64,14 +64,14 @@ class Image extends DomainObject {
     /**
      * Inverse Side
      *
-     * @ORM\ManyToMany(targetEntity="Gallery", mappedBy="images")
+     * @ORM\ManyToMany(targetEntity="Gallery", mappedBy="images", fetch="EXTRA_LAZY")
      */
     protected $galleries;
 
     /*
      * @ORM\OneToMany(targetEntity="GalleryImageRelation", mappedBy="image", cascade={"remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      */
-    //protected $galleryimagerelations;
+    protected $galleryimagerelations;
 
     /**
      * @ORM\Column(type="datetime")

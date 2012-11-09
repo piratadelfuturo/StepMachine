@@ -100,9 +100,10 @@ body {
 
 /*ESTILOS COMPARTIDOS*/
 
-a, #usr-booms .botones a.on, #usr-booms .botones a:hover,
-#tb-rb a span, #usr-bar #close-tab li a, #usr-bar li.on a, .boom-pub span,
-.single-boom .booms .boom-nav a:hover, .author-links li a:hover {
+a, #usr-booms .botones a.on, #usr-booms .botones a:hover, #open-tab a:hover,
+#tb-rb a span, #usr-bar #close-tab li a, #usr-bar li.on a, #open-tab a.on,
+.boom-pub span, .single-boom .booms .boom-nav a:hover, .author-links li a:hover,
+#rt-cont > div ul ul span {
   color: #F87937;
   text-decoration: none;
 }
@@ -128,7 +129,7 @@ a, #usr-booms .botones a.on, #usr-booms .botones a:hover,
   display: block;
 }
 
-#top-bar li, #hd-mn nav, #usr-bar li {
+#top-bar li, #hd-mn nav, #usr-bar li, #open-tab a {
   font: 16px 'Proxima', sans-serif;
 }
 
@@ -669,33 +670,33 @@ h1 a:before {
   width: 15px;
 }
 
-#usr-bar #open-tab {
+#open-tab {
   display: block;
   float: right;
   left: 452px;
   position: absolute;
 }
 
-#usr-bar #close-tab {
+#close-tab {
   display: none;
   float: left;
   z-index: 8;
   margin-left: 10px;
 }
 
-#usr-bar #close-tab li, #usr-bar li a, #usr-opt p a {
+#usr-bar #close-tab li, #usr-bar li a, #usr-opt p a, #open-tab a {
   color: #FFF;
 }
 
-#usr-bar #close-tab li:first-child, #usr-bar li:first-child {
+#usr-bar #close-tab li:first-child, #usr-bar li:first-child, #open-tab a:first-child {
   border-left: none;
 }
 
-#usr-bar ul {
+#usr-bar ul, #open-tab {
   padding-top: 8px;
 }
 
-#usr-bar li {
+#usr-bar li, #open-tab a {
   border-left: 1px solid #939393;
   display: block;
   float: left;
@@ -705,7 +706,8 @@ h1 a:before {
   position: relative;
 }
 
-#usr-bar li:last-child {
+#usr-bar li:last-child,
+#open-tab a + a {
   border-right: 1px solid #939393;
 }
 
@@ -952,6 +954,50 @@ h1 a:before {
   border-width: 0px 1px 0px 0px;
 }
 
+.no-content {
+  display: block;
+  width: 520px;
+  padding: 110px 0;
+  margin: 0 auto;
+  font: 30px 'Proxima', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  color: #383838;
+}
+
+.no-content strong {
+  color: #F27B30;
+}
+
+.no-content, .no-content p:first-child {
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.no-content p:first-child {
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.no-content p:first-child + p {
+  font-size: 25px;
+}
+
+.no-content p:first-child + p + p {
+  font-size: 32px;
+}
+
+.no-content p:first-child + p + p + p {
+  font-size: 24px;
+}
+
+.no-content p:first-child + p + p + p + p {
+  font-size: 17px;
+}
+
+.no-content p:last-child {
+  font-size: 19px;
+}
+
 .boom-li {
   margin: 20px 0;
 }
@@ -977,6 +1023,34 @@ h1 a:before {
   height: 13px;
   float: left;
   width: 80px;
+}
+
+.boom-li ul li {
+  display: inline-block;
+  position: relative;
+  font: lighter 12px 'Helvetica', 'Arial', sans-serif;
+  color: #8D8D8C;
+  margin-left: 15px;
+}
+
+.boom-li ul li:before {
+  content: '-';
+  position: absolute;
+  display: block;
+  left: -10px;
+}
+
+.boom-li ul li:first-child {
+  margin-left: 0;
+}
+
+.boom-li ul li:first-child:before {
+  display: none;
+}
+
+#rt-cont > div .boom-moar {
+  width: auto;
+  padding-right: 15px;
 }
 
 .boom-moar {
@@ -1214,7 +1288,8 @@ h1 a:before {
   width: 310px;
 }
 
-.top-semanal .boom .boom-info date {
+.top-semanal .boom .boom-info date,
+#rt-cont > div date {
   font: 200 12px 'Helvetica';
   color: #8d8d8c;
 }
@@ -2442,7 +2517,7 @@ fieldset.on .accordion_content {
   color: #666666;
 }
 
-#usr-booms .botones span.arrow {
+span.arrow {
   width: 0;
   height: 0;
   border-right: 9px solid transparent;
@@ -2459,6 +2534,10 @@ fieldset.on .accordion_content {
   -moz-transition: left 300ms;
   -o-transition: left 300ms;
   -ms-transition: left 300ms;
+}
+
+#open-tab span.arrow {
+  bottom: -9px;
 }
 
 #usr-booms .botones span.divider {
@@ -2488,6 +2567,7 @@ fieldset.on .accordion_content {
 
 #usr-booms .miboom-cont h3 {
   background: url(../images/tu_dices.png) center 15px no-repeat;
+  margin-bottom: 50px;
 }
 
 .drag-booms {
@@ -2798,8 +2878,9 @@ fieldset.on .accordion_content {
 }
 
 .boom-clean {
+  display: block;
   width: 290px;
-  height: 375px;
+  height: 628px;
   background: #313131;
   font: 31px 'Proxima', sans-serif;
   color: #fff;
@@ -2818,10 +2899,6 @@ fieldset.on .accordion_content {
 .boom-clean p span {
   font-size: 53px;
   line-height: 40px;
-}
-
-.boom-clean p {
-  margin: 120px 0px 0px 0px;
 }
 
 .boom-clean .editalo {
@@ -3489,9 +3566,9 @@ form#boom_gallery ul li {
 }
 
 .author-profile .seguir {
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
+  position: relative;
+  float: right;
+  margin-right: 10px;
 }
 
 .author-profile .btn-fb, .author-profile .btn-tw {
@@ -3640,20 +3717,33 @@ form#boom_gallery ul li {
   border: 1px solid #dfdfdf;
 }
 
+.editar-perfil input,
+.editar-perfil textarea {
+  color: #666;
+}
+
 .editar-perfil fieldset {
   border: none;
   border-bottom: 1px solid #e5e5e5;
   margin: 20px 0px 0px 20px;
 }
 
-.editar-perfil fieldset label, .editar-perfil fieldset h3{
+.editar-perfil fieldset label, .editar-perfil fieldset h3, .chpass{
   width: 100%;
   font: 24px 'Museo500', sans-serif;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  color: #333;
 }
 
-.editar-perfil fieldset p{
+.chpass {
+  color: #333;
+}
+
+.chpass:hover {
+  color: #F87937;
+}
+
+.editar-perfil fieldset p {
   width: 300px;
   float: right;
   text-align: right;
@@ -3663,9 +3753,13 @@ form#boom_gallery ul li {
   margin-right: 170px;
 }
 
-.editar-perfil .user-card{
+.editar-perfil .user-card {
   position:relative;
   overflow:hidden;
+}
+
+.editar-perfil .user-card + div > div {
+  margin-bottom: 15px;
 }
 
 .editar-perfil .user-image-block{

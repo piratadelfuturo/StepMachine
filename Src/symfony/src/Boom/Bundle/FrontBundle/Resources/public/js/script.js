@@ -210,31 +210,42 @@
             return false;
         });
 
-        //usr-booms selector
-        var onSelector = $('#usr-booms .botones'),
-        arrow = onSelector.children('span.arrow');
+        //Content Selector
+        $.contentSelector = function( activeClick, index, activeContent ){
 
-        onSelector.children('a').click(function() {
+          var pos = activeClick.position(),
+              wd = activeClick.innerWidth() / 2,
+              sum = parseInt( pos.left + wd - 9 );
 
-            var pos = $(this).position(),
-            wd = $(this).innerWidth() / 2,
-            sum = parseInt(pos.left + wd - 9),
-            onCont = onSelector.parents('#usr-booms').find('div.dyna-content.on');
-            if($(this).hasClass('on')){
-                arrow.css('left', sum);
-                return false;
-            }else{
-                $(this).toggleClass('on');
-                $(this).siblings('a').toggleClass('on');
-                onCont.fadeOut(300, function() {
-                    $(this).toggleClass('on').siblings().toggleClass('on').fadeIn(300)
-                });
-                arrow.css('left', sum);
+          activeClick.siblings('span.arrow').css('left', sum);
+          activeClick.toggleClass('on').siblings('a').toggleClass('on');
+          activeContent.fadeOut(300, function() {
+              $(this).toggleClass('on').siblings('div').toggleClass('on').fadeIn(300);
+          });
+
+          return false;
+
+        }
+
+        $('div.botones a').click( function(){
+
+          if( $(this).hasClass('on') ){
+            return false;
+          } else {
+            var index = $(this).index(),
+                activeClick = $(this);
+
+            if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
+              var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
+            } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
+              var activeContent = $(this).parents('#usr-booms').find('div.big-container .on');
             }
 
-            return false;
+            return $.contentSelector( activeClick, index, activeContent );
+          }
 
         });
+
 
         //DRAGnDROP boomies
         $("#front_boom_elements.sort-elements").dragsort({

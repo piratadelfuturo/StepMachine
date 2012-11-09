@@ -4,7 +4,6 @@ namespace Boom\Bundle\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
-use Boom\Bundle\LibraryBundle\Entity\Category;
 
 /**
  * Boom controller.
@@ -206,15 +205,10 @@ class ListController extends Controller {
                 )
                 , $limit
                 , $limit * ($page - 1)
-                , array(
-            'status' => Boom::STATUS_PUBLIC
-                )
+                , array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
         );
 
-        $total = $boomRepo->totalUsersBooms(
-                array(
-                    'status' => Boom::STATUS_PUBLIC
-                )
+        $total = $boomRepo->totalUsersBooms(array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
         );
 
         return $this->render('BoomFrontBundle:List:booms.html.php', array(

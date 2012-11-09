@@ -9,7 +9,6 @@ use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class CategoryRepository extends EntityRepository {
 
-    
     /**
      * @param array $get
      * @param bool $flag
@@ -20,7 +19,7 @@ class CategoryRepository extends EntityRepository {
         /**
          * Set to default
          */
-        $return = Utils::processAjaxTable($this,$get,$flag);
+        $return = Utils::processAjaxTable($this, $get, $flag);
 
         return $return;
     }
@@ -37,20 +36,21 @@ class CategoryRepository extends EntityRepository {
         return (int) $aResultTotal[0][1];
     }
 
-    public function findFeaturedCategories(){
-        $query = $this->createQueryBuilder('a')
-                ->select(array('a.slug', 'a.name', 'a.position'))
+    public function findFeaturedCategories() {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->select(array('a.slug', 'a.name', 'a.position'))
                 ->select(array('a'))
-                ->orderBy('a.position','ASC')
-                ->where('a.featured = 1')
-                ->getQuery();
-        //$query->useResultCache(true,600,'boom_category_featured');
+                ->orderBy('a.position', 'ASC')
+                ->where(
+                        $qb->expr()->eq('a.featured', true)
+        );
+        $query = $qb->getQuery();
+        $query->useResultCache(true, 120);
         $result = $query->setHydrationMode(Query::HYDRATE_SCALAR)
                 ->execute();
 
         return $result;
-
     }
-
 
 }

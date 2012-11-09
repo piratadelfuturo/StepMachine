@@ -14,14 +14,14 @@ class GalleryImageRelation extends DomainObject {
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="galleryimagerelations", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="galleryimagerelations", cascade={"persist"}, fetch="EXTRA_LAZY")
      * @Gedmo\SortableGroup
      */
     private $gallery;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Image")
+     * @ORM\ManyToOne(targetEntity="Image", fetch="EAGER")
      */
     private $image;
 

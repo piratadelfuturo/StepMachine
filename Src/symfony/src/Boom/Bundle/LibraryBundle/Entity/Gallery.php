@@ -35,7 +35,7 @@ class Gallery extends DomainObject {
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Image", inversedBy="galleries")
+     * @ORM\ManyToMany(targetEntity="Image", inversedBy="galleries", fetch="EAGER")
      * @ORM\JoinTable(name="galleries_images",
      *      joinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="gallery_id", referencedColumnName="id")}
@@ -44,13 +44,13 @@ class Gallery extends DomainObject {
     protected $images;
 
     /**
-     * @ORM\OneToMany(targetEntity="GalleryImageRelation", mappedBy="gallery", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="GalleryImageRelation", mappedBy="gallery", cascade={"all"}, fetch="EAGER")
      * @ORM\OrderBy({"position" = "ASC"})
      */
     protected $galleryimagerelations;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="galleries")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="galleries", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * */
     protected $user;

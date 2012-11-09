@@ -13,7 +13,7 @@ if ($view['security']->isGranted('ROLE_USER') == true && $entity['user']['id'] =
 endif;
 ?>
 
-<div id="usr-booms">
+<div id="usr-booms" class="hook">
     <div class="shade">shade</div>
     <div class="botones">
         <a href="#" class="on" id="tendencia">Tendencias</a>
@@ -75,7 +75,7 @@ endif;
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($replyMessage == true): ?>
-                    <div class="boom-clean on">
+                    <div class="boom-clean">
                         <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reply', array('slug' => $entity['slug'])) ?>" target="_blank" class="editalo">¡Edítalo!</a>
                     </div>

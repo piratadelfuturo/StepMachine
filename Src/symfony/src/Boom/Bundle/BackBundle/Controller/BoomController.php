@@ -21,6 +21,7 @@ class BoomController extends Controller {
             $entity = new BoomEntity\Boom();
         }
         $entity['featured'] = new \DateTime();
+        $entity['status'] = Boom::STATUS_PUBLIC;
         $em->persist($entity);
         $em->flush();
         $response = new Response(json_encode($entity['featured']->format(\DateTime::RFC2822)));

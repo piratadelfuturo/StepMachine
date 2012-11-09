@@ -1,26 +1,30 @@
-BoomFrontBundle_list_category_recommended:
-    pattern:  /recomendados/{slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:featuredCategory",page: 1 }
-    requirements:
-      page: \d+
-
 BoomFrontBundle_list_recommended:
     pattern:  /recomendados/{page}
     defaults: { _controller: "BoomFrontBundle:List:featured",page: 1 }
     requirements:
       page: \d+
+      _method: get
 
-BoomFrontBundle_list_category_latest:
-    pattern:  /ultimos/{slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:latestCategory",page: 1 }
+BoomFrontBundle_list_category_recommended:
+    pattern:  /recomendados/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:featuredCategory",page: 1 }
     requirements:
       page: \d+
+      _method: get
 
 BoomFrontBundle_list_latest:
     pattern:  /ultimos/{page}
     defaults: { _controller: "BoomFrontBundle:List:latest",page: 1 }
     requirements:
       page: \d+
+      _method: get
+
+BoomFrontBundle_list_category_latest:
+    pattern:  /ultimos/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:latestCategory",page: 1 }
+    requirements:
+      page: \d+
+      _method: get
 
 BoomFrontBundle_list_users:
     pattern:  /usuarios/{page}
@@ -33,25 +37,29 @@ BoomFrontBundle_list_category_users:
     defaults: { _controller: "BoomFrontBundle:List:usersCategory",page: 1 }
     requirements:
       page: \d+
+      _method: get
 
-
-BoomFrontBundle_list_category_collaborator:
-    pattern:  /colaborador/{slug}/{page}
-    defaults: { _controller: "BoomFrontBundle:List:collaboratorCategory",page: 1 }
-    requirements:
-      page: \d+
 
 BoomFrontBundle_list_collaborator:
     pattern:  /colaborador/{page}
     defaults: { _controller: "BoomFrontBundle:List:collaborator",page: 1 }
     requirements:
       page: \d+
+      _method: get
+
+BoomFrontBundle_list_category_collaborator:
+    pattern:  /colaborador/{slug}/{page}
+    defaults: { _controller: "BoomFrontBundle:List:collaboratorCategory",page: 1 }
+    requirements:
+      page: \d+
+      _method: get
 
 BoomFrontBundle_list_tag:
     pattern:  /tag/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:tag",page: 1 }
     requirements:
       page: \d+
+      _method: get
 
 BoomFrontBundle_list_user:
     pattern:  /usuario/{username}/{listname}/{page}
@@ -62,3 +70,4 @@ BoomFrontBundle_list_user:
     requirements:
       listname: creados|modificados
       page: \d+
+      _method: get
