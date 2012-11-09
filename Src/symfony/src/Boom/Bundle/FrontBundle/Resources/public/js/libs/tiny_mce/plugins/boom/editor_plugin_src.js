@@ -178,8 +178,8 @@
                             $(form).serialize(),
                             function(data){
                                 var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
-                                ed.dom.remove(node);
                                 ed.execCommand('mceInsertContent',false,html);
+                                ed.dom.remove(node);
                                 dialog.dialog( "close" );
                             }
                         );
