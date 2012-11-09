@@ -75,6 +75,9 @@ class ProfileController extends Controller {
           $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
           ); */
         $list = $entity['favorites']->slice($limit * ($page - 1),$limit * $page);
+        if(count($list) <= 0){
+            throw $this->createNotFoundException('Página no existente');
+        }
 
         /* $total = $boomRepo->totalFavoriteBoomsByUser(
           $entity, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
