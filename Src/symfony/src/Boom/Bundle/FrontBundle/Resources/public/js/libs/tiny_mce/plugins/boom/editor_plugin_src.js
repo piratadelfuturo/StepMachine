@@ -15,7 +15,7 @@
         _galleryPreviewUrl: null,
         init : function(ed, url) {
             var t = this;
-            t['_galleryPreviewUrl'] = $(ed.id).attr('gallery-preview');
+            t['_galleryPreviewUrl'] = $(ed.getElement()).attr('gallery-preview');
             ed.onBeforeSetContent.add(function(ed, o) {
                 o.content = t['_bbcode2html'](o.content);
             });
