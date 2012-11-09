@@ -182,7 +182,7 @@
                             function(data){
                                 tinymce.execCommand('mceSelectNode', false,node);
                                 var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
-                                ed.selection.setContet(html);
+                                ed.selection.setContent(html);
                                 dialog.dialog( "close" );
                             }
                         );
