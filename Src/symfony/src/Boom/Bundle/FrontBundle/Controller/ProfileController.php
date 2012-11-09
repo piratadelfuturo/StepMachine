@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Boom\Bundle\LibraryBundle\Entity\Image;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Boom\Bundle\LibraryBundle\Entity\User;
 
 class ProfileController extends Controller {
