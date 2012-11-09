@@ -43,7 +43,7 @@ class CategoryRepository extends EntityRepository {
                 ->select(array('a'))
                 ->orderBy('a.position', 'ASC')
                 ->where(
-                        $qb->expr()->where('a.featured', true)
+                        $qb->expr()->eq('a.featured', true)
         );
         $query = $qb->getQuery();
         $query->useResultCache(true, 120);
