@@ -47,7 +47,7 @@ class CategoryRepository extends EntityRepository {
         );
         $query = $qb->getQuery();
         $query->useResultCache(true, 120);
-        $result = $qb->setHydrationMode(Query::HYDRATE_SCALAR)
+        $result = $query->setHydrationMode(Query::HYDRATE_SCALAR)
                 ->execute();
 
         return $result;
