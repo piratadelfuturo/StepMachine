@@ -182,7 +182,11 @@
                             function(data){
                                 tinymce.execCommand('mceSelectNode', false,node);
                                 var html = '<iframe class="gallery-preview" insert-id="'+data.id+'" src="/gal/preview/'+data.id+'" scrolling=\"no\" height=\"405\" width=\"550\" frameborder=\"0\" ></iframe>';
-                                ed.selection.setContent(html);
+                                if(image_url.iframe){
+                                    image_url.iframe.contentDocument.location.reload(true);
+                                }else{
+                                    ed.selection.setContent(html);
+                                }
                                 dialog.dialog( "close" );
                             }
                         );

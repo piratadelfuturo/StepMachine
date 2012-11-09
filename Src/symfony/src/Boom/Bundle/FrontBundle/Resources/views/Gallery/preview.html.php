@@ -2,6 +2,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-Equiv="Cache-Control" Content="no-cache">
+        <meta http-Equiv="Pragma" Content="no-cache">
+        <meta http-Equiv="Expires" Content="0">
         <title></title>
         <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('/bundles/boomfront/css/gal-style.css'); ?>">
         <script type="text/javascript">
