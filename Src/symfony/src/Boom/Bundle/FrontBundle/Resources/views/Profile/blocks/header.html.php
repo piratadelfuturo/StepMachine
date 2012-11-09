@@ -150,7 +150,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <?php if ($user['favorites']->count() > 0): ?>
                         <ul>
                             <?php
-                            foreach ($user['favorites']->slice(0, 7) as $element):
+                            foreach ($user['favorites']->slice(0, 3) as $element):
                                 if (isset($element['image']['path'])):
                                     $elementImage = $view['boom_image']->getBoomImageUrl($element['image']['path'], 158, 90);
                                 else:
