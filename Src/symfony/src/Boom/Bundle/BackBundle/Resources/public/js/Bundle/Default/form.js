@@ -22,12 +22,13 @@
         var elements = $( "#boom_bundle_backbundle_listgrouptype_list_elements",document );
         elements.children().each(function(){
             var _this = $(this);
-            _this.on("click",".widget .handle .remove",function(e){
+            var _close = $('.remove',_this);
+            _close.click(function(e){
                 e.preventDefault();
                 _this.remove();
-                renumberElements(_this);
+                renumberElements(elements);
                 return false;
-            })
+            });
         })
 
         elements.sortable({
