@@ -1964,7 +1964,7 @@ footer p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c71a76', endColorstr='#fb46a6',GradientType=1 );
 }
 
-.single-boom .title-flag.tecnologia {
+.single-boom .title-flag.tech-vg {
   background: #8555ce;
   background: -moz-linear-gradient(left, #532f88 0%, #8555ce 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #532f88), color-stop(100%, #8655ce));
@@ -2010,23 +2010,23 @@ footer p {
 
 .single-boom .title-flag.cine-tv {
   background: #ddcc0e;
-  background: -moz-linear-gradient(left, #ddcc0e 0%, #a79b32 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ddcc0e), color-stop(100%,#a79b32));
-  background: -webkit-linear-gradient(left, #ddcc0e 0%,#a79b32 100%);
-  background: -o-linear-gradient(left, #ddcc0e 0%,#a79b32 100%);
-  background: -ms-linear-gradient(left, #ddcc0e 0%,#a79b32 100%);
-  background: linear-gradient(to right, #ddcc0e 0%,#a79b32 100%);
+  background: -moz-linear-gradient(right, #ddcc0e 0%, #a79b32 100%);
+  background: -webkit-gradient(linear, right top, left top, color-stop(0%,#ddcc0e), color-stop(100%,#a79b32));
+  background: -webkit-linear-gradient(right, #ddcc0e 0%,#a79b32 100%);
+  background: -o-linear-gradient(right, #ddcc0e 0%,#a79b32 100%);
+  background: -ms-linear-gradient(right, #ddcc0e 0%,#a79b32 100%);
+  background: linear-gradient(to left, #ddcc0e 0%,#a79b32 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddcc0e', endColorstr='#a79b32',GradientType=1 );
 }
 
 .single-boom .title-flag.humor {
   background: #2571fc;
-  background: -moz-linear-gradient(left, #2571fc 0%, #1241a0100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2571fc), color-stop(100%,#1241a0));
-  background: -webkit-linear-gradient(left, #2571fc 0%,#1241a0 100%);
-  background: -o-linear-gradient(left, #2571fc 0%,#1241a0 100%);
-  background: -ms-linear-gradient(left, #2571fc 0%,#1241a0 100%);
-  background: linear-gradient(to right, #2571fc 0%,#1241a0 100%);
+  background: -moz-linear-gradient(right, #2571fc 0%, #1241a0100%);
+  background: -webkit-gradient(linear, right top, left top, color-stop(0%,#2571fc), color-stop(100%,#1241a0));
+  background: -webkit-linear-gradient(right, #2571fc 0%,#1241a0 100%);
+  background: -o-linear-gradient(right, #2571fc 0%,#1241a0 100%);
+  background: -ms-linear-gradient(right, #2571fc 0%,#1241a0 100%);
+  background: linear-gradient(to left, #2571fc 0%,#1241a0 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2571fc', endColorstr='#1241a0',GradientType=1 );
 }
 
@@ -2038,7 +2038,7 @@ footer p {
   background-position: right 0;
 }
 
-.single-boom .title-flag.tecnologia:after {
+.single-boom .title-flag.tech-vg:after {
   background-position: right -36px;
 }
 
