@@ -1884,10 +1884,6 @@ footer p {
   line-height: 25px;
 }
 
-#container.category #booms-container .title-flag {
-  border-top: none;
-}
-
 #container.category .boomer .boom {
   height: 90px;
   margin-bottom: 5px;

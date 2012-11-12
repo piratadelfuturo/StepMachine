@@ -105,69 +105,6 @@ h2::after {
   margin: 0px -52px 0 0;
 }
 
-/*ANIMACIONES*/
-
-@keyframes 'abrir' {
-  from {
-    transform:rotate(4deg);
-    transform-origin: left bottom;
-  }
-  to {
-    transform:rotate(20deg);
-    transform-origin: left bottom;
-  }
-}
-
-@-webkit-keyframes 'abrir' {
-  from {
-    -webkit-transform:rotate(4deg);
-    -webkit-transform-origin: left bottom;
-  }
-  to {
-    -webkit-transform:rotate(20deg);
-    -webkit-transform-origin: left bottom;
-  }
-}
-
-@-moz-keyframes 'abrir' {
-  from {
-    -moz-transform:rotate(4deg);
-    -moz-transform-origin: left bottom;
-  }
-  to {
-    -moz-transform:rotate(20deg);
-    -moz-transform-origin: left bottom;
-  }
-}
-
-@-o-keyframes 'abrir' {
-  from {
-    -o-transform:rotate(4deg);
-    -webkit-transform-origin: left bottom;
-  }
-  to {
-    -o-transform:rotate(20deg);
-    -o-transform-origin: left bottom;
-  }
-}
-
-@-webkit-keyframes 'uno' {
-  from {
-    width: 10px;
-    height: 12px;
-    left: 150px;
-    top: 330px;
-    background-size: 10px auto;
-  }
-  to {
-    width: 200px;
-    height: 218px;
-    left: 683px;
-    top: 363px;
-    background-size: 200px auto;
-  }
-}
-
 /*SLIDE 1*/
 
 div#sld1 div#ribbon-top {
@@ -190,10 +127,25 @@ div#sld1 div#ribbon-bottom {
   left: 40px;
 }
 
+div#sld1 .center {}
+
+div#sld1.active .center {
+  top: 50%;
+  left: 50%;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out; 
+}
+
 div#sld1 div#itm1 {
   background: url('images/itm-1.png') no-repeat left top;
   height: 84px;
   width: 66px;
+  transform: translate(350px,-350px);
+  -webkit-transform: translate(350px,-350px);
+  -o-transform: translate(350px,-350px);
+  -moz-transform: translate(350px,-350px);
 }
 
 div#sld1 div#itm2 {
@@ -411,6 +363,7 @@ div#sld3 div#dude #move {
   -webkit-animation: abrir 3s ease 0s infinite alternate;
   -moz-animation: abrir 3s ease 0s infinite alternate;
   -o-animation: abrir 3s ease 0s infinite alternate;
+  -ms-animation: abrir 3s ease 0s infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
@@ -419,16 +372,13 @@ div#sld3 div#dude #move {
 }
 
 div#sld3 div#num1 {
-  animation: uno 3s ease 0s 1 alternate;
-  -webkit-animation: uno 3s ease 0s 1 alternate;
-  -moz-animation: uno 3s ease 0s 1 alternate;
-  -o-animation: uno 3s ease 0s 1 alternate;
   background: url('images/num1.png') no-repeat left top;
   z-index: 6;
   left: 683px;
   top: 363px;
   width: 200px;
   height: 218px;
+  
 }
 
 div#sld3 div#num2 {
@@ -1224,3 +1174,27 @@ div#sld9 a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;  
 }
+
+/*ANIMACIONES*/
+
+@keyframes 'abrir' {
+  from { transform:rotate(4deg); transform-origin: left bottom; }
+  to { transform:rotate(20deg); transform-origin: left bottom; }
+}
+@-ms-keyframes 'abrir' {
+  from { -ms-transform:rotate(4deg); -ms-transform-origin: left bottom; }
+  to { -ms-transform:rotate(20deg); -ms-transform-origin: left bottom; }
+}
+@-webkit-keyframes 'abrir' {
+  from { -webkit-transform:rotate(4deg); -webkit-transform-origin: left bottom; }
+  to { -webkit-transform:rotate(20deg); -webkit-transform-origin: left bottom; }
+}
+@-moz-keyframes 'abrir' {
+  from { -moz-transform:rotate(4deg); -moz-transform-origin: left bottom; }
+  to { -moz-transform:rotate(20deg); -moz-transform-origin: left bottom; }
+}
+@-o-keyframes 'abrir' {
+  from { -o-transform:rotate(4deg); -o-transform-origin: left bottom; }
+  to { -o-transform:rotate(20deg); -o-transform-origin: left bottom; }
+}
+
