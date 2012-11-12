@@ -1138,7 +1138,7 @@ h1 a:before {
 }
 
 .slide-container {
-  width: 1400%;
+  width: 3000%;
   overflow: hidden;
 }
 
@@ -1189,7 +1189,6 @@ h1 a:before {
 }
 
 .car-thumbs ul {
-  width: 1024px;
   display: inline-block;
   background: #000;
   margin-top: 3px;
@@ -3447,8 +3446,8 @@ ul.paginador, ul.paginador {
 .gal-car .car-thumbs li {
   height: 53px;
   display: inline-block;
-  width: 78px;
-  margin: 2px 1px;
+  width: 76px;
+  margin: 1px 4px 4px 4px;
   border: none;
 }
 

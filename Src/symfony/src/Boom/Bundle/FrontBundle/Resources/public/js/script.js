@@ -103,7 +103,8 @@
             gcanvas = galcar.find('.slide-container'),
             gslides = galcar.find('div.slide');
 
-            var index = $(".car-thumbs li").index(this);
+            var index = $(this).parents("ul").find("li").index(this);
+            console.log(index);
             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),
             size = gslides.first().outerWidth();
 
@@ -174,7 +175,6 @@
 
         $(".car-thumbs li").click(function(){
             var index = $(".car-thumbs li").index(this);
-            console.log(index);
             return $.showSlide(index);
         });
 
