@@ -1093,6 +1093,12 @@ h1 a:before {
   background: url('../images/boom_15.png') no-repeat right center;
 }
 
+.usr-bm-list .boom-moar {
+  padding-right: 15px;
+  margin-right: 10px;
+  background: url('../images/boom_15.png') no-repeat right center;
+}
+
 .ver-moar {
   width: 95px;
   position: absolute;
