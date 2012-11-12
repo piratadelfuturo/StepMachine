@@ -30,7 +30,6 @@ body {
   height: auto;
   width: 1024px;
   float: left;
-  margin-top: -4200px;
 }
 
 div.slide {
@@ -104,6 +103,69 @@ h2::after {
   width: 22px;
   float: right;
   margin: 0px -52px 0 0;
+}
+
+/*ANIMACIONES*/
+
+@keyframes 'abrir' {
+  from {
+    transform:rotate(4deg);
+    transform-origin: left bottom;
+  }
+  to {
+    transform:rotate(20deg);
+    transform-origin: left bottom;
+  }
+}
+
+@-webkit-keyframes 'abrir' {
+  from {
+    -webkit-transform:rotate(4deg);
+    -webkit-transform-origin: left bottom;
+  }
+  to {
+    -webkit-transform:rotate(20deg);
+    -webkit-transform-origin: left bottom;
+  }
+}
+
+@-moz-keyframes 'abrir' {
+  from {
+    -moz-transform:rotate(4deg);
+    -moz-transform-origin: left bottom;
+  }
+  to {
+    -moz-transform:rotate(20deg);
+    -moz-transform-origin: left bottom;
+  }
+}
+
+@-o-keyframes 'abrir' {
+  from {
+    -o-transform:rotate(4deg);
+    -webkit-transform-origin: left bottom;
+  }
+  to {
+    -o-transform:rotate(20deg);
+    -o-transform-origin: left bottom;
+  }
+}
+
+@-webkit-keyframes 'uno' {
+  from {
+    width: 10px;
+    height: 12px;
+    left: 150px;
+    top: 330px;
+    background-size: 10px auto;
+  }
+  to {
+    width: 200px;
+    height: 218px;
+    left: 683px;
+    top: 363px;
+    background-size: 200px auto;
+  }
 }
 
 /*SLIDE 1*/
@@ -345,19 +407,28 @@ div#sld3 div#dude {
 }
 
 div#sld3 div#dude #move {
+  animation: abrir 3s ease 0s infinite alternate;
+  -webkit-animation: abrir 3s ease 0s infinite alternate;
+  -moz-animation: abrir 3s ease 0s infinite alternate;
+  -o-animation: abrir 3s ease 0s infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
-  left: 106px;
-  top: 107px;
+  left: 98px;
+  top: 103px;
 }
 
 div#sld3 div#num1 {
+  animation: uno 3s ease 0s 1 alternate;
+  -webkit-animation: uno 3s ease 0s 1 alternate;
+  -moz-animation: uno 3s ease 0s 1 alternate;
+  -o-animation: uno 3s ease 0s 1 alternate;
   background: url('images/num1.png') no-repeat left top;
-  width: 200px;
-  height: 218px;
+  z-index: 6;
   left: 683px;
   top: 363px;
+  width: 200px;
+  height: 218px;
 }
 
 div#sld3 div#num2 {
@@ -414,7 +485,7 @@ div#sld3 div#boombar, div#sld5 div#boombar {
   height: 600px;
   top: 50px;
   left: 715px;
-  z-index: 6;
+  z-index: 5;
 }
 
 /*SLIDE 5*/
@@ -1153,4 +1224,3 @@ div#sld9 a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;  
 }
-
