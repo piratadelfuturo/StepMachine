@@ -401,7 +401,8 @@
         op = false,
         _infoBlocks = $('.info-blocks',_root),
         _registerBlock = $('.sign-in',_infoBlocks),
-        _shareBlock = $('.share-boom',_infoBlocks)
+        _shareBlock = $('.share-boom',_infoBlocks),
+        _shareClose = $('.close-share',_infoBlocks)
         ;
 
         //DRAGnDROP widgt
@@ -461,6 +462,17 @@
             });
 
         })
+
+         _shareClose.click(function(e){
+            if(_editalo.not('.disabled')){
+              _shareBlock.animate({
+                bottom: '-500px'
+              });
+            _editalo.addClass('disabled');
+            return false;
+            }
+          }
+         );
 
         $('.grey-btn',_registerBlock).click(function(e){
             e.preventDefault();
