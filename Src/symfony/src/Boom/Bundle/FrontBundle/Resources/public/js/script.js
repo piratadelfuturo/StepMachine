@@ -505,6 +505,10 @@
             });
             return false;
         })
+   
+        $('#mce-responses').click(function(){
+          $(this).hide();
+        });
 
     });
 })(document,jQuery);
