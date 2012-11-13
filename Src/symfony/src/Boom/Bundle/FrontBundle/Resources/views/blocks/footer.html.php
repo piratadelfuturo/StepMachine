@@ -17,10 +17,17 @@
     </li>
     <li class="newsletter">
       <h3><a href="#">Recibe nuestro newsletter</a></h3>
-      <form>
-        <input type="text" name="fullname" placeholder="Nombre completo"/>
-        <input type="text" name="email" placeholder="Correo electrónico"/>
-        <input type="submit" value="ENVIAR"/>
+      <form action="http://7boom.us6.list-manage2.com/subscribe/post?u=8e9171246d53eebc71ca63890&amp;id=ef91d2cbb8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      
+      	<input type="text" value="" name="FNAME" class="" id="mce-FNAME" placeholder="Nombre completo">
+      	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Correo electrónico">
+      	<div id="mce-responses" class="clear">
+      		<div class="response" id="mce-error-response" style="display:none">
+      		</div>
+      		<div class="response" id="mce-success-response" style="display:none">
+      		</div>
+      	</div>	
+      <input type="submit" value="ENVIAR" name="subscribe" id="mc-embedded-subscribe" class="button">
       </form>
     </li>
   </ul>

@@ -109,11 +109,21 @@ h2::after {
   margin: 0px -52px 0 0;
 }
 
+.active h2 {
+  -webkit-transition: width 2s ease 0s;
+}
 
 /*SLIDE 1*/
-#sld1 div.item {
+
+div.center {
   top: 50%;
   left: 50%;
+  opacity: 0;
+}
+
+#sld1.active div.center {
+  -webkit-transition: top 1s, left 1s, opacity 0s;
+  opacity: 1;
 }
 
 #sld1.active #ribbon-top {
@@ -124,7 +134,7 @@ h2::after {
   z-index: 8;
   top: 85px;
   left: 85px;
-  -webkit-transition: top 0.5s ease-in-out 0s;
+  -webkit-transition: top 1s ease-in-out 0s;
 }
 
 #sld1.active #ribbon-bottom {
@@ -133,55 +143,85 @@ h2::after {
   margin: 0 auto;
   width: 948px;
   z-index: 8;
-  bottom: 90px;
+  bottom: 50px;
   left: 40px;
-  -webkit-transition: bottom 0.5s ease-in-out 0s;
+  -webkit-transition: bottom 1s ease-in-out 0s;
 }
 
 #sld1 #itm1 {
   background: url('images/itm-1.png') no-repeat left top;
   height: 84px;
   width: 66px;
-  -webkit-transform: rotate(120deg);
-  -webkit-transition: top 1s, left 1s;
+  -webkit-transform: rotate(205deg);
+  z-index: 9;
 }
 
 #sld1.active #itm1 {
   top: 25px;
-  left: 600px;
+  left: 780px;
 }
 
-#sld1.active #itm2 {
+#sld1 #itm2 {
   background: url('images/itm-2.png') no-repeat left top;
   height: 94px;
   width: 103px;
 }
 
-#sld1.active #itm3 {
+#sld1.active #itm2 {
+  top: 195px;
+  left: 470px;
+}
+
+#sld1 #itm3 {
   background: url('images/itm-3.png') no-repeat left top;
   height: 49px;
   width: 42px;
 }
 
-#sld1.active #itm4 {
+#sld1.active #itm3 {
+ left: 533px;
+ top: 599px;
+ z-index: 9; 
+}
+
+#sld1 #itm4 {
   background: url('images/musica.png') no-repeat left top;
   height: 137px;
   width: 116px;
+  -webkit-transform: rotate(120deg);
 }
 
-#sld1.active #itm5 {
+#sld1.active #itm4 {
+  top: 540px;
+  left: 284px;
+  z-index: 9;
+} 
+
+#sld1 #itm5 {
   background: url('images/itm-5.png') no-repeat left top;
   height: 65px;
   width: 51px;
 }
 
-#sld1.active #itm6 {
+#sld1.active #itm5 {
+  top: 557px;
+  left: 470px;
+  z-index: 9;
+}
+
+#sld1 #itm6 {
   background: url('images/itm-6.png') no-repeat left top;
   height: 50px;
   width: 40px;
+  -webkit-transform: rotate(-20deg);
+  z-index: 9;
+}
+#sld1.active #itm6 {
+  top: 50px;
+  left: 195px;  
 }
 
-#sld1.active #itm7 {
+#sld1 #itm7 {
   background: url('images/itm-7.png') no-repeat left top;
   height: 34px;
   width: 35px;
@@ -1201,3 +1241,4 @@ div h4.flag:after, div h4.flag:before {
   to { -o-transform:rotate(20deg); -o-transform-origin: left bottom; }
 }
 
+      
