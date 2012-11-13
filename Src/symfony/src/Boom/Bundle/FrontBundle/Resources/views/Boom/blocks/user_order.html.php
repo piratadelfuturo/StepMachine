@@ -91,6 +91,7 @@ endif;
                 <input type="checkbox" class="select facebook"><label for="facebook"><span>facebook</span></label>
             </form>
             <a href="#" class="grey-btn">Compartir</a>
+            <a href="#" class="close-share">&#10005;</a>
         </div>
         <div class="sign-in">
             <h3>¡Alto ahí!</h3>

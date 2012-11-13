@@ -2838,6 +2838,14 @@ span.arrow {
   background: url(../images/share_fb.png) 30px center no-repeat;
 }
 
+.share-boom .close-share {
+  color: #fff;
+  font-size: 15px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
 .grey-btn {
   display: inline-block;
   background: #313131;
