@@ -39,7 +39,7 @@ class BoomController extends Controller {
             $entity = new BoomEntity\Boom();
         }
 
-        $form = $this->createForm(new BoomType(), $entity);
+        $form = $this->createForm(new BoomType($em), $entity);
         $form->bind($request);
         $sessionToken = $this->get('security.context')->getToken();
         if ($sessionToken->getUser() instanceof BoomEntity\User) {

@@ -30,11 +30,11 @@
             forced_root_block : ''
         });
 
-        $form = $('#boom_bundle_backbundle_boomtype');
+        $form = $('#boom');
 
-        $submit = $form.find('#boom-submit');
+        $submit = $('#boom-submit'.$form);
 
-        $preview = $form.find('#boom-preview');
+        $preview = $('#boom-preview',$form);
 
         $submit.click(function(){
             $form
