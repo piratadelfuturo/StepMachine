@@ -1764,6 +1764,7 @@ footer p {
 }
 
 .response {
+  cursor: pointer;
   box-sizing: border-box;
   font: bold 12px Helvetica, sans-serif;
   margin: 10px 0;
