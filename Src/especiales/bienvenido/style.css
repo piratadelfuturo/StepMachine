@@ -46,7 +46,7 @@ div.item {
 
 /*SLIDERS CON GRADIENTE*/
 
-div#sld2, div#sld4, div#sld6, div#sld9 {
+#sld2, #sld4, #sld6, #sld9 {
   background: #e35344;
   background: -moz-linear-gradient(left, #e35344 0%, #f57b20 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e35344), color-stop(100%,#f57b20));
@@ -57,7 +57,7 @@ div#sld2, div#sld4, div#sld6, div#sld9 {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e35344', endColorstr='#f57b20',GradientType=1 );
 }
 
-div#sld2 h1, div#sld4 h1, div#sld6 h1, div#sld9 h1 {
+#sld2 h1, #sld4 h1, #sld6 h1, #sld9 h1 {
   font-size: 65px;
   display: block;
   margin: 0px auto;
@@ -66,12 +66,16 @@ div#sld2 h1, div#sld4 h1, div#sld6 h1, div#sld9 h1 {
   width: 60%;
 }
 
-div#sld4 h1 {
+#sld4 h1 {
   width: 75%;  
 }
 
-div#sld6 h1 {
+#sld6 h1 {
   width: 55%;  
+}
+
+.active h1 {
+  -webkit-transition: padding-top 1s ease-in-out 0s;
 }
 
 /*FLAGS*/
@@ -105,72 +109,14 @@ h2::after {
   margin: 0px -52px 0 0;
 }
 
-/*ANIMACIONES*/
-
-@keyframes 'abrir' {
-  from {
-    transform:rotate(4deg);
-    transform-origin: left bottom;
-  }
-  to {
-    transform:rotate(20deg);
-    transform-origin: left bottom;
-  }
-}
-
-@-webkit-keyframes 'abrir' {
-  from {
-    -webkit-transform:rotate(4deg);
-    -webkit-transform-origin: left bottom;
-  }
-  to {
-    -webkit-transform:rotate(20deg);
-    -webkit-transform-origin: left bottom;
-  }
-}
-
-@-moz-keyframes 'abrir' {
-  from {
-    -moz-transform:rotate(4deg);
-    -moz-transform-origin: left bottom;
-  }
-  to {
-    -moz-transform:rotate(20deg);
-    -moz-transform-origin: left bottom;
-  }
-}
-
-@-o-keyframes 'abrir' {
-  from {
-    -o-transform:rotate(4deg);
-    -webkit-transform-origin: left bottom;
-  }
-  to {
-    -o-transform:rotate(20deg);
-    -o-transform-origin: left bottom;
-  }
-}
-
-@-webkit-keyframes 'uno' {
-  from {
-    width: 10px;
-    height: 12px;
-    left: 150px;
-    top: 330px;
-    background-size: 10px auto;
-  }
-  to {
-    width: 200px;
-    height: 218px;
-    left: 683px;
-    top: 363px;
-    background-size: 200px auto;
-  }
-}
 
 /*SLIDE 1*/
+#sld1 div.item {
+  top: 50%;
+  left: 50%;
+}
 
-div#sld1 div#ribbon-top {
+#sld1.active #ribbon-top {
   background: url('images/ribbon-top.png') no-repeat left top;
   height: 104px;
   margin: 0 auto;
@@ -178,205 +124,214 @@ div#sld1 div#ribbon-top {
   z-index: 8;
   top: 85px;
   left: 85px;
+  -webkit-transition: top 0.5s ease-in-out 0s;
 }
 
-div#sld1 div#ribbon-bottom {
+#sld1.active #ribbon-bottom {
   background: url('images/ribbon-bottom.png') no-repeat left top;
   height: 91px;
   margin: 0 auto;
   width: 948px;
   z-index: 8;
-  top: 490px;
+  bottom: 90px;
   left: 40px;
+  -webkit-transition: bottom 0.5s ease-in-out 0s;
 }
 
-div#sld1 div#itm1 {
+#sld1 #itm1 {
   background: url('images/itm-1.png') no-repeat left top;
   height: 84px;
   width: 66px;
+  -webkit-transform: rotate(120deg);
+  -webkit-transition: top 1s, left 1s;
 }
 
-div#sld1 div#itm2 {
+#sld1.active #itm1 {
+  top: 25px;
+  left: 600px;
+}
+
+#sld1.active #itm2 {
   background: url('images/itm-2.png') no-repeat left top;
   height: 94px;
   width: 103px;
 }
 
-div#sld1 div#itm3 {
+#sld1.active #itm3 {
   background: url('images/itm-3.png') no-repeat left top;
   height: 49px;
   width: 42px;
 }
 
-div#sld1 div#itm4 {
+#sld1.active #itm4 {
   background: url('images/musica.png') no-repeat left top;
   height: 137px;
   width: 116px;
 }
 
-div#sld1 div#itm5 {
+#sld1.active #itm5 {
   background: url('images/itm-5.png') no-repeat left top;
   height: 65px;
   width: 51px;
 }
 
-div#sld1 div#itm6 {
+#sld1.active #itm6 {
   background: url('images/itm-6.png') no-repeat left top;
   height: 50px;
   width: 40px;
 }
 
-div#sld1 div#itm7 {
+#sld1.active #itm7 {
   background: url('images/itm-7.png') no-repeat left top;
   height: 34px;
   width: 35px;
 }
 
-div#sld1 div#itm8 {
+#sld1 #itm8 {
   background: url('images/itm-8.png') no-repeat left top;
   height: 77px;
   width: 57px;
 }
 
-div#sld1 div#itm9 {
+#sld1 #itm9 {
   background: url('images/itm-9.png') no-repeat left top;
   height: 77px;
   width: 22px;
 }
 
-div#sld1 div#itm10 {
+#sld1 #itm10 {
   background: url('images/itm-10.png') no-repeat left top;
   height: 70px;
   width: 17px;
 }
 
-div#sld1 div#itm11 {
+#sld1 #itm11 {
   background: url('images/itm-11.png') no-repeat left top;
   height: 36px;
   width: 91px;
 }
 
-div#sld1 div#itm12 {
+#sld1 #itm12 {
   background: url('images/itm-12.png') no-repeat left top;
   height: 59px;
   width: 95px;
 }
 
-div#sld1 div#itm13 {
+#sld1 #itm13 {
   background: url('images/itm-13.png') no-repeat left top;
   height: 23px;
   width: 67px;
 }
 
-div#sld1 div#itm14 {
+#sld1 #itm14 {
   background: url('images/itm-14.png') no-repeat left top;
   height: 16px;
   width: 15px;
 }
 
-div#sld1 div#itm15 {
+#sld1 #itm15 {
   background: url('images/itm-15.png') no-repeat left top;
   height: 24px;
   width: 24px;
 }
 
-div#sld1 div#itm16 {
+#sld1 #itm16 {
   background: url('images/itm-16.png') no-repeat left top;
   height: 24px;
   width: 67px;
 }
 
-div#sld1 div#itm17 {
+#sld1 #itm17 {
   background: url('images/itm-17.png') no-repeat left top;
   height: 49px;
   width: 106px;
 }
 
-div#sld1 div#itm18 {
+#sld1 #itm18 {
   background: url('images/itm-18.png') no-repeat left top;
   height: 48px;
   width: 27px;
 }
 
-div#sld1 div#itm19 {
+#sld1 #itm19 {
   background: url('images/itm-19.png') no-repeat left top;
   height: 30px;
   width: 18px;
 }
 
-div#sld1 div#itm20 {
+#sld1 #itm20 {
   background: url('images/itm-20.png') no-repeat left top;
   height: 25px;
   width: 69px;
 }
 
-div#sld1 div#itm20 {
+#sld1 #itm20 {
   background: url('images/itm-20.png') no-repeat left top;
   height: 25px;
   width: 69px;
 }
 
-div#sld1 div#itm21 {
+#sld1 #itm21 {
   background: url('images/itm-21.png') no-repeat left top;
   height: 21px;
   width: 34px;
 }
 
-div#sld1 div#itm22 {
+#sld1 #itm22 {
   background: url('images/itm-22.png') no-repeat left top;
   height: 69px;
   width: 21px;
 }
 
-div#sld1 div#itm23 {
+#sld1 #itm23 {
   background: url('images/itm-23.png') no-repeat left top;
   height: 161px;
   width: 72px;
 }
 
-div#sld1 div#itm24 {
+#sld1 #itm24 {
   background: url('images/itm-24.png') no-repeat left top;
   height: 216px;
   width: 85px;
 }
 
-div#sld1 div#itm25 {
+#sld1 #itm25 {
   background: url('images/itm-25.png') no-repeat left top;
   height: 222px;
   width: 84px;
 }
 
-div#sld1 div#itm26 {
+#sld1 #itm26 {
   background: url('images/itm-26.png') no-repeat left top;
   height: 80px;
   width: 101px;
 }
 
-div#sld1 div#itm27 {
+#sld1 #itm27 {
   background: url('images/itm-27.png') no-repeat left top;
   height: 97px;
   width: 99px;
 }
 
-div#sld1 div#itm28 {
+#sld1 #itm28 {
   background: url('images/itm-28.png') no-repeat left top;
   height: 71px;
   width: 25px;
 }
 
-div#sld1 div#itm29 {
+#sld1 #itm29 {
   background: url('images/sexo.png') no-repeat left top;
   height: 103px;
   width: 93px;
 }
 
-div#sld1 div#itm30 {
+#sld1 #itm30 {
   background: url('images/itm-30.png') no-repeat left top;
   height: 76px;
   width: 65px;
 }
 
-div#sld1 div#itm31 {
+#sld1 #itm31 {
   background: url('images/itm-31.png') no-repeat left top;
   height: 23px;
   width: 51px;
@@ -384,7 +339,7 @@ div#sld1 div#itm31 {
 
 /*SLIDE 3*/
 
-div#sld3 > p {
+#sld3 > p {
   display: block;
   float: left;
   font-size: 26px;
@@ -393,12 +348,12 @@ div#sld3 > p {
   width: 480px;
 }
 
-div#sld3 > p span {
+#sld3 > p span {
   font-size: 34px;
   text-align: justify;
 }
 
-div#sld3 div#dude {
+#sld3 #dude {
   background: url('images/dude1.png') no-repeat left top;
   width: 365px;
   height: 478px;
@@ -406,11 +361,12 @@ div#sld3 div#dude {
   top: 222px;
 }
 
-div#sld3 div#dude #move {
+#sld3 #dude #move {
   animation: abrir 3s ease 0s infinite alternate;
   -webkit-animation: abrir 3s ease 0s infinite alternate;
   -moz-animation: abrir 3s ease 0s infinite alternate;
   -o-animation: abrir 3s ease 0s infinite alternate;
+  -ms-animation: abrir 3s ease 0s infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
@@ -418,20 +374,17 @@ div#sld3 div#dude #move {
   top: 103px;
 }
 
-div#sld3 div#num1 {
-  animation: uno 3s ease 0s 1 alternate;
-  -webkit-animation: uno 3s ease 0s 1 alternate;
-  -moz-animation: uno 3s ease 0s 1 alternate;
-  -o-animation: uno 3s ease 0s 1 alternate;
+#sld3 #num1 {
   background: url('images/num1.png') no-repeat left top;
   z-index: 6;
   left: 683px;
   top: 363px;
   width: 200px;
   height: 218px;
+  
 }
 
-div#sld3 div#num2 {
+#sld3 #num2 {
   background: url('images/num2.png') no-repeat left top;
   width: 167px;
   height: 175px;
@@ -439,7 +392,7 @@ div#sld3 div#num2 {
   top: 194px;
 }
 
-div#sld3 div#num3 {
+#sld3 #num3 {
   background: url('images/num3.png') no-repeat left top;
   width: 137px;
   height: 164px;
@@ -447,7 +400,7 @@ div#sld3 div#num3 {
   top: 352px;
 }
 
-div#sld3 div#num4 {
+#sld3 #num4 {
   background: url('images/num4.png') no-repeat left top;
   width: 125px;
   height: 132px;
@@ -455,7 +408,7 @@ div#sld3 div#num4 {
   top: 210px;
 }
 
-div#sld3 div#num5 {
+#sld3 #num5 {
   background: url('images/num5.png') no-repeat left top;
   width: 84px;
   height: 91px;
@@ -463,7 +416,7 @@ div#sld3 div#num5 {
   left: 345px;
 }
 
-div#sld3 div#num6 {
+#sld3 #num6 {
   background: url('images/num6.png') no-repeat left top;
   width: 72px;
   height: 70px;
@@ -471,7 +424,7 @@ div#sld3 div#num6 {
   left: 270px;
 }
 
-div#sld3 div#num7 {
+#sld3 #num7 {
   background: url('images/num7.png') no-repeat left top;
   width: 68px;
   height: 59px;
@@ -479,7 +432,7 @@ div#sld3 div#num7 {
   left: 200px;
 }
 
-div#sld3 div#boombar, div#sld5 div#boombar {
+#sld3 #boombar, #sld5 #boombar {
   background: url('images/boom-bar.png') no-repeat left top;
   width: 285px;
   height: 600px;
@@ -490,13 +443,13 @@ div#sld3 div#boombar, div#sld5 div#boombar {
 
 /*SLIDE 5*/
 
-div#sld5 div#cmt2, div#sld5 div#cmt3, div#sld5 div#cmt4, div#sld5 div#cmt5 {
+#sld5 #cmt2, #sld5 #cmt3, #sld5 #cmt4, #sld5 #cmt5 {
   height: 78px;
   width: 480px;
   z-index: 6;
 }
 
-div#sld5 div#cmt1 {
+#sld5 #cmt1 {
   background: url('images/cmt1.png') no-repeat left top;
   width: 481px;
   height: 134px;
@@ -505,31 +458,31 @@ div#sld5 div#cmt1 {
   z-index: 6;
 }
 
-div#sld5 div#cmt2 {
+#sld5 #cmt2 {
   background: url('images/cmt2.png') no-repeat left top;
   top: 270px;
   left: 183px;
 }
 
-div#sld5 div#cmt3 {
+#sld5 #cmt3 {
   background: url('images/cmt3.png') no-repeat left top;
   top: 363px;
   left: 33px;
 }
 
-div#sld5 div#cmt4 {
+#sld5 #cmt4 {
   background: url('images/cmt4.png') no-repeat left top;
   top: 460px;
   left: 200px;
 }
 
-div#sld5 div#cmt5 {
+#sld5 #cmt5 {
   background: url('images/cmt5.png') no-repeat left top;
   top: 573px;
   left: 33px;
 }
 
-div#sld5 div#blah1 {
+#sld5 #blah1 {
   background: url('images/blah1.png') no-repeat left top;
   top: 100px;
   left: 479px;
@@ -537,7 +490,7 @@ div#sld5 div#blah1 {
   width: 220px;
 }
 
-div#sld5 div#blah2 {
+#sld5 #blah2 {
   background: url('images/blah2.png') no-repeat left top;
   top: 248px;
   left: 585px;
@@ -545,7 +498,7 @@ div#sld5 div#blah2 {
   width: 176px;
 }
 
-div#sld5 div#blah3 {
+#sld5 #blah3 {
   background: url('images/blah3.png') no-repeat left top;
   top: 316px;
   left: 346px;
@@ -553,7 +506,7 @@ div#sld5 div#blah3 {
   width: 165px;
 }
 
-div#sld5 div#blah4 {
+#sld5 #blah4 {
   background: url('images/blah4.png') no-repeat left top;
   top: 230px;
   left: 30px;
@@ -561,7 +514,7 @@ div#sld5 div#blah4 {
   width: 181px;
 }
 
-div#sld5 div#blah5 {
+#sld5 #blah5 {
   background: url('images/blah5.png') no-repeat left top;
   top: 456px;
   left: 30px;
@@ -569,7 +522,7 @@ div#sld5 div#blah5 {
   width: 212px;
 }
 
-div#sld5 div#blah6 {
+#sld5 #blah6 {
   background: url('images/blah6.png') no-repeat left top;
   top: 403px;
   left: 575px;
@@ -577,7 +530,7 @@ div#sld5 div#blah6 {
   width: 157px;
 }
 
-div#sld5 div#blah7 {
+#sld5 #blah7 {
   background: url('images/blah7.png') no-repeat left top;
   top: 535px;
   left: 471px;
@@ -587,7 +540,7 @@ div#sld5 div#blah7 {
 
 /*SLIDE 7*/
 
-div#sld7 div#dude {
+#sld7 #dude {
   background: url('images/dude2.png') no-repeat left top;
   width: 265px;
   height: 493px;
@@ -596,7 +549,7 @@ div#sld7 div#dude {
   z-index: 8;
 }
 
-div#sld7 div#move {
+#sld7 #move {
   background: url('images/brazo.png') no-repeat left top;
   width: 135px;
   height: 186px;
@@ -611,7 +564,7 @@ div#sld7 div#move {
   -o-transform:rotate(0deg); /* Opera */
 }
 
-div#sld7 div#tv {
+#sld7 #tv {
   background: url('images/tv.png') no-repeat left top;
   width: 235px;
   height: 157px;
@@ -619,7 +572,7 @@ div#sld7 div#tv {
   top: 157px;
 }
 
-div#sld7 div#tv div {
+#sld7 #tv div {
   background: url('images/7-tv.png') no-repeat left top;
   width: 89px;
   height: 84px;
@@ -627,7 +580,7 @@ div#sld7 div#tv div {
   top: 20px;
 }
 
-div#sld7 div#imac1 {
+#sld7 #imac1 {
   background: url('images/imac1.png') no-repeat left top;
   width: 286px;
   height: 229px;
@@ -635,7 +588,7 @@ div#sld7 div#imac1 {
   left: 596px;
 }
  
-div#sld7 div#imac1 div {
+#sld7 #imac1 div {
   background: url('images/7-imac1.png') no-repeat left top;
   width: 72px;
   height: 90px;
@@ -643,7 +596,7 @@ div#sld7 div#imac1 div {
   left: 70px;
 }
 
-div#sld7 div#imac2 {
+#sld7 #imac2 {
   background: url('images/imac2.png') no-repeat left top;
   width: 241px;
   height: 198px;
@@ -651,7 +604,7 @@ div#sld7 div#imac2 {
   top: 348px;
 }
 
-div#sld7 div#ipad {
+#sld7 #ipad {
   background: url('images/ipad.png') no-repeat left top;
   width: 110px;
   height: 138px;
@@ -659,7 +612,7 @@ div#sld7 div#ipad {
   top: 300px;
 }
 
-div#sld7 div#iphone {
+#sld7 #iphone {
   background: url('images/iphone.png') no-repeat left top;
   width: 174px;
   height: 97px;
@@ -667,7 +620,7 @@ div#sld7 div#iphone {
   top: 453px;
 }
 
-div#sld7 div#smartphone {
+#sld7 #smartphone {
   background: url('images/smartphone.png') no-repeat left top;
   width: 135px;
   height: 80px;
@@ -675,7 +628,7 @@ div#sld7 div#smartphone {
   top: 483px;
 }
 
-div#sld7 div#tablet {
+#sld7 #tablet {
   background: url('images/tablet.png') no-repeat left top;
   width: 129px;
   height: 66px;
@@ -683,12 +636,12 @@ div#sld7 div#tablet {
   top: 595px;
 }
 
-div#sld7 div.lightup {
+#sld7 div.lightup {
   background: url('images/circle.png') no-repeat left top;
   z-index: 5;
 }
 
-div#sld7 div#hand {
+#sld7 #hand {
   left: 376px;
   top: 98px;
   height: 90px;
@@ -697,7 +650,7 @@ div#sld7 div#hand {
   z-index: 10;
 }
 
-div#sld7 div#tv-lup {
+#sld7 #tv-lup {
   left: 93px;
   top: 125px;
   height: 200px;
@@ -705,14 +658,14 @@ div#sld7 div#tv-lup {
   background-size: 200px auto;
 }
 
-div#sld7 div#imac1-lup {
+#sld7 #imac1-lup {
   left: 600px;
   top: 57px;
   height: 236px;
   width: 236px;
 }
 
-div#sld7 div#imac2-lup {
+#sld7 #imac2-lup {
   left: 62px;
   top: 340px;
   height: 220px;
@@ -720,7 +673,7 @@ div#sld7 div#imac2-lup {
   background-size: 220px auto;
 }
 
-div#sld7 div#ipad-lup {
+#sld7 #ipad-lup {
   left: 772px;
   top: 300px;
   height: 125px;
@@ -728,7 +681,7 @@ div#sld7 div#ipad-lup {
   background-size: 125px auto;
 }
 
-div#sld7 div#iphone-lup {
+#sld7 #iphone-lup {
   left: 613px;
   top: 420px;
   height: 160px;
@@ -736,7 +689,7 @@ div#sld7 div#iphone-lup {
   background-size: 160px auto;
 }
 
-div#sld7 div#tablet-lup {
+#sld7 #tablet-lup {
   left: 257px;
   top: 570px;
   height: 115px;
@@ -744,7 +697,7 @@ div#sld7 div#tablet-lup {
   background-size: 115px auto;
 }
 
-div#sld7 div#smartphone-lup {
+#sld7 #smartphone-lup {
   left: 832px;
   top: 448px;
   height: 140px;
@@ -752,13 +705,13 @@ div#sld7 div#smartphone-lup {
   background-size: 140px auto;
 }
 
-div#sld7 div.line {
+#sld7 div.line {
   background-color: #697328;
   height: 20px;
   z-index: 4;
 }
 
-div#sld7 div#tv-line {
+#sld7 #tv-line {
   width: 110px;
   right: 635px;
   top: 144px;
@@ -770,7 +723,7 @@ div#sld7 div#tv-line {
   -o-transform:rotate(-30deg); /* Opera */ 
 }
 
-div#sld7 div#imac2-line {
+#sld7 #imac2-line {
   width: 250px;
   right: 622px;
   top: 160px;
@@ -782,7 +735,7 @@ div#sld7 div#imac2-line {
   -o-transform:rotate(-56deg); /* Opera */ 
 }
 
-div#sld7 div#tablet-line {
+#sld7 #tablet-line {
   width: 400px;
   right: 600px;
   top: 165px;
@@ -794,7 +747,7 @@ div#sld7 div#tablet-line {
   -o-transform:rotate(-77deg); /* Opera */ 
 }
 
-div#sld7 div#iphone-line {
+#sld7 #iphone-line {
   width: 354px;
   right: 564px;
   top: 145px;
@@ -806,7 +759,7 @@ div#sld7 div#iphone-line {
   -o-transform:rotate(-125deg); /* Opera */ 
 }
 
-div#sld7 div#smartphone-line {
+#sld7 #smartphone-line {
   width: 505px;
   right: 560px;
   top: 135px;
@@ -818,7 +771,7 @@ div#sld7 div#smartphone-line {
   -o-transform:rotate(-140deg); /* Opera */ 
 }
 
-div#sld7 div#ipad-line {
+#sld7 #ipad-line {
   width: 372px;
   right: 560px;
   top: 127px;
@@ -830,7 +783,7 @@ div#sld7 div#ipad-line {
   -o-transform:rotate(-150deg); /* Opera */ 
 }
 
-div#sld7 div#imac1-line {
+#sld7 #imac1-line {
   width: 150px;
   right: 562px;
   top: 105px;
@@ -844,7 +797,7 @@ div#sld7 div#imac1-line {
 
 /*SLIDE 8*/
 
-div#sld8 {
+#sld8 {
   overflow: hidden;
 }
 
@@ -872,102 +825,102 @@ div h4.flag:after, div h4.flag:before {
   display: block;
 }
 
-div#sexo h4.flag:after, div#tech h4.flag:after, div#musica h4.flag:after, div#deportes h4.flag:after {
+#sexo h4.flag:after, #tech h4.flag:after, #musica h4.flag:after, #deportes h4.flag:after {
   top: 0;
   right: -10px;
   height: 32px;
   width: 10px;
 }
 
-div#humor h4.flag:before, div#comida h4.flag:before, div#cine h4.flag:before{
+#humor h4.flag:before, #comida h4.flag:before, #cine h4.flag:before{
   top: 0;
   left: -10px;
   height: 32px;
   width: 10px;
 }
 
-div#sld8 div#humor {
+#sld8 #humor {
   height: 115px;
   width: 270px;
   top: 45px;
   left: 260px;
 }
 
-div#sld8 div#cine {
+#sld8 #cine {
   height: 160px;
   width: 325px;
   left: 0px;
   top: 207px;
 }
 
-div#sld8 div#tech {
+#sld8 #tech {
   height: 229px;
   width: 350px;
   left: 650px;
   top: 45px;
 }
 
-div#sld8 div#comida {
+#sld8 #comida {
   height: 100px;
   width: 270px;
   left: 65px;
   top: 435px;
 }
 
-div#sld8 div#sexo {
+#sld8 #sexo {
   height: 105px;
   width: 220px;
   left: 470px;
   top: 570px;
 }
 
-div#sld8 div#musica {
+#sld8 #musica {
   height: 137px;
   width: 270px;
   left: 740px;
   top: 290px;
 }
 
-div#sld8 div#deportes {
+#sld8 #deportes {
   height: 101px;
   width: 270px;
   left: 670px;
   top: 490px;
 }
 
-div#sld8 div#humor .bg {
+#sld8 #humor .bg {
   background: url('images/humor.png') no-repeat right top;
 }
 
-div#sld8 div#cine .bg {
+#sld8 #cine .bg {
   background: url('images/tv.png') no-repeat right top;
   background-size: 194px auto;
 }
 
-div#sld8 div#tech .bg {
+#sld8 #tech .bg {
   background: url('images/imac1.png') no-repeat left top;
   background-size: 228px auto;
 }
 
-div#sld8 div#comida .bg {
+#sld8 #comida .bg {
   background: url('images/comida.png') no-repeat right top;
 }
 
-div#sld8 div#sexo .bg {
+#sld8 #sexo .bg {
   background: url('images/sexo.png') no-repeat left top;
   background-size: 92px auto;
 }
 
-div#sld8 div#musica .bg {
+#sld8 #musica .bg {
   background: url('images/musica.png') no-repeat left top;
   background-size: 110px auto;
 }
 
-div#sld8 div#deportes .bg {
+#sld8 #deportes .bg {
   background: url('images/deportes.png') no-repeat left top;
 }
 
-div#sld8 div#tech h4.flag {
+#sld8 #tech h4.flag {
   background: #8555ce;
   background: -moz-linear-gradient(left, #532f88 0%, #8555ce 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #532f88), color-stop(100%, #8655ce));
@@ -983,7 +936,7 @@ div#sld8 div#tech h4.flag {
   left: 135px;
 }
 
-div#sld8 div#sexo h4.flag {
+#sld8 #sexo h4.flag {
   background: #fb46a6;
   background: -moz-linear-gradient(left, #c71a76 0%, #fb46a6 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c71a76), color-stop(100%,#fb46a6));
@@ -999,7 +952,7 @@ div#sld8 div#sexo h4.flag {
   padding-right: 10px;
 }
 
-div#sld8 div#musica h4.flag {
+#sld8 #musica h4.flag {
   background: #f16c43;
   background: -moz-linear-gradient(left, #ac2c05 0%, #f16c43 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ac2c05), color-stop(100%,#f16c43));
@@ -1015,7 +968,7 @@ div#sld8 div#musica h4.flag {
   padding-right: 10px;
 }
 
-div#sld8 div#deportes h4.flag {
+#sld8 #deportes h4.flag {
   background: #72c460;
   background: -moz-linear-gradient(left, #4e8f3f 0%, #72c460 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#4e8f3f), color-stop(100%,#72c460));
@@ -1031,7 +984,7 @@ div#sld8 div#deportes h4.flag {
   padding-right: 10px;
 }
 
-div#sld8 div#humor h4.flag {
+#sld8 #humor h4.flag {
   background: #2571fc;
   background: -moz-linear-gradient(left, #2571fc 0%, #1241a0100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2571fc), color-stop(100%,#1241a0));
@@ -1047,7 +1000,7 @@ div#sld8 div#humor h4.flag {
   left: 40px;
 }
 
-div#sld8 div#cine h4.flag {
+#sld8 #cine h4.flag {
   background: #ddcc0e;
   background: -moz-linear-gradient(left, #ddcc0e 0%, #a79b32 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ddcc0e), color-stop(100%,#a79b32));
@@ -1063,7 +1016,7 @@ div#sld8 div#cine h4.flag {
   left: 10px;
 }
 
-div#sld8 div#comida h4.flag {
+#sld8 #comida h4.flag {
   background: #e72b2b;
   background: -moz-linear-gradient(right, #591010 0%, #e72b2b 100%);
   background: -webkit-gradient(linear, right top, left top, color-stop(0%,#591010), color-stop(100%,#e72b2b));
@@ -1079,31 +1032,31 @@ div#sld8 div#comida h4.flag {
   left: 40px;
 }
 
-div#sld8 div#tech h4.flag:after {
+#sld8 #tech h4.flag:after {
   background-position: 0 -36px;
 }
 
-div#sld8 div#musica h4.flag:after {
+#sld8 #musica h4.flag:after {
   background-position: 0 -72px;
 }
 
-div#sld8 div#deportes h4.flag:after {
+#sld8 #deportes h4.flag:after {
   background-position: 0 -144px;  
 }
 
-div#sld8 div#humor h4.flag:before {
+#sld8 #humor h4.flag:before {
   background-position: 0 -216px;  
 }
 
-div#sld8 div#cine h4.flag:before {
+#sld8 #cine h4.flag:before {
   background-position: 0 -180px;  
 }
 
-div#sld8 div#comida h4.flag:before {
+#sld8 #comida h4.flag:before {
   background-position: 0 -109px;  
 }
 
-div#sld8 div#circle {
+#sld8 #circle {
   background-color: #8d3e59;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#db3848), to(#8d3e59));
   background: -webkit-linear-gradient(top, #db3848, #8d3e59);
@@ -1121,7 +1074,7 @@ div#sld8 div#circle {
   z-index: 10;
 }
 
-div#sld8 div#circle p {
+#sld8 #circle p {
   display: block;
   position: relative;
   font-size: 24px;
@@ -1129,38 +1082,38 @@ div#sld8 div#circle p {
   text-align: right;
 }
 
-div#sld8 div#circle p > strong {
+#sld8 #circle p > strong {
   font-size: 28px;
 }
 
-div#sld8 div#circle p > span {
+#sld8 #circle p > span {
   font-weight: 400;
   font-size: 18px;  
 }
 
-div#sld8 div#circle p > span strong {
+#sld8 #circle p > span strong {
   font-weight: 800;
 }
 
-div#sld8 div#circle p:nth-child(1) {
+#sld8 #circle p:nth-child(1) {
   top: 75px;
   left: 55px;
   width: 32%;
 }
 
-div#sld8 div#circle p:nth-child(2) {
+#sld8 #circle p:nth-child(2) {
   top: 85px;
   left: 145px;
   width: 43%;
 }
 
-div#sld8 div#circle p:nth-child(3) {
+#sld8 #circle p:nth-child(3) {
   top: 110px;
   left: 50px;
   width: 50%;
 }
 
-div#sld8 div#triangle {
+#sld8 #triangle {
   background-image: url(images/triangulo.png);
   width: 77px;
   height: 90px;
@@ -1168,7 +1121,7 @@ div#sld8 div#triangle {
   left: 400px;
 }
 
-div#sld8 div#circle.big {
+#sld8 #circle.big {
   width: 1300px;
   height: 1300px;
   top: -36%;
@@ -1178,7 +1131,7 @@ div#sld8 div#circle.big {
 
 /*SLIDE 9*/
 
-div#sld9 hgroup {
+#sld9 hgroup {
   display: block;
   margin: 0px auto;
   padding: 70px 0 0;
@@ -1186,17 +1139,17 @@ div#sld9 hgroup {
   width: 60%;
 }
 
-div#sld9 hgroup h3 {
+#sld9 hgroup h3 {
   font-size: 55px;
   line-height: 60px;
 }
 
-div#sld9 hgroup h1 {
+#sld9 hgroup h1 {
   padding: 0;
   width: 100%;
 }
 
-div#sld9 div#arrow {
+#sld9 #arrow {
   background: url('images/arrow.png') no-repeat left top;
   height: 64px;
   margin: 20px auto;
@@ -1204,7 +1157,7 @@ div#sld9 div#arrow {
   width: 44px;
 }
 
-div#sld9 .btn {
+#sld9 .btn {
   background-color: #313131;
   border: 3px solid #fff;
   border-radius: 15px;
@@ -1215,7 +1168,7 @@ div#sld9 .btn {
   width: 300px;
 }
 
-div#sld9 a {
+#sld9 a {
   background: -webkit-linear-gradient(top, #e35344 0%, #f57b20 100%);
   color: #e35344;
   display: block;
@@ -1224,3 +1177,27 @@ div#sld9 a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;  
 }
+
+/*ANIMACIONES*/
+
+@keyframes 'abrir' {
+  from { transform:rotate(4deg); transform-origin: left bottom; }
+  to { transform:rotate(20deg); transform-origin: left bottom; }
+}
+@-ms-keyframes 'abrir' {
+  from { -ms-transform:rotate(4deg); -ms-transform-origin: left bottom; }
+  to { -ms-transform:rotate(20deg); -ms-transform-origin: left bottom; }
+}
+@-webkit-keyframes 'abrir' {
+  from { -webkit-transform:rotate(4deg); -webkit-transform-origin: left bottom; }
+  to { -webkit-transform:rotate(20deg); -webkit-transform-origin: left bottom; }
+}
+@-moz-keyframes 'abrir' {
+  from { -moz-transform:rotate(4deg); -moz-transform-origin: left bottom; }
+  to { -moz-transform:rotate(20deg); -moz-transform-origin: left bottom; }
+}
+@-o-keyframes 'abrir' {
+  from { -o-transform:rotate(4deg); -o-transform-origin: left bottom; }
+  to { -o-transform:rotate(20deg); -o-transform-origin: left bottom; }
+}
+
