@@ -938,8 +938,9 @@ h1 a:before {
 }
 
 #usm-pro .boomers .ver-moar {
-  float: right;
-  position: relative;
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
 }
 
 #rt-cont {
