@@ -118,7 +118,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                           <?php //foreach ($activities as $activity): ?>
                           <li class="edit-boom">
                             <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
                           </li>
                           <li class="fav-boom">
@@ -201,7 +201,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                           <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
-                </div
+                </div>
             </div>
         </div>
     </div>
