@@ -386,12 +386,15 @@ class BoomController extends Controller {
         }
         if ($orderParam !== null) {
             $oldOrder = $entity['elements']->toArray();
+            $newOrder = array();
             $entity['elements']->clear();
             foreach ($oldOrder as $element) {
-                $newOrder = $orderParam[$element['position']]['final'];
-                $element['position'] = $newOrder;
-                $entity['elements'][$newOrder] = $element;
+                $pos = $orderParam[$element['position']]['final'];
+                $element['position'] = $pos;
+                $newOrder[$pos] = $element;
             }
+            ksort($newOrder);
+            $entity['elements'] = $newOrder;
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
