@@ -395,7 +395,7 @@ class BoomController extends Controller {
                 $newOrder[$pos] = $element;
             }
             ksort($newOrder);
-            $entity['elements'] = ArrayCollection($newOrder);
+            $entity['elements'] = new ArrayCollection($newOrder);
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
