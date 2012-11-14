@@ -71,7 +71,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <img src="<?php echo $view['boom_image']->getProfileImageUrl($user['imagepath'],array(150,150)) ?>" id="user-img" height="150px" width="150px"/>
                     </div>
                     <div class="usr-data">
-                        <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
+                        <h3>¡Bienvenido...<br /><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $user['username'])) ?>" class="ver">Ver perfil</a>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" class="ver">Editar Perfil</a>
                     </div>
