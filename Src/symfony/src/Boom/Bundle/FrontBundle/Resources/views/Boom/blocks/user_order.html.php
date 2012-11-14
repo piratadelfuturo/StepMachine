@@ -54,8 +54,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
-            <a href="" class="editalo disabled">Editar</a>
+            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Editar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
