@@ -34,6 +34,7 @@
                              <?php echo $view->escape($collaborator['boom_title']) ?>
                       </a>
                   </p>
+                  </div>
             </li>
         <?php endforeach; ?>
     </ul>
