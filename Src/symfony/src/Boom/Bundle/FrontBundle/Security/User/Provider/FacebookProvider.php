@@ -72,7 +72,6 @@ class FacebookProvider implements UserProviderInterface {
         } else {
             $user = $this->findUserByFbId($fbId);
         }
-
         try {
             $fbdata = $this->facebook->api('/me');
         } catch (FacebookApiException $e) {
@@ -103,10 +102,17 @@ class FacebookProvider implements UserProviderInterface {
                 $user->addRole('ROLE_FACEBOOK');
                 $user->addRole('ROLE_SOCIAL');
                 $tmp = new File($this->grabImage($user->getImagePath()));
+
                 $user->setProfileImage($tmp);
                 $uploadListener->preUpload($user);
-                $this->userManager->updateUser($user);
+                $validator = $this->validator->validate($user, 'Facebook');
+                try{
+                    $this->userManager->updateUser($user,true);
+                }catch(\Exception $e){
+                    throw new UnsupportedUserException('Error de usuario de facebook.');
+                }
                 $uploadListener->upload($user);
+
             }
         } elseif (!empty($loggedUser) || $loggedUser !== null) {
             if (!empty($fbdata) && $fbdata !== null) {
@@ -116,10 +122,11 @@ class FacebookProvider implements UserProviderInterface {
                     if (isset($fbdata['id'])) {
                         $user->setFacebookId($fbdata['id']);
                     }
-                    if (count($this->validator->validate($user, 'Facebook')) > 0) {
+                    $validator = $this->validator->validate($user, 'Facebook');
+                    if (count($validator) > 0) {
                         throw new UsernameNotFoundException('The facebook user could not be stored');
                     } else {
-                        $this->userManager->updateUser($user);
+                        $this->userManager->updateUser($user,true);
                     }
                 }
             }
