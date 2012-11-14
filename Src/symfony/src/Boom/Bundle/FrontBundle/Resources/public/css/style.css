@@ -1112,15 +1112,16 @@ h1 a:before {
 }
 
 .ver-mas-block {
-  position: relative;
-  text-align: center;
   text-transform: uppercase;
   font: 24px 'Proxima', sans-serif;
   line-height: 40px;
+  text-align: right;
+  width: 100%;
 }
 
 .ver-mas-block a {
-  color: #cac9c9
+  color: #cac9c9;
+  padding-right: 13px;
 }
 
 .ver-mas-block a:hover {
