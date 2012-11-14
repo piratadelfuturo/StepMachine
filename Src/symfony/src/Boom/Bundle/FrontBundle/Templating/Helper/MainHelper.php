@@ -46,10 +46,56 @@ class MainHelper extends Helper {
         return $repo->getFollowedActivities($user, $offset, $limit);
     }
 
+    public function renderActivity(Activity $activity) {
+        $activity_name = 'default';
+        $allowed_activities = array('create', 'edit', 'fav');
+        $act = array();
+        if (is_string($activity['data']) && in_array($activity['data'], $allowed_activities)) {
+            $activity_name = $activity['data'];
+            $act = $this->_filterActivity($activity);
+        }
+
+        return $this->container->get('templating')->render(
+                        'BoomFrontBundle:Activity:blocks/' . $activity_name . '.html.php', array(
+                    'entity' => $activity,
+                    'act' => $act
+                        )
+        );
+    }
+
+    private function _filterActivity(Activity $entity) {
+        $act = array();
+        $act['self'] = false;
+        $sessionToken =$this->container->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
+        $router = $this->container->get('router');
+        if ($entity['user']['id'] === $sessionUser->getId()) {
+            $act['user'] = $entity['boom']['user'];
+            $act['self'] = true;
+        } else {
+            $act['user'] = $entity['user'];
+        }
+        $act['profile_url'] = $router->generate(
+                'BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])
+        );
+        $act['boom_url'] = $router->generate(
+                'BoomFrontBundle_boom_show', array(
+            'category_slug' => $entity['boom']['category']['slug'], 'slug' => $entity['boom']['slug']
+                )
+        );
+        $act['boom_profile_url'] = $router->generate(
+                'BoomFrontBundle_user_profile', array('username' => $entity['boom']['user']['username'])
+        );
+        $act['boom_user'] = $entity['boom']['user'];
+        $act['boom_title'] = $entity['boom']['title'];
+        $act['boom_date'] = $this->getLocaleFormatDate($entity['date'], 'EEE, d MMM, yyyy');
+        return $act;
+    }
+
     public function createActivity(User $user, $text = '', Boom $boom = null) {
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:Activity');
-        return $repo->createActivity($user,$text,$boom);
+        return $repo->createActivity($user, $text, $boom);
     }
 
     public function getLatestCollaborators($number = 7) {
@@ -111,7 +157,7 @@ class MainHelper extends Helper {
             $entity = clone($boom);
             $entity['elements']->clear();
             $sort = 1;
-            foreach($order as $element){
+            foreach ($order as $element) {
                 $entity['elements'][] = $element['boomelement'];
                 $sort++;
             }
