@@ -71,7 +71,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <img src="<?php echo $view['boom_image']->getProfileImageUrl($user['imagepath'],array(150,150)) ?>" id="user-img" height="150px" width="150px"/>
                     </div>
                     <div class="usr-data">
-                        <h3>¡Bienvenido...</br><span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
+                        <h3>¡Bienvenido...<span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $user['username'])) ?>" class="ver">Ver perfil</a>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_profile_edit') ?>" class="ver">Editar Perfil</a>
                     </div>
@@ -118,7 +118,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                           <?php //foreach ($activities as $activity): ?>
                           <li class="edit-boom">
                             <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
                           </li>
                           <li class="fav-boom">
@@ -201,7 +201,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                           <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
-                </div
+                </div>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ $categories = $view['boom_front']->getFeaturedCategories();
                                 <?php echo $view->escape($el['a_name']) ?>
                 </a>
             <?php endforeach; ?>
+          </div>
         </nav>
-      </div>
     </div>
 </div>
