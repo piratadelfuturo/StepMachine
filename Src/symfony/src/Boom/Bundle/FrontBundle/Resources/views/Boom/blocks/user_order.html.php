@@ -25,7 +25,7 @@ endif;
     </div>
     <div class="big-container cf">
         <div class="dyna-content tend-cont on">
-            <h3>Esto es lo que nuestros usuarios dicen: ¿estás de acuerdo? ¡Edítalo!</h3>
+            <h3>Esto es lo que nuestros usuarios dicen: ¿estás de acuerdo? ¡Reordénalo!</h3>
             <ul class="drag-booms">
                 <?php
                 foreach ($elements as $elementposition => $element):
@@ -44,6 +44,7 @@ endif;
                 <?php endforeach; ?>
             </ul>
             <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
+            <a href="" class="editalo disabled">Editar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
@@ -78,6 +79,7 @@ endif;
                     <div class="boom-clean">
                         <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
                         <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reply', array('slug' => $entity['slug'])) ?>" target="_blank" class="editalo">¡Edítalo!</a>
+                        <a class="editalo">¡Reordénalo!</a>
                     </div>
                 <?php endif; ?>
             </div>

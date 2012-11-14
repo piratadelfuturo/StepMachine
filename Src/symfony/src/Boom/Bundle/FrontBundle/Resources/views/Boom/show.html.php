@@ -63,6 +63,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                 <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
             </div>
             <a href="<?php echo $favUrl ?>" target="_blank" class="fav-placeholder"></a>
+            <a href="" class="editar-boom-ph">EDITA TU BOOM</a>
         </div>
         <div class="booms">
             <ul class="lista-booms">

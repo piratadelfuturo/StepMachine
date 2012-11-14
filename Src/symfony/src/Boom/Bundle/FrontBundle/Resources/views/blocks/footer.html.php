@@ -1,3 +1,5 @@
+
+<a href="https://www.surveymonkey.com/s/7BOOMtest" target="_blank" class="encuesta">Contesta nuestra encuesta</a>
 <footer>
   <ul class="f-cont cf">
     <li class="about">
