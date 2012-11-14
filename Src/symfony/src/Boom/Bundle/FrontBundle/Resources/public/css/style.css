@@ -2164,13 +2164,13 @@ footer p {
   position: relative;
   float: left;
   line-height: 30px;
-  color: #000;
+  color: #313131;
 }
 
 .single-boom .social a.editar-boom-ph {
   float: right;
   border-left: 1px solid #DFDFDF;
-  padding: 0 10px;
+  padding: 0 35px 0 10px;
 }
 
 .single-boom .social .btn-fb, .single-boom .social .btn-tw, 
@@ -2283,13 +2283,13 @@ footer p {
   right: 0;
 }
 
-.single-boom .social .editar-boom-ph:after {
+.single-boom .social a.editar-boom-ph:after {
   content: '';
   display: block;
   position: absolute;
   width: 30px;
   height: 30px;
-  background-position: -91px 0;
+  background-position: -88px 0;
   top: 0;
   right: 0;
 }
@@ -2299,7 +2299,7 @@ footer p {
 }
 
 .single-boom .social .editar-boom-ph:hover:after, .single-boom .social .editar-boom-ph.active:after {
-  background-position: -91px -31px;
+  background-position: -88px -31px;
 }
 
 .single-boom .autor {
@@ -2384,7 +2384,6 @@ footer p {
 
 .single-boom .booms .boom-ti {
   display: block;
-  color: #000;
   margin: 5px 15px 0;
   vertical-align: top;
 }
@@ -3405,7 +3404,7 @@ button.submit {
 }
 
 #booms-container .list .boom .boom-info .boom-ti a {
-  color: #474747;
+  color: #313131;
 }
 
 #booms-container .list .pags {
