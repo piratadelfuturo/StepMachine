@@ -2167,7 +2167,14 @@ footer p {
   color: #000;
 }
 
-.single-boom .social .btn-fb, .single-boom .social .btn-tw, .single-boom .social .btn-fav:after {
+.single-boom .social a.editar-boom-ph {
+  float: right;
+  border-left: 1px solid #DFDFDF;
+  padding-left: 10px;
+}
+
+.single-boom .social .btn-fb, .single-boom .social .btn-tw, 
+.single-boom .social .btn-fav:after {
   background: url('../images/sprite_redes.png') no-repeat 0 0;
   text-indent: -9000px;
   line-height: 30px;
@@ -2245,12 +2252,6 @@ footer p {
   position: absolute;
   top: 41px;
   right: 57px;
-}
-
-.editar-boom-ph {
-  float: right;
-  border-left: 1px solid #DFDFDF;
-  padding-left: 10px;
 }
 
 .single-boom .social .btn-tw {
