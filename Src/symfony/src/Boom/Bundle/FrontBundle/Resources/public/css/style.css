@@ -949,9 +949,49 @@ h1 a:before {
   height: 470px;
   float: left;
   position: relative;
-  padding: 0 22px 0 30px;
+  padding: 0 22px;
   margin-left: 10px;
   border-width: 0px 1px 0px 0px;
+}
+
+#rt-user-activities ul li {
+  display: block;
+  padding: 8px 0 8px 46px;
+  font-size: 13px;
+  color: #474748;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+#rt-user-activities ul li.edit-boom {
+  background: url('../images/edit_boom.png') left 12px no-repeat;
+}
+
+#rt-user-activities ul li.fav-boom {
+  background: url('../images/fav_boom.png') left 12px no-repeat;
+}
+
+#rt-user-activities ul li.add-boom {
+  background: url('../images/add_boom.png') left 12px no-repeat;
+}
+
+#rt-user-activities ul {
+  margin-top: 17px;
+}
+
+#rt-user-activities ul li:first-child {
+  border-top: 1px solid #dfdfdf;
+}
+
+#rt-user-activities ul li * { 
+  line-height: 18px;
+}
+
+#rt-user-activities ul li a, #rt-user-activities .title a{
+  font-weight: bold;
+}
+
+#rt-user-activities .title a{
+  color: #474748;
 }
 
 .no-content {
@@ -1072,14 +1112,19 @@ h1 a:before {
 }
 
 .ver-mas-block {
-  clear: both;
-  overflow: hidden ;
   position: relative;
-  border-width: 1px 0px 0px;
-  border-style: solid;
-  border-color: #DFDFDF;
-  margin: 20px 0px 0px;
-  padding: 5px 0px 0px;
+  text-align: center;
+  text-transform: uppercase;
+  font: 24px 'Proxima', sans-serif;
+  line-height: 40px;
+}
+
+.ver-mas-block a {
+  color: #cac9c9
+}
+
+.ver-mas-block a:hover {
+  color: #F87937;
 }
 
 #rt-cont .ver-moar {
@@ -1090,7 +1135,9 @@ h1 a:before {
 .ver-moar, .ver {
   font: 200 14px 'Proxima', sans-serif;
   text-transform: uppercase;
-  background: url('../images/boom_15.png') no-repeat right center;
+  background: url('../images/boo
+  font: 16px 'Proxima', sans-serif;
+  m_15.png') no-repeat right center;
 }
 
 .usr-bm-list .boom-moar {
@@ -2164,17 +2211,17 @@ footer p {
   position: relative;
   float: left;
   line-height: 30px;
-  color: #000;
+  color: #313131;
 }
 
 .single-boom .social a.editar-boom-ph {
   float: right;
   border-left: 1px solid #DFDFDF;
-  padding-left: 10px;
+  padding: 0 35px 0 10px;
 }
 
 .single-boom .social .btn-fb, .single-boom .social .btn-tw, 
-.single-boom .social .btn-fav:after {
+.single-boom .social .btn-fav:after, .single-boom .social a.editar-boom-ph:after {
   background: url('../images/sprite_redes.png') no-repeat 0 0;
   text-indent: -9000px;
   line-height: 30px;
@@ -2267,7 +2314,7 @@ footer p {
 .single-boom .social .btn-fav {
   float: right;
   border-left: 1px solid #dfdfdf;
-  padding: 0 35px 0 10px;
+  padding: 0 33px 0 10px;
   width: auto;
   text-indent: 0;
 }
@@ -2276,15 +2323,30 @@ footer p {
   content: '';
   display: block;
   position: absolute;
-  width: 30px;
+  width: 28px;
   height: 30px;
   background-position: -63px 0;
   top: 0;
   right: 0;
 }
 
+.single-boom .social a.editar-boom-ph:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-position: -88px 0;
+  top: 0;
+  right: 0;
+}
+
 .single-boom .social .btn-fav:hover:after, .single-boom .social .btn-fav.active:after {
   background-position: -63px -31px;
+}
+
+.single-boom .social .editar-boom-ph:hover:after, .single-boom .social .editar-boom-ph.active:after {
+  background-position: -88px -31px;
 }
 
 .single-boom .autor {
@@ -2369,7 +2431,6 @@ footer p {
 
 .single-boom .booms .boom-ti {
   display: block;
-  color: #000;
   margin: 5px 15px 0;
   vertical-align: top;
 }
@@ -3390,7 +3451,7 @@ button.submit {
 }
 
 #booms-container .list .boom .boom-info .boom-ti a {
-  color: #474747;
+  color: #313131;
 }
 
 #booms-container .list .pags {
