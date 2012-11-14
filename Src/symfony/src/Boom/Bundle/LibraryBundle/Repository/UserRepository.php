@@ -78,23 +78,23 @@ class UserRepository extends EntityRepository {
     public function getFollowedActivities(User $user, $offset = 0, $limit = 14) {
         /* @var Doctrine\ORM\Query $query */
         $cb1 = $this->createQueryBuilder('u');
-        $cb1->select('
-            friend.id
-            ');
+        $cb1->select(array('friend.id'));
         $cb1->join('u.following', 'friend');
         $cb1->where(
                 $cb1->expr()->eq('u.id', ':user_id')
         );
-
         $cb2 = $this->_em->createQueryBuilder();
         $cb2->select('activity')
                 ->from('BoomLibraryBundle:Activity', 'activity');
         $cb2->join('activity.user', 'user');
         $cb2->leftJoin('activity.boom', 'boom');
         $cb2->leftJoin('boom.category', 'category');
-        $cb2->where(
+        $cb2->orWhere(
                 $cb2->expr()->in(
                         'user.id', $cb1->getDQL()
+                ),
+                $cb2->expr()->in(
+                        'user.id', ':user_id'
                 )
         );
         $cb2->setFirstResult((int) $offset)->setMaxResults((int) $limit);
@@ -102,16 +102,7 @@ class UserRepository extends EntityRepository {
         $cb2->setParameter('user_id', $user['id']);
 
         $query = $cb2->getQuery();
-        $query->useResultCache(
-                true, 120, implode(
-                        '_', array(
-                    'front_user_activities_cache',
-                    $user['id'],
-                    $offset,
-                    $limit
-                        )
-                )
-        );
+        $query->useResultCache(true, 120);
         $result = $query->getResult();
         return $result;
     }
