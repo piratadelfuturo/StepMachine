@@ -61,7 +61,7 @@ class UserRepository extends EntityRepository {
         $query->setFirstResult(0);
         $query->setMaxResults($number);
         $query->useResultCache(
-                true, 120, implode(
+                true, 10, implode(
                         '_', array(
                     'front_user_collaborators_widget',
                     Boom::STATUS_PUBLIC,
