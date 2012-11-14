@@ -3,6 +3,9 @@ $elements = array();
 $elementCounter = 1;
 foreach ($entity['elements'] as $el) {
     $position = $el['communityposition'] == 0 || $el['communityposition'] === null ? $elementCounter : $el['communityposition'];
+    while(isset($elements[$position])){
+        $position++;
+    }
     $elements[$position] = $el;
     $elementCounter++;
 }
