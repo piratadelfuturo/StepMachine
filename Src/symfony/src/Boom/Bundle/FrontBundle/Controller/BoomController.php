@@ -249,6 +249,8 @@ class BoomController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
+        $request = $this->getRequest();
+        $orderParam = $request->query->get('order');
 
         if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
@@ -271,7 +273,6 @@ class BoomController extends Controller {
         $clonedBoomelementValues = array(
             'title',
             'content',
-            'position',
             'image'
         );
 
@@ -281,9 +282,15 @@ class BoomController extends Controller {
             $entity[$clBoomV] = $foundEntity[$clBoomV];
         }
         foreach ($foundEntity['elements']->toArray() as $o_index => $entElem) {
-            foreach ($clonedBoomelementValues as $clBoomelV) {
-                $entity['elements'][$o_index][$clBoomelV] = $entElem[$clBoomelV];
+            if ($orderParam !== null) {
+                $n_index = (int) $orderParam[$entElem['position']]['final'];
+            } else {
+                $n_index = $o_index;
             }
+            foreach ($clonedBoomelementValues as $clBoomelV) {
+                $entity['elements'][$n_index - 1][$clBoomelV] = $entElem[$clBoomelV];
+            }
+            $entity['elements'][$n_index - 1]['position'] = $n_index;
         }
         $entity['user'] = $sessionUser;
 
@@ -363,6 +370,9 @@ class BoomController extends Controller {
 
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
+        $request = $this->getRequest();
+        $orderParam = $request->query->get('order');
+
 
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
@@ -373,6 +383,15 @@ class BoomController extends Controller {
 
         if ($entity['user']['id'] !== $sessionUser['id']) {
             throw new HttpException(401, 'Unauthorized access.');
+        }
+        if ($orderParam !== null) {
+            $oldOrder = $entity['elements']->toArray();
+            $entity['elements']->clear();
+            foreach ($oldOrder as $element) {
+                $newOrder = $orderParam[$element['position']]['final'];
+                $element['position'] = $newOrder;
+                $entity['elements'][$newOrder] = $element;
+            }
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
@@ -409,13 +428,18 @@ class BoomController extends Controller {
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('boom_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl(
+                                    'BoomFrontBundle_boom_show', array(
+                                'category_slug' => $entity['category']['slug'],
+                                'slug' => $entity['slug']
+                                    )
+                            ));
         }
 
         return $this->render('BoomFrontBundle:Boom:edit.html.php', array(
@@ -430,10 +454,10 @@ class BoomController extends Controller {
      */
     public function deleteAction($slug) {
 
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($slug);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -451,12 +475,12 @@ class BoomController extends Controller {
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('boom'));
+        return $this->redirect($this->generateUrl('BoomFrontBundle_homepage'));
     }
 
-    private function createDeleteForm($id) {
-        return $this->createFormBuilder(array('id' => $id))
-                        ->add('id', 'hidden')
+    private function createDeleteForm($slug) {
+        return $this->createFormBuilder(array('slug' => $slug))
+                        ->add('slug', 'hidden')
                         ->getForm()
         ;
     }

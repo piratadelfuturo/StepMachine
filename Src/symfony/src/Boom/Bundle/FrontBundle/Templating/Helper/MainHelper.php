@@ -103,13 +103,26 @@ class MainHelper extends Helper {
         );
     }
 
-    public function getUserBoomOrder($user_id, $boom_id) {
+    public function getUserBoomOrder(User $user, Boom $boom) {
+        $entity = null;
         $em = $this->container->get('doctrine')->getEntityManager();
         $repo = $em->getRepository('BoomLibraryBundle:BoomelementRank');
-        return $repo->findBy(array(
-                    'user' => $user_id,
-                    'boom' => $boom_id
-                ));
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $order = $repo->findBy(array(
+            'user' => $user,
+            'boom' => $boom
+                ), array('position' => 'ASC'));
+        if (!empty($order)) {
+            $entity = clone($boom);
+            $entity['elements']->clear();
+            $sort = 1;
+            foreach($order as $element){
+                $entity['elements'][] = $element['boomelement'];
+                $sort++;
+            }
+        }
+
+        return $entity;
     }
 
     public function getLocaleFormatDate(\DateTime $date, $format = '', \Locale $locale = null) {

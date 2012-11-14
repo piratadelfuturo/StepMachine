@@ -8,9 +8,19 @@ foreach ($entity['elements'] as $el) {
 }
 $userElements = array();
 $isOwner = false;
-if ($view['security']->isGranted('ROLE_USER') == true && $entity['user']['id'] == $app->getUser()->getId()):
-    $isOwner = true;
-endif;
+$replyEntity = null;
+$isEditable = false;
+if ($view['security']->isGranted('ROLE_USER') == true) {
+    if ($entity['user']['id'] == $app->getUser()->getId()) {
+        $isOwner = true;
+    }
+    $replyEntity = $view['boom_front']->getUserBoomReply($app->getUser(), $entity);
+    $isEditable = true;
+    if ($replyEntity === null) {
+        $isEditable = false;
+        $replyEntity = $view['boom_front']->getUserBoomOrder($app->getUser(), $entity);
+    }
+}
 ?>
 
 <div id="usr-booms" class="hook">
@@ -28,6 +38,7 @@ endif;
             <h3>Esto es lo que nuestros usuarios dicen: ¿estás de acuerdo? ¡Edítalo!</h3>
             <ul class="drag-booms">
                 <?php
+                $comunityPosition = 1;
                 foreach ($elements as $elementposition => $element):
                     $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : 'http://placekitten.com/72/72';
                     ?>
@@ -35,7 +46,7 @@ endif;
                         <div class="balloon">
                             <p>arrastrar</p>
                         </div>
-                        <p class="pos"><span><?php echo $view->escape($elementposition) ?></span></p>
+                        <p class="pos"><span><?php echo $view->escape($comunityPosition++) ?></span></p>
                         <img src="<?php echo $image ?>">
                         <h4 class="boom-info">
                             <span><?php echo $view->escape($element['title']) ?></span>
@@ -48,38 +59,44 @@ endif;
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
                 <h3>Tú dices</h3>
-                <?php
-                $replyMessage = true;
-                if ($view['security']->isGranted('ROLE_USER') == true):
-                    $replyEntity = $view['boom_front']->getUserBoomReply($app->getUser(), $entity);
+                <ul class="drag-booms">
+                    <?php
+                    $replyMessage = true;
                     if ($replyEntity !== null && !empty($replyEntity)):
                         $replyMessage = false;
-                        ?>
-                        <ul class="drag-booms">
-                            <?php
-                            $myBoomPos = 1;
-                            foreach ($replyEntity['elements'] as $element):
-                                $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : 'http://placekitten.com/72/72';
-                                ?>
-                                <li>
-                                    <p class="pos"><span><?php echo $myBoomPos++; ?></span></p>
-                                    <img src="<?php echo $image ?>" height="72px" width="72px">
-                                    <h4 class="boom-info">
-                                        <span><?php echo $element['title'] ?></span>
-                                    </h4>
-                                </li>
-                                <?php
-                            endforeach;
+                        $myBoomPos = 1;
+                        foreach ($replyEntity['elements'] as $element):
+                            $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : 'http://placekitten.com/72/72';
                             ?>
-                        </ul>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <?php if ($replyMessage == true): ?>
-                    <div class="boom-clean">
-                        <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
-                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reply', array('slug' => $entity['slug'])) ?>" target="_blank" class="editalo">¡Edítalo!</a>
-                    </div>
-                <?php endif; ?>
+                            <li original-position="<?php echo $view->escape($element['position']) ?>">
+                                <div class="balloon">
+                                    <p>arrastrar</p>
+                                </div>
+
+                                <p class="pos"><span><?php echo $myBoomPos++; ?></span></p>
+                                <img src="<?php echo $image ?>" height="72px" width="72px">
+                                <h4 class="boom-info">
+                                    <span><?php echo $element['title'] ?></span>
+                                </h4>
+                            </li>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
+                </ul>
+                <div class="boom-clean <?php echo $replyMessage ? '' : 'hidden' ?>">
+                    <p>Aún no has editado <span>este boom.</span> Arrastra íconos, modifícalo, opina para que éste sea <span>tu boom.</span></p>
+                </div>
+                <?php
+                    if($replyMessage == true || $isEditable == false){
+                        $replyUrl = 'BoomFrontBundle_boom_reply';
+                        $entityUrl = $entity['slug'];
+                    }else{
+                        $replyUrl = 'BoomFrontBundle_boom_edit';
+                        $entityUrl = $replyEntity['slug'];
+                    }
+                ?>
+                <a href="<?php echo $view['router']->generate($replyUrl, array('slug' => $entityUrl)); ?>" class="editalo">¡Edítalo!</a>
             </div>
         <?php endif; ?>
     </div>

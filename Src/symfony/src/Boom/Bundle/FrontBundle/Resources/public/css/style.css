@@ -557,7 +557,7 @@ h1 a:before {
   height: 40px;
   left: -12px;
   position: absolute;
-  width: 15px; 
+  width: 15px;
 }
 
 #hd-mn nav a {
@@ -2589,7 +2589,11 @@ span.arrow {
 
 #usr-booms .miboom-cont h3 {
   background: url(../images/tu_dices.png) center 15px no-repeat;
-  margin-bottom: 50px;
+  margin-bottom: 0px;
+}
+
+#usr-booms .miboom-cont{
+  margin-bottom: 60px;
 }
 
 .drag-booms {
@@ -2910,7 +2914,8 @@ span.arrow {
 .boom-clean {
   display: block;
   width: 290px;
-  height: 628px;
+  margin: 100px 0px 20px 0px;
+  height: 228px;
   background: #313131;
   font: 31px 'Proxima', sans-serif;
   color: #fff;
@@ -2920,6 +2925,10 @@ span.arrow {
   -ms-transition: all 400ms ease;
   -o-transition: all 400ms ease;
   transition: all 400ms ease;
+}
+
+.boom-clean.hidden{
+    display:none;
 }
 
 .boom-clean.on {

@@ -46,10 +46,14 @@
         <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: ')) ?>
     </fieldset>
     <ul id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
-        <?php foreach ($form['elements'] as $element): ?>
+        <?php
+            $positionCounter = 0;
+            foreach ($form['elements'] as $element):
+                $positionCounter++;
+                ?>
             <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
                     <label>
-                        <span class="place"><?php echo (string) $element['position']->vars['value']; ?></span>
+                        <span class="place"><?php echo $positionCounter; ?></span>
                     </label>
                     <div class="uploader">
                       <p class="instrucciones">Arrastra tu foto</p>
@@ -68,7 +72,7 @@
                             $element['title'], array(
                         'attr' => array(
                             'class' => 'boomie-title-input',
-                            'placeholder' => 'Título del Boom No.' . $element['position']->vars['value']
+                            'placeholder' => 'Título del Boom No.' . $positionCounter
                         )
                             )
                     );
