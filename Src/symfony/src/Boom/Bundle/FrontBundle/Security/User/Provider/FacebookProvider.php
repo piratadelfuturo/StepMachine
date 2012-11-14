@@ -53,11 +53,11 @@ class FacebookProvider implements UserProviderInterface {
 
     public function grabImage($url) {
         $fp = tmpfile();
-        $meta = stream_get_meta_data($fp);
+        $meta = \stream_get_meta_data($fp);
         fwrite($fp, file_get_contents($url));
         fseek($fp, 0);
         $name = $meta['uri'];
-        $name .= image_type_to_extension(exif_imagetype($name));
+        $name .= \image_type_to_extension(\exif_imagetype($name));
         rename($meta['uri'],$name);
         return $name;
     }
