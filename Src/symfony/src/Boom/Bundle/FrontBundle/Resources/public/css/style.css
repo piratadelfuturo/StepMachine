@@ -1244,6 +1244,7 @@ h1 a:before {
   display: inline-block;
   background: #000;
   margin-top: 3px;
+  width: 100%;
 }
 
 .car-thumbs li {
