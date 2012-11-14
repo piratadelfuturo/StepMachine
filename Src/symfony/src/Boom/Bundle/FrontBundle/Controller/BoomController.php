@@ -101,7 +101,7 @@ class BoomController extends Controller {
         );
         if (!$fav == true) {
             $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
-            $sessionUser,'marcó como favorito',$entity);
+                    $sessionUser, 'fav', $entity);
             $response['text'] = 'Quitar de favoritos.';
         } else {
             $response['text'] = 'Marcar como favorito.';
@@ -226,6 +226,8 @@ class BoomController extends Controller {
 
             $em->persist($entity);
             $em->flush();
+            $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
+                    $sessionUser, 'create', $entity);
 
             return $this->redirect(
                             $this->generateUrl(
@@ -439,6 +441,8 @@ class BoomController extends Controller {
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+            $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
+                    $sessionUser, 'edit', $entity);
 
             return $this->redirect($this->generateUrl(
                                     'BoomFrontBundle_boom_show', array(

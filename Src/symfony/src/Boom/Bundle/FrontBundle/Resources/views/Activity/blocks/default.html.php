@@ -9,5 +9,5 @@
             <a href="<?php echo $act['boom_url'] ?>"><?php echo $view->escape($act['boom_title']) ?></a>
         </p>
     <?php endif; ?>
-<date><?php echo $view->escape($act['boom_date']) ?></date>
+<date><?php echo $view->escape($act['date']) ?></date>
 </li>

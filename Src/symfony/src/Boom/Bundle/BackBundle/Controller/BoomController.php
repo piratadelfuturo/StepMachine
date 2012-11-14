@@ -14,7 +14,7 @@ use Boom\Bundle\LibraryBundle\Entity\Image;
 
 class BoomController extends Controller {
 
-    public function featureAction($id){
+    public function featureAction($id) {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($id);
         if (!$entity) {
@@ -213,6 +213,13 @@ class BoomController extends Controller {
             $em->persist($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
+            if (($entity['status'] === Boom::STATUS_PUBLIC
+                    || $entity['status'] === Boom::STATUS_PRIVATE
+                    ) && $entity['datepublished'] <= new DateTime("now")
+            ) {
+                $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
+                        $entity['user'], 'create', $entity);
+            }
             return $this->redirect(
                             $this->generateUrl(
                                     'BoomBackBundle_boom_edit', array(
@@ -220,7 +227,7 @@ class BoomController extends Controller {
                                     )
                             )
             );
-        }else{
+        } else {
             $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
         }
 
@@ -279,7 +286,7 @@ class BoomController extends Controller {
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
             return $this->redirect($this->generateUrl('BoomBackBundle_boom_edit', array('id' => $id)));
-        }else{
+        } else {
             $this->get('session')->getFlashBag()->add('notice', 'Boom NO guardado!');
         }
 
@@ -322,7 +329,7 @@ class BoomController extends Controller {
         ;
     }
 
-    private function createAjaxImageForm(){
+    private function createAjaxImageForm() {
         return $this->createForm($this->get('boom_library.ajax_image.type'), new Image());
     }
 
@@ -332,8 +339,8 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('BoomLibraryBundle:Boom');
         $results = $repo->findBoomsByLike($queryString);
-        foreach($results as &$result){
-            $result['image_path'] = $result['image_path'] === null ? '' : $this->get('boom_library.image.helper')->getBoomImageUrl($result['image_path'],158,90);
+        foreach ($results as &$result) {
+            $result['image_path'] = $result['image_path'] === null ? '' : $this->get('boom_library.image.helper')->getBoomImageUrl($result['image_path'], 158, 90);
         }
         $response = new Response(json_encode($results));
         $response->headers->set('Content-Type', 'application/json');
