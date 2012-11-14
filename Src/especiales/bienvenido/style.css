@@ -216,6 +216,7 @@ div.center {
   -webkit-transform: rotate(-20deg);
   z-index: 9;
 }
+
 #sld1.active #itm6 {
   top: 50px;
   left: 195px;  
@@ -227,22 +228,48 @@ div.center {
   width: 35px;
 }
 
+#sld1.active #itm7 {
+  top: 195px;
+  left: 368px;
+}
+
 #sld1 #itm8 {
   background: url('images/itm-8.png') no-repeat left top;
   height: 77px;
   width: 57px;
+  z-index: 9;
+}
+
+#sld1.active #itm8 {
+  top: 580px;
+  -webkit-transform: rotate(-30deg);
+  left: 617px;
 }
 
 #sld1 #itm9 {
   background: url('images/itm-9.png') no-repeat left top;
   height: 77px;
   width: 22px;
+  z-index: 9;
+}
+
+#sld1.active #itm9 {
+  left: 860px;
+  top: 130px;
+  -webkit-transform: rotate(-140deg);
 }
 
 #sld1 #itm10 {
   background: url('images/itm-10.png') no-repeat left top;
   height: 70px;
   width: 17px;
+  -webkit-transform: rotate(-40deg);
+  z-index: 9;
+}
+
+#sld1.active #itm10 {
+  left: 850px;
+  top: 514px;
 }
 
 #sld1 #itm11 {
