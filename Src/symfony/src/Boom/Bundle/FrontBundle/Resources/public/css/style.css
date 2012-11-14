@@ -2214,7 +2214,14 @@ footer p {
   color: #000;
 }
 
-.single-boom .social .btn-fb, .single-boom .social .btn-tw, .single-boom .social .btn-fav:after {
+.single-boom .social a.editar-boom-ph {
+  float: right;
+  border-left: 1px solid #DFDFDF;
+  padding: 0 10px;
+}
+
+.single-boom .social .btn-fb, .single-boom .social .btn-tw, 
+.single-boom .social .btn-fav:after, .single-boom .social a.editar-boom-ph:after {
   background: url('../images/sprite_redes.png') no-repeat 0 0;
   text-indent: -9000px;
   line-height: 30px;
@@ -2294,12 +2301,6 @@ footer p {
   right: 57px;
 }
 
-.editar-boom-ph {
-  float: right;
-  border-left: 1px solid #DFDFDF;
-  padding-left: 10px;
-}
-
 .single-boom .social .btn-tw {
   width: 30px;
   height: 30px;
@@ -2329,8 +2330,23 @@ footer p {
   right: 0;
 }
 
+.single-boom .social .editar-boom-ph:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-position: -91px 0;
+  top: 0;
+  right: 0;
+}
+
 .single-boom .social .btn-fav:hover:after, .single-boom .social .btn-fav.active:after {
   background-position: -63px -31px;
+}
+
+.single-boom .social .editar-boom-ph:hover:after, .single-boom .social .editar-boom-ph.active:after {
+  background-position: -91px -31px;
 }
 
 .single-boom .autor {
