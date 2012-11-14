@@ -1593,6 +1593,35 @@ aside .sb-bloque {
 
 /* F00000000000TER */
 
+.encuesta {
+  position: fixed;
+  display: block;
+  width: 200px;
+  height: auto;
+  background: red;
+  right: -70px;
+  top: 40%;  
+  color: #fff;
+  font: normal 14px 'Proxima', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px 0;
+  background-color: #f47b20;;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  z-index: 15;
+  background: -moz-linear-gradient(top, #faa635 0%, #e35344 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faa635), color-stop(100%,#e35344));
+  background: -webkit-linear-gradient(top, #faa635 0%,#e35344 100%);
+  background: -o-linear-gradient(top, #faa635 0%,#e35344 100%);
+  background: -ms-linear-gradient(top, #faa635 0%,#e35344 100%);
+  background: linear-gradient(top, #faa635 0%,#e35344 100%);
+  
+}
+
 footer {
   display: inline-block;
   width: 100%;
@@ -2216,6 +2245,12 @@ footer p {
   position: absolute;
   top: 41px;
   right: 57px;
+}
+
+.editar-boom-ph {
+  float: right;
+  border-left: 1px solid #DFDFDF;
+  padding-left: 10px;
 }
 
 .single-boom .social .btn-tw {

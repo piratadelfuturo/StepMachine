@@ -35,7 +35,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
     </div>
     <div class="big-container cf">
         <div class="dyna-content tend-cont on">
-            <h3>Esto es lo que nuestros usuarios dicen: ¿estás de acuerdo? ¡Edítalo!</h3>
+            <h3>Esto es lo que nuestros usuarios dicen: ¿estás de acuerdo? ¡Reordénalo!</h3>
             <ul class="drag-booms">
                 <?php
                 $comunityPosition = 1;
@@ -55,6 +55,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                 <?php endforeach; ?>
             </ul>
             <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
+            <a href="" class="editalo disabled">Editar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
