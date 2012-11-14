@@ -113,28 +113,44 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
             </div>
             <div id="rt-cont">
                 <div id="rt-user-activities" class="on">
-                    <?php if (count($activities) > 0): ?>
+                    <?php if (count($activities) == 0): ?>
                         <ul>
-                            <?php foreach ($activities as $activity): ?>
-                                <li class="boom-li">
-                                    <a href="#"><img src="http://placehold.it/160x88" alt="placeholder"></a>
-                                    <div class="boom-info">
-                                        <span class="sm-flag sexo">Sexo</span>
-                                        <p class="boom-ti"><a href="#">Título del boom</a></p>
-                                        <a href="#" class="boom-moar">Leer Boom</a>
-                                    </div>
-                                    <ul>
-                                      <li><p>Publicado el <date>lun, 8 oct, 2012</date></p></li>
-                                      <li><p><span>420</span> veces visto</p></li>
-                                      <li><p><span>42</span> comentarios</p></li>
-                                      <li><p><a>4</a> modificaciones</p></li>
-                                    </ul>
-                                </li>
-                            <?php endforeach; ?>
+                          <?php //foreach ($activities as $activity): ?>
+                          <li class="edit-boom">
+                            <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <li class="fav-boom">
+                            <p class="info"><a href="#">BoomMaker77</a> ha marcado como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <li class="add-boom">
+                            <p class="info"><a href="#">BoomMaker77</a> ha creado un nuevo boom:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <li class="edit-boom">
+                            <p class="info">Edit&eacute; un boom de <a href="#">Chicken Destroy</a>:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <li class="fav-boom">
+                            <p class="info">Marqu&eacute; como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <li class="add-boom">
+                            <p class="info">Publiqu&eacute; un nuevo boom:</p>
+                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <date>22 de enero 2011</date>
+                          </li>
+                          <?php //endforeach; ?>
                         </ul>
-                        <div class="ver-mas-block">
-                            <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver Todos</a>
-                        </div>
+                        <p class="ver-mas-block">
+                            <a href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver más</a>
+                        </p>
                     <?php else: ?>
                     <div class="no-content">
                       <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
