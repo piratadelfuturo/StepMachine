@@ -29,7 +29,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
 <div id="usr-booms" class="hook">
     <div class="shade">shade</div>
     <div class="botones">
-        <a href="#" class="on" id="tendencia">Tendencias</a>
+        <a href="#" class="on" id="tendencia">7boom dice</a>
         <?php if (!$isOwner): ?>
             <span class="divider">divider</span>
             <a href="#" id="miboom">Mi Boom</a>
@@ -57,7 +57,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Editar</a>
+            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
@@ -100,6 +100,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                     }
                 ?>
                 <a href="<?php echo $view['router']->generate($replyUrl, array('slug' => $entityUrl)); ?>" class="editalo">¡Edítalo!</a>
+                <a href="#" class="editalo reordenalo">¡Reordénalo!</a>
             </div>
         <?php endif; ?>
     </div>
@@ -116,7 +117,8 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
         <div class="sign-in">
             <h3>¡Alto ahí!</h3>
             <p>Nos encantó cómo quedó tu boom, pero para guardarlo, compartir y usar todos nuestros ósom features, debes registrarte primero.</p>
-            <a href="#" class="grey-btn">Regístrate</a>
+            <a href="#" class="fb-reg">Regístrate con Facebook</a>
+            <a href="#" class="close-share">&#10005;</a>
         </div>
     </div>
 </div>
