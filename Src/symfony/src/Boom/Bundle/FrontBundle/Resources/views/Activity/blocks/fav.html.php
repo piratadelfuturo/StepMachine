@@ -6,5 +6,5 @@
     <?php endif; ?>
     <p class="title">
         <a href="<?php echo $act['boom_url'] ?>"><?php echo $view->escape($act['boom_title']) ?></a>
-    </p><date><?php echo $view->escape($act['boom_date']) ?></date>
+    </p><date><?php echo $view->escape($act['date']) ?></date>
 </li>

@@ -49,11 +49,10 @@ class MainHelper extends Helper {
     public function renderActivity(Activity $activity) {
         $activity_name = 'default';
         $allowed_activities = array('create', 'edit', 'fav');
-        $act = array();
         if (is_string($activity['data']) && in_array($activity['data'], $allowed_activities)) {
             $activity_name = $activity['data'];
-            $act = $this->_filterActivity($activity);
         }
+        $act = $this->_filterActivity($activity);
 
         return $this->container->get('templating')->render(
                         'BoomFrontBundle:Activity:blocks/' . $activity_name . '.html.php', array(
@@ -66,7 +65,7 @@ class MainHelper extends Helper {
     private function _filterActivity(Activity $entity) {
         $act = array();
         $act['self'] = false;
-        $sessionToken =$this->container->get('security.context')->getToken();
+        $sessionToken = $this->container->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
         $router = $this->container->get('router');
         if ($entity['user']['id'] === $sessionUser->getId()) {
@@ -78,17 +77,19 @@ class MainHelper extends Helper {
         $act['profile_url'] = $router->generate(
                 'BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])
         );
-        $act['boom_url'] = $router->generate(
-                'BoomFrontBundle_boom_show', array(
-            'category_slug' => $entity['boom']['category']['slug'], 'slug' => $entity['boom']['slug']
-                )
-        );
-        $act['boom_profile_url'] = $router->generate(
-                'BoomFrontBundle_user_profile', array('username' => $entity['boom']['user']['username'])
-        );
-        $act['boom_user'] = $entity['boom']['user'];
-        $act['boom_title'] = $entity['boom']['title'];
-        $act['boom_date'] = $this->getLocaleFormatDate($entity['date'], 'EEE, d MMM, yyyy');
+        if ($entity['boom'] !== null) {
+            $act['boom_url'] = $router->generate(
+                    'BoomFrontBundle_boom_show', array(
+                'category_slug' => $entity['boom']['category']['slug'], 'slug' => $entity['boom']['slug']
+                    )
+            );
+            $act['boom_profile_url'] = $router->generate(
+                    'BoomFrontBundle_user_profile', array('username' => $entity['boom']['user']['username'])
+            );
+            $act['boom_user'] = $entity['boom']['user'];
+            $act['boom_title'] = $entity['boom']['title'];
+        }
+        $act['date'] = $this->getLocaleFormatDate($entity['date'], 'EEE, d MMM, yyyy');
         return $act;
     }
 
