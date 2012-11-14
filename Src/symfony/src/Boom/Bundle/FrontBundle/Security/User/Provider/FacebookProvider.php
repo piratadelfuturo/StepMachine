@@ -109,7 +109,12 @@ class FacebookProvider implements UserProviderInterface {
                 try{
                     $this->userManager->updateUser($user,true);
                 }catch(\Exception $e){
-                    throw new UnsupportedUserException('Error de usuario de facebook.');
+                    throw new UnsupportedUserException(
+                            'Error de usuario de facebook.',
+                            null,
+                            0,
+                            $e
+                            );
                 }
                 $uploadListener->upload($user);
 
