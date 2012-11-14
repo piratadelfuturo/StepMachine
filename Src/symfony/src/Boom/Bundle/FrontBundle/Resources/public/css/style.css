@@ -2621,6 +2621,7 @@ fieldset.on .accordion_content {
   -ms-transition: height 300ms;
   -o-transition: height 300ms;
   height: auto;
+  min-height: 819px;
 }
 
 #usr-booms .botones {
@@ -2840,6 +2841,10 @@ span.arrow {
   clear: both;
 }
 
+.reordenalo {
+  margin-top: 20px;
+}
+
 .editalo span {
   font-size: 32px;
   display: block;
@@ -2960,7 +2965,7 @@ span.arrow {
   background: url(../images/share_fb.png) 30px center no-repeat;
 }
 
-.share-boom .close-share {
+.share-boom .close-share, .sign-in .close-share {
   color: #fff;
   font-size: 15px;
   position: absolute;
@@ -2981,6 +2986,16 @@ span.arrow {
   border: 2px solid #FFF;
   width: auto;
   margin: 20px 50px;
+}
+
+.fb-reg {
+  display: block;
+  position: relative;
+  width: 216px;
+  height: 35px;
+  background: url(../images/fb_reg.png);
+  text-indent: -9999px;
+  margin: 10px auto;
 }
 
 .shade {
@@ -3011,7 +3026,7 @@ span.arrow {
 .boom-clean {
   display: block;
   width: 290px;
-  margin: 100px 0px 20px 0px;
+  margin: 100px 0px 50px 0px;
   height: 228px;
   background: #313131;
   font: 31px 'Proxima', sans-serif;
@@ -3026,10 +3041,6 @@ span.arrow {
 
 .boom-clean.hidden{
     display:none;
-}
-
-.boom-clean.on {
-
 }
 
 .boom-clean p span {
