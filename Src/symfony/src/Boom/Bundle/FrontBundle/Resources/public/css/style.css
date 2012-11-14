@@ -1135,9 +1135,8 @@ h1 a:before {
 .ver-moar, .ver {
   font: 200 14px 'Proxima', sans-serif;
   text-transform: uppercase;
-  background: url('../images/boo
+  background: url('../images/boom_15.png') no-repeat right center;
   font: 16px 'Proxima', sans-serif;
-  m_15.png') no-repeat right center;
 }
 
 .usr-bm-list .boom-moar {
@@ -2314,7 +2313,7 @@ footer p {
 .single-boom .social .btn-fav {
   float: right;
   border-left: 1px solid #dfdfdf;
-  padding: 0 35px 0 10px;
+  padding: 0 33px 0 10px;
   width: auto;
   text-indent: 0;
 }
@@ -2323,7 +2322,7 @@ footer p {
   content: '';
   display: block;
   position: absolute;
-  width: 30px;
+  width: 28px;
   height: 30px;
   background-position: -63px 0;
   top: 0;
