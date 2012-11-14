@@ -25,7 +25,6 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
     }
 }
 ?>
-
 <div id="usr-booms" class="hook">
     <div class="shade">shade</div>
     <div class="botones">
@@ -57,7 +56,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo disabled">Guardar</a>
+            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo send disabled">Guardar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
@@ -99,7 +98,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                         $entityUrl = $replyEntity['slug'];
                     }
                 ?>
-                <a href="<?php echo $view['router']->generate($replyUrl, array('slug' => $entityUrl)); ?>" class="editalo">¡Edítalo!</a>
+                <a href="<?php echo $view['router']->generate($replyUrl, array('slug' => $entityUrl)); ?>" class="editalo send">¡Edítalo!</a>
                 <a href="#" class="editalo reordenalo">¡Reordénalo!</a>
             </div>
         <?php endif; ?>

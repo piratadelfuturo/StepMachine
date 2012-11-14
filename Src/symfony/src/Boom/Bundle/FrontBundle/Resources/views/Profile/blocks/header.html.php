@@ -26,7 +26,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                 <li>
                     <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
                 </li>
-                <?php if (!empty($activities)): ?>
+                <?php /* if (!empty($activities)): ?>
                     <li>
                         <ul id="user-activity-stream">
                             <?php
@@ -55,7 +55,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                             <?php endforeach; ?>
                         </ul>
                     </li>
-                <?php endif; ?>
+                <?php endif; */ ?>
             </ul>
 
             <div id="open-tab" class="botones">
