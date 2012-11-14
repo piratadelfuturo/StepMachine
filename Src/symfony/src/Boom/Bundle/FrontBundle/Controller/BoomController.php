@@ -10,6 +10,7 @@ use Boom\Bundle\FrontBundle\Form\BoomType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Boom controller.
@@ -394,7 +395,7 @@ class BoomController extends Controller {
                 $newOrder[$pos] = $element;
             }
             ksort($newOrder);
-            $entity['elements'] = $newOrder;
+            $entity['elements'] = ArrayCollection($newOrder);
         }
 
         $editForm = $this->createForm(new BoomType(), $entity);
