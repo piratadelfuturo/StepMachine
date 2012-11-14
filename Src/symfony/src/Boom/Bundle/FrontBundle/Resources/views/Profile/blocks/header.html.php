@@ -201,7 +201,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                           <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
-                </div
+                </div>
             </div>
         </div>
     </div>
