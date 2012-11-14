@@ -3,7 +3,7 @@
 /* @var \Doctrine\Common\Collections\ArrayCollection $user['favorites'] */
 $user = $app->getUser();
 $categories = $view['boom_front']->getFeaturedCategories();
-$activities = $view['boom_front']->getFollowedActivities($app->getUser());
+$activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
 ?>
 <div id="usr-cnt">
     <a href="#" class="mostrar"><span>Tu Panel</span></a>
@@ -44,8 +44,8 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                                     if ($activity['boom'] !== null):
                                         $boomUrl = $view['router']->generate(
                                                 'BoomFrontBundle_boom_show', array(
-                                            'category_slug' => $activitiy['boom']['category']['slug'],
-                                            'slug' => $activitiy['boom']['slug']
+                                            'category_slug' => $activity['boom']['category']['slug'],
+                                            'slug' => $activity['boom']['slug']
                                                 )
                                         );
                                         ?>
@@ -68,7 +68,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
             <div id="usm-pro">
                 <div class="usm-info">
                     <div class="usr-pic">
-                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($user['imagepath'],array(150,150)) ?>" id="user-img" height="150px" width="150px"/>
+                        <img src="<?php echo $view['boom_image']->getProfileImageUrl($user['imagepath'], array(150, 150)) ?>" id="user-img" height="150px" width="150px"/>
                     </div>
                     <div class="usr-data">
                         <h3>¡Bienvenido...</br> <span><?php echo $view->escape($user['firstname']); ?> !</span></h3>
@@ -113,53 +113,56 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
             </div>
             <div id="rt-cont">
                 <div id="rt-user-activities" class="on">
-                    <?php if (count($activities) == 0): ?>
+                    <?php if (count($activities) > 0): ?>
                         <ul>
-                          <?php //foreach ($activities as $activity): ?>
-                          <li class="edit-boom">
-                            <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            <?php foreach ($activities as $activity){
+                                echo $view['boom_front']->renderActivity($activity);
+                            }?>
+                            <!--
+                            <li class="edit-boom">
+                                <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <li class="fav-boom">
-                            <p class="info"><a href="#">BoomMaker77</a> ha marcado como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            </li>
+                            <li class="fav-boom">
+                                <p class="info"><a href="#">BoomMaker77</a> ha marcado como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <li class="add-boom">
-                            <p class="info"><a href="#">BoomMaker77</a> ha creado un nuevo boom:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            </li>
+                            <li class="add-boom">
+                                <p class="info"><a href="#">BoomMaker77</a> ha creado un nuevo boom:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <li class="edit-boom">
-                            <p class="info">Edit&eacute; un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            </li>
+                            <li class="edit-boom">
+                                <p class="info">Edit&eacute; un boom de <a href="#">Chicken Destroy</a>:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <li class="fav-boom">
-                            <p class="info">Marqu&eacute; como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            </li>
+                            <li class="fav-boom">
+                                <p class="info">Marqu&eacute; como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <li class="add-boom">
-                            <p class="info">Publiqu&eacute; un nuevo boom:</p>
-                            <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
+                            </li>
+                            <li class="add-boom">
+                                <p class="info">Publiqu&eacute; un nuevo boom:</p>
+                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
                             <date>22 de enero 2011</date>
-                          </li>
-                          <?php //endforeach; ?>
+                            </li> -->
                         </ul>
+                    <!--
                         <p class="ver-mas-block">
                             <a href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver más</a>
-                        </p>
+                        </p> -->
                     <?php else: ?>
-                    <div class="no-content">
-                      <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
-                      <p>Es hora de darle vida a tu perfil:</p>
-                      <p><a href="/boom/nuevo"><strong>Crea tus propios booms</strong></a></p>
-                      <p><a href=""><strong>Modifica nuestros destacados</strong></a></p>
-                      <p><a href=""><strong>Invita a tus amigos</strong></a> y comparte tu opinión.</p>
-                      <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
-                    </div>
+                        <div class="no-content">
+                            <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
+                            <p>Es hora de darle vida a tu perfil:</p>
+                            <p><a href="/boom/nuevo"><strong>Crea tus propios booms</strong></a></p>
+                            <p><a href=""><strong>Modifica nuestros destacados</strong></a></p>
+                            <p><a href=""><strong>Invita a tus amigos</strong></a> y comparte tu opinión.</p>
+                            <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div id="rt-user-recommended" style="display:none">
@@ -195,10 +198,10 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                         <div class="ver-mas-block">
                             <a class="ver-moar" href="<?php echo $view['router']->generate('BoomFrontBundle_profile_favorites') ?> ">Ver Todos</a>
                         </div>
-                        <?php else: ?>
+                    <?php else: ?>
                         <div class="no-content">
-                          <p><strong>Parece que aun no tienes favoritos</strong></p>
-                          <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
+                            <p><strong>Parece que aun no tienes favoritos</strong></p>
+                            <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
                         </div>
                     <?php endif; ?>
                 </div>
