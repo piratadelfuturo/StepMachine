@@ -213,36 +213,36 @@
         //Content Selector
         $.contentSelector = function( activeClick, index, activeContent ){
 
-          var pos = activeClick.position(),
-              wd = activeClick.innerWidth() / 2,
-              sum = parseInt( pos.left + wd - 9 );
+            var pos = activeClick.position(),
+            wd = activeClick.innerWidth() / 2,
+            sum = parseInt( pos.left + wd - 9 );
 
-          activeClick.siblings('span.arrow').css('left', sum);
-          activeClick.toggleClass('on').siblings('a').toggleClass('on');
-          activeContent.fadeOut(300, function() {
-              $(this).toggleClass('on').siblings('div').toggleClass('on').fadeIn(300);
-          });
+            activeClick.siblings('span.arrow').css('left', sum);
+            activeClick.toggleClass('on').siblings('a').toggleClass('on');
+            activeContent.fadeOut(300, function() {
+                $(this).toggleClass('on').siblings('div').toggleClass('on').fadeIn(300);
+            });
 
-          return false;
+            return false;
 
         }
 
         $('div.botones a').click( function(){
 
-          if( $(this).hasClass('on') ){
-            return false;
-          } else {
-            var index = $(this).index(),
+            if( $(this).hasClass('on') ){
+                return false;
+            } else {
+                var index = $(this).index(),
                 activeClick = $(this);
 
-            if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
-              var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
-            } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
-              var activeContent = $(this).parents('#usr-booms').find('div.big-container .on');
-            }
+                if( $(this).closest('.hook').attr('id') == 'usr-box' ) {
+                    var activeContent = $(this).parents('#usr-box').find('#rt-cont').children('.on');
+                } else if( $(this).closest('.hook').attr('id') == 'usr-booms' ) {
+                    var activeContent = $(this).parents('#usr-booms').find('div.big-container .on');
+                }
 
-            return $.contentSelector( activeClick, index, activeContent );
-          }
+                return $.contentSelector( activeClick, index, activeContent );
+            }
 
         });
 
@@ -391,50 +391,97 @@
 (function(document,$){
     $(document).ready(function(){
 
-        var data = {
-            order:{}
-        };
         var _root = $('#usr-booms'),
-        _drag = $(".dyna-content.tend-cont > .drag-booms",_root),
-        _dragBase = $(".dyna-content.tend-cont",_root),
-        _editalo = $("> .editalo",_dragBase),
+        _dragB = $(".dyna-content",_root),
         op = false,
         _infoBlocks = $('.info-blocks',_root),
         _registerBlock = $('.sign-in',_infoBlocks),
         _shareBlock = $('.share-boom',_infoBlocks),
-        _shareClose = $('.close-share',_infoBlocks)
-        ;
+        _shareClose = $('.close-share',_infoBlocks),
+        _comunityOrder = $('.tend-cont',_root),
+        _myBoom = $('.miboom-cont',_root);
 
-        //DRAGnDROP widgt
+        $([_shareBlock,_registerBlock]).bind('close',function(){
+            var _this = $(this);
+            _this.animate({
+                bottom: '-500px'
+            },500,function(){
+                _infoBlocks.hide();
+            })
+        })
+        .bind('open',function(){
+            var _this = $(this);
+            _infoBlocks.show(10,function(){
+                _this.animate({
+                    bottom: '0'
+                });
+            });
+        });
 
-        _drag.dragsort({
-            dragSelector: '.drag-booms li',
-            dragEnd: function(){
-                if(op === true){
-                    return false;
-                }
-                _editalo.removeClass('disabled');
-                $(this).parent().children().each(function(index){
+        _shareClose.click(function(e){
+            e.preventDefault();
+            _shareBlock.trigger('close');
+            return false;
+        });
+
+        $([_comunityOrder,_myBoom]).each(function(){
+            var data = {
+                order:{}
+            };
+            var _dragBase = $(this),
+            _drag = $("> .drag-booms",_dragBase),
+            _editalo = $("> .editalo",_dragBase);
+            //DRAGnDROP widgt
+            _drag.dragsort({
+                dragSelector: '.drag-booms li',
+                dragEnd: function(){
+                    if(op === true){
+                        return false;
+                    }
+                    _drag.trigger('recalc');
+                    _editalo.removeClass('disabled');
+                },
+                dragBetween: false,
+                placeHolderTemplate: "<li class='empty'></li>"
+            }).bind('recalc',function(){
+                _drag.children().each(function(index){
                     $(this).children(".pos").html(index+1);
                     data.order[$(this).attr('original-position')] = {
                         'original'  : $(this).attr('original-position'),
                         'final'     : index+1
                     };
                 });
-            },
-            dragBetween: false,
-            placeHolderTemplate: "<li class='empty'></li>"
+
+            });
+            _dragBase.bind('ajaxOver',function(){
+                op = false;
+                _editalo.removeClass('disabled');
+            });
+
+            _editalo.click(function(e){
+                var _clicked = $(this);
+                e.preventDefault();
+                if(_clicked.hasClass('disabled') || op === true){
+                    return false;
+                }
+                _clicked.addClass('disabled');
+                op = true;
+                _drag.trigger('recalc');
+                _dragBase.trigger('submit',[data,_clicked.attr('href')]);
+            })
         });
 
-        _editalo.click(function(e){
-            e.preventDefault();
-            if(_editalo.hasClass('disabled') || op === true){
-                return false;
+        //guardar reorden comunidad
+        _comunityOrder.bind('ajaxOver',function(){
+            var _myBoomDrag = $('> .drag-booms',_myBoom);
+            var _comunityOrderDrag = $('> .drag-booms',_myBoom);
+            if(_myBoomDrag.children().length <= 0){
+                _myBoomDrag.append(_comunityOrderDrag.children().clone());
             }
-            _editalo.addClass('disabled');
-            op = true;
+        }).bind('submit',function(e,data,url){
+            var _dragBase = $(this);
             $.ajax({
-                url: $(this).attr('href'),
+                url: url,
                 data: data,
                 dataType:'json',
                 type: 'POST',
@@ -444,10 +491,7 @@
                             bottom: '0'
                         })
                     });
-                    op = false;
-                    _editalo.removeClass('disabled');
-                    _drag.dragsort("destroy");
-                    _drag.find('div.balloon').remove();
+                    _dragBase.trigger('ajaxOver');
                 },
                 error: function(response){
                     _infoBlocks.show(10,function(){
@@ -455,24 +499,16 @@
                             bottom: '0'
                         });
                     });
-
-                    op = false;
-                    _editalo.removeClass('disabled');
+                    _dragBase.trigger('ajaxOver');
                 }
             });
-
-        })
-
-         _shareClose.click(function(e){
-            if(_editalo.not('.disabled')){
-              _shareBlock.animate({
-                bottom: '-500px'
-              });
-            _editalo.addClass('disabled');
-            return false;
-            }
-          }
-         );
+        });
+        //editar mi reorden
+        _myBoom.bind('submit',function(e,data,url){
+                var location = url+'?'+$.param(data);
+                window.location = location;
+            });
+        //editar mi respuesta
 
         $('.grey-btn',_registerBlock).click(function(e){
             e.preventDefault();
@@ -482,32 +518,25 @@
 
         $('.grey-btn',_shareBlock).click(function(e){
             e.preventDefault();
-            console.log(!!$('.twitter',_shareBlock).attr('checked'));
             if(!!$('.twitter',_shareBlock).attr('checked')){
                 var share = "https://twitter.com/share?text=Acabo de votar en 7boom&url="+window.location.href;
                 window.open(share);
             }
             if(!!$('.facebook',_shareBlock).attr('checked')){
-                console.log(window.location.href);
                 var obj = {
                     method: 'feed',
                     link: window.location.href
                 };
-                FB.ui(
-                    obj
-                    );
+                FB.ui(obj);
             }
-            _shareBlock.animate({
-                bottom: '-500px'
-            },500,function(){
-                _infoBlocks.hide();
-                _editalo.hide();
-            });
+            _shareBlock.trigger('close');
             return false;
         })
-   
-        $('#mce-responses').click(function(){
-          $(this).hide();
+
+        $('#mce-responses').click(function(e){
+            e.preventDefault();
+            $(this).hide();
+            return false;
         });
 
     });
@@ -751,7 +780,12 @@
 
 /**MAILCHIMP**/
 
-var fnames = new Array();var ftypes = new Array();fnames[1]='FNAME';ftypes[1]='text';fnames[0]='EMAIL';ftypes[0]='email';
+var fnames = new Array();
+var ftypes = new Array();
+fnames[1]='FNAME';
+ftypes[1]='text';
+fnames[0]='EMAIL';
+ftypes[0]='email';
 try {
     var jqueryLoaded=jQuery;
     jqueryLoaded=true;
@@ -766,8 +800,8 @@ if (!jqueryLoaded) {
     head.appendChild(script);
     if (script.readyState && script.onload!==null){
         script.onreadystatechange= function () {
-              if (this.readyState == 'complete') mce_preload_check();
-        }    
+            if (this.readyState == 'complete') mce_preload_check();
+        }
     }
 }
 var script = document.createElement('script');
@@ -784,9 +818,9 @@ var head= document.getElementsByTagName('head')[0];
 var style= document.createElement('style');
 style.type= 'text/css';
 if (style.styleSheet) {
-  style.styleSheet.cssText = err_style;
+    style.styleSheet.cssText = err_style;
 } else {
-  style.appendChild(document.createTextNode(err_style));
+    style.appendChild(document.createTextNode(err_style));
 }
 head.appendChild(style);
 setTimeout('mce_preload_check();', 250);
@@ -811,71 +845,83 @@ function mce_preload_check(){
 }
 function mce_init_form(){
     jQuery(document).ready( function($) {
-      var options = { errorClass: 'mce_inline_error', errorElement: 'div', onkeyup: function(){}, onfocusout:function(){}, onblur:function(){}  };
-      var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
-      $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
-      options = { url: 'http://7boom.us6.list-manage1.com/subscribe/post-json?u=8e9171246d53eebc71ca63890&id=ef91d2cbb8&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
-                    beforeSubmit: function(){
-                        $('#mce_tmp_error_msg').remove();
-                        $('.datefield','#mc_embed_signup').each(
+        var options = {
+            errorClass: 'mce_inline_error',
+            errorElement: 'div',
+            onkeyup: function(){},
+            onfocusout:function(){},
+            onblur:function(){}
+        };
+        var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+        $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
+        options = {
+            url: 'http://7boom.us6.list-manage1.com/subscribe/post-json?u=8e9171246d53eebc71ca63890&id=ef91d2cbb8&c=?',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            beforeSubmit: function(){
+                $('#mce_tmp_error_msg').remove();
+                $('.datefield','#mc_embed_signup').each(
+                    function(){
+                        var txt = 'filled';
+                        var fields = new Array();
+                        var i = 0;
+                        $(':text', this).each(
                             function(){
-                                var txt = 'filled';
-                                var fields = new Array();
-                                var i = 0;
-                                $(':text', this).each(
-                                    function(){
-                                        fields[i] = this;
-                                        i++;
-                                    });
-                                $(':hidden', this).each(
-                                    function(){
-                                        var bday = false;
-                                        if (fields.length == 2){
-                                            bday = true;
-                                            fields[2] = {'value':1970};//trick birthdays into having years
-                                        }
-                                    	if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
-                                    		this.value = '';
-									    } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
-                                    		this.value = '';
-									    } else {
-									        if (/\[day\]/.test(fields[0].name)){
-    	                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;									        
-									        } else {
-    	                                        this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
-	                                        }
-	                                    }
-                                    });
+                                fields[i] = this;
+                                i++;
                             });
-                        return mce_validator.form();
-                    }, 
-                    success: mce_success_cb
-                };
-      $('#mc-embedded-subscribe-form').ajaxForm(options);
-      /*
+                        $(':hidden', this).each(
+                            function(){
+                                var bday = false;
+                                if (fields.length == 2){
+                                    bday = true;
+                                    fields[2] = {
+                                        'value':1970
+                                    };//trick birthdays into having years
+                                }
+                                if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
+                                    this.value = '';
+                                } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
+                                    this.value = '';
+                                } else {
+                                    if (/\[day\]/.test(fields[0].name)){
+                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
+                                    } else {
+                                        this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+                                    }
+                                }
+                            });
+                    });
+                return mce_validator.form();
+            },
+            success: mce_success_cb
+        };
+        $('#mc-embedded-subscribe-form').ajaxForm(options);
+        /*
  * Translated default messages for the jQuery validation plugin.
  * Locale: ES
  */
-jQuery.extend(jQuery.validator.messages, {
-  required: "Este campo es obligatorio.",
-  remote: "Por favor, rellena este campo.",
-  email: "Por favor, escribe una dirección de correo válida",
-  url: "Por favor, escribe una URL válida.",
-  date: "Por favor, escribe una fecha válida.",
-  dateISO: "Por favor, escribe una fecha (ISO) válida.",
-  number: "Por favor, escribe un número entero válido.",
-  digits: "Por favor, escribe sólo dígitos.",
-  creditcard: "Por favor, escribe un número de tarjeta válido.",
-  equalTo: "Por favor, escribe el mismo valor de nuevo.",
-  accept: "Por favor, escribe un valor con una extensión aceptada.",
-  maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
-  minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
-  rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
-  range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
-  max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
-  min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
-});
-      
+        jQuery.extend(jQuery.validator.messages, {
+            required: "Este campo es obligatorio.",
+            remote: "Por favor, rellena este campo.",
+            email: "Por favor, escribe una dirección de correo válida",
+            url: "Por favor, escribe una URL válida.",
+            date: "Por favor, escribe una fecha válida.",
+            dateISO: "Por favor, escribe una fecha (ISO) válida.",
+            number: "Por favor, escribe un número entero válido.",
+            digits: "Por favor, escribe sólo dígitos.",
+            creditcard: "Por favor, escribe un número de tarjeta válido.",
+            equalTo: "Por favor, escribe el mismo valor de nuevo.",
+            accept: "Por favor, escribe un valor con una extensión aceptada.",
+            maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+            minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+            rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+            range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+            max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+            min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+        });
+
     });
 }
 function mce_success_cb(resp){
@@ -886,7 +932,7 @@ function mce_success_cb(resp){
         $('#mce-'+resp.result+'-response').html(resp.msg);
         $('#mc-embedded-subscribe-form').each(function(){
             this.reset();
-    	});
+        });
     } else {
         var index = -1;
         var msg;
@@ -911,11 +957,11 @@ function mce_success_cb(resp){
         try{
             if (index== -1){
                 $('#mce-'+resp.result+'-response').show();
-                $('#mce-'+resp.result+'-response').html(msg);            
+                $('#mce-'+resp.result+'-response').html(msg);
             } else {
                 err_id = 'mce_tmp_error_msg';
                 html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
-                
+
                 var input_id = '#mc_embed_signup';
                 var f = $(input_id);
                 if (ftypes[index]=='address'){
@@ -941,5 +987,5 @@ function mce_success_cb(resp){
             $('#mce-'+resp.result+'-response').html(msg);
         }
     }
-    
+
 }

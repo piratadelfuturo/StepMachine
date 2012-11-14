@@ -488,4 +488,29 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
+    public function getUserBoomOrder(User $user, Boom $boom) {
+
+        $cb = $this->createQueryBuilder('boom');
+        $cb->select('boom,element');
+        $cb->join('boom.elements', 'element');
+        $cb->join('element.boomelementranks', 'rank');
+        $cb->join('rank.user', 'user');
+
+        $cb->andWhere(
+                $cb->expr()->eq('boom.id', ':boom_id'),
+                $cb->expr()->eq('user.id', ':user_id')
+        );
+        //$cb->setFirstResult(0)->setMaxResults(1);
+
+        $query = $cb->getQuery();
+        $query->setParameter('user_id', $user['id']);
+        $query->setParameter('boom_id', $boom['id']);
+        echo $query->getSQL();
+
+        $result = $query->execute();
+        var_dump($result);
+        exit;
+        return $result;
+    }
+
 }
