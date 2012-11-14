@@ -94,7 +94,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                 <div class="boomers">
                     <?php if (count($followings) > 0): ?>
                         <p>Boomers que sigues:</p>
-                        <ul>
+                        <ul class="cf">
                             <?php foreach ($followings as $following): ?>
                                 <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $following['username'])) ?>">
                                         <span>
@@ -155,7 +155,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser());
                     <div class="no-content">
                       <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>
                       <p>Es hora de darle vida a tu perfil:</p>
-                      <p><a href=""><strong>Crea tus propios booms</strong></a></p>
+                      <p><a href="/boom/nuevo"><strong>Crea tus propios booms</strong></a></p>
                       <p><a href=""><strong>Modifica nuestros destacados</strong></a></p>
                       <p><a href=""><strong>Invita a tus amigos</strong></a> y comparte tu opinión.</p>
                       <p>¡7Boom es tu sitio, diviértete! Es una orden.</p>
