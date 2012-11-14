@@ -48,13 +48,8 @@ class MainHelper extends Helper {
 
     public function createActivity(User $user, $text = '', Boom $boom = null) {
         $em = $this->container->get('doctrine')->getEntityManager();
-        $act = new Activity($user, $text);
-        if ($boom !== null) {
-            $act['boom'] = $boom;
-        }
-
-        $em->persist($act);
-        $em->flush();
+        $repo = $em->getRepository('BoomLibraryBundle:Activity');
+        return $repo->createActivity($user,$text,$boom);
     }
 
     public function getLatestCollaborators($number = 7) {

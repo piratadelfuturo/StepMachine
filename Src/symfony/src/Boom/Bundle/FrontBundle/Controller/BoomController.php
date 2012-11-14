@@ -100,6 +100,8 @@ class BoomController extends Controller {
             )
         );
         if (!$fav == true) {
+            $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
+            $sessionUser,'marcó como favorito',$entity);
             $response['text'] = 'Quitar de favoritos.';
         } else {
             $response['text'] = 'Marcar como favorito.';

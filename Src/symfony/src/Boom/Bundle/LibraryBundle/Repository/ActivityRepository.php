@@ -3,6 +3,8 @@ namespace Boom\Bundle\LibraryBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Boom\Bundle\LibraryBundle\Entity\User;
+use Boom\Bundle\LibraryBundle\Entity\Activity;
+use Boom\Bundle\LibraryBundle\Entity\Boom;
 
 class ActivityRepository extends EntityRepository {
 
@@ -55,6 +57,17 @@ class ActivityRepository extends EntityRepository {
         $result = $query->getResult();
 
         return $result;
+    }
+
+    public function createActivity(User $user, $data,Boom $boom = null){
+        $em = $this->getEntityManager();
+        $act = new Activity($user, $data);
+        if ($boom !== null) {
+            $act['boom'] = $boom;
+        }
+        $em->persist($act);
+        $em->flush();
+        return true;
     }
 
 }
