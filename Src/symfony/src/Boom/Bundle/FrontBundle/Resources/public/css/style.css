@@ -161,7 +161,7 @@ a, #usr-booms .botones a.on, #usr-booms .botones a:hover, #open-tab a:hover,
   font: 14px 'Museo500', sans-serif;
 }
 
-#filter p, .boomers p, #booms-container ul.list li.error, .colab-wdgt .ver-all, .diarios h4,
+#filter p, .boomers p, #booms-container ul.list li.error, .colab-wdgt .ver-all,
 .f-cont li h3, .pass-page .lab, .pass-page input {
   font: 18px 'Museo500', sans-serif;
 }
@@ -1595,13 +1595,15 @@ aside .sb-bloque {
 }
 
 .diarios h3:before {
-  border-left: 14px solid #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 .diarios h4 {
   text-transform: uppercase;
   color: #606060;
-  margin-top: 10px;
+  margin: 10px 0;
+  font-family: 'Proxima', sans-serif;
+  font-size: 20px;
 }
 
 .diarios li {
@@ -1611,7 +1613,7 @@ aside .sb-bloque {
   margin-left: -8px;
 }
 
-.diarios li.bgrey {
+.diarios li.bgray {
   background: #e5e5e5;
 }
 
