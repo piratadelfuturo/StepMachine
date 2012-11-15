@@ -809,7 +809,7 @@ h1 a:before {
 
 #usm-pro {
   width: 350px;
-  height: 470px;
+  height: 500px;
   float: left;
   padding: 0 30px;
   border-width: 0px 0px 0px 1px;
@@ -938,15 +938,13 @@ h1 a:before {
 }
 
 #usm-pro .boomers .ver-moar {
-  /*bottom:0;
-  right:0; */
   float: right;
   position: relative;
 }
 
 #rt-cont {
-  width: 550px;
-  height: 470px;
+  width: 557px;
+  height: 500px;
   float: left;
   position: relative;
   padding: 0 22px;
@@ -1120,7 +1118,6 @@ h1 a:before {
 }
 
 .ver-mas-block a {
-  color: #cac9c9;
   padding-right: 13px;
 }
 

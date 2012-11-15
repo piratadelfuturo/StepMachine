@@ -68,7 +68,7 @@ class User extends BaseUser implements \ArrayAccess {
     protected $nickname;
 
     /**
-     * @ORM\Column(type="string", length=140,nullable=true,unique=true)
+     * @ORM\Column(type="string", length=140,nullable=true, unique=false)
      */
     protected $name;
 

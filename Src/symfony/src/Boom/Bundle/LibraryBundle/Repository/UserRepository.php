@@ -76,44 +76,50 @@ class UserRepository extends EntityRepository {
     }
 
     public function getFollowedActivities(User $user, $offset = 0, $limit = 14) {
-        /* @var Doctrine\ORM\Query $query */
+        $query = $this->_getFollowedActivitiesQuery($user);
+        $query->setFirstResult((int) $offset)->setMaxResults((int) $limit);
+        $query->useResultCache(true, 120);
+        $result = $query->getResult();
+        return $result;
+    }
+
+    public function totalFollowedActivities(User $user) {
+        $query = $this->_getFollowedActivitiesQuery($user);
+        $query->useResultCache(true, 120);
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
+
+    private function _getFollowedActivitiesQuery(User $user, $total = false) {
         $cb1 = $this->createQueryBuilder('u');
-        $cb1->select('
-            friend.id
-            ');
+        $select = 'activity';
+        if($total == true){
+                $select = $qb->expr()->count($select);
+        }
+        $cb1->select(array('friend.id'));
         $cb1->join('u.following', 'friend');
         $cb1->where(
                 $cb1->expr()->eq('u.id', ':user_id')
         );
-
         $cb2 = $this->_em->createQueryBuilder();
-        $cb2->select('activity')
-                ->from('BoomLibraryBundle:Activity', 'activity');
+        $cb2->select('activity');
+        $cb2->from('BoomLibraryBundle:Activity', 'activity');
         $cb2->join('activity.user', 'user');
         $cb2->leftJoin('activity.boom', 'boom');
         $cb2->leftJoin('boom.category', 'category');
-        $cb2->where(
+        $cb2->orWhere(
                 $cb2->expr()->in(
                         'user.id', $cb1->getDQL()
+                ),
+                $cb2->expr()->in(
+                        'user.id', ':user_id'
                 )
         );
-        $cb2->setFirstResult((int) $offset)->setMaxResults((int) $limit);
         $cb2->orderBy('activity.date', 'DESC');
-        $cb2->setParameter('user_id', $user['id']);
-
         $query = $cb2->getQuery();
-        $query->useResultCache(
-                true, 120, implode(
-                        '_', array(
-                    'front_user_activities_cache',
-                    $user['id'],
-                    $offset,
-                    $limit
-                        )
-                )
-        );
-        $result = $query->getResult();
-        return $result;
+        $query->setParameter('user_id', $user['id']);
+        return $query;
+
     }
 
     public function checkFollowStatus($username, $friend_username) {

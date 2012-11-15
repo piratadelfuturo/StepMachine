@@ -228,7 +228,6 @@
         }
 
         $('div.botones a').click( function(){
-
             if( $(this).hasClass('on') ){
                 return false;
             } else {
@@ -401,7 +400,8 @@
         _comunityOrder = $('.tend-cont',_root),
         _myBoom = $('.miboom-cont',_root);
 
-        $([_shareBlock,_registerBlock]).bind('close',function(){
+        $([_shareBlock,_registerBlock])
+        .bind('close',function(){
             var _this = $(this);
             _this.animate({
                 bottom: '-500px'
@@ -430,7 +430,8 @@
             };
             var _dragBase = $(this),
             _drag = $("> .drag-booms",_dragBase),
-            _editalo = $("> .editalo",_dragBase);
+            _editalo = $("> .send",_dragBase),
+            _other = $("> .reordenalo",_dragBase);
             //DRAGnDROP widgt
             _drag.dragsort({
                 dragSelector: '.drag-booms li',
@@ -468,7 +469,12 @@
                 op = true;
                 _drag.trigger('recalc');
                 _dragBase.trigger('submit',[data,_clicked.attr('href')]);
-            })
+            });
+            _other.click(function(e){
+                e.preventDefault();
+                $('#usr-booms .botones #tendencia').click();
+                return false;
+            });
         });
 
         //guardar reorden comunidad
@@ -505,12 +511,12 @@
         });
         //editar mi reorden
         _myBoom.bind('submit',function(e,data,url){
-                var location = url+'?'+$.param(data);
-                window.location = location;
-            });
+            var location = url+'?'+$.param(data);
+            window.location = location;
+        });
         //editar mi respuesta
 
-        $('.grey-btn',_registerBlock).click(function(e){
+        $('.fb-reg',_registerBlock).click(function(e){
             e.preventDefault();
             $('a#fb-login-check').eq(0).click();
             return false;
@@ -532,6 +538,11 @@
             _shareBlock.trigger('close');
             return false;
         })
+    });
+})(document,jQuery);
+
+(function(document,$){
+    $(document).ready(function(){
 
         $('#mce-responses').click(function(e){
             e.preventDefault();
