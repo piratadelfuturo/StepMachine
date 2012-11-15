@@ -3,7 +3,7 @@
     <ul class="f-cont cf">
       <li class="about">
         <h3>
-          <a href="#">Sobre 7Boom</a>
+          <a href="#">Sobre 7boom</a>
         </h3>
         <p>7boom es una herramienta de socialización a partir de tu opinión. El espacio donde tú ordenas al mundo como tú quieras. El límite es el siete.</p>
         <ul class="bc-site">
@@ -22,8 +22,8 @@
         </ul>
       </li>
       <li class="contact">
-        <h3><a href="#">Tu marca en 7Boom</a></h3>
-        <p>¿Te interesa anunciarte en 7Boom?</p>
+        <h3><a href="#">Tu marca en 7boom</a></h3>
+        <p>¿Te interesa anunciarte en 7boom?</p>
         <p>Contáctanos en <a href="mailto:contacto@7boom.mx">contacto@7boom.mx</a></p>
       </li>
       <li class="newsletter">
