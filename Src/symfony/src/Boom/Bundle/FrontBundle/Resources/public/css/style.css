@@ -289,6 +289,18 @@ button.submit, .editalo {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faa635', endColorstr='#e35344',GradientType=0 );
 }
 
+button.submit:focus, .editalo:active {
+  text-shadow: -1px -1px 0px #8f8f8f, -1px 0px 1px #F8DDCE;
+  background: #e45443;
+  background: -moz-linear-gradient(top,  #e45443 0%, #f47920 60%, #fdd39b 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e45443), color-stop(60%,#f47920), color-stop(100%,#fdd39b));
+  background: -webkit-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: -o-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: -ms-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: linear-gradient(to bottom,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e45443', endColorstr='#fdd39b',GradientType=0 );
+}
+
 /*END GRADIENTES*/
 
 /*HEADER*/
@@ -3346,6 +3358,17 @@ button.submit {
   border-radius: 35px;
   border: none;
   margin: 5px auto;
+}
+button.submit:active {
+  text-shadow: -1px -1px 0px #8f8f8f, -1px 0px 1px #F8DDCE;
+  background: #e45443;
+  background: -moz-linear-gradient(top,  #e45443 0%, #f47920 60%, #fdd39b 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e45443), color-stop(60%,#f47920), color-stop(100%,#fdd39b));
+  background: -webkit-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: -o-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: -ms-linear-gradient(top,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  background: linear-gradient(to bottom,  #e45443 0%,#f47920 60%,#fdd39b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e45443', endColorstr='#fdd39b',GradientType=0 );
 }
 
 /*Passwords*/
