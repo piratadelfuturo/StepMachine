@@ -26,7 +26,9 @@
                     <a href="<?php echo $elementUrl ?>"><?php echo $view->escape($element['title']) ?></a>
                 </p>
                 <a href="<?php echo $elementUrl ?>" class="boom-moar">Leer Boom</a>
+                <?php if($view['security']->isGranted('ROLE_USER') == true && $app->getUser()->getId() == $element['user']['id']):?>
                 <a href="<?php echo $editUrl ?>" class="boom-moar">Editar Boom</a>
+                <?php endif; ?>
             </div>
             <p class="boom-info-mas">Publicado el <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($element['datepublished'], 'EEE, d MMM, yyyy' )) ?></date> - <span><?php echo count($element['children']) ?></span> modificaciones</p>
     </li>

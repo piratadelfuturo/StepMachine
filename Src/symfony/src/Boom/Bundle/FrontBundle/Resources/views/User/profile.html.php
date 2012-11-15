@@ -27,6 +27,7 @@ echo $view->render(
         'BoomFrontBundle:List:user.html.php', array(
     'list' => $list,
     'total' => $total,
+    'limit' => $limit,
     'page' => $page
         )
 );
