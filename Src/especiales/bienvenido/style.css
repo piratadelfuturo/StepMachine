@@ -12,13 +12,11 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 }
 
 body {
-  background-color: #3186a7;
   height: 100%;
   width: 100%;
 }
 
 .wrapper {
-  background: #3186a7 url('images/bg.jpg') no-repeat left top;
   height: 700px;
   margin: 0 auto;
   position: relative;
@@ -30,6 +28,10 @@ body {
   height: auto;
   width: 1024px;
   float: left;
+  background: url('images/bg.jpg') no-repeat left top;
+  background-attachment: fixed;
+  background-size: 100%;
+  overflow: hidden;
 }
 
 div.slide {
@@ -109,10 +111,6 @@ h2::after {
   margin: 0px -52px 0 0;
 }
 
-.active h2 {
-  -webkit-transition: width 2s ease 0s;
-}
-
 /*SLIDE 1*/
 
 div.center {
@@ -122,7 +120,11 @@ div.center {
 }
 
 #sld1.active div.center {
-  -webkit-transition: top 1s, left 1s, opacity 0s;
+  -webkit-transition: top 1.2s ease 1s, left 1.2s ease 1s, opacity .5s ease 1s;
+  -moz-transition: top 1.2s ease 1s, left 1.2s ease 1s, opacity .5s ease 1s;
+  -o-transition: top 1.2s ease 1s, left 1.2s ease 1s, opacity .5s ease 1s;
+  -ms-transition: top 1.2s ease 1s, left 1.2s ease 1s, opacity .5s ease 1s;
+  transition: top 1.2s ease 1s, left 1.2s ease 1s, opacity .5s ease 1s;
   opacity: 1;
 }
 
@@ -135,6 +137,10 @@ div.center {
   top: 85px;
   left: 85px;
   -webkit-transition: top 1s ease-in-out 0s;
+  -moz-transition: top 1s ease-in-out 0s;
+  -o-transition: top 1s ease-in-out 0s;
+  -ms-transition: top 1s ease-in-out 0s;
+  transition: top 1s ease-in-out 0s;
 }
 
 #sld1.active #ribbon-bottom {
@@ -146,6 +152,67 @@ div.center {
   bottom: 90px;
   left: 40px;
   -webkit-transition: bottom 1s ease-in-out 0s;
+  -moz-transition: bottom 1s ease-in-out 0s;
+  -o-transition: bottom 1s ease-in-out 0s;
+  -ms-transition: bottom 1s ease-in-out 0s;
+  transition: bottom 1s ease-in-out 0s;
+}
+
+#sld1 #letter-b, #sld1 #letter-o-1, #sld1 #letter-o-2, #sld1 #letter-m {
+  z-index: 10;
+  bottom: 35%;
+  opacity: 0;
+  left: 449px;
+}
+
+#sld1 #letter-b {
+  background: url('images/7b.png') no-repeat left top;
+  height: 227px;
+  width: 155px;
+}
+
+#sld1 #letter-o-1 {
+  background: url('images/o1.png') no-repeat left top;
+  height: 152px;
+  width: 154px;
+}
+
+#sld1 #letter-o-2 {
+  background: url('images/o2.png') no-repeat left top;
+  height: 152px;
+  width: 154px;
+}
+
+#sld1 #letter-m {
+  background: url('images/m.png') no-repeat left top;
+  height: 152px;
+  width: 198px;
+}
+
+#sld1.active #letter-b, #sld1.active #letter-o-1, 
+#sld1.active #letter-o-2, #sld1.active #letter-m {
+  -webkit-transition: left .7s ease-in 0s, opacity .5s ease-in 0s;
+  -moz-transition: left .7s ease-in 0s, opacity .5s ease-in 0s;
+  -o-transition: left .7s ease-in 0s, opacity .5s ease-in 0s;
+  -ms-transition: left .7s ease-in 0s, opacity .5s ease-in 0s;
+  transition: left .7s ease-in 0s, opacity .5s ease-in 0s;
+  opacity: 1; 
+}
+
+#sld1.active #letter-b {
+  left: 220px;
+}
+
+#sld1.active #letter-o-1 {
+  left: 337px;
+}
+
+#sld1.active #letter-o-2 {
+  left: 449px;
+}
+
+#sld1.active #letter-m {
+  left: 597px;
 }
 
 #sld1 #itm1 {
@@ -530,6 +597,17 @@ div.center {
 
 /*SLIDE 3*/
 
+#sld3 h2 {
+  margin-left: -500px;
+  opacity: 0;
+}
+
+#sld3.active h2 {
+  margin-left: 0px;
+  opacity: 1;
+  -webkit-transition: margin-left 1s ease-in-out 0s, opacity 0s; 
+}
+
 #sld3 > p {
   display: block;
   float: left;
@@ -537,6 +615,7 @@ div.center {
   line-height: 30px;
   margin: 25px 0 0 30px;
   width: 480px;
+  opacity: 0;
 }
 
 #sld3 > p span {
@@ -544,20 +623,31 @@ div.center {
   text-align: justify;
 }
 
+#sld3.active > p {
+    opacity: 1;
+    -webkit-transition: opacity 1s ease-in-out 1s;
+}
+
 #sld3 #dude {
   background: url('images/dude1.png') no-repeat left top;
   width: 365px;
   height: 478px;
   left: 20px;
-  top: 222px;
+  bottom: 0px;
+  opacity: 0;
 }
 
-#sld3 #dude #move {
-  animation: abrir 3s ease 0s infinite alternate;
-  -webkit-animation: abrir 3s ease 0s infinite alternate;
-  -moz-animation: abrir 3s ease 0s infinite alternate;
-  -o-animation: abrir 3s ease 0s infinite alternate;
-  -ms-animation: abrir 3s ease 0s infinite alternate;
+#sld3.active #dude {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out 1s;  
+}
+
+#sld3.active #dude #move {
+  animation: abrir 1s ease-in-out 0s infinite alternate;
+  -webkit-animation: abrir 1s ease-in-out 0s infinite alternate;
+  -moz-animation: abrir 1s ease-in-out 0s infinite alternate;
+  -o-animation: abrir 1s ease-in-out 0s infinite alternate;
+  -ms-animation: abrir 1s ease-in-out 0s infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
@@ -565,62 +655,87 @@ div.center {
   top: 103px;
 }
 
-#sld3 #num1 {
-  background: url('images/num1.png') no-repeat left top;
+#sld3 #num1, #sld3 #num2, #sld3 #num3, #sld3 #num4, #sld3 #num5, #sld3 #num6, #sld3 #num7 {
   z-index: 6;
+  opacity: 0;
+  left: 155px;
+  top: 335px;
+  width: 0px;
+  height: 0px;
+  -webkit-background-size: 0% 0%;
+  background-size: 0% 0%;
+  -webkit-transition: opacity 1s ease-in-out .5s, top 1s ease-out, left 1s ease-out, width 1.5s linear, height 1.5s linear, background-size 1.5s linear;
+}
+
+#sld3.active #num1, #sld3.active #num2, #sld3.active #num3, #sld3.active #num4,
+#sld3.active #num5, #sld3.active #num6, #sld3.active #num7 {
+  opacity: 1;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#sld3.active #num1 {
+  background-image: url('images/num1.png');
   left: 683px;
   top: 363px;
   width: 200px;
   height: 218px;
-  
+  -webkit-transition-delay: 1.5s;
 }
 
-#sld3 #num2 {
-  background: url('images/num2.png') no-repeat left top;
+#sld3.active #num2 {
+  background-image: url('images/num2.png');
   width: 167px;
   height: 175px;
   left: 577px;
   top: 194px;
+  -webkit-transition-delay: 2s;
 }
 
-#sld3 #num3 {
-  background: url('images/num3.png') no-repeat left top;
+#sld3.active #num3 {
+  background-image: url('images/num3.png');
   width: 137px;
   height: 164px;
   left: 457px;
   top: 352px;
+  -webkit-transition-delay: 2.5s;
 }
 
-#sld3 #num4 {
-  background: url('images/num4.png') no-repeat left top;
+#sld3.active #num4 {
+  background-image: url('images/num4.png');
   width: 125px;
   height: 132px;
   left: 400px;
   top: 210px;
+  -webkit-transition-delay: 3s;
 }
 
-#sld3 #num5 {
-  background: url('images/num5.png') no-repeat left top;
+#sld3.active #num5 {
+  background-image: url('images/num5.png');
   width: 84px;
   height: 91px;
   top: 345px;
   left: 345px;
+  -webkit-transition-delay: 3.5s;
 }
 
-#sld3 #num6 {
-  background: url('images/num6.png') no-repeat left top;
+#sld3.active #num6 {
+  background-image: url('images/num6.png');
   width: 72px;
   height: 70px;
   top: 270px;
   left: 270px;
+  -webkit-transition-delay: 3.5s;
 }
 
-#sld3 #num7 {
-  background: url('images/num7.png') no-repeat left top;
+#sld3.active #num7 {
+  background-image: url('images/num7.png');
   width: 68px;
   height: 59px;
   top: 340px;
   left: 200px;
+  -webkit-transition-delay: 3.5s;
 }
 
 #sld3 #boombar, #sld5 #boombar {
@@ -628,31 +743,50 @@ div.center {
   width: 285px;
   height: 600px;
   top: 50px;
-  left: 715px;
+  right: -300px;
   z-index: 5;
+}
+
+#sld3.active #boombar, #sld5.active #boombar {
+  -webkit-transition: right 1s ease-in-out 0s;
+  right: 30px;
 }
 
 /*SLIDE 5*/
 
-#sld5 #cmt2, #sld5 #cmt3, #sld5 #cmt4, #sld5 #cmt5 {
+#sld5 h2 {
+  margin-left: -660px;
+  opacity: 0;
+}
+
+#sld5.active h2 {
+  margin-left: 0px;
+  opacity: 1;
+  -webkit-transition: margin-left 1s ease-in-out 0s, opacity 0s; 
+}
+
+#sld5 #cmt1, #sld5 #cmt2, #sld5 #cmt3, #sld5 #cmt4, #sld5 #cmt5 {
   height: 78px;
-  width: 480px;
+  width: 0px;
   z-index: 6;
+}
+
+#sld5.active #cmt1, #sld5.active #cmt2, #sld5.active #cmt3, #sld5.active #cmt4, #sld5.active #cmt5 {
+  width: 480px;
+  -webkit-transition: width 1s ease-in-out 1s;
 }
 
 #sld5 #cmt1 {
   background: url('images/cmt1.png') no-repeat left top;
-  width: 481px;
   height: 134px;
   top: 129px;
   left: 47px;
-  z-index: 6;
 }
 
 #sld5 #cmt2 {
   background: url('images/cmt2.png') no-repeat left top;
   top: 270px;
-  left: 183px;
+  right: 350px;
 }
 
 #sld5 #cmt3 {
@@ -664,7 +798,7 @@ div.center {
 #sld5 #cmt4 {
   background: url('images/cmt4.png') no-repeat left top;
   top: 460px;
-  left: 200px;
+  right: 335px;
 }
 
 #sld5 #cmt5 {
@@ -673,63 +807,90 @@ div.center {
   left: 33px;
 }
 
-#sld5 #blah1 {
-  background: url('images/blah1.png') no-repeat left top;
+#sld5 #blah1, #sld5 #blah2, #sld5 #blah3, #sld5 #blah4, #sld5 #blah5, #sld5 #blah6, #sld5 #blah7 {
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+}
+
+#sld5.active #blah1, #sld5.active #blah2, #sld5.active #blah3, #sld5.active #blah4, #sld5.active #blah5, #sld5.active #blah6, #sld5.active #blah7 {
+  opacity: 1;
+}
+
+#sld5.active #blah1 {
+  background-image: url('images/blah1.png');
   top: 100px;
   left: 479px;
   height: 109px;
   width: 220px;
+  -webkit-transition-delay: 2s;
 }
 
-#sld5 #blah2 {
-  background: url('images/blah2.png') no-repeat left top;
+#sld5.active #blah2 {
+  background-image: url('images/blah2.png');
   top: 248px;
   left: 585px;
   height: 63px;
   width: 176px;
+  -webkit-transition-delay: 3s;
 }
 
-#sld5 #blah3 {
-  background: url('images/blah3.png') no-repeat left top;
+#sld5.active #blah3 {
+  background-image: url('images/blah3.png');
   top: 316px;
   left: 346px;
   height: 94px;
   width: 165px;
+  -webkit-transition-delay: 3.5s;
 }
 
-#sld5 #blah4 {
-  background: url('images/blah4.png') no-repeat left top;
+#sld5.active #blah4 {
+  background-image: url('images/blah4.png');
   top: 230px;
   left: 30px;
   height: 120px;
   width: 181px;
+  -webkit-transition-delay: 2.5s;
 }
 
-#sld5 #blah5 {
-  background: url('images/blah5.png') no-repeat left top;
+#sld5.active #blah5 {
+  background-image: url('images/blah5.png');
   top: 456px;
   left: 30px;
   height: 109px;
   width: 212px;
+  -webkit-transition-delay: 4.5s;
 }
 
-#sld5 #blah6 {
-  background: url('images/blah6.png') no-repeat left top;
+#sld5.active #blah6 {
+  background-image: url('images/blah6.png');
   top: 403px;
   left: 575px;
   height: 91px;
   width: 157px;
+  -webkit-transition-delay: 4s;
 }
 
-#sld5 #blah7 {
-  background: url('images/blah7.png') no-repeat left top;
+#sld5.active #blah7 {
+  background-image: url('images/blah7.png');
   top: 535px;
   left: 471px;
   height: 97px;
   width: 221px;
+  -webkit-transition-delay: 5s;
 }
 
 /*SLIDE 7*/
+
+#sld7 h2 {
+  margin-left: -460px;
+  opacity: 0;
+}
+
+#sld7.active h2 {
+  margin-left: 0px;
+  opacity: 1;
+  -webkit-transition: margin-left 1s ease-in-out 0s, opacity 0s; 
+}
 
 #sld7 #dude {
   background: url('images/dude2.png') no-repeat left top;
@@ -1373,23 +1534,23 @@ div h4.flag:after, div h4.flag:before {
 
 @keyframes 'abrir' {
   from { transform:rotate(4deg); transform-origin: left bottom; }
-  to { transform:rotate(20deg); transform-origin: left bottom; }
+  to { transform:rotate(18deg); transform-origin: left bottom; }
 }
 @-ms-keyframes 'abrir' {
   from { -ms-transform:rotate(4deg); -ms-transform-origin: left bottom; }
-  to { -ms-transform:rotate(20deg); -ms-transform-origin: left bottom; }
+  to { -ms-transform:rotate(18deg); -ms-transform-origin: left bottom; }
 }
 @-webkit-keyframes 'abrir' {
   from { -webkit-transform:rotate(4deg); -webkit-transform-origin: left bottom; }
-  to { -webkit-transform:rotate(20deg); -webkit-transform-origin: left bottom; }
+  to { -webkit-transform:rotate(18deg); -webkit-transform-origin: left bottom; }
 }
 @-moz-keyframes 'abrir' {
   from { -moz-transform:rotate(4deg); -moz-transform-origin: left bottom; }
-  to { -moz-transform:rotate(20deg); -moz-transform-origin: left bottom; }
+  to { -moz-transform:rotate(18deg); -moz-transform-origin: left bottom; }
 }
 @-o-keyframes 'abrir' {
   from { -o-transform:rotate(4deg); -o-transform-origin: left bottom; }
-  to { -o-transform:rotate(20deg); -o-transform-origin: left bottom; }
+  to { -o-transform:rotate(18deg); -o-transform-origin: left bottom; }
 }
 
       

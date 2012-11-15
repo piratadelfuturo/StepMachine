@@ -65,8 +65,8 @@ class ActivityController extends Controller {
         $sessionUser->addFollowing($entity);
         $em->persist($sessionUser);
         $em->flush();
-        $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
-                $sessionUser,'Sigue a '.$entity['name']);
+        /*$em->getRepository('BoomLibraryBundle:Activity')->createActivity(
+                $sessionUser,'Sigue a '.$entity['name']);*/
 
 
         $response = array();
