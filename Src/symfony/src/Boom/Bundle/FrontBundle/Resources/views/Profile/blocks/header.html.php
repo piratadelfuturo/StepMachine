@@ -1,41 +1,37 @@
-<?php
-/* @var \Doctrine\Common\Collections\ArrayCollection $user['activities'] */
-/* @var \Doctrine\Common\Collections\ArrayCollection $user['favorites'] */
-$user = $app->getUser();
-$categories = $view['boom_front']->getFeaturedCategories();
-$activities = $view['boom_front']->getFollowedActivities($app->getUser());
-?>
-<div id="usr-cnt">
-    <a href="#" class="mostrar"><span>Tu Panel</span></a>
+  <?php
+  /* @var \Doctrine\Common\Collections\ArrayCollection $user['activities'] */
+  /* @var \Doctrine\Common\Collections\ArrayCollection $user['favorites'] */
+  $user = $app->getUser();
+  $categories = $view['boom_front']->getFeaturedCategories();
+  $activities = $view['boom_front']->getFollowedActivities($app->getUser());
+  ?>
+  <div id="usr-cnt">
+    <a href="#" class="mostrar">
+      <span>Tu Panel</span>
+    </a>
     <div id="usr-box" class="hook">
-        <div id="usr-bar">
-            <ul id="close-tab">
-                <li>
-                    <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
-                        Bienvenido <a href="<?php
-                    echo $view['router']->generate(
-                            'BoomFrontBundle_user_profile', array(
-                        'username' => $user['username']
-                            )
-                    )
-                        ?>">
-                                          <?php echo $view->escape($user['name']); ?>
-                        </a>
-                    <?php endif; ?>
-                </li>
-                <li>
-                    <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
-                </li>
-                <?php if (!empty($activities)): ?>
-                    <li>
-                        <ul id="user-activity-stream">
-                            <?php
-                            foreach ($activities as $activity):
+      <div id="usr-bar">
+        <ul id="close-tab">
+          <li>
+            <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
+              Bienvenido 
+              <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' =>$user['username'] ))?>">
+                <?php echo $view->escape($user['name']); ?>
+              </a>
+             <?php endif; ?>
+          </li>
+          <li>
+            <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
+          </li>
+          <?php if (!empty($activities)): ?>
+             <li>
+               <ul id="user-activity-stream">
+                 <?php foreach ($activities as $activity):
                                 $userUrl = $view['router']->generate(
                                         'BoomFrontBundle_user_profile', array('username' => $activity['user']['username'])
                                 );
                                 ?>
-                                <li>
+                  <li>
                                     <a href="<?php echo $userUrl ?>">
                                         <?php echo $activity['user']['name'] ?>
                                     </a>
