@@ -98,7 +98,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                             <?php foreach ($followings as $following): ?>
                                 <li><a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $following['username'])) ?>">
                                         <span>
-                                            <img src="<?php echo $following['imagepath'] ?>" alt="<?php echo $following['username'] ?>" height="40px" width="40px"/>
+                                            <img src="<?php echo $view['boom_image']->getProfileImageUrl($following['imagepath'], array(150, 150)) ?>" alt="<?php echo $following['username'] ?>" height="40px" width="40px"/>
                                         </span>
                                     </a>
                                 </li>

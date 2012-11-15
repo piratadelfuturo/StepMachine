@@ -70,6 +70,7 @@ class UserController extends Controller {
                     'list' => $list,
                     'total' => $total,
                     'limit' => $limit,
+                    'limit' => $limit,
                     'page' => $page
                 ));
     }
