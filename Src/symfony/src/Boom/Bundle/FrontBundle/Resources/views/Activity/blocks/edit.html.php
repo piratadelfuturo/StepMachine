@@ -1,4 +1,4 @@
-<li class="add-boom">
+<li class="edit-boom">
     <?php if ($act['self'] === false): ?>
         <p class="info"><a href="<?php echo $act['profile_url'] ?>"><?php echo $view->escape($act['user']['name']) ?></a> ha editado un boom de <a href="<?php echo $act['boom_profile_url'] ?>"><?php echo $view->escape($act['boom_user']['name']) ?></a>:</p>
     <?php else: ?>
