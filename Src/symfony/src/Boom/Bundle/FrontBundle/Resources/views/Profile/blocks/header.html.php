@@ -35,7 +35,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                                         'BoomFrontBundle_user_profile', array('username' => $activity['user']['username'])
                                 );
                                 ?>
-                                <li>
+                  <li>
                                     <a href="<?php echo $userUrl ?>">
                                         <?php echo $activity['user']['name'] ?>
                                     </a>

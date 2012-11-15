@@ -1,9 +1,9 @@
-<?php $view->extend('BoomFrontBundle::layout.html.php') ?>
-<?php $view['slots']->output('top_two_col', ''); ?>
-<div id="booms-container">
-    <?php $view['slots']->output('_content') ?>
-</div>
-<aside>
+  <?php $view->extend('BoomFrontBundle::layout.html.php') ?>
+  <?php $view['slots']->output('top_two_col', ''); ?>
+  <div id="booms-container">
+    <?php $view['slots']->output('_content') ?>  
+  </div>
+  <aside>
     <?php $view['slots']->output('sidebar_top') ?>
     <?php
     $widgets = $view['boom_front']->getWidgetBlock('upper_sidebar');
@@ -30,4 +30,4 @@
             )
     );
     ?>
-</aside>
+  </aside>
