@@ -73,7 +73,7 @@ class Configuration implements ConfigurationInterface
                             'height'    => 150,
                             'quality'   => 90,
                             'thumbnail' => true
-                        ),
+                        )
                     ))
                     ->prototype('array')
                         ->children()
