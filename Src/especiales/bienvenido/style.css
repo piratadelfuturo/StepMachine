@@ -30,7 +30,7 @@ body {
   float: left;
   background: url('images/bg.jpg') no-repeat left top;
   background-attachment: fixed;
-  background-size: 100%;
+  background-size: 100% 100%;
   overflow: hidden;
 }
 
@@ -884,20 +884,33 @@ div.center {
 #sld7 h2 {
   margin-left: -460px;
   opacity: 0;
+  z-index: 9;
 }
 
 #sld7.active h2 {
   margin-left: 0px;
   opacity: 1;
-  -webkit-transition: margin-left 1s ease-in-out 0s, opacity 0s; 
+  -webkit-transition: margin-left 1s ease-in-out 0s, opacity 0s ease 0s; 
 }
 
 #sld7 #dude {
+  left: 450px;
+  top: -493px;
+  z-index: 8;
+  width: 265px;
+  height: 493px;
+}
+
+#sld7.active #dude {
+  top: 116px;
+  -webkit-transition: top 2s ease-in-out 1s; 
+}
+
+#sld7 #dude #body-dude {
   background: url('images/dude2.png') no-repeat left top;
   width: 265px;
   height: 493px;
-  left: 450px;
-  top: 116px;
+  float: right;
   z-index: 8;
 }
 
@@ -905,9 +918,21 @@ div.center {
   background: url('images/brazo.png') no-repeat left top;
   width: 135px;
   height: 186px;
-  left: 393px;
-  top: 105px;
+  left: -55px;
+  top: -49px;
   z-index: 7;
+  transform:rotate(-105deg);
+  -ms-transform:rotate(-105deg); /* IE 9 */
+  -moz-transform:rotate(-105deg); /* Firefox */
+  -webkit-transform:rotate(-105deg); /* Safari and Chrome */
+  -webkit-transform-origin: right bottom;
+  -o-transform:rotate(-105deg); /* Opera */
+  -webkit-transition: all 1s ease-in-out 3.9s;
+}
+
+#sld7.active #move {
+  left: -60px;
+  top: -10px;
   transform:rotate(0deg);
   -ms-transform:rotate(0deg); /* IE 9 */
   -moz-transform:rotate(0deg); /* Firefox */
@@ -921,7 +946,12 @@ div.center {
   width: 235px;
   height: 157px;
   left: 75px;
-  top: 157px;
+  bottom: -400px;
+}
+
+#sld7.active #tv {
+  -webkit-transition: bottom 1s ease-out 1s;
+  bottom: 400px;   
 }
 
 #sld7 #tv div {
@@ -936,10 +966,15 @@ div.center {
   background: url('images/imac1.png') no-repeat left top;
   width: 286px;
   height: 229px;
-  top: 68px;
+  bottom: -400px;
   left: 596px;
 }
- 
+
+#sld7.active #imac1 {
+  -webkit-transition: bottom 1.5s ease-out 1s;
+  bottom: 420px;   
+}
+
 #sld7 #imac1 div {
   background: url('images/7-imac1.png') no-repeat left top;
   width: 72px;
@@ -953,7 +988,12 @@ div.center {
   width: 241px;
   height: 198px;
   left: 78px;
-  top: 348px;
+  bottom: -400px;
+}
+
+#sld7.active #imac2 {
+  -webkit-transition: bottom 3s ease-in-out 1s;
+  bottom: 148px;   
 }
 
 #sld7 #ipad {
@@ -961,7 +1001,12 @@ div.center {
   width: 110px;
   height: 138px;
   left: 778px;
-  top: 300px;
+  bottom: -400px;
+}
+
+#sld7.active #ipad {
+  -webkit-transition: bottom 2.5s ease-in-out 1s;
+  bottom: 265px; 
 }
 
 #sld7 #iphone {
@@ -969,7 +1014,12 @@ div.center {
   width: 174px;
   height: 97px;
   left: 606px;
-  top: 453px;
+  bottom: -400px;
+}
+
+#sld7.active #iphone {
+  -webkit-transition: bottom 3s ease-out 1s;
+  bottom: 153px; 
 }
 
 #sld7 #smartphone {
@@ -977,7 +1027,12 @@ div.center {
   width: 135px;
   height: 80px;
   left: 834px;
-  top: 483px;
+  bottom: -400px;
+}
+
+#sld7.active #smartphone {
+  -webkit-transition: bottom 2s ease-out 1s;
+  bottom: 140px; 
 }
 
 #sld7 #tablet {
@@ -985,24 +1040,38 @@ div.center {
   width: 129px;
   height: 66px;
   left: 250px;
-  top: 595px;
+  bottom: -400px;
+}
+
+#sld7.active #tablet {
+  -webkit-transition: bottom 3s ease-out 1s;
+  bottom: 40px; 
 }
 
 #sld7 div.lightup {
   background: url('images/circle.png') no-repeat left top;
   z-index: 5;
+  opacity: 0;
 }
 
-#sld7 #hand {
+#sld7.active div.lightup {
+  -webkit-transition: opacity 1s ease-in-out 6s;
+  opacity: 1;
+}
+
+
+#sld7.active #hand {
   left: 376px;
   top: 98px;
   height: 90px;
   width: 90px;
   background-size: 90px auto;
   z-index: 10;
+  opacity: 1;
+  -webkit-transition: opacity .8s ease-in-out 5s;
 }
 
-#sld7 #tv-lup {
+#sld7.active #tv-lup {
   left: 93px;
   top: 125px;
   height: 200px;
@@ -1010,14 +1079,14 @@ div.center {
   background-size: 200px auto;
 }
 
-#sld7 #imac1-lup {
+#sld7.active #imac1-lup {
   left: 600px;
   top: 57px;
   height: 236px;
   width: 236px;
 }
 
-#sld7 #imac2-lup {
+#sld7.active #imac2-lup {
   left: 62px;
   top: 340px;
   height: 220px;
@@ -1025,7 +1094,7 @@ div.center {
   background-size: 220px auto;
 }
 
-#sld7 #ipad-lup {
+#sld7.active #ipad-lup {
   left: 772px;
   top: 300px;
   height: 125px;
@@ -1033,7 +1102,7 @@ div.center {
   background-size: 125px auto;
 }
 
-#sld7 #iphone-lup {
+#sld7.active #iphone-lup {
   left: 613px;
   top: 420px;
   height: 160px;
@@ -1041,7 +1110,7 @@ div.center {
   background-size: 160px auto;
 }
 
-#sld7 #tablet-lup {
+#sld7.active #tablet-lup {
   left: 257px;
   top: 570px;
   height: 115px;
@@ -1049,7 +1118,7 @@ div.center {
   background-size: 115px auto;
 }
 
-#sld7 #smartphone-lup {
+#sld7.active #smartphone-lup {
   left: 832px;
   top: 448px;
   height: 140px;
@@ -1061,9 +1130,15 @@ div.center {
   background-color: #697328;
   height: 20px;
   z-index: 4;
+  width: 0px;
 }
 
-#sld7 #tv-line {
+#sld7.active div.line {
+  width: auto;
+  -webkit-transition: width 1s ease-in-out 5.1s;
+}
+
+#sld7.active #tv-line {
   width: 110px;
   right: 635px;
   top: 144px;
@@ -1075,7 +1150,7 @@ div.center {
   -o-transform:rotate(-30deg); /* Opera */ 
 }
 
-#sld7 #imac2-line {
+#sld7.active #imac2-line {
   width: 250px;
   right: 622px;
   top: 160px;
@@ -1087,7 +1162,7 @@ div.center {
   -o-transform:rotate(-56deg); /* Opera */ 
 }
 
-#sld7 #tablet-line {
+#sld7.active #tablet-line {
   width: 400px;
   right: 600px;
   top: 165px;
@@ -1099,8 +1174,8 @@ div.center {
   -o-transform:rotate(-77deg); /* Opera */ 
 }
 
-#sld7 #iphone-line {
-  width: 354px;
+#sld7.active #iphone-line {
+  width: 335px;
   right: 564px;
   top: 145px;
   transform:rotate(-125deg);
@@ -1111,7 +1186,7 @@ div.center {
   -o-transform:rotate(-125deg); /* Opera */ 
 }
 
-#sld7 #smartphone-line {
+#sld7.active #smartphone-line {
   width: 505px;
   right: 560px;
   top: 135px;
@@ -1123,7 +1198,7 @@ div.center {
   -o-transform:rotate(-140deg); /* Opera */ 
 }
 
-#sld7 #ipad-line {
+#sld7.active #ipad-line {
   width: 372px;
   right: 560px;
   top: 127px;
@@ -1135,7 +1210,7 @@ div.center {
   -o-transform:rotate(-150deg); /* Opera */ 
 }
 
-#sld7 #imac1-line {
+#sld7.active #imac1-line {
   width: 150px;
   right: 562px;
   top: 105px;
