@@ -481,7 +481,9 @@
             var _myBoomDrag = $('> .drag-booms',_myBoom);
             var _comunityOrderDrag = $('> .drag-booms',_myBoom);
             if(_myBoomDrag.children().length <= 0){
-                _myBoomDrag.append(_comunityOrderDrag.children().clone());
+                _comunityOrderDrag.children().each(function(){
+                    _myBoomDrag.append($(this).clone());
+                })
             }
         }).on('submit',function(e,data,url){
             var _dragBase = $(this);
