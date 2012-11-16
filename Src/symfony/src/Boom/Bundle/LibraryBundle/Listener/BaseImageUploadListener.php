@@ -211,7 +211,11 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
                     $imagick, $size['width'], $size['height'], $size['thumbnail'], $background
             );
         } while ($imagick->nextImage());
-        $imagick = $imagick->deconstructImages();
+        try{
+            $imagick = $imagick->deconstructImages();
+        }catch(\Exception $e){
+
+        }
         $imagick->writeImages(
                 $thumbPath . $size['width'] . '_' . $size['height'] . '.' . $fileExt, true
         );
