@@ -426,7 +426,7 @@ class BoomController extends Controller {
                 $newOrder[$pos] = $old_v;
             }
             ksort($newOrder);
-            $entity['elements'] = new ArrayCollection($newOrder);
+            $entity['elements'] = new ArrayCollection(array_values($newOrder));
         }
         $entity['user'] = $sessionUser;
         $editForm = $this->createForm(new BoomType(), $entity);
@@ -520,6 +520,13 @@ class BoomController extends Controller {
                         ->add('slug', 'hidden')
                         ->getForm()
         ;
+    }
+
+    public function verifyOwnerAction($slug){
+
+
+        
+
     }
 
 }
