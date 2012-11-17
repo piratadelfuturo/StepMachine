@@ -478,8 +478,9 @@
 
         //guardar reorden comunidad
         _comunityOrder.on('ajaxOver',function(){
-            var _myBoomDrag = $('> .drag-booms',_myBoom);
-            var _comunityOrderDrag = $('> .drag-booms',_myBoom);
+            var _myBoomDrag = $('> .drag-booms',_myBoom),
+            _comunityOrderDrag = $('> .drag-booms',_comunityOrder);
+            $('> .boom-clean',_myBoom).remove();
             if(_myBoomDrag.children().length <= 0){
                 _comunityOrderDrag.children().each(function(){
                     _myBoomDrag.append($(this).clone());

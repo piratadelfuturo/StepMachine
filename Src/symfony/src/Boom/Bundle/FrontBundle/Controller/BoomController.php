@@ -133,21 +133,33 @@ class BoomController extends Controller {
                 ), array(
             'position' => 'ASC'
                 ));
-
+        $boomElements = $boom['elements']->toArray();
+        $newRanks = array();
         $newOrder = $request->request->get('order');
+        ksort($newOrder);
+        $newOrder = array_values($newOrder);
+
         if (empty($ranks)) {
             foreach ($newOrder as $original => $order) {
-                $ranks[$order['final']] = new BoomelementRank($boom, $sessionUser, $boom['elements'][$order['original'] - 1], $order['final']);
-                $em->persist($ranks[$order['final']]);
+                $newRanks[$order['final']] = new BoomelementRank($boom, $sessionUser, $boomElements[$original], $order['final']);
             }
         } else {
-            foreach ($newOrder as $original => $order) {
-                $ranks[$order['original'] - 1]['position'] = $order['final'];
-                $em->persist($ranks[$order['original'] - 1]);
+            $original = array();
+            foreach($ranks as $rank){
+                $original[$rank['boomelement']['position']] = $rank;
+            }
+            ksort($original);
+            $newRanks = array_values($original);
+            foreach ($newRanks as $or_k => $or_v) {
+                $newRanks[$or_k]['position'] = $newOrder[$or_k]['final'];
             }
         }
-        $em->flush();
+        ksort($newRanks);
+        foreach ($newRanks as $nRank) {
+           $em->persist($nRank);
+        }
 
+        $em->flush();
         $repoRank->calculatePublicRank($boom);
 
         $response = new Response(
@@ -256,6 +268,14 @@ class BoomController extends Controller {
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
         $request = $this->getRequest();
         $orderParam = $request->query->get('order');
+        if ($orderParam !== null) {
+            $newOrder = array();
+            foreach($orderParam as $orderP){
+                $newOrder[$orderP['original']] = $orderP;
+            }
+            ksort($newOrder);
+            $newOrder = array_values($newOrder);
+        }
 
         if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
@@ -288,14 +308,14 @@ class BoomController extends Controller {
         }
         foreach ($foundEntity['elements']->toArray() as $o_index => $entElem) {
             if ($orderParam !== null) {
-                $n_index = (int) $orderParam[$entElem['position']]['final'];
+                $n_index = (int) $newOrder[$o_index]['final'];
             } else {
                 $n_index = $o_index;
             }
             foreach ($clonedBoomelementValues as $clBoomelV) {
-                $entity['elements'][$n_index - 1][$clBoomelV] = $entElem[$clBoomelV];
+                $entity['elements'][$n_index][$clBoomelV] = $entElem[$clBoomelV];
             }
-            $entity['elements'][$n_index - 1]['position'] = $n_index;
+            $entity['elements'][$n_index]['position'] = $n_index;
         }
         $entity['user'] = $sessionUser;
 
@@ -390,18 +410,25 @@ class BoomController extends Controller {
             throw new HttpException(401, 'Unauthorized access.');
         }
         if ($orderParam !== null) {
-            $oldOrder = $entity['elements']->toArray();
+            ksort($orderParam);
+            $orderParam = array_values($orderParam);
+            $oldOrder = array();
             $newOrder = array();
+            foreach ($entity['elements']->toArray() as $element) {
+                $oldOrder[$element['position']] = $element;
+            }
+            ksort($oldOrder);
+            $oldOrder = array_values($oldOrder);
             $entity['elements']->clear();
-            foreach ($oldOrder as $element) {
-                $pos = $orderParam[$element['position']]['final'];
-                $element['position'] = $pos;
-                $newOrder[$pos] = $element;
+            foreach($oldOrder as $old_k => $old_v){
+                $pos = $orderParam[$old_k]['final'];
+                $old_v['position'] = $pos;
+                $newOrder[$pos] = $old_v;
             }
             ksort($newOrder);
             $entity['elements'] = new ArrayCollection($newOrder);
         }
-
+        $entity['user'] = $sessionUser;
         $editForm = $this->createForm(new BoomType(), $entity);
 
         return $this->render('BoomFrontBundle:Boom:edit.html.php', array(

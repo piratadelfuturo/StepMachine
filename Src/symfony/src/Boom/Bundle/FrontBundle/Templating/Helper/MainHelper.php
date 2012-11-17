@@ -157,10 +157,8 @@ class MainHelper extends Helper {
         if (!empty($order)) {
             $entity = clone($boom);
             $entity['elements']->clear();
-            $sort = 1;
             foreach ($order as $element) {
                 $entity['elements'][] = $element['boomelement'];
-                $sort++;
             }
         }
 
