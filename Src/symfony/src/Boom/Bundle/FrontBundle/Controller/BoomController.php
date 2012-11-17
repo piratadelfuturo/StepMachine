@@ -308,7 +308,7 @@ class BoomController extends Controller {
         }
         foreach ($foundEntity['elements']->toArray() as $o_index => $entElem) {
             if ($orderParam !== null) {
-                $n_index = (int) $newOrder[$o_index]['final'];
+                $n_index = (int) $newOrder[$o_index]['final']-1;
             } else {
                 $n_index = $o_index;
             }
@@ -397,8 +397,6 @@ class BoomController extends Controller {
         $sessionUser = $sessionToken->getUser();
         $request = $this->getRequest();
         $orderParam = $request->query->get('order');
-
-
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
@@ -426,7 +424,8 @@ class BoomController extends Controller {
                 $newOrder[$pos] = $old_v;
             }
             ksort($newOrder);
-            $entity['elements'] = new ArrayCollection(array_values($newOrder));
+            $newOrder = array_values($newOrder);
+            $entity['elements'] = new ArrayCollection($newOrder);
         }
         $entity['user'] = $sessionUser;
         $editForm = $this->createForm(new BoomType(), $entity);
@@ -525,7 +524,7 @@ class BoomController extends Controller {
     public function verifyOwnerAction($slug){
 
 
-        
+
 
     }
 
