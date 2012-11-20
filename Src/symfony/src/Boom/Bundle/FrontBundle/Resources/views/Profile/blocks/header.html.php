@@ -118,42 +118,12 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                             <?php foreach ($activities as $activity){
                                 echo $view['boom_front']->renderActivity($activity);
                             }?>
-                            <!--
-                            <li class="edit-boom">
-                                <p class="info"><a href="#">BoomMaker77</a> ha editado un boom de <a href="#">Chicken Destroy</a>:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li>
-                            <li class="fav-boom">
-                                <p class="info"><a href="#">BoomMaker77</a> ha marcado como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li>
-                            <li class="add-boom">
-                                <p class="info"><a href="#">BoomMaker77</a> ha creado un nuevo boom:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li>
-                            <li class="edit-boom">
-                                <p class="info">Edit&eacute; un boom de <a href="#">Chicken Destroy</a>:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li>
-                            <li class="fav-boom">
-                                <p class="info">Marqu&eacute; como favorito un boom de <a href="#">Chicken Destroy</a>:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li>
-                            <li class="add-boom">
-                                <p class="info">Publiqu&eacute; un nuevo boom:</p>
-                                <p class="title"><a href="#">7 Maneras de matar a alguien y que parezca un accidente</a></p>
-                            <date>22 de enero 2011</date>
-                            </li> -->
                         </ul>
-                    <!--
+                        <?php /*
                         <p class="ver-mas-block">
                             <a href="<?php echo $view['router']->generate('BoomFrontBundle_activity_list') ?> ">Ver más</a>
-                        </p> -->
+                        </p>
+                        */ ?>
                     <?php else: ?>
                         <div class="no-content">
                             <p><strong>Parece que aun no tienes actividad en tu perfil</strong></p>

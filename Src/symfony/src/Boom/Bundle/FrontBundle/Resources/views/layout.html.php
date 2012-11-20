@@ -25,14 +25,6 @@
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/modernizr-1.7.min.js') ?>"></script>
   </head>
   <body class="gradient">
-    <?php
-      echo $view['facebook']->initialize(
-                array(
-            'xfbml' => true,
-            'fbAsyncInit' => 'window.onFbInit()',
-            'oauth' => true), 'BoomFrontBundle::blocks/facebook/initialize.html.php'
-        );
-    ?>
     <header class="cf">
       <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
     </header>
@@ -70,5 +62,13 @@
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/jquery.dragsort-0.5.1.min.js') ?>"></script>
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/plugins.js') ?>"></script>
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/script.js') ?>"></script>
+        <?php
+        echo $view['facebook']->initialize(
+                array(
+            'xfbml' => true,
+            'fbAsyncInit' => 'window.onFbInit()',
+            'oauth' => true), 'BoomFrontBundle::blocks/facebook/initialize.html.php'
+        );
+        ?>
   </body>
 </html>

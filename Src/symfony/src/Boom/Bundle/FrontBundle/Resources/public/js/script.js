@@ -60,7 +60,6 @@
             var galcar = $(this).parents("div.gal-car"),
             gcanvas = galcar.find('.slide-container'),
             gslides = galcar.find('div.slide');
-            console.log(galcar);
             var btnNext = $(this).hasClass('next'),
             current = galcar.find("div.slide.active"),
             target  = btnNext ? current.next() : current.prev(),
@@ -104,7 +103,6 @@
             gslides = galcar.find('div.slide');
 
             var index = $(this).parents("ul").find("li").index(this);
-            console.log(index);
             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),
             size = gslides.first().outerWidth();
 
@@ -400,27 +398,28 @@
         _comunityOrder = $('.tend-cont',_root),
         _myBoom = $('.miboom-cont',_root);
 
-        $([_shareBlock,_registerBlock])
-        .bind('close',function(){
+        $([_shareBlock,_registerBlock]).each(function(){
             var _this = $(this);
-            _this.animate({
-                bottom: '-500px'
-            },500,function(){
-                _infoBlocks.hide();
-            })
-        })
-        .bind('open',function(){
-            var _this = $(this);
-            _infoBlocks.show(10,function(){
+            _this.on('hide',function(e){
+                var _this = $(this);
                 _this.animate({
-                    bottom: '0'
+                    bottom: '-500px'
+                },500,function(){
+                    _infoBlocks.hide();
+                })
+            }).on('show',function(e){
+                var _this = $(this);
+                _infoBlocks.show(10,function(){
+                    _this.animate({
+                        bottom: '0'
+                    });
                 });
             });
         });
 
         _shareClose.click(function(e){
             e.preventDefault();
-            _shareBlock.trigger('close');
+            _shareBlock.trigger('hide');
             return false;
         });
 
@@ -444,7 +443,7 @@
                 },
                 dragBetween: false,
                 placeHolderTemplate: "<li class='empty'></li>"
-            }).bind('recalc',function(){
+            }).on('recalc',function(){
                 _drag.children().each(function(index){
                     $(this).children(".pos").html(index+1);
                     data.order[$(this).attr('original-position')] = {
@@ -454,7 +453,7 @@
                 });
 
             });
-            _dragBase.bind('ajaxOver',function(){
+            _dragBase.on('ajaxOver',function(){
                 op = false;
                 _editalo.removeClass('disabled');
             });
@@ -478,13 +477,16 @@
         });
 
         //guardar reorden comunidad
-        _comunityOrder.bind('ajaxOver',function(){
-            var _myBoomDrag = $('> .drag-booms',_myBoom);
-            var _comunityOrderDrag = $('> .drag-booms',_myBoom);
+        _comunityOrder.on('ajaxOver',function(){
+            var _myBoomDrag = $('> .drag-booms',_myBoom),
+            _comunityOrderDrag = $('> .drag-booms',_comunityOrder);
+            $('> .boom-clean',_myBoom).remove();
             if(_myBoomDrag.children().length <= 0){
-                _myBoomDrag.append(_comunityOrderDrag.children().clone());
+                _comunityOrderDrag.children().each(function(){
+                    _myBoomDrag.append($(this).clone());
+                })
             }
-        }).bind('submit',function(e,data,url){
+        }).on('submit',function(e,data,url){
             var _dragBase = $(this);
             $.ajax({
                 url: url,
@@ -492,25 +494,17 @@
                 dataType:'json',
                 type: 'POST',
                 success: function(){
-                    _infoBlocks.show(10,function(){
-                        _shareBlock.animate({
-                            bottom: '0'
-                        })
-                    });
+                    _shareBlock.trigger('show');
                     _dragBase.trigger('ajaxOver');
                 },
                 error: function(response){
-                    _infoBlocks.show(10,function(){
-                        _registerBlock.animate({
-                            bottom: '0'
-                        });
-                    });
+                    _registerBlock.trigger('show');
                     _dragBase.trigger('ajaxOver');
                 }
             });
         });
         //editar mi reorden
-        _myBoom.bind('submit',function(e,data,url){
+        _myBoom.on('submit',function(e,data,url){
             var location = url+'?'+$.param(data);
             window.location = location;
         });
@@ -535,7 +529,7 @@
                 };
                 FB.ui(obj);
             }
-            _shareBlock.trigger('close');
+            _shareBlock.trigger('hide');
             return false;
         })
     });
@@ -640,9 +634,6 @@
                         })
                         profile.append(link);
                     }
-                },
-                error:function(a,s,d){
-                    console.log(d);
                 }
             });
 
@@ -659,7 +650,6 @@
                 url: url,
                 success: function(response){
                     if(response.count){
-                        console.log(response.count);
                         tw.each(function(){
                             var p = $(document.createElement('p')).text(response.count);
                             $(this).append(p);
@@ -895,7 +885,8 @@ function mce_init_form(){
                                     this.value = '';
                                 } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
                                     this.value = '';
-                                } else {
+                                }
+                                else {
                                     if (/\[day\]/.test(fields[0].name)){
                                         this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
                                     } else {
