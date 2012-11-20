@@ -682,6 +682,36 @@ h1 a:before {
   width: 15px;
 }
 
+#usr-bar ul li a#fb-login-check {
+  display: block;
+  border: 3px solid #fff;
+  width: 205px;
+  color: #1e1e1e;
+  height: 25px;
+  padding: 0 15px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  background: #f57b20;
+  background: -moz-linear-gradient(top, #f57b20 0%, #e35344 56%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f57b20), color-stop(56%,#e35344));
+  background: -webkit-linear-gradient(top, #f57b20 0%,#e35344 56%);
+  background: -o-linear-gradient(top, #f57b20 0%,#e35344 56%);
+  background: -ms-linear-gradient(top, #f57b20 0%,#e35344 56%);
+  background: linear-gradient(to bottom, #f57b20 0%,#e35344 56%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f57b20', endColorstr='#e35344',GradientType=0 );
+}
+
+#usr-bar ul li a#fb-login-check > span {
+  background: url('../images/fb-logo.png') no-repeat 0 0;
+  display: inline-block;
+  height: 15px;
+  width: 71px;
+  text-indent: -9999px;
+  margin: 4px 0 0 2px;
+  position: static;
+}
+
 #open-tab {
   display: block;
   float: right;
