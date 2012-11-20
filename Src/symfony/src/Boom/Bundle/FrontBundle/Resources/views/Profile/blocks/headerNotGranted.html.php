@@ -17,7 +17,7 @@
         <div id="usr-bar">
             <ul>
                 <li>
-                    <a id="fb-login-check" href="<?php echo $fbLoginUrl ?>" registration-url="<?php echo $loginCheck ?>" scope="<?php echo $view['facebook']->getScope() ?>" target="_blank" >Login</a>
+                    <a id="fb-login-check" href="<?php echo $fbLoginUrl ?>" registration-url="<?php echo $loginCheck ?>" scope="<?php echo $view['facebook']->getScope() ?>" target="_blank" >HAZ LOGIN CON <span class="fblogo">FACEBOOK</span></a>
                 </li>
             </ul>
         </div>
