@@ -1,0 +1,26 @@
+BoomFrontBundle_boom_sitemap:
+    pattern:  /sitemap.{_format}
+    defaults: { _controller: "BoomFrontBundle:Default:sitemap", _format: "xml" }
+    requirements:
+        _format: "xml"
+        _method:  GET
+
+BoomFrontBundle_boom_twit_count:
+    pattern:  /tc/{category_slug}/{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:twitCount", _format: "json" }
+    requirements:
+        _method:  GET
+
+BoomFrontBundle_category_show:
+    pattern:  /{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:category" }
+    requirements:
+        _method:  GET
+
+BoomFrontBundle_boom_show:
+    pattern:  /{category_slug}/{slug}
+    defaults: { _controller: "BoomFrontBundle:Default:boom" }
+    requirements:
+        _method:  GET
+    options:
+        expose: true

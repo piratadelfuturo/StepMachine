@@ -191,4 +191,54 @@ class DefaultController extends Controller {
         return new Response($count);
     }
 
+    public function sitemapAction() {
+        $em = $this->getDoctrine()->getEntityManager();
+        $cacheDriver = $this->get('cache.apc');
+        $cacheName = 'sitemap_v1';
+        $urls = $cacheDriver->fetch($cacheName);
+        $hostname = $this->getRequest()->getHost();
+
+        if ($urls === false) {
+            $urls = array();
+
+            // add some urls homepage
+            $urls[] = array(
+                'loc' => $this->get('router')->generate('BoomFrontBundle_homepage'),
+                'changefreq' => 'daily',
+                'priority' => '1.0'
+            );
+
+            $categories = $em->getRepository('BoomLibraryBundle:Category')->findFeaturedCategories();
+
+            // urls from database
+            foreach ($categories as $category) {
+                $urls[] = array(
+                    'loc' => $this->get('router')->generate('BoomFrontBundle_category_show', array('slug' => $category['a_slug'])),
+                    'changefreq' => 'daily',
+                    'priority' => '0.7'
+                );
+            }
+            // service
+            $booms = $em->getRepository('BoomLibraryBundle:Boom')->findLatestBooms(array('boom.date_published' => 'DESC'), 1000, 0);
+
+            foreach ($booms as $boom) {
+                $urls[] = array(
+                    'loc' => $this->get('router')->generate(
+                            'BoomFrontBundle_boom_show', array(
+                        'category_slug' => $boom['category']['slug'],
+                        'slug' => $boom['slug']
+                    )),
+                    'priority' => '0.5');
+            }
+            $cacheDriver->save($cacheName, $urls, 120);
+        }
+
+        return $this->render(
+                        'BoomFrontBundle:Default:sitemap.xml.php', array(
+                    'urls' => $urls,
+                    'hostname' => $hostname
+                        )
+        );
+    }
+
 }

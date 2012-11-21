@@ -1,23 +1,11 @@
-BoomFrontBundle_login_fb:
-    pattern:  /login_fb
-    defaults: { _controller: BoomFrontBundle:Profile:fbLogin }
-    requirements:
-        _method:  GET
-
-BoomFrontBundle_login_check_fb:
-    pattern:   /login_check_fb
-
-BoomFrontBundle_logout:
-    pattern:  /logout
-    requirements:
-        _method:  GET
-
-
 BoomFrontBundle_homepage:
     pattern:  /
     defaults: { _controller: BoomFrontBundle:Default:index }
     requirements:
         _method:  GET
+
+BoomFrontBundle_security:
+    resource: "@BoomFrontBundle/Resources/config/routing/security.yml"
 
 BoomFrontBundle_user:
     resource: "@BoomFrontBundle/Resources/config/routing/user.yml"
@@ -48,22 +36,5 @@ BoomFrontBundle_list:
     requirements:
         _method:  GET
 
-BoomFrontBundle_boom_twit_count:
-    pattern:  /tc/{category_slug}/{slug}
-    defaults: { _controller: "BoomFrontBundle:Default:twitCount", _format: "json" }
-    requirements:
-        _method:  GET
-
-BoomFrontBundle_category_show:
-    pattern:  /{slug}
-    defaults: { _controller: "BoomFrontBundle:Default:category" }
-    requirements:
-        _method:  GET
-
-BoomFrontBundle_boom_show:
-    pattern:  /{category_slug}/{slug}
-    defaults: { _controller: "BoomFrontBundle:Default:boom" }
-    requirements:
-        _method:  GET
-    options:
-        expose: true
+BoomFrontBundle_default:
+    resource: "@BoomFrontBundle/Resources/config/routing/default.yml"
