@@ -126,10 +126,10 @@ class Activity extends DomainObject{
     /**
      * Set user
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\user $user
+     * @param Boom\Bundle\LibraryBundle\Entity\User $user
      * @return Activity
      */
-    public function setUser(\Boom\Bundle\LibraryBundle\Entity\user $user = null)
+    public function setUser(\Boom\Bundle\LibraryBundle\Entity\User $user = null)
     {
         $this->user = $user;
         return $this;
@@ -138,7 +138,7 @@ class Activity extends DomainObject{
     /**
      * Get user
      *
-     * @return Boom\Bundle\LibraryBundle\Entity\user
+     * @return Boom\Bundle\LibraryBundle\Entity\User
      */
     public function getUser()
     {
