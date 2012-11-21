@@ -199,20 +199,22 @@
             $('li.boom:first-child').addClass("on");
             return false;
         });
-        $('span.tab').click(function(e){
-            e.preventDefault();
-            if($(this).parent().hasClass("on")){
-                $(this).parent().removeClass("on");
-                if(_gaq){
-                    _gaq.push(['_trackEvent', 'boom', 'boomie', 'close']);
+        $('span.tab').each(function(i){
+            $(this).click(function(e){
+                e.preventDefault();
+                if($(this).parent().hasClass("on")){
+                    $(this).parent().removeClass("on");
+                    if(_gaq){
+                        _gaq.push(['_trackEvent', 'boomie', 'close', i]);
+                    }
+                }else{
+                    $(this).parent().addClass("on");
+                    if(_gaq){
+                        _gaq.push(['_trackEvent', 'boomie', 'open', i]);
+                    }
                 }
-            }else{
-                $(this).parent().addClass("on");
-                if(_gaq){
-                    _gaq.push(['_trackEvent', 'boom', 'boomie', 'open']);
-                }
-            }
-            return false;
+                return false;
+            });
         });
 
         //Content Selector
