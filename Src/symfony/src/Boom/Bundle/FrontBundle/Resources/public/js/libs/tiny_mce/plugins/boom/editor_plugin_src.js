@@ -357,7 +357,7 @@
             rep(/\[url=([^\]]+)\](.*?)\[\/url\]/gi,"<a href=\"$1\">$2</a>");
             rep(/\[url\](.*?)\[\/url\]/gi,"<a href=\"$1\">$1</a>");
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
-            rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
+            rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"http://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
             rep(/\[soundcloud="([^\]]+)"\].*?\[\/soundcloud]/gi,"<iframe width=\"100%\" height=\"166\" scrolling=\"no\" frameborder=\"no\" src=\"http://w.soundcloud.com/player/?url=$1&amp;auto_play=false&amp;show_artwork=true&amp;color=ff7700\"></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+this['_galleryPreviewUrl']+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");

@@ -254,16 +254,80 @@
 
 
         //DRAGnDROP boomies
-        $("#front_boom_elements.sort-elements").dragsort({
-            dragSelector: '#front_boom_elements .boomie .place',
+        var sortElements = $("#front_boom_elements.sort-elements"),
+        dragSelector = '.boomie .place';
+        /*
+        sortElements.dragsort({
+            dragSelector: dragSelector,
             dragEnd: function(){
-                $('.sort-elements').children().each(function(index){
-                    $(this).find('.place').html(index+1);
-                })
+                var position = 1;
+                sortElements.children().each(function(index){
+                    $(this)
+                    .find('input.boomie-position-input').first()
+                    .val(position);
+
+                    $(this).find('label span.place').first()
+                    .text(position)
+                    position++;
+                });
+                $('.boom-wysiwyg',this).each(function(){
+                    tinyMCE.execCommand("mceAddControl", false, $(this).attr('id'));
+                });
+
             },
             dragBetween: false,
             placeHolderTemplate: "<li class='empty'></li>"
-        });
+        }).children().each(function(){
+            var mce = $('.boom-wysiwyg',this);
+            $(dragSelector,this).mouseup(function(){
+                    tinyMCE.execCommand("mceAddControl", false, mce.attr('id'));
+                    return true;
+            }).mousedown(function(){
+                    tinyMCE.execCommand('mceFocus', false, mce.attr('id'));
+                    tinyMCE.execCommand("mceRemoveControl", false, mce.attr('id'));
+                    return true;
+            })
+        }); */
+
+        sortElements.sortable({
+            axis: "y",
+            handle: "label span.place",
+            items: "> li",
+            update: function( event, ui ) {
+                var position = 1;
+                $(this)
+                .children('li')
+                .each(function(){
+                    $(this)
+                    .find('input.boomie-position-input').first()
+                    .val(position);
+
+                    $(this).find('label span.place').first()
+                    .text(position)
+                    position++
+                });
+            },
+            start: function(e, ui){
+                var accordion = $('.accordion_content',ui.item);
+                accordion.hide();
+                $('.boom-wysiwyg',ui.item).each(function(){
+                    tinyMCE.execCommand( 'mceRemoveControl', false, $(this).attr('id') );
+                    $(this).attr('readonly','readonly').hide();
+                });
+            },
+            stop: function(e,ui) {
+                var accordion = $('.accordion_content',ui.item);
+                $('.boom-wysiwyg',ui.item).each(function(){
+                    $(this).removeAttr('readonly').show();
+                    tinyMCE.execCommand( "mceAddControl" , false, $(this).attr('id') );
+                    //tinyMCE.execCommand("mceRepaint", false, $(this).attr('id'));
+                });
+                accordion.show();
+                $(this).sortable("refresh");
+            },
+            placeholder: 'empty sortable-placeholder'
+        })
+        .disableSelection();
 
         var user = $('#usr-cnt');
         var userBox = user.find('#usr-roll');
@@ -720,7 +784,7 @@
             theme : "advanced",
             mode : "specific_textareas",
             editor_selector : "boom-wysiwyg",
-            width: "100%",
+            width: "585px",
             plugins : "autoresize,boom",
             theme_advanced_buttons1 : "bold,italic,underline",
             theme_advanced_buttons2 : "",
@@ -789,214 +853,215 @@
 
 
 /**MAILCHIMP**/
-
-var fnames = new Array();
-var ftypes = new Array();
-fnames[1]='FNAME';
-ftypes[1]='text';
-fnames[0]='EMAIL';
-ftypes[0]='email';
-try {
-    var jqueryLoaded=jQuery;
-    jqueryLoaded=true;
-} catch(err) {
-    var jqueryLoaded=false;
-}
-var head= document.getElementsByTagName('head')[0];
-if (!jqueryLoaded) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
-    head.appendChild(script);
-    if (script.readyState && script.onload!==null){
-        script.onreadystatechange= function () {
-            if (this.readyState == 'complete') mce_preload_check();
-        }
-    }
-}
-var script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
-head.appendChild(script);
-var err_style = '';
-try{
-    err_style = mc_custom_error_style;
-} catch(e){
-    err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
-}
-var head= document.getElementsByTagName('head')[0];
-var style= document.createElement('style');
-style.type= 'text/css';
-if (style.styleSheet) {
-    style.styleSheet.cssText = err_style;
-} else {
-    style.appendChild(document.createTextNode(err_style));
-}
-head.appendChild(style);
-setTimeout('mce_preload_check();', 250);
-
-var mce_preload_checks = 0;
-function mce_preload_check(){
-    if (mce_preload_checks>40) return;
-    mce_preload_checks++;
+(function(document,$){
+    var fnames = new Array();
+    var ftypes = new Array();
+    fnames[1]='FNAME';
+    ftypes[1]='text';
+    fnames[0]='EMAIL';
+    ftypes[0]='email';
     try {
         var jqueryLoaded=jQuery;
+        jqueryLoaded=true;
     } catch(err) {
-        setTimeout('mce_preload_check();', 250);
-        return;
+        var jqueryLoaded=false;
     }
-    try {
-        var validatorLoaded=jQuery("#fake-form").validate({});
-    } catch(err) {
-        setTimeout('mce_preload_check();', 250);
-        return;
+    var head= document.getElementsByTagName('head')[0];
+    if (!jqueryLoaded) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js';
+        head.appendChild(script);
+        if (script.readyState && script.onload!==null){
+            script.onreadystatechange= function () {
+                if (this.readyState == 'complete') mce_preload_check();
+            }
+        }
     }
-    mce_init_form();
-}
-function mce_init_form(){
-    jQuery(document).ready( function($) {
-        var options = {
-            errorClass: 'mce_inline_error',
-            errorElement: 'div',
-            onkeyup: function(){},
-            onfocusout:function(){},
-            onblur:function(){}
-        };
-        var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
-        $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
-        options = {
-            url: 'http://7boom.us6.list-manage1.com/subscribe/post-json?u=8e9171246d53eebc71ca63890&id=ef91d2cbb8&c=?',
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            beforeSubmit: function(){
-                $('#mce_tmp_error_msg').remove();
-                $('.datefield','#mc_embed_signup').each(
-                    function(){
-                        var txt = 'filled';
-                        var fields = new Array();
-                        var i = 0;
-                        $(':text', this).each(
-                            function(){
-                                fields[i] = this;
-                                i++;
-                            });
-                        $(':hidden', this).each(
-                            function(){
-                                var bday = false;
-                                if (fields.length == 2){
-                                    bday = true;
-                                    fields[2] = {
-                                        'value':1970
-                                    };//trick birthdays into having years
-                                }
-                                if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
-                                    this.value = '';
-                                } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
-                                    this.value = '';
-                                }
-                                else {
-                                    if (/\[day\]/.test(fields[0].name)){
-                                        this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
-                                    } else {
-                                        this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'http://downloads.mailchimp.com/js/jquery.form-n-validate.js';
+    head.appendChild(script);
+    var err_style = '';
+    try{
+        err_style = mc_custom_error_style;
+    } catch(e){
+        err_style = '#mc_embed_signup input.mce_inline_error{border-color:#6B0505;} #mc_embed_signup div.mce_inline_error{margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff;}';
+    }
+    var head= document.getElementsByTagName('head')[0];
+    var style= document.createElement('style');
+    style.type= 'text/css';
+    if (style.styleSheet) {
+        style.styleSheet.cssText = err_style;
+    } else {
+        style.appendChild(document.createTextNode(err_style));
+    }
+    head.appendChild(style);
+    setTimeout('mce_preload_check();', 250);
+
+    var mce_preload_checks = 0;
+    function mce_preload_check(){
+        if (mce_preload_checks>40) return;
+        mce_preload_checks++;
+        try {
+            var jqueryLoaded=jQuery;
+        } catch(err) {
+            setTimeout('mce_preload_check();', 250);
+            return;
+        }
+        try {
+            var validatorLoaded=jQuery("#fake-form").validate({});
+        } catch(err) {
+            setTimeout('mce_preload_check();', 250);
+            return;
+        }
+        mce_init_form();
+    }
+    function mce_init_form(){
+        jQuery(document).ready( function($) {
+            var options = {
+                errorClass: 'mce_inline_error',
+                errorElement: 'div',
+                onkeyup: function(){},
+                onfocusout:function(){},
+                onblur:function(){}
+            };
+            var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
+            $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
+            options = {
+                url: 'http://7boom.us6.list-manage1.com/subscribe/post-json?u=8e9171246d53eebc71ca63890&id=ef91d2cbb8&c=?',
+                type: 'GET',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                beforeSubmit: function(){
+                    $('#mce_tmp_error_msg').remove();
+                    $('.datefield','#mc_embed_signup').each(
+                        function(){
+                            var txt = 'filled';
+                            var fields = new Array();
+                            var i = 0;
+                            $(':text', this).each(
+                                function(){
+                                    fields[i] = this;
+                                    i++;
+                                });
+                            $(':hidden', this).each(
+                                function(){
+                                    var bday = false;
+                                    if (fields.length == 2){
+                                        bday = true;
+                                        fields[2] = {
+                                            'value':1970
+                                        };//trick birthdays into having years
                                     }
-                                }
-                            });
-                    });
-                return mce_validator.form();
-            },
-            success: mce_success_cb
-        };
-        $('#mc-embedded-subscribe-form').ajaxForm(options);
-        /*
+                                    if ( fields[0].value=='MM' && fields[1].value=='DD' && (fields[2].value=='YYYY' || (bday && fields[2].value==1970) ) ){
+                                        this.value = '';
+                                    } else if ( fields[0].value=='' && fields[1].value=='' && (fields[2].value=='' || (bday && fields[2].value==1970) ) ){
+                                        this.value = '';
+                                    }
+                                    else {
+                                        if (/\[day\]/.test(fields[0].name)){
+                                            this.value = fields[1].value+'/'+fields[0].value+'/'+fields[2].value;
+                                        } else {
+                                            this.value = fields[0].value+'/'+fields[1].value+'/'+fields[2].value;
+                                        }
+                                    }
+                                });
+                        });
+                    return mce_validator.form();
+                },
+                success: mce_success_cb
+            };
+            $('#mc-embedded-subscribe-form').ajaxForm(options);
+            /*
  * Translated default messages for the jQuery validation plugin.
  * Locale: ES
  */
-        jQuery.extend(jQuery.validator.messages, {
-            required: "Este campo es obligatorio.",
-            remote: "Por favor, rellena este campo.",
-            email: "Por favor, escribe una dirección de correo válida",
-            url: "Por favor, escribe una URL válida.",
-            date: "Por favor, escribe una fecha válida.",
-            dateISO: "Por favor, escribe una fecha (ISO) válida.",
-            number: "Por favor, escribe un número entero válido.",
-            digits: "Por favor, escribe sólo dígitos.",
-            creditcard: "Por favor, escribe un número de tarjeta válido.",
-            equalTo: "Por favor, escribe el mismo valor de nuevo.",
-            accept: "Por favor, escribe un valor con una extensión aceptada.",
-            maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
-            minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
-            rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
-            range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
-            max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
-            min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
-        });
+            jQuery.extend(jQuery.validator.messages, {
+                required: "Este campo es obligatorio.",
+                remote: "Por favor, rellena este campo.",
+                email: "Por favor, escribe una dirección de correo válida",
+                url: "Por favor, escribe una URL válida.",
+                date: "Por favor, escribe una fecha válida.",
+                dateISO: "Por favor, escribe una fecha (ISO) válida.",
+                number: "Por favor, escribe un número entero válido.",
+                digits: "Por favor, escribe sólo dígitos.",
+                creditcard: "Por favor, escribe un número de tarjeta válido.",
+                equalTo: "Por favor, escribe el mismo valor de nuevo.",
+                accept: "Por favor, escribe un valor con una extensión aceptada.",
+                maxlength: jQuery.validator.format("Por favor, no escribas más de {0} caracteres."),
+                minlength: jQuery.validator.format("Por favor, no escribas menos de {0} caracteres."),
+                rangelength: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
+                range: jQuery.validator.format("Por favor, escribe un valor entre {0} y {1}."),
+                max: jQuery.validator.format("Por favor, escribe un valor menor o igual a {0}."),
+                min: jQuery.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
+            });
 
-    });
-}
-function mce_success_cb(resp){
-    $('#mce-success-response').hide();
-    $('#mce-error-response').hide();
-    if (resp.result=="success"){
-        $('#mce-'+resp.result+'-response').show();
-        $('#mce-'+resp.result+'-response').html(resp.msg);
-        $('#mc-embedded-subscribe-form').each(function(){
-            this.reset();
         });
-    } else {
-        var index = -1;
-        var msg;
-        try {
-            var parts = resp.msg.split(' - ',2);
-            if (parts[1]==undefined){
-                msg = resp.msg;
-            } else {
-                i = parseInt(parts[0]);
-                if (i.toString() == parts[0]){
-                    index = parts[0];
-                    msg = parts[1];
-                } else {
-                    index = -1;
+    }
+    function mce_success_cb(resp){
+        $('#mce-success-response').hide();
+        $('#mce-error-response').hide();
+        if (resp.result=="success"){
+            $('#mce-'+resp.result+'-response').show();
+            $('#mce-'+resp.result+'-response').html(resp.msg);
+            $('#mc-embedded-subscribe-form').each(function(){
+                this.reset();
+            });
+        } else {
+            var index = -1;
+            var msg;
+            try {
+                var parts = resp.msg.split(' - ',2);
+                if (parts[1]==undefined){
                     msg = resp.msg;
+                } else {
+                    i = parseInt(parts[0]);
+                    if (i.toString() == parts[0]){
+                        index = parts[0];
+                        msg = parts[1];
+                    } else {
+                        index = -1;
+                        msg = resp.msg;
+                    }
                 }
+            } catch(e){
+                index = -1;
+                msg = resp.msg;
             }
-        } catch(e){
-            index = -1;
-            msg = resp.msg;
-        }
-        try{
-            if (index== -1){
-                $('#mce-'+resp.result+'-response').show();
-                $('#mce-'+resp.result+'-response').html(msg);
-            } else {
-                err_id = 'mce_tmp_error_msg';
-                html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
-
-                var input_id = '#mc_embed_signup';
-                var f = $(input_id);
-                if (ftypes[index]=='address'){
-                    input_id = '#mce-'+fnames[index]+'-addr1';
-                    f = $(input_id).parent().parent().get(0);
-                } else if (ftypes[index]=='date'){
-                    input_id = '#mce-'+fnames[index]+'-month';
-                    f = $(input_id).parent().parent().get(0);
-                } else {
-                    input_id = '#mce-'+fnames[index];
-                    f = $().parent(input_id).get(0);
-                }
-                if (f){
-                    $(f).append(html);
-                    $(input_id).focus();
-                } else {
+            try{
+                if (index== -1){
                     $('#mce-'+resp.result+'-response').show();
                     $('#mce-'+resp.result+'-response').html(msg);
-                }
-            }
-        } catch(e){
-            $('#mce-'+resp.result+'-response').show();
-            $('#mce-'+resp.result+'-response').html(msg);
-        }
-    }
+                } else {
+                    err_id = 'mce_tmp_error_msg';
+                    html = '<div id="'+err_id+'" style="'+err_style+'"> '+msg+'</div>';
 
-}
+                    var input_id = '#mc_embed_signup';
+                    var f = $(input_id);
+                    if (ftypes[index]=='address'){
+                        input_id = '#mce-'+fnames[index]+'-addr1';
+                        f = $(input_id).parent().parent().get(0);
+                    } else if (ftypes[index]=='date'){
+                        input_id = '#mce-'+fnames[index]+'-month';
+                        f = $(input_id).parent().parent().get(0);
+                    } else {
+                        input_id = '#mce-'+fnames[index];
+                        f = $().parent(input_id).get(0);
+                    }
+                    if (f){
+                        $(f).append(html);
+                        $(input_id).focus();
+                    } else {
+                        $('#mce-'+resp.result+'-response').show();
+                        $('#mce-'+resp.result+'-response').html(msg);
+                    }
+                }
+            } catch(e){
+                $('#mce-'+resp.result+'-response').show();
+                $('#mce-'+resp.result+'-response').html(msg);
+            }
+        }
+
+    }
+})(document,jQuery);

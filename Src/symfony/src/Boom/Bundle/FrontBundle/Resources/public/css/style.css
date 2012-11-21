@@ -1023,7 +1023,7 @@ h1 a:before {
   border-top: 1px solid #dfdfdf;
 }
 
-#rt-user-activities ul li * { 
+#rt-user-activities ul li * {
   line-height: 18px;
 }
 
@@ -1690,7 +1690,7 @@ aside .sb-bloque {
   height: auto;
   background: red;
   right: -70px;
-  top: 40%;  
+  top: 40%;
   color: #fff;
   font: normal 14px 'Proxima', sans-serif;
   text-transform: uppercase;
@@ -1709,7 +1709,7 @@ aside .sb-bloque {
   background: -o-linear-gradient(top, #faa635 0%,#e35344 100%);
   background: -ms-linear-gradient(top, #faa635 0%,#e35344 100%);
   background: linear-gradient(top, #faa635 0%,#e35344 100%);
-  
+
 }
 
 footer {
@@ -2263,7 +2263,7 @@ footer p {
   padding: 0 35px 0 10px;
 }
 
-.single-boom .social .btn-fb, .single-boom .social .btn-tw, 
+.single-boom .social .btn-fb, .single-boom .social .btn-tw,
 .single-boom .social .btn-fav:after, .single-boom .social a.editar-boom-ph:after {
   background: url('../images/sprite_redes.png') no-repeat 0 0;
   text-indent: -9000px;
@@ -2422,6 +2422,7 @@ footer p {
 .single-boom .autor h3 {
   color: #828282;
   line-height: 55px;
+  width:650px;
 }
 
 .single-boom .autor .ver-moar {

@@ -100,17 +100,17 @@
                 });
             },
             start: function(e, ui){
-                $(this).find('.boom-wysiwyg').each(function(){
+                $(ui.item).find('.boom-wysiwyg').each(function(){
                     tinyMCE.execCommand( 'mceRemoveControl', false, $(this).attr('id') );
                     $(this).attr('readonly','readonly');
                 });
             },
             stop: function(e,ui) {
-                $(this).find('.boom-wysiwyg').each(function(){
+                $(ui.item).find('.boom-wysiwyg').each(function(){
                     $(this).removeAttr('readonly');
                     tinyMCE.execCommand( 'mceAddControl', true, $(this).attr('id') );
-                    $(this).sortable("refresh");
                 });
+                $(this).sortable("refresh");
             }
         })
         .disableSelection();
