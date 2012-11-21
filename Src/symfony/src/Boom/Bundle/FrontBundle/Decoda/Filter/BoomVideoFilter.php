@@ -40,6 +40,21 @@ class BoomVideoFilter extends \DecodaFilter {
             ),
             'maxChildDepth' => -1,
             'preserveTags' => true
+        ),
+        'soundcloud' => array(
+            'tag' => 'iframe',
+            'template' => 'soundcloud',
+            'type' => self::TYPE_BLOCK,
+            'allowed' => self::TYPE_NONE,
+                'pattern' => '/(.*?)+/i',
+            'attributes' => array(
+                'default' => '/(.*?)+/i',
+            ),
+            'map' => array(
+                'default' => 'video_id'
+            ),
+            'maxChildDepth' => -1,
+            'preserveTags' => true
         )
     );
 

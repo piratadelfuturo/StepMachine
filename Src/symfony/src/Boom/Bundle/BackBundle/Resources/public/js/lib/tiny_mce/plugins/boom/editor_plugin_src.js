@@ -27,12 +27,35 @@
             });
 
             ed.addCommand('boomVideo', function() {
+                var allowed = new Array(
+                    'http://player.vimeo.com/',
+                    'https://player.vimeo.com/',
+                    'https://www.youtube.com/embed/',
+                    'http://www.youtube.com/embed/',
+                    'http://w.soundcloud.com/player',
+                    'https://w.soundcloud.com/player'
+                );
                 var embedPrompt = $.prompt(
                     'Codigo embed de video', '',
                     function(txt){
-                        ed.execCommand('mceInsertContent',false,txt);
+                        var wrap = $(document.createElement('div')).append($(txt));
+                        var iframe = wrap.find('iframe',0);
+                        var clean = $(document.createElement('div')).append(iframe);
+                        if(iframe){
+                            var i=0;
+                            for(i=0;i<=allowed.length-1;i++){
+                                if(clean.html() !== '' && iframe.attr('src').indexOf(allowed[i]) === 0){
+                                    ed.focus();
+                                    ed.execCommand('mceInsertContent',false,clean.html());
+                                    return true;
+                                    break;
+                                }
+                            }
+                        }
+                        return true;
                     } );
             });
+
             ed.addCommand('boomImage', function() {
                 var formImageUpload,inputImageUpload;
                 if(uploader_forms[ed.id]){
@@ -59,7 +82,10 @@
                             }),
                         done: function(e, data){
                             if(data.result.id){
-                                ed.execCommand('mceInsertContent',false,'<img src="'+data.result.path+'" />');
+                                var container = $(document.createElement('div')),
+                                img = $(document.createElement('img')).attr('src',data.result.path);
+                                container.append(img);
+                                ed.execCommand('mceInsertContent',false,container.html());
                             }
                         }
                     });
@@ -251,10 +277,10 @@
             rep(/<iframe class=\"gallery-preview\" insert-id=\"(.*?)\".*?>.*?<\/iframe>/gi,"[gallery=\"$1\"][/gallery]");
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
             rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
-            rep(/<iframe.*?src=\"http:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
-            rep(/<iframe.*?src=\"https:\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
-            rep(/<iframe.*?src=\"http:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
-            rep(/<iframe.*?src=\"https:\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?src=\"(?:https|http):\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
+            rep(/<iframe.*?src=\"(?:https|http):\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
+            rep(/<iframe.*?src=\"(?:https|http):\/\/w.soundcloud.com\/player\/\?url\=(.*?)(?:&amp;|\").*?>.*?<\/iframe>/gi,"[soundcloud=\"$1\"][/soundcloud]");
+            rep(/<iframe.*?>.*?<\/iframe>/gi,"");
             rep(/<\/(strong|b)>/gi,"[/b]");
             rep(/<(strong|b)>/gi,"[b]");
             rep(/<\/(em|i)>/gi,"[/i]");
@@ -298,6 +324,7 @@
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
             rep(/\[vimeo="([^\]]+)"\].*?\[\/vimeo\]/gi,"<iframe src=\"http:\/\/player.vimeo.com\/video\/$1\" width=\"500\" height=\"250\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>");
+            rep(/\[soundcloud="([^\]]+)"\].*?\[\/soundcloud]/gi,"<iframe width=\"100%\" height=\"166\" scrolling=\"no\" frameborder=\"no\" src=\"http://w.soundcloud.com/player/?url=$1&amp;auto_play=false&amp;show_artwork=true&amp;color=ff7700\"></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<iframe class=\"gallery-preview\" insert-id=\"$1\" src=\""+Routing.generate('BoomFrontBundle_gallery_iframe_preview')+"/$1\" scrolling=\"no\" height=\"400\" width=\"700\" frameborder=\"0\" ></iframe>");
             rep(/\[gallery="([^\]]+)"\](.*?)\[\/gallery\]/gi,"<div class=\"gallery\" insert-id=\"$1\" ></div>");
 
