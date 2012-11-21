@@ -199,11 +199,18 @@
             $('li.boom:first-child').addClass("on");
             return false;
         });
-        $('span[class="tab"]').click(function(){
+        $('span.tab').click(function(e){
+            e.preventDefault();
             if($(this).parent().hasClass("on")){
                 $(this).parent().removeClass("on");
+                if(_gaq){
+                    _gaq.push(['_trackEvent', 'boom', 'boomie', 'close']);
+                }
             }else{
                 $(this).parent().addClass("on");
+                if(_gaq){
+                    _gaq.push(['_trackEvent', 'boom', 'boomie', 'open']);
+                }
             }
             return false;
         });
