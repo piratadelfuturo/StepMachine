@@ -104,15 +104,15 @@ class UserRepository extends EntityRepository {
         $cb2 = $this->_em->createQueryBuilder();
         $cb2->select('activity');
         $cb2->from('BoomLibraryBundle:Activity', 'activity');
-        $cb2->join('activity.user', 'User');
-        $cb2->leftJoin('activity.boom', 'Boom');
-        $cb2->leftJoin('boom.category', 'Category');
+        $cb2->join('activity.user', 'user');
+        $cb2->leftJoin('activity.boom', 'boom');
+        $cb2->leftJoin('boom.category', 'category');
         $cb2->orWhere(
                 $cb2->expr()->in(
-                        'User.id', $cb1->getDQL()
+                        'user.id', $cb1->getDQL()
                 ),
                 $cb2->expr()->in(
-                        'User.id', ':user_id'
+                        'user.id', ':user_id'
                 )
         );
         $cb2->orderBy('activity.date', 'DESC');
