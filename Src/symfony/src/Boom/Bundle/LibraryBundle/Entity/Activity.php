@@ -25,7 +25,7 @@ class Activity extends DomainObject{
     protected $boom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="activities" )
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="activities" )
      */
     protected $user;
 
