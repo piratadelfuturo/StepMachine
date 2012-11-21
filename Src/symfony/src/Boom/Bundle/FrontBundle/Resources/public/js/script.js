@@ -205,12 +205,12 @@
                 if($(this).parent().hasClass("on")){
                     $(this).parent().removeClass("on");
                     if(_gaq){
-                        _gaq.push(['_trackEvent', 'boomie', 'close', i]);
+                        _gaq.push(['_trackEvent', 'boomie', 'close', i+1]);
                     }
                 }else{
                     $(this).parent().addClass("on");
                     if(_gaq){
-                        _gaq.push(['_trackEvent', 'boomie', 'open', i]);
+                        _gaq.push(['_trackEvent', 'boomie', 'open', i+1]);
                     }
                 }
                 return false;
