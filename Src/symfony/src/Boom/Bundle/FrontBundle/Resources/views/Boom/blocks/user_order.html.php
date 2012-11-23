@@ -42,7 +42,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                 <?php
                 $comunityPosition = 1;
                 foreach ($elements as $elementposition => $element):
-                    $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : 'http://placekitten.com/72/72';
+                    $image = isset($element['image']['path']) ? $view['boom_image']->getBoomImageUrl($element['image']['path'], 72, 72) : '/bundles/boomfront/images/placeholder.jpg';
                     ?>
                     <li original-position="<?php echo $view->escape($element['position']) ?>">
                         <div class="balloon">
