@@ -11,7 +11,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
         <div id="usr-bar">
             <ul id="close-tab">
                 <li>
-                    <?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
+                    <p><?php if ($view['security']->isGranted('ROLE_USER') == true): ?>
                         Bienvenido <a href="<?php
                     echo $view['router']->generate(
                             'BoomFrontBundle_user_profile', array(
@@ -21,7 +21,7 @@ $activities = $view['boom_front']->getFollowedActivities($app->getUser(),0,6);
                         ?>">
                                           <?php echo $view->escape($user['name']); ?>
                         </a>
-                    <?php endif; ?>
+                    <?php endif; ?></p>
                 </li>
                 <li>
                     <a href="<?php echo '/logout' ?>">Cerrar Sesión</a>
