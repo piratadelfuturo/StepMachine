@@ -472,7 +472,7 @@ header {
   background: -ms-linear-gradient(top, #e3e4e5 0%,#ededee 100%);
   background: linear-gradient(top, #e3e4e5 0%,#ededee 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e4e5', endColorstr='#ededee',GradientType=0 );
-  height: 100px;
+  height: 115px;
   margin-bottom: 10px;
   padding: 17px 0 10px 17px;
   position: relative;
@@ -2214,7 +2214,7 @@ footer p {
 
 .single-boom p {
   color: #313131;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .single-boom p iframe {
@@ -4042,6 +4042,17 @@ form#boom_gallery ul li {
 
 .tweets {
   margin-top: -36px;
+}
+
+.top-frame {
+  position: relative;
+  width: 1024px;
+  height: 99px;
+  margin-bottom: 10px;
+}
+
+.top-frame.on {
+  height: 600px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
