@@ -606,7 +606,7 @@ h1 a:before {
   background-position: 0px 0;
 }
 
-.tech-vg {
+.geek {
   background-position: 0px -20px;
 }
 
@@ -634,7 +634,7 @@ h1 a:before {
   background-position: 30px 1px;
 }
 
-#filter li.tech-vg {
+#filter li.geek {
   background-position: 30px -19px;
 }
 
@@ -2106,7 +2106,7 @@ footer p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c71a76', endColorstr='#fb46a6',GradientType=1 );
 }
 
-.single-boom .title-flag.tech-vg {
+.single-boom .title-flag.geek {
   background: #8555ce;
   background: -moz-linear-gradient(left, #532f88 0%, #8555ce 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #532f88), color-stop(100%, #8655ce));
@@ -2180,7 +2180,7 @@ footer p {
   background-position: right 0;
 }
 
-.single-boom .title-flag.tech-vg:after {
+.single-boom .title-flag.geek:after {
   background-position: right -36px;
 }
 
