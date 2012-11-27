@@ -339,13 +339,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 46px;
   height: 62px;
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
   left: 30px;
-  animation: changos-brazos .5s ease-in-out 0s infinite alternate;
-  -webkit-animation: changos-brazos .5s ease-in-out 0s infinite alternate;
-  -moz-animation: changos-brazos .5s ease-in-out 0s infinite alternate;
-  -o-animation: changos-brazos .5s ease-in-out 0s infinite alternate;
-  -ms-animation: changos-brazos .5s ease-in-out 0s infinite alternate;
 }
 
 #dude-piernas #p-right {
@@ -353,7 +348,23 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 46px;
   height: 67px;
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
+}
+
+#dude-piernas.walk #p-right {
+  animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+  -webkit-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+  -moz-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+  -o-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+  -ms-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+}
+
+#dude-piernas.walk #p-left {
+  animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
+  -webkit-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
+  -moz-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
+  -o-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
+  -ms-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
 }
 
 #dude #dude-casco {
@@ -1395,6 +1406,20 @@ div.chango-nube.mirror {
   left: 155px;
 }
 
+#cohete-llantitas.volar {
+  background: url('images/llantitas.png') no-repeat left top;
+  z-index: 4;
+  width: 246px;
+  height: 81px;
+  bottom: 110px;
+  left: 155px;
+  transition: bottom 1s ease-in-out 3s;
+  -webkit-transition: bottom 1s ease-in-out 3s;
+  -moz-transition: bottom 1s ease-in-out 3s;
+  -o-transition: bottom 1s ease-in-out 3s;
+  -ms-transition: bottom 1s ease-in-out 3s;
+}
+
 #cohete-fuego {
   background: url('images/fuego.png') no-repeat left top;
   z-index: 4;
@@ -1402,6 +1427,11 @@ div.chango-nube.mirror {
   height: 105px;
   left: -260px;
   top: 275px;
+  animation: fuego .3s ease-in-out 0s infinite alternate;
+  -webkit-animation: fuego .3s ease-in-out 0s infinite alternate;
+  -moz-animation: fuego .3s ease-in-out 0s infinite alternate;
+  -o-animation: fuego .3s ease-in-out 0s infinite alternate;
+  -ms-animation: fuego .3s ease-in-out 0s infinite alternate;
 }
 
 /*ESCENA 7*/
@@ -1471,8 +1501,8 @@ div.chango-nube.mirror {
 
 /*THE WALKING DUDE*/
 @keyframes walkdudewalk {
-  from { transform: rotate(0deg); transform-origin: top left; }
-  to { transform: rotate(-10deg); transform-origin: top left; }
+  from { transform: rotate(15deg); transform-origin: top left; }
+  to { transform: rotate(-15deg); transform-origin: top left; }
 }
 
 @-moz-keyframes walkdudewalk {
@@ -1480,11 +1510,9 @@ div.chango-nube.mirror {
   to { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
 }
 
-@-webkit-keyframes walkdfudewalk {
-  0% { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
-  25% { -webkit-transform: rotate(-45deg); -webkit-transform-origin: top left; }
-  50% { -webkit-transform: rotate(30deg); -webkit-transform-origin: top left; }
-  100% { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
+@-webkit-keyframes walkdudewalk {
+  from { -webkit-transform: rotate(15deg); -webkit-transform-origin: top left; }
+  to { -webkit-transform: rotate(-15deg); -webkit-transform-origin: top left; }
 }
 
 @-o-keyframes walkdudewalk {
@@ -1577,4 +1605,31 @@ div.chango-nube.mirror {
 @-ms-keyframes nubespensar {
   from { opacity: .0; top: 10px; }
   to { opacity: 1; top: -10px; }
+}
+
+/*FUEGUITO DE COHETE*/
+
+@keyframes fuego {
+  from { opacity: .6; left: -260px; }
+  to { opacity: 1; left: -250px; }
+}
+
+@-moz-keyframes fuego {
+  from { opacity: .6; left: -260px; }
+  to { opacity: 1; left: -250px; }
+}
+
+@-webkit-keyframes fuego {
+  from { opacity: .6; left: -260px; }
+  to { opacity: 1; left: -250px; }
+}
+
+@-o-keyframes fuego {
+  from { opacity: .6; left: -260px; }
+  to { opacity: 1; left: -250px; }
+}
+
+@-ms-keyframes fuego {
+  from { opacity: .6; left: -260px; }
+  to { opacity: 1; left: -250px; }
 }
