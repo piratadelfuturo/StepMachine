@@ -2448,7 +2448,7 @@ footer p {
 
 .single-boom .booms .boom-info {
   position: relative;
-  padding: 25px 0 3px 0;
+  padding: 25px 0 10px ;
 }
 
 .single-boom li.boom:first-child .boom-info {
@@ -2494,20 +2494,34 @@ footer p {
 }
 
 .single-boom .boom, .boom .boom-content, .boom .accordion_content {
-  overflow: hidden;
+  /*overflow: hidden;
   max-height: 160px;
   transition: max-height 400ms;
   -webkit-transition: max-height 400ms;
   -moz-transition: max-height 400ms;
   -ms-transition: max-height 400ms;
-  -o-transition: max-height 400ms;
+  -o-transition: max-height 400ms;*/
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.single-boom .boom .boom-text {
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.single-boom li.boom:last-child .boom-text {
+  border-bottom: none;
+}
+
+.single-boom .boom .boom-text p {
+  padding: 15px 0;
 }
 
 fieldset.on .accordion_content {
   overflow: visible;
 }
 
-.single-boom .boom.on, .sort-elements .boom.on {
+/*.single-boom .boom.on, .sort-elements .boom.on {
   max-height: 2000px;
 }
 
@@ -2515,16 +2529,15 @@ fieldset.on .accordion_content {
   max-height: 0;
 }
 
-.boom.on .boom-content {
+/*.boom.on .boom-content {
   padding: 20px 0 0;
   margin: 10px 0;
-  max-height: 2000px;
 }
 
 .boomie.on .accordion_content {
   max-height: 2000px;
   border: 2px inset;
-}
+}*/
 
 .single-boom .boom .boom-content a {
   color: #f47b20;
@@ -2545,7 +2558,7 @@ fieldset.on .accordion_content {
 .booms .tab span {
   width: 74px;
   height: 38px;
-  display: block;
+  display: none;
   position: absolute;
   left: 50%;
   margin-left: -37px;
