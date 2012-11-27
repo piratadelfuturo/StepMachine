@@ -100,11 +100,13 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                             <div class="boom-text">
                                 <p><?php echo $view['bbcode']->filter((string) $elementContent, 'default') ?></p>
                             </div>
+                            <?php /*
                             <div class="comments">
                                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] . '#' . $boomieCount ?>" data-num-posts="2" data-width="648"></div>
                             </div>
+                             */?>
                         </div>
-                        <span class="tab"><a href=""><span>TAB</span></a></span>
+                        <?php //<span class="tab"><a href=""><span>TAB</span></a></span> ?>
                     </li>
                     <?php
                     $boomieCount--;

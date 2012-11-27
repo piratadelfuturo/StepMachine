@@ -1,4 +1,9 @@
   <?php $categories = $view['boom_front']->getFeaturedCategories(); ?>
+  <?php /*
+  <div class="top-frame">
+    <a href="#"><img src="http://placehold.it/1024x99" alt="Placeholder"></a>
+    </div>
+  */?>
   <div id="hd-mn" class="gradient">
     <h1>
       <a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a>
@@ -7,10 +12,10 @@
         <div class="hd-social-list" >
             <p>Síguenos:</p>
             <p>
-              <a class="fb" href="http://www.facebook.com">Facebook</a>
+              <a class="fb" href="http://www.facebook.com/7BoomMex">Facebook</a>
             </p>
             <p>
-              <a class="tw" href="http://www.twitter.com">Twitter</a>
+              <a class="tw" href="http://www.twitter.com/7_boom">Twitter</a>
             </p>
         </div>
         <div id="top-bar" class="gradient">
