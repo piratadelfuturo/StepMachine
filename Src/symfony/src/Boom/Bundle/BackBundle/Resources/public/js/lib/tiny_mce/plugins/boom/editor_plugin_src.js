@@ -77,8 +77,8 @@
                             {
                                 _format: 'json',
                                 path: inputImageUpload.attr('name'),
-                                w: 158,
-                                h: 90
+                                w: 590,
+                                h: 380
                             }),
                         done: function(e, data){
                             if(data.result.id){
