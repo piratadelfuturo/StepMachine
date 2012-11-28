@@ -13,7 +13,7 @@
     <title>
       <?php echo $title !== null ? $title . ' - ' : ''; ?>7boom
     </title>
-    <meta name="description" content="<?php echo $view->escape($view['slots']->get('description', '')) ?>">
+    <meta name="description" content="<?php echo $view->escape($view['slots']->get('description', 'Ordenamos junto contigo al mundo en listas de 7. Todas las opiniones, todos los temas todas las jerarquías.')) ?>">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="<?php echo $view['assets']->getUrl('favicon.ico') ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo $view['assets']->getUrl('/bundles/boomfront/css/boomfront-theme/jquery-ui-1.8.22.custom.css'); ?>" />
