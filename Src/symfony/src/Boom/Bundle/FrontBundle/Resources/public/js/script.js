@@ -27,11 +27,18 @@
             return false;
         });
 
-        /* GAL-CAR */
+        /*Inserta iframe de bienvenida*/
+        $('#iframe-container a.welcome-img').click(function(){
+          $(this).parents('div').addClass('active');
+          $('<iframe id="welcome" src="http://dev.7boom.mx/content/bienvenido/index.html" />').appendTo('#iframe-container');
+        });
 
-        //var galcar = $(".gal-car"),
-        //gcanvas = galcar.find('.slide-container'),
-        //gslides = galcar.find('div.slide');
+        $('#iframe-container a.close-frame').click(function(){
+          $(this).parents('div').removeClass('active');
+          $(this).siblings('iframe').remove();
+        });
+
+        /* GAL-CAR */
 
         $.showSlideG = function( index ) {
             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),

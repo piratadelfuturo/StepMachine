@@ -1,9 +1,8 @@
   <?php $categories = $view['boom_front']->getFeaturedCategories(); ?>
-  <?php /*
-  <div class="top-frame">
-    <a href="#"><img src="http://placehold.it/1024x99" alt="Placeholder"></a>
-    </div>
-  */?>
+  <div id="iframe-container" class="top-frame">
+    <a href="#" class="welcome-img"><img src="http://placehold.it/1024x99" alt="Placeholder"></a>
+    <a href="#" class="close-frame">Cerrar</a>
+  </div>
   <div id="hd-mn" class="gradient">
     <h1>
       <a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a>
