@@ -14,7 +14,6 @@ html, body {
   height: 100%;
   margin: 0 auto;
   position: relative;
-
   width: 100%;
 }
 
@@ -93,7 +92,80 @@ div.valla-large, div.valla-medium, div.valla-small {
 
 div.valla-large img, div.valla-medium img, div.valla-small img{
   display: block;
-  margin: 55px auto 0;  
+  margin: 60px auto 0;  
+}
+
+/*div#luz {
+  background: url('images/light-off.png') no-repeat left top;
+  width: 26px;
+  height: 13px;
+  display: block;
+  top: 41px;
+  position: absolute;
+}
+
+div.valla-small div#luz {
+  top: 40px;
+}
+
+div#luz div.on {
+  background: url('images/light-on.png') no-repeat left top;
+  width: 26px;
+  height: 13px;
+  display: block;
+  animation: lightson 1.5s ease-in-out 0s infinite alternate;
+  -webkit-animation: lightson 1.5s ease-in-out 0s infinite alternate;
+  -moz-animation: lightson 1.5s ease-in-out 0s infinite alternate;
+  -o-animation: lightson 1.5s ease-in-out 0s infinite alternate;
+  -ms-animation: lightson 1.5s ease-in-out 0s infinite alternate;
+}
+
+div.valla-large div#luz:nth-of-type(1),
+div.valla-small div#luz:nth-of-type(1),
+div.valla-medium div#luz:nth-of-type(1) {
+  left: 99px;  
+}
+
+div.valla-large div#luz:nth-of-type(2) {
+  left: 239px;  
+}
+
+div.valla-large div#luz:nth-of-type(3) {
+  left: 378px;  
+}
+
+div.valla-medium div#luz:nth-of-type(2) {
+  left: 212px;  
+}
+
+div.valla-medium div#luz:nth-of-type(3) {
+  left: 326px;  
+}
+
+div.valla-small div#luz:nth-of-type(2) {
+  left: 189px;  
+}
+
+div.valla-small div#luz:nth-of-type(3) {
+  left: 278px;  
+}*/
+
+.hide {
+  transition: opacity .3s ease-in-out 0s;
+  -webkit-transition: opacity .3s ease-in-out 0s;
+  -moz-transition: opacity .3s ease-in-out 0s;
+  -o-transition: opacity .3s ease-in-out 0s;
+  -ms-transition: opacity .3s ease-in-out 0s;
+  opacity: 0;
+}
+
+.show {
+  transition: opacity .3s ease-in-out 0s;
+  -webkit-transition: opacity .3s ease-in-out 0s;
+  -moz-transition: opacity .3s ease-in-out 0s;
+  -o-transition: opacity .3s ease-in-out 0s;
+  -ms-transition: opacity .3s ease-in-out 0s;
+  opacity: 1;
 }
 
 /*TEXTOS*/
@@ -436,7 +508,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background-color: #faf6e9;
 }
 
-#geocities div h1 {
+#geocities div h2 {
   color: red;
   text-align: center;
   margin: 20px 0;
@@ -721,7 +793,7 @@ div.chango-nube.mirror {
   background: -webkit-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
   background: -o-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
   background: -ms-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
-  background: linear-gradient(to bottom, #9dcdf8 0%,#bbe9fd 100%);
+  background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
   width: 9410px;
@@ -760,6 +832,7 @@ div.chango-nube.mirror {
   left: 220px;
   top: 20%;
   z-index: 10;
+  opacity: 1;
 }
 
 #escena-3 #ruido {
@@ -801,7 +874,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morro #morro-body #face1 {
+#morro #face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -811,7 +884,7 @@ div.chango-nube.mirror {
   left: 10px;
 }
 
-#morro #morro-body #face2 {
+#morro #face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -821,7 +894,7 @@ div.chango-nube.mirror {
   left: 30px;
 }
 
-#morro #morro-body #face3 {
+#morro #face3 {
   width: 60px;
   height: 80px;
   display: block;
@@ -951,7 +1024,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morra1 #morra-body #face1 {
+#morra1 #face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -959,9 +1032,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 46px;
+  opacity: 1;
 }
 
-#morra1 #morra-body #face2 {
+#morra1 #face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -969,6 +1043,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 48px;
+  opacity: 0;
 }
 
 #morra1 #morra-brazos {
@@ -1050,7 +1125,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morra2 #morra-body #face1 {
+#morra2 #face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -1058,9 +1133,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 64px;
+  opacity: 1;
 }
 
-#morra2 #morra-body #face2 {
+#morra2 #face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -1068,6 +1144,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 64px;
+  opacity: 0;
 }
 
 #morra2 #morra-brazos {
@@ -1149,17 +1226,18 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#alien #alien-body #face1 {
+#alien #face1 {
   width: 79px;
   height: 75px;
   display: block;
   background: url('images/morros/alien-face1.png') no-repeat left top;
   position: absolute;
-  top: 60px;
+  top: 65px;
   left: 64px;
+  opacity: 1;
 }
 
-#alien #alien-body #face2 {
+#alien #face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -1167,6 +1245,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 73px;
   left: 76px;
+  opacity: 0;
 }
 
 #alien #alien-brazos {
@@ -1226,6 +1305,146 @@ div.chango-nube.mirror {
   bottom: 0px;
 }
 
+/*morros felices*/
+
+div#alien #globo, div#morra1 #globo, div#morra2 #globo {
+  bottom: 70px;
+  opacity: 0;
+}
+
+div#alien.feliz #globo, div#morra1.feliz #globo, div#morra2.feliz #globo {
+  bottom: 70px;
+  opacity: 1;
+  left: 100px;
+  transition: opacity .8s ease-in-out 0s;
+  -webkit-transition: opacity .8s ease-in-out 0s;
+  -moz-transition: opacity .8s ease-in-out 0s;
+  -o-transition: opacity .8s ease-in-out 0s;
+  -ms-transition: opacity .8s ease-in-out 0s;  
+}
+
+div#morra1.feliz #globo {
+  left:70px ;  
+}
+
+div#morra2.feliz #globo {
+  left:85px ;  
+}
+
+div.feliz #b-left {
+  top: 30px;
+  left: 65px;
+  transform: rotate(-100deg);
+  -webkit-transform: rotate(-100deg);
+  -moz-transform: rotate(-100deg);
+  -o-transform: rotate(-100deg);
+  -ms-transform: rotate(-100deg);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transition: all .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: all .5s ease-in-out 0s;
+  -o-transition: all .5s ease-in-out 0s;
+  -ms-transition: all .5s ease-in-out 0s;
+}
+
+div.feliz #b-right {
+  top: 30px;
+  transform: rotate(25deg);
+  -webkit-transform: rotate(25deg);
+  -moz-transform: rotate(25deg);
+  -o-transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  transform-origin: top right;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transition: all .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: all .5s ease-in-out 0s;
+  -o-transition: all .5s ease-in-out 0s;
+  -ms-transition: all .5s ease-in-out 0s;
+}
+
+div#alien.feliz #face1, div#morra1.feliz #face1, div#morra2.feliz #face1 {
+  opacity: 0;
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;  
+}
+
+div#alien.feliz #face2, div#morra1.feliz #face2, div#morra2.feliz #face2 {
+  opacity: 1;
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;    
+}
+
+div#alien.feliz, div#morra1.feliz, div#morra2.feliz {
+  bottom: 400px;
+  transition: all 1.5s ease-in-out 1s;
+  -webkit-transition: all 1.5s ease-in-out 1s;
+  -moz-transition: all 1.5s ease-in-out 1s;
+  -o-transition: all 1.5s ease-in-out 1s;
+  -ms-transition: all 1.5s ease-in-out 1s;
+}
+
+div#alien.feliz {
+  left: 350px;
+}
+
+div#morra1.feliz {
+  left: 750px;
+}
+
+div#morra2.feliz {
+  left: 550px;
+}
+
+div.feliz #p-left {
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transition: all .8s ease-in-out 1s;
+  -webkit-transition: all .8s ease-in-out 1s;
+  -moz-transition: all .8s ease-in-out 1s;
+  -o-transition: all .8s ease-in-out 1s;
+  -ms-transition: all .8s ease-in-out 1s;
+}
+
+div.feliz #p-right {
+  transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  transform-origin: top right;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transition: all .8s ease-in-out 1s;
+  -webkit-transition: all .8s ease-in-out 1s;
+  -moz-transition: all .8s ease-in-out 1s;
+  -o-transition: all .8s ease-in-out 1s;
+  -ms-transition: all .8s ease-in-out 1s;
+}
+
 /*ESCENA 5*/
 
 #escena-5 div.numero {
@@ -1265,7 +1484,7 @@ div.chango-nube.mirror {
   background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
-  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
+  background: linear-gradient(100% bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00bbe9fd',GradientType=0 );
 }
 
@@ -1385,6 +1604,20 @@ div.chango-nube.mirror {
   left: 350px;
 }
 
+#cohete.volar {
+  left: 680px;
+  transition: left 1s ease-in-out 0s;
+  -webkit-transition: left 1s ease-in-out 0s;
+  -moz-transition: left 1s ease-in-out 0s;
+  -o-transition: left 1s ease-in-out 0s;
+  -ms-transition: left 1s ease-in-out 0s;
+  animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -webkit-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -moz-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -o-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -ms-animation: volar 1s ease-in-out .5s 1 normal forwards;
+}
+
 #cohete div {
   position: absolute;
 }
@@ -1406,21 +1639,21 @@ div.chango-nube.mirror {
   left: 155px;
 }
 
-#cohete-llantitas.volar {
+#cohete.volar #cohete-llantitas {
   background: url('images/llantitas.png') no-repeat left top;
   z-index: 4;
   width: 246px;
   height: 81px;
   bottom: 110px;
   left: 155px;
-  transition: bottom 1s ease-in-out 3s;
-  -webkit-transition: bottom 1s ease-in-out 3s;
-  -moz-transition: bottom 1s ease-in-out 3s;
-  -o-transition: bottom 1s ease-in-out 3s;
-  -ms-transition: bottom 1s ease-in-out 3s;
+  transition: bottom 1s ease-in-out 1s;
+  -webkit-transition: bottom 1s ease-in-out 1s;
+  -moz-transition: bottom 1s ease-in-out 1s;
+  -o-transition: bottom 1s ease-in-out 1s;
+  -ms-transition: bottom 1s ease-in-out 1s;
 }
 
-#cohete-fuego {
+#cohete.volar #cohete-fuego {
   background: url('images/fuego.png') no-repeat left top;
   z-index: 4;
   width: 278px;
@@ -1498,138 +1731,192 @@ div.chango-nube.mirror {
 
 /*ANIMACIONES & FUNSTUFF*/
 
+/*LUCES!*/
+/*
+@keyframes lightson {
+  0% { opacity: .1; }
+  100% { opacity: .8; }
+}
+
+@-moz-keyframes lightson {
+  0% { opacity: .1; }
+  100% { opacity: .8; }
+}
+
+@-webkit-keyframes lightson {
+  0% { opacity: .1; }
+  100% { opacity: .8; }
+}
+
+@-o-keyframes lightson {
+  0% { opacity: .1; }
+  100% { opacity: .8; }
+}
+
+@-ms-keyframes lightson {
+  0% { opacity: .1; }
+  100% { opacity: .8; }
+}*/
 
 /*THE WALKING DUDE*/
+
 @keyframes walkdudewalk {
-  from { transform: rotate(15deg); transform-origin: top left; }
-  to { transform: rotate(-15deg); transform-origin: top left; }
+  0% { transform: rotate(15deg); transform-origin: top left; }
+  100% { transform: rotate(-15deg); transform-origin: top left; }
 }
 
 @-moz-keyframes walkdudewalk {
-  from { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
-  to { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
+  0% { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
+  100% { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
 }
 
 @-webkit-keyframes walkdudewalk {
-  from { -webkit-transform: rotate(15deg); -webkit-transform-origin: top left; }
-  to { -webkit-transform: rotate(-15deg); -webkit-transform-origin: top left; }
+  0% { -webkit-transform: rotate(15deg); -webkit-transform-origin: top left; }
+  100% { -webkit-transform: rotate(-15deg); -webkit-transform-origin: top left; }
 }
 
 @-o-keyframes walkdudewalk {
-  from { -o-transform: rotate(0deg); -o-transform-origin: top left; }
-  to { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
+  0% { -o-transform: rotate(0deg); -o-transform-origin: top left; }
+  100% { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
 }
 
 @-ms-keyframes walkdudewalk {
-  from { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
-  to { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
+  0% { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
+  100% { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
 }
 
 
 /*BRAZOS CHANGOS*/
 
 @keyframes changos-brazos {
-  from { transform: rotate(0deg); transform-origin: top left; }
-  to { transform: rotate(-10deg); transform-origin: top left; }
+  0% { transform: rotate(0deg); transform-origin: top left; }
+  100% { transform: rotate(-10deg); transform-origin: top left; }
 }
 
 @-moz-keyframes changos-brazos {
-  from { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
-  to { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
+  0% { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
+  100% { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
 }
 
 @-webkit-keyframes changos-brazos {
-  from { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
-  to { -webkit-transform: rotate(-10deg); -webkit-transform-origin: top left; }
+  0% { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
+  100% { -webkit-transform: rotate(-10deg); -webkit-transform-origin: top left; }
 }
 
 @-o-keyframes changos-brazos {
-  from { -o-transform: rotate(0deg); -o-transform-origin: top left; }
-  to { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
+  0% { -o-transform: rotate(0deg); -o-transform-origin: top left; }
+  100% { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
 }
 
 @-ms-keyframes changos-brazos {
-  from { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
-  to { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
+  0% { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
+  100% { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
 }
 
 /*HUMO*/
 
 @keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-moz-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-webkit-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-o-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-ms-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 /*NUBES DE PENSAR Y ASI*/
 
 @keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-moz-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-webkit-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-o-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-ms-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
-/*FUEGUITO DE COHETE*/
+/*FUEGUI100% DE COHETE*/
 
 @keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-moz-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-webkit-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-o-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-ms-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
+}
+
+/*COHETE*/
+
+@keyframes volar {
+  0% { transform:rotate(0deg); bottom:-100px }
+  100% { transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-moz-keyframes volar {
+  0% { -moz-transform:rotate(0deg); bottom: -100px; }
+  100% { -moz-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-webkit-keyframes volar {
+  0% { -webkit-transform:rotate(0deg); bottom: -100px; }
+  100% { -webkit-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-o-keyframes volar {
+  0% { -o-transform:rotate(0deg); bottom: -100px; }
+  100% { -o-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-ms-keyframes volar {
+  0% { -ms-transform:rotate(0deg); bottom: -100px; }
+  100% { -ms-transform:rotate(-25deg); bottom: 400px; }
 }
