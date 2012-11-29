@@ -103,8 +103,8 @@
                     {
                         path: inputImageUpload.attr('name'),
                         _format:'json',
-                        w: 158,
-                        h: 90
+                        w: 590,
+                        h: 380
                     });
                     inputImageUpload.boomAjaxUpload({
                         url: builtUrl,
