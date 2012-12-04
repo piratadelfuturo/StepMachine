@@ -59,7 +59,7 @@ $(document).ready(function(){
   });
 
   $("a#fb-login-check-in").click(function(){
-    window.parent.onFbInit();
+    window.parent.location.onFbInit();
   });
 
 })

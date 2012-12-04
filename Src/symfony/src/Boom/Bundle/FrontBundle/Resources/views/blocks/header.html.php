@@ -1,9 +1,8 @@
-  <?php $categories = $view['boom_front']->getFeaturedCategories(); /*?>
+  <?php $categories = $view['boom_front']->getFeaturedCategories(); ?>
   <div id="iframe-container" class="top-frame">
     <a href="#" class="welcome-img"><img src="/bundles/boomfront/images/banner.jpg" width="1024" height="120" alt="¿Perdido? Haz click para que voceemos a tu mamá"></a>
     <a href="#" class="close-frame">Cerrar</a>
-  </div>*/
-  ?>
+  </div>
   <div id="hd-mn" class="gradient">
     <h1>
       <a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a>
