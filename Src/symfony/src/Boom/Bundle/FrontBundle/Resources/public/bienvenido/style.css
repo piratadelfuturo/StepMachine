@@ -2033,25 +2033,19 @@ div h4.flag:after, div h4.flag:before {
 }
 
 #sld9 .btn {
-  background-color: #313131;
-  border: 3px solid #fff;
-  border-radius: 15px;
   display: block;
   left: 360px;
   top: 330px;
   position: absolute;
-  padding: 8px 0;
-  width: 300px;
 }
 
 #sld9 a {
-  background: -webkit-linear-gradient(top, #e35344 0%, #f57b20 100%);
-  color: #e35344;
   display: block;
-  font-size: 28px;
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  position: absolute;
+  background: url('images/button.png') no-repeat 0 0;
+  width: 295px;
+  height: 91px;
+  text-indent: -9999px;
 }
 
 #sld9 .humor {

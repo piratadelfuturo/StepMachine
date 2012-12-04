@@ -8,13 +8,10 @@ $(document).ready(function(){
     return $(window).scrollTop();
   }
 
-
   $(window).scroll(function(){
     var slideH = 680,
         close = window.parent.$('#iframe-container .close-frame'),
         scrollD = $('div.wrapper > img.scroll-down');
-
-
 
     if ( pageY() < slideH ) {
       close.css('opacity', .5);
@@ -59,6 +56,10 @@ $(document).ready(function(){
       $('#sld9').addClass('active');
     }
 
+  });
+
+  $("a#fb-login-check-in").click(function(){
+    window.parent.onFbInit();
   });
 
 })
