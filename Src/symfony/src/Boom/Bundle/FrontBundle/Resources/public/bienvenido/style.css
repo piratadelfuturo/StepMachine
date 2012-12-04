@@ -703,6 +703,19 @@ div.center {
   top: 525px;
 }
 
+img.scroll-down {
+  position: fixed;
+  right: 45px;
+  bottom: 32px;
+  opacity: .5;
+  z-index: 14;
+  -webkit-transition: opacity 300ms;
+  -moz-transition: opacity 300ms;
+  -ms-transition: opacity 300ms;
+  -o-transition: opacity 300ms;
+  transition: opacity 300ms;
+}
+
 /*SLIDE 3*/
 
 #sld3 h2 {
@@ -762,7 +775,7 @@ div.center {
   -ms-transition: opacity .5s ease-in-out 1s;
 }
 
-#sld3.active #dude #move {
+#sld3.active #dude .move {
   animation: abrir 700ms ease-in-out 0s infinite alternate;
   -webkit-animation: abrir 700ms ease-in-out 0s infinite alternate;
   -moz-animation: abrir 700ms ease-in-out 0s infinite alternate;
@@ -1120,7 +1133,7 @@ div.center {
   z-index: 8;
 }
 
-#sld7 #move {
+#sld7 .move {
   background: url('images/brazo.png') no-repeat left top;
   width: 135px;
   height: 186px;
@@ -1140,7 +1153,7 @@ div.center {
   -ms-transition: all 1s ease-in-out 3.9s;
 }
 
-#sld7.active #move {
+#sld7.active .move {
   left: -60px;
   top: -10px;
   transform: rotate(0deg);
@@ -1214,11 +1227,11 @@ div.center {
 }
 
 #sld7.active #imac2 {
-  transition: bottom 3s ease-out 1s;
-  -webkit-transition: bottom 3s ease-out 1s;
-  -moz-transition: bottom 3s ease-out 1s;
-  -o-transition: bottom 3s ease-out 1s;
-  -ms-transition: bottom 3s ease-out 1s;
+  transition: bottom 2750ms ease-out 800ms;
+  -webkit-transition: bottom 2750ms ease-out 800ms;
+  -moz-transition: bottom 2750ms ease-out 800ms;
+  -o-transition: bottom 2750ms ease-out 800ms;
+  -ms-transition: bottom 2750ms ease-out 800ms;
   bottom: 148px;
 }
 
@@ -1248,11 +1261,11 @@ div.center {
 }
 
 #sld7.active #iphone {
-  transition: bottom 3s ease-out 1s;
-  -webkit-transition: bottom 3s ease-out 1s;
-  -moz-transition: bottom 3s ease-out 1s;
-  -o-transition: bottom 3s ease-out 1s;
-  -ms-transition: bottom 3s ease-out 1s;
+  transition: bottom 2500ms ease-out 1s;
+  -webkit-transition: bottom 2500ms ease-out 1s;
+  -moz-transition: bottom 2500ms ease-out 1s;
+  -o-transition: bottom 2500ms ease-out 1s;
+  -ms-transition: bottom 2500ms ease-out 1s;
   bottom: 153px;
 }
 
@@ -1265,11 +1278,11 @@ div.center {
 }
 
 #sld7.active #smartphone {
-  transition: bottom 2s ease-out 1s;
-  -webkit-transition: bottom 2s ease-out 1s;
-  -moz-transition: bottom 2s ease-out 1s;
-  -o-transition: bottom 2s ease-out 1s;
-  -ms-transition: bottom 2s ease-out 1s;
+  transition: bottom 1700ms ease-out 1s;
+  -webkit-transition: bottom 1700ms ease-out 1s;
+  -moz-transition: bottom 1700ms ease-out 1s;
+  -o-transition: bottom 1700ms ease-out 1s;
+  -ms-transition: bottom 1700ms ease-out 1s;
   bottom: 140px;
 }
 
@@ -1282,11 +1295,11 @@ div.center {
 }
 
 #sld7.active #tablet {
-  transition: bottom 3s ease-out 1s;
-  -webkit-transition: bottom 3s ease-out 1s;
-  -moz-transition: bottom 3s ease-out 1s;
-  -o-transition: bottom 3s ease-out 1s;
-  -ms-transition: bottom 3s ease-out 1s;
+  transition: bottom 2600ms ease-out 1s;
+  -webkit-transition: bottom 2600ms ease-out 1s;
+  -moz-transition: bottom 2600ms ease-out 1s;
+  -o-transition: bottom 2600ms ease-out 1s;
+  -ms-transition: bottom 2600ms ease-out 1s;
   bottom: 40px;
 }
 
@@ -1297,11 +1310,11 @@ div.center {
 }
 
 #sld7.active div.lightup {
-  transition: opacity 1s ease-in-out 6s;
-  -webkit-transition: opacity 1s ease-in-out 6s;
-  -moz-transition: opacity 1s ease-in-out 6s;
-  -o-transition: opacity 1s ease-in-out 6s;
-  -ms-transition: opacity 1s ease-in-out 6s;
+  transition: opacity 600ms ease-in-out 5.5s;
+  -webkit-transition: opacity 600ms ease-in-out 5.5s;
+  -moz-transition: opacity 600ms ease-in-out 5.5s;
+  -o-transition: opacity 600ms ease-in-out 5.5s;
+  -ms-transition: opacity 600ms ease-in-out 5.5s;
   opacity: 1;
 }
 
@@ -1385,11 +1398,11 @@ div.center {
 
 #sld7.active div.line {
   width: auto;
-  transition: width 1s ease-in-out 5.1s;
-  -webkit-transition: width 1s ease-in-out 5.1s;
-  -moz-transition: width 1s ease-in-out 5.1s;
-  -o-transition: width 1s ease-in-out 5.1s;
-  -ms-transition: width 1s ease-in-out 5.1s;
+  transition: width s ease-in-out 5.1s;
+  -webkit-transition: width 500ms ease-in-out 5.1s;
+  -moz-transition: width 500ms ease-in-out 5.1s;
+  -o-transition: width 500ms ease-in-out 5.1s;
+  -ms-transition: width 500ms ease-in-out 5.1s;
   transform-origin: right bottom;
   -webkit-transform-origin: right bottom;
   -moz-transform-origin: right bottom;
@@ -1500,98 +1513,98 @@ div h4.flag:after, div h4.flag:before {
   display: block;
 }
 
-#sexo h4.flag:after, #tech h4.flag:after, #musica h4.flag:after, #deportes h4.flag:after {
+.sexo h4.flag:after, .tech h4.flag:after, .musica h4.flag:after, .deportes h4.flag:after {
   top: 0;
   right: -10px;
   height: 32px;
   width: 10px;
 }
 
-#humor h4.flag:before, #comida h4.flag:before, #cine h4.flag:before{
+.humor h4.flag:before, .comida h4.flag:before, .cine h4.flag:before{
   top: 0;
   left: -10px;
   height: 32px;
   width: 10px;
 }
 
-#sld8 #humor {
+#sld8 .humor {
   height: 115px;
   width: 270px;
   top: 45px;
   left: 260px;
 }
 
-#sld8 #cine {
+#sld8 .cine {
   height: 160px;
   width: 325px;
   left: 10px;
   top: 207px;
 }
 
-#sld8 #tech {
+#sld8 .tech {
   height: 229px;
   width: 350px;
   left: 650px;
   top: 45px;
 }
 
-#sld8 #comida {
+#sld8 .comida {
   height: 100px;
   width: 270px;
   left: 65px;
   top: 435px;
 }
 
-#sld8 #sexo {
+#sld8 .sexo {
   height: 105px;
   width: 220px;
   left: 470px;
   top: 570px;
 }
 
-#sld8 #musica {
+#sld8 .musica {
   height: 137px;
   width: 270px;
   left: 740px;
   top: 290px;
 }
 
-#sld8 #deportes {
+#sld8 .deportes {
   height: 101px;
   width: 270px;
   left: 670px;
   top: 490px;
 }
 
-#sld8 #humor .bg {
+#sld8 .humor .bg {
   background: url('images/humor.png') no-repeat right top;
 }
 
-#sld8 #cine .bg {
+#sld8 .cine .bg {
   background: url('images/tv.png') no-repeat right top;
   background-size: 194px auto;
 }
 
-#sld8 #tech .bg {
+#sld8 .tech .bg {
   background: url('images/imac1.png') no-repeat left top;
   background-size: 228px auto;
 }
 
-#sld8 #comida .bg {
+#sld8 .comida .bg {
   background: url('images/comida.png') no-repeat right top;
 }
 
-#sld8 #sexo .bg {
+#sld8 .sexo .bg {
   background: url('images/sexo.png') no-repeat left top;
   background-size: 92px auto;
 }
 
-#sld8 #musica .bg {
+#sld8 .musica .bg {
   background: url('images/musica.png') no-repeat left top;
   background-size: 110px auto;
 }
 
-#sld8 #deportes .bg {
+#sld8 .deportes .bg {
   background: url('images/deportes.png') no-repeat left top;
 }
 
@@ -1611,7 +1624,7 @@ div h4.flag:after, div h4.flag:before {
   color: #fff;
 }
 
-#sld8 #humor h4.flag {
+#sld8 .humor h4.flag {
   background: #2571fc;
   background: -moz-linear-gradient(left, #2571fc 0%, #1241a0100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#2571fc), color-stop(100%,#1241a0));
@@ -1626,7 +1639,7 @@ div h4.flag:after, div h4.flag:before {
   left: 195px;
 }
 
-#sld8 #cine h4.flag {
+#sld8 .cine h4.flag {
   background: #ddcc0e;
   background: -moz-linear-gradient(left, #ddcc0e 0%, #a79b32 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ddcc0e), color-stop(100%,#a79b32));
@@ -1641,7 +1654,7 @@ div h4.flag:after, div h4.flag:before {
   left: 220px;
 }
 
-#sld8 #comida h4.flag {
+#sld8 .comida h4.flag {
   background: #e72b2b;
   background: -moz-linear-gradient(right, #591010 0%, #e72b2b 100%);
   background: -webkit-gradient(linear, right top, left top, color-stop(0%,#591010), color-stop(100%,#e72b2b));
@@ -1656,7 +1669,7 @@ div h4.flag:after, div h4.flag:before {
   left: 160px;
 }
 
-#sld8 #tech h4.flag {
+#sld8 .tech h4.flag {
   background: #8555ce;
   background: -moz-linear-gradient(left, #532f88 0%, #8555ce 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, #532f88), color-stop(100%, #8655ce));
@@ -1671,7 +1684,7 @@ div h4.flag:after, div h4.flag:before {
   left: 140px;
 }
 
-#sld8 #sexo h4.flag {
+#sld8 .sexo h4.flag {
   background: #fb46a6;
   background: -moz-linear-gradient(left, #c71a76 0%, #fb46a6 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#c71a76), color-stop(100%,#fb46a6));
@@ -1686,7 +1699,7 @@ div h4.flag:after, div h4.flag:before {
   padding-right: 0px;
 }
 
-#sld8 #musica h4.flag {
+#sld8 .musica h4.flag {
   background: #f16c43;
   background: -moz-linear-gradient(left, #ac2c05 0%, #f16c43 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ac2c05), color-stop(100%,#f16c43));
@@ -1701,7 +1714,7 @@ div h4.flag:after, div h4.flag:before {
   padding-right: 10px;
 }
 
-#sld8 #deportes h4.flag {
+#sld8 .deportes h4.flag {
   background: #72c460;
   background: -moz-linear-gradient(left, #4e8f3f 0%, #72c460 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#4e8f3f), color-stop(100%,#72c460));
@@ -1716,7 +1729,7 @@ div h4.flag:after, div h4.flag:before {
   padding-right: 10px;
 }
 
-#sld8.active #tech h4.flag {
+#sld8.active .tech h4.flag {
   width: 180px;
   transition-delay: 3s;
   -webkit-transition-delay: 3s;
@@ -1725,7 +1738,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3s;
 }
 
-#sld8.active #sexo h4.flag {
+#sld8.active .sexo h4.flag {
   width: 149px;
   padding-right: 10px;
   transition-delay: 3.6s;
@@ -1735,7 +1748,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3.6s;
 }
 
-#sld8.active #musica h4.flag {
+#sld8.active .musica h4.flag {
   width: 150px;
   transition-delay: 3.2s;
   -webkit-transition-delay: 3.2s;
@@ -1744,7 +1757,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3.2s;
 }
 
-#sld8.active #deportes h4.flag {
+#sld8.active .deportes h4.flag {
   width: 150px;
   transition-delay: 3.4s;
   -webkit-transition-delay: 3.4s;
@@ -1753,7 +1766,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3.4s;
 }
 
-#sld8.active #humor h4.flag {
+#sld8.active .humor h4.flag {
   width: 150px;
   left: 40px;
   transition-delay: 3s;
@@ -1763,7 +1776,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3s;
 }
 
-#sld8.active #cine h4.flag {
+#sld8.active .cine h4.flag {
   width: 205px;
   left: 10px;
   transition-delay: 3.2s;
@@ -1773,7 +1786,7 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3.2s;
 }
 
-#sld8.active #comida h4.flag {
+#sld8.active .comida h4.flag {
   width: 150px;
   left: 40px;
   transition-delay: 3.4s;
@@ -1783,27 +1796,27 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: 3.4s;
 }
 
-#sld8 #tech h4.flag:after {
+#sld8 .tech h4.flag:after {
   background-position: 0 -36px;
 }
 
-#sld8 #musica h4.flag:after {
+#sld8 .musica h4.flag:after {
   background-position: 0 -72px;
 }
 
-#sld8 #deportes h4.flag:after {
+#sld8 .deportes h4.flag:after {
   background-position: 0 -144px;
 }
 
-#sld8 #humor h4.flag:before {
+#sld8 .humor h4.flag:before {
   background-position: 0 -216px;
 }
 
-#sld8 #cine h4.flag:before {
+#sld8 .cine h4.flag:before {
   background-position: 0 -180px;
 }
 
-#sld8 #comida h4.flag:before {
+#sld8 .comida h4.flag:before {
   background-position: 0 -109px;
 }
 
@@ -1815,17 +1828,13 @@ div h4.flag:after, div h4.flag:before {
   background: -ms-linear-gradient(top, #db3848, #8d3e59);
   background: -o-linear-gradient(top, #db3848, #8d3e59);
   border-radius: 50em;
-  height: 320px;
-  width: 320px;
+  height: 1300px;
+  width: 1300px;
   position: relative;
   margin: 0 auto;
-  top: 195px;
+  top: -335px;
+  left: -120px;
   z-index: 10;
-  transform: scale(3.9,3.9);
-  -webkit-transform: scale(3.9,3.9);
-  -moz-transform: scale(3.9,3.9);
-  -o-transform: scale(3.9,3.9);
-  -ms-transform: scale(3.9,3.9);
   transition: all .5s ease-in-out 1.5s;
   -webkit-transition: all .5s ease-in-out 1.5s;
   -moz-transition: all .5s ease-in-out 1.5s;
@@ -1846,38 +1855,42 @@ div h4.flag:after, div h4.flag:before {
   position: relative;
   margin: 0 auto;
   top: 195px;
+  left: 0;
   z-index: 10;
-  transform: scale(1,1);
-  -webkit-transform: scale(1,1);
-  -moz-transform: scale(1,1);
-  -o-transform: scale(1,1);
-  -ms-transform: scale(1,1);
 }
 
-#sld8 #circle p {
+#sld8 .text-container {
+  z-index: 13;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#sld8 .text-container p {
   display: block;
-  position: relative;
-  font-size: 24px;
-  line-height: 20px;
+  position: absolute;
+  font-size: 43px;
+  line-height: 40px;
   text-align: right;
-  opacity: 0;
-  transition: opacity .5s ease-in-out;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
-  -ms-transition: opacity .5s ease-in-out;
+  opacity: .0;
 }
 
-#sld8.active #circle p {
-  opacity: 1;
-  transition-delay: .2s;
-  -webkit-transition-delay: .2s;
-  -moz-transition-delay: .2s;
-  -o-transition-delay: .2s;
-  -ms-transition-delay: .2s;
+#sld8 .text-container p,
+#sld8 p > strong, #sld8 p > span {
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
 }
 
-#sld8.active #circle p:nth-of-type(2) {
+#sld8 .text-container.active p {
+  font-size: 20px;
+}
+
+/*#sld8 .text-container.active p:nth-of-type(2) {
   transition-delay: .6s;
   -webkit-transition-delay: .6s;
   -moz-transition-delay: .6s;
@@ -1885,43 +1898,84 @@ div h4.flag:after, div h4.flag:before {
   -ms-transition-delay: .6s;
 }
 
-#sld8.active #circle p:nth-of-type(3) {
+#sld8 .text-container.active p:nth-of-type(3) {
   transition-delay: 1s;
   -webkit-transition-delay: 1s;
   -moz-transition-delay: 1s;
   -o-transition-delay: 1s;
   -ms-transition-delay: 1s;
+}*/
+
+#sld8 .text-container p > strong {
+  font-size: 82px;
 }
 
-#sld8 #circle p > strong {
+#sld8 .text-container.active p > strong {
   font-size: 28px;
 }
 
-#sld8 #circle p > span {
+#sld8 .text-container p > span {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 55px;
+  line-height: 110px;
 }
 
-#sld8 #circle p > span strong {
+#sld8 .text-container.active p > span {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+#sld8 .text-container p > span strong {
   font-weight: 800;
 }
 
-#sld8 #circle p:nth-child(1) {
-  top: 75px;
-  left: 55px;
+#sld8 .text-container p + p + p > span {
+  font-size: 80px;
+}
+
+#sld8 .text-container p:nth-child(1) {
+  top: 25px;
+  left: -5px;
   width: 32%;
+  font-size: 130px;
 }
 
-#sld8 #circle p:nth-child(2) {
-  top: 85px;
-  left: 145px;
-  width: 43%;
+#sld8 .text-container p:nth-child(2) {
+  top: 255px;
+  left: 460px;
+  width: 53%;
+  font-size: 89px;
 }
 
-#sld8 #circle p:nth-child(3) {
-  top: 110px;
-  left: 50px;
+#sld8 .text-container p:nth-child(3) {
+  top: 500px;
+  left: 190px;
   width: 50%;
+  font-size: 82px;
+}
+
+#sld8 .text-container.active p:nth-child(1) {
+  top: 235px;
+  left: 195px;
+  width: 32%;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+#sld8 .text-container.active p:nth-child(2) {
+  top: 315px;
+  left: 225px;
+  width: 43%;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+#sld8 .text-container.active p:nth-child(3) {
+  top: 410px;
+  left: 80px;
+  width: 50%;
+  font-size: 28px;
+  line-height: 28px;
 }
 
 #sld8 #triangle {
@@ -1945,7 +1999,7 @@ div h4.flag:after, div h4.flag:before {
 #sld9 hgroup {
   display: block;
   margin: 0px auto;
-  padding: 70px 0 0;
+  padding: 20px 0 0;
   text-align: center;
   width: 60%;
 }
@@ -1970,7 +2024,7 @@ div h4.flag:after, div h4.flag:before {
   width: 44px;
 }
 
-#sld9.active #arrow {
+#sld9.active #arrow, img.scroll-down {
   animation: updown 1s ease-in-out 0s infinite alternate;
   -webkit-animation: updown 1s ease-in-out 0s infinite alternate;
   -moz-animation: updown 1s ease-in-out 0s infinite alternate;
@@ -1979,28 +2033,22 @@ div h4.flag:after, div h4.flag:before {
 }
 
 #sld9 .btn {
-  background-color: #313131;
-  border: 3px solid #fff;
-  border-radius: 15px;
   display: block;
   left: 360px;
-  top: 400px;
+  top: 330px;
   position: absolute;
-  padding: 8px 0;
-  width: 300px;
 }
 
 #sld9 a {
-  background: -webkit-linear-gradient(top, #e35344 0%, #f57b20 100%);
-  color: #e35344;
   display: block;
-  font-size: 28px;
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  position: absolute;
+  background: url('images/button.png') no-repeat 0 0;
+  width: 295px;
+  height: 91px;
+  text-indent: -9999px;
 }
 
-#sld9 #humor {
+#sld9 .humor {
   background: url('images/humor.png') no-repeat right top;
   width: 155px;
   height: 125px;
@@ -2008,7 +2056,7 @@ div h4.flag:after, div h4.flag:before {
   left: 500px;
 }
 
-#sld9 #cine {
+#sld9 .cine {
   background: url('images/tv.png') no-repeat right top;
   width: 235px;
   height: 180px;
@@ -2016,7 +2064,7 @@ div h4.flag:after, div h4.flag:before {
   bottom: 900px;
 }
 
-#sld9 #tech {
+#sld9 .tech {
   background: url('images/imac1.png') no-repeat left top;
   width: 286px;
   height: 229px;
@@ -2024,7 +2072,7 @@ div h4.flag:after, div h4.flag:before {
   bottom: 900px;
 }
 
-#sld9 #comida {
+#sld9 .comida {
   background: url('images/comida.png') no-repeat right top;
   width: 130px;
   height: 97px;
@@ -2033,7 +2081,7 @@ div h4.flag:after, div h4.flag:before {
   z-index: 9;
 }
 
-#sld9 #sexo {
+#sld9 .sexo {
   background: url('images/sexo.png') no-repeat left top;
   width: 93px;
   height: 110px;
@@ -2042,7 +2090,7 @@ div h4.flag:after, div h4.flag:before {
   z-index: 9;
 }
 
-#sld9 #musica {
+#sld9 .musica {
   background: url('images/musica.png') no-repeat left top;
   width: 116px;
   height: 145px;
@@ -2050,7 +2098,7 @@ div h4.flag:after, div h4.flag:before {
   bottom: 900px;
 }
 
-#sld9 #deportes {
+#sld9 .deportes {
   background: url('images/deportes.png') no-repeat left top;
   width: 155px;
   height: 110px;
@@ -2059,22 +2107,22 @@ div h4.flag:after, div h4.flag:before {
   z-index: 9;
 }
 
-#sld9.active #humor, #sld9.active #tech, #sld9.active #comida, #sld9.active #musica {
+#sld9.active .humor, #sld9.active .tech, #sld9.active .comida, #sld9.active .musica {
   transition: bottom 2s ease-in-out 0s;
   -webkit-transition: bottom 2s ease-in-out 0s;
   -moz-transition: bottom 2s ease-in-out 0s;
   -o-transition: bottom 2s ease-in-out 0s;
   -ms-transition: bottom 2s ease-in-out 0s;
-  bottom: 0;
+  bottom: 40px;
 }
 
-#sld9.active #sexo, #sld9.active #cine, #sld9.active #deportes {
+#sld9.active .sexo, #sld9.active .cine, #sld9.active .deportes {
   transition: bottom 2.5s ease-in-out 0s;
   -webkit-transition: bottom 2.5s ease-in-out 0s;
   -moz-transition: bottom 2.5s ease-in-out 0s;
   -o-transition: bottom 2.5s ease-in-out 0s;
   -ms-transition: bottom 2.5s ease-in-out 0s;
-  bottom: 0;
+  bottom: 40px;
 }
 
 /*ANIMACIONES*/

@@ -2215,6 +2215,7 @@ footer p {
 .single-boom p {
   color: #313131;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .single-boom p iframe {
@@ -4060,7 +4061,7 @@ form#boom_gallery ul li {
 .top-frame {
   position: relative;
   width: 1024px;
-  height: 99px;
+  height: 120px;
   margin-bottom: 10px;
   overflow: hidden;
   -webkit-transition: height 400ms;
@@ -4104,20 +4105,18 @@ form#boom_gallery ul li {
 .top-frame.active a.close-frame {
   display: block;
   position: absolute;
-  width: 100px;
-  height: 40px;
-  opacity: .0;
-  top: 20px;
-  left: 20px;
+  width: 106px;
+  height: 18px;
+  opacity: .5;
+  top: 23px;
+  right: 32px;
+  text-indent: -9999px;
+  background: url('../images/cerrar.png') no-repeat 0 0;
   -webkit-transition: opacity 300ms;
   -moz-transition: opacity 300ms;
   -ms-transition: opacity 300ms;
   -o-transition: opacity 300ms;
   transition: opacity 300ms;
-}
-
-.top-frame.active a.close-frame:hover {
-  opacity: .999;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {

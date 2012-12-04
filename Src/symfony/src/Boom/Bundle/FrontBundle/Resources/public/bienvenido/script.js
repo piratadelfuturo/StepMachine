@@ -5,16 +5,23 @@ $(document).ready(function(){
   }, 400);
 
   var pageY = function(){
-    console.log($(window).scrollTop());
     return $(window).scrollTop();
   }
 
-
   $(window).scroll(function(){
-    var slideH = 680;
+    var slideH = 680,
+        close = window.parent.$('#iframe-container .close-frame'),
+        scrollD = $('div.wrapper > img.scroll-down');
+
+    if ( pageY() < slideH ) {
+      close.css('opacity', .5);
+      scrollD.css('opacity', .5)
+    }
 
     if ( pageY() >= slideH ) {
       $('#sld2').addClass('active');
+      close.css('opacity', .1);
+      scrollD.css('opacity', 0)
     }
 
     if ( pageY() >= (slideH*2) ) {
@@ -39,12 +46,20 @@ $(document).ready(function(){
 
     if ( pageY() >= (slideH*7) ) {
       $('#sld8').addClass('active');
+      $('#sld8').find('.text-container p').css('opacity', .999)
+      window.setTimeout(function(){
+        $('#sld8').children('.text-container').addClass('active');
+      }, 1500);
     }
 
     if ( pageY() > (slideH*7.5) ) {
       $('#sld9').addClass('active');
     }
 
+  });
+
+  $("a#fb-login-check-in").click(function(){
+    window.parent.location.onFbInit();
   });
 
 })
