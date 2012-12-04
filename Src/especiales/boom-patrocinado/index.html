@@ -5,41 +5,47 @@
     <meta charset="UTF-8" />
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <script src="js/jquery-1.8.2.js"></script>
+    <script src="js/script.js" type="text/javascript"></script>
   </head>
   <body>
     <div id="wrapper">
         <!--TEXTOS-->
         <div id="txt-wrapper">
           <div class="textos" id="txt1">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
             <div class="bloque cuatro"></div>
-            <div class="bloque cinco"></div>
-            <div class="bloque seis"></div>
           </div>
           <div class="textos" id="txt2">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
           </div>
           <div class="textos" id="txt3">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
           </div>
           <div class="textos" id="txt4">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
           </div>
           <div class="textos" id="txt5">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
             <div class="bloque cuatro"></div>
           </div>
           <div class="textos" id="txt6">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
@@ -47,6 +53,7 @@
             <div class="bloque cinco"></div>
           </div>
           <div class="textos" id="txt7">
+            <div class="numero"></div>
             <div class="bloque uno"></div>
             <div class="bloque dos"></div>
             <div class="bloque tres"></div>
@@ -54,101 +61,93 @@
         </div>
         <!--END TEXTOS-->
         <!--DUDE-->
-        <div id="dude">
-            <div id="dude-gorra" class="show"></div>
-            <div id="dude-casco" class="hide"></div>
-            <div id="dude-parachute" class="hide"></div>
-            <div id="dude-body"></div>
-            <div id="dude-brazos">
-              <div id="b-left"></div>
-              <div id="b-right"></div>
-              <div id="b-up" class="hide"></div>
-            </div>
-            <div id="dude-piernas">
-              <div id="p-left"></div>
-              <div id="p-right"></div>
-            </div>
-        </div>
+          <div id="dude" class="fall">
+              <div class="dude-gorra show"></div>
+              <div class="dude-casco hide"></div>
+              <div class="dude-parachute hide"></div>
+              <div class="dude-body"></div>
+              <div class="dude-brazos">
+                <div class="b-left"></div>
+                <div class="b-right"></div>
+                <div class="b-up hide"></div>
+              </div>
+              <div class="dude-piernas">
+                <div class="p-left"></div>
+                <div class="p-right"></div>
+              </div>
+          </div>
         <!--END DUDE-->
+        <!--elementos-->
+        <div id="globo" class="hidden"></div>
+        <!--end elementos-->
+        <!--GEOCITIES-->
+        <div id="geocities">
+          <header>
+            <img src="images/geocities-header.jpg" />
+            <nav>
+              <a href="">Home</a>
+              <span>|</span>
+              <a href="">Trabajos</a>
+              <span>|</span>
+              <a href="">Clientes</a>
+              <span>|</span>
+              <a href="">Prensa</a>
+              <span>|</span>
+              <a href="">Libro de visitas</a>
+            </nav>
+            <marquee behavior="alternate">****_ Pasa a firmar el Libro de Visitas _****</marquee>
+          </header>
+          <div>
+            <aside>
+              <h2>Visitas</h2>
+              <img src="images/geocities-contador.jpg" />
+              <hr />
+              <h2>Mis cosas favoritas</h2>
+              <img src="images/geocities-fav1.jpg" />
+              <img src="images/geocities-fav2.jpg" />
+            </aside>
+            <div>
+              <h2>Acerca de DiseñArte Studio</h2>
+              <p>
+              Diseñarte studio es la obra de un sueño. Es la desesperación de una mente creativa que desgrana pensamientos y los plasma con su genial pluma en el seno materno de una hoja en blanco.
+              ¡Ah! La probervial hoja en blanco, epítome de todas las grandes aventuras, vastedad sin límites para la creatividad y la creación, la cre-acción, del artista que como Dios sobre la tierra, va poblando sus espacios de mundos y personajes, y luego derp derpaderp derpette derp. Diseñarte studio rules!!!!
+              </p>
+              
+            </div>
+            <aside>
+              <h2>Publicidad</h2>
+              <img src="images/geocities-7boom.jpg" />
+              <img src="images/geocities-banner.jpg" />
+              <div id="dude-banner">
+                  <div class="dude-gorra show"></div>
+                  <div class="dude-casco hide"></div>
+                  <div class="dude-parachute hide"></div>
+                  <div class="dude-body"></div>
+                  <div class="dude-brazos">
+                    <div class="b-left"></div>
+                    <div class="b-right"></div>
+                    <div class="b-up hide"></div>
+                  </div>
+                  <div class="dude-piernas">
+                    <div class="p-left"></div>
+                    <div class="p-right"></div>
+                  </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+        <!--END GEOCITIES-->
         <!--ESCENAS-->
         <div id="escenario">
           <div id="escena-1">
-            <div id="geocities">
-              <header>
-                <img src="images/geocities-header.jpg" />
-                <nav>
-                  <a href="">Home</a>
-                  <span>|</span>
-                  <a href="">Trabajos</a>
-                  <span>|</span>
-                  <a href="">Clientes</a>
-                  <span>|</span>
-                  <a href="">Prensa</a>
-                  <span>|</span>
-                  <a href="">Libro de visitas</a>
-                </nav>
-                <marquee behavior="alternate">****_ Pasa a firmar el Libro de Visitas _****</marquee>
-              </header>
-              <div>
-                <aside>
-                  <h2>Visitas</h2>
-                  <img src="images/geocities-contador.jpg" />
-                  <hr />
-                  <h2>Mis cosas favoritas</h2>
-                  <img src="images/geocities-fav1.jpg" />
-                  <img src="images/geocities-fav2.jpg" />
-                </aside>
-                <div>
-                  <h2>Acerca de DiseñArte Studio</h2>
-                  <p>
-                  Diseñarte studio es la obra de un sueño. Es la desesperación de una mente creativa que desgrana pensamientos y los plasma con su genial pluma en el seno materno de una hoja en blanco.
-                  ¡Ah! La probervial hoja en blanco, epítome de todas las grandes aventuras, vastedad sin límites para la creatividad y la creación, la cre-acción, del artista que como Dios sobre la tierra, va poblando sus espacios de mundos y personajes, y luego derp derpaderp derpette derp. Diseñarte studio rules!!!!
-                  </p>
-                  
-                </div>
-                <aside>
-                  <h2>Publicidad</h2>
-                  <img src="images/geocities-7boom.jpg" />
-                  <img src="images/geocities-banner.jpg" />
-                </aside>
-              </div>
-            </div>
             <div class="top">
-              <div class="numero"></div>
               <div class="valla-large">
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
                 <img src="images/anuncio-1.jpg" />
               </div>
               <div class="valla-small">
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
                 <img src="images/anuncio-2.jpg" />
               </div>
               <div class="valla-medium">
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
-                <div id="luz">
-                  <div class="on"></div>
-                </div>
                 <img src="images/anuncio-3.jpg" />
               </div>
             </div>
@@ -156,7 +155,6 @@
           </div>
           <div id="escena-2">
             <div class="top">
-              <div class="numero"></div>
               <!--blondie-->
               <div class="chango" id="blondie">
                 <div class="chango-nube"></div>
@@ -213,79 +211,75 @@
           <div id="escenas-multiples">
             <div class="top">
               <div id="escena-3">
-                <div class="numero"></div>
-                <div id="nube">
+                <div id="nube" class="hide">
                   <div id="ruido"></div>
                 </div>
-                <div id="globo"></div>
                 <div id="morro" class="mirror">
-                  <div id="morro-body">
-                    <div id="face1" class="show"></div>
-                    <div id="face2" class="hide"></div>
-                    <div id="face3" class="hide"></div>
+                  <div class="morro-body">
+                    <div class="face1 show"></div>
+                    <div class="face2 hide"></div>
+                    <div class="face3 hide"></div>
                   </div>
-                  <div id="morro-brazos">
-                    <div id="b-left" class="hide"></div>
-                    <div id="b-right" class="hide"></div>
-                    <div id="b2-left" class="show"></div>
-                    <div id="b2-right" class="show"></div>
+                  <div class="morro-brazos">
+                    <div class="b-left hide"></div>
+                    <div class="b-right hide"></div>
+                    <div class="b2-left show"></div>
+                    <div class="b2-right show"></div>
                   </div>
-                  <div id="morro-piernas">
-                    <div id="p-left"></div>
-                    <div id="p-right"></div>
+                  <div class="morro-piernas">
+                    <div class="p-left"></div>
+                    <div class="p-right"></div>
                   </div>
                 </div>
               </div>
               <div id="escena-4">
-                <div class="numero"></div>
-                <div id="alien" class="">
-                  <div id="globo"></div>
-                  <div id="alien-body">
-                    <div id="face1"></div>
-                    <div id="face2"></div>
+                <div id="alien">
+                  <div class="globo"></div>
+                  <div class="alien-body">
+                    <div class="face1"></div>
+                    <div class="face2"></div>
                   </div>
-                  <div id="alien-brazos">
-                    <div id="b-left"></div>
-                    <div id="b-right"></div>
+                  <div class="alien-brazos">
+                    <div class="b-left"></div>
+                    <div class="b-right"></div>
                   </div>
-                  <div id="alien-piernas">
-                    <div id="p-left"></div>
-                    <div id="p-right"></div>
+                  <div class="alien-piernas">
+                    <div class="p-left"></div>
+                    <div class="p-right"></div>
                   </div>
                 </div>
                 <div id="morra1" class="">
-                  <div id="globo"></div>
-                  <div id="morra-body">
-                    <div id="face1"></div>
-                    <div id="face2"></div>
+                  <div class="globo"></div>
+                  <div class="morra-body">
+                    <div class="face1"></div>
+                    <div class="face2"></div>
                   </div>
-                  <div id="morra-brazos">
-                    <div id="b-left"></div>
-                    <div id="b-right"></div>
+                  <div class="morra-brazos">
+                    <div class="b-left"></div>
+                    <div class="b-right"></div>
                   </div>
-                  <div id="morra-piernas">
-                    <div id="p-left"></div>
-                    <div id="p-right"></div>
+                  <div class="morra-piernas">
+                    <div class="p-left"></div>
+                    <div class="p-right"></div>
                   </div>
                 </div>
                 <div id="morra2" class="">
-                  <div id="globo"></div>
-                  <div id="morra-body">
-                    <div id="face1"></div>
-                    <div id="face2"></div>
+                  <div class="globo"></div>
+                  <div class="morra-body">
+                    <div class="face1"></div>
+                    <div class="face2"></div>
                   </div>
-                  <div id="morra-brazos">
-                    <div id="b-left"></div>
-                    <div id="b-right"></div>
+                  <div class="morra-brazos">
+                    <div class="b-left"></div>
+                    <div class="b-right"></div>
                   </div>
-                  <div id="morra-piernas">
-                    <div id="p-left"></div>
-                    <div id="p-right"></div>
+                  <div class="morra-piernas">
+                    <div class="p-left"></div>
+                    <div class="p-right"></div>
                   </div>
                 </div>
               </div>
               <div id="escena-5">
-                <div class="numero"></div>
                 <div class="valla-medium">
                   <img src="images/anuncio-6.jpg" />
                 </div>
@@ -297,7 +291,6 @@
                 </div>
               </div>
               <div id="escena-6">
-                <div class="numero"></div>
                 <div id="slide-fondo">
                   <div id="espacio">
                     <div id="atmosfera"></div>
@@ -324,7 +317,6 @@
                 </div>
               </div>
               <div id="escena-7">
-                <div class="numero"></div>
                 <div id="social"></div>
                 <div id="share">
                   <div class="uno"></div>

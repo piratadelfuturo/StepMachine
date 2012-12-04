@@ -30,7 +30,7 @@
         /*Inserta iframe de bienvenida*/
         $('#iframe-container a.welcome-img').click(function(){
           $(this).parents('div').addClass('active');
-          $('<iframe id="welcome" src="http://dev.7boom.mx/bundles/boomfront/bienvenido/index.html" />').appendTo('#iframe-container');
+          $('<iframe id="welcome" src="http://escenaelectoral.com/bundles/boomfront/bienvenido/index.html" />').appendTo('#iframe-container');
         });
 
         $('#iframe-container a.close-frame').click(function(){
