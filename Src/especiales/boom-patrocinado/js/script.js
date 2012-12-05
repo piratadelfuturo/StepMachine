@@ -272,6 +272,13 @@ $(document).ready(function(){
     };
     if ( pageX() >= 8800 ){ 
       $('#dude').addClass('jump');
+      $('#dude .dude-gorra').removeClass('show').addClass('hide');
+    };
+    if ( pageX() >= 8850 ){ 
+      $('#dude .dude-casco').removeClass('hide').addClass('show');
+    };
+    if ( pageX() >= 9050 ){ 
+      $('#cohete').addClass('volar');
     };
   });
 
