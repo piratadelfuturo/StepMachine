@@ -27,11 +27,26 @@
             return false;
         });
 
-        /* GAL-CAR */
+        /*Inserta iframe de bienvenida*/
+        $('#iframe-container a.welcome-img').click(function(){
+          $(this).parents('div').addClass('active');
+          $('<iframe id="welcome" src="/bundles/boomfront/bienvenido/index.html" />').appendTo('#iframe-container');
+          return false;
+        });
 
-        //var galcar = $(".gal-car"),
-        //gcanvas = galcar.find('.slide-container'),
-        //gslides = galcar.find('div.slide');
+        $('#iframe-container a.close-frame').click(function(){
+          $(this).parents('div').removeClass('active');
+          $(this).siblings('iframe').remove();
+          return false;
+        });
+
+        $('#iframe-container a.close-frame').hover(function(){
+          $(this).css('opacity', '.5');
+        }, function(){
+          $(this).css('opacity', '.1');
+        });
+
+        /* GAL-CAR */
 
         $.showSlideG = function( index ) {
             var current = typeof(index) == 'number' ? gslides.eq( index ) : gslides.filter('.active').next(),

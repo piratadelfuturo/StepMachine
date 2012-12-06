@@ -14,7 +14,6 @@ html, body {
   height: 100%;
   margin: 0 auto;
   position: relative;
-
   width: 100%;
 }
 
@@ -23,8 +22,7 @@ html, body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  width: 15410px;
-  z-index: 8;
+  width: 13340px;
 }
 
 /*ESTILOS COMPARTIDOS */
@@ -51,22 +49,59 @@ div.numero {
   background: url('images/sprt-numbers.png') no-repeat;
   display: block;
   height: 250px;
-  position: relative;
-  top: 120px;
-  left: 120px;
+  position: absolute;
+  top: 0;
+  left: 0;
   z-index: 6;
+}
+
+#txt1 div.numero {
+  background-position: 0 0;
+  width: 105px;  
+}
+
+#txt2 div.numero {
+  background-position: -110px 0;
+  width: 142px;
+}
+
+#txt3 div.numero {
+  background-position: -260px 0;
+  width: 120px;  
+}
+
+#txt4 div.numero {
+  background-position: -387px 0;
+  width: 150px;  
+}
+
+#txt5 div.numero {
+  background-position: -550px 0;
+  width: 120px;  
+}
+
+#txt6 div.numero {
+  background-position: -680px 0;
+  width: 140px;
+  z-index: 7; 
+}
+
+#txt7 div.numero {
+  background-position: -830px 0;
+  width: 255px;  
 }
 
 div.textos {
   display: block;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0px;
 }
 
 div.bloque {
   display: block;
   position: absolute;
+  left: 150px;
 }
 
 div.valla-large {
@@ -93,7 +128,25 @@ div.valla-large, div.valla-medium, div.valla-small {
 
 div.valla-large img, div.valla-medium img, div.valla-small img{
   display: block;
-  margin: 55px auto 0;  
+  margin: 60px auto 0;  
+}
+
+.hide {
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;
+  opacity: 0;
+}
+
+.show {
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;
+  opacity: 1;
 }
 
 /*TEXTOS*/
@@ -104,7 +157,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   display: block;
   z-index: 10;
   position: absolute;
-  left: 280px;
+  left: 0px;
   top: 80px;
 }
 
@@ -118,48 +171,42 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt1-2.png') no-repeat left top;
   width: 593px;
   height: 447px;
+  top: -50px;
 }
 
 #txt-wrapper #txt1 div.tres {
   background: url('images/textos/txt1-3.png') no-repeat left top;
   width: 593px;
-  height: 128px;
+  height: 214px;
 }
 
 #txt-wrapper #txt1 div.cuatro {
   background: url('images/textos/txt1-4.png') no-repeat left top;
   width: 593px;
-  height: 92px;
-}
-
-#txt-wrapper #txt1 div.cinco {
-  background: url('images/textos/txt1-5.png') no-repeat left top;
-  width: 608px;
-  height: 121px;
-}
-
-#txt-wrapper #txt1 div.seis {
-  background: url('images/textos/txt1-6.png') no-repeat left top;
-  width: 608px;
-  height: 131px;
+  height: 250px;
 }
 
 #txt-wrapper #txt2 div.uno {
   background: url('images/textos/txt2-1.png') no-repeat left top;
   width: 553px;
   height: 346px;
+  top: -50px;
 }
 
 #txt-wrapper #txt2 div.dos {
   background: url('images/textos/txt2-2.png') no-repeat left top;
   width: 553px;
   height: 318px;
+  top: -50px;
+  left: 170px;
 }
 
 #txt-wrapper #txt2 div.tres {
   background: url('images/textos/txt2-3.png') no-repeat left top;
   width: 555px;
   height: 348px;
+  top: 15px;
+  left: 25px;
 }
 
 #txt-wrapper #txt3 div.uno {
@@ -178,24 +225,30 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt3-3.png') no-repeat left top;
   width: 536px;
   height: 143px;
+  top: 290px;
 }
 
 #txt-wrapper #txt4 div.uno {
   background: url('images/textos/txt4-1.png') no-repeat left top;
   width: 545px;
   height: 102px;
+  top: 60px;
+  left: 170px;
 }
 
 #txt-wrapper #txt4 div.dos {
   background: url('images/textos/txt4-2.png') no-repeat left top;
   width: 548px;
   height: 305px;
+  left: 170px;
 }
 
 #txt-wrapper #txt4 div.tres {
   background: url('images/textos/txt4-3.png') no-repeat left top;
   width: 551px;
   height: 32px;
+  top: 320px;
+  left: 170px;
 }
 
 #txt-wrapper #txt5 div.uno {
@@ -208,18 +261,21 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt5-2.png') no-repeat left top;
   width: 535px;
   height: 89px;
+  top: -30px;
 }
 
 #txt-wrapper #txt5 div.tres {
   background: url('images/textos/txt5-3.png') no-repeat left top;
   width: 535px;
   height: 150px;
+  top: 70px;
 }
 
 #txt-wrapper #txt5 div.cuatro {
   background: url('images/textos/txt5-4.png') no-repeat left top;
   width: 535px;
   height: 150px;
+  top: 40px;
 }
 
 #txt-wrapper #txt6 div.uno {
@@ -232,6 +288,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt6-2.png') no-repeat left top;
   width: 519px;
   height: 88px;
+  top: 130px;
 }
 
 #txt-wrapper #txt6 div.tres {
@@ -244,6 +301,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt6-4.png') no-repeat left top;
   width: 519px;
   height: 174px;
+  left: 170px;
+  top: 15px;
 }
 
 #txt-wrapper #txt6 div.cinco {
@@ -256,21 +315,63 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt7-1.png') no-repeat left top;
   width: 560px;
   height: 128px;
+  left: 270px;
 }
 
 #txt-wrapper #txt7 div.dos {
   background: url('images/textos/txt7-2.png') no-repeat left top;
   width: 512px;
   height: 158px;
+  left: 270px;
 }
 
 #txt-wrapper #txt7 div.tres {
   background: url('images/textos/txt7-3.png') no-repeat left top;
   width: 526px;
   height: 158px;
+  left: 270px;
+  top: 180px;
 }
 
 /*THE DUUUUUUUUUDEEE*/
+
+#dude-banner  {
+  width: 170px;
+  height: 300px;
+  display: block;
+  position: absolute;
+  z-index: 15;
+  bottom: 160px;
+  left: 50px;
+  -webkit-transform: scale(.8);
+  visibility: visible;
+}
+
+#dude-banner.jump {
+  -webkit-transform: rotate(-35deg);
+  bottom: 4000px;
+  visibility: hidden;
+  left: 100px;
+  -webkit-transition: -webkit-transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
+}
+
+#geocities.hideGC {
+  -webkit-transform: rotate(35deg);
+  -webkit-transform-origin: top left;
+  bottom: -100%;
+  visibility: hidden;
+  -webkit-transition: -webkit-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
+}
+
+#dude.fall {
+  width: 170px;
+  height: 300px;
+  display: block;
+  position: absolute;
+  z-index: 15;
+  bottom: 1600px;
+  left: 400px;
+}
 
 #dude {
   width: 170px;
@@ -279,10 +380,18 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   position: absolute;
   z-index: 15;
   bottom: 20px;
-  left: 1500px;
+  -webkit-transition: bottom 1000ms ease-in-out 1000ms;
 }
 
-#dude-body {
+#dude.jump {
+  animation: jump 700ms ease-in-out 0ms 1 forwards;
+  -webkit-animation: jump 700ms ease-in-out 0ms 1 forwards;
+  -moz-animation: jump 700ms ease-in-out 0ms 1 forwards;
+  -o-animation: jump 700ms ease-in-out 0ms 1 forwards;
+  -ms-animation: jump 700ms ease-in-out 0ms 1 forwards;
+}
+
+.dude-body {
   background: url('images/dude-body.png') no-repeat left top;
   width: 106px;
   height: 190px;
@@ -291,7 +400,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   z-index: 5;
 }
 
-#dude-brazos {
+.dude-brazos {
   width: 170px;
   height: 75px;
   display: block;
@@ -299,7 +408,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   bottom: 40px;
 }
 
-#dude-brazos #b-left {
+.dude-brazos .b-left {
   background: url('images/dude-brazo-izq.png') no-repeat left top;
   width: 37px;
   height: 62px;
@@ -307,7 +416,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   right: 55px; 
 }
 
-#dude-brazos #b-right {
+.dude-brazos .b-right {
   background: url('images/dude-brazo-der.png') no-repeat left top;
   width: 34px;
   height: 73px;
@@ -315,7 +424,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   left: 0;
 }
 
-#dude-brazos #b-up {
+.dude-brazos .b-up {
   background: url('images/dude-manita-dedo.png') no-repeat left top;  
   width: 65px;
   height: 49px;
@@ -324,7 +433,30 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   top: -20px;
 }
 
-#dude-piernas {
+.dude-brazos .b-left.feliz {
+  width: 37px;
+  height: 62px;
+  position: absolute;
+  right: 66px;
+  top: 20px;
+  transform: rotate(-100deg);
+  -webkit-transform: rotate(-100deg);
+  -moz-transform: rotate(-100deg);
+  -o-transform: rotate(-100deg);
+  -ms-transform: rotate(-100deg);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transition: transform .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: -moz-transform .5s ease-in-out 0s;
+  -o-transition: -o-transform .5s ease-in-out 0s;
+  -ms-transition: -ms-transform .5s ease-in-out 0s;
+}
+
+.dude-piernas {
   width: 90px;
   height: 120px;
   display: block;
@@ -334,7 +466,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   z-index: 4;
 }
 
-#dude-piernas #p-left {
+.dude-piernas .p-left {
   background: url('images/dude-pierna-izq.png') no-repeat left top;
   width: 46px;
   height: 62px;
@@ -343,7 +475,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   left: 30px;
 }
 
-#dude-piernas #p-right {
+.dude-piernas .p-right {
   background: url('images/dude-pierna-der.png') no-repeat left top;
   width: 46px;
   height: 67px;
@@ -351,23 +483,23 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   bottom: 3px;
 }
 
-#dude-piernas.walk #p-right {
-  animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
-  -webkit-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
-  -moz-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
-  -o-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
-  -ms-animation: walkdudewalk 1s ease-in-out 1s infinite alternate;
+.dude-piernas.walk .p-right {
+  animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
+  -webkit-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
+  -moz-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
+  -o-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
+  -ms-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
 }
 
-#dude-piernas.walk #p-left {
-  animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
-  -webkit-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
-  -moz-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
-  -o-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
-  -ms-animation: walkdudewalk 1s ease-in-out 0s infinite alternate;
+.dude-piernas.walk .p-left {
+  animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
+  -moz-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
+  -o-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
+  -ms-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
 }
 
-#dude #dude-casco {
+#dude .dude-casco {
   background: url('images/dude-casco.png') no-repeat left top;
   width: 163px;
   height: 160px;
@@ -378,7 +510,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   left: -30px;
 }
 
-#dude #dude-gorra {
+#dude .dude-gorra, #dude-banner .dude-gorra {
   background: url('images/dude-gorra.png') no-repeat left top;
   width: 136px;
   height: 69px;
@@ -393,11 +525,14 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 #geocities {
   background: #000 url('images/geocities-bg.jpg') repeat left top;
   height: 100%;
-  width: 1200px;
-  float: left;
+  width: 100%;
+  position: absolute;
+  z-index: 14;
 }
 
-#geocities header, #geocities div {
+
+
+#geocities header, #geocities > div {
   width: 898px;
   margin: 30px auto 0 auto;
 }
@@ -419,15 +554,16 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   margin: 10px 0;
 }
 
-#geocities div aside {
+#geocities > div aside {
   width: 242px;
   border: 4px groove #ccc;
   float: left;
   height: 535px;
   background-color: #faf6e9;
+  position: relative;
 }
 
-#geocities div div {
+#geocities > div > div {
   width: 360px;
   border: 4px groove #ccc;
   float: left;
@@ -436,7 +572,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background-color: #faf6e9;
 }
 
-#geocities div h1 {
+#geocities div h2 {
   color: red;
   text-align: center;
   margin: 20px 0;
@@ -451,7 +587,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   padding: 0 10px;
 }
 
-#geocities div img {
+#geocities > div img {
   margin: 10px auto;
   display: block;
 }
@@ -461,7 +597,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 #escena-1 {
   background-color: #f6ebbf;
   height: 100%;
-  width: 4000px;
+  width: 2800px;
 }
 
 #escena-1 div.top {
@@ -474,11 +610,6 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: #3a3a3a url('images/e1-ground.jpg') repeat left top;
   float: left;
   width: 2800px;
-}
-
-#escena-1 div.top div.numero {
-  background-position: 0 0;
-  width: 105px;  
 }
 
 #escena-1 div.top div.valla-large {
@@ -507,11 +638,6 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   height: 426px;  
   position: absolute;
   top: -405px;
-}
-
-#escena-2 div.top div.numero {
-  background-position: -110px 0;
-  width: 142px;
 }
 
 #escena-2 div.bottom {
@@ -721,10 +847,10 @@ div.chango-nube.mirror {
   background: -webkit-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
   background: -o-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
   background: -ms-linear-gradient(top, #9dcdf8 0%,#bbe9fd 100%);
-  background: linear-gradient(to bottom, #9dcdf8 0%,#bbe9fd 100%);
+  background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
-  width: 9410px;
+  width: 8540px;
 }
 
 #escenas-multiples div.bottom {
@@ -739,16 +865,15 @@ div.chango-nube.mirror {
   width: 1970px;
 }
 
+#escena-4 {
+  width: 1100px;
+}
+
 /*ESCENA 3*/
 
 #escena-3 {
   height: 100%;
   width: 1500px;
-}
-
-#escena-3 div.numero {
-  background-position: -260px 0;
-  width: 120px;  
 }
 
 #escena-3 #nube {
@@ -757,7 +882,7 @@ div.chango-nube.mirror {
   width: 687px;
   height: 382px;
   position: absolute;
-  left: 220px;
+  left: 520px;
   top: 20%;
   z-index: 10;
 }
@@ -770,15 +895,32 @@ div.chango-nube.mirror {
   margin: auto;
 }
 
-#globo {
+#globo, .globo {
   background: url('images/globo.png') no-repeat left top;
   display: block;
   height: 329px;
   width: 118px;
   position: absolute;
-  bottom: 50px;
-  left: 150px;
   z-index: 11;
+  opacity: 1;
+  bottom: 120px;
+}
+
+#globo.hidden {
+  bottom: -150px;
+  opacity: 0;
+  -webkit-transition: all 1000ms ease-in 0ms;
+}
+
+#globo.appear {
+  bottom: 120px;
+  opacity: 1;
+  -webkit-transition: all 1000ms ease-in 0ms;
+}
+
+#globo.give {
+  left: 5590px;
+  -webkit-transition: left 1000ms ease 0s;  
 }
 
 #morro {
@@ -788,10 +930,10 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 15;
   bottom: -70px;
-  left: 400px;
+  left: 800px;
 }
 
-#morro #morro-body {
+#morro .morro-body {
   width: 103px;
   height: 204px;
   display: block;
@@ -801,7 +943,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morro #morro-body #face1 {
+#morro .face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -811,7 +953,7 @@ div.chango-nube.mirror {
   left: 10px;
 }
 
-#morro #morro-body #face2 {
+#morro .face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -821,7 +963,7 @@ div.chango-nube.mirror {
   left: 30px;
 }
 
-#morro #morro-body #face3 {
+#morro .face3 {
   width: 60px;
   height: 80px;
   display: block;
@@ -831,7 +973,7 @@ div.chango-nube.mirror {
   left: 25px;
 }
 
-#morro #morro-brazos {
+#morro .morro-brazos {
   width: 103px;
   height: 67px;
   display: block;
@@ -839,7 +981,7 @@ div.chango-nube.mirror {
   bottom: 75px;
 }
 
-#morro #morro-brazos #b-left {
+#morro .morro-brazos .b-left {
   width: 39px;
   height: 69px;
   display: block;
@@ -849,7 +991,7 @@ div.chango-nube.mirror {
   left: 75px;
 }
 
-#morro #morro-brazos #b-right {
+#morro .morro-brazos .b-right {
   width: 43px;
   height: 67px;
   display: block;
@@ -858,7 +1000,7 @@ div.chango-nube.mirror {
   top: 22px;
 }
 
-#morro #morro-brazos #b2-left {
+#morro .morro-brazos .b2-left {
   width: 45px;
   height: 58px;
   display: block;
@@ -868,7 +1010,7 @@ div.chango-nube.mirror {
   top: -15px;
 }
 
-#morro #morro-brazos #b2-right {
+#morro .morro-brazos .b2-right {
   width: 51px;
   height: 61px;
   display: block;
@@ -877,7 +1019,7 @@ div.chango-nube.mirror {
   top: -15px;
 }
 
-#morro #morro-piernas {
+#morro .morro-piernas {
   width: 75px;
   height: 67px;
   display: block;
@@ -887,7 +1029,7 @@ div.chango-nube.mirror {
   left: 20px;
 }
 
-#morro #morro-piernas #p-left {
+#morro .morro-piernas .p-left {
   width: 51px;
   height: 68px;
   display: block;
@@ -897,7 +1039,7 @@ div.chango-nube.mirror {
   left: 35px;
 }
 
-#morro #morro-piernas #p-right {
+#morro .morro-piernas .p-right {
   width: 52px;
   height: 69px;
   display: block;
@@ -924,11 +1066,6 @@ div.chango-nube.mirror {
 
 /*ESCENA 4*/
 
-#escena-4 div.numero {
-  background-position: -387px 0;
-  width: 150px;  
-}
-
 /*morra 1*/
 
 #morra1 {
@@ -938,10 +1075,10 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 15;
   bottom: -70px;
-  left: 480px;
+  left: 680px;
 }
 
-#morra1 #morra-body {
+#morra1 .morra-body {
   width: 123px;
   height: 202px;
   display: block;
@@ -951,7 +1088,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morra1 #morra-body #face1 {
+#morra1 .face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -959,9 +1096,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 46px;
+  opacity: 1;
 }
 
-#morra1 #morra-body #face2 {
+#morra1 .face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -969,9 +1107,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 48px;
+  opacity: 0;
 }
 
-#morra1 #morra-brazos {
+#morra1 .morra-brazos {
   width: 103px;
   height: 67px;
   display: block;
@@ -980,7 +1119,7 @@ div.chango-nube.mirror {
   left: 15px;
 }
 
-#morra1 #morra-brazos #b-left {
+#morra1 .morra-brazos .b-left {
   width: 39px;
   height: 69px;
   display: block;
@@ -990,7 +1129,7 @@ div.chango-nube.mirror {
   left: 75px;
 }
 
-#morra1 #morra-brazos #b-right {
+#morra1 .morra-brazos .b-right {
   width: 43px;
   height: 67px;
   display: block;
@@ -999,7 +1138,7 @@ div.chango-nube.mirror {
   top: 22px;
 }
 
-#morra1 #morra-piernas {
+#morra1 .morra-piernas {
   width: 75px;
   height: 67px;
   display: block;
@@ -1009,7 +1148,7 @@ div.chango-nube.mirror {
   left: 35px;
 }
 
-#morra1 #morra-piernas #p-left {
+#morra1 .morra-piernas .p-left {
   width: 51px;
   height: 68px;
   display: block;
@@ -1019,7 +1158,7 @@ div.chango-nube.mirror {
   left: 35px;
 }
 
-#morra1 #morra-piernas #p-right {
+#morra1 .morra-piernas .p-right {
   width: 52px;
   height: 69px;
   display: block;
@@ -1037,10 +1176,10 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 15;
   bottom: -70px;
-  left: 300px;
+  left: 500px;
 }
 
-#morra2 #morra-body {
+#morra2 .morra-body {
   width: 126px;
   height: 202px;
   display: block;
@@ -1050,7 +1189,7 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#morra2 #morra-body #face1 {
+#morra2 .face1 {
   width: 79px;
   height: 75px;
   display: block;
@@ -1058,9 +1197,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 64px;
+  opacity: 1;
 }
 
-#morra2 #morra-body #face2 {
+#morra2 .face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -1068,9 +1208,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 64px;
+  opacity: 0;
 }
 
-#morra2 #morra-brazos {
+#morra2 .morra-brazos {
   width: 103px;
   height: 67px;
   display: block;
@@ -1079,7 +1220,7 @@ div.chango-nube.mirror {
   left: 29px;
 }
 
-#morra2 #morra-brazos #b-left {
+#morra2 .morra-brazos .b-left {
   width: 39px;
   height: 69px;
   display: block;
@@ -1089,7 +1230,7 @@ div.chango-nube.mirror {
   left: 75px;
 }
 
-#morra2 #morra-brazos #b-right {
+#morra2 .morra-brazos .b-right {
   width: 43px;
   height: 67px;
   display: block;
@@ -1098,7 +1239,7 @@ div.chango-nube.mirror {
   top: 22px;
 }
 
-#morra2 #morra-piernas {
+#morra2 .morra-piernas {
   width: 75px;
   height: 67px;
   display: block;
@@ -1108,7 +1249,7 @@ div.chango-nube.mirror {
   left: 45px;
 }
 
-#morra2 #morra-piernas #p-left {
+#morra2 .morra-piernas .p-left {
   width: 51px;
   height: 68px;
   display: block;
@@ -1118,7 +1259,7 @@ div.chango-nube.mirror {
   left: 35px;
 }
 
-#morra2 #morra-piernas #p-right {
+#morra2 .morra-piernas .p-right {
   width: 52px;
   height: 69px;
   display: block;
@@ -1136,10 +1277,10 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 15;
   bottom: -70px;
-  left: 150px;
+  left: 350px;
 }
 
-#alien #alien-body {
+#alien .alien-body {
   width: 137px;
   height: 202px;
   display: block;
@@ -1149,17 +1290,18 @@ div.chango-nube.mirror {
   z-index: 6;
 }
 
-#alien #alien-body #face1 {
+#alien .face1 {
   width: 79px;
   height: 75px;
   display: block;
   background: url('images/morros/alien-face1.png') no-repeat left top;
   position: absolute;
-  top: 60px;
+  top: 65px;
   left: 64px;
+  opacity: 1;
 }
 
-#alien #alien-body #face2 {
+#alien .face2 {
   width: 60px;
   height: 89px;
   display: block;
@@ -1167,9 +1309,10 @@ div.chango-nube.mirror {
   position: absolute;
   top: 73px;
   left: 76px;
+  opacity: 0;
 }
 
-#alien #alien-brazos {
+#alien .alien-brazos {
   width: 103px;
   height: 67px;
   display: block;
@@ -1178,7 +1321,7 @@ div.chango-nube.mirror {
   left: 44px;
 }
 
-#alien #alien-brazos #b-left {
+#alien .alien-brazos .b-left {
   width: 39px;
   height: 69px;
   display: block;
@@ -1188,7 +1331,7 @@ div.chango-nube.mirror {
   left: 75px;
 }
 
-#alien #alien-brazos #b-right {
+#alien .alien-brazos .b-right {
   width: 43px;
   height: 67px;
   display: block;
@@ -1197,7 +1340,7 @@ div.chango-nube.mirror {
   top: 22px;
 }
 
-#alien #alien-piernas {
+#alien .alien-piernas {
   width: 75px;
   height: 67px;
   display: block;
@@ -1207,7 +1350,7 @@ div.chango-nube.mirror {
   left: 60px;
 }
 
-#alien #alien-piernas #p-left {
+#alien .alien-piernas .p-left {
   width: 51px;
   height: 68px;
   display: block;
@@ -1217,7 +1360,7 @@ div.chango-nube.mirror {
   left: 35px;
 }
 
-#alien #alien-piernas #p-right {
+#alien .alien-piernas .p-right {
   width: 52px;
   height: 69px;
   display: block;
@@ -1226,12 +1369,147 @@ div.chango-nube.mirror {
   bottom: 0px;
 }
 
-/*ESCENA 5*/
+/*morros felices*/
 
-#escena-5 div.numero {
-  background-position: -550px 0;
-  width: 120px;  
+div#alien .globo, div#morra1 .globo, div#morra2 .globo {
+  bottom: 70px;
+  opacity: 0;
 }
+
+div#alien.feliz .globo, div#morra1.feliz .globo, div#morra2.feliz .globo {
+  bottom: 70px;
+  opacity: 1;
+  left: 100px;
+  transition: opacity .8s ease-in-out 0s;
+  -webkit-transition: opacity .8s ease-in-out 0s;
+  -moz-transition: opacity .8s ease-in-out 0s;
+  -o-transition: opacity .8s ease-in-out 0s;
+  -ms-transition: opacity .8s ease-in-out 0s;  
+}
+
+div#morra1.feliz .globo {
+  left:70px ;  
+}
+
+div#morra2.feliz .globo {
+  left:85px ;  
+}
+
+div.feliz .b-left {
+  top: 30px;
+  left: 65px;
+  transform: rotate(-100deg);
+  -webkit-transform: rotate(-100deg);
+  -moz-transform: rotate(-100deg);
+  -o-transform: rotate(-100deg);
+  -ms-transform: rotate(-100deg);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transition: all .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: all .5s ease-in-out 0s;
+  -o-transition: all .5s ease-in-out 0s;
+  -ms-transition: all .5s ease-in-out 0s;
+}
+
+div.feliz .b-right {
+  top: 30px;
+  transform: rotate(25deg);
+  -webkit-transform: rotate(25deg);
+  -moz-transform: rotate(25deg);
+  -o-transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  transform-origin: top right;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transition: all .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: all .5s ease-in-out 0s;
+  -o-transition: all .5s ease-in-out 0s;
+  -ms-transition: all .5s ease-in-out 0s;
+}
+
+div#alien.feliz .face1, div#morra1.feliz .face1, div#morra2.feliz .face1 {
+  opacity: 0;
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;  
+}
+
+div#alien.feliz .face2, div#morra1.feliz .face2, div#morra2.feliz .face2 {
+  opacity: 1;
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;    
+}
+
+div#alien.feliz, div#morra1.feliz, div#morra2.feliz {
+  bottom: 1400px;
+  transition: all 1.5s ease-in-out 1s;
+  -webkit-transition: all 1.5s ease-in-out 1s;
+  -moz-transition: all 1.5s ease-in-out 1s;
+  -o-transition: all 1.5s ease-in-out 1s;
+  -ms-transition: all 1.5s ease-in-out 1s;
+}
+
+div#alien.feliz {
+  left: 350px;
+}
+
+div#morra1.feliz {
+  left: 750px;
+}
+
+div#morra2.feliz {
+  left: 550px;
+}
+
+div.feliz .p-left {
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  transform-origin: top left;
+  -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transition: all .8s ease-in-out 1s;
+  -webkit-transition: all .8s ease-in-out 1s;
+  -moz-transition: all .8s ease-in-out 1s;
+  -o-transition: all .8s ease-in-out 1s;
+  -ms-transition: all .8s ease-in-out 1s;
+}
+
+div.feliz .p-right {
+  transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  transform-origin: top right;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transition: all .8s ease-in-out 1s;
+  -webkit-transition: all .8s ease-in-out 1s;
+  -moz-transition: all .8s ease-in-out 1s;
+  -o-transition: all .8s ease-in-out 1s;
+  -ms-transition: all .8s ease-in-out 1s;
+}
+
+/*ESCENA 5*/
 
 #escena-5 div.valla-large {
   left: 1089px;
@@ -1247,12 +1525,6 @@ div.chango-nube.mirror {
 
 /*ESCENA 6*/
 
-#escena-6 div.numero {
-  background-position: -680px 0;
-  width: 140px;
-  z-index: 7; 
-}
-
 #escena-6 #slide-fondo{
   height: 4000px;
   width: 2000px;
@@ -1265,7 +1537,7 @@ div.chango-nube.mirror {
   background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
-  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
+  background: linear-gradient(100% bottom,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 30%,rgba(45,54,127,1) 40%,rgba(157,205,248,1) 78%,rgba(187,233,253,0) 80%,rgba(187,233,253,0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00bbe9fd',GradientType=0 );
 }
 
@@ -1381,8 +1653,22 @@ div.chango-nube.mirror {
   display: block;
   position: absolute;
   bottom: -100px;
-  z-index: 10;
+  z-index: 20;
   left: 350px;
+}
+
+#cohete.volar {
+  left: 680px;
+  transition: left 1s ease-in-out 0s;
+  -webkit-transition: left 1s ease-in-out 0s;
+  -moz-transition: left 1s ease-in-out 0s;
+  -o-transition: left 1s ease-in-out 0s;
+  -ms-transition: left 1s ease-in-out 0s;
+  animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -webkit-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -moz-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -o-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  -ms-animation: volar 1s ease-in-out .5s 1 normal forwards;
 }
 
 #cohete div {
@@ -1406,21 +1692,21 @@ div.chango-nube.mirror {
   left: 155px;
 }
 
-#cohete-llantitas.volar {
+#cohete.volar #cohete-llantitas {
   background: url('images/llantitas.png') no-repeat left top;
   z-index: 4;
   width: 246px;
   height: 81px;
   bottom: 110px;
   left: 155px;
-  transition: bottom 1s ease-in-out 3s;
-  -webkit-transition: bottom 1s ease-in-out 3s;
-  -moz-transition: bottom 1s ease-in-out 3s;
-  -o-transition: bottom 1s ease-in-out 3s;
-  -ms-transition: bottom 1s ease-in-out 3s;
+  transition: bottom 1s ease-in-out 1s;
+  -webkit-transition: bottom 1s ease-in-out 1s;
+  -moz-transition: bottom 1s ease-in-out 1s;
+  -o-transition: bottom 1s ease-in-out 1s;
+  -ms-transition: bottom 1s ease-in-out 1s;
 }
 
-#cohete-fuego {
+#cohete.volar #cohete-fuego {
   background: url('images/fuego.png') no-repeat left top;
   z-index: 4;
   width: 278px;
@@ -1439,11 +1725,6 @@ div.chango-nube.mirror {
 #escena-7 {
   height: 100%;
   width: 1200px;
-}
-
-#escena-7 div.numero {
-  background-position: -830px 0;
-  width: 255px;  
 }
 
 #escena-7 #social {
@@ -1498,138 +1779,197 @@ div.chango-nube.mirror {
 
 /*ANIMACIONES & FUNSTUFF*/
 
-
 /*THE WALKING DUDE*/
+
 @keyframes walkdudewalk {
-  from { transform: rotate(15deg); transform-origin: top left; }
-  to { transform: rotate(-15deg); transform-origin: top left; }
+  0% { transform: rotate(10deg); transform-origin: top left; }
+  100% { transform: rotate(-10deg); transform-origin: top left; }
 }
 
 @-moz-keyframes walkdudewalk {
-  from { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
-  to { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
+  0% { -moz-transform: rotate(10deg); -moz-transform-origin: top left; }
+  100% { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
 }
 
 @-webkit-keyframes walkdudewalk {
-  from { -webkit-transform: rotate(15deg); -webkit-transform-origin: top left; }
-  to { -webkit-transform: rotate(-15deg); -webkit-transform-origin: top left; }
+  0% { -webkit-transform: rotate(10deg); -webkit-transform-origin: top left; }
+  100% { -webkit-transform: rotate(-10deg); -webkit-transform-origin: top left; }
 }
 
 @-o-keyframes walkdudewalk {
-  from { -o-transform: rotate(0deg); -o-transform-origin: top left; }
-  to { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
+  0% { -o-transform: rotate(10deg); -o-transform-origin: top left; }
+  100% { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
 }
 
 @-ms-keyframes walkdudewalk {
-  from { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
-  to { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
+  0% { -ms-transform: rotate(10deg); -ms-transform-origin: top left; }
+  100% { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
 }
 
 
 /*BRAZOS CHANGOS*/
 
 @keyframes changos-brazos {
-  from { transform: rotate(0deg); transform-origin: top left; }
-  to { transform: rotate(-10deg); transform-origin: top left; }
+  0% { transform: rotate(0deg); transform-origin: top left; }
+  100% { transform: rotate(-10deg); transform-origin: top left; }
 }
 
 @-moz-keyframes changos-brazos {
-  from { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
-  to { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
+  0% { -moz-transform: rotate(0deg); -moz-transform-origin: top left; }
+  100% { -moz-transform: rotate(-10deg); -moz-transform-origin: top left; }
 }
 
 @-webkit-keyframes changos-brazos {
-  from { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
-  to { -webkit-transform: rotate(-10deg); -webkit-transform-origin: top left; }
+  0% { -webkit-transform: rotate(0deg); -webkit-transform-origin: top left; }
+  100% { -webkit-transform: rotate(-10deg); -webkit-transform-origin: top left; }
 }
 
 @-o-keyframes changos-brazos {
-  from { -o-transform: rotate(0deg); -o-transform-origin: top left; }
-  to { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
+  0% { -o-transform: rotate(0deg); -o-transform-origin: top left; }
+  100% { -o-transform: rotate(-10deg); -o-transform-origin: top left; }
 }
 
 @-ms-keyframes changos-brazos {
-  from { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
-  to { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
+  0% { -ms-transform: rotate(0deg); -ms-transform-origin: top left; }
+  100% { -ms-transform: rotate(-10deg); -ms-transform-origin: top left; }
 }
 
 /*HUMO*/
 
 @keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-moz-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-webkit-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-o-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 @-ms-keyframes humo {
-  from { opacity: .3; background-size: 105px auto; }
-  to { opacity: 1; background-size: 98px auto; }
+  0% { opacity: .3; background-size: 105px auto; }
+  100% { opacity: 1; background-size: 98px auto; }
 }
 
 /*NUBES DE PENSAR Y ASI*/
 
 @keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-moz-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-webkit-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-o-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
 @-ms-keyframes nubespensar {
-  from { opacity: .0; top: 10px; }
-  to { opacity: 1; top: -10px; }
+  0% { opacity: .0; top: 10px; }
+  100% { opacity: 1; top: -10px; }
 }
 
-/*FUEGUITO DE COHETE*/
+/*FUEGUI100% DE COHETE*/
 
 @keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-moz-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-webkit-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-o-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
 }
 
 @-ms-keyframes fuego {
-  from { opacity: .6; left: -260px; }
-  to { opacity: 1; left: -250px; }
+  0% { opacity: .6; left: -260px; }
+  100% { opacity: 1; left: -250px; }
+}
+
+/*JUMP COHETE*/
+@keyframes jump {
+  0% { bottom:20px; }
+  50% { bottom: 350px; }
+  100% { bottom: 150px; left: 9920px; }
+}
+
+@-moz-keyframes jump {
+  0% { bottom:20px; }
+  50% { bottom: 350px; }
+  100% { bottom: 150px; left: 9920px; }
+}
+
+@-webkit-keyframes jump {
+  0% { bottom:20px; }
+  50% { bottom: 350px; }
+  100% { bottom: 150px; left: 9920px; }
+}
+
+@-o-keyframes jump {
+  0% { bottom:20px; }
+  50% { bottom: 350px; }
+  100% { bottom: 150px; left: 9920px; }
+}
+
+@-ms-keyframes jump {
+  0% { bottom:20px; }
+  50% { bottom: 350px; }
+  100% { bottom: 150px; left: 9920px; }
+}
+
+
+/*COHETE*/
+
+@keyframes volar {
+  0% { transform:rotate(0deg); bottom:-100px }
+  100% { transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-moz-keyframes volar {
+  0% { -moz-transform:rotate(0deg); bottom: -100px; }
+  100% { -moz-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-webkit-keyframes volar {
+  0% { -webkit-transform:rotate(0deg); bottom: -100px; }
+  100% { -webkit-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-o-keyframes volar {
+  0% { -o-transform:rotate(0deg); bottom: -100px; }
+  100% { -o-transform:rotate(-25deg); bottom: 400px; }
+}
+
+@-ms-keyframes volar {
+  0% { -ms-transform:rotate(0deg); bottom: -100px; }
+  100% { -ms-transform:rotate(-25deg); bottom: 400px; }
 }

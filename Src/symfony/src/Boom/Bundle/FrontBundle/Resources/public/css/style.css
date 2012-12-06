@@ -2215,6 +2215,7 @@ footer p {
 .single-boom p {
   color: #313131;
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .single-boom p iframe {
@@ -4060,12 +4061,62 @@ form#boom_gallery ul li {
 .top-frame {
   position: relative;
   width: 1024px;
-  height: 99px;
+  height: 120px;
   margin-bottom: 10px;
+  overflow: hidden;
+  -webkit-transition: height 400ms;
+  -moz-transition: height 400ms;
+  -ms-transition: height 400ms;
+  -o-transition: height 400ms;
+  transition: height 400ms;
 }
 
-.top-frame.on {
-  height: 600px;
+.top-frame.active {
+  height: 700px;
+}
+
+.top-frame a.welcome-img {
+  position: absolute;
+  top: 0;
+  -webkit-transition: top 400ms;
+  -moz-transition: top 400ms;
+  -ms-transition: top 400ms;
+  -o-transition: top 400ms;
+  transition: top 400ms;
+  z-index: 9;
+}
+
+.top-frame.active a.welcome-img {
+  top: -100%;
+}
+
+.top-frame iframe {
+  width: 100%;
+  height: 700px;
+  z-index: 8;
+}
+
+.top-frame a.close-frame {
+  font: 15px 'Museo500', sans-serif;
+  color: #fff;
+  display: none;
+}
+
+.top-frame.active a.close-frame {
+  display: block;
+  position: absolute;
+  width: 106px;
+  height: 18px;
+  opacity: .5;
+  top: 23px;
+  right: 32px;
+  text-indent: -9999px;
+  background: url('../images/cerrar.png') no-repeat 0 0;
+  -webkit-transition: opacity 300ms;
+  -moz-transition: opacity 300ms;
+  -ms-transition: opacity 300ms;
+  -o-transition: opacity 300ms;
+  transition: opacity 300ms;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
