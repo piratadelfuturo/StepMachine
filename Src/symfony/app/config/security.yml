@@ -59,9 +59,10 @@ security:
             pattern:    ^/
             anonymous: true
             remember_me:
+              always_remember_me: true
               key:      "%secret%"
-              lifetime: 3600
-              path:     /login
+              path:     /
+              domain:   ~
             form_login:
                 provider: boom_chain_provider
                 csrf_provider: form.csrf_provider

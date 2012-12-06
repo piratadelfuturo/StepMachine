@@ -36,42 +36,40 @@ class UserRepository extends EntityRepository {
     }
 
     public function getLatestCollaborators($number = 7) {
-        $qString = "
-            SELECT
-                user user_record,
-                boom.title boom_title,
-                boom.slug boom_slug,
-                category.slug category_slug,
-                boom.date_published date_published
-            FROM
-                BoomLibraryBundle:User user
-            LEFT JOIN
-                user.booms boom
-            LEFT JOIN
-                boom.category category
-            WHERE
-                boom.status = ?0
-            AND
-                user.collaborator = true
-            ORDER BY date_published DESC";
 
-        $em = $this->getEntityManager();
-        $query = $em->createQuery($qString);
-        $query->setParameters(array(Boom::STATUS_PUBLIC));
+        $cb1 = $this->createQueryBuilder('user');
+        $cb1->select(
+                array(
+                    'user user_record',
+                    'boom.title boom_title',
+                    'boom.slug boom_slug',
+                    'category.slug category_slug',
+                    'boom.date_published date_published'
+                    )
+                );
+        $cb1->leftJoin('user.booms', 'boom');
+        $cb1->leftJoin('boom.category', 'category');
+        $cb1->andWhere(
+                $cb1->expr()->eq('boom.status', '?0'),
+                $cb1->expr()->eq('user.collaborator', 'true')
+        );
+        $cb1->orderBy('date_published', 'DESC');
+
+        $status = Boom::STATUS_PUBLIC;
+        $query = $cb1->getQuery();
+        $query->setParameters(array($status));
         $query->setFirstResult(0);
         $query->setMaxResults($number);
-        $query->useResultCache(
+        /*$query->useResultCache(
                 true, 10, implode(
                         '_', array(
                     'front_user_collaborators_widget',
-                    Boom::STATUS_PUBLIC,
+                    $status,
                     $number
                         )
                 )
-        );
-
-        $result = $query->execute();
-
+        );*/
+        $result = $query->getResult();
         return $result;
     }
 
