@@ -8,7 +8,7 @@ $(document).ready(function(){
   $('.numero').addClass('hide');
   
   var scrollTimeout = null;
-  var scrollendDelay = 200;
+  var scrollendDelay = 100;
   function scrollbeginHandler() {
     $('.dude-piernas').addClass('walk');
   }
@@ -242,7 +242,6 @@ $(document).ready(function(){
     if ( pageX() >= 4850 ){
         $('#ruido').removeClass('hide').addClass('show');
         $('#globo').removeClass('show').addClass('hidden');
-        $('.dude-brazos .b-left').removeClass('feliz');
       }; 
     if ( pageX() >= 4990 ){
         $('#ruido').removeClass('show').addClass('hide');
@@ -277,9 +276,36 @@ $(document).ready(function(){
     if ( pageX() >= 8850 ){ 
       $('#dude .dude-casco').removeClass('hide').addClass('show');
     };
-    if ( pageX() >= 9050 ){ 
-      $('#cohete').addClass('volar');
+    
+    if ( pageX() >= 9100 ){ 
+      $('#dude').removeClass('jump');
+      $('#cohete #cohete-bubble').removeClass('hide').addClass('show');
     };
+    
+    if ( pageX() >= 9100 && pageX() <= 9450 ){ 
+      $('#dude').css('bottom', '1200'+'px').addClass('hide');
+    };
+    
+    if ( pageX() >= 9350){ 
+      $('#cohete').addClass('volar').delay(3000).queue(function(next){
+          $(this).hide(0);
+          next();
+      });
+      $('#slide-fondo').addClass('alinfinito');
+      $('#dude').css('left', (pageX() + 500) + 'px');
+      $('#dude').delay(3800).queue(function(next){
+          $('#dude').removeClass('hide').addClass('show').addClass('feliz').css('bottom', '20' + 'px')
+          next();
+      });  
+      $('#dude .dude-casco').removeClass('show').addClass('hide');
+      $('#dude .dude-parachute').removeClass('hide').addClass('show');        
+    };
+    if ( pageX() >= 9750){
+      $('#dude .dude-parachute').removeClass('show').addClass('hide');
+      $('#dude').removeClass('feliz');   
+    };
+    
+    
   });
 
   
