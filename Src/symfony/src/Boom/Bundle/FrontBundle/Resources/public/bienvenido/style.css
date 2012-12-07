@@ -1157,6 +1157,11 @@ div.center {
   -moz-transition: all 1s ease-in-out 3.9s;
   -o-transition: all 1s ease-in-out 3.9s;
   -ms-transition: all 1s ease-in-out 3.9s;
+  transform-origin: right bottom;
+  -webkit-transform-origin: right bottom;
+  -moz-transform-origin: right bottom;
+  -o-transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
 }
 
 #sld7.active .move {

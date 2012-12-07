@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  var isfirst = parseInt("0");
   var pageX = function(){
     return $(window).scrollLeft();
   }
@@ -42,7 +42,7 @@ $(document).ready(function(){
     //agregar left a texto y a dude
     $('#txt-wrapper').css('left', (pageX() + 280) + 'px');
     $('#dude').css('left', (pageX() + 350) + 'px');
-    
+    $('#dude2').css('left', (pageX() + 500) + 'px'); 
     //triggers texto
     if ( pageX() >= 400 ){
       $('#txt1 .numero').removeClass('hide').addClass('show');
@@ -203,16 +203,13 @@ $(document).ready(function(){
       $('#txt6 .tres').removeClass('show').addClass('hide');
     };
     
-    if ( pageX() >= 10000 ){
-      $('#txt6 .cuatro').removeClass('show').addClass('hide');
-      $('#txt6 .cinco').removeClass('show').addClass('hide');
+    if ( pageX() >= 9350 ){
+      $('#txt6 .cuatro').removeClass('show').addClass('hide').delay(5600).queue(function(next){
+        $('#txt6 .cinco').removeClass('hide').addClass('show');
+      });     
     };
     
-    if ( pageX() >= 10200 ){
-      $('#txt6 .cinco').removeClass('hide').addClass('show');
-    };
-    
-    if ( pageX() >= 10500 ){
+    if ( pageX() >= 9800 ){
       $('#txt6 .numero').removeClass('show').addClass('hide');
       $('#txt6 .cinco').removeClass('show').addClass('hide');
       $('#txt7 .numero').removeClass('show').addClass('hide');
@@ -226,11 +223,6 @@ $(document).ready(function(){
       $('#txt7 .uno').removeClass('hide').addClass('show');
     };
     
-    if ( pageX() >= 10850 ){
-      $('#txt7 .uno').removeClass('show').addClass('hide');
-      $('#txt7 .dos').delay(1000).removeClass('hide').addClass('show');
-      $('#txt7 .tres').delay(2000).removeClass('hide').addClass('show');
-    };
     
     //triggers animaciones escena 3
     
@@ -282,27 +274,39 @@ $(document).ready(function(){
       $('#cohete #cohete-bubble').removeClass('hide').addClass('show');
     };
     
-    if ( pageX() >= 9100 && pageX() <= 9450 ){ 
-      $('#dude').css('bottom', '1200'+'px').addClass('hide');
+    if ( pageX() >= 9100 ){ 
+      $('#dude').hide(0);
     };
     
     if ( pageX() >= 9350){ 
-      $('#cohete').addClass('volar').delay(3000).queue(function(next){
-          $(this).hide(0);
-          next();
-      });
-      $('#slide-fondo').addClass('alinfinito');
-      $('#dude').css('left', (pageX() + 500) + 'px');
-      $('#dude').delay(3800).queue(function(next){
-          $('#dude').removeClass('hide').addClass('show').addClass('feliz').css('bottom', '20' + 'px')
-          next();
-      });  
-      $('#dude .dude-casco').removeClass('show').addClass('hide');
-      $('#dude .dude-parachute').removeClass('hide').addClass('show');        
+      if(isfirst == 0){
+        $('#cohete').addClass('volar').delay(3000).queue(function(next){
+            $(this).hide(0);
+            next();
+        });
+        $('#slide-fondo').addClass('alinfinito');
+
+        $('#dude2').delay(3800).queue(function(next){
+            $(this).removeClass('fall').addClass('feliz');
+            next();
+        });
+        $('#dude2').delay(2000).queue(function(next){
+            $(this).removeClass('feliz').stop();
+            next();
+        });  
+        $('#dude2 .dude-parachute').removeClass('hide').addClass('show').delay(5600).queue(function(next){
+          $(this).removeClass('show').addClass('hide').stop();
+        });   
+	isfirst = 1;
+      }
+      
     };
-    if ( pageX() >= 9750){
-      $('#dude .dude-parachute').removeClass('show').addClass('hide');
-      $('#dude').removeClass('feliz');   
+    
+    if ( pageX() >= 11100 ){
+      $('#txt7 .uno').removeClass('show').addClass('hide');
+      $('#txt7 .dos, #txt7 .tres').removeClass('hide').addClass('show');
+      $('#dude2 .b-left').addClass('feliz');
+      $('#social').removeClass('hidden').addClass('appear');
     };
     
     

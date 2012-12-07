@@ -22,7 +22,7 @@ html, body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  width: 13580px;
+  width: 12780px;
 }
 
 /*ESTILOS COMPARTIDOS */
@@ -383,6 +383,26 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
 }
 
+#dude2 {
+  width: 170px;
+  height: 300px;
+  display: block;
+  position: absolute;
+  z-index: 18;
+  bottom: 20px;
+  -webkit-transition: bottom 1000ms ease-in-out 1000ms;
+}
+
+#dude2.fall {
+  width: 170px;
+  height: 300px;
+  display: block;
+  position: absolute;
+  z-index: 15;
+  bottom: 1600px;
+  left: 9400px;
+}
+
 #dude.jump {
   animation: jump 700ms ease-in-out 0ms 1 forwards;
   -webkit-animation: jump 700ms ease-in-out 0ms 1 forwards;
@@ -543,16 +563,7 @@ div.feliz .dude-brazos .b-right {
   bottom: 190px;
 }
 
-#dude.fallagain {
-  width: 170px;
-  height: 300px;
-  display: block;
-  position: absolute;
-  z-index: 15;
-  bottom: 20px;
-}
-
-#dude .dude-parachute {
+.dude-parachute {
   background: url('images/parachute.png') no-repeat left top;
   width: 370px;
   height: 369px;
@@ -893,7 +904,7 @@ div.chango-nube.mirror {
   background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
-  width: 8780px;
+  width: 7980px;
 }
 
 #escenas-multiples div.bottom {
@@ -953,7 +964,7 @@ div.chango-nube.mirror {
   bottom: 120px;
 }
 
-#globo.hidden {
+#globo.hidden, #social.hidden {
   bottom: -150px;
   opacity: 0;
   -webkit-transition: all 1000ms ease-in 0ms;
@@ -961,6 +972,12 @@ div.chango-nube.mirror {
 
 #globo.appear {
   bottom: 120px;
+  opacity: 1;
+  -webkit-transition: all 1000ms ease-in 0ms;
+}
+
+#social.appear {
+  bottom: 20px;
   opacity: 1;
   -webkit-transition: all 1000ms ease-in 0ms;
 }
@@ -1790,7 +1807,24 @@ div.feliz .p-right {
   width: 241px;
   height: 333px;
   position: absolute;
-  z-index: 8;
+  z-index: 13;
+  left: 30px;
+}
+
+#escena-7 #social a {
+  display: block;
+  width: 90px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+}
+
+#escena-7 #social a.twitter {
+  left: 15px;
+}
+
+#escena-7 #social a.facebook {
+  left: 140px;
 }
 
 #escena-7 #share {
