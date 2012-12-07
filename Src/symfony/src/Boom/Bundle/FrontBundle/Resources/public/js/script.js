@@ -40,11 +40,11 @@
           return false;
         });
 
-        $('#iframe-container a.close-frame').hover(function(){
+        /*$('#iframe-container a.close-frame').hover(function(){
           $(this).css('opacity', '.5');
         }, function(){
           $(this).css('opacity', '.1');
-        });
+        });*/
 
         /* GAL-CAR */
 

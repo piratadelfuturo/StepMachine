@@ -704,19 +704,6 @@ div.center {
   top: 525px;
 }
 
-img.scroll-down {
-  position: fixed;
-  right: 45px;
-  bottom: 32px;
-  opacity: .5;
-  z-index: 14;
-  -webkit-transition: opacity 300ms;
-  -moz-transition: opacity 300ms;
-  -ms-transition: opacity 300ms;
-  -o-transition: opacity 300ms;
-  transition: opacity 300ms;
-}
-
 /*SLIDE 3*/
 
 #sld3 h2 {
@@ -2029,7 +2016,7 @@ div h4.flag:after, div h4.flag:before {
   width: 44px;
 }
 
-#sld9.active #arrow, img.scroll-down {
+#sld9.active #arrow {
   animation: updown 1s ease-in-out 0s infinite alternate;
   -webkit-animation: updown 1s ease-in-out 0s infinite alternate;
   -moz-animation: updown 1s ease-in-out 0s infinite alternate;
@@ -2172,4 +2159,16 @@ div h4.flag:after, div h4.flag:before {
 @-o-keyframes 'updown' {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
+}
+
+a.scroll-down {
+  position: absolute;
+  display: block;
+  width: 72px;
+  height: 71px;
+  background: url(images/go_down.png) no-repeat 0 0;
+  text-indent: -9999px;
+  right: 45px;
+  bottom: 30px;
+  z-index: 99;
 }

@@ -4105,13 +4105,12 @@ form#boom_gallery ul li {
 .top-frame.active a.close-frame {
   display: block;
   position: absolute;
-  width: 106px;
-  height: 18px;
-  opacity: .5;
+  width: 163px;
+  height: 37px;
   top: 23px;
-  right: 32px;
+  right: 0;
   text-indent: -9999px;
-  background: url('../images/cerrar.png') no-repeat 0 0;
+  background: url('../images/close.png') no-repeat 0 0;
   -webkit-transition: opacity 300ms;
   -moz-transition: opacity 300ms;
   -ms-transition: opacity 300ms;
