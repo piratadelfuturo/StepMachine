@@ -776,12 +776,20 @@ img.scroll-down {
   -ms-transition: opacity .5s ease-in-out 1s;
 }
 
-#sld3.active #dude .move {
-  animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -webkit-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -moz-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -o-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -ms-animation: abrir 700ms ease-in-out 0s infinite alternate;
+#sld3 #dude .move  {
+  background: url('images/quijada.png') no-repeat left top;
+  width: 70px;
+  height: 41px;
+  left: 98px;
+  top: 103px;
+}
+
+#sld3.active #dude .move  {
+  animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -moz-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -o-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -ms-animation: abrir 700ms ease-in-out 0ms infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
@@ -2137,44 +2145,44 @@ div h4.flag:after, div h4.flag:before {
 
 /*ANIMACIONES*/
 
-@keyframes 'abrir' {
+@keyframes abrir {
   from { transform: rotate(4deg); transform-origin: left bottom; }
   to { transform: rotate(18deg); transform-origin: left bottom; }
 }
-@-ms-keyframes 'abrir' {
+@-ms-keyframes abrir {
   from { -ms-transform: rotate(4deg); -ms-transform-origin: left bottom; }
   to { -ms-transform: rotate(18deg); -ms-transform-origin: left bottom; }
 }
-@-webkit-keyframes 'abrir' {
+@-webkit-keyframes abrir {
   from { -webkit-transform: rotate(4deg); -webkit-transform-origin: left bottom; }
   to { -webkit-transform: rotate(18deg); -webkit-transform-origin: left bottom; }
 }
-@-moz-keyframes 'abrir' {
+@-moz-keyframes abrir {
   from { -moz-transform: rotate(4deg); -moz-transform-origin: left bottom; }
   to { -moz-transform: rotate(18deg); -moz-transform-origin: left bottom; }
 }
-@-o-keyframes 'abrir' {
+@-o-keyframes abrir {
   from { -o-transform: rotate(4deg); -o-transform-origin: left bottom; }
   to { -o-transform: rotate(18deg); -o-transform-origin: left bottom; }
 }
 
-@keyframes 'updown' {
+@keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-ms-keyframes 'updown' {
+@-ms-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-webkit-keyframes 'updown' {
+@-webkit-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-moz-keyframes 'updown' {
+@-moz-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-o-keyframes 'updown' {
+@-o-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
