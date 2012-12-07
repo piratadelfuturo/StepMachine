@@ -22,7 +22,7 @@ html, body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  width: 13340px;
+  width: 13580px;
 }
 
 /*ESTILOS COMPARTIDOS */
@@ -378,7 +378,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   height: 300px;
   display: block;
   position: absolute;
-  z-index: 15;
+  z-index: 18;
   bottom: 20px;
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
 }
@@ -433,7 +433,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   top: -20px;
 }
 
-.dude-brazos .b-left.feliz {
+div.feliz .dude-brazos .b-left, .dude-brazos .b-left.feliz  {
   width: 37px;
   height: 62px;
   position: absolute;
@@ -449,6 +449,29 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   -moz-transform-origin: top left;
   -o-transform-origin: top left;
   -ms-transform-origin: top left;
+  transition: transform .5s ease-in-out 0s;
+  -webkit-transition: all .5s ease-in-out 0s;
+  -moz-transition: -moz-transform .5s ease-in-out 0s;
+  -o-transition: -o-transform .5s ease-in-out 0s;
+  -ms-transition: -ms-transform .5s ease-in-out 0s;
+}
+
+div.feliz .dude-brazos .b-right {
+  width: 37px;
+  height: 73px;
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  transform: rotate(110deg);
+  -webkit-transform: rotate(110deg);
+  -moz-transform: rotate(110deg);
+  -o-transform: rotate(110deg);
+  -ms-transform: rotate(110deg);
+  transform-origin: top right;
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -o-transform-origin: top right;
+  -ms-transform-origin: top right;
   transition: transform .5s ease-in-out 0s;
   -webkit-transition: all .5s ease-in-out 0s;
   -moz-transition: -moz-transform .5s ease-in-out 0s;
@@ -485,7 +508,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 .dude-piernas.walk .p-right {
   animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
-  -webkit-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
+  -webkit-animation: walkdudewalk 200ms ease-in-out 200ms infinite alternate;
   -moz-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
   -o-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
   -ms-animation: walkdudewalk 400ms ease-in-out 400ms infinite alternate;
@@ -493,7 +516,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 .dude-piernas.walk .p-left {
   animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
-  -webkit-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: walkdudewalk 200ms ease-in-out 0ms infinite alternate;
   -moz-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
   -o-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
   -ms-animation: walkdudewalk 400ms ease-in-out 0ms infinite alternate;
@@ -518,6 +541,26 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   position: absolute;
   z-index: 6;
   bottom: 190px;
+}
+
+#dude.fallagain {
+  width: 170px;
+  height: 300px;
+  display: block;
+  position: absolute;
+  z-index: 15;
+  bottom: 20px;
+}
+
+#dude .dude-parachute {
+  background: url('images/parachute.png') no-repeat left top;
+  width: 370px;
+  height: 369px;
+  display: block;
+  position: absolute;
+  z-index: 0;
+  left: -124px;
+  bottom: 100px;
 }
 
 /*GEOCITIES*/
@@ -850,7 +893,7 @@ div.chango-nube.mirror {
   background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
-  width: 8540px;
+  width: 8780px;
 }
 
 #escenas-multiples div.bottom {
@@ -867,6 +910,10 @@ div.chango-nube.mirror {
 
 #escena-4 {
   width: 1100px;
+}
+
+#escena-6 {
+  width: 2210px;
 }
 
 /*ESCENA 3*/
@@ -928,7 +975,7 @@ div.chango-nube.mirror {
   height: 400px;
   display: block;
   position: absolute;
-  z-index: 15;
+  z-index: 12;
   bottom: -70px;
   left: 800px;
 }
@@ -1541,6 +1588,14 @@ div.feliz .p-right {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00bbe9fd',GradientType=0 );
 }
 
+#escena-6 #slide-fondo.alinfinito {
+   animation: alinfinito 7000ms ease-in-out 0ms 1 normal forwards;
+   -webkit-animation: alinfinito 7000ms ease-in-out 0ms 1 normal forwards;
+   -moz-animation: alinfinito 7000ms ease-in-out 0ms 1 normal forwards;
+   -o-animation: alinfinito 7000ms ease-in-out 0ms 1 normal forwards;
+   -ms-animation: alinfinito 7000ms ease-in-out 0ms 1 normal forwards;
+}
+
 #escena-6 #espacio {
   background: #121333 url('images/espacio.jpg') no-repeat left top;
   display: block;
@@ -1658,21 +1713,24 @@ div.feliz .p-right {
 }
 
 #cohete.volar {
-  left: 680px;
-  transition: left 1s ease-in-out 0s;
-  -webkit-transition: left 1s ease-in-out 0s;
-  -moz-transition: left 1s ease-in-out 0s;
-  -o-transition: left 1s ease-in-out 0s;
-  -ms-transition: left 1s ease-in-out 0s;
-  animation: volar 1s ease-in-out .5s 1 normal forwards;
-  -webkit-animation: volar 1s ease-in-out .5s 1 normal forwards;
-  -moz-animation: volar 1s ease-in-out .5s 1 normal forwards;
-  -o-animation: volar 1s ease-in-out .5s 1 normal forwards;
-  -ms-animation: volar 1s ease-in-out .5s 1 normal forwards;
+  animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
+  -webkit-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
+  -moz-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
+  -o-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
+  -ms-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
 }
 
 #cohete div {
   position: absolute;
+}
+
+#cohete-bubble {
+  background: url('images/bubble.png') no-repeat left top;
+  display: block;
+  z-index: 5;
+  width: 251px;
+  height: 237px;
+  left: 126px;
 }
 
 #cohete-cuerpo {
@@ -1699,11 +1757,11 @@ div.feliz .p-right {
   height: 81px;
   bottom: 110px;
   left: 155px;
-  transition: bottom 1s ease-in-out 1s;
-  -webkit-transition: bottom 1s ease-in-out 1s;
-  -moz-transition: bottom 1s ease-in-out 1s;
-  -o-transition: bottom 1s ease-in-out 1s;
-  -ms-transition: bottom 1s ease-in-out 1s;
+  transition: bottom 800ms ease-in-out 1000ms;
+  -webkit-transition: bottom 800ms ease-in-out 1000ms;
+  -moz-transition: bottom 800ms ease-in-out 1000ms;
+  -o-transition: bottom 800ms ease-in-out 1000ms;
+  -ms-transition: bottom 800ms ease-in-out 1000ms;
 }
 
 #cohete.volar #cohete-fuego {
@@ -1713,11 +1771,11 @@ div.feliz .p-right {
   height: 105px;
   left: -260px;
   top: 275px;
-  animation: fuego .3s ease-in-out 0s infinite alternate;
-  -webkit-animation: fuego .3s ease-in-out 0s infinite alternate;
-  -moz-animation: fuego .3s ease-in-out 0s infinite alternate;
-  -o-animation: fuego .3s ease-in-out 0s infinite alternate;
-  -ms-animation: fuego .3s ease-in-out 0s infinite alternate;
+  animation: fuego 300ms ease-in-out 0s infinite alternate;
+  -webkit-animation: fuego 300ms ease-in-out 0s infinite alternate;
+  -moz-animation: fuego 300ms ease-in-out 0s infinite alternate;
+  -o-animation: fuego 300ms ease-in-out 0s infinite alternate;
+  -ms-animation: fuego 300ms ease-in-out 0s infinite alternate;
 }
 
 /*ESCENA 7*/
@@ -1946,12 +2004,12 @@ div.feliz .p-right {
   100% { bottom: 150px; left: 9920px; }
 }
 
-
 /*COHETE*/
 
 @keyframes volar {
-  0% { transform:rotate(0deg); bottom:-100px }
-  100% { transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; transform:rotate(0deg); bottom:-100px; }
+  90% { left: 680px; transform:rotate(-25deg); bottom: 400px; }
+  100% { bottom: 1200px; }
 }
 
 @-moz-keyframes volar {
@@ -1960,8 +2018,9 @@ div.feliz .p-right {
 }
 
 @-webkit-keyframes volar {
-  0% { -webkit-transform:rotate(0deg); bottom: -100px; }
-  100% { -webkit-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 800px; }
 }
 
 @-o-keyframes volar {
@@ -1973,3 +2032,35 @@ div.feliz .p-right {
   0% { -ms-transform:rotate(0deg); bottom: -100px; }
   100% { -ms-transform:rotate(-25deg); bottom: 400px; }
 }
+
+/*ATMOSFERA*/
+
+@keyframes alinfinito {
+  0% { bottom:0px; }
+  100% { bottom: -2800px; transition: bottom 3s ease-in-out 0s; }
+}
+
+@-webkit-keyframes alinfinito {
+  0% { bottom:0px; }
+  50% { bottom: -2800px; -webkit-transition: bottom 3s ease-in-out 0s; }
+  100% { bottom: 0px; -webkit-transition: bottom 3s ease-in-out 0s; }
+}
+
+@-moz-keyframes alinfinito {
+  0% { bottom:0px; }
+  50% { bottom: -2800px; -moz-transition: bottom 3s ease-in-out 0s; }
+  100% { bottom: 0px; -moz-transition: bottom 3s ease-in-out 0s; }
+}
+
+@-o-keyframes alinfinito {
+  0% { bottom:0px; }
+  50% { bottom: -2800px; -o-transition: bottom 3s ease-in-out 0s; }
+  100% { bottom: 0px; -o-transition: bottom 3s ease-in-out 0s; }
+}
+
+@-ms-keyframes alinfinito {
+  0% { bottom:0px; }
+  50% { bottom: -2800px; -ms-transition: bottom 3s ease-in-out 0s; }
+  100% { bottom: 0px; -ms-transition: bottom 3s ease-in-out 0s; }
+}
+
