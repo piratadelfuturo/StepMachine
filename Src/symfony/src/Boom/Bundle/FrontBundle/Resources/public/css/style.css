@@ -3239,6 +3239,12 @@ span.arrow {
   padding: 10px 0;
 }
 
+.img-instrucciones {
+  font: 14px 'Museo500', sans-serif;
+  color: #a9a9a9;
+  display: block;
+}
+
 .uploader {
   display: inline-block;
   width: 158px;
@@ -3256,7 +3262,7 @@ span.arrow {
 
 .uploader .instrucciones {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 5px;
   color: #a9a9a9;
 }
