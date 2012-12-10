@@ -3,12 +3,12 @@
     <a href="#" class="welcome-img"><img src="/bundles/boomfront/images/banner.jpg" width="1024" height="120" alt="¿Perdido? Haz click para que voceemos a tu mamá"></a>
     <a href="#" class="close-frame">Cerrar</a>
   </div>
-  <div id="hd-mn" class="gradient">
+  <div id="hd-mn" class="gradient cf">
     <h1>
       <a href="<?php echo $view['router']->generate('BoomFrontBundle_homepage'); ?>">7Boom</a>
     </h1>
     <div id="link-block">
-        <div class="hd-social-list" >
+        <div class="hd-social-list cf">
             <p>Síguenos:</p>
             <p>
               <a class="fb" href="http://www.facebook.com/7BoomMex">Facebook</a>
