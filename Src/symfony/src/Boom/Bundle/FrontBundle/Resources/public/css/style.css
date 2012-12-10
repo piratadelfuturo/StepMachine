@@ -505,6 +505,7 @@ h1 a:before {
   padding-right: 10px;
   position: relative;
   text-align: right;
+  height: 28px;
 }
 
 .hd-social-list p {
