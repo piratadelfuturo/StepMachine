@@ -614,7 +614,7 @@ h1 a:before {
   background-position: 0px -40px;
 }
 
-.comida {
+.ocio {
   background-position: 0px -60px;
 }
 
@@ -642,7 +642,7 @@ h1 a:before {
   background-position: 30px -39px;
 }
 
-#filter li.comida {
+#filter li.ocio {
   background-position: 30px -59px;
 }
 
@@ -2128,7 +2128,7 @@ footer p {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ac2c05', endColorstr='#f16c43',GradientType=1 );
 }
 
-.single-boom .title-flag.comida {
+.single-boom .title-flag.ocio {
   background: #e72b2b;
   background: -moz-linear-gradient(left, #591010 0%, #e72b2b 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#591010), color-stop(100%,#e72b2b));
@@ -2188,7 +2188,7 @@ footer p {
   background-position: right -72px;
 }
 
-.single-boom .title-flag.comida:after {
+.single-boom .title-flag.ocio:after {
   background-position: right -108px;
 }
 
