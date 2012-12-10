@@ -22,7 +22,7 @@
                 <p><?php echo $view->escape($element['summary']) ?></p>
                 <?php if ($element['boom'] !== NULL): ?>
                   <?php if ($element['boom']['user'] !== NULL): ?>
-                    <a href="#" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['username']) ?>.</a>
+                    <a href="#" class="boom-moar">Por <?php echo $view->escape($element['boom']['user']['name']) ?>.</a>
                   <?php endif; ?>
                   <date><?php echo $element['boom']['datepublished']->format('D, d M y'); ?></date>
                 <?php endif; ?>
