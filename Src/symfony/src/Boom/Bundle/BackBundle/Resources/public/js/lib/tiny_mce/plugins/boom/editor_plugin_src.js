@@ -97,7 +97,7 @@
             ed.addCommand('boomGallery', function(flag,params) {
                 var form, formRoute = {},response,
                 dialog = $(document.createElement('div')),
-                node = params.iframe || ed.selection.getNode(),
+                    node = (params && params.iframe) ? params.iframe : ed.selection.getNode(),
                 formUpload = $(document.createElement('form')).attr('method','post').hide(),
                 inputUpload = $(document.createElement('input')).attr({
                     'name':'files',
