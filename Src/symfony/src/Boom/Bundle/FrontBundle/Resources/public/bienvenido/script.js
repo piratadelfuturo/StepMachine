@@ -1,27 +1,41 @@
-$(document).ready(function(){
+$(document).ready( function() {
 
-  window.setTimeout(function(){
+  window.setTimeout( function() {
     $('#sld1').addClass('active')
   }, 400);
 
-  var pageY = function(){
+  var pageY = function() {
     return $(window).scrollTop();
   }
 
+  var scrollD = $('div.wrapper > a.scroll-down');
+
+  $.nextSlide = function() {
+
+    $('body, html').stop(true, true).animate({
+      scrollTop: '+=700'
+    }, 500 );
+
+    return false;
+
+  }
+
+  scrollD.click( function() {
+
+    return $.nextSlide();
+
+  });
+
   $(window).scroll(function(){
     var slideH = 680,
-        close = window.parent.$('#iframe-container .close-frame'),
-        scrollD = $('div.wrapper > img.scroll-down');
+        close = window.parent.$('#iframe-container .close-frame');
 
-    if ( pageY() < slideH ) {
+    /*if ( pageY() < slideH ) {
       close.css('opacity', .5);
-      scrollD.css('opacity', .5)
-    }
+    }*/
 
     if ( pageY() >= slideH ) {
       $('#sld2').addClass('active');
-      close.css('opacity', .1);
-      scrollD.css('opacity', 0)
     }
 
     if ( pageY() >= (slideH*2) ) {
@@ -46,7 +60,7 @@ $(document).ready(function(){
 
     if ( pageY() >= (slideH*7) ) {
       $('#sld8').addClass('active');
-      $('#sld8').find('.text-container p').css('opacity', .999)
+      $('#sld8').find('.text-container p').css('opacity', .999);
       window.setTimeout(function(){
         $('#sld8').children('.text-container').addClass('active');
       }, 1500);
@@ -55,6 +69,15 @@ $(document).ready(function(){
     if ( pageY() > (slideH*7.5) ) {
       $('#sld9').addClass('active');
     }
+
+    if ( pageY() > ( slideH * 8 ) ) {
+      scrollD.css('opacity', 0);
+    } else {
+      scrollD.css('opacity', 1);
+    }
+
+    scrollD.css('bottom', ( -pageY() + 30 ) );
+
 
   });
 

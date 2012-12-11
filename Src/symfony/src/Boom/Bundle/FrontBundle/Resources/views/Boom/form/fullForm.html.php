@@ -26,6 +26,7 @@
         ?>
         <section>
             <?php echo $view['form']->label($form['image'], 'Imagen') ?>
+            <?php echo '<span class="img-instrucciones">680 x 382 píxeles / JPG, PNG.</span>'?>
             <div><?php
             echo $view['form']->widget(
                     $form['image'], array(
@@ -38,7 +39,7 @@
         </section>
         <section id="nsfw-sc">
             <div class="balloon">
-                <p>Un material es NSFW (not safe for work) si contien desnudos o material explícito que no puedan ver menores de edad ni godínez bajo vigilancia labora.</p>
+                <p>Un material es NSFW (Not Safe For Work) si contiene desnudos o material explícito que no puedan ver menores de edad ni godínez bajo vigilancia laboral.</p>
             </div>
             <?php echo $view['form']->widget($form['nsfw']) ?>
             <label>NSFW:</label>
@@ -56,13 +57,13 @@
                         <span class="place"><?php echo $positionCounter; ?></span>
                     </label>
                     <div class="uploader">
-                        <p class="instrucciones">Arrastra tu foto</p>
+                        <p class="instrucciones">Click para subir tu imagen</p>
                         <?php
                         echo $view['form']->widget(
                                 $element['image'], array(
                             'attr' => array(
                                 'class' => 'up-pic image-uploader',
-                                'placeholder' => "Arrastra tu foto",
+                                'placeholder' => "Click para subir tu imagen",
                                 'multiple' => 'multiple'
                             )
                                 )
@@ -89,8 +90,8 @@
                     <div class="accordion_content">
                         <ul class="wyswyg-menu">
                             <li class="hyperlink">
-                                <div class="balloon">Hipervinculo</div>
-                                <a href="#" >Hipervinculo</a>
+                                <div class="balloon">Hipervínculo</div>
+                                <a href="#" >Hipervínculo</a>
                             </li>
                             <li class="picture">
                                 <div class="balloon">Foto</div>

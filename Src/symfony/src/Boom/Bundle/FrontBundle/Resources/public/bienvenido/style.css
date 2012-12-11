@@ -67,15 +67,16 @@ div.item {
   margin: 0px auto;
   padding: 250px 0 0;
   text-align: center;
-  width: 60%;
+  width: 100%;
 }
 
 #sld4 h1 {
-  width: 75%;
+  font-size: 55px;
 }
 
 #sld6 h1 {
-  width: 55%;
+  font-size: 72px;
+  width: 70%;
 }
 
 h1 {
@@ -703,19 +704,6 @@ div.center {
   top: 525px;
 }
 
-img.scroll-down {
-  position: fixed;
-  right: 45px;
-  bottom: 32px;
-  opacity: .5;
-  z-index: 14;
-  -webkit-transition: opacity 300ms;
-  -moz-transition: opacity 300ms;
-  -ms-transition: opacity 300ms;
-  -o-transition: opacity 300ms;
-  transition: opacity 300ms;
-}
-
 /*SLIDE 3*/
 
 #sld3 h2 {
@@ -736,8 +724,8 @@ img.scroll-down {
 #sld3 > p {
   display: block;
   float: left;
-  font-size: 26px;
-  line-height: 30px;
+  font-size: 34px;
+  line-height: 1.2;
   margin: 25px 0 0 30px;
   width: 480px;
   opacity: 0;
@@ -775,12 +763,20 @@ img.scroll-down {
   -ms-transition: opacity .5s ease-in-out 1s;
 }
 
-#sld3.active #dude .move {
-  animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -webkit-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -moz-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -o-animation: abrir 700ms ease-in-out 0s infinite alternate;
-  -ms-animation: abrir 700ms ease-in-out 0s infinite alternate;
+#sld3 #dude .move  {
+  background: url('images/quijada.png') no-repeat left top;
+  width: 70px;
+  height: 41px;
+  left: 98px;
+  top: 103px;
+}
+
+#sld3.active #dude .move  {
+  animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -moz-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -o-animation: abrir 700ms ease-in-out 0ms infinite alternate;
+  -ms-animation: abrir 700ms ease-in-out 0ms infinite alternate;
   background: url('images/quijada.png') no-repeat left top;
   width: 70px;
   height: 41px;
@@ -955,38 +951,46 @@ img.scroll-down {
   -ms-transition: width 1s ease-in-out 1s;
 }
 
+#sld5 > p {
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  font-size: 24px;
+}
+
 #sld5 #cmt1 {
   background: url('images/cmt1.png') no-repeat left top;
   height: 134px;
-  top: 129px;
+  top: 149px;
   left: 47px;
 }
 
 #sld5 #cmt2 {
   background: url('images/cmt2.png') no-repeat left top;
-  top: 270px;
+  top: 290px;
   right: 350px;
 }
 
 #sld5 #cmt3 {
   background: url('images/cmt3.png') no-repeat left top;
-  top: 363px;
+  top: 383px;
   left: 33px;
 }
 
 #sld5 #cmt4 {
   background: url('images/cmt4.png') no-repeat left top;
-  top: 460px;
+  top: 480px;
   right: 335px;
 }
 
 #sld5 #cmt5 {
   background: url('images/cmt5.png') no-repeat left top;
-  top: 573px;
+  top: 593px;
   left: 33px;
 }
 
-#sld5 #blah1, #sld5 #blah2, #sld5 #blah3, #sld5 #blah4, #sld5 #blah5, #sld5 #blah6, #sld5 #blah7 {
+#sld5 #blah1, #sld5 #blah2, #sld5 #blah3, #sld5 #blah4,
+#sld5 #blah5, #sld5 #blah6, #sld5 #blah7, #sld5 > p {
   opacity: 0;
   transition: opacity 1s linear;
   -webkit-transition: opacity 1s linear;
@@ -995,13 +999,23 @@ img.scroll-down {
   -ms-transition: opacity 1s linear;
 }
 
-#sld5.active #blah1, #sld5.active #blah2, #sld5.active #blah3, #sld5.active #blah4, #sld5.active #blah5, #sld5.active #blah6, #sld5.active #blah7 {
+#sld5.active #blah1, #sld5.active #blah2, #sld5.active #blah3,
+#sld5.active #blah4, #sld5.active #blah5, #sld5.active #blah6,
+#sld5.active #blah7, #sld5.active > p {
   opacity: 1;
+}
+
+#sld5.active > p {
+  transition-delay: 400ms;
+  -webkit-transition-delay: 400ms;
+  -moz-transition-delay: 400ms;
+  -o-transition-delay: 400ms;
+  -ms-transition-delay: 400ms;
 }
 
 #sld5.active #blah1 {
   background-image: url('images/blah1.png');
-  top: 100px;
+  top: 120px;
   left: 479px;
   height: 109px;
   width: 220px;
@@ -1014,7 +1028,7 @@ img.scroll-down {
 
 #sld5.active #blah2 {
   background-image: url('images/blah2.png');
-  top: 248px;
+  top: 268px;
   left: 585px;
   height: 63px;
   width: 176px;
@@ -1027,7 +1041,7 @@ img.scroll-down {
 
 #sld5.active #blah3 {
   background-image: url('images/blah3.png');
-  top: 316px;
+  top: 336px;
   left: 346px;
   height: 94px;
   width: 165px;
@@ -1040,7 +1054,7 @@ img.scroll-down {
 
 #sld5.active #blah4 {
   background-image: url('images/blah4.png');
-  top: 230px;
+  top: 250px;
   left: 30px;
   height: 120px;
   width: 181px;
@@ -1053,7 +1067,7 @@ img.scroll-down {
 
 #sld5.active #blah5 {
   background-image: url('images/blah5.png');
-  top: 456px;
+  top: 476px;
   left: 30px;
   height: 109px;
   width: 212px;
@@ -1066,7 +1080,7 @@ img.scroll-down {
 
 #sld5.active #blah6 {
   background-image: url('images/blah6.png');
-  top: 403px;
+  top: 423px;
   left: 575px;
   height: 91px;
   width: 157px;
@@ -1079,7 +1093,7 @@ img.scroll-down {
 
 #sld5.active #blah7 {
   background-image: url('images/blah7.png');
-  top: 535px;
+  top: 555px;
   left: 471px;
   height: 97px;
   width: 221px;
@@ -1151,6 +1165,11 @@ img.scroll-down {
   -moz-transition: all 1s ease-in-out 3.9s;
   -o-transition: all 1s ease-in-out 3.9s;
   -ms-transition: all 1s ease-in-out 3.9s;
+  transform-origin: right bottom;
+  -webkit-transform-origin: right bottom;
+  -moz-transform-origin: right bottom;
+  -o-transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
 }
 
 #sld7.active .move {
@@ -1731,69 +1750,66 @@ div h4.flag:after, div h4.flag:before {
 
 #sld8.active .tech h4.flag {
   width: 180px;
-  transition-delay: 3s;
-  -webkit-transition-delay: 3s;
-  -moz-transition-delay: 3s;
-  -o-transition-delay: 3s;
-  -ms-transition-delay: 3s;
 }
 
 #sld8.active .sexo h4.flag {
   width: 149px;
   padding-right: 10px;
-  transition-delay: 3.6s;
-  -webkit-transition-delay: 3.6s;
-  -moz-transition-delay: 3.6s;
-  -o-transition-delay: 3.6s;
-  -ms-transition-delay: 3.6s;
-}
-
-#sld8.active .musica h4.flag {
-  width: 150px;
-  transition-delay: 3.2s;
-  -webkit-transition-delay: 3.2s;
-  -moz-transition-delay: 3.2s;
-  -o-transition-delay: 3.2s;
-  -ms-transition-delay: 3.2s;
-}
-
-#sld8.active .deportes h4.flag {
-  width: 150px;
-  transition-delay: 3.4s;
-  -webkit-transition-delay: 3.4s;
-  -moz-transition-delay: 3.4s;
-  -o-transition-delay: 3.4s;
-  -ms-transition-delay: 3.4s;
+  transition-delay: 3100ms;
+  -webkit-transition-delay: 3100ms;
+  -moz-transition-delay: 3100ms;
+  -o-transition-delay: 3100ms;
+  -ms-transition-delay: 3100ms;
 }
 
 #sld8.active .humor h4.flag {
   width: 150px;
   left: 40px;
-  transition-delay: 3s;
-  -webkit-transition-delay: 3s;
-  -moz-transition-delay: 3s;
-  -o-transition-delay: 3s;
-  -ms-transition-delay: 3s;
+}
+
+#sld8.active .musica h4.flag {
+  width: 150px;
+}
+
+#sld8.active .deportes h4.flag {
+  width: 150px;
 }
 
 #sld8.active .cine h4.flag {
   width: 205px;
   left: 10px;
-  transition-delay: 3.2s;
-  -webkit-transition-delay: 3.2s;
-  -moz-transition-delay: 3.2s;
-  -o-transition-delay: 3.2s;
-  -ms-transition-delay: 3.2s;
 }
 
 #sld8.active .comida h4.flag {
   width: 150px;
   left: 40px;
-  transition-delay: 3.4s;
-  -webkit-transition-delay: 3.4s;
-  -moz-transition-delay: 3.4s;
-  -o-transition-delay: 3.4s;
-  -ms-transition-delay: 3.4s;
+}
+
+#sld8.active .tech h4.flag,
+#sld8.active .humor h4.flag {
+  transition-delay: 2300ms;
+  -webkit-transition-delay: 2300ms;
+  -moz-transition-delay: 2300ms;
+  -o-transition-delay: 2300s;
+  -ms-transition-delay: 2300ms;
+}
+
+#sld8.active .musica h4.flag,
+#sld8.active .cine h4.flag {
+  transition-delay: 2600ms;
+  -webkit-transition-delay: 2600ms;
+  -moz-transition-delay: 2600ms;
+  -o-transition-delay: 2600ms;
+  -ms-transition-delay: 2600ms;
+}
+
+#sld8.active .deportes h4.flag,
+#sld8.active .comida h4.flag {
+  transition-delay: 2900ms;
+  -webkit-transition-delay: 2900ms;
+  -moz-transition-delay: 2900ms;
+  -o-transition-delay: 2900ms;
+  -ms-transition-delay: 2900ms;
 }
 
 #sld8 .tech h4.flag:after {
@@ -1875,6 +1891,7 @@ div h4.flag:after, div h4.flag:before {
   line-height: 40px;
   text-align: right;
   opacity: .0;
+  text-shadow: 0 0 8px #000;
 }
 
 #sld8 .text-container p,
@@ -1907,7 +1924,7 @@ div h4.flag:after, div h4.flag:before {
 }*/
 
 #sld8 .text-container p > strong {
-  font-size: 82px;
+  font-size: 105px;
 }
 
 #sld8 .text-container.active p > strong {
@@ -1916,7 +1933,7 @@ div h4.flag:after, div h4.flag:before {
 
 #sld8 .text-container p > span {
   font-weight: 400;
-  font-size: 55px;
+  font-size: 65px;
   line-height: 110px;
 }
 
@@ -1934,21 +1951,21 @@ div h4.flag:after, div h4.flag:before {
 }
 
 #sld8 .text-container p:nth-child(1) {
-  top: 25px;
+  top: 115px;
   left: -5px;
-  width: 32%;
-  font-size: 130px;
+  width: 45%;
+  font-size: 120px;
 }
 
 #sld8 .text-container p:nth-child(2) {
-  top: 255px;
-  left: 460px;
+  top: 235px;
+  left: 400px;
   width: 53%;
   font-size: 89px;
 }
 
 #sld8 .text-container p:nth-child(3) {
-  top: 500px;
+  top: 470px;
   left: 190px;
   width: 50%;
   font-size: 82px;
@@ -1996,24 +2013,12 @@ div h4.flag:after, div h4.flag:before {
 
 /*SLIDE 9*/
 
-#sld9 hgroup {
-  display: block;
-  margin: 0px auto;
-  padding: 20px 0 0;
-  text-align: center;
-  width: 60%;
-}
-
-#sld9 hgroup h3 {
-  position: relative;
-  top: -210px;
-  font-size: 55px;
-  line-height: 60px;
-}
-
-#sld9 hgroup h1 {
+#sld9 h1 {
   padding: 0;
   width: 100%;
+  margin-top: 50px;
+  font-size: 72px;
+  line-height: 1.2;
 }
 
 #sld9 #arrow {
@@ -2024,7 +2029,7 @@ div h4.flag:after, div h4.flag:before {
   width: 44px;
 }
 
-#sld9.active #arrow, img.scroll-down {
+#sld9.active #arrow {
   animation: updown 1s ease-in-out 0s infinite alternate;
   -webkit-animation: updown 1s ease-in-out 0s infinite alternate;
   -moz-animation: updown 1s ease-in-out 0s infinite alternate;
@@ -2127,44 +2132,56 @@ div h4.flag:after, div h4.flag:before {
 
 /*ANIMACIONES*/
 
-@keyframes 'abrir' {
+@keyframes abrir {
   from { transform: rotate(4deg); transform-origin: left bottom; }
   to { transform: rotate(18deg); transform-origin: left bottom; }
 }
-@-ms-keyframes 'abrir' {
+@-ms-keyframes abrir {
   from { -ms-transform: rotate(4deg); -ms-transform-origin: left bottom; }
   to { -ms-transform: rotate(18deg); -ms-transform-origin: left bottom; }
 }
-@-webkit-keyframes 'abrir' {
+@-webkit-keyframes abrir {
   from { -webkit-transform: rotate(4deg); -webkit-transform-origin: left bottom; }
   to { -webkit-transform: rotate(18deg); -webkit-transform-origin: left bottom; }
 }
-@-moz-keyframes 'abrir' {
+@-moz-keyframes abrir {
   from { -moz-transform: rotate(4deg); -moz-transform-origin: left bottom; }
   to { -moz-transform: rotate(18deg); -moz-transform-origin: left bottom; }
 }
-@-o-keyframes 'abrir' {
+@-o-keyframes abrir {
   from { -o-transform: rotate(4deg); -o-transform-origin: left bottom; }
   to { -o-transform: rotate(18deg); -o-transform-origin: left bottom; }
 }
 
-@keyframes 'updown' {
+@keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-ms-keyframes 'updown' {
+@-ms-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-webkit-keyframes 'updown' {
+@-webkit-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-moz-keyframes 'updown' {
+@-moz-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
 }
-@-o-keyframes 'updown' {
+@-o-keyframes updown {
   from { margin: 20px auto; }
   to { margin: 10px auto; }
+}
+
+a.scroll-down {
+  position: absolute;
+  display: block;
+  width: 72px;
+  height: 71px;
+  background: url(images/go_down.png) no-repeat 0 0;
+  text-indent: -9999px;
+  right: 45px;
+  bottom: 30px;
+  z-index: 99;
 }
