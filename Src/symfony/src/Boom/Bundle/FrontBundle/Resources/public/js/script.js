@@ -800,7 +800,7 @@
             mode : "specific_textareas",
             editor_selector : "boom-wysiwyg",
             width: "585px",
-            plugins : "autoresize,boom",
+            plugins : "autoresize,boom,paste",
             theme_advanced_buttons1 : "bold,italic,underline",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
@@ -822,7 +822,9 @@
             theme_advanced_statusbar_location : 'none',
             force_br_newlines : true,
             force_p_newlines : false,
-            forced_root_block : ''
+            forced_root_block : '',
+            paste_use_dialog : false,
+            paste_auto_cleanup_on_paste : true
         });
 
         $('.boom-wysiwyg').each(function(){
