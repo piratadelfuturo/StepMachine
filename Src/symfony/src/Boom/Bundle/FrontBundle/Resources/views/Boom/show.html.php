@@ -62,7 +62,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
           <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
         </div>
         <div class="replies cf">
-          <a href="" class="autor-thumb">
+          <a href="" class="autor-thumb reply">
             <img src="" />
           </a>
           <h3>Boomeado por: <span><a href="">Juanito Xun</a> y 15 otros</span></h3>
