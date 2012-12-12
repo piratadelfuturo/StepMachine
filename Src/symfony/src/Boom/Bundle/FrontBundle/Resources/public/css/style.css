@@ -234,6 +234,9 @@ aside .crea-boom, .lista-colaboradores .seguir, .author-profile .seguir, .drag-b
   width: 66px;
   font: 67px 'Proxima', sans-serif;
   color: #f47b20;
+}
+
+.top-semanal .boom .place, .booms .place-container {
   background: #504f4f;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDA
   wL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwNGY0ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxZTFlMWUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -1352,11 +1355,20 @@ h1 a:before {
   height: 382px;
 }
 
-.top-semanal .boom .place, .top-semanal .boom img, .top-semanal .boom .boom-info {
+.top-semanal .boom .place, .top-semanal .boom .boom-info {
   float: left;
   height: 90px;
   display: block;
+  width: 66px;
+}
+
+.top-semanal .boom > span + a {
+  display: block;
+  position: relative;
   width: 158px;
+  height: 90px;
+  float: left;
+  margin-right: 10px;
 }
 
 .boomer h3 span, .top-semanal h3 span {
@@ -1375,8 +1387,8 @@ h1 a:before {
 }
 
 .top-semanal .boom .boom-info {
-  margin: 0 20px;
-  width: 310px;
+  padding: 0 10px 0 0;
+  width: auto;
 }
 
 .top-semanal .boom .boom-info date,
@@ -2447,7 +2459,7 @@ footer p {
 
 .single-boom .booms .boom-info {
   position: relative;
-  padding: 25px 0 10px ;
+  margin: 25px 0 10px ;
 }
 
 .single-boom li.boom:first-child .boom-info {
@@ -2455,27 +2467,45 @@ footer p {
 }
 
 .booms .place {
+  position: relative;
+  display: block;
   float: left;
-  margin-right: 4px;
-  display: inline-block;
   line-height: 87px;
-  vertical-align: top;
+  z-index: 99;
+  margin-right: 5px;
+}
+
+.place-container {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 66px;
+  z-index: 9;
+}
+
+.text-position {
+  display: table;
+  position: relative;
+  width: 393px;
+  height: 67px;
+  padding: 10px;
 }
 
 .float-container {
-  width: 576px;
+  position: relative;
   float: left;
+  width: 578px;
+  background-color: #F2F2F2;
 }
 
 .float-container img {
   float: left;
-  margin-right: 10px;
 }
 
 .single-boom .booms .boom-ti {
-  display: block;
-  margin: 5px 15px 0;
-  vertical-align: top;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
 }
 
 .single-boom .booms .boom-content {
@@ -2493,13 +2523,6 @@ footer p {
 }
 
 .single-boom .boom, .boom .boom-content, .boom .accordion_content {
-  /*overflow: hidden;
-  max-height: 160px;
-  transition: max-height 400ms;
-  -webkit-transition: max-height 400ms;
-  -moz-transition: max-height 400ms;
-  -ms-transition: max-height 400ms;
-  -o-transition: max-height 400ms;*/
   height: auto;
   margin-bottom: 10px;
 }
@@ -2510,6 +2533,23 @@ footer p {
 
 .single-boom li.boom:last-child .boom-text {
   border-bottom: none;
+}
+
+.top-semanal .boom:first-child .place,
+.single-boom li.boom:last-child .place-container {
+  color: #000;
+  background: #f8a543;
+  background: -moz-linear-gradient(top,  #f8a543 0%, #e1534a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8a543), color-stop(100%,#e1534a));
+  background: -webkit-linear-gradient(top,  #f8a543 0%,#e1534a 100%);
+  background: -o-linear-gradient(top,  #f8a543 0%,#e1534a 100%);
+  background: -ms-linear-gradient(top,  #f8a543 0%,#e1534a 100%);
+  background: linear-gradient(to bottom,  #f8a543 0%,#e1534a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8a543', endColorstr='#e1534a',GradientType=0 );
+}
+
+.single-boom li.boom:last-child .place {
+  color: #000;
 }
 
 .single-boom .boom .boom-text p {

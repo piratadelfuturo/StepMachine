@@ -86,14 +86,17 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     ?>
                     <li class="boom">
                         <div class="boom-info cf">
-                            <span class="place">
+                            <div class="place-container"></div>
+                              <span class="place">
                                 <?php echo $boomieCount ?>
-                            </span>
+                              </span>
                             <div class="float-container cf">
-                                <?php if (isset($element['image']['path'])): ?>
-                                    <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
-                                <?php endif; ?>
+                              <?php if (isset($element['image']['path'])): ?>
+                                <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
+                              <?php endif; ?>
+                              <div class="text-position">
                                 <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
+                              </div>
                             </div>
                         </div>
                         <div class="boom-content">
