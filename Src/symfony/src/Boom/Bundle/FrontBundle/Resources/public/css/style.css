@@ -3206,6 +3206,7 @@ span.arrow {
   margin: 10px 0;
   border: 0px !important;
   position: relative;
+  min-height: 310px;
 }
 
 #boom_bundle_frontbundle_boomtype_elements {
@@ -3330,6 +3331,7 @@ span.arrow {
   margin: 0px !important;
   border: 0px;
   overflow: hidden;
+  min-height: 310px;
 }
 
 .boom-wysiwyg {
@@ -3342,6 +3344,10 @@ span.arrow {
   height: 238px;
   border: none;
   overflow: auto;
+}
+
+.mceLayout {
+  min-height: 310px;
 }
 
 label[for=boom_bundle_frontbundle_boomtype_category] {
