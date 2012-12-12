@@ -5,16 +5,24 @@ BoomFrontBundle_activity_list:
 BoomFrontBundle_activity_follow_check:
     pattern:  /{username}/validar_seguir
     defaults: { _controller: "BoomFrontBundle:Activity:checkFollowStatus", _format: "json" }
+    requirements:
+      username: ^[A-Za-z0-9_\-\.]+$
 
 BoomFrontBundle_activity_follow:
     pattern:  /{username}/seguir
     defaults: { _controller: "BoomFrontBundle:Activity:follow", _format: "json" }
+    requirements:
+      username: ^[A-Za-z0-9_\-\.]+$
 
 BoomFrontBundle_activity_unfollow:
     pattern:  /{username}/no_seguir
     defaults: { _controller: "BoomFrontBundle:Activity:unfollow", _format: "json" }
+    requirements:
+      username: ^[A-Za-z0-9_\-\.]+$
 
 BoomFrontBundle_activity_recommend:
     pattern:  /recommendar/{slug}
     defaults: { _controller: "BoomFrontBundle:Activity:recommend", _format: "json" }
+    requirements:
+      slug: ^[a-z0-9-]+$
 

@@ -1,17 +1,23 @@
 BoomFrontBundle_boom_reorder:
     pattern:  /{slug}/reordena
     defaults: { _controller: "BoomFrontBundle:Boom:reorder", _format: "json" }
-    requirements: { _method: post }
+    requirements:
+      _method: post
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_fav:
     pattern:  /{slug}/fav.{_format}
     defaults: { _controller: "BoomFrontBundle:Boom:favorite", _format: "json" }
-    requirements: { _method: get }
+    requirements:
+      _method: get
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_favstatus:
     pattern:  /{slug}/favstat
     defaults: { _controller: "BoomFrontBundle:Boom:favoriteStatus", _format: "json" }
-    requirements: { _method: get }
+    requirements:
+      _method: get
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_image:
     pattern:  /imagen
@@ -21,17 +27,22 @@ BoomFrontBundle_boom_image:
 BoomFrontBundle_boom_reply:
     pattern:  /{slug}/responde
     defaults: { _controller: "BoomFrontBundle:Boom:reply" }
-    requirements: { _method: get }
+    requirements:
+      _method: get
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_replied:
     pattern:  /{slug}/responde
     defaults: { _controller: "BoomFrontBundle:Boom:replied" }
-    requirements: { _method: post }
+    requirements:
+      _method: post
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_new:
     pattern:  /nuevo
     defaults: { _controller: "BoomFrontBundle:Boom:new" }
-    requirements: { _method: get }
+    requirements:
+      _method: get
 
 BoomFrontBundle_boom_create:
     pattern:  /nuevo
@@ -41,14 +52,20 @@ BoomFrontBundle_boom_create:
 BoomFrontBundle_boom_edit:
     pattern:  /{slug}/editar
     defaults: { _controller: "BoomFrontBundle:Boom:edit" }
-    requirements: { _method: get }
+    requirements:
+      _method: get
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_update:
     pattern:  /{slug}/editar
     defaults: { _controller: "BoomFrontBundle:Boom:update" }
-    requirements: { _method: post }
+    requirements:
+      _method: post
+      slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_delete:
     pattern:  /{slug}/borrar
     defaults: { _controller: "BoomFrontBundle:Boom:delete" }
-    requirements: { _method: post }
+    requirements:
+      _method: post
+      slug: ^[a-z0-9-]+$

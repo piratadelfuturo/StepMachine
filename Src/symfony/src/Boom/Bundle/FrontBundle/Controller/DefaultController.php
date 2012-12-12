@@ -99,7 +99,7 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    public function boomAction($category_slug, $slug) {
+    public function boomAction($category_slug, $slug,$username = null) {
 
         //$response = new Response();
         //$response->setPublic();
