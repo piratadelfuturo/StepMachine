@@ -62,10 +62,9 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
           <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
         </div>
         <div class="replies cf">
-          <a href="" class="autor-thumb reply">
-            <img src="" />
-          </a>
-          <h3>Boomeado por: <span><a href="">Juanito Xun</a> y 15 otros</span></h3>
+          <span class="reply-img"></span>
+          <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb reply"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
+          <h3>Boomeado por: <span><a href="">Juanito Xun</a> y otros 15</span></h3>
         </div>
         <div class="social cf">
             <p>Comparte:</p>
@@ -157,6 +156,30 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
                 <?php endif; ?>
             </div>
+            <!--respuestas a este boom
+            <div class="respuestas-boom cf">
+              <h3 class="reply-flag">
+                Respuestas a este boom
+              </h3>
+              <ul class="cf">
+              	<li>
+              		<a href="" class="autor-thumb">
+              		  <img src="http://graph.facebook.com/820795226/picture?type=large"/>
+              		</a>
+              		<div>
+              		  <h4>
+              		    <a href="">
+              		      Carlos Solares
+              	        </a>
+              		  </h4>
+              		  <p class="time-ago">Hace XX minutos.</p>
+              		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                  </div>
+              	</li>
+              </ul>
+              <a class="more-replies"></a>
+            </div>
+            -->
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
