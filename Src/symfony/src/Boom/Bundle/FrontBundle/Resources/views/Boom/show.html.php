@@ -164,6 +164,30 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
                 <?php endif; ?>
             </div>
+            <!--respuestas a este boom
+            <div class="respuestas-boom cf">
+              <h3 class="reply-flag">
+                Respuestas a este boom
+              </h3>
+              <ul class="cf">
+              	<li>
+              		<a href="" class="autor-thumb">
+              		  <img src="http://graph.facebook.com/820795226/picture?type=large"/>
+              		</a>
+              		<div>
+              		  <h4>
+              		    <a href="">
+              		      Carlos Solares
+              	        </a>
+              		  </h4>
+              		  <p class="time-ago">Hace XX minutos.</p>
+              		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                  </div>
+              	</li>
+              </ul>
+              <a class="more-replies"></a>
+            </div>
+            -->
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
