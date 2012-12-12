@@ -323,7 +323,7 @@
                 });
             },
             start: function(e, ui){
-                var accordion = $('.accordion_content',ui.item);
+                var accordion = $('div.accordion_content',ui.item);
                 accordion.hide();
                 $('.boom-wysiwyg',ui.item).each(function(){
                     tinyMCE.execCommand( 'mceRemoveControl', false, $(this).attr('id') );
@@ -331,7 +331,7 @@
                 });
             },
             stop: function(e,ui) {
-                var accordion = $('.accordion_content',ui.item);
+                var accordion = $('div.accordion_content',ui.item);
                 $('.boom-wysiwyg',ui.item).each(function(){
                     $(this).removeAttr('readonly').show();
                     tinyMCE.execCommand( "mceAddControl" , false, $(this).attr('id') );
@@ -341,8 +341,7 @@
                 $(this).sortable("refresh");
             },
             placeholder: 'empty sortable-placeholder'
-        })
-        .disableSelection();
+        });
 
         var user = $('#usr-cnt');
         var userBox = user.find('#usr-roll');
@@ -800,7 +799,7 @@
             mode : "specific_textareas",
             editor_selector : "boom-wysiwyg",
             width: "585px",
-            plugins : "autoresize,boom",
+            plugins : "autoresize,boom,paste",
             theme_advanced_buttons1 : "bold,italic,underline",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
@@ -822,7 +821,9 @@
             theme_advanced_statusbar_location : 'none',
             force_br_newlines : true,
             force_p_newlines : false,
-            forced_root_block : ''
+            forced_root_block : '',
+            paste_use_dialog : false,
+            paste_auto_cleanup_on_paste : true
         });
 
         $('.boom-wysiwyg').each(function(){

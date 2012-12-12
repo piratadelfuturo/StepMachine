@@ -16,11 +16,15 @@ BoomFrontBundle_category_show:
     defaults: { _controller: "BoomFrontBundle:Default:category" }
     requirements:
         _method:  GET
+        slug: ^[a-z0-9-]+$
 
 BoomFrontBundle_boom_show:
-    pattern:  /{category_slug}/{slug}
-    defaults: { _controller: "BoomFrontBundle:Default:boom" }
+    pattern:  /{category_slug}/{slug}/{username}
+    defaults: { _controller: "BoomFrontBundle:Default:boom", username: null }
     requirements:
         _method:  GET
+        category_slug: ^[a-z0-9-]+$
+        slug: ^[a-z0-9-]+$
+        username: ^[A-Za-z0-9_\-\.]+$
     options:
         expose: true

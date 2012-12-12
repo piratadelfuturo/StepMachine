@@ -9,6 +9,7 @@ BoomFrontBundle_list_category_recommended:
     pattern:  /recomendados/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:featuredCategory",page: 1 }
     requirements:
+      slug: ^[a-z0-9-]+$
       page: \d+
       _method: get
 
@@ -23,6 +24,7 @@ BoomFrontBundle_list_category_latest:
     pattern:  /ultimos/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:latestCategory",page: 1 }
     requirements:
+      slug: ^[a-z0-9-]+$
       page: \d+
       _method: get
 
@@ -36,8 +38,9 @@ BoomFrontBundle_list_category_users:
     pattern:  /usuarios/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:usersCategory",page: 1 }
     requirements:
+      slug: ^[a-z0-9-]+$
       page: \d+
-      _method: get
+      _method: GET
 
 
 BoomFrontBundle_list_collaborator:
@@ -45,21 +48,23 @@ BoomFrontBundle_list_collaborator:
     defaults: { _controller: "BoomFrontBundle:List:collaborator",page: 1 }
     requirements:
       page: \d+
-      _method: get
+      _method: GET
 
 BoomFrontBundle_list_category_collaborator:
     pattern:  /colaborador/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:collaboratorCategory",page: 1 }
     requirements:
+      slug: ^[a-z0-9-]+$
       page: \d+
-      _method: get
+      _method: GET
 
 BoomFrontBundle_list_tag:
     pattern:  /tag/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:tag",page: 1 }
     requirements:
+      slug: ^[a-z0-9-]+$
       page: \d+
-      _method: get
+      _method: GET
 
 BoomFrontBundle_list_user:
     pattern:  /usuario/{username}/{listname}/{page}
@@ -68,6 +73,7 @@ BoomFrontBundle_list_user:
       page: 1
       listname: creados
     requirements:
+      username: ^[A-Za-z0-9_\-\.]+$
       listname: creados|modificados
       page: \d+
-      _method: get
+      _method: GET

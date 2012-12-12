@@ -19,5 +19,6 @@ BoomFrontBundle_user_profile:
         page: 1
         listname: creados
     requirements:
+      username: ^[A-Za-z0-9_\-\.]+$
       listname: creados|modificados
       page: \d+

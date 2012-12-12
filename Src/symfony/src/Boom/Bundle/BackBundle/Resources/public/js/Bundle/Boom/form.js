@@ -6,8 +6,8 @@
             mode : "specific_textareas",
             editor_selector : "boom-wysiwyg",
             width: "100%",
-            plugins : "autoresize,boom",
-            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,undo,redo,forecolor,styleselect,removeformat,cleanup,code",
+            plugins : "autoresize,boom,paste",
+            theme_advanced_buttons1 : "boom_link,boom_image,boom_video,boom_gallery,bold,italic,undo,redo,forecolor,styleselect,removeformat,cleanup",
             theme_advanced_buttons2 : "",
             theme_advanced_buttons3 : "",
             invalid_elements: "span",
@@ -27,7 +27,9 @@
             valid_children : "strong[br|em|#text],em[br|strong|#text]",
             force_br_newlines : true,
             force_p_newlines : false,
-            forced_root_block : ''
+            forced_root_block : '',
+            paste_use_dialog : false,
+            paste_auto_cleanup_on_paste : true
         });
 
         $form = $('#boom');
