@@ -61,11 +61,13 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
           <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
           <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
         </div>
+        <?php /*
         <div class="replies cf">
           <span class="reply-img"></span>
           <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb reply"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
           <h3>Boomeado por: <span><a href="">Juanito Xun</a> y otros 15</span></h3>
         </div>
+        */?>
         <div class="social cf">
             <p>Comparte:</p>
             <div class="fb-share">
@@ -156,8 +158,8 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
                 <?php endif; ?>
             </div>
-            <!--respuestas a este boom
-            <div class="respuestas-boom cf">
+           <?php /*
+           <div class="respuestas-boom cf">
               <h3 class="reply-flag">
                 Respuestas a este boom
               </h3>
@@ -179,7 +181,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
               </ul>
               <a class="more-replies"></a>
             </div>
-            -->
+            */?>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
