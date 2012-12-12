@@ -57,6 +57,16 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
             <p><?php echo $view->escape($entity['summary']); ?></p>
             <a class="boom-moar" href="#">Publicado el <date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($entity['datepublished'], 'EEE, d MMM, yyyy')) ?></date></a>
         </div>
+        <div class="autor cf">
+          <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
+          <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
+        </div>
+        <div class="replies cf">
+          <a href="" class="autor-thumb">
+            <img src="" />
+          </a>
+          <h3>Boomeado por: <span><a href="">Juanito Xun</a> y 15 otros</span></h3>
+        </div>
         <div class="social cf">
             <p>Comparte:</p>
             <div class="fb-share">

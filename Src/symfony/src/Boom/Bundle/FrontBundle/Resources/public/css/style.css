@@ -2435,6 +2435,34 @@ footer p {
   vertical-align: top;
 }
 
+.single-boom .replies {
+  position: relative;
+  padding: 10px 0;
+  border-top: 1px solid #DFDFDF;
+  display: block;
+}
+
+.single-boom .replies h3 {
+  font-size: 22px;
+}
+
+.single-boom .replies h3 span {
+  font-weight: bold;
+  color: #b2b2b2;
+}
+
+.single-boom .replies h3 span a {
+  font-weight: bold;
+  color: #828282;
+}
+
+.single-boom a.reply:after {
+  content: '';
+  background: url('../images/reply.jpg');
+  width: 55px;
+  height: 55px;
+}
+
 .single-boom .booms {
   padding: 0 25px 0 0;
   margin-bottom: 15px;
