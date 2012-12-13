@@ -25,21 +25,23 @@
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/modernizr-1.7.min.js') ?>"></script>
   </head>
   <body class="gradient">
-    <header class="cf">
-      <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
-    </header>
-      <?php
-      ini_set('display_errors',1);
- error_reporting(E_ALL);
-        if ($view['security']->isGranted('ROLE_USER') == false) {
-            echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
-        } elseif($view['security']->isGranted('ROLE_SUPER_ADMIN') == false) {
-            //echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
-            echo $view->render('BoomFrontBundle:Profile:blocks/header.html.php');
-        }
-      ?>
-    <div id="container" class="<?php $view['slots']->output('layout_container_css_class', '') ?>">
-      <?php $view['slots']->output('_content') ?>
+    <div class="wrapper">
+      <header class="cf">
+        <?php echo $view->render('BoomFrontBundle::blocks/header.html.php'); ?>
+      </header>
+        <?php
+        ini_set('display_errors',1);
+   error_reporting(E_ALL);
+          if ($view['security']->isGranted('ROLE_USER') == false) {
+              echo $view->render('BoomFrontBundle:Profile:blocks/headerNotGranted.html.php');
+          } elseif($view['security']->isGranted('ROLE_SUPER_ADMIN') == false) {
+              //echo $view['actions']->render('BoomFrontBundle:Profile:userBlock', array(), array('standalone' => false));
+              echo $view->render('BoomFrontBundle:Profile:blocks/header.html.php');
+          }
+        ?>
+      <div id="container" class="cf <?php $view['slots']->output('layout_container_css_class', '') ?>">
+        <?php $view['slots']->output('_content') ?>
+      </div>
     </div>
     <?php echo $view->render('BoomFrontBundle::blocks/footer.html.php'); ?>
     <script type="text/javascript">
