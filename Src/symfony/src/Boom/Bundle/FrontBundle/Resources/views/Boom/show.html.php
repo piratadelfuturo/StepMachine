@@ -108,7 +108,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                         </div>
                         <div class="boom-content">
                             <div class="boom-text">
-                                <p><?php echo $view['bbcode']->filter((string) $elementContent, 'default') ?></p>
+                                <p><?php echo $view['bbcode']->filter((string) strip_tags($elementContent), 'default') ?></p>
                             </div>
                             <?php /*
                             <div class="comments">
