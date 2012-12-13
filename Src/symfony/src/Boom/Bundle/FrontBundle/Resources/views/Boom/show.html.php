@@ -61,16 +61,13 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
           <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
           <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
         </div>
-        <?php
-        /*
-         * <div class="replies cf">
-          <a href="" class="autor-thumb reply">
-            <img src="" />
-          </a>
-          <h3>Boomeado por: <span><a href="">Juanito Xun</a> y 15 otros</span></h3>
-          </div>
-         */
-        ?>
+        <?php /*
+        <div class="replies cf">
+          <span class="reply-img"></span>
+          <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb reply"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
+          <h3>Boomeado por: <span><a href="">Juanito Xun</a> y otros 15</span></h3>
+        </div>
+        */?>
         <div class="social cf">
             <p>Comparte:</p>
             <div class="fb-share">
@@ -100,22 +97,19 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     ?>
                     <li class="boom">
                         <div class="boom-info cf">
-                            <div class="place-container"></div>
-                              <span class="place">
+                            <span class="place">
                                 <?php echo $boomieCount ?>
-                              </span>
+                            </span>
                             <div class="float-container cf">
-                              <?php if (isset($element['image']['path'])): ?>
-                                <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
-                              <?php endif; ?>
-                              <div class="text-position">
+                                <?php if (isset($element['image']['path'])): ?>
+                                    <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
+                                <?php endif; ?>
                                 <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
-                              </div>
                             </div>
                         </div>
                         <div class="boom-content">
                             <div class="boom-text">
-                                <p><?php echo $view['bbcode']->filter((string) strip_tags($elementContent), 'default') ?></p>
+                                <p><?php echo $view['bbcode']->filter((string) $elementContent, 'default') ?></p>
                             </div>
                             <?php /*
                             <div class="comments">
@@ -164,8 +158,8 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
                 <?php endif; ?>
             </div>
-            <!--respuestas a este boom
-            <div class="respuestas-boom cf">
+           <?php /*
+           <div class="respuestas-boom cf">
               <h3 class="reply-flag">
                 Respuestas a este boom
               </h3>
@@ -187,7 +181,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
               </ul>
               <a class="more-replies"></a>
             </div>
-            -->
+            */?>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
