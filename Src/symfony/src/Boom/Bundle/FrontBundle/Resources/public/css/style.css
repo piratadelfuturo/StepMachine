@@ -241,7 +241,7 @@ aside .crea-boom, .lista-colaboradores .seguir, .author-profile .seguir, .drag-b
   color: #f47b20;
 }
 
-#creatuboom .boom li .place,
+#form-boom .boom li .place,
 .top-semanal .boom .place, .booms .place-container{
   background: #504f4f;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDA
@@ -2746,7 +2746,7 @@ a.ver-reply {
 }
 
 .top-semanal .boom:first-child .place,
-#creatuboom .boom li:first-child .place,
+#form-boom .boom li:first-child .place,
 .single-boom li.boom:last-child .place-container {
   color: #000;
   background: #f8a543;
