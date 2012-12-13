@@ -105,7 +105,9 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                                 <?php if (isset($element['image']['path'])): ?>
                                     <img src="<?php echo $elementImage; ?>" height="87px" width="153px" />
                                 <?php endif; ?>
-                                <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
+                                <div class="text-position">
+                                  <p class="boom-ti"><?php echo $view->escape($element['title']) ?></p>
+                                </div>
                             </div>
                         </div>
                         <div class="boom-content">
