@@ -97,6 +97,7 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     ?>
                     <li class="boom">
                         <div class="boom-info cf">
+                            <div class="place-container"></div>
                             <span class="place">
                                 <?php echo $boomieCount ?>
                             </span>
@@ -158,21 +159,46 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
                 <?php endif; ?>
             </div>
-           <?php /*
-           <div class="respuestas-boom cf">
-              <h3 class="reply-flag">
-                Respuestas a este boom
-              </h3>
+            <?php
+            /*
+            <div class="respuestas-boom cf">
+              <h3 class="reply-flag">Respuestas a este boom</h3>
               <ul class="cf">
               	<li>
-              		<a href="" class="autor-thumb">
-              		  <img src="http://graph.facebook.com/820795226/picture?type=large"/>
-              		</a>
+              		<a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
               		<div>
               		  <h4>
-              		    <a href="">
-              		      Carlos Solares
-              	        </a>
+              		    <a href="">Carlos Solares</a>
+              		  </h4>
+              		  <p class="time-ago">Hace XX minutos.</p>
+              		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                  </div>
+              	</li>
+              	<li>
+              		<a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
+              		<div>
+              		  <h4>
+              		    <a href="">Carlos Solares</a>
+              		  </h4>
+              		  <p class="time-ago">Hace XX minutos.</p>
+              		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                  </div>
+              	</li>
+              	<li>
+              		<a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
+              		<div>
+              		  <h4>
+              		    <a href="">Carlos Solares</a>
+              		  </h4>
+              		  <p class="time-ago">Hace XX minutos.</p>
+              		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                  </div>
+              	</li>
+              	<li>
+              		<a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
+              		<div>
+              		  <h4>
+              		    <a href="">Carlos Solares</a>
               		  </h4>
               		  <p class="time-ago">Hace XX minutos.</p>
               		  <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
@@ -181,11 +207,59 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
               </ul>
               <a class="more-replies"></a>
             </div>
-            */?>
+            <div class="boom-related respuestas-boom cf">
+              <h3 class="reply-flag">Booms relacionados</h3>
+              <ul class="cf list-grid">
+              	<li>
+                  <div>
+                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
+                    <span class="sm-flag geek">Geek</span>
+                  </div>
+                  <div>
+                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
+                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
+                    <p><date>jue, 13 dic, 2012</date></p>
+                  </div>
+              	</li>
+              	<li>
+                  <div>
+                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
+                    <span class="sm-flag geek">Geek</span>
+                  </div>
+                  <div>
+                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
+                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
+                    <p><date>jue, 13 dic, 2012</date></p>
+                  </div>
+              	</li>
+              	<li>
+                  <div>
+                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
+                    <span class="sm-flag geek">Geek</span>
+                  </div>
+                  <div>
+                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
+                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
+                    <p><date>jue, 13 dic, 2012</date></p>
+                  </div>
+              	</li>
+              </ul>
+            </div>
+            <div class="pager cf">
+              <div class="prev-boom page-block">
+                <a href="#">Boom Anterior</a>
+                <a href="#"><img src="http://placehold.it/130x74" alt="Título del boom anterior" width="130" height="74"></a>
+              </div>
+              <div class="next-boom page-block">
+                <a href="#"><img src="http://placehold.it/130x74" alt="Título del boom anterior" width="130" height="74"></a>
+                <a href="#">Siguiente Boom</a>
+              </div>
+            </div>
+            */
+            ?>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
-
         </div>
     </div>
 </div>
