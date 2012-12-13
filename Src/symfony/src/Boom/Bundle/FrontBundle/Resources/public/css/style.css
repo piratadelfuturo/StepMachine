@@ -3036,7 +3036,7 @@ span.arrow {
 }
 
 .drag-booms li .pos {
-  font: 30px 'Proxima', sans-serif;
+  font: 30px/72px 'Proxima', sans-serif;
 }
 
 .balloon {
@@ -3537,7 +3537,7 @@ span.arrow {
 }
 
 .boomie-title-input {
-  width: 394px;
+  width: 379px;
   margin-left: 7px;
 }
 
@@ -3578,7 +3578,7 @@ span.arrow {
 }
 
 .wysiwyg-container {
-  width: 585px;
+  width: 573px;
   padding: 0px;
   margin: 0px !important;
   border: 0px;
