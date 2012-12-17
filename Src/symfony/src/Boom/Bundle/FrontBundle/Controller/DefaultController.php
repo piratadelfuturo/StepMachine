@@ -191,6 +191,18 @@ class DefaultController extends Controller {
         return new Response($count);
     }
 
+    public function googleSearchAction(){
+        $request = $this->getRequest();
+
+        return $this->render('BoomFrontBundle:Default:search.html.php',
+                array(
+                    'key' => 'AIzaSyDJiBBh6TxrBgTy4gTN455kg2T5g61MycM',
+                    'cx'  => '015557421561341059127:3tb9yy-xmuq',
+                    'url' => 'https://www.googleapis.com/customsearch/v1',
+                    'query' => $request->request->get('q', null)
+                ));
+    }
+
     public function sitemapAction() {
         $em = $this->getDoctrine()->getEntityManager();
         $cacheDriver = $this->get('cache.apc');
