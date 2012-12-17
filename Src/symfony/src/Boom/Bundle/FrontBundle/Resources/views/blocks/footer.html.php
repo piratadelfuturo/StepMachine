@@ -7,7 +7,7 @@
           <p>7boom es una herramienta de socialización a partir de tu opinión. El espacio donde tú ordenas al mundo como tú quieras.</p>
           <p>El límite es el siete.</p>
           <div class="bc-site">
-            <a href="https://www.facebook.com/7boomMx" target="_blank" class="fb-btn">facebook</a>
+            <a href="https://www.facebook.com/7boomMex" target="_blank" class="fb-btn">facebook</a>
             <a href="https://www.twitter.com/7_boom"   target="_blank" class="tw-btn">twitter</a>
             <br>
             <p>7boom es un sitio de: <a href="http://www.brutalcontent.com" class="bc-logo">Brutal Content</a></p>
