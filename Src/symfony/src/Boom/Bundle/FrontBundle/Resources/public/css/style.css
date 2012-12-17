@@ -2794,7 +2794,7 @@ fieldset.on .accordion_content {
   color: #f47b20;
 }
 
-.single-boom .booms .boom-content .comments {
+.single-boom .booms .boom-content .comments, .comments {
   margin-top: 20px;
 }
 
@@ -3901,6 +3901,9 @@ ul.paginador, ul.paginador {
   color: #828282;
 }
 
+.slide a img {
+  width: 685px;
+}
 /* SLIDER GAL */
 
 .gal-car {
@@ -4095,7 +4098,7 @@ form#boom_gallery ul li {
 }
 
 .profile-booms .display-menu {
-  border: none;
+  border: none !important;
   line-height: 38px;
   padding: 0 20px;
   display: inline-block;
