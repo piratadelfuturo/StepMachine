@@ -31,5 +31,6 @@ function hndlr(response) {
 }
 
 </script>
-<script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx?>&q=<?php echo urlencode($query) ?>&callback=hndlr">
+<script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx ?>&q=<?php echo urlencode($query) ?>&callback=hndlr">
 </script>
+<h3 class="title-flag">Resultados</h3>
