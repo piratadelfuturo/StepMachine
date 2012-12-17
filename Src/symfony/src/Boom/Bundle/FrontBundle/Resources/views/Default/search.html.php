@@ -16,8 +16,13 @@ function hndlr(response) {
     var item = response.items[i];
 
     var resultHTML = '<div class="boom">';
-    resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
-      + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+    if( typeof(item.pagemap.cse_image) == "object" ) {
+      resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
+        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+    } else {
+      resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
+        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+    }
 
     newResultsDiv.innerHTML += resultHTML;
     console.log(item.pagemap.cse_thumbnail[0].src);
