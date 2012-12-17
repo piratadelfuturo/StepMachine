@@ -1,3 +1,4 @@
+<h3 class="title-flag">Resultados</h3>
 <?php
 $view->extend('BoomFrontBundle::two_col_sublayout.html.php');
 $view['slots']->start('top_two_col');
@@ -33,4 +34,3 @@ function hndlr(response) {
 </script>
 <script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx ?>&q=<?php echo urlencode($query) ?>&callback=hndlr">
 </script>
-<h3 class="title-flag">Resultados</h3>
