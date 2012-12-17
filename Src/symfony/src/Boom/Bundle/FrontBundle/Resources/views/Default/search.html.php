@@ -10,6 +10,7 @@ function hndlr(response) {
   console.log(response);
 
   var newResultsDiv = document.createElement('div');
+  var titleFlag = '<h3 class="title-flag">Resultados</h3>';
   newResultsDiv.id = 'booms-container';
 
   for (var i = 0; i < response.items.length; i++) {
@@ -19,6 +20,7 @@ function hndlr(response) {
     if( typeof(item.pagemap.cse_thumbnail) == "object" ) {
       resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+      console.log(item.pagemap.cse_thumbnail[0].src);
     } else {
       resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
@@ -26,7 +28,7 @@ function hndlr(response) {
 
     newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.insertBefore('<h3 class="title-flag">Resultados</h3>', contentDiv);
+  contentDiv.insertBefore(titleFlag, contentDiv.firstChild);
   contentDiv.appendChild(newResultsDiv);
 }
 
