@@ -16,7 +16,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
             <?php endif; ?>
             <?php if (isset($url['image'])): ?>
                 <image:image>
-                    <image:loc><?php 'http://7boom.mx'.$view['boom_image']->getBoomImageUrl($url['image']['path']); ?></image:loc>
+                    <image:loc><?php echo 'http://7boom.mx'.$view['boom_image']->getBoomImageUrl($url['image']['path']); ?></image:loc>
                 </image:image>
             <?php endif; ?>
             <?php if (isset($url['changefreq'])): ?>
