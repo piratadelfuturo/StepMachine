@@ -4452,6 +4452,45 @@ form#boom_gallery ul li {
   color: #FFFFFF;
 }
 
+/*Resultados de busqueda*/
+
+.search .boom {
+  position: relative;
+  margin: 8px 0;
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.search .boom a {
+  float: left;  
+}
+
+.search .boom a img {
+  width: 158px;
+  height: 90px;
+  display: block;
+}
+
+.search .boom .boom-info {
+  padding: 0 10px;
+  width: 450px;
+  float: left;
+  height: 90px;
+  display: block;
+}
+
+.search .boom .boom-info a {
+  font: bold 18px Helvetica;
+  margin: 5px 0;
+  color: #474747;
+}
+
+.search .boom .boom-info p.src-snip {
+  color: #8d8d8d;
+  margin-top: 10px;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
   .balloon::after {
