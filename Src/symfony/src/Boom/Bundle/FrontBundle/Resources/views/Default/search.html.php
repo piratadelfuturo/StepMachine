@@ -3,30 +3,33 @@ $view->extend('BoomFrontBundle::two_col_sublayout.html.php');
 $view['slots']->start('top_two_col');
 ?>
 <script>
-    function hndlr(response) {
-        if(response.items){
-            var container = $("#booms-container");
-            $.each(response.items,function(i){
-                
-            });
-            .show();
-        }
+function hndlr(response) {
+  var contentDiv = document.getElementById("booms-container");
+
+  contentDiv.innerHTML = '<h3 class="title-flag">Resultados</h3>';
+  contentDiv.className = contentDiv.className + "search";
+  console.log(response);
+
+  var newResultsDiv = document.createElement('div');
+  newResultsDiv.id = 'booms-container';
+
+  for (var i = 0; i < response.items.length; i++) {
+    var item = response.items[i];
+
+    var resultHTML = '<div class="boom">';
+    if( typeof(item.pagemap.cse_thumbnail) == "object" ) {
+      resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
+        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+    } else {
+      resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
+        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     }
+
+    newResultsDiv.innerHTML += resultHTML;
+  }
+  contentDiv.appendChild(newResultsDiv);
+}
+
 </script>
 <script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx ?>&q=<?php echo urlencode($query) ?>&callback=hndlr">
 </script>
-<div id="booms-container" style="display:none">
-    <h3 class="title-flag"></h3>
-    <ul class="list cf">
-        <li class="boom on">
-            <img src="/content/boom-img/ee726227/158_90.jpeg" width="158px" height="90px">
-            <div class="boom-info">
-                <span class="sm-flag"></span>
-                <p class="boom-ti">
-                    <a href="/musica/los-mejores-discos-de-2012" class="boom-moar"></a>
-                    <span></span>
-                </p>
-            </div>
-        </li>
-    </ul>
-</div>
