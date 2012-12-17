@@ -16,11 +16,11 @@ function hndlr(response) {
     var item = response.items[i];
 
     var resultHTML = '<div class="boom">';
-    resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_image[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
+    resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
       + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
 
     newResultsDiv.innerHTML += resultHTML;
-    console.log(item.pagemap.cse_image[0].src);
+    console.log(item.pagemap.cse_thumbnail[0].src);
   }
   contentDiv.appendChild(newResultsDiv);
 }
