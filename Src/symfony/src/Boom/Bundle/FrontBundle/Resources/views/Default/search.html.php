@@ -9,8 +9,7 @@ function hndlr(response) {
   contentDiv.innerHTML = '';
   console.log(response);
 
-  var newResultsDiv = document.createElement('div'),
-      titleFlag = '<h3 class="title-flag">Resultados</h3>';
+  var newResultsDiv = document.createElement('div');
   newResultsDiv.id = 'booms-container';
 
   for (var i = 0; i < response.items.length; i++) {
@@ -27,7 +26,7 @@ function hndlr(response) {
 
     newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.insertBefore(titleFlag, contentDiv);
+  contentDiv.insertBefore('<h3 class="title-flag">Resultados</h3>', contentDiv);
   contentDiv.appendChild(newResultsDiv);
 }
 
