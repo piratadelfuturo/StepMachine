@@ -6,11 +6,10 @@ $view['slots']->start('top_two_col');
 function hndlr(response) {
   var contentDiv = document.getElementById("booms-container");
 
-  contentDiv.innerHTML = '';
+  contentDiv.innerHTML = '<h3 class="title-flag">Resultados</h3>';
   console.log(response);
 
   var newResultsDiv = document.createElement('div');
-  var titleFlag = '<h3 class="title-flag">Resultados</h3>';
   newResultsDiv.id = 'booms-container';
 
   for (var i = 0; i < response.items.length; i++) {
@@ -27,7 +26,6 @@ function hndlr(response) {
 
     newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.insertBefore(titleFlag, null);
   contentDiv.appendChild(newResultsDiv);
 }
 
