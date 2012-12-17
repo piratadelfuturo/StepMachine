@@ -19,13 +19,13 @@ function hndlr(response) {
     if( typeof(item.pagemap.cse_thumbnail) == "object" ) {
       resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"<p class="boom-ti"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+      console.log(item.pagemap.cse_thumbnail[0].src);
     } else {
       resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     }
 
     newResultsDiv.innerHTML += resultHTML;
-    console.log(item.pagemap.cse_thumbnail[0].src);
   }
   contentDiv.appendChild(newResultsDiv);
 }
