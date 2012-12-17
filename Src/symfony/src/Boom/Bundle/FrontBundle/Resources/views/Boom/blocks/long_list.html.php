@@ -4,7 +4,7 @@ if (!isset($list)) {
 }
 ?>
 <div class="boomer ultimos">
-    <h3 class="title-flag"><span>ultimos</span></h3>
+    <h3 class="title-flag"><span>últimos</span></h3>
     <ul class="list cf">
         <?php
         foreach ($list as $element):
