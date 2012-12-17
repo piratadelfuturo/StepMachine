@@ -116,7 +116,7 @@
                     {
                         category_slug:data.category_slug,
                         slug:data.slug
-                    },true
+                    }
                     );
             }
             var iTitle      = container.find('input[id$="title"]',0).val(data.title||'');

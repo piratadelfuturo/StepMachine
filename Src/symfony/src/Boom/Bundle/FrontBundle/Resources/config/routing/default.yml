@@ -1,3 +1,7 @@
+BoomFrontBundle_default_search:
+    pattern: /search
+    defaults: { _controller: "BoomFrontBundle:Default:googleSearch", _format: "html" }
+
 BoomFrontBundle_boom_sitemap:
     pattern:  /sitemap.{_format}
     defaults: { _controller: "BoomFrontBundle:Default:sitemap", _format: "xml" }

@@ -191,6 +191,17 @@ class DefaultController extends Controller {
         return new Response($count);
     }
 
+    public function googleSearchAction(){
+        $request = $this->getRequest();
+        return $this->render('BoomFrontBundle:Default:search.html.php',
+                array(
+                    'key' => 'AIzaSyDJiBBh6TxrBgTy4gTN455kg2T5g61MycM',
+                    'cx'  => '015557421561341059127:3tb9yy-xmuq',
+                    'url' => 'https://www.googleapis.com/customsearch/v1',
+                    'query' => $request->query->get('q', null)
+                ));
+    }
+
     public function sitemapAction() {
         $em = $this->getDoctrine()->getEntityManager();
         $cacheDriver = $this->get('cache.apc');
@@ -205,7 +216,7 @@ class DefaultController extends Controller {
             $urls[] = array(
                 'loc' => $this->get('router')->generate('BoomFrontBundle_homepage'),
                 'changefreq' => 'daily',
-                'priority' => '1.0'
+                'priority' => '0.6'
             );
 
             $categories = $em->getRepository('BoomLibraryBundle:Category')->findFeaturedCategories();
@@ -228,7 +239,9 @@ class DefaultController extends Controller {
                         'category_slug' => $boom['category']['slug'],
                         'slug' => $boom['slug']
                     )),
-                    'priority' => '0.5');
+                    'priority' => '1.0',
+                    'image' => $boom['image']
+                    );
             }
             $cacheDriver->save($cacheName, $urls, 120);
         }
