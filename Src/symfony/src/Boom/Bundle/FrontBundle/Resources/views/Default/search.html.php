@@ -7,6 +7,7 @@ function hndlr(response) {
   var contentDiv = document.getElementById("booms-container");
 
   contentDiv.innerHTML = '<h3 class="title-flag">Resultados</h3>';
+  contentDiv.className = contentDiv.className + "search";
   console.log(response);
 
   var newResultsDiv = document.createElement('div');
