@@ -28,7 +28,7 @@ function hndlr(response) {
 
     newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.prepend(titleFlag).appendChild(newResultsDiv);
+  contentDiv.appendChild(titleFlag).appendChild(newResultsDiv);
 }
 
 </script>
