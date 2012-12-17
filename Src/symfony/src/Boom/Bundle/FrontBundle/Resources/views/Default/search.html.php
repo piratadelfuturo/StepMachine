@@ -20,6 +20,7 @@ function hndlr(response) {
       + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
 
     newResultsDiv.innerHTML += resultHTML;
+    console.log(item.pagemap);
   }
   contentDiv.appendChild(newResultsDiv);
 }
