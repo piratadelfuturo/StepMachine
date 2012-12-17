@@ -27,7 +27,7 @@ function hndlr(response) {
 
     newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.appendChild(titleFlag);
+  contentDiv.insertBefore(titleFlag, contentDiv);
   contentDiv.appendChild(newResultsDiv);
 }
 
