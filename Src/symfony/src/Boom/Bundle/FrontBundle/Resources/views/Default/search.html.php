@@ -16,7 +16,7 @@ function hndlr(response) {
     var item = response.items[i];
 
     var resultHTML = '<div class="boom">';
-    resultHTML += '<a href="' + item.formattedUrl + '">' + item.pagemap + '</a><div class="boom-info"<p class="boom-ti"><a href="'
+    resultHTML += '<a href="http://' + item.formattedUrl + '">' + item.pagemap[1] + '</a><div class="boom-info"<p class="boom-ti"><a href="http://'
       + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
 
     newResultsDiv.innerHTML += resultHTML;
