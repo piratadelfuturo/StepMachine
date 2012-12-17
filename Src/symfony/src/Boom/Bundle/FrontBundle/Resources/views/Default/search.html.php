@@ -26,9 +26,9 @@ function hndlr(response) {
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     }
 
-    newResultsDiv.innerHTML += titleFlag + resultHTML;
+    newResultsDiv.innerHTML += resultHTML;
   }
-  contentDiv.appendChild(newResultsDiv);
+  contentDiv.prepend(titleFlag).appendChild(newResultsDiv);
 }
 
 </script>
