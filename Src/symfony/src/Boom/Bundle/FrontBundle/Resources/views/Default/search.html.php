@@ -11,5 +11,5 @@ $view['slots']->start('top_two_col');
         }
     }
 </script>
-<script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx?>&q=<?php $query ?>&callback=hndlr">
+<script src="<?php echo $url ?>?key=<?php echo $key ?>&cx=<?php echo $cx?>&q=<?php echo $query ?>&callback=hndlr">
 </script>

@@ -30,7 +30,7 @@
             <div id="tb-rb">
                 <form action="<?php echo $view['router']->generate('BoomFrontBundle_default_search'); ?> " method="GET" target="_blank">
                     <input type="submit" value="Buscar"  />
-                    <input type="text" name="q"/>
+                    <input type="text" name="q" value=""/>
                 </form>
             </div>
         </div>
