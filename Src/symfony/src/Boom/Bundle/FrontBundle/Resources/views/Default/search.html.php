@@ -18,7 +18,7 @@ function hndlr(response) {
 
     var resultHTML = '<div class="boom">';
     if( typeof(item.pagemap.cse_thumbnail) == "object" ) {
-      resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"><p class="boom-ti"><a href="http://'
+      resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"><p class="boom-ti cf"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     } else {
       resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
