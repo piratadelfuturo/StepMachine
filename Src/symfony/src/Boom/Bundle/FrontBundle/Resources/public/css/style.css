@@ -1101,7 +1101,7 @@ h1 a:before {
 }
 
 .boom-info .boom-ti, .boom-info .boom-ti a {
-  font: bold 18px Helvetica;
+  font: bold 18px 'Helvetica', sans-serif;
   margin: 5px 0;
   color: #474747;
 }
