@@ -216,7 +216,7 @@ class DefaultController extends Controller {
             $urls[] = array(
                 'loc' => $this->get('router')->generate('BoomFrontBundle_homepage'),
                 'changefreq' => 'daily',
-                'priority' => '1.0'
+                'priority' => '0.6'
             );
 
             $categories = $em->getRepository('BoomLibraryBundle:Category')->findFeaturedCategories();
@@ -239,7 +239,9 @@ class DefaultController extends Controller {
                         'category_slug' => $boom['category']['slug'],
                         'slug' => $boom['slug']
                     )),
-                    'priority' => '0.5');
+                    'priority' => '1.0',
+                    'image' => $boom['image']
+                    );
             }
             $cacheDriver->save($cacheName, $urls, 120);
         }
