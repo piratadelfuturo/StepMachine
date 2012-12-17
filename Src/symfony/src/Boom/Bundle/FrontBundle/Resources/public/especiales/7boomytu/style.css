@@ -965,7 +965,7 @@ div.chango-nube.mirror {
 }
 
 #globo.hidden, #social.hidden {
-  bottom: -150px;
+  bottom: 0px;
   opacity: 0;
   -webkit-transition: all 1000ms ease-in 0ms;
 }
