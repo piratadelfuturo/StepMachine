@@ -63,21 +63,18 @@ $(document).ready(function(){
 
     //triggers texto
     if ( pageX() >= 0 ){
-      $('#txt1 .numero').removeClass('hide').addClass('show');
-      $('#txt1 .uno').removeClass('hide').addClass('show');
+      $('#txt1 .numero, #txt1 .uno').removeClass('hide').addClass('show');
       $('#txt1 .dos').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 500 ){
-      $('#txt1 .uno').removeClass('show').addClass('hide');
-      $('#txt1 .dos').removeClass('hide').addClass('show');
+      $('#txt1 .uno, #txt1 .tres').removeClass('show').addClass('hide');
       $('#txt1 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 1000 ){
-      $('#txt1 .dos').removeClass('show').addClass('hide');
       $('#txt1 .tres').removeClass('hide').addClass('show');
-      $('#txt1 .cuatro').removeClass('show').addClass('hide');
+      $('#txt1 .cuatro, #txt1 .dos').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 1500 ){
@@ -86,15 +83,11 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 2000 ){
-      $('#txt1 .cuatro').removeClass('show').addClass('hide');
-      $('#txt1 .numero').removeClass('show').addClass('hide');
-      $('#txt2 .numero').removeClass('show').addClass('hide');
-      $('#txt2 .uno').removeClass('show').addClass('hide');
+      $('#txt2 .uno, #txt2 .numero, #txt1 .numero, #txt1 .cuatro').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 2500 ){
-      $('#txt2 .numero').removeClass('hide').addClass('show');
-      $('#txt2 .uno').removeClass('hide').addClass('show');
+      $('#txt2 .numero, #txt2 .uno').removeClass('hide').addClass('show');
       $('#txt2 .dos').removeClass('show').addClass('hide');
     };
 
