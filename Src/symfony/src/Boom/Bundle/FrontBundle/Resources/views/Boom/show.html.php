@@ -24,7 +24,7 @@ $twitter = array(
     'text' => $fb_boom_graph_data['title'],
     'related' => '7_boom',
     'counturl' => $fb_boom_graph_data['url'],
-    'hashtags' => $category['slug']
+    'via' => '7_boom'
 );
 
 $twitterUrl = 'https://twitter.com/share?' . http_build_query($twitter);
