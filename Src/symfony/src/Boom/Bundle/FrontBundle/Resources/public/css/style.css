@@ -2393,6 +2393,13 @@ footer p {
   -moz-border-radius: 5px;
   border-radius: 5px;
   display: none;
+  width: 135px;
+  height: 30px;
+}
+
+.fb_iframe_widget span, .fb_iframe_widget iframe {
+  width: 135px;
+  height: 30px;
 }
 
 .fb-like-balloon:before, .tw-like-balloon:before {
