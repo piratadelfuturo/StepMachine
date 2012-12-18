@@ -13,6 +13,15 @@ $(document).ready(function(){
     return $(window).scrollLeft();
   }
 
+  $("body").keydown(function(e) {
+    if(e.keyCode == 37) {
+      console.log('Izquierda');
+    }
+    else if(e.keyCode == 39) {
+      console.log('Derecha');
+    }
+  });
+
   $('.bloque').addClass('hide');
   $('.numero').addClass('hide');
 
