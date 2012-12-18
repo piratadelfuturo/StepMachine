@@ -62,7 +62,9 @@ security:
               always_remember_me: true
               key:      "%secret%"
               path:     /
-              domain:   ~
+              lifetime: 604800
+              domain: 7boom.mx
+              user_providers: [boom_chain_provider]
             form_login:
                 provider: boom_chain_provider
                 csrf_provider: form.csrf_provider
