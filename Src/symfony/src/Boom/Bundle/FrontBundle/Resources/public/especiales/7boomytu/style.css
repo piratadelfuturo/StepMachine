@@ -156,8 +156,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   height: 320px;
   display: block;
   z-index: 10;
-  position: absolute;
-  left: 0px;
+  position: fixed;
+  left: 300px;
   top: 80px;
 }
 
@@ -377,9 +377,10 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 170px;
   height: 300px;
   display: block;
-  position: absolute;
+  position: fixed;
   z-index: 18;
   bottom: 20px;
+  left: 300px;
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
 }
 
@@ -524,6 +525,7 @@ div.feliz .dude-brazos .b-right {
   height: 67px;
   position: absolute;
   bottom: 3px;
+  left: 5px;
 }
 
 .dude-piernas.walk .p-right {
