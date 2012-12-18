@@ -6,7 +6,7 @@ framework:
     esi:             { enabled: true }
     translator:      { fallback: %locale% }
     secret:          %secret%
-    router: 
+    router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: %kernel.debug%
     form:            true
