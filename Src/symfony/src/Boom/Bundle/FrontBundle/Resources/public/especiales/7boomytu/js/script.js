@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   //Side scrolling
   $(function() {
-    $("body").mousewheel(function(event, delta) {
+    $("html, body").mousewheel(function(event, delta) {
       this.scrollLeft -= (delta * 30);
       event.preventDefault();
     });
