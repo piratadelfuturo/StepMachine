@@ -2383,8 +2383,8 @@ footer p {
 
 .fb-like-balloon, .tw-like-balloon {
   position: absolute;
-  left: -41px;
-  top: -55px;
+  left: -75px;
+  top: -57px;
   border: 1px solid #ff7815;
   margin-top: 4px;
   padding: 10px 15px;
@@ -2393,13 +2393,13 @@ footer p {
   -moz-border-radius: 5px;
   border-radius: 5px;
   display: none;
-  width: 135px;
-  height: 30px;
+  width: 130px;
+  height: 21px;
 }
 
-.fb_iframe_widget span, .fb_iframe_widget iframe {
-  width: 135px;
-  height: 30px;
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget iframe {
+  width: 130px !important;
+  height: 20px !important;
 }
 
 .fb-like-balloon:before, .tw-like-balloon:before {
