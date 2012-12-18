@@ -584,8 +584,6 @@ div.feliz .dude-brazos .b-right {
   z-index: 14;
 }
 
-
-
 #geocities header, #geocities > div {
   width: 898px;
   margin: 30px auto 0 auto;
@@ -965,7 +963,7 @@ div.chango-nube.mirror {
 }
 
 #globo.hidden, #social.hidden {
-  bottom: -150px;
+  bottom: 0px;
   opacity: 0;
   -webkit-transition: all 1000ms ease-in 0ms;
 }
