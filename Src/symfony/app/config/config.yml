@@ -85,8 +85,8 @@ doctrine:
             user:     %database_user%
             password: %database_password%
             charset:  UTF8
-      types:
-          datetime: Boom\Bundle\LibraryBundle\Doctrine\Extensions\DBAL\Types\UTCDateTimeType
+      #types:
+          #datetime: Boom\Bundle\LibraryBundle\Doctrine\Extensions\DBAL\Types\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true

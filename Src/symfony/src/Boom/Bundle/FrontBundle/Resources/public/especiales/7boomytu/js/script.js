@@ -98,9 +98,8 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 3000 ){
-      $('#txt2 .uno').removeClass('show').addClass('hide');
+      $('#txt2 .uno, #txt2 .tres').removeClass('show').addClass('hide');
       $('#txt2 .dos').removeClass('hide').addClass('show');
-      $('#txt2 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 3500 ){
@@ -109,60 +108,37 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 4000 ){
-      $('#txt2 .tres').removeClass('show').addClass('hide');
-      $('#txt2 .numero').removeClass('show').addClass('hide');
-      $('#txt3 .uno').removeClass('show').addClass('hide');
-      $('#txt3 .numero').removeClass('show').addClass('hide');
+      $('#txt2 .tres, #txt2 .numero, #txt3 .uno, #txt3 .numero').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 4500 ){
-      $('#txt3 .numero').removeClass('hide').addClass('show');
-      $('#txt3 .uno').removeClass('hide').addClass('show')
-      $('#txt3 .dos').removeClass('show').addClass('hide');
-      $('#txt3 .tres').removeClass('show').addClass('hide');
+      $('#txt3 .numero, #txt3 .uno').removeClass('hide').addClass('show');
+      $('#txt3 .dos, #txt3 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 5000 ){
-      $('#txt3 .uno').removeClass('show').addClass('hide');
-      $('#txt3 .dos').removeClass('hide').addClass('show');
-      $('#txt3 .tres').removeClass('hide').addClass('show');
-      $('#txt4 .uno').removeClass('show').addClass('hide');
-      $('#txt4 .numero').removeClass('show').addClass('hide');
+      $('#txt3 .uno, #txt4 .uno, #txt4 .numero').removeClass('show').addClass('hide');
+      $('#txt3 .dos, #txt3 .tres').removeClass('hide').addClass('show');
     };
 
     if ( pageX() >= 5500 ){
-      $('#txt4 .numero').removeClass('hide').addClass('show');
-      $('#txt4 .uno').removeClass('hide').addClass('show');
-      $('#txt4 .dos').removeClass('show').addClass('hide');
-      $('#txt3 .dos').removeClass('show').addClass('hide');
-      $('#txt3 .tres').removeClass('show').addClass('hide');
-      $('#txt3 .numero').removeClass('show').addClass('hide');
-      $('#txt4 .tres').removeClass('show').addClass('hide');
-
+      $('#txt4 .numero, #txt4 .uno, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('hide').addClass('show');
+      $('#txt4 .dos, #txt3 .dos').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 6000 ){
-      $('#txt4 .uno').removeClass('show').addClass('hide');
-      $('#txt4 .dos').removeClass('hide').addClass('show');
-      $('#txt4 .tres').removeClass('hide').addClass('show');
-      $('#txt5 .uno').removeClass('show').addClass('hide');
-      $('#txt5 .numero').removeClass('show').addClass('hide');
+      $('#txt4 .uno, #txt5 .uno, #txt5 .numero').removeClass('show').addClass('hide');
+      $('#txt4 .dos, #txt4 .tres').removeClass('hide').addClass('show');
     };
 
     if ( pageX() >= 6500 ){
-      $('#txt4 .dos').removeClass('show').addClass('hide');
-      $('#txt4 .tres').removeClass('show').addClass('hide');
-      $('#txt4 .numero').removeClass('show').addClass('hide');
-      $('#txt5 .numero').removeClass('hide').addClass('show');
-      $('#txt5 .uno').removeClass('hide').addClass('show');
-      $('#txt5 .dos').removeClass('show').addClass('hide');
-      
+      $('#txt4 .dos, #txt4 .tres, #txt4 .numero, #txt5 .dos').removeClass('show').addClass('hide');
+      $('#txt5 .numero, #txt5 .uno').removeClass('hide').addClass('show');
     };
 
     if ( pageX() >= 7000 ){
-      $('#txt5 .uno').removeClass('show').addClass('hide');
+      $('#txt5 .uno, #txt5 .tres').removeClass('show').addClass('hide');
       $('#txt5 .dos').removeClass('hide').addClass('show');
-      $('#txt5 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 7500 ){
@@ -171,20 +147,13 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 8000 ){
-      $('#txt5 .dos').removeClass('show').addClass('hide');
-      $('#txt5 .tres').removeClass('show').addClass('hide');
+      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno').removeClass('show').addClass('hide');
       $('#txt5 .cuatro').removeClass('hide').addClass('show');
-      $('#txt6 .numero').removeClass('show').addClass('hide');
-      $('#txt6 .uno').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 8500 ){
-      $('#txt5 .numero').removeClass('show').addClass('hide');
-      $('#txt5 .cuatro').removeClass('show').addClass('hide');
-      $('#txt5 .tres').removeClass('show').addClass('hide');
-      $('#txt6 .numero').removeClass('hide').addClass('show');
-      $('#txt6 .uno').removeClass('hide').addClass('show');
-      $('#txt6 .dos').removeClass('show').addClass('hide');
+      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .dos').removeClass('show').addClass('hide');
+      $('#txt6 .numero, #txt6 .uno').removeClass('hide').addClass('show');
     };
 
     if ( pageX() >= 8600 ){
@@ -194,9 +163,7 @@ $(document).ready(function(){
 
     if ( pageX() >= 8800 ){
       $('#txt6 .tres').removeClass('hide').addClass('show');
-      $('#txt6 .dos').removeClass('show').addClass('hide');
-      $('#txt6 .uno').removeClass('show').addClass('hide');
-      $('#txt6 .cuatro').removeClass('show').addClass('hide');
+      $('#txt6 .dos, #txt6 .uno, #txt6 .cuatro').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 9100 ){
@@ -211,17 +178,11 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 9800 ){
-      $('#txt6 .numero').removeClass('show').addClass('hide');
-      $('#txt6 .cinco').removeClass('show').addClass('hide');
-      $('#txt7 .numero').removeClass('show').addClass('hide');
-      $('#txt7 .uno').removeClass('show').addClass('hide');
-      $('#txt7 .dos').removeClass('show').addClass('hide');
-      $('#txt7 .tres').removeClass('show').addClass('hide');
+      $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 10700 ){
-      $('#txt7 .numero').removeClass('hide').addClass('show');
-      $('#txt7 .uno').removeClass('hide').addClass('show');
+      $('#txt7 .numero, #txt7 .uno').removeClass('hide').addClass('show');
     };
 
     //triggers animaciones escena 3
@@ -233,8 +194,7 @@ $(document).ready(function(){
         $('#ruido').removeClass('hide').addClass('show');
       }; 
     if ( pageX() >= 4990 ){
-        $('#ruido').removeClass('show').addClass('hide');
-        $('#nube').removeClass('show').addClass('hide');
+        $('#ruido, #nube').removeClass('show').addClass('hide');
       };  
     if ( pageX() >= 4900 ){
       $('.dude-brazos .b-left').addClass('feliz');
