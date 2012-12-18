@@ -13,7 +13,8 @@ $(document).ready(function(){
     return $(window).scrollLeft();
   }
 
-  $("body").keydown(function(e) {
+  //función de keypress
+  $("html, body").keydown(function(e) {
     if(e.keyCode == 37) {
       console.log('Izquierda');
     }
@@ -47,6 +48,11 @@ $(document).ready(function(){
       scrollTimeout = setTimeout( scrollendHandler, scrollendDelay );
     });
   });
+
+  //soon to be cool function
+  /*$.scrollAction = function(x) {
+    pageX() - 
+  }*/
 
   $(window).scroll(function(){
 
