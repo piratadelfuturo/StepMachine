@@ -12,7 +12,7 @@
     }
     ?>
     <div class="banner1 sb-bloque">
-        <a href="#"><img src="/bundles/boomfront/images/catads/<?php print rand(1, 6)?>.jpg"></a>
+        <a href="mailto:contacto@7boom.mx?subject=Contacto"><img src="/bundles/boomfront/images/catads/<?php print rand(1, 6)?>.jpg"></a>
     </div>
     <?php echo $view->render('BoomFrontBundle:Widget:facebook.html.php'); ?>
     <?php echo $view->render('BoomFrontBundle:Widget:twitter.html.php'); ?>

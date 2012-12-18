@@ -156,8 +156,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   height: 320px;
   display: block;
   z-index: 10;
-  position: absolute;
-  left: 0px;
+  position: fixed;
+  left: 300px;
   top: 80px;
 }
 
@@ -348,19 +348,39 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 }
 
 #dude-banner.jump {
+  transform: rotate(-35deg);
+  -moz-transform: rotate(-35deg);
   -webkit-transform: rotate(-35deg);
+  -o-transform: rotate(-35deg);
+  -ms-transform: rotate(-35deg);
   bottom: 4000px;
   visibility: hidden;
   left: 100px;
+  transition: transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
   -webkit-transition: -webkit-transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
+  -moz-transition: -moz-transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
+  -o-transition: -o-transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
+  -ms-transition: -ms-transform 1000ms ease 200ms, bottom 2000ms ease 0ms, left 2000ms ease 0ms, visibility 10ms ease 1200ms; 
 }
 
 #geocities.hideGC {
+  transform: rotate(35deg);
+  transform-origin: top left;
   -webkit-transform: rotate(35deg);
   -webkit-transform-origin: top left;
+  -moz-transform: rotate(35deg);
+  -moz-transform-origin: top left;
+  -o-transform: rotate(35deg);
+  -o-transform-origin: top left;
+  -ms-transform: rotate(35deg);
+  -ms-transform-origin: top left;
+  transition: transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
+  -moz-transition: -moz-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
+  -webkit-transition: -webkit-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
+  -o-transition: -o-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
+  -ms-transition: -ms-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
   bottom: -100%;
   visibility: hidden;
-  -webkit-transition: -webkit-transform 1000ms ease 200ms, bottom 1000ms ease 800ms, visibility 10ms ease 2000ms;
 }
 
 #dude.fall {
@@ -377,20 +397,30 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 170px;
   height: 300px;
   display: block;
-  position: absolute;
+  position: fixed;
   z-index: 18;
   bottom: 20px;
+  left: 350px;
+  transition: bottom 1000ms ease-in-out 1000ms;
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
+  -moz-transition: bottom 1000ms ease-in-out 1000ms;
+  -o-transition: bottom 1000ms ease-in-out 1000ms;
+  -ms-transition: bottom 1000ms ease-in-out 1000ms;
 }
 
 #dude2 {
   width: 170px;
   height: 300px;
   display: block;
-  position: absolute;
+  position: fixed;
   z-index: 18;
   bottom: 20px;
+  left: 585px;
+  transition: bottom 1000ms ease-in-out 1000ms;
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
+  -moz-transition: bottom 1000ms ease-in-out 1000ms;
+  -o-transition: bottom 1000ms ease-in-out 1000ms;
+  -ms-transition: bottom 1000ms ease-in-out 1000ms;
 }
 
 #dude2.fall {
@@ -404,6 +434,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 }
 
 #dude.jump {
+  position: absolute !important;
   animation: jump 700ms ease-in-out 0ms 1 forwards;
   -webkit-animation: jump 700ms ease-in-out 0ms 1 forwards;
   -moz-animation: jump 700ms ease-in-out 0ms 1 forwards;
@@ -524,6 +555,7 @@ div.feliz .dude-brazos .b-right {
   height: 67px;
   position: absolute;
   bottom: 3px;
+  left: 5px;
 }
 
 .dude-piernas.walk .p-right {
@@ -965,24 +997,40 @@ div.chango-nube.mirror {
 #globo.hidden, #social.hidden {
   bottom: 0px;
   opacity: 0;
+  transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
+  -moz-transition: all 1000ms ease-in 0ms;
+  -o-transition: all 1000ms ease-in 0ms;
+  -ms-transition: all 1000ms ease-in 0ms;
 }
 
 #globo.appear {
   bottom: 120px;
   opacity: 1;
+  transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
+  -moz-transition: all 1000ms ease-in 0ms;
+  -o-transition: all 1000ms ease-in 0ms;
+  -ms-transition: all 1000ms ease-in 0ms;
 }
 
 #social.appear {
   bottom: 20px;
   opacity: 1;
+  transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
+  -moz-transition: all 1000ms ease-in 0ms;
+  -o-transition: all 1000ms ease-in 0ms;
+  -ms-transition: all 1000ms ease-in 0ms;
 }
 
 #globo.give {
   left: 5590px;
-  -webkit-transition: left 1000ms ease 0s;  
+  transition: left 1000ms ease 0s;
+  -webkit-transition: left 1000ms ease 0s; 
+  -moz-transition: left 1000ms ease 0s; 
+  -o-transition: left 1000ms ease 0s; 
+  -ms-transition: left 1000ms ease 0s;  
 }
 
 #morro {
