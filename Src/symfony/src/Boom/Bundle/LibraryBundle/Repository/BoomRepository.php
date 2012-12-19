@@ -420,6 +420,21 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
+    public function allBoomsIndex(){
+        $cb = $this->createQueryBuilder('boom');
+        $cb->select('boom');
+        $cb->andWhere(
+                $cb->expr()->in('boom.status', array(Boom::STATUS_PUBLIC))
+        );
+        $cb->addOrderBy('boom.date_published', 'DESC');
+        $cb->addOrderBy('boom.featured', 'DESC');
+
+        $query = $cb->getQuery();
+        $result = $query->execute();
+
+        return $result;
+    }
+
     public function findLatestBooms($sort = array('boom.date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array()) {
 
         $statusFilter = $this->validateStatus($status);

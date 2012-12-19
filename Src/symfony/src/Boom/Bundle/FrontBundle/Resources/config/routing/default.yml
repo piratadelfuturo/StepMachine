@@ -9,6 +9,13 @@ BoomFrontBundle_boom_sitemap:
         _format: "xml"
         _method:  GET
 
+BoomFrontBundle_boom_sitemap_search:
+    pattern:  /sitemap_search.{_format}
+    defaults: { _controller: "BoomFrontBundle:Default:sitemapSearch", _format: "xml" }
+    requirements:
+        _format: "xml"
+        _method:  GET
+
 BoomFrontBundle_boom_twit_count:
     pattern:  /tc/{category_slug}/{slug}
     defaults: { _controller: "BoomFrontBundle:Default:twitCount", _format: "json" }

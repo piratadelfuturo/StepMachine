@@ -47,6 +47,13 @@ security:
         admin_area:
             pattern:    ^/admin
             provider: admin_chain_provider
+            remember_me:
+              always_remember_me: true
+              key:      "%secret%"
+              path:     /
+              lifetime: 604800
+              domain: 7boom.mx
+              user_providers: [admin_chain_provider]
             logout:
                 path: /admin/logout
                 target: /admin/login
