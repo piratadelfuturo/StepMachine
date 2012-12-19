@@ -2397,7 +2397,7 @@ footer p {
   height: 21px;
 }
 
-.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget iframe {
+.social .fb_iframe_widget, .social .fb_iframe_widget span, .social .fb_iframe_widget iframe {
   width: 130px !important;
   height: 20px !important;
 }
