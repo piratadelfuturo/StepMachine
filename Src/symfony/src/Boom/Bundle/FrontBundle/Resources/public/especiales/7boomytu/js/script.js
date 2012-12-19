@@ -13,7 +13,8 @@ $(document).ready(function(){
     return $(window).scrollLeft();
   }
 
-  $("body").keydown(function(e) {
+  //función de keypress
+  $("html, body").keydown(function(e) {
     if(e.keyCode == 37) {
       console.log('Izquierda');
     }
@@ -47,6 +48,11 @@ $(document).ready(function(){
       scrollTimeout = setTimeout( scrollendHandler, scrollendDelay );
     });
   });
+
+  //soon to be cool function
+  /*$.scrollAction = function(x) {
+    pageX() - 
+  }*/
 
   $(window).scroll(function(){
 
@@ -116,8 +122,8 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 5500 ){
-      $('#txt4 .numero, #txt4 .uno, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('hide').addClass('show');
-      $('#txt4 .dos, #txt3 .dos').removeClass('show').addClass('hide');
+      $('#txt4 .numero, #txt4 .uno').removeClass('hide').addClass('show');
+      $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('show').addClass('hide');
     };
 
     if ( pageX() >= 6000 ){

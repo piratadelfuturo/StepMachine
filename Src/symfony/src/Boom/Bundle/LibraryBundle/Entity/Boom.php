@@ -183,8 +183,8 @@ class Boom extends DomainObject {
         $this->reply_enabled = true;
         $this->status = self::STATUS_DRAFT;
         $this->summary = '';
-        $this->featured = NULL;
-        $this->date_published = NULL;
+        $this->featured = false;
+        $this->date_published = new \DateTime("now");
         $this->date_created = new \DateTime("now");
         for ($i = 1; $i <= $this->element_amount; $i++) {
             $element = new Boomelement($this);
