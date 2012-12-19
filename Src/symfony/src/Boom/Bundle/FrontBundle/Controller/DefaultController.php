@@ -202,6 +202,40 @@ class DefaultController extends Controller {
                 ));
     }
 
+    public function sitemapSearchAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $cacheDriver = $this->get('cache.apc');
+        $cacheName = 'search_sitemap_v1';
+        $urls = $cacheDriver->fetch($cacheName);
+        $hostname = $this->getRequest()->getHost();
+
+        if ($urls === false) {
+            $urls = array();
+
+            // service
+            $booms = $em->getRepository('BoomLibraryBundle:Boom')->allBoomsIndex();
+            foreach ($booms as $boom) {
+                $urls[] = array(
+                    'loc' => $this->get('router')->generate(
+                            'BoomFrontBundle_boom_show', array(
+                        'category_slug' => $boom['category']['slug'],
+                        'slug' => $boom['slug']
+                    )),
+                    'priority' => '1.0',
+                    'image' => $boom['image']
+                    );
+            }
+            $cacheDriver->save($cacheName, $urls, 120);
+        }
+
+        return $this->render(
+                        'BoomFrontBundle:Default:sitemap.xml.php', array(
+                    'urls' => $urls,
+                    'hostname' => $hostname
+                        )
+        );
+    }
+
     public function sitemapAction() {
         $em = $this->getDoctrine()->getEntityManager();
         $cacheDriver = $this->get('cache.apc');
