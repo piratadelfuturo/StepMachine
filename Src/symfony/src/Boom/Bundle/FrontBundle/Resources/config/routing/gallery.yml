@@ -15,21 +15,18 @@ BoomFrontBundle_gallery_ajax_edit:
     pattern:  /{id}/edit
     defaults: { _controller: "BoomFrontBundle:Gallery:ajaxEdit" }
     requirements:
-      id: \d+
       _method: get
 
 BoomFrontBundle_gallery_ajax_update:
     pattern:  /{id}/update
     defaults: { _controller: "BoomFrontBundle:Gallery:ajaxUpdate" }
     requirements:
-      id: \d+
       _method: post
 
 BoomFrontBundle_gallery_iframe_preview:
     pattern:  /preview/{id}
     defaults: { _controller: "BoomFrontBundle:Gallery:preview" , id: 0}
     requirements:
-      id: \d+
       _method: get
     options:
       expose: true
