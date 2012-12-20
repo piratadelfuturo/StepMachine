@@ -215,7 +215,7 @@ class BoomController extends Controller {
             $this->get('session')->getFlashBag()->add('notice', 'Boom guardado!');
             if (($entity['status'] === Boom::STATUS_PUBLIC
                     || $entity['status'] === Boom::STATUS_PRIVATE
-                    ) && $entity['datepublished'] <= new DateTime("now")
+                    ) && $entity['datepublished'] <= new \DateTime("now")
             ) {
                 $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
                         $entity['user'], 'create', $entity);
