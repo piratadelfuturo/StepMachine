@@ -44,9 +44,10 @@ $(document).ready(function(){
     var len = slidesPos.length;
 
     for ( i in slidesPos ) {
+      console.log(i);
       if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
         console.log(slidesPos);
-        $('html, body').stop(true, true).animate({
+        $('html, body').stop(false, false).animate({
           scrollLeft: slidesPos[i][1]
         }, 7000);
       }
