@@ -38,18 +38,35 @@ $(document).ready(function(){
   //Animación al teclear
   $.slideMove = function(direction){
     var slidesPos = {
-      slide1:[0, 1400],
-      slide2:[1400, 2800]
+      slide1:[0, 500],
+      slide2:[500, 1000],
+      slide3:[1000, 1500],
+      slide4:[1500, 2600],
+      slide5:[2600, 3000],
+      slide6:[3000, 3500],
+      slide7:[3500, 4700],
+      slide8:[4700, 5000],
+      slide9:[5000, 5700],
+      slide10:[5700, 6000],
+      slide11:[6000, 6500],
+      slide12:[6500, 7000],
+      slide13:[7000, 7500],
+      slide14:[7500, 8000],
+      slide15:[8000, 8500],
+      slide16:[8500, 9000],
+      slide17:[9000, 9300],
+      slide19:[9300, 9500],
+      slide20:[9500, 10000],
+      slide21:[10000, 10100]
     };
     var len = slidesPos.length;
-
     for ( i in slidesPos ) {
       console.log(i);
       if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
         console.log(slidesPos);
         $('html, body').stop(false, false).animate({
           scrollLeft: slidesPos[i][1]
-        }, 7000);
+        }, 3000);
       }
     }
   }
@@ -118,7 +135,7 @@ $(document).ready(function(){
 
     if ( pageX() >= 500 ){
       $('#txt1 .uno, #txt1 .tres').removeClass('show').addClass('hide');
-      $('#txt1 .tres').removeClass('show').addClass('hide');
+      $('#txt1 .dos').removeClass('hide').addClass('show');
     };
 
     if ( pageX() >= 1000 ){
@@ -164,7 +181,7 @@ $(document).ready(function(){
       $('#txt3 .dos, #txt3 .tres').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 5500 ){
+    if ( pageX() >= 5700 ){
       $('#txt4 .numero, #txt4 .uno').removeClass('hide').addClass('show');
       $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('show').addClass('hide');
     };
@@ -195,26 +212,21 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 8500 ){
-      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .dos').removeClass('show').addClass('hide');
-      $('#txt6 .numero, #txt6 .uno').removeClass('hide').addClass('show');
+      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .tres').removeClass('show').addClass('hide');
+      $('#txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 8600 ){
-      $('#txt6 .dos').removeClass('hide').addClass('show');
-      $('#txt6 .tres').removeClass('show').addClass('hide');
-    };
-
-    if ( pageX() >= 8800 ){
+    if ( pageX() >= 9000 ){
       $('#txt6 .tres').removeClass('hide').addClass('show');
       $('#txt6 .dos, #txt6 .uno, #txt6 .cuatro').removeClass('show').addClass('hide');
     };
 
-    if ( pageX() >= 9100 ){
+    if ( pageX() >= 9300 ){
       $('#txt6 .cuatro').removeClass('hide').addClass('show');
       $('#txt6 .tres').removeClass('show').addClass('hide');
     };
 
-    if ( pageX() >= 9350 ){
+    if ( pageX() >= 9500 ){
       $('#txt6 .cuatro').removeClass('show').addClass('hide').delay(5600).queue(function(next){
         $('#txt6 .cinco').removeClass('hide').addClass('show');
       });
@@ -224,18 +236,12 @@ $(document).ready(function(){
       $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('show').addClass('hide');
     };
 
-    if ( pageX() >= 10700 ){
+    if ( pageX() >= 10000 ){
       $('#txt7 .numero, #txt7 .uno').removeClass('hide').addClass('show');
     };
 
     //triggers animaciones escena 3
 
-    if ( pageX() >= 4800 ){
-      $('#nube').removeClass('hide').addClass('show');
-      };
-    if ( pageX() >= 4850 ){
-        $('#ruido').removeClass('hide').addClass('show');
-      }; 
     if ( pageX() >= 4990 ){
         $('#ruido, #nube').removeClass('show').addClass('hide');
       };  
@@ -255,24 +261,24 @@ $(document).ready(function(){
     if ( pageX() >= 6000 ){ 
       $('#morra1, #morra2, #alien').addClass('feliz');
     };
-    if ( pageX() >= 8500 ){ 
+    if ( pageX() >= 9000 ){ 
       $('#dude').css('left', (pageX() + 300) + 'px' ).addClass('jump');
       $('#dude .dude-gorra').removeClass('show').addClass('hide');
     };
-    if ( pageX() >= 8850 ){ 
+    if ( pageX() >= 9150 ){ 
       $('#dude .dude-casco').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 9100 ){ 
+    if ( pageX() >= 9250 ){ 
       $('#dude').removeClass('jump');
       $('#cohete #cohete-bubble').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 9100 ){ 
+    if ( pageX() >= 9250 ){ 
       $('#dude').hide(0);
     };
 
-    if ( pageX() >= 9350){ 
+    if ( pageX() >= 9500){ 
       if(isfirst == 0){
         $('#cohete').addClass('volar').delay(3000).queue(function(next){
             $(this).hide(0);
@@ -296,7 +302,7 @@ $(document).ready(function(){
 
     };
 
-    if ( pageX() >= 11000 ){
+    if ( pageX() >= 10100 ){
       $('#txt7 .uno').removeClass('show').addClass('hide');
       $('#txt7 .dos, #txt7 .tres').removeClass('hide').addClass('show');
       $('#dude2 .b-left').addClass('feliz');
