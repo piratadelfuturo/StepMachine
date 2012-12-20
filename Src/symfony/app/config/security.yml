@@ -95,6 +95,6 @@ security:
         - path: ^/login
           roles: IS_AUTHENTICATED_ANONYMOUSLY
         - path: ^/(boom|actividad|tu_sitio)
-          roles: IS_AUTHENTICATED_FULLY
+          roles: ROLE_USER
         - path: ^/
           roles: IS_AUTHENTICATED_ANONYMOUSLY
