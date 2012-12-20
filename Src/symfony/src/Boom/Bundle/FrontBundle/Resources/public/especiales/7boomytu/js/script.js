@@ -16,12 +16,42 @@ $(document).ready(function(){
   //función de keypress
   $("html, body").keydown(function(e) {
     if(e.keyCode == 37) {
+
       console.log('Izquierda');
+      var direction = 'l';
+      event.preventDefault();
+
+      return $.slideMove();
+
     }
     else if(e.keyCode == 39) {
+
       console.log('Derecha');
+      var direction = 'r';
+      event.preventDefault();
+
+      return $.slideMove();
+
     }
   });
+
+  //Animación al teclear
+  $.slideMove = function(direction){
+    var slidesPos = {
+      slide1:[0, 1400],
+      slide2:[1400, 2800]
+    };
+    var len = slidesPos.length;
+
+    for ( i in slidesPos ) {
+      if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
+        console.log(slidesPos);
+        $('html, body').stop(true, true).animate({
+          scrollLeft: slidesPos[i][1]
+        }, 7000);
+      }
+    }
+  }
 
   $('.bloque').addClass('hide');
   $('.numero').addClass('hide');
@@ -49,12 +79,24 @@ $(document).ready(function(){
     });
   });
 
-  //soon to be cool function
-  /*$.scrollAction = function(x) {
-    pageX() - 
-  }*/
 
   $(window).scroll(function(){
+
+    //soon to be cool function
+    /*var obj = {
+      ani1:['#dude-banner', 1],
+      ani2:['id_del_bloque_2', 780]
+    };
+
+    var length = $('.bloque').length() -1;
+
+    for (i=0; i<length; i++){
+      var blockPosition = scrollLeft - $('.bloque').eq(i).offset().left;
+
+      if(blockPosition < 0 ){
+        $('.bloque').eq(i).addClass('active');
+      } 
+    }*/
 
     //tirar geocities
     if ( pageX() >= 1 ) {
