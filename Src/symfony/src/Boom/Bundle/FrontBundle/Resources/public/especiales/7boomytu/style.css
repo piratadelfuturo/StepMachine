@@ -22,7 +22,7 @@ html, body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  width: 12780px;
+  width: 12000px;
 }
 
 /*ESTILOS COMPARTIDOS */
@@ -415,7 +415,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   position: fixed;
   z-index: 18;
   bottom: 20px;
-  left: 585px;
+  left: 450px;
   transition: bottom 1000ms ease-in-out 1000ms;
   -webkit-transition: bottom 1000ms ease-in-out 1000ms;
   -moz-transition: bottom 1000ms ease-in-out 1000ms;
@@ -934,7 +934,7 @@ div.chango-nube.mirror {
   background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
-  width: 7980px;
+  width: 7200px;
 }
 
 #escenas-multiples div.bottom {
@@ -954,7 +954,7 @@ div.chango-nube.mirror {
 }
 
 #escena-6 {
-  width: 2210px;
+  width: 1105px;
 }
 
 /*ESCENA 3*/
@@ -1726,13 +1726,31 @@ div#alien.feliz .face2, div#morra1.feliz .face2, div#morra2.feliz .face2 {
   -ms-transition: opacity .5s ease-in-out 0s;    
 }
 
-div#alien.feliz, div#morra1.feliz, div#morra2.feliz {
+div#alien.feliz {
   bottom: 1400px;
   transition: all 1.5s ease-in-out 1s;
   -webkit-transition: all 1.5s ease-in-out 1s;
   -moz-transition: all 1.5s ease-in-out 1s;
   -o-transition: all 1.5s ease-in-out 1s;
   -ms-transition: all 1.5s ease-in-out 1s;
+}
+
+div#morra2.feliz {
+  bottom: 1400px;
+  transition: all 1.5s ease-in-out 1250ms;
+  -webkit-transition: all 1.5s ease-in-out 1250ms;
+  -moz-transition: all 1.5s ease-in-out 1250ms;
+  -o-transition: all 1.5s ease-in-out 1250ms;
+  -ms-transition: all 1.5s ease-in-out 1250ms;
+}
+
+div#morra1.feliz {
+  bottom: 1400px;
+  transition: all 1.5s ease-in-out 1500ms;
+  -webkit-transition: all 1.5s ease-in-out 1500ms;
+  -moz-transition: all 1.5s ease-in-out 1500ms;
+  -o-transition: all 1.5s ease-in-out 1500ms;
+  -ms-transition: all 1.5s ease-in-out 1500ms;
 }
 
 div#alien.feliz {
@@ -2009,7 +2027,7 @@ div.feliz .p-right {
 
 #escena-7 {
   height: 100%;
-  width: 1200px;
+  width: 1525px;
 }
 
 #escena-7 #social {
@@ -2018,7 +2036,7 @@ div.feliz .p-right {
   height: 333px;
   position: absolute;
   z-index: 13;
-  left: 30px;
+  left: 80px;
 }
 
 #escena-7 #social a {

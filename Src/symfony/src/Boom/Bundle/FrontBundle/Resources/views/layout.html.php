@@ -7,7 +7,7 @@
       <meta property="og:type"   content="<?php echo $view->escape($fb_boom_graph_data['type']) ?>" />
       <meta property="og:url"    content="<?php echo $view->escape($fb_boom_graph_data['url']) ?>" />
       <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
-      <meta property="og:image"  content="<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
+      <meta property="og:image"  content="http://www.7boom.mx<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
     <?php endif; ?>
     <?php $title = $view->escape($view['slots']->get('title', null));?>
     <title>
