@@ -3,7 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
 framework:
-    esi:             { enabled: true }
+    esi:             { enabled: false }
     translator:      { fallback: %locale% }
     secret:          %secret%
     router:
