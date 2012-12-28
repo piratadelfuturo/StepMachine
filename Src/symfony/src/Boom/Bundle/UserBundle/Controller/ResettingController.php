@@ -2,8 +2,8 @@
 
 namespace Boom\Bundle\UserBundle\Controller;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
@@ -22,7 +22,7 @@ class ResettingController extends BaseController {
     /**
      * Request reset user password: submit form and send email
      */
-    public function sendEmailAction() {
+    public function sendEmailAction(Request $request) {
         $token = $this->container->get('security.context')->getToken();
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER') == true) {
@@ -79,7 +79,7 @@ class ResettingController extends BaseController {
     /**
      * Reset user password
      */
-    public function resetAction($token) {
+    public function resetAction(Request $request, $token) {
         $user = $this->container->get('fos_user.user_manager')->findUserByConfirmationToken($token);
 
         if (null === $user) {
