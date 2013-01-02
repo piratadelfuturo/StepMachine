@@ -238,7 +238,7 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                     <span class="sm-flag <?php echo $view->escape($related_boom['category']['slug']) ?>"><?php echo $view->escape($related_boom['category']['name']) ?></span>
                   </div>
                   <div>
-                    <p class="boom-ti"><a href="#" class="boom-moar"><?php echo $view->escape($view['boom_front']->ellipsis($related_boom['title'])) ?></a></p>
+                    <p class="boom-ti"><a href="<?php echo $related_url ?>" class="boom-moar"><?php echo $view->escape($view['boom_front']->ellipsis($related_boom['title'])) ?></a></p>
                     <a href="<?php echo $related_userUrl ?>" class="boom-moar">Por <?php echo $view->escape($related_boom['user']['name']) ?>.</a>
                     <p><date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($related_boom['datepublished'], 'EEE, d MMM, yyyy' )) ?></date></p>
                   </div>
