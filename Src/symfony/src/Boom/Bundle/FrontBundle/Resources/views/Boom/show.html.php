@@ -265,7 +265,7 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                   ?>
                 <a href="<?php echo $prev_url ?>">Boom Anterior</a>
                 <a href="<?php echo $prev_url ?>">
-                    <img src="<?php echo $view['boom_image']->getBoomImageUrl($prev_boom['image']['path'], 130, 74) ?>" alt="<?php echo $prev_boom['title'] ?>" width="130" height="74">
+                    <img src="<?php echo $view['boom_image']->getBoomImageUrl($prev_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($prev_boom['title']) ?>" width="130" height="74">
                 </a>
               </div>
               <div class="next-boom page-block">
@@ -278,7 +278,7 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                                 )
                             );
                   ?>
-                <a href="<?php echo $next_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($next_boom['image']['path'], 130, 74) ?>" alt="<?php echo $next_boom['title'] ?>" width="130" height="74"></a>
+                <a href="<?php echo $next_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($next_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($next_boom['title']) ?>" width="130" height="74"></a>
                 <a href="<?php echo $next_url ?>">Siguiente Boom</a>
               </div>
             </div>
