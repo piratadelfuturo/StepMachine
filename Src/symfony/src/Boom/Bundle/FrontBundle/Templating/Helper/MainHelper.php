@@ -197,7 +197,7 @@ class MainHelper extends Helper {
         return $ftm->format($date);
     }
 
-    public function ellipsis($text, $max = 100, $append = '&hellip;') {
+    public function ellipsis($text, $max = 100, $append = '…') {
         if (strlen($text) <= $max)
             return $text;
         $out = substr($text, 0, $max);
