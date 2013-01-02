@@ -253,6 +253,7 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
              */
             ?>
             <div class="pager cf">
+              <?php if($prev_boom !== NULL): ?>
               <div class="prev-boom page-block">
                   <?php
                     $prev_url = $view['router']->generate(
@@ -268,6 +269,8 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                     <img src="<?php echo $view['boom_image']->getBoomImageUrl($prev_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($prev_boom['title']) ?>" width="130" height="74">
                 </a>
               </div>
+                <?php endif; ?>
+                <?php if($next_boom !== NULL): ?>
               <div class="next-boom page-block">
                     <?php
                     $next_url = $view['router']->generate(
@@ -281,6 +284,7 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                 <a href="<?php echo $next_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($next_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($next_boom['title']) ?>" width="130" height="74"></a>
                 <a href="<?php echo $next_url ?>">Siguiente Boom</a>
               </div>
+            <?php endif; ?>
             </div>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
