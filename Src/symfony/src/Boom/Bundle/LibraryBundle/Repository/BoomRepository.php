@@ -533,7 +533,7 @@ class BoomRepository extends NestedTreeRepository {
                 $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
         );
         $qb->setFirstResult(0)->setMaxResults(1);
-        $qb->orderBy('boom.date_published', 'DESC');
+        $qb->orderBy('boom.date_published', 'ASC');
 
         $query = $qb->getQuery();
         $query->setParameter('date', $boom['datepublished']);
