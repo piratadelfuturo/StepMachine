@@ -222,8 +222,12 @@
             });
 
             ed.addCommand('boomLink', function() {
+                var link = ed.selection.getNode()|| null;
+                if(link !== null){
+                    link = $(link).closest('a').attr('href') || '';
+                }
                 $.prompt(
-                    'Link hacia algun boom', '',
+                    'Link hacia algun boom', link,
                     function(txt){
                         ed.execCommand('mceInsertLink',false, txt);
                     });
