@@ -62,6 +62,20 @@ class MainHelper extends Helper {
         );
     }
 
+    public function getNextAvailableBoom(Boom $boom){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $featured = $repo->getNextAvailableBoom($boom);
+        return $featured;
+    }
+
+    public function getPrevAvailableBoom(Boom $boom){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $featured = $repo->getPrevAvailableBoom($boom);
+        return $featured;
+    }
+
     private function _filterActivity(Activity $entity) {
         $act = array();
         $act['self'] = false;

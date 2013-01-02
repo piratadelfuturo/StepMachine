@@ -520,11 +520,41 @@ class BoomRepository extends NestedTreeRepository {
         $query = $cb->getQuery();
         $query->setParameter('user_id', $user['id']);
         $query->setParameter('boom_id', $boom['id']);
-        echo $query->getSQL();
-
         $result = $query->execute();
-        var_dump($result);
-        exit;
+        return $result;
+    }
+
+    public function getNextAvailableBoom(Boom $boom){
+        $qb = $this->createQueryBuilder('boom');
+        $qb->select('boom');
+        $qb->andWhere(
+                $qb->expr()->gte('boom.date_published', ':date'),
+                $qb->expr()->neq('boom.id', ':boom_id'),
+                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
+        );
+        $qb->setFirstResult(0)->setMaxResults(1);
+
+        $query = $qb->getQuery();
+        $query->setParameter('date', $boom['datepublished']);
+        $query->setParameter('boom_id', $boom['id']);
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
+
+    public function getPrevAvailableBoom(Boom $boom){
+        $qb = $this->createQueryBuilder('boom');
+        $qb->select('boom');
+        $qb->andWhere(
+                $qb->expr()->lte('boom.date_published', ':date'),
+                $qb->expr()->neq('boom.id', ':boom_id'),
+                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
+        );
+        $qb->setFirstResult(0)->setMaxResults(1);
+
+        $query = $qb->getQuery();
+        $query->setParameter('date', $boom['datepublished']);
+        $query->setParameter('boom_id', $boom['id']);
+        $result = $query->getOneOrNullResult();
         return $result;
     }
 

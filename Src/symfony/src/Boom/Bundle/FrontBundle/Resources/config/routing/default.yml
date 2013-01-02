@@ -36,6 +36,5 @@ BoomFrontBundle_boom_show:
         _method:  GET
         category_slug: ^[a-z0-9-]+$
         slug: ^[a-z0-9-]+$
-        username: ^[A-Za-z0-9_\-\.]+$
     options:
         expose: true

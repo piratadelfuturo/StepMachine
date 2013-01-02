@@ -43,6 +43,9 @@ if ($view['security']->isGranted('ROLE_USER') == true && $entity['user']['id'] =
 
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
+
+$next_boom = $view['boom_front']->getNextAvailableBoom($entity);
+$prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
 ?>
 <div class="<?php echo $category['slug'] ?> single-boom">
     <div class="boom-main">
@@ -247,18 +250,38 @@ $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
               	</li>
               </ul>
             </div>
+             */
+            ?>
             <div class="pager cf">
               <div class="prev-boom page-block">
-                <a href="#">Boom Anterior</a>
-                <a href="#"><img src="http://placehold.it/130x74" alt="Título del boom anterior" width="130" height="74"></a>
+                  <?php
+                    $prev_url = $view['router']->generate(
+                            'BoomFrontBundle_boom_show',
+                                array(
+                                    'category_slug' => $prev_boom['category']['slug'],
+                                    'slug'          => $prev_boom['slug']
+                                )
+                            );
+                  ?>
+                <a href="<?php echo $prev_url ?>">Boom Anterior</a>
+                <a href="<?php echo $prev_url ?>">
+                    <img src="<?php echo $view['boom_image']->getBoomImageUrl($prev_boom['image']['path'], 130, 74) ?>" alt="<?php echo $prev_boom['title'] ?>" width="130" height="74">
+                </a>
               </div>
               <div class="next-boom page-block">
-                <a href="#"><img src="http://placehold.it/130x74" alt="Título del boom anterior" width="130" height="74"></a>
-                <a href="#">Siguiente Boom</a>
+                    <?php
+                    $next_url = $view['router']->generate(
+                            'BoomFrontBundle_boom_show',
+                                array(
+                                    'category_slug' => $next_boom['category']['slug'],
+                                    'slug'          => $next_boom['slug']
+                                )
+                            );
+                  ?>
+                <a href="<?php echo $next_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($next_boom['image']['path'], 130, 74) ?>" alt="<?php echo $next_boom['title'] ?>" width="130" height="74"></a>
+                <a href="<?php echo $next_url ?>">Siguiente Boom</a>
               </div>
             </div>
-            */
-            ?>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>
