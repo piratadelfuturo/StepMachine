@@ -212,46 +212,41 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
               </ul>
               <a class="more-replies"></a>
             </div>
+             */ ?>
+            <?php
+                $related_booms = $view['boom_front']->getRelatedBooms($entity);
+                if(!empty($related_booms)):
+            ?>
             <div class="boom-related respuestas-boom cf">
               <h3 class="reply-flag">Booms relacionados</h3>
               <ul class="cf list-grid">
-              	<li>
+                  <?php
+                  foreach($related_booms as $related_boom):
+                      $related_url = $view['router']->generate(
+                              'BoomFrontBundle_boom_show',
+                              array(
+                                  'category_slug' => $related_boom['category']['slug'],
+                                  'slug' => $related_boom['slug']
+                              )
+                              );
+                        $related_userUrl = $view['router']->generate(
+                'BoomFrontBundle_user_profile',array('username' => $related_boom['user']['username']));
+                      ?>
+                  <li>
                   <div>
-                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
-                    <span class="sm-flag geek">Geek</span>
+                    <a href="<?php echo $related_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($related_boom['image']['path'], 191, 108) ?>" alt="<?php $view->escape($related_boom['title']) ?>" width="191" height="108"></a>
+                    <span class="sm-flag <?php echo $view->escape($related_boom['category']['slug']) ?>"><?php echo $view->escape($related_boom['category']['name']) ?></span>
                   </div>
                   <div>
-                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
-                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
-                    <p><date>jue, 13 dic, 2012</date></p>
-                  </div>
-              	</li>
-              	<li>
-                  <div>
-                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
-                    <span class="sm-flag geek">Geek</span>
-                  </div>
-                  <div>
-                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
-                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
-                    <p><date>jue, 13 dic, 2012</date></p>
-                  </div>
-              	</li>
-              	<li>
-                  <div>
-                    <a href="#"><img src="http://placehold.it/191x108" alt="Placeholder" width="191" height="108"></a>
-                    <span class="sm-flag geek">Geek</span>
-                  </div>
-                  <div>
-                    <p class="boom-ti"><a href="#" class="boom-moar">Los gadgets más inútiles de 2012</a></p>
-                    <a href="#" class="boom-moar">Por Sergio Alvite.</a>
-                    <p><date>jue, 13 dic, 2012</date></p>
+                    <p class="boom-ti"><a href="#" class="boom-moar"><?php echo $view->escape($related_boom['title']) ?></a></p>
+                    <a href="<?php echo $related_userUrl ?>" class="boom-moar">Por <?php echo $view->escape($related_boom['user']['name']) ?>.</a>
+                    <p><date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($related_boom['datepublished'], 'EEE, d MMM, yyyy' )) ?></date></p>
                   </div>
               	</li>
+                <?php endforeach; ?>
               </ul>
             </div>
-             */
-            ?>
+            <?php endif; ?>
             <div class="pager cf">
               <?php if($prev_boom !== NULL): ?>
               <div class="prev-boom page-block">

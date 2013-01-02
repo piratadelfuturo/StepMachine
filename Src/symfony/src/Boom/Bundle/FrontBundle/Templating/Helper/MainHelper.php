@@ -76,6 +76,13 @@ class MainHelper extends Helper {
         return $featured;
     }
 
+    public function getRelatedBooms(Boom $boom, $limit = 6){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $repo = $em->getRepository('BoomLibraryBundle:Boom');
+        $featured = $repo->getRelatedBooms($boom,$limit);
+        return $featured;
+    }
+
     private function _filterActivity(Activity $entity) {
         $act = array();
         $act['self'] = false;

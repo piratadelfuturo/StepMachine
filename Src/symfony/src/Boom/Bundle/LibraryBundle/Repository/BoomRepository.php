@@ -560,4 +560,32 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
+    public function getRelatedBooms(Boom $boom, $limit = 7){
+        $qb = $this->createQueryBuilder('boom');
+        $qb->select('boom');
+        $qb->leftJoin('boom.tags', 'tag');
+        $qb->andWhere(
+                $qb->expr()->neq('boom.id', ':boom_id'),
+                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC),
+                $qb->expr()->lte('boom.date_published', ':date'),
+                $qb->expr()->in('tag.id', ':tags')
+        );
+        $qb->setFirstResult(0)->setMaxResults($limit);
+        $qb->orderBy('boom.date_published', 'DESC');
+        $tags = array();
+        if(!empty($boom['tags'])){
+            foreach($boom['tags'] as $tag){
+                $tags[] = $tag['id'];
+            }
+        }
+        $query = $qb->getQuery();
+        $query->setParameter('tags', $tags);
+        $query->setParameter('date', $boom['datepublished']);
+        $query->setParameter('boom_id', $boom['id']);
+        $result = $query->getResult();
+        return $result;
+
+
+    }
+
 }
