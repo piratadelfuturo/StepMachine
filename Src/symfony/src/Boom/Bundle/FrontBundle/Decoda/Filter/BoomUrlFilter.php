@@ -33,7 +33,7 @@ class BoomUrlFilter extends \DecodaFilter {
 			'pattern' => self::URL_PATTERN,
 			'testNoDefault' => true,
 			'attributes' => array(
-				'default' => self::URL_PATTERN
+				'default' => self::URL_PATTERN,
 			),
 			'map' => array(
 				'default' => 'href'
@@ -63,9 +63,7 @@ class BoomUrlFilter extends \DecodaFilter {
 	 * @return string
 	 */
 	public function parse(array $tag, $content) {
-            var_dump($content);
-            var_dump($tag);
-
+                $tag['attributes']['target'] = '_blank';
 		if (empty($tag['attributes']['href']) && empty($tag['attributes']['default'])) {
 			$tag['attributes']['href'] = $content;
 		}

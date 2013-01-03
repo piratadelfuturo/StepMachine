@@ -112,13 +112,14 @@ fm_bbcode:
       filters:
         - { classname: boom_video,    class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomVideoFilter }
         - { classname: boom_gallery,  class: "@boom_front.gallery.decoda.filter" }
+        - { classname: boom_url,      class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomUrlFilter }
       templates:
         - path: %kernel.root_dir%/Resources/Decoda/templates/
     filter_sets:
         default:
           locale: es
           xhtml: true
-          filters: [ default, quote, url, image, boom_video, boom_gallery, list, li, olist, p]
+          filters: [ default, quote, boom_url, image, boom_video, boom_gallery, list, li, olist, p]
 
 # Swiftmailer Configuration
 swiftmailer:
