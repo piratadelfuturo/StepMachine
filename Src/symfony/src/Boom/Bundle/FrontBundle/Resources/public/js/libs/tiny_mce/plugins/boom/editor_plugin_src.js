@@ -227,15 +227,33 @@
             });
 
             ed.addCommand('boomLink', function() {
-                var linkForm, linkLabel, linkText, node, buttons;
+                var linkForm, linkLabel, linkText, node, buttons, text;
+                text = ed.selection.getNode()|| null;
+                if(text !== null){
+                    text = $(text).closest('a').attr('href') || '';
+                }
+
                 linkForm = $(document.createElement('form')).css({
                     height:'100%'
                 });
-                linkLabel = $(document.createElement('label')).text('Inserta una liga hacia algun boom:');
-                linkText = $(document.createElement('textarea')).css({
+                linkLabel = $(document.createElement('label'))
+                .text('Inserta una liga hacia algun boom:')
+                .css({
+                    'font-weight' : 'bold',
+                    'margin': '0px 20px'
+                });
+                linkText = $(document.createElement('input')).css({
                     resize:'none',
-                    width:'100%',
-                    height:'85%'
+                    width: '80%',
+                    padding: '10px',
+                    margin: '35px 20px',
+                    type: 'text'
+                }).val(text)
+                .on("keypress", function(e) {
+                    if (e.keyCode == 13) {
+                        e.preventDefault();
+                        return false;
+                    }
                 });
                 linkForm.append(linkLabel,linkText);
                 node = $(ed.selection.getNode());
@@ -247,6 +265,11 @@
                         if(value.indexOf(window.location.protocol+'//'+window.location.hostname) == 0){
                             ed.focus();
                             ed.execCommand('mceInsertLink',false,value);
+                            dialog.dialog( "close" )
+                            return true;
+                        }else if(value == ''){
+                            ed.focus();
+                            ed.formatter.remove('link');
                             dialog.dialog( "close" )
                             return true;
                         }
@@ -261,18 +284,6 @@
                 }
                 ];
 
-                if(node.attr('href')){
-                    linkText.val(node.attr('href'));
-                    buttons.unshift({
-                        text: 'Quitar',
-                        click: function(){
-                            ed.focus();
-                            ed.formatter.remove('link');
-                            dialog.dialog( "close" )
-                            return true
-                        }
-                    });
-                }
                 var dialog = $(document.createElement('div'));
                 dialog.dialog({
                     title:'Link',
