@@ -110,8 +110,8 @@ doctrine:
 fm_bbcode:
     config:
       filters:
-        - { classname: boom_video, class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomVideoFilter }
-        - { classname: boom_gallery, class: "@boom_front.gallery.decoda.filter" }
+        - { classname: boom_video,    class: \Boom\Bundle\FrontBundle\Decoda\Filter\BoomVideoFilter }
+        - { classname: boom_gallery,  class: "@boom_front.gallery.decoda.filter" }
       templates:
         - path: %kernel.root_dir%/Resources/Decoda/templates/
     filter_sets:

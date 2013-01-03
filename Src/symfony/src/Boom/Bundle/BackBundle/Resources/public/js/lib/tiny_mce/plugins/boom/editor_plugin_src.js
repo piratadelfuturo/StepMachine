@@ -106,9 +106,6 @@
                 });
                 formUpload.append(inputUpload);
                 dialog.append(formUpload);
-                if(console.log){
-                    console.log(node);
-                }
                 formRoute['form'] = {};
                 formRoute['form']['name'] = 'BoomBackBundle_gallery_ajax_new';
                 formRoute['form']['vars'] = {};
@@ -280,7 +277,7 @@
             rep(/<div.*?class=\"gallery\".*?insert-id=\"(.*?)\".*?>.*?<\/div>/gi,"[gallery=\"$1\"][/gallery]");
             rep(/<iframe class=\"gallery-preview\" insert-id=\"(.*?)\".*?>.*?<\/iframe>/gi,"[gallery=\"$1\"][/gallery]");
             rep(/<img.*?src=\"(.*?)\".*?\/>/gi,"[img]$1[/img]");
-            rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=$1]$2[/url]");
+            rep(/<a.*?href=\"(.*?)\".*?>(.*?)<\/a>/gi,"[url=\"$1\"]$2[/url]");
             rep(/<iframe.*?src=\"(?:https|http):\/\/www.youtube.com\/embed\/(.*?)\".*?>.*?<\/iframe>/gi,"[youtube=\"$1\"][/youtube]");
             rep(/<iframe.*?src=\"(?:https|http):\/\/player.vimeo.com\/video\/(.*?)\".*?>.*?<\/iframe>/gi,"[vimeo=\"$1\"][/vimeo]");
             rep(/<iframe.*?src=\"(?:https|http):\/\/w.soundcloud.com\/player\/\?url\=(.*?)(?:&amp;|\").*?>.*?<\/iframe>/gi,"[soundcloud=\"$1\"][/soundcloud]");
@@ -324,6 +321,7 @@
             rep(/\[u\]/gi,"<u>");
             rep(/\[\/u\]/gi,"</u>");
             rep(/\[url=([^\]]+)\](.*?)\[\/url\]/gi,"<a href=\"$1\">$2</a>");
+            rep(/\[url="([^\]]+)"\](.*?)\[\/url\]/gi,"<a href=\"$1\">$2</a>");
             rep(/\[url\](.*?)\[\/url\]/gi,"<a href=\"$1\">$1</a>");
             rep(/\[img\](.*?)\[\/img\]/gi,"<img src=\"$1\" />");
             rep(/\[youtube="([^\]]+)"\].*?\[\/youtube\]/gi,"<iframe class=\"ytplayer\" type=\"text/html\" width=\"640\" height=\"360\" src=\"https://www.youtube.com/embed/$1\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen><iframe/>");
