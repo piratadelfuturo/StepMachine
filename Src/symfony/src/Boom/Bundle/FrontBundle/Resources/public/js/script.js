@@ -607,7 +607,7 @@
             e.preventDefault();
             var shareUrl = $('input[type=hidden]',_shareBlock).val();
             if(!!$('.twitter',_shareBlock).attr('checked')){
-                var share = "https://twitter.com/share?text=Acabo de votar en 7boom&url="+shareUrl;
+                var share = "https://twitter.com/share?text=Acabo de votar en 7boom "+shareUrl+"&url="+shareUrl;
                 window.open(share);
             }
             if(!!$('.facebook',_shareBlock).attr('checked')){
