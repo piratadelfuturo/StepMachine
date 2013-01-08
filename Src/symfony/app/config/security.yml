@@ -83,7 +83,6 @@ security:
                 failure_handler: boom_front.facebook.auth_handler
             logout:
                 path:   /logout
-                handlers: ["fos_facebook.logout_handler"]
     access_control:
         - path: ^/_internal/secure
           roles: IS_AUTHENTICATED_ANONYMOUSLY
