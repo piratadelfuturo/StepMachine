@@ -30,7 +30,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                 'category_slug' => $entity['category']['slug'],
                 'slug' => $entity['slug'],
                 'username' => $app->getUser()->getUsername()
-            )
+            ),true
             );
 }
 ?>
