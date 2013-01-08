@@ -396,7 +396,7 @@
                     });
                 }else{
                     openTab.show(0,function(){
-                        $closeTab.hide(0,function(){
+                        closeTab.hide(0,function(){
                             counter.count();
                         });
                         counter.count();
@@ -605,14 +605,15 @@
 
         $('.grey-btn',_shareBlock).click(function(e){
             e.preventDefault();
+            var shareUrl = $('input[type=hidden]',_shareBlock).val();
             if(!!$('.twitter',_shareBlock).attr('checked')){
-                var share = "https://twitter.com/share?text=Acabo de votar en 7boom&url="+window.location.href;
+                var share = "https://twitter.com/share?text=Acabo de votar en 7boom&url="+shareUrl;
                 window.open(share);
             }
             if(!!$('.facebook',_shareBlock).attr('checked')){
                 var obj = {
                     method: 'feed',
-                    link: window.location.href
+                    link: shareUrl
                 };
                 FB.ui(obj);
             }

@@ -13,6 +13,7 @@ $userElements = array();
 $isOwner = false;
 $replyEntity = null;
 $isEditable = false;
+$userOrderUrl = null;
 if ($view['security']->isGranted('ROLE_USER') == true) {
     if ($entity['user']['id'] == $app->getUser()->getId()) {
         $isOwner = true;
@@ -23,6 +24,14 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
         $isEditable = false;
         $replyEntity = $view['boom_front']->getUserBoomOrder($app->getUser(), $entity);
     }
+    $userOrderUrl = $view['router']->generate(
+                'BoomFrontBundle_boom_show',
+            array(
+                'category_slug' => $entity['category']['slug'],
+                'slug' => $entity['slug'],
+                'username' => $app->getUser()->getUsername()
+            )
+            );
 }
 ?>
 <div id="usr-booms" class="hook">
@@ -56,7 +65,7 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
                     </li>
                 <?php endforeach; ?>
             </ul>
-            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo send disabled">Guardar</a>
+            <a href="<?php echo $view['router']->generate('BoomFrontBundle_boom_reorder', array('slug' => $entity['slug'], '_format' => 'json')); ?>" class="editalo send disabled" >Guardar</a>
         </div>
         <?php if (!$isOwner): ?>
             <div class="dyna-content miboom-cont">
@@ -107,8 +116,9 @@ if ($view['security']->isGranted('ROLE_USER') == true) {
         <div class="share-boom">
             <h3>¿Quieres compartir tu Boom?</h3>
             <form>
-                <input type="checkbox" class="select twitter"><label for="twitter"><span>twitter</span></label>
-                <input type="checkbox" class="select facebook"><label for="facebook"><span>facebook</span></label>
+                <input type="hidden" for="share_url" value="<?php echo $userOrderUrl !== null ? $userOrderUrl : '' ?>" />
+                <input type="checkbox" class="select twitter" /><label for="twitter"><span>twitter</span></label>
+                <input type="checkbox" class="select facebook" /><label for="facebook"><span>facebook</span></label>
             </form>
             <a href="#" class="grey-btn">Compartir</a>
             <a href="#" class="close-share">&#10005;</a>
