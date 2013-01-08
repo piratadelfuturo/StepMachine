@@ -107,8 +107,13 @@ class DefaultController extends Controller {
         //if ($response->isNotModified($this->getRequest()) == true && $this->get('kernel')->isDebug() == false) {
         //return $response;
         //} else {
+        $error = false;
+        $userReorder = null;
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBy(
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+        $rankRepo = $em->getRepository('BoomLibraryBundle:BoomelementRank');
+        $userRepo = $em->getRepository('BoomLibraryBundle:User');
+        $entity = $boomRepo->findOneBy(
                 array(
                     'slug' => $slug,
                     'status' => array(
@@ -118,18 +123,36 @@ class DefaultController extends Controller {
                 )
         );
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find.');
-        }
-        if ($entity['category']['slug'] !== $category_slug) {
-            throw $this->createNotFoundException('Unable to find.');
+        if (!$entity || $entity['category']['slug'] !== $category_slug) {
+            $error = true;
         }
 
         $thisCategory = $entity['category'];
+
+        if($error == false && $username !== null){
+            $user = $userRepo->findOneByUsername($username);
+            if($user){
+                $reorderEntity = $rankRepo->getUserBoomOrder($user,$entity);
+                if($reorderEntity !== null){
+                    $userReorder = $user;
+                    $entity = $reorderEntity;
+                }else{
+                    $error = true;
+                }
+            }else{
+                $error = true;
+            }
+        }
+
+        if ($error == true) {
+            throw $this->createNotFoundException('Unable to find.');
+        }
+
         return $this->render(
                         'BoomFrontBundle:Boom:show.html.php', array(
                     'entity' => $entity,
-                    'category' => $thisCategory
+                    'category' => $thisCategory,
+                    'user_reordered'  => $userReorder
                 ));
 
         //}
