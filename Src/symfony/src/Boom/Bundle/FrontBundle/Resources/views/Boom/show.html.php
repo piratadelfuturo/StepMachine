@@ -281,6 +281,10 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
               </div>
             <?php endif; ?>
             </div>
+            <div>
+              <a id="widget-call">
+              </a>
+            </div>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>
             </div>

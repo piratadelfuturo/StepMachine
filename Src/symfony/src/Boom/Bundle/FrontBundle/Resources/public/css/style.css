@@ -2877,6 +2877,13 @@ fieldset.on .accordion_content {
   margin-left: 7px;
 }
 
+a#widget-call {
+  background: url('../images/ve_al_widget.jpg') no-repeat left top;
+  display: block;
+  width: 660px;
+  height: 381px;
+  cursor: pointer;
+}
 /* BOOMS RELACIONADOS */
 
 #booms-container .b-relacionados .title-flag {

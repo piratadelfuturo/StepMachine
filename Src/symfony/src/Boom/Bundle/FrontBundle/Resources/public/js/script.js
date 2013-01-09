@@ -1082,3 +1082,9 @@
 
     }
 })(document,jQuery);
+
+/*ir al widget*/
+$('#widget-call').click(function(){
+  $("html, body").animate({ scrollTop: 350 }, 800);
+  return false;
+});
