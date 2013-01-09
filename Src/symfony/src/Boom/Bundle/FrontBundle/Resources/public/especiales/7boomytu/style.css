@@ -34,15 +34,19 @@ html, body {
 
 div.bottom {
   bottom: 0;
-  height: 14%;
-  position: relative;
+  /*height: 14%;*/
+  height: 130px;
+  /*position: relative;*/
+  position: absolute;
   width: 100%;
   z-index: 5; 
 }
 
 div.top {
-  height: 87%;  
-  position: relative;
+  /*height: 87%;*/
+  position: absolute;
+  min-height: 540px;
+  bottom: 130px;
 }
 
 div.numero {
@@ -686,13 +690,13 @@ div.feliz .dude-brazos .b-right {
 
 #escena-1 div.top {
   background: url('images/e1-mountains.png') repeat-x left bottom;
-  float: left;
+  /*float: left;*/
   width: 2800px;
 }
 
 #escena-1 div.bottom {
   background: #3a3a3a url('images/e1-ground.jpg') repeat left top;
-  float: left;
+  /*float: left;*/
   width: 2800px;
 }
 
@@ -939,7 +943,8 @@ div.chango-nube.mirror {
 
 #escenas-multiples div.bottom {
   background: url('images/grass.png') repeat-x left top;
-  height: 16%;
+  /*height: 16%;*/
+  height: 147px;
   position: absolute;
 }
 
