@@ -17,7 +17,6 @@ $(document).ready(function(){
   $("html, body").keydown(function(e) {
     if(e.keyCode == 37) {
 
-      console.log('Izquierda');
       var direction = 'l';
       event.preventDefault();
 
@@ -26,7 +25,6 @@ $(document).ready(function(){
     }
     else if(e.keyCode == 39) {
 
-      console.log('Derecha');
       var direction = 'r';
       event.preventDefault();
 
@@ -61,9 +59,7 @@ $(document).ready(function(){
     };
     var len = slidesPos.length;
     for ( i in slidesPos ) {
-      console.log(i);
       if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
-        console.log(slidesPos);
         $('html, body').stop(false, false).animate({
           scrollLeft: slidesPos[i][1]
         }, 3000);
@@ -100,21 +96,7 @@ $(document).ready(function(){
 
   $(window).scroll(function(){
 
-    //soon to be cool function
-    /*var obj = {
-      ani1:['#dude-banner', 1],
-      ani2:['id_del_bloque_2', 780]
-    };
-
-    var length = $('.bloque').length() -1;
-
-    for (i=0; i<length; i++){
-      var blockPosition = scrollLeft - $('.bloque').eq(i).offset().left;
-
-      if(blockPosition < 0 ){
-        $('.bloque').eq(i).addClass('active');
-      } 
-    }*/
+    console.log(pageX());
 
     //tirar geocities
     if ( pageX() >= 1 ) {
@@ -125,7 +107,6 @@ $(document).ready(function(){
     else {
       $('#geocities').removeClass('hideGC').delay(2800).show(0);
     };
-
 
     //triggers texto
     if ( pageX() >= 0 ){
@@ -244,19 +225,24 @@ $(document).ready(function(){
 
     if ( pageX() >= 4990 ){
         $('#ruido, #nube').removeClass('show').addClass('hide');
-      };  
+    };
     if ( pageX() >= 4900 ){
       $('.dude-brazos .b-left').addClass('feliz');
-      };
+      $('#globo').removeClass('hidden').addClass('appear');
+    } else {
+      $('.dude-brazos .b-left').removeClass('feliz');
+      $('#globo').removeClass('appear').addClass('hidden');
+    };
     if ( pageX() >= 4950 ){
       $('#morro .face1, #morro .b2-left, #morro .b2-right, #morro .face3').removeClass('show').addClass('hide');
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
-      };
-    if ( pageX() >= 5000 ){ 
+    };
+    if ( pageX() >= 5000 ){
       $('.dude-brazos .b-left').removeClass('feliz');
       $('#morro .morro-brazos, #morro .morro-piernas').addClass('feliz');
       $('#morro .face2').removeClass('show').addClass('hide');
       $('#morro .face3').removeClass('hide').addClass('show');
+      $('#globo').removeClass('appear').addClass('static');
     };
     if ( pageX() >= 6000 ){ 
       $('#morra1, #morra2, #alien').addClass('feliz');
