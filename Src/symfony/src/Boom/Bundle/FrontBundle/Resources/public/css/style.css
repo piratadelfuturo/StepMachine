@@ -2392,14 +2392,15 @@ footer p {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  display: none;
+  display: block;
+  visibility: hidden;
   width: 130px;
   height: 21px;
+  z-index: 17;
 }
 
-.social .fb_iframe_widget, .social .fb_iframe_widget span, .social .fb_iframe_widget iframe {
-  width: 130px !important;
-  height: 20px !important;
+.fb-share:hover .fb-like-balloon {
+  visibility: visible;
 }
 
 .fb-like-balloon:before, .tw-like-balloon:before {
@@ -2689,7 +2690,7 @@ a.ver-reply {
   display: block;
   float: left;
   line-height: 87px;
-  z-index: 99;
+  z-index: 15;
   margin-right: 5px;
 }
 
