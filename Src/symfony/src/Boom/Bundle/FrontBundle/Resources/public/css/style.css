@@ -2602,7 +2602,7 @@ footer p {
 
 #booms-container .boom-related ul.list-grid li {
   margin: 0 13px;
-  height: auto;
+  height: 200px;
 }
 
 #booms-container .boom-related ul.list-grid li img {
