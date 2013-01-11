@@ -207,8 +207,14 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
         $imagick = $imagick->coalesceImages();
         $imageSize = $imagick->getImageGeometry();
         do {
-            $imagick = $this->resizeOperation(
+            /*
+             $imagick = $this->resizeOperation(
+
                     $imagick, $size['width'], $size['height'], $size['thumbnail'], $background
+            );
+             */
+            $imagick = $this->resizeOperation(
+                    $imagick, $size['width'], $size['height'], $size['thumbnail'], null
             );
         } while ($imagick->nextImage());
         try{
@@ -229,18 +235,20 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
             $imagick->cropThumbnailImage($width, $height);
             $imagick->setImagePage(0, 0, 0, 0);
         } else {
-            $background = clone($backgroundParam);
-            $background->cropImage($width, $height, 0, 0);
             $imagick->scaleImage($width, $height, true);
             $imageSize = $imagick->getImageGeometry();
             $x = ($width / 2) - ($imageSize['width'] / 2);
             $y = ($height / 2) - ($imageSize['height'] / 2);
-            //$background->flattenImages();
-            $background->compositeImage($imagick, \Imagick::COMPOSITE_OVER, $x, $y);
-            $background->flattenImages();
-            $imagick->setImage($background);
-            $background->clear();
-            $background->destroy();
+            if($backgroundParam !== null){
+                $background = clone($backgroundParam);
+                $background->cropImage($width, $height, 0, 0);
+                //$background->flattenImages();
+                $background->compositeImage($imagick, \Imagick::COMPOSITE_OVER, $x, $y);
+                $background->flattenImages();
+                $imagick->setImage($background);
+                $background->clear();
+                $background->destroy();
+            }
         }
         return $imagick;
     }
