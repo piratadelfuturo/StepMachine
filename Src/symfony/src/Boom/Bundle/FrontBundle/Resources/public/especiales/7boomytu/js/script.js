@@ -9,6 +9,7 @@ $(document).ready(function(){
   });
 
   var isfirst = parseInt("0");
+  var gvballoon = parseInt("0");
   var pageX = function(){
     return $(window).scrollLeft();
   }
@@ -223,26 +224,26 @@ $(document).ready(function(){
 
     //triggers animaciones escena 3
 
-    if ( pageX() >= 4990 ){
-        $('#ruido, #nube').removeClass('show').addClass('hide');
-    };
-    if ( pageX() >= 4900 ){
-      $('.dude-brazos .b-left').addClass('feliz');
-      $('#globo').removeClass('hidden').addClass('appear');
-    } else {
-      $('.dude-brazos .b-left').removeClass('feliz');
-      $('#globo').removeClass('appear').addClass('hidden');
-    };
-    if ( pageX() >= 4950 ){
+    if ( pageX() >= 4500 ){
+      if (gvballoon == 0 ) {
+        $('.dude-brazos .b-left').addClass('feliz');
+        $('#globo').removeClass('hidden').addClass('appear');
+        gvballoon = 1;
+      }
       $('#morro .face1, #morro .b2-left, #morro .b2-right, #morro .face3').removeClass('show').addClass('hide');
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
-    };
+    } 
+    
     if ( pageX() >= 5000 ){
-      $('.dude-brazos .b-left').removeClass('feliz');
       $('#morro .morro-brazos, #morro .morro-piernas').addClass('feliz');
+      $('#ruido, #nube').removeClass('show').addClass('hide');
       $('#morro .face2').removeClass('show').addClass('hide');
       $('#morro .face3').removeClass('hide').addClass('show');
-      $('#globo').removeClass('appear').addClass('static');
+      if(gvballoon == 1) {
+        $('.dude-brazos .b-left').removeClass('feliz');
+        $('#globo').removeClass('appear').addClass('static');
+        gvballoon = 2;
+      }
     };
     if ( pageX() >= 6000 ){ 
       $('#morra1, #morra2, #alien').addClass('feliz');
@@ -290,8 +291,11 @@ $(document).ready(function(){
     if ( pageX() >= 10100 ){
       $('#txt7 .uno').removeClass('show').addClass('hide');
       $('#txt7 .dos, #txt7 .tres').removeClass('hide').addClass('show');
-      $('#dude2 .b-left').addClass('feliz');
       $('#social').removeClass('hidden').addClass('appear');
+      if(gvballoon == 2){
+        $('#dude2 .b-left').addClass('feliz');
+        gvballoon = 3;
+      }
     };
 
   });
