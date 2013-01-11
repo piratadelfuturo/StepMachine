@@ -159,9 +159,9 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 600px;
   height: 320px;
   display: block;
-  z-index: 10;
+  z-index: 11;
   position: fixed;
-  left: 300px;
+  left: 150px;
   bottom: 50%;
 }
 
@@ -1169,7 +1169,7 @@ div.chango-nube.mirror {
 
 #globo.static {
   position: absolute;
-  left: 5420px;
+  left: 5400px;
 }
 
 #globo.hidden, #social.hidden {
@@ -1220,7 +1220,7 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 12;
   bottom: -110px;
-  left: 630px;
+  left: 610px;
 }
 
 #morro .morro-body {
@@ -2050,9 +2050,10 @@ div.feliz .p-right {
   background: url('images/globos-redes.png') no-repeat left top;
   width: 241px;
   height: 333px;
-  position: absolute;
+  position: fixed;
   z-index: 13;
-  left: 80px;
+  left: 450px;
+  bottom: 140px;
 }
 
 #escena-7 #social a {
@@ -2076,7 +2077,7 @@ div.feliz .p-right {
   bottom: 70px;
   width: 359px;
   height: 200px;
-  left: 750px;
+  left: 360px;
 }
 
 #escena-7 #share div.uno {
@@ -2285,30 +2286,33 @@ div.feliz .p-right {
 /*COHETE*/
 
 @keyframes volar {
-  0% { left: 350px; transform:rotate(0deg); bottom:-100px; }
-  90% { left: 680px; transform:rotate(-25deg); bottom: 400px; }
-  100% { bottom: 120%; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-moz-keyframes volar {
-  0% { -moz-transform:rotate(0deg); bottom: -100px; }
-  100% { -moz-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-webkit-keyframes volar {
   0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
   80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 120%; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-o-keyframes volar {
-  0% { -o-transform:rotate(0deg); bottom: -100px; }
-  100% { -o-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-ms-keyframes volar {
-  0% { -ms-transform:rotate(0deg); bottom: -100px; }
-  100% { -ms-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 /*ATMOSFERA*/
