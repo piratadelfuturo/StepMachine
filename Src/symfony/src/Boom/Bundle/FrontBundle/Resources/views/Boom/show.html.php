@@ -74,7 +74,9 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
         <div class="social cf">
             <p>Comparte:</p>
             <div class="fb-share">
-                <div class="fb-like-balloon"><div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div>
+                <div class="fb-like-balloon">
+                <div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+                </div>
                 <a href="#" class="btn-fb">facebook</a>
             </div>
             <div class="tw-share" tw-count="<?php echo $twUrl ?>">
@@ -280,6 +282,10 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                 <a href="<?php echo $next_url ?>">Siguiente Boom</a>
               </div>
             <?php endif; ?>
+            </div>
+            <div>
+              <a id="widget-call">
+              </a>
             </div>
             <div class="comments">
                 <div class="fb-comments" data-href="<?php echo $fb_boom_graph_data['url'] ?>" data-num-posts="2" data-width="648"></div>

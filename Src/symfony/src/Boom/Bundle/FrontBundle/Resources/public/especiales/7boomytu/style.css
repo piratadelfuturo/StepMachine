@@ -34,15 +34,19 @@ html, body {
 
 div.bottom {
   bottom: 0;
-  height: 14%;
-  position: relative;
+  /*height: 14%;*/
+  height: 130px;
+  /*position: relative;*/
+  position: absolute;
   width: 100%;
   z-index: 5; 
 }
 
 div.top {
-  height: 87%;  
-  position: relative;
+  /*height: 87%;*/
+  position: absolute;
+  min-height: 540px;
+  bottom: 130px;
 }
 
 div.numero {
@@ -155,10 +159,10 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 600px;
   height: 320px;
   display: block;
-  z-index: 10;
+  z-index: 11;
   position: fixed;
-  left: 300px;
-  top: 80px;
+  left: 150px;
+  bottom: 50%;
 }
 
 #txt-wrapper #txt1 div.uno {
@@ -686,13 +690,13 @@ div.feliz .dude-brazos .b-right {
 
 #escena-1 div.top {
   background: url('images/e1-mountains.png') repeat-x left bottom;
-  float: left;
+  /*float: left;*/
   width: 2800px;
 }
 
 #escena-1 div.bottom {
   background: #3a3a3a url('images/e1-ground.jpg') repeat left top;
-  float: left;
+  /*float: left;*/
   width: 2800px;
 }
 
@@ -878,12 +882,12 @@ div.chango-nube.mirror {
 }
 
 #pelon {
-  left: 780px;  
+  left: 780px;
 }
 
 #pelon .chango-nube {
   background-position: -395px 14px;
-  width: 140px;  
+  width: 140px;
   left: 60px;
 }
 
@@ -893,12 +897,12 @@ div.chango-nube.mirror {
 }
 
 #headphones {
-  left: 1040px;  
+  left: 1040px;
 }
 
 #headphones .chango-nube {
   background-position: -538px 20px;
-  width: 145px;  
+  width: 145px;
   left: 90px;
 }
 
@@ -908,7 +912,7 @@ div.chango-nube.mirror {
 }
 
 #nerd {
-  left: 1440px;  
+  left: 1440px;
 }
 
 #nerd .chango-nube {
@@ -939,7 +943,8 @@ div.chango-nube.mirror {
 
 #escenas-multiples div.bottom {
   background: url('images/grass.png') repeat-x left top;
-  height: 16%;
+  /*height: 16%;*/
+  height: 147px;
   position: absolute;
 }
 
@@ -957,6 +962,10 @@ div.chango-nube.mirror {
   width: 1105px;
 }
 
+#escenas-multiples .top > div {
+  height: 540px;
+}
+
 /*ESCENA 3*/
 
 #escena-3 {
@@ -971,7 +980,7 @@ div.chango-nube.mirror {
   height: 382px;
   position: absolute;
   left: 520px;
-  top: 36%;
+  top: 30px;
   z-index: 10;
 }
 
@@ -1158,6 +1167,11 @@ div.chango-nube.mirror {
   bottom: 120px;
 }
 
+#globo.static {
+  position: absolute;
+  left: 5400px;
+}
+
 #globo.hidden, #social.hidden {
   bottom: 0px;
   opacity: 0;
@@ -1169,6 +1183,8 @@ div.chango-nube.mirror {
 }
 
 #globo.appear {
+  position: fixed;
+  left: 400px;
   bottom: 120px;
   opacity: 1;
   transition: all 1000ms ease-in 0ms;
@@ -1203,8 +1219,8 @@ div.chango-nube.mirror {
   display: block;
   position: absolute;
   z-index: 12;
-  bottom: -70px;
-  left: 800px;
+  bottom: -110px;
+  left: 610px;
 }
 
 #morro .morro-body {
@@ -1324,12 +1340,12 @@ div.chango-nube.mirror {
 
 /*Escena 3 - Bottom*/
 
-#escenas-multiples div.bottom #escena-3 {
+#escenas-multiples div.bottom .bottom-escena {
   height: 147px;
   width: 1500px;
 }
 
-#escenas-multiples div.bottom #escena-3 #pinos {
+#escenas-multiples div.bottom .bottom-escena #pinos {
   background: url('images/e3-pinos.png') repeat-x left bottom;
   height: 185px;
   position: absolute;
@@ -2034,9 +2050,10 @@ div.feliz .p-right {
   background: url('images/globos-redes.png') no-repeat left top;
   width: 241px;
   height: 333px;
-  position: absolute;
+  position: fixed;
   z-index: 13;
-  left: 80px;
+  left: 450px;
+  bottom: 140px;
 }
 
 #escena-7 #social a {
@@ -2060,7 +2077,7 @@ div.feliz .p-right {
   bottom: 70px;
   width: 359px;
   height: 200px;
-  left: 750px;
+  left: 360px;
 }
 
 #escena-7 #share div.uno {
@@ -2269,30 +2286,33 @@ div.feliz .p-right {
 /*COHETE*/
 
 @keyframes volar {
-  0% { left: 350px; transform:rotate(0deg); bottom:-100px; }
-  90% { left: 680px; transform:rotate(-25deg); bottom: 400px; }
-  100% { bottom: 1200px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-moz-keyframes volar {
-  0% { -moz-transform:rotate(0deg); bottom: -100px; }
-  100% { -moz-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-webkit-keyframes volar {
   0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
   80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 800px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-o-keyframes volar {
-  0% { -o-transform:rotate(0deg); bottom: -100px; }
-  100% { -o-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 @-ms-keyframes volar {
-  0% { -ms-transform:rotate(0deg); bottom: -100px; }
-  100% { -ms-transform:rotate(-25deg); bottom: 400px; }
+  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
+  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
+  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
 }
 
 /*ATMOSFERA*/

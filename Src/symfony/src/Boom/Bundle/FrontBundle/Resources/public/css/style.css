@@ -2392,14 +2392,15 @@ footer p {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  display: none;
+  display: block;
+  visibility: hidden;
   width: 130px;
   height: 21px;
+  z-index: 17;
 }
 
-.social .fb_iframe_widget, .social .fb_iframe_widget span, .social .fb_iframe_widget iframe {
-  width: 130px !important;
-  height: 20px !important;
+.fb-share:hover .fb-like-balloon {
+  visibility: visible;
 }
 
 .fb-like-balloon:before, .tw-like-balloon:before {
@@ -2602,7 +2603,7 @@ footer p {
 
 #booms-container .boom-related ul.list-grid li {
   margin: 0 13px;
-  height: auto;
+  height: 200px;
 }
 
 #booms-container .boom-related ul.list-grid li img {
@@ -2689,7 +2690,7 @@ a.ver-reply {
   display: block;
   float: left;
   line-height: 87px;
-  z-index: 99;
+  z-index: 15;
   margin-right: 5px;
 }
 
@@ -2877,6 +2878,13 @@ fieldset.on .accordion_content {
   margin-left: 7px;
 }
 
+a#widget-call {
+  background: url('../images/ve_al_widget.jpg') no-repeat left top;
+  display: block;
+  width: 660px;
+  height: 381px;
+  cursor: pointer;
+}
 /* BOOMS RELACIONADOS */
 
 #booms-container .b-relacionados .title-flag {
