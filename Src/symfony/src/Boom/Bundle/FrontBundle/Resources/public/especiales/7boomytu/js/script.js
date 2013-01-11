@@ -271,7 +271,6 @@ $(document).ready(function(){
             next();
         });
         $('#slide-fondo').addClass('alinfinito');
-
         $('#dude2').delay(3800).queue(function(next){
             $(this).removeClass('fall').addClass('feliz');
             next();
