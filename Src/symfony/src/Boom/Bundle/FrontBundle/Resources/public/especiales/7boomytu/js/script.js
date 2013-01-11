@@ -189,7 +189,7 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 8000 ){
-      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno').removeClass('show').addClass('hide');
+      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('show').addClass('hide');
       $('#txt5 .cuatro').removeClass('hide').addClass('show');
     };
 
