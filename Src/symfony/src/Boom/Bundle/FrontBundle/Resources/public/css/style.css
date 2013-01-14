@@ -1526,6 +1526,10 @@ aside .sb-bloque {
   margin-bottom: 0;
 }
 
+.sb-bloque.fb-wdgt {
+  height: 358px;
+}
+
 .sb-bloque > h3 {
   position: relative;
   font: 24px 'Proxima', sans-serif;

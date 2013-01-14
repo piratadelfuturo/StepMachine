@@ -9,6 +9,7 @@ $(document).ready(function(){
   });
 
   var isfirst = parseInt("0");
+  var gvballoon = parseInt("0");
   var pageX = function(){
     return $(window).scrollLeft();
   }
@@ -36,28 +37,34 @@ $(document).ready(function(){
   //Animación al teclear
   $.slideMove = function(direction){
     var slidesPos = {
+      //Slide1
       slide1:[0, 500],
       slide2:[500, 1000],
       slide3:[1000, 1500],
       slide4:[1500, 2600],
       slide5:[2600, 3000],
+      //Slide2
       slide6:[3000, 3500],
       slide7:[3500, 4700],
+      //Slide3
       slide8:[4700, 5000],
       slide9:[5000, 5700],
+      //Slide4
       slide10:[5700, 6000],
       slide11:[6000, 6500],
+      //Slide5
       slide12:[6500, 7000],
       slide13:[7000, 7500],
       slide14:[7500, 8000],
       slide15:[8000, 8500],
+      //Slide6
       slide16:[8500, 9000],
       slide17:[9000, 9300],
       slide19:[9300, 9500],
       slide20:[9500, 10000],
+      //Slide7
       slide21:[10000, 10100]
     };
-    var len = slidesPos.length;
     for ( i in slidesPos ) {
       if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
         $('html, body').stop(false, false).animate({
@@ -66,6 +73,22 @@ $(document).ready(function(){
       }
     }
   }
+    /* TODO
+    var slidesPos2 = {
+      slide1:[0, 500, 1000, 1500, 2600, 3000],
+      slide2:[3500, 4700],
+      slide3:[5000, 5700],
+      slide4:[6000, 6500],
+      slide5:[7000, 7500, 8000, 8500],
+      slide6:[9000, 9300, 9500, 10000],
+      slide7:[11000]
+    };
+
+  for ( i in slidesPos2 ) {
+    if ( pageX() >= slidesPos[i] ) {
+    }
+  }
+  */
 
   $('.bloque').addClass('hide');
   $('.numero').addClass('hide');
@@ -188,7 +211,7 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 8000 ){
-      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno').removeClass('show').addClass('hide');
+      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('show').addClass('hide');
       $('#txt5 .cuatro').removeClass('hide').addClass('show');
     };
 
@@ -223,26 +246,26 @@ $(document).ready(function(){
 
     //triggers animaciones escena 3
 
-    if ( pageX() >= 4990 ){
-        $('#ruido, #nube').removeClass('show').addClass('hide');
-    };
-    if ( pageX() >= 4900 ){
-      $('.dude-brazos .b-left').addClass('feliz');
-      $('#globo').removeClass('hidden').addClass('appear');
-    } else {
-      $('.dude-brazos .b-left').removeClass('feliz');
-      $('#globo').removeClass('appear').addClass('hidden');
-    };
-    if ( pageX() >= 4950 ){
+    if ( pageX() >= 4500 ){
+      if (gvballoon == 0 ) {
+        $('.dude-brazos .b-left').addClass('feliz');
+        $('#globo').removeClass('hidden').addClass('appear');
+        gvballoon = 1;
+      }
       $('#morro .face1, #morro .b2-left, #morro .b2-right, #morro .face3').removeClass('show').addClass('hide');
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
-    };
+    } 
+    
     if ( pageX() >= 5000 ){
-      $('.dude-brazos .b-left').removeClass('feliz');
       $('#morro .morro-brazos, #morro .morro-piernas').addClass('feliz');
+      $('#ruido, #nube').removeClass('show').addClass('hide');
       $('#morro .face2').removeClass('show').addClass('hide');
       $('#morro .face3').removeClass('hide').addClass('show');
-      $('#globo').removeClass('appear').addClass('static');
+      if(gvballoon == 1) {
+        $('.dude-brazos .b-left').removeClass('feliz');
+        $('#globo').removeClass('appear').addClass('static');
+        gvballoon = 2;
+      }
     };
     if ( pageX() >= 6000 ){ 
       $('#morra1, #morra2, #alien').addClass('feliz');
@@ -271,7 +294,6 @@ $(document).ready(function(){
             next();
         });
         $('#slide-fondo').addClass('alinfinito');
-
         $('#dude2').delay(3800).queue(function(next){
             $(this).removeClass('fall').addClass('feliz');
             next();
@@ -291,8 +313,11 @@ $(document).ready(function(){
     if ( pageX() >= 10100 ){
       $('#txt7 .uno').removeClass('show').addClass('hide');
       $('#txt7 .dos, #txt7 .tres').removeClass('hide').addClass('show');
-      $('#dude2 .b-left').addClass('feliz');
       $('#social').removeClass('hidden').addClass('appear');
+      if(gvballoon == 2){
+        $('#dude2 .b-left').addClass('feliz');
+        gvballoon = 3;
+      }
     };
 
   });
