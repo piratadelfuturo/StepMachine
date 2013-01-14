@@ -37,28 +37,34 @@ $(document).ready(function(){
   //Animación al teclear
   $.slideMove = function(direction){
     var slidesPos = {
+      //Slide1
       slide1:[0, 500],
       slide2:[500, 1000],
       slide3:[1000, 1500],
       slide4:[1500, 2600],
       slide5:[2600, 3000],
+      //Slide2
       slide6:[3000, 3500],
       slide7:[3500, 4700],
+      //Slide3
       slide8:[4700, 5000],
       slide9:[5000, 5700],
+      //Slide4
       slide10:[5700, 6000],
       slide11:[6000, 6500],
+      //Slide5
       slide12:[6500, 7000],
       slide13:[7000, 7500],
       slide14:[7500, 8000],
       slide15:[8000, 8500],
+      //Slide6
       slide16:[8500, 9000],
       slide17:[9000, 9300],
       slide19:[9300, 9500],
       slide20:[9500, 10000],
+      //Slide7
       slide21:[10000, 10100]
     };
-    var len = slidesPos.length;
     for ( i in slidesPos ) {
       if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
         $('html, body').stop(false, false).animate({
@@ -67,6 +73,22 @@ $(document).ready(function(){
       }
     }
   }
+    /* TODO
+    var slidesPos2 = {
+      slide1:[0, 500, 1000, 1500, 2600, 3000],
+      slide2:[3500, 4700],
+      slide3:[5000, 5700],
+      slide4:[6000, 6500],
+      slide5:[7000, 7500, 8000, 8500],
+      slide6:[9000, 9300, 9500, 10000],
+      slide7:[11000]
+    };
+
+  for ( i in slidesPos2 ) {
+    if ( pageX() >= slidesPos[i] ) {
+    }
+  }
+  */
 
   $('.bloque').addClass('hide');
   $('.numero').addClass('hide');
