@@ -210,7 +210,6 @@ class BoomController extends Controller {
      */
     public function newAction() {
         $entity = new Boom();
-        $entity['status'] = Boom::STATUS_PRIVATE;
 
         $form = $this->createForm(new BoomType(), $entity);
 
@@ -231,9 +230,17 @@ class BoomController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
         $entity['user'] = $sessionUser;
-        $entity['status'] = Boom::STATUS_PRIVATE;
         $form->bind($request);
         if ($form->isValid()) {
+            if(!in_array(
+                    $entity['status'],
+                    array(
+                        Boom::STATUS_PRIVATE,
+                        Boom::STATUS_DRAFT
+                            ))){
+                $entity['status'] = Boom::STATUS_DRAFT;
+            }
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($entity);
@@ -400,7 +407,7 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
-        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
+        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_DRAFT, Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
@@ -448,8 +455,7 @@ class BoomController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
 
-
-        if (!$entity) {
+        if (!$entity || !in_array($entity['status'], array(Boom::STATUS_DRAFT, Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE))) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
@@ -465,6 +471,7 @@ class BoomController extends Controller {
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
+
             $em->persist($entity);
             $em->flush();
             $em->getRepository('BoomLibraryBundle:Activity')->createActivity(
