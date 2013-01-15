@@ -60,18 +60,17 @@
     <script type="text/javascript">
       function likeBoom()
       {
-          FB.api(
-            '/me/seven_boom_mx:boom',
-            'post',
-            { recipe: '<?php echo $view->escape($fb_boom_graph_data['url']) ?>' },
-            function(response) {
-               if (!response || response.error) {
-                  alert('Error occured');
-               } else {
-                  alert('Cook was successful! Action ID: ' + response.id);
-               }
-            });
-      }
+        FB.api(
+          '/me/og.likes',
+          'post',
+          {
+          boom: "<?php echo $view->escape($fb_boom_graph_data['url']) ?>"
+          },
+          function(response) {
+          // handle the response
+          }
+        );
+      };
     </script>
       
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.8.2.min.js') ?>"></script>
