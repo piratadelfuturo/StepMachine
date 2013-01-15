@@ -8,6 +8,7 @@
       <meta property="og:url"    content="<?php echo $view->escape($fb_boom_graph_data['url']) ?>" />
       <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
       <meta property="og:image"  content="http://www.7boom.mx<?php echo $view->escape($fb_boom_graph_data['image']) ?>" />
+      <meta property="og:description" content="<?php echo $view->escape($view['slots']->get('description', 'Ordenamos junto contigo al mundo en listas de 7. Todas las opiniones, todos los temas todas las jerarquías.')) ?>" />
     <?php endif; ?>
     <?php $title = $view->escape($view['slots']->get('title', null));?>
     <title>
@@ -55,6 +56,24 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
     </script>
+    
+    <script type="text/javascript">
+      function likeBoom()
+      {
+          FB.api(
+            '/me/seven_boom_mx:boom',
+            'post',
+            { recipe: '<?php echo $view->escape($fb_boom_graph_data['url']) ?>' },
+            function(response) {
+               if (!response || response.error) {
+                  alert('Error occured');
+               } else {
+                  alert('Cook was successful! Action ID: ' + response.id);
+               }
+            });
+      }
+    </script>
+      
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.8.2.min.js') ?>"></script>
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-ui-1.8.23.custom.min.js') ?>"></script>
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/file_upload/js/jquery.iframe-transport.js') ?>"></script>
