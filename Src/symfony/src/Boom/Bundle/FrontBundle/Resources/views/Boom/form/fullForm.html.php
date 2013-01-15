@@ -44,7 +44,12 @@
             <?php echo $view['form']->widget($form['nsfw']) ?>
             <label>NSFW:</label>
         </section>
-        <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: ')) ?>
+        <?php echo $view['form']->row($form['category'], array('label' => 'Categoría: '))?>
+        <?php
+            if(isset($form['status'])){
+                echo $view['form']->row($form['status'], array('label' => 'Status: '));
+            }
+        ?>
     </fieldset>
     <ul id="<?php echo $form['elements']->get('id') ?>" class="sort-elements booms">
         <?php

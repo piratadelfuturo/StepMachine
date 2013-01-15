@@ -58,11 +58,11 @@ class UserController extends Controller {
         $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
 
         $list = $boomRepo->findBoomsByUser(
-                $entity, $modified, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
+                $entity, $modified, array(Boom::STATUS_DRAFT, Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE), $limit, $limit * ($page - 1)
         );
 
         $total = $boomRepo->totalBoomsByUser(
-                $entity, $modified, array(Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
+                $entity, $modified, array(Boom::STATUS_DRAFT, Boom::STATUS_PUBLIC, Boom::STATUS_PRIVATE)
         );
 
         return $this->render('BoomFrontBundle:User:profile.html.php', array(
@@ -71,7 +71,8 @@ class UserController extends Controller {
                     'total' => $total,
                     'limit' => $limit,
                     'limit' => $limit,
-                    'page' => $page
+                    'page' => $page,
+                    'listname' => $listname
                 ));
     }
 

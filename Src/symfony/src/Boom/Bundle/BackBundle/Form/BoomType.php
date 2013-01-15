@@ -4,12 +4,10 @@ namespace Boom\Bundle\BackBundle\Form;
 
 use Boom\Bundle\BackBundle\Form\EventListener\BoomFeaturedSubscriber;
 use Boom\Bundle\LibraryBundle\Form\BoomelementType;
-use Boom\Bundle\LibraryBundle\Form\AjaxImageType;
 use Boom\Bundle\LibraryBundle\Entity\Boom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Boom\Bundle\LibraryBundle\Form\DataTransformer\BoomImageTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class BoomType extends AbstractType {

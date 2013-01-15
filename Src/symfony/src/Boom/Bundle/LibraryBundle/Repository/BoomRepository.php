@@ -420,7 +420,7 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function allBoomsIndex(){
+    public function allBoomsIndex() {
         $cb = $this->createQueryBuilder('boom');
         $cb->select('boom');
         $cb->andWhere(
@@ -512,28 +512,25 @@ class BoomRepository extends NestedTreeRepository {
         $cb->join('rank.user', 'user');
 
         $cb->andWhere(
-                $cb->expr()->eq('boom.id', ':boom_id'),
-                $cb->expr()->eq('user.id', ':user_id')
+                $cb->expr()->eq('boom.id', ':boom_id'), $cb->expr()->eq('user.id', ':user_id')
         );
         //$cb->setFirstResult(0)->setMaxResults(1);
 
         $query = $cb->getQuery();
         $query->setParameter('user_id', $user['id']);
         $query->setParameter('boom_id', $boom['id']);
-        echo $user['id'].' '.$boom['id'].''.$query->getSQL();
+        echo $user['id'] . ' ' . $boom['id'] . '' . $query->getSQL();
         $result = $query->getResult();
         var_dump($result[0]);
         exit;
         return $result;
     }
 
-    public function getNextAvailableBoom(Boom $boom){
+    public function getNextAvailableBoom(Boom $boom) {
         $qb = $this->createQueryBuilder('boom');
         $qb->select('boom');
         $qb->andWhere(
-                $qb->expr()->gte('boom.date_published', ':date'),
-                $qb->expr()->neq('boom.id', ':boom_id'),
-                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
+                $qb->expr()->gte('boom.date_published', ':date'), $qb->expr()->neq('boom.id', ':boom_id'), $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
         );
         $qb->setFirstResult(0)->setMaxResults(1);
         $qb->orderBy('boom.date_published', 'ASC');
@@ -544,13 +541,11 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function getPrevAvailableBoom(Boom $boom){
+    public function getPrevAvailableBoom(Boom $boom) {
         $qb = $this->createQueryBuilder('boom');
         $qb->select('boom');
         $qb->andWhere(
-                $qb->expr()->lte('boom.date_published', ':date'),
-                $qb->expr()->neq('boom.id', ':boom_id'),
-                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
+                $qb->expr()->lte('boom.date_published', ':date'), $qb->expr()->neq('boom.id', ':boom_id'), $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC)
         );
         $qb->setFirstResult(0)->setMaxResults(1);
         $qb->orderBy('boom.date_published', 'DESC');
@@ -562,32 +557,30 @@ class BoomRepository extends NestedTreeRepository {
         return $result;
     }
 
-    public function getRelatedBooms(Boom $boom, $limit = 7){
-        $qb = $this->createQueryBuilder('boom');
-        $qb->select('boom');
-        $qb->leftJoin('boom.tags', 'tag');
-        $qb->andWhere(
-                $qb->expr()->neq('boom.id', ':boom_id'),
-                $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC),
-                $qb->expr()->lte('boom.date_published', ':date'),
-                $qb->expr()->in('tag.id', ':tags')
-        );
-        $qb->setFirstResult(0)->setMaxResults($limit);
-        $qb->orderBy('boom.date_published', 'DESC');
-        $tags = array();
-        if(!empty($boom['tags'])){
-            foreach($boom['tags'] as $tag){
-                $tags[] = $tag['id'];
+    public function getRelatedBooms(Boom $boom, $limit = 7) {
+        $result = array();
+        if (count($boom['tags']) > 0) {
+            $qb = $this->createQueryBuilder('boom');
+            $qb->select('boom');
+            $qb->leftJoin('boom.tags', 'tag');
+            $qb->andWhere(
+                    $qb->expr()->neq('boom.id', ':boom_id'), $qb->expr()->eq('boom.status', Boom::STATUS_PUBLIC), $qb->expr()->lte('boom.date_published', ':date'), $qb->expr()->in('tag.id', ':tags')
+            );
+            $qb->setFirstResult(0)->setMaxResults($limit);
+            $qb->orderBy('boom.date_published', 'DESC');
+            $tags = array();
+            if (!empty($boom['tags'])) {
+                foreach ($boom['tags'] as $tag) {
+                    $tags[] = $tag['id'];
+                }
             }
+            $query = $qb->getQuery();
+            $query->setParameter('tags', $tags);
+            $query->setParameter('date', $boom['datepublished']);
+            $query->setParameter('boom_id', $boom['id']);
+            $result = $query->getResult();
         }
-        $query = $qb->getQuery();
-        $query->setParameter('tags', $tags);
-        $query->setParameter('date', $boom['datepublished']);
-        $query->setParameter('boom_id', $boom['id']);
-        $result = $query->getResult();
         return $result;
-
-
     }
 
 }
