@@ -78,9 +78,6 @@ $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
                 <div class="fb-like" data-href="<?php ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
                 </div>
                 <a href="#" class="btn-fb">facebook</a>
-                <form>
-                <input type="button" name="Like" value="Like" onclick="likeBoom()" />
-                </form>
             </div>
             <div class="tw-share" tw-count="<?php echo $twUrl ?>">
                 <a href="<?php echo $twitterUrl ?>" target="_blank" class="btn-tw">twitter</a>
