@@ -876,4 +876,15 @@ class Boom extends DomainObject {
         return $this->list_elements;
     }
 
+    public function countReplies(){
+        $number = 0;
+        $number += count($this->getChildren());
+        $countBooomelementranks = count($this->getBooomelementranks());
+        if($countBooomelementranks > 0){
+            $countBooomelementranks = $countBooomelementranks/7;
+        }
+        $number += $countBooomelementranks;
+        return ceil($number);
+    }
+
 }
