@@ -48,13 +48,17 @@ $next_boom = $view['boom_front']->getNextAvailableBoom($entity);
 $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
 
 $response_user = null;
+$response_amount = 0;
 $author_user = $entity['user'];
+$response_list = $entity['children'];
 if (($entity['parent'] !== null && !empty($entity['parent']))) {
     $author_user = $entity['parent']['user'];
     $response_user = $entity['user'];
+    $response_list = $entity['parent']['children'];
 } elseif ($user_reordered !== null) {
     $response_user = $user_reordered;
 }
+$response_amount = $entity->countReplies();
 ?>
 <div class="<?php echo $category['slug'] ?> single-boom">
     <div class="boom-main">
@@ -73,13 +77,16 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
             <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $author_user['username'])) ?>" class="autor-thumb"><img src="<?php echo $view['boom_image']->getProfileImageUrl($author_user['imagepath'], array(150, 150)) ?>"></a>
             <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $author_user['username'])) ?>"><?php echo $view->escape($author_user['name']) ?></a></h3>
         </div>
-        <?php if($response_user !== null): ?>
-        <div class = "replies cf">
-        <span class = "reply-img"></span>
-        <a href = "<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' =>  $response_user['username'])) ?>" class = "autor-thumb reply"><img src = "<?php echo $view['boom_image']->getProfileImageUrl($response_user['imagepath'], array(150, 150)) ?>"></a>
-        <h3>Boomeado por: <span><a href = "<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $response_user['username'])) ?>"><?php echo $view->escape($response_user['name']) ?></a> y otros <?php echo $entity->countReplies() ?></span></h3>
-        </div>
-        <?php endif; ?>
+        <?php if ($response_user !== null): ?>
+            <div class = "replies cf">
+                <span class = "reply-img"></span>
+                <a href = "<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $response_user['username'])) ?>" class = "autor-thumb reply"><img src = "<?php echo $view['boom_image']->getProfileImageUrl($response_user['imagepath'], array(150, 150)) ?>"></a>
+                <h3>Boomeado por: <span><a href = "<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $response_user['username'])) ?>"><?php echo $view->escape($response_user['name']) ?></a> <?php if ($response_amount > 0) { ?> y otros <?php
+            echo $response_amount;
+        }
+        ?></span></h3>
+            </div>
+<?php endif; ?>
         <div class="social cf">
             <p>Comparte:</p>
             <div class="fb-share">
@@ -134,7 +141,7 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
                               </div>
                              */ ?>
                         </div>
-                    <?php //<span class="tab"><a href=""><span>TAB</span></a></span>  ?>
+                    <?php //<span class="tab"><a href=""><span>TAB</span></a></span>     ?>
                     </li>
                     <?php
                     $boomieCount--;
@@ -158,7 +165,7 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
             <div class="autor cf">
                 <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>" class="autor-thumb"><img src="<?php echo $view['boom_image']->getProfileImageUrl($entity['user']['imagepath'], array(150, 150)) ?>"></a>
                 <h3>Publicado por <a rel="author" href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username'])) ?>"><?php echo $view->escape($entity['user']['name']) ?></a></h3>
-<!--                <p><?php // echo $view->escape($entity['user']['bio'])      ?>...<a class="ver-moar" href="<?php // echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username']))      ?>">Leer más</a></p> -->
+<!--                <p><?php // echo $view->escape($entity['user']['bio'])         ?>...<a class="ver-moar" href="<?php // echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $entity['user']['username']))         ?>">Leer más</a></p> -->
             </div>
             <div class="social cf">
                 <p>Comparte:</p>
@@ -175,54 +182,37 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
             <?php endif; ?>
             </div>
-            <?php /*
-              <div class="respuestas-boom cf">
-              <h3 class="reply-flag">Respuestas a este boom</h3>
-              <ul class="cf">
-              <li>
-              <a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
-              <div>
-              <h4>
-              <a href="">Carlos Solares</a>
-              </h4>
-              <p class="time-ago">Hace XX minutos.</p>
-              <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
-              </div>
-              </li>
-              <li>
-              <a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
-              <div>
-              <h4>
-              <a href="">Carlos Solares</a>
-              </h4>
-              <p class="time-ago">Hace XX minutos.</p>
-              <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
-              </div>
-              </li>
-              <li>
-              <a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
-              <div>
-              <h4>
-              <a href="">Carlos Solares</a>
-              </h4>
-              <p class="time-ago">Hace XX minutos.</p>
-              <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
-              </div>
-              </li>
-              <li>
-              <a href="" class="autor-thumb"><img src="http://graph.facebook.com/820795226/picture?type=large"/></a>
-              <div>
-              <h4>
-              <a href="">Carlos Solares</a>
-              </h4>
-              <p class="time-ago">Hace XX minutos.</p>
-              <a class="ver-reply">&iexcl;CHECA SU OPINI&Oacute;N!</a>
-              </div>
-              </li>
-              </ul>
-              <a class="more-replies"></a>
-              </div>
-             */ ?>
+<?php if (!empty($response_list)): ?>
+                <div class="respuestas-boom cf">
+                    <h3 class="reply-flag">Respuestas a este boom</h3>
+                    <ul class="cf">
+                        <?php
+                        foreach ($response_list as $response):
+                            $response_url = $view['router']->generate(
+                                    'BoomFrontBundle_boom_show', array(
+                                'category_slug' => $response['category']['slug'],
+                                'slug' => $response['slug']
+                                    )
+                            );
+                            $response_time = $view->escape($view['boom_front']->getLocaleFormatDate($entity['datepublished'], 'EEE, d MMM, yyyy'));
+                            ?>
+                            <li>
+                                <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $response['user']['username'])) ?>" class="autor-thumb">
+                                    <img src="<?php echo $view['boom_image']->getProfileImageUrl($response['user']['imagepath'], array(150, 150)) ?>"/>
+                                </a>
+                                <div>
+                                    <h4>
+                                        <a href="<?php echo $view['router']->generate('BoomFrontBundle_user_profile', array('username' => $response['user']['username'])) ?>"><?php echo $view->escape($response['user']['name']) ?></a>
+                                    </h4>
+                                    <p class="time-ago"><?php echo $response_time ?></p>
+                                    <a class="ver-reply" href="<?php echo $response_url ?>" >&iexcl;CHECA SU OPINI&Oacute;N!</a>
+                                </div>
+                            </li>
+    <?php endforeach; ?>
+                    </ul>
+                    <a class="more-replies"></a>
+                </div>
+            <?php endif; ?>
             <?php
             $related_booms = $view['boom_front']->getRelatedBooms($entity);
             if (!empty($related_booms)):
@@ -252,12 +242,12 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
                                     <p><date><?php echo $view->escape($view['boom_front']->getLocaleFormatDate($related_boom['datepublished'], 'EEE, d MMM, yyyy')) ?></date></p>
                                 </div>
                             </li>
-                        <?php endforeach; ?>
+    <?php endforeach; ?>
                     </ul>
                 </div>
-            <?php endif; ?>
+                <?php endif; ?>
             <div class="pager cf">
-                <?php if ($prev_boom !== NULL): ?>
+                    <?php if ($prev_boom !== NULL): ?>
                     <div class="prev-boom page-block">
                         <?php
                         $prev_url = $view['router']->generate(
@@ -272,17 +262,17 @@ if (($entity['parent'] !== null && !empty($entity['parent']))) {
                             <img src="<?php echo $view['boom_image']->getBoomImageUrl($prev_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($prev_boom['title']) ?>" width="130" height="74">
                         </a>
                     </div>
-<?php endif; ?>
-                <?php if ($next_boom !== NULL): ?>
+                <?php endif; ?>
+                    <?php if ($next_boom !== NULL): ?>
                     <div class="next-boom page-block">
-                    <?php
-                    $next_url = $view['router']->generate(
-                            'BoomFrontBundle_boom_show', array(
-                        'category_slug' => $next_boom['category']['slug'],
-                        'slug' => $next_boom['slug']
-                            )
-                    );
-                    ?>
+                        <?php
+                        $next_url = $view['router']->generate(
+                                'BoomFrontBundle_boom_show', array(
+                            'category_slug' => $next_boom['category']['slug'],
+                            'slug' => $next_boom['slug']
+                                )
+                        );
+                        ?>
                         <a href="<?php echo $next_url ?>"><img src="<?php echo $view['boom_image']->getBoomImageUrl($next_boom['image']['path'], 130, 74) ?>" alt="<?php echo $view->escape($next_boom['title']) ?>" width="130" height="74"></a>
                         <a href="<?php echo $next_url ?>">Siguiente Boom</a>
                     </div>

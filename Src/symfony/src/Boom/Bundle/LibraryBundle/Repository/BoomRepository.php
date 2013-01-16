@@ -37,7 +37,7 @@ class BoomRepository extends NestedTreeRepository {
         return $aResultTotal[0][1];
     }
 
-    public function countReplies(Boom $boom){
+    public function countReplies(Boom $boom) {
         $number = 0;
         $number += count($boom['children']);
         return $number;
@@ -102,7 +102,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.category', 'category');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNull('boom.parent')
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -220,7 +220,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->leftJoin('boom.category', 'category');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (string) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('boom.category', $category['id']), $cb->expr()->eq('user.collaborator', (string) $collaborator), $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNull('boom.parent')
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -325,7 +325,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('boom');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.collaborator', ':collaborator'), $cb->expr()->in('boom.status', ':status')
+                $cb->expr()->eq('user.collaborator', ':collaborator'), $cb->expr()->in('boom.status', ':status'), $cb->expr()->isNull('boom.parent')
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -360,7 +360,7 @@ class BoomRepository extends NestedTreeRepository {
         $cb->select('count(boom)');
         $cb->leftJoin('boom.user', 'user');
         $cb->andWhere(
-                $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter)
+                $cb->expr()->eq('user.collaborator', (int) $collaborator), $cb->expr()->in('boom.status', $statusFilter), $cb->expr()->isNull('boom.parent')
         );
         if ($featured == true) {
             $cb->andWhere(
@@ -586,6 +586,30 @@ class BoomRepository extends NestedTreeRepository {
             $query->setParameter('boom_id', $boom['id']);
             $result = $query->getResult();
         }
+        return $result;
+    }
+
+    public function getBoomReplies(Boom $boom, $limit = 7) {
+        $result = array();
+
+        $qb = $this->createQueryBuilder('boom');
+
+        //booms query
+        $qb->select('boom');
+        $qb->andWhere(
+                $qb->expr()->neq('boom.id', ':boom_id'), $qb->expr()->eq('boom.parent', ':boom_id'), $qb->expr()->eq('boom.status', ':status'), $qb->expr()->lte('boom.date_published', ':date')
+        );
+        $qb->setFirstResult(0)->setMaxResults($limit);
+        $qb->orderBy('boom.date_published', 'DESC');
+
+        $query = $qb->getQuery();
+        $query->setParameter('status', Boom::STATUS_PUBLIC);
+        $query->setParameter('date', $boom['datepublished']);
+        $query->setParameter('boom_id', $boom['id']);
+        $result = $query->getResult();
+
+
+
         return $result;
     }
 
