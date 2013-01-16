@@ -3,6 +3,8 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# seven_boom_mx: http://ogp.me/ns/fb/seven_boom_mx#">
     <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
     <?php if ($fb_boom_graph_data !== null): ?>
+      <meta property="og:locale" content="es_ES" />
+      <meta property="og:locale:alternate" content="en_US" />
       <meta property="fb:app_id" content="349118228506488" />
       <meta property="og:site_name" content="7boom" />
       <meta property="og:type"   content="<?php echo $view->escape($fb_boom_graph_data['type']) ?>" />
@@ -56,22 +58,6 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
-    </script>
-    
-    <script type="text/javascript">
-      function likeBoom()
-      {
-        FB.api(
-          '/me/og.likes',
-          'post',
-          {
-          boom: "<?php echo $view->escape($fb_boom_graph_data['url']) ?>"
-          },
-          function(response) {
-          // handle the response
-          }
-        );
-      };
     </script>
       
     <script src="<?php echo $view['assets']->getUrl('/bundles/boomfront/js/libs/jquery-1.8.2.min.js') ?>"></script>
