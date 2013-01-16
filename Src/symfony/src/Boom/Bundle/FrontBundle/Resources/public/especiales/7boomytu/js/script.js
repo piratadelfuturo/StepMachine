@@ -15,8 +15,9 @@ $(document).ready(function(){
   }
 
   //función de keypress
+  /*
   $("html, body").keydown(function(e) {
-    if(e.keyCode == 37) {
+    if(e.which == 37) {
 
       var direction = 'l';
       event.preventDefault();
@@ -24,7 +25,7 @@ $(document).ready(function(){
       return $.slideMove();
 
     }
-    else if(e.keyCode == 39) {
+    else if(e.which == 39) {
 
       var direction = 'r';
       event.preventDefault();
@@ -33,8 +34,10 @@ $(document).ready(function(){
 
     }
   });
+  */
 
   //Animación al teclear
+  /*
   $.slideMove = function(direction){
     var slidesPos = {
       //Slide1
@@ -73,7 +76,149 @@ $(document).ready(function(){
       }
     }
   }
-    /* TODO
+  */
+    /* TODO */
+  var init = function(){
+
+    /* {{{ lol así no era
+    var slidesPos2 = [
+      0, 500, 1000, 1500, 2600, 3000,
+      3500, 4700, 5000, 5700,
+      6000, 6500, 7000, 7500, 8000, 8500,
+      9000, 9300, 9500, 10000, 11000
+    ];
+
+    var animation = function( order ){
+      $('html, body').stop(true, true).animate({
+        scrollLeft: slidesPos2[order]
+      }, 3000);
+    };
+
+    $('body').keyup(function(e){
+      var position = pageX(),
+          current = 0;
+
+      for (var i = 0; i < slidesPos2.length; i++) {
+
+        if ( e.which == 39 ) {
+          //adelante
+
+          if ( slidesPos2[i] > pageX() ) {
+            animation(i);
+            break;
+          }
+
+        }
+
+      };
+
+      for (var i = slidesPos2.length; i >= 0 ; i--) {
+
+        if ( e.which == 37 ) {
+          //atras
+
+          if ( slidesPos2[i] < pageX() ) {
+            animation(i);
+            break;
+          }
+
+        }
+
+      };
+
+    });
+    }}} */
+
+    var slidesPos2 = [
+      [0, 500, 1000, 1500, 2600, 3000],
+      [3500, 4700],
+      [5000, 5700],
+      [6000, 6500],
+      [7000, 7500, 8000, 8500],
+      [9000, 9300, 9500, 10000],
+      [11000]
+    ],
+    current = function( direction, dimension ){
+      /*
+       * s: slide
+       * p: position
+       * */
+      if ( direction == 'right' ) {
+        for (var s = 0; s < slidesPos2.length; s++) {
+          for (var p = 0; p < slidesPos2[s].length; p++) {
+
+            if(slidesPos2[s][p] > pageX()) {
+              if ( dimension == 'position' ) {
+                return p;
+              }
+              if ( dimension == 'slide' ) {
+                return s;
+              }
+            }
+          };
+        };
+
+      } else { /* direction == 'left' */
+
+        for (var s = slidesPos2.length; s-- > 0;) {
+          for (var p = slidesPos2[s].length; p-- > 0;) {
+
+            if(slidesPos2[s][p] < pageX()) {
+              if ( dimension == 'position' ) {
+                return p;
+              }
+              if ( dimension == 'slide' ) {
+                return s;
+              }
+            }
+
+          }
+        }
+
+      }
+      return 0;
+    },
+    animation = function( direction ){
+      var position = current( direction, 'position' ),
+          slide = current( direction, 'slide' );
+
+      console.log("slide: " + slide);
+      console.log("position:" + position);
+
+      if ( typeof( slidesPos2[slide][position] ) === "number" ) {
+        $('body').stop(true, false).animate({
+          scrollLeft: slidesPos2[slide][position]
+        }, 3000,
+        function(){
+          if (
+            (typeof(slidesPos2[slide][position+1]) === "number" && direction == 'right') ||
+            (typeof(slidesPos2[slide][position-1]) === "number" && direction == 'left')
+          ) {
+            animation( direction );
+          }
+        }
+      );
+      }
+    };
+
+    $('body').keyup(function(e) {
+
+      var direction = {
+        37: 'left',
+        39: 'right'
+      };
+
+      //console.log(typeof(direction[e.which]));
+
+      if ( typeof(direction[e.which]) === "string" ) {
+        //console.log(e.which);
+        animation( direction[e.which] );
+      }
+
+
+    });
+
+    /*
     var slidesPos2 = {
       slide1:[0, 500, 1000, 1500, 2600, 3000],
       slide2:[3500, 4700],
@@ -83,12 +228,30 @@ $(document).ready(function(){
       slide6:[9000, 9300, 9500, 10000],
       slide7:[11000]
     };
+    for ( i in slidesPos2 ) {
+      var slidesLength = slidesPos2[i].length;
 
-  for ( i in slidesPos2 ) {
-    if ( pageX() >= slidesPos[i] ) {
+      console.log( 'Length:' );
+      console.log( slidesLength );
+
+      for ( var j=0; j < slidesLength; j++  ) {
+
+        if ( pageX() >= slidesPos2[i][j] ) {
+          $('html, body').stop(false, false).animate({
+            scrollLeft: slidesPos2[i][j+1]
+          }, 3000);
+
+        console.log( 'Current:' );
+        console.log( slidesPos2[i][j] );
+
+        break;
+
+        }
+      }
     }
-  }
-  */
+    */
+  };
+  init();
 
   $('.bloque').addClass('hide');
   $('.numero').addClass('hide');
@@ -119,7 +282,7 @@ $(document).ready(function(){
 
   $(window).scroll(function(){
 
-    console.log(pageX());
+    //console.log(pageX());
 
     //tirar geocities
     if ( pageX() >= 1 ) {
