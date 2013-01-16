@@ -28,7 +28,7 @@
                 </li>
             </ul>
             <div id="tb-rb">
-                <form action="<?php echo $view['router']->generate('BoomFrontBundle_default_search'); ?> " method="GET" target="_blank">
+                <form action="<?php echo $view['router']->generate('BoomFrontBundle_default_search'); ?> " method="GET" target="_self">
                     <input type="submit" value="Buscar"  />
                     <input type="text" name="q" value=""/>
                 </form>
