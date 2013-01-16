@@ -37,6 +37,12 @@ class BoomRepository extends NestedTreeRepository {
         return $aResultTotal[0][1];
     }
 
+    public function countReplies(Boom $boom){
+        $number = 0;
+        $number += count($boom['children']);
+        return $number;
+    }
+
     public function findBoomsByCategory(Category $category, $sort = array('boom.date_published' => 'DESC'), $limit = 7, $offset = 0, array $status = array(), $featured = false) {
 
         $statusFilter = $this->validateStatus($status);
