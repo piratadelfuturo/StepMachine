@@ -4,6 +4,7 @@
     <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
     <?php if ($fb_boom_graph_data !== null): ?>
       <meta property="fb:app_id" content="349118228506488" />
+      <meta property="og:site_name" content="7boom" />
       <meta property="og:type"   content="<?php echo $view->escape($fb_boom_graph_data['type']) ?>" />
       <meta property="og:url"    content="<?php echo $view->escape($fb_boom_graph_data['url']) ?>" />
       <meta property="og:title"  content="<?php echo $view->escape($fb_boom_graph_data['title']) ?>" />
