@@ -275,6 +275,8 @@ class BoomController extends Controller {
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
         $request = $this->getRequest();
         $orderParam = $request->query->get('order');
+        $parent = null;
+
         if ($orderParam !== null) {
             $newOrder = array();
             foreach($orderParam as $orderP){
@@ -308,11 +310,16 @@ class BoomController extends Controller {
             'image'
         );
 
+        if($foundEntity['parent'] !== null && !empty($foundEntity['parent'])){
+            $parent = $foundEntity['root'];
+        }
 
         $entity = new Boom();
         foreach ($clonedBoomValues as $clBoomV) {
             $entity[$clBoomV] = $foundEntity[$clBoomV];
         }
+        $entity['parent'] = $parent;
+
         foreach ($foundEntity['elements']->toArray() as $o_index => $entElem) {
             if ($orderParam !== null) {
                 $n_index = (int) $newOrder[$o_index]['final']-1;
@@ -347,6 +354,7 @@ class BoomController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
+        $parent = null;
 
         if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
@@ -359,10 +367,13 @@ class BoomController extends Controller {
             throw new AccessDeniedHttpException('No puedes responder tus propios booms');
         }
 
+        if($foundEntity['parent'] !== null && !empty($foundEntity['parent'])){
+            $parent = $foundEntity['root'];
+        }
 
         $request = $this->getRequest();
         $entity = new Boom();
-        $entity['parent'] = $foundEntity;
+        $entity['parent'] = $parent;
         $entity['user'] = $sessionUser;
         $entity['status'] = Boom::STATUS_PRIVATE;
         $form = $this->createForm(new BoomType(), $entity);

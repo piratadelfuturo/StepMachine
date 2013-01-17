@@ -162,8 +162,8 @@ class ListController extends Controller {
         if (is_null($thisCat) || $thisCat == false) {
             throw $this->createNotFoundException('Categoría no existente');
         }
-        $boomRepo->
-                $list = $boomRepo->findUserBoomsByCategory(
+
+        $list = $boomRepo->findUserBoomsByCategory(
                 $thisCat
                 , array(
             'boom.date_published' => 'DESC'

@@ -511,7 +511,8 @@
         _shareBlock = $('.share-boom',_infoBlocks),
         _shareClose = $('.close-share',_infoBlocks),
         _comunityOrder = $('.tend-cont',_root),
-        _myBoom = $('.miboom-cont',_root);
+        _myBoom = $('.miboom-cont',_root),
+        _cookieName = 'reorder-boom-'+window.location.pathname;
 
         $([_shareBlock,_registerBlock]).each(function(){
             var _this = $(this);
@@ -540,8 +541,15 @@
 
         $([_comunityOrder,_myBoom]).each(function(){
             var data = {
-                order:{}
-            };
+                  order:{}
+                },
+                cookie = $.cookie(_cookieName);
+
+            if(cookie){
+                data = decodeURIComponent(cookie);
+                //reorder
+            }
+
             var _dragBase = $(this),
             _drag = $("> .drag-booms",_dragBase),
             _editalo = $("> .send",_dragBase),
@@ -565,6 +573,7 @@
                         'original'  : $(this).attr('original-position'),
                         'final'     : index+1
                     };
+                    $.cookie(_cookieName,$.param(data))
                 });
 
             });
@@ -611,6 +620,7 @@
                 success: function(){
                     _shareBlock.trigger('show');
                     _dragBase.trigger('ajaxOver');
+                    $.cookie(_cookieName,null);
                 },
                 error: function(response){
                     _registerBlock.trigger('show');
