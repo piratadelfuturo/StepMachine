@@ -1,4 +1,4 @@
-  <a href="https://www.surveymonkey.com/s/7BOOMtest" target="_blank" class="encuesta">Contesta nuestra encuesta de prueba</a>
+<a href="https://www.surveymonkey.com/s/7BOOMtest" target="_blank" class="encuesta">Contesta nuestra encuesta de prueba</a>
   <footer>
     <div class="">
       <div class="f-cont cf">
@@ -35,6 +35,35 @@
             <input type="submit" value="ENVIAR" name="subscribe" id="mc-embedded-subscribe" class="button">
           </form>
           <p class="copyright">Copyright © 2012 · All Rights Reserved</p>
+          <p class="copyright">
+            <a href="#terms" id="terms-click" class="btnClick">Términos y Condiciones</a>
+            &nbsp;·&nbsp;
+            <a href="#privacy" id="privacy-click" class="btnClick">Aviso de Privacidad</a>
+          </p>
+          <div class="modal" id="terms">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <a href="#" class="modal-close">x</a>
+              <div>
+                <h3>Términos y Condiciones</h3>
+                <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal" id="privacy">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <a href="#" class="modal-close">x</a>
+              <div>
+                <h3>Aviso de Privacidad</h3>
+                <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
