@@ -368,14 +368,12 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 9500 ){
-      $(window).unbind('scroll');
       $('#txt6 .cuatro').removeClass('show').addClass('hide').delay(5600).queue(function(next){
         $('#txt6 .cinco').removeClass('hide').addClass('show');
       });
     };
 
     if ( pageX() >= 9800 ){
-      $(window).bind('scroll');
       $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('show').addClass('hide');
     };
 
