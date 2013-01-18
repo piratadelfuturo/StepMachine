@@ -3,7 +3,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# seven_boom_mx: http://ogp.me/ns/fb/seven_boom_mx#">
     <?php $fb_boom_graph_data = $view['slots']->get('fb_boom_graph_data', null); ?>
     <?php if ($fb_boom_graph_data !== null): ?>
-      <meta property="og:locale" content="es_ES" />
+      <meta property="og:locale" content="es_LA" />
       <meta property="og:locale:alternate" content="en_US" />
       <meta property="fb:app_id" content="349118228506488" />
       <meta property="og:site_name" content="7boom" />
