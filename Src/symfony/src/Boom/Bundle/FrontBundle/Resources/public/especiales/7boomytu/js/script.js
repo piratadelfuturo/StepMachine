@@ -227,8 +227,8 @@ $(document).ready(function(){
 
   init();
 
-  $('.bloque').addClass('hide');
-  $('.numero').addClass('hide');
+  //$('.bloque').addClass('hide');
+  //$('.numero').addClass('hide');
 
   var scrollTimeout = null;
   var scrollendDelay = 100;
@@ -270,122 +270,122 @@ $(document).ready(function(){
 
     //triggers texto
     if ( pageX() >= 0 ){
-      $('#txt1 .numero, #txt1 .uno').removeClass('hide').addClass('show');
-      $('#txt1 .dos').removeClass('show').addClass('hide');
+      $('#txt1 .numero, #txt1 .uno').addClass('is-showing');
+      $('#txt1 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 500 ){
-      $('#txt1 .uno, #txt1 .tres').removeClass('show').addClass('hide');
-      $('#txt1 .dos').removeClass('hide').addClass('show');
+      $('#txt1 .uno, #txt1 .tres').removeClass('is-showing');
+      $('#txt1 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 1000 ){
-      $('#txt1 .tres').removeClass('hide').addClass('show');
-      $('#txt1 .cuatro, #txt1 .dos').removeClass('show').addClass('hide');
+      $('#txt1 .tres').addClass('is-showing');
+      $('#txt1 .cuatro, #txt1 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 1500 ){
-      $('#txt1 .tres').removeClass('show').addClass('hide');
-      $('#txt1 .cuatro').removeClass('hide').addClass('show');
+      $('#txt1 .tres').removeClass('is-showing');
+      $('#txt1 .cuatro').addClass('is-showing');
     };
 
     if ( pageX() >= 2000 ){
-      $('#txt2 .uno, #txt2 .numero, #txt1 .numero, #txt1 .cuatro').removeClass('show').addClass('hide');
+      $('#txt2 .uno, #txt2 .numero, #txt1 .numero, #txt1 .cuatro').removeClass('is-showing');
     };
 
     if ( pageX() >= 2500 ){
-      $('#txt2 .numero, #txt2 .uno').removeClass('hide').addClass('show');
-      $('#txt2 .dos').removeClass('show').addClass('hide');
+      $('#txt2 .numero, #txt2 .uno').addClass('is-showing');
+      $('#txt2 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 3000 ){
-      $('#txt2 .uno, #txt2 .tres').removeClass('show').addClass('hide');
-      $('#txt2 .dos').removeClass('hide').addClass('show');
+      $('#txt2 .uno, #txt2 .tres').removeClass('is-showing');
+      $('#txt2 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 3500 ){
-      $('#txt2 .dos').removeClass('show').addClass('hide');
-      $('#txt2 .tres').removeClass('hide').addClass('show');
+      $('#txt2 .dos').removeClass('is-showing');
+      $('#txt2 .tres').addClass('is-showing');
     };
 
     if ( pageX() >= 4000 ){
-      $('#txt2 .tres, #txt2 .numero, #txt3 .uno, #txt3 .numero').removeClass('show').addClass('hide');
+      $('#txt2 .tres, #txt2 .numero, #txt3 .uno, #txt3 .numero').removeClass('is-showing');
     };
 
     if ( pageX() >= 4500 ){
-      $('#txt3 .numero, #txt3 .uno').removeClass('hide').addClass('show');
-      $('#txt3 .dos, #txt3 .tres').removeClass('show').addClass('hide');
+      $('#txt3 .numero, #txt3 .uno').addClass('is-showing');
+      $('#txt3 .dos, #txt3 .tres').removeClass('is-showing');
     };
 
     if ( pageX() >= 5000 ){
-      $('#txt3 .uno, #txt4 .uno, #txt4 .numero').removeClass('show').addClass('hide');
-      $('#txt3 .dos, #txt3 .tres').removeClass('hide').addClass('show');
+      $('#txt3 .uno, #txt4 .uno, #txt4 .numero').removeClass('is-showing');
+      $('#txt3 .dos, #txt3 .tres').addClass('is-showing');
     };
 
     if ( pageX() >= 5700 ){
-      $('#txt4 .numero, #txt4 .uno').removeClass('hide').addClass('show');
-      $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('show').addClass('hide');
+      $('#txt4 .numero, #txt4 .uno').addClass('is-showing');
+      $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('is-showing');
     };
 
     if ( pageX() >= 6000 ){
-      $('#txt4 .uno, #txt5 .uno, #txt5 .numero').removeClass('show').addClass('hide');
-      $('#txt4 .dos, #txt4 .tres').removeClass('hide').addClass('show');
+      $('#txt4 .uno, #txt5 .uno, #txt5 .numero').removeClass('is-showing');
+      $('#txt4 .dos, #txt4 .tres').addClass('is-showing');
     };
 
     if ( pageX() >= 6500 ){
-      $('#txt4 .dos, #txt4 .tres, #txt4 .numero, #txt5 .dos').removeClass('show').addClass('hide');
-      $('#txt5 .numero, #txt5 .uno').removeClass('hide').addClass('show');
+      $('#txt4 .dos, #txt4 .tres, #txt4 .numero, #txt5 .dos').removeClass('is-showing');
+      $('#txt5 .numero, #txt5 .uno').addClass('is-showing');
     };
 
     if ( pageX() >= 7000 ){
-      $('#txt5 .uno, #txt5 .tres').removeClass('show').addClass('hide');
-      $('#txt5 .dos').removeClass('hide').addClass('show');
+      $('#txt5 .uno, #txt5 .tres').removeClass('is-showing');
+      $('#txt5 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 7500 ){
-      $('#txt5 .tres').removeClass('hide').addClass('show');
-      $('#txt5 .cuatro').removeClass('show').addClass('hide');
+      $('#txt5 .tres').addClass('is-showing');
+      $('#txt5 .cuatro').removeClass('is-showing');
     };
 
     if ( pageX() >= 8000 ){
-      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('show').addClass('hide');
-      $('#txt5 .cuatro').removeClass('hide').addClass('show');
+      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('is-showing');
+      $('#txt5 .cuatro').addClass('is-showing');
     };
 
     if ( pageX() >= 8500 ){
-      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .tres').removeClass('show').addClass('hide');
-      $('#txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('hide').addClass('show');
+      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .tres').removeClass('is-showing');
+      $('#txt6 .numero, #txt6 .uno, #txt6 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 9000 ){
-      $('#txt6 .tres').removeClass('hide').addClass('show');
-      $('#txt6 .dos, #txt6 .uno, #txt6 .cuatro').removeClass('show').addClass('hide');
+      $('#txt6 .tres').addClass('is-showing');
+      $('#txt6 .dos, #txt6 .uno, #txt6 .cuatro').removeClass('is-showing');
     };
 
     if ( pageX() >= 9300 ){
-      $('#txt6 .cuatro').removeClass('hide').addClass('show');
-      $('#txt6 .tres').removeClass('show').addClass('hide');
+      $('#txt6 .cuatro').addClass('is-showing');
+      $('#txt6 .tres').removeClass('is-showing');
     };
 
     if ( pageX() >= 9500 ){
       $(window).unbind('scroll');
-      $('#txt6 .cuatro').removeClass('show').addClass('hide').delay(5600).queue(function(next){
-        $('#txt6 .cinco').removeClass('hide').addClass('show');
+      $('#txt6 .cuatro').removeClass('is-showing').delay(5600).queue(function(next){
+        $('#txt6 .cinco').addClass('is-showing');
       });
     };
 
     if ( pageX() >= 9800 ){
       $(window).bind('scroll');
-      $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('show').addClass('hide');
+      $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
     };
 
     if ( pageX() >= 10200 ){
-      $('#txt7 .numero, #txt7 .uno').removeClass('hide').addClass('show');
+      $('#txt7 .numero, #txt7 .uno').addClass('is-showing');
     };
 
     if ( pageX() >= 10600 ){
-      $('#txt7 .numero, #txt7 .dos').removeClass('hide').addClass('show');
-      $('#txt7 .uno').removeClass('show').addClass('hide');
+      $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
+      $('#txt7 .uno').removeClass('is-showing');
       $('#social').removeClass('hidden').addClass('appear');
       if(gvballoon == 2){
         $('#dude2 .b-left').addClass('feliz');
@@ -394,8 +394,8 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 10700 ){
-      $('#txt7 .dos').removeClass('show').addClass('hide');
-      $('#txt7 .tres').removeClass('hide').addClass('show');
+      $('#txt7 .dos').removeClass('is-showing');
+      $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {
         $('#share').removeClass('hide');
       }, 600 );
