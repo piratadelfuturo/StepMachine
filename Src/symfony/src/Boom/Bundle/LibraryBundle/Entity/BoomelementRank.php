@@ -16,7 +16,7 @@ class BoomelementRank extends DomainObject{
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="booomelementranks", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="Boom", inversedBy="boomelementranks", fetch="EXTRA_LAZY")
      * @ORM\JoinColumn(name="boom_id", referencedColumnName="id", nullable=false)
      * @Gedmo\SortableGroup
      */

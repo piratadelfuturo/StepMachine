@@ -112,7 +112,7 @@ class Boom extends DomainObject {
     /**
      * @ORM\OneToMany(targetEntity="BoomelementRank", mappedBy="boom", cascade={"all"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      * */
-    protected $booomelementranks;
+    protected $boomelementranks;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="favorites", fetch="EXTRA_LAZY")
@@ -613,21 +613,21 @@ class Boom extends DomainObject {
     }
 
     public function getBooomelementranks() {
-        return $this->booomelementranks;
+        return $this->boomelementranks;
     }
 
-    public function setBooomelementranks(\Doctrine\Common\Collections\Collection $booomelementranks) {
-        $this->booomelementranks = $booomelementranks;
+    public function setBooomelementranks(\Doctrine\Common\Collections\Collection $boomelementranks) {
+        $this->boomelementranks = $boomelementranks;
         return $this;
     }
 
-    public function addBoomelementRank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementrank) {
-        $this->booomelementranks[] = $booomelementrank;
+    public function addBoomelementRank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementrank) {
+        $this->boomelementranks[] = $boomelementrank;
         return $this;
     }
 
-    public function removeBoomelementRank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementrank) {
-        $this->booomelementranks->removeElement($booomelementrank);
+    public function removeBoomelementRank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementrank) {
+        $this->boomelementranks->removeElement($boomelementrank);
     }
 
     /**
@@ -676,23 +676,23 @@ class Boom extends DomainObject {
     }
 
     /**
-     * Add booomelementranks
+     * Add boomelementranks
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementranks
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
      * @return Boom
      */
-    public function addBooomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementranks) {
-        $this->booomelementranks[] = $booomelementranks;
+    public function addBooomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks) {
+        $this->boomelementranks[] = $boomelementranks;
         return $this;
     }
 
     /**
-     * Remove booomelementranks
+     * Remove boomelementranks
      *
-     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementranks
+     * @param Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks
      */
-    public function removeBooomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $booomelementranks) {
-        $this->booomelementranks->removeElement($booomelementranks);
+    public function removeBooomelementrank(\Boom\Bundle\LibraryBundle\Entity\BoomelementRank $boomelementranks) {
+        $this->boomelementranks->removeElement($boomelementranks);
     }
 
     /**
