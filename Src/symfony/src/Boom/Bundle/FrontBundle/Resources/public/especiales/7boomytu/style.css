@@ -57,6 +57,7 @@ div.numero {
   top: 0;
   left: 0;
   z-index: 6;
+  opacity: 0;
 }
 
 #txt1 div.numero {
@@ -106,7 +107,13 @@ div.bloque {
   display: block;
   position: absolute;
   left: 150px;
+  opacity: 0;
 }
+
+div.is-showing {
+  opacity: 1;
+}
+
 
 div.valla-large {
   background: url('images/valla-l.png') no-repeat left top;
