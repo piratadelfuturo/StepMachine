@@ -25,13 +25,15 @@ class ProfileController extends Controller {
     public function editAction() {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
-
-        $form = $this->createForm(new UserType(), $sessionUser);
+        $em = $this->getDoctrine()->getEntityManager();
+        $userRepo = $em->getRepository('BoomLibraryBundle:User');
+        $entity = $userRepo->findOneById($sessionUser['id']);
+        $form = $this->createForm(new UserType(), $entity);
 
         return $this->render(
                         'BoomFrontBundle:Profile:edit.html.php', array(
                     'form' => $form->createView(),
-                    'entity' => $sessionUser
+                    'entity' => $entity
                         )
         );
     }
@@ -39,6 +41,7 @@ class ProfileController extends Controller {
     public function updateAction() {
         /** @var $upload_listener Boom\Bundle\LibraryBundle\Listener\UserImageUploadListener */
         $sessionToken = $this->get('security.context')->getToken();
+        $sessionUser = $sessionToken->getUser();
         $entity = $sessionToken->getUser();
         $entity['name'] = $entity['name'];
         $uploadListener = $this->get('boom_library.user_image_upload_persist.listener');
@@ -54,6 +57,7 @@ class ProfileController extends Controller {
             $em->persist($entity);
             $em->flush();
             $uploadListener->upload($entity);
+            $em->refresh($sessionUser);
             return $this->redirect($this->generateUrl('BoomFrontBundle_profile_edit'));
         }
         return $this->render(
