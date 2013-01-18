@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   //Side scrolling
-  $(function() {
+  $(function pageMove() {
     $("html, body").mousewheel(function(event, delta) {
       this.scrollLeft -= (delta * 5);
       event.preventDefault();
@@ -368,7 +368,6 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 9500 ){
-      $(window).unbind('scroll');
       $('#txt6 .cuatro').removeClass('is-showing').delay(5600).queue(function(next){
         $('#txt6 .cinco').addClass('is-showing');
       });
@@ -423,27 +422,27 @@ $(document).ready(function(){
         gvballoon = 2;
       }
     };
-    if ( pageX() >= 6000 ){ 
+    if ( pageX() >= 6000 ){
       $('#morra1, #morra2, #alien').addClass('feliz');
     };
-    if ( pageX() >= 9000 ){ 
+    if ( pageX() >= 9000 ){
       $('#dude').css('left', (pageX() + 300) + 'px' ).addClass('jump');
       $('#dude .dude-gorra').removeClass('show').addClass('hide');
     };
-    if ( pageX() >= 9150 ){ 
+    if ( pageX() >= 9150 ){
       $('#dude .dude-casco').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 9250 ){ 
+    if ( pageX() >= 9250 ){
       $('#dude').removeClass('jump');
       $('#cohete #cohete-bubble').removeClass('hide').addClass('show');
     };
 
-    if ( pageX() >= 9250 ){ 
+    if ( pageX() >= 9250 ){
       $('#dude').hide(0);
     };
 
-    if ( pageX() >= 9500){ 
+    if ( pageX() >= 9500){
       if(isfirst == 0){
         $('#cohete').addClass('volar').delay(3000).queue(function(next){
             $(this).hide(0);
