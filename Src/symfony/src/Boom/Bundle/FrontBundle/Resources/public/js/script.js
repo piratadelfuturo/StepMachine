@@ -10,7 +10,7 @@
     }
 })(document,jQuery);
 (function(document,$){
-
+  
     $(document).ready(function(){
         var dialog = $('<div></div>')
         .append()
@@ -26,7 +26,35 @@
             $dialog.dialog('open');
             return false;
         });
-
+        
+        
+        /*modal con terms y privacy*/
+        
+        $('.btnClick').click(function(){
+          var elId = $(this).attr('id');
+        
+          if(elId == 'terms-click'){
+            $('#terms').toggleClass('is-showing')
+          } else {
+            $('#privacy').toggleClass('is-showing')
+          };
+          return false;
+        })
+        
+        $('.modal-close').click(function(){
+          $(this).closest('div[id]').toggleClass('is-showing');
+          return false;
+        });
+        
+        var hashUrl = window.location.hash;
+        console.log(hashUrl);
+           
+        if(hashUrl === '#' + 'terms'){
+          $('#terms-click').click();
+        } else if (hashUrl === '#' + 'privacy') {
+          $('#privacy-click').click();
+        } else {};
+        
         /*Inserta iframe de bienvenida*/
         $('#iframe-container a.welcome-img').click(function(){
           $(this).parents('div').addClass('active');
@@ -1098,3 +1126,4 @@ $('#widget-call').click(function(){
   $("html, body").animate({ scrollTop: 350 }, 800);
   return false;
 });
+

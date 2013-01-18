@@ -8,7 +8,6 @@ function hndlr(response) {
 
   contentDiv.innerHTML = '<h3 class="title-flag">Resultados</h3>';
   contentDiv.className = contentDiv.className + "search";
-  console.log(response);
 
   var newResultsDiv = document.createElement('div');
   newResultsDiv.id = 'booms-container';
@@ -17,7 +16,7 @@ function hndlr(response) {
     var item = response.items[i];
 
     var resultHTML = '<div class="boom">';
-    if( typeof(item.pagemap.cse_thumbnail) == "object" ) {
+    if (typeof( item.pagemap ) == "object" ) {
       resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"><p class="boom-ti cf"><a href="http://'
         + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     } else {
