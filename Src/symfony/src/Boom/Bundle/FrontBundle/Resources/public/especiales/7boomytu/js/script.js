@@ -3,7 +3,7 @@ $(document).ready(function(){
   //Side scrolling
   $(function() {
     $("html, body").mousewheel(function(event, delta) {
-      this.scrollLeft -= (delta * 30);
+      this.scrollLeft -= (delta * 5);
       event.preventDefault();
     });
   });
@@ -391,9 +391,12 @@ $(document).ready(function(){
       }
     };
 
-    if ( pageX() >= 10720 ){
+    if ( pageX() >= 10700 ){
       $('#txt7 .dos').removeClass('show').addClass('hide');
-      $('#txt7 .numero, #txt7 .tres').removeClass('hide').addClass('show');
+      $('#txt7 .tres').removeClass('hide').addClass('show');
+      setTimeout( function() {
+        $('#share').removeClass('hide');
+      }, 600 );
     };
 
     //triggers animaciones escena 3

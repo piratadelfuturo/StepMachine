@@ -132,7 +132,7 @@ div.valla-large, div.valla-medium, div.valla-small {
 
 div.valla-large img, div.valla-medium img, div.valla-small img{
   display: block;
-  margin: 60px auto 0;  
+  margin: 60px auto 0;
 }
 
 .hide {
@@ -150,7 +150,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   -moz-transition: opacity .5s ease-in-out 0s;
   -o-transition: opacity .5s ease-in-out 0s;
   -ms-transition: opacity .5s ease-in-out 0s;
-  opacity: 1;
+  opacity: .999;
 }
 
 /*TEXTOS*/
@@ -1163,7 +1163,7 @@ div.chango-nube.mirror {
   width: 118px;
   position: absolute;
   z-index: 11;
-  opacity: 1;
+  opacity: .999;
   bottom: 120px;
 }
 
@@ -1186,7 +1186,7 @@ div.chango-nube.mirror {
   position: fixed;
   left: 400px;
   bottom: 120px;
-  opacity: 1;
+  opacity: .999;
   transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
   -moz-transition: all 1000ms ease-in 0ms;
@@ -1196,7 +1196,7 @@ div.chango-nube.mirror {
 
 #social.appear {
   bottom: 20px;
-  opacity: 1;
+  opacity: .999;
   transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
   -moz-transition: all 1000ms ease-in 0ms;
@@ -1386,7 +1386,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 46px;
-  opacity: 1;
+  opacity: .999;
 }
 
 #morra1 .face2 {
@@ -1487,7 +1487,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 60px;
   left: 64px;
-  opacity: 1;
+  opacity: .999;
 }
 
 #morra2 .face2 {
@@ -1588,7 +1588,7 @@ div.chango-nube.mirror {
   position: absolute;
   top: 65px;
   left: 64px;
-  opacity: 1;
+  opacity: .999;
 }
 
 #alien .face2 {
@@ -1668,7 +1668,7 @@ div#alien .globo, div#morra1 .globo, div#morra2 .globo {
 
 div#alien.feliz .globo, div#morra1.feliz .globo, div#morra2.feliz .globo {
   bottom: 70px;
-  opacity: 1;
+  opacity: .999;
   left: 100px;
   transition: opacity .8s ease-in-out 0s;
   -webkit-transition: opacity .8s ease-in-out 0s;
@@ -1734,7 +1734,7 @@ div#alien.feliz .face1, div#morra1.feliz .face1, div#morra2.feliz .face1 {
 }
 
 div#alien.feliz .face2, div#morra1.feliz .face2, div#morra2.feliz .face2 {
-  opacity: 1;
+  opacity: .999;
   transition: opacity .5s ease-in-out 0s;
   -webkit-transition: opacity .5s ease-in-out 0s;
   -moz-transition: opacity .5s ease-in-out 0s;
@@ -2175,81 +2175,81 @@ div.feliz .p-right {
 
 @keyframes humo {
   0% { opacity: .3; background-size: 105px auto; }
-  100% { opacity: 1; background-size: 98px auto; }
+  100% { opacity: .999; background-size: 98px auto; }
 }
 
 @-moz-keyframes humo {
   0% { opacity: .3; background-size: 105px auto; }
-  100% { opacity: 1; background-size: 98px auto; }
+  100% { opacity: .999; background-size: 98px auto; }
 }
 
 @-webkit-keyframes humo {
   0% { opacity: .3; background-size: 105px auto; }
-  100% { opacity: 1; background-size: 98px auto; }
+  100% { opacity: .999; background-size: 98px auto; }
 }
 
 @-o-keyframes humo {
   0% { opacity: .3; background-size: 105px auto; }
-  100% { opacity: 1; background-size: 98px auto; }
+  100% { opacity: .999; background-size: 98px auto; }
 }
 
 @-ms-keyframes humo {
   0% { opacity: .3; background-size: 105px auto; }
-  100% { opacity: 1; background-size: 98px auto; }
+  100% { opacity: .999; background-size: 98px auto; }
 }
 
 /*NUBES DE PENSAR Y ASI*/
 
 @keyframes nubespensar {
   0% { opacity: .0; top: 10px; }
-  100% { opacity: 1; top: -10px; }
+  100% { opacity: .999; top: -10px; }
 }
 
 @-moz-keyframes nubespensar {
   0% { opacity: .0; top: 10px; }
-  100% { opacity: 1; top: -10px; }
+  100% { opacity: .999; top: -10px; }
 }
 
 @-webkit-keyframes nubespensar {
   0% { opacity: .0; top: 10px; }
-  100% { opacity: 1; top: -10px; }
+  100% { opacity: .999; top: -10px; }
 }
 
 @-o-keyframes nubespensar {
   0% { opacity: .0; top: 10px; }
-  100% { opacity: 1; top: -10px; }
+  100% { opacity: .999; top: -10px; }
 }
 
 @-ms-keyframes nubespensar {
   0% { opacity: .0; top: 10px; }
-  100% { opacity: 1; top: -10px; }
+  100% { opacity: .999; top: -10px; }
 }
 
 /*FUEGUI100% DE COHETE*/
 
 @keyframes fuego {
   0% { opacity: .6; left: -260px; }
-  100% { opacity: 1; left: -250px; }
+  100% { opacity: .999; left: -250px; }
 }
 
 @-moz-keyframes fuego {
   0% { opacity: .6; left: -260px; }
-  100% { opacity: 1; left: -250px; }
+  100% { opacity: .999; left: -250px; }
 }
 
 @-webkit-keyframes fuego {
   0% { opacity: .6; left: -260px; }
-  100% { opacity: 1; left: -250px; }
+  100% { opacity: .999; left: -250px; }
 }
 
 @-o-keyframes fuego {
   0% { opacity: .6; left: -260px; }
-  100% { opacity: 1; left: -250px; }
+  100% { opacity: .999; left: -250px; }
 }
 
 @-ms-keyframes fuego {
   0% { opacity: .6; left: -260px; }
-  100% { opacity: 1; left: -250px; }
+  100% { opacity: .999; left: -250px; }
 }
 
 /*JUMP COHETE*/
@@ -2351,27 +2351,27 @@ div.feliz .p-right {
 
 @keyframes ruido {
   0% { opacity: 0; tranform:scale(0.3); }
-  100% { opacity: 1; transform:scale(1.1); }
+  100% { opacity: .999; transform:scale(1.1); }
 }
 
 @-moz-keyframes ruido {
   0% { opacity: 0; -moz-tranform:scale(0.3); }
-  100% { opacity: 1; -moz-transform:scale(1.1); }
+  100% { opacity: .999; -moz-transform:scale(1.1); }
 }
 
 @-webkit-keyframes ruido {
   0% { opacity: 0; -webkit-transform: scale(0.3); }
-  100% { opacity: 1; -webkit-transform:scale(1.1); }
+  100% { opacity: .999; -webkit-transform:scale(1.1); }
 }
 
 @-o-keyframes ruido {
   0% { opacity: 0; -o-tranform:scale(0.3); }
-  100% { opacity: 1; -o-transform:scale(1.1); }
+  100% { opacity: .999; -o-transform:scale(1.1); }
 }
 
 @-ms-keyframes ruido {
   0% { opacity: 0; -ms-tranform:scale(0.3); }
-  100% { opacity: 1; -ms-transform:scale(1.1); }
+  100% { opacity: .999; -ms-transform:scale(1.1); }
 }
 
 /* clearfix */
