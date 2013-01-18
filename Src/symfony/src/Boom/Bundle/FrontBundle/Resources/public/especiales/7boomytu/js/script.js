@@ -13,7 +13,7 @@ $(document).ready(function(){
   var pageX = function(){
     return $(window).scrollLeft();
   }
-
+  /* {{{ NO SE USA AHORA.
   //función de keypress
   /*
   $("html, body").keydown(function(e) {
@@ -76,8 +76,7 @@ $(document).ready(function(){
       }
     }
   }
-  */
-    /* TODO */
+  }}} */
   var init = function(){
 
     /* {{{ lol así no era
@@ -130,15 +129,16 @@ $(document).ready(function(){
     }}} */
 
     var slidesPos2 = [
-      [0, 500, 1000, 1500, 2600, 3000],
-      [3500, 4700],
+      [0, 500, 1000, 1500, 2600],
+      [3000, 3500, 4700],
       [5000, 5700],
       [6000, 6500],
       [7000, 7500, 8000, 8500],
       [9000, 9300, 9500, 10000],
-      [11000]
+      [10300, 10600, 10900]
     ],
     current = function( direction, dimension ){
+
       /*
        * s: slide
        * p: position
@@ -164,12 +164,15 @@ $(document).ready(function(){
           for (var p = slidesPos2[s].length; p-- > 0;) {
 
             if(slidesPos2[s][p] < pageX()) {
+
               if ( dimension == 'position' ) {
                 return p;
               }
+
               if ( dimension == 'slide' ) {
                 return s;
               }
+
             }
 
           }
@@ -182,20 +185,24 @@ $(document).ready(function(){
       var position = current( direction, 'position' ),
           slide = current( direction, 'slide' );
 
-      console.log("slide: " + slide);
-      console.log("position:" + position);
+      //console.log("slide: " + slide);
+      //console.log("position:" + position);
 
       if ( typeof( slidesPos2[slide][position] ) === "number" ) {
         $('body').stop(true, false).animate({
           scrollLeft: slidesPos2[slide][position]
         }, 3000,
         function(){
-          if (
-            (typeof(slidesPos2[slide][position+1]) === "number" && direction == 'right') ||
-            (typeof(slidesPos2[slide][position-1]) === "number" && direction == 'left')
-          ) {
-            animation( direction );
-          }
+          setTimeout(
+            function() {
+              if (
+                (typeof(slidesPos2[slide][position+1]) === "number" && direction == 'right') ||
+                (typeof(slidesPos2[slide][position-1]) === "number" && direction == 'left')
+              ) {
+                animation( direction );
+              }
+            }, 1000
+          )
         }
       );
       }
@@ -215,42 +222,9 @@ $(document).ready(function(){
         animation( direction[e.which] );
       }
 
-
     });
-
-    /*
-    var slidesPos2 = {
-      slide1:[0, 500, 1000, 1500, 2600, 3000],
-      slide2:[3500, 4700],
-      slide3:[5000, 5700],
-      slide4:[6000, 6500],
-      slide5:[7000, 7500, 8000, 8500],
-      slide6:[9000, 9300, 9500, 10000],
-      slide7:[11000]
-    };
-    for ( i in slidesPos2 ) {
-      var slidesLength = slidesPos2[i].length;
-
-      console.log( 'Length:' );
-      console.log( slidesLength );
-
-      for ( var j=0; j < slidesLength; j++  ) {
-
-        if ( pageX() >= slidesPos2[i][j] ) {
-          $('html, body').stop(false, false).animate({
-            scrollLeft: slidesPos2[i][j+1]
-          }, 3000);
-
-        console.log( 'Current:' );
-        console.log( slidesPos2[i][j] );
-
-        break;
-
-        }
-      }
-    }
-    */
   };
+
   init();
 
   $('.bloque').addClass('hide');
@@ -282,7 +256,7 @@ $(document).ready(function(){
 
   $(window).scroll(function(){
 
-    //console.log(pageX());
+    console.log(pageX());
 
     //tirar geocities
     if ( pageX() >= 1 ) {
@@ -403,8 +377,23 @@ $(document).ready(function(){
       $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('show').addClass('hide');
     };
 
-    if ( pageX() >= 10000 ){
+    if ( pageX() >= 10200 ){
       $('#txt7 .numero, #txt7 .uno').removeClass('hide').addClass('show');
+    };
+
+    if ( pageX() >= 10600 ){
+      $('#txt7 .numero, #txt7 .dos').removeClass('hide').addClass('show');
+      $('#txt7 .uno').removeClass('show').addClass('hide');
+      $('#social').removeClass('hidden').addClass('appear');
+      if(gvballoon == 2){
+        $('#dude2 .b-left').addClass('feliz');
+        gvballoon = 3;
+      }
+    };
+
+    if ( pageX() >= 10720 ){
+      $('#txt7 .dos').removeClass('show').addClass('hide');
+      $('#txt7 .numero, #txt7 .tres').removeClass('hide').addClass('show');
     };
 
     //triggers animaciones escena 3
@@ -417,8 +406,8 @@ $(document).ready(function(){
       }
       $('#morro .face1, #morro .b2-left, #morro .b2-right, #morro .face3').removeClass('show').addClass('hide');
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
-    } 
-    
+    }
+
     if ( pageX() >= 5000 ){
       $('#morro .morro-brazos, #morro .morro-piernas').addClass('feliz');
       $('#ruido, #nube').removeClass('show').addClass('hide');
@@ -471,16 +460,6 @@ $(document).ready(function(){
 	isfirst = 1;
       }
 
-    };
-
-    if ( pageX() >= 10100 ){
-      $('#txt7 .uno').removeClass('show').addClass('hide');
-      $('#txt7 .dos, #txt7 .tres').removeClass('hide').addClass('show');
-      $('#social').removeClass('hidden').addClass('appear');
-      if(gvballoon == 2){
-        $('#dude2 .b-left').addClass('feliz');
-        gvballoon = 3;
-      }
     };
 
   });

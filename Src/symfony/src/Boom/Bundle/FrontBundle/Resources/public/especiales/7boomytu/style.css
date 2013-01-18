@@ -334,7 +334,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   width: 526px;
   height: 158px;
   left: 270px;
-  top: 180px;
+  top: 0px;
 }
 
 /*THE DUUUUUUUUUDEEE*/
@@ -2077,7 +2077,7 @@ div.feliz .p-right {
   bottom: 70px;
   width: 359px;
   height: 200px;
-  left: 360px;
+  left: 960px;
 }
 
 #escena-7 #share div.uno {
@@ -2111,7 +2111,7 @@ div.feliz .p-right {
   position: absolute;
   bottom: -70px;
   z-index: 7;
-  left: 420px;
+  left: 1020px;
 }
 
 /*ANIMACIONES & FUNSTUFF*/
