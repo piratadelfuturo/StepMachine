@@ -22,7 +22,7 @@ html, body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
-  width: 12000px;
+  width: 13475px;
 }
 
 /*ESTILOS COMPARTIDOS */
@@ -945,7 +945,7 @@ div.chango-nube.mirror {
   background: linear-gradient(100% bottom, #9dcdf8 0%,#bbe9fd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dcdf8', endColorstr='#bbe9fd',GradientType=0 );
   height: 100%;
-  width: 7200px;
+  width: 8675px;
 }
 
 #escenas-multiples div.bottom {
@@ -2050,7 +2050,7 @@ div.feliz .p-right {
 
 #escena-7 {
   height: 100%;
-  width: 1525px;
+  width: 3000px;
 }
 
 #escena-7 #social {
@@ -2085,6 +2085,11 @@ div.feliz .p-right {
   width: 359px;
   height: 200px;
   left: 960px;
+  transition: opacity .5s ease-in-out 0s;
+  -webkit-transition: opacity .5s ease-in-out 0s;
+  -moz-transition: opacity .5s ease-in-out 0s;
+  -o-transition: opacity .5s ease-in-out 0s;
+  -ms-transition: opacity .5s ease-in-out 0s;
 }
 
 #escena-7 #share div.uno {
