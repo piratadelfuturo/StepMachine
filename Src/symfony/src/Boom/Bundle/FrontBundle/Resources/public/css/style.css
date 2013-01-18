@@ -1533,7 +1533,6 @@ aside .sb-bloque {
 .sb-bloque.fb-wdgt iframe {
   height: 300px;
   width: auto;
-  margin-top: -15px;
 }
 
 .sb-bloque > h3 {
