@@ -364,7 +364,7 @@ $(document).ready(function(){
 
     if ( pageX() >= 9300 ){
       $('#txt6 .cuatro').addClass('is-showing');
-      $('#txt6 .tres').removeClass('is-showing');
+      $('#txt6 .tres, #txt6 .cinco ').removeClass('is-showing');
     };
 
     if ( pageX() >= 9500 ){

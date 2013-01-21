@@ -101,6 +101,8 @@ div.textos {
   position: absolute;
   top: 0;
   left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 div.bloque {
@@ -108,6 +110,8 @@ div.bloque {
   position: absolute;
   left: 150px;
   opacity: 0;
+  width: 100%;
+  height: 100%;
 }
 
 div.is-showing {
@@ -163,185 +167,159 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 /*TEXTOS*/
 
 #wrapper #txt-wrapper {
-  width: 600px;
-  height: 320px;
+  width: 40%;
+  height: 30%;
   display: block;
   z-index: 11;
   position: fixed;
   left: 150px;
-  bottom: 45%;
+  top: 5%;
 }
 
-#txt-wrapper #txt1 div.uno {
+#txt1 div.uno {
   background: url('images/textos/txt1-1.png') no-repeat left top;
-  width: 593px;
-  height: 309px;
 }
 
-#txt-wrapper #txt1 div.dos {
+#txt1 div.dos {
   background: url('images/textos/txt1-2.png') no-repeat left top;
-  width: 593px;
-  height: 447px;
-  top: -50px;
 }
 
-#txt-wrapper #txt1 div.tres {
+#txt1 div.tres {
   background: url('images/textos/txt1-3.png') no-repeat left top;
-  width: 593px;
-  height: 214px;
+  max-height: 214px;
 }
 
-#txt-wrapper #txt1 div.cuatro {
+#txt1 div.cuatro {
   background: url('images/textos/txt1-4.png') no-repeat left top;
-  width: 593px;
-  height: 250px;
+  max-height: 249px;
 }
 
-#txt-wrapper #txt2 div.uno {
+#txt2 div.uno {
   background: url('images/textos/txt2-1.png') no-repeat left top;
-  width: 553px;
-  height: 346px;
-  top: -50px;
 }
 
-#txt-wrapper #txt2 div.dos {
+#txt2 div.dos {
   background: url('images/textos/txt2-2.png') no-repeat left top;
-  width: 553px;
-  height: 318px;
-  top: -50px;
+  top: -20px;
   left: 170px;
 }
 
-#txt-wrapper #txt2 div.tres {
+#txt2 div.tres {
   background: url('images/textos/txt2-3.png') no-repeat left top;
-  width: 555px;
-  height: 348px;
-  top: 15px;
-  left: 25px;
 }
 
-#txt-wrapper #txt3 div.uno {
+#txt3 div.uno {
   background: url('images/textos/txt3-1.png') no-repeat left top;
-  width: 536px;
-  height: 262px;
 }
 
-#txt-wrapper #txt3 div.dos {
+#txt3 div.dos {
   background: url('images/textos/txt3-2.png') no-repeat left top;
-  width: 536px;
-  height: 278px;
+  max-height: 278px;
 }
 
-#txt-wrapper #txt3 div.tres {
+#txt3 div.tres {
   background: url('images/textos/txt3-3.png') no-repeat left top;
-  width: 536px;
-  height: 143px;
-  top: 290px;
+  top: 102%;
+  max-height: 143px;
 }
 
-#txt-wrapper #txt4 div.uno {
+#txt4 div.uno {
   background: url('images/textos/txt4-1.png') no-repeat left top;
-  width: 545px;
-  height: 102px;
   top: 60px;
   left: 170px;
+  max-width: 550px;
 }
 
-#txt-wrapper #txt4 div.dos {
+#txt4 div.dos {
   background: url('images/textos/txt4-2.png') no-repeat left top;
-  width: 548px;
-  height: 305px;
-  left: 170px;
+  left: 150px;
+  max-height: 305px;
 }
 
-#txt-wrapper #txt4 div.tres {
+#txt4 div.tres {
   background: url('images/textos/txt4-3.png') no-repeat left top;
-  width: 551px;
-  height: 32px;
-  top: 320px;
-  left: 170px;
+  top: 110%;
+  max-width: 500px;
 }
 
-#txt-wrapper #txt5 div.uno {
+#txt5 div.uno {
   background: url('images/textos/txt5-1.png') no-repeat left top;
-  width: 535px;
-  height: 176px;
+  max-height: 180px;
 }
 
-#txt-wrapper #txt5 div.dos {
+#txt5 div.dos {
   background: url('images/textos/txt5-2.png') no-repeat left top;
-  width: 535px;
-  height: 89px;
-  top: -30px;
+  max-width: 535px;
+  max-height: 89px;
 }
 
-#txt-wrapper #txt5 div.tres {
+#txt5 div.tres {
   background: url('images/textos/txt5-3.png') no-repeat left top;
-  width: 535px;
-  height: 150px;
-  top: 70px;
+  max-width: 535px;
+  top: 40%;
 }
 
-#txt-wrapper #txt5 div.cuatro {
+#txt5 div.cuatro {
   background: url('images/textos/txt5-4.png') no-repeat left top;
-  width: 535px;
-  height: 150px;
   top: 40px;
+  max-height: 135px;
 }
 
-#txt-wrapper #txt6 div.uno {
+#txt6 div.uno {
   background: url('images/textos/txt6-1.png') no-repeat left top;
-  width: 519px;
-  height: 133px;
+  max-width: 519px;
+  max-height: 133px;
 }
 
-#txt-wrapper #txt6 div.dos {
+#txt6 div.dos {
   background: url('images/textos/txt6-2.png') no-repeat left top;
-  width: 519px;
-  height: 88px;
-  top: 130px;
+  top: 50%;
+  max-height: 88px;
 }
 
-#txt-wrapper #txt6 div.tres {
+#txt6 div.tres {
   background: url('images/textos/txt6-3.png') no-repeat left top;
-  width: 519px;
-  height: 198px;
+  max-width: 520px;
 }
 
-#txt-wrapper #txt6 div.cuatro {
+#txt6 div.cuatro {
   background: url('images/textos/txt6-4.png') no-repeat left top;
-  width: 519px;
-  height: 174px;
   left: 170px;
   top: 15px;
+  max-width: 520px;
 }
 
-#txt-wrapper #txt6 div.cinco {
+#txt6 div.cinco {
   background: url('images/textos/txt6-5.png') no-repeat left top;
-  width: 519px;
-  height: 177px;
+  max-width: 520px;
+  top: 10%;
 }
 
-#txt-wrapper #txt7 div.uno {
+#txt7 div.uno {
   background: url('images/textos/txt7-1.png') no-repeat left top;
-  width: 560px;
-  height: 128px;
   left: 270px;
+  max-width: 560px;
 }
 
-#txt-wrapper #txt7 div.dos {
+#txt7 div.dos {
   background: url('images/textos/txt7-2.png') no-repeat left top;
-  width: 512px;
-  height: 158px;
   left: 270px;
+  max-width: 512px;
 }
 
-#txt-wrapper #txt7 div.tres {
+/* @group Untitled Group */
+
+#txt7 div.tres {
   background: url('images/textos/txt7-3.png') no-repeat left top;
-  width: 526px;
-  height: 158px;
   left: 270px;
   top: 0px;
+  max-width: 526px;
+}
+
+/* @end */
+
+#txt-wrapper div div.txt-resize {
+  background-size: contain;  
 }
 
 /*THE DUUUUUUUUUDEEE*/
