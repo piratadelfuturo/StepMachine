@@ -228,6 +228,15 @@ $(document).ready(function(){
       }
 
     });
+
+    $('nav .nav-btn').click(function(){
+
+      var direction = $(this).data('direction');
+
+      animation( direction );
+
+    });
+
   };
 
   init();
@@ -239,11 +248,11 @@ $(document).ready(function(){
   var scrollendDelay = 100;
 
   function scrollbeginHandler() {
-    $('.dude-piernas').addClass('walk');
+    $('body').addClass('is-scrolling');
   }
 
   function scrollendHandler() {
-    $('.dude-piernas').removeClass('walk');
+    $('body').removeClass('is-scrolling');
   	scrollTimeout = null;
   }
 
