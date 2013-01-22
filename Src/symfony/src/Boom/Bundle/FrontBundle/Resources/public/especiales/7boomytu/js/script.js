@@ -144,6 +144,9 @@ $(document).ready(function(){
        * p: position
        * */
       if ( direction == 'right' ) {
+
+        $('#dude, #dude2').removeClass('mirror');
+
         for (var s = 0; s < slidesPos2.length; s++) {
           for (var p = 0; p < slidesPos2[s].length; p++) {
 
@@ -159,6 +162,8 @@ $(document).ready(function(){
         };
 
       } else { /* direction == 'left' */
+
+        $('#dude, #dude2').addClass('mirror');
 
         for (var s = slidesPos2.length; s-- > 0;) {
           for (var p = slidesPos2[s].length; p-- > 0;) {
@@ -223,6 +228,15 @@ $(document).ready(function(){
       }
 
     });
+
+    $('nav .nav-btn').click(function(){
+
+      var direction = $(this).data('direction');
+
+      animation( direction );
+
+    });
+
   };
 
   init();
@@ -234,11 +248,11 @@ $(document).ready(function(){
   var scrollendDelay = 100;
 
   function scrollbeginHandler() {
-    $('.dude-piernas').addClass('walk');
+    $('body').addClass('is-scrolling');
   }
 
   function scrollendHandler() {
-    $('.dude-piernas').removeClass('walk');
+    $('body').removeClass('is-scrolling');
   	scrollTimeout = null;
   }
 
