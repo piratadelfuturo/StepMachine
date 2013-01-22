@@ -1856,7 +1856,7 @@ div.feliz .p-right {
   content: '';
   display: block;
   position: absolute;
-  width: 2000px;
+  width: 2300px;
   height: 100%;
   left: -100%;
 }
@@ -2094,6 +2094,7 @@ div.feliz .p-right {
   width: 359px;
   height: 200px;
   right: 120px;
+  z-index: 9;
   transition: opacity .5s ease-in-out 0s;
   -webkit-transition: opacity .5s ease-in-out 0s;
   -moz-transition: opacity .5s ease-in-out 0s;
@@ -2124,15 +2125,14 @@ div.feliz .p-right {
   text-decoration: none;
 }
 
-#escena-7 #brutalcontent {
+#brutalcontent {
   background: url('images/brutalcontent.png') no-repeat left top;
   width: 252px;
   height: 39px;
   display: block;
   position: absolute;
-  bottom: 30px;
-  z-index: 7;
-  right: 160px;
+  bottom: -150px;
+  right: 50px;
 }
 
 /*ANIMACIONES & FUNSTUFF*/
