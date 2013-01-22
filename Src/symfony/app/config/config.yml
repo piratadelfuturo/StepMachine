@@ -34,7 +34,6 @@ fos_user:
         confirmation:
             enabled:    true
 fos_facebook:
-      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
       alias:  facebook
       app_id: %facebook_app_id%
       secret: %facebook_app_secret%
