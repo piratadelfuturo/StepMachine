@@ -328,26 +328,26 @@ $(document).ready(function(){
 
     if ( pageX() >= 4500 ){
       $('#txt3 .numero, #txt3 .uno').addClass('is-showing');
-      $('#txt3 .dos, #txt3 .tres').removeClass('is-showing');
+      $('#txt3 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 5000 ){
       $('#txt3 .uno, #txt4 .uno, #txt4 .numero').removeClass('is-showing');
-      $('#txt3 .dos, #txt3 .tres').addClass('is-showing');
+      $('#txt3 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 5700 ){
       $('#txt4 .numero, #txt4 .uno').addClass('is-showing');
-      $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero, #txt4 .tres').removeClass('is-showing');
+      $('#txt4 .dos, #txt3 .dos, #txt3 .tres, #txt3 .numero').removeClass('is-showing');
     };
 
     if ( pageX() >= 6000 ){
       $('#txt4 .uno, #txt5 .uno, #txt5 .numero').removeClass('is-showing');
-      $('#txt4 .dos, #txt4 .tres').addClass('is-showing');
+      $('#txt4 .dos').addClass('is-showing');
     };
 
     if ( pageX() >= 6500 ){
-      $('#txt4 .dos, #txt4 .tres, #txt4 .numero, #txt5 .dos').removeClass('is-showing');
+      $('#txt4 .dos, #txt4 .numero, #txt5 .dos').removeClass('is-showing');
       $('#txt5 .numero, #txt5 .uno').addClass('is-showing');
     };
 
@@ -358,37 +358,37 @@ $(document).ready(function(){
 
     if ( pageX() >= 7500 ){
       $('#txt5 .tres').addClass('is-showing');
-      $('#txt5 .cuatro').removeClass('is-showing');
+      $('#txt5 .cuatro, #txt5 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 8000 ){
-      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno, #txt6 .dos').removeClass('is-showing');
+      $('#txt5 .dos, #txt5 .tres, #txt6 .numero, #txt6 .uno').removeClass('is-showing');
       $('#txt5 .cuatro').addClass('is-showing');
     };
 
     if ( pageX() >= 8500 ){
-      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .tres').removeClass('is-showing');
-      $('#txt6 .numero, #txt6 .uno, #txt6 .dos').addClass('is-showing');
+      $('#txt5 .numero, #txt5 .cuatro, #txt5 .tres, #txt6 .dos').removeClass('is-showing');
+      $('#txt6 .numero, #txt6 .uno').addClass('is-showing');
     };
 
     if ( pageX() >= 9000 ){
-      $('#txt6 .tres').addClass('is-showing');
-      $('#txt6 .dos, #txt6 .uno, #txt6 .cuatro').removeClass('is-showing');
+      $('#txt6 .dos').addClass('is-showing');
+      $('#txt6 .tres, #txt6 .uno, #txt6 .cuatro').removeClass('is-showing');
     };
 
     if ( pageX() >= 9300 ){
-      $('#txt6 .cuatro').addClass('is-showing');
-      $('#txt6 .tres, #txt6 .cinco ').removeClass('is-showing');
+      $('#txt6 .tres').addClass('is-showing');
+      $('#txt6 .cuatro, #txt6 .dos').removeClass('is-showing');
     };
 
     if ( pageX() >= 9500 ){
-      $('#txt6 .cuatro').removeClass('is-showing').delay(5600).queue(function(next){
-        $('#txt6 .cinco').addClass('is-showing');
+      $('#txt6 .tres').removeClass('is-showing').delay(5600).queue(function(next){
+        $('#txt6 .cuatro').addClass('is-showing');
       });
     };
 
     if ( pageX() >= 9800 ){
-      $('#txt6 .numero, #txt6 .cinco, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
+      $('#txt6 .numero, #txt6 .cuatro, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
     };
 
     if ( pageX() >= 10200 ){

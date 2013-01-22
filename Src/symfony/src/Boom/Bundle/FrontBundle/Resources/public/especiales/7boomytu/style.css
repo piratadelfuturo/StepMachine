@@ -233,13 +233,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 #txt3 div.dos {
   background: url('images/textos/txt3-2.png') no-repeat left top;
-  max-height: 278px;
-}
-
-#txt3 div.tres {
-  background: url('images/textos/txt3-3.png') no-repeat left top;
-  top: 102%;
-  max-height: 143px;
+  max-height: 450px;
 }
 
 #txt4 div.uno {
@@ -251,14 +245,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 #txt4 div.dos {
   background: url('images/textos/txt4-2.png') no-repeat left top;
-  left: 150px;
-  max-height: 305px;
-}
-
-#txt4 div.tres {
-  background: url('images/textos/txt4-3.png') no-repeat left top;
-  top: 110%;
-  max-width: 500px;
+  left: 185px;
+  max-height: 340px;
 }
 
 #txt5 div.uno {
@@ -270,48 +258,44 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background: url('images/textos/txt5-2.png') no-repeat left top;
   max-width: 535px;
   max-height: 89px;
+  top: 20%;
 }
 
 #txt5 div.tres {
   background: url('images/textos/txt5-3.png') no-repeat left top;
   max-width: 535px;
-  top: 40%;
+  top: 10%;
 }
 
 #txt5 div.cuatro {
   background: url('images/textos/txt5-4.png') no-repeat left top;
-  top: 40px;
+  top: 15%;
   max-height: 135px;
 }
 
 #txt6 div.uno {
   background: url('images/textos/txt6-1.png') no-repeat left top;
   max-width: 519px;
-  max-height: 133px;
+  max-height: 211px;
 }
 
 #txt6 div.dos {
   background: url('images/textos/txt6-2.png') no-repeat left top;
-  top: 50%;
-  max-height: 88px;
+  top: 8%;
+  max-height: 198px;
 }
 
 #txt6 div.tres {
   background: url('images/textos/txt6-3.png') no-repeat left top;
-  max-width: 520px;
+  max-height: 174px;
+  top: 8%;
 }
 
 #txt6 div.cuatro {
   background: url('images/textos/txt6-4.png') no-repeat left top;
   left: 170px;
   top: 15px;
-  max-width: 520px;
-}
-
-#txt6 div.cinco {
-  background: url('images/textos/txt6-5.png') no-repeat left top;
-  max-width: 520px;
-  top: 10%;
+  max-height: 177px;
 }
 
 #txt7 div.uno {
@@ -337,7 +321,7 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 /* @end */
 
-#txt-wrapper div div.txt-resize {
+#txt-wrapper div div.text-resize {
   background-size: contain;  
 }
 
@@ -629,17 +613,26 @@ body.is-scrolling .dude-piernas .p-left {
   margin: 30px auto 0 auto;
 }
 
-#geocities header nav span {
-  font: normal 34px Impact;
+#geocities header ul li {
+  float: left;
+  display: block;  
+}
+
+#geocities header ul li p span {
   color: #fff;
   margin: 0 25px;
 }
 
-#geocities header nav a {
+#geocities header ul li p {
   font: normal 34px Impact;
   color: #b7529f;
 }
 
+#geocities header > p, #geocities header ul {
+  width: 100%;
+  display: block;
+  float: left;
+}
 #geocities header marquee {
   font: bold 26px/28px "Times New Roman", Times, serif;
   color: yellow;
