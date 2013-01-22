@@ -1235,15 +1235,6 @@ div.chango-nube.mirror {
   -ms-transition: all 1000ms ease-in 0ms;
 }
 
-#globo.give {
-  left: 5590px;
-  transition: left 1000ms ease 0s;
-  -webkit-transition: left 1000ms ease 0s; 
-  -moz-transition: left 1000ms ease 0s; 
-  -o-transition: left 1000ms ease 0s; 
-  -ms-transition: left 1000ms ease 0s;  
-}
-
 #morro {
   width: 180px;
   height: 400px;
@@ -1253,6 +1244,25 @@ div.chango-nube.mirror {
   bottom: -110px;
   left: 610px;
 }
+
+#morro.feliz {
+  bottom: 1400px;
+  transition: all 1500ms ease-in-out 1500ms;
+  -webkit-transition: all 1500ms ease-in-out 1500ms;
+  -moz-transition: all 1500ms ease-in-out 1500ms;
+  -o-transition: all 1500ms ease-in-out 1500ms;
+  -ms-transition: all 1500ms ease-in-out 1500ms;  
+}
+
+#globo.feliz {
+  bottom: 1600px;
+  transition: bottom 1500ms ease-in-out 1500ms;
+  -webkit-transition: bottom 1500ms ease-in-out 1500ms;
+  -moz-transition: bottom 1500ms ease-in-out 1500ms;
+  -o-transition: bottom 1500ms ease-in-out 1500ms;
+  -ms-transition: bottom 1500ms ease-in-out 1500ms;  
+}
+
 
 #morro .morro-body {
   width: 103px;
