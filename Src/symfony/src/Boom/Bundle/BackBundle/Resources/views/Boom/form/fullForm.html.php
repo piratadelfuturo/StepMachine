@@ -107,8 +107,8 @@
     <fieldset>
         <section>
             <div>
-                <button id="boom-preview" value ="<?php echo $entity['id'] ?>" class="submit" type="submit" >Preview</button>
-                <button id="boom-submit" class="submit" type="submit" >Guardar</button>
+                <button id="boom-preview" class="submit" type="button" value ="<?php echo $entity['id'] ?>" >Preview</button>
+                <button id="boom-submit" class="submit" type="button" >Guardar</button>
             </div>
         </section>
     </fieldset>

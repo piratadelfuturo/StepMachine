@@ -32,29 +32,30 @@
             paste_auto_cleanup_on_paste : true
         });
 
-        $form = $('#boom');
+        var form = $('#boom'),
+            submit = $('#boom-submit',form),
+            preview = $('#boom-preview',form),
+            entityId = window.location.href;
+;
 
-        $submit = $('#boom-submit'.$form);
-
-        $preview = $('#boom-preview',$form);
-
-        $submit.click(function(){
-            $form
+        submit.click(function(){
+            form
             .attr('target','_self')
             .attr(
                 'action',
-                Routing.generate('BoomBackBundle_boom_update', {
-                    id: $entityId.val()
-                }));
+                entityId)
+            .submit();
         });
 
-        $preview.click(function(){
-            $form.attr('target','_blank')
+        preview.click(function(){
+            form
+            .attr('target','_blank')
             .attr(
                 'action',
                 Routing.generate('BoomBackBundle_boom_preview', {
-                    id: $preview.val()
-                }));
+                    id: preview.val()
+                }))
+            .submit();
 
         });
 
