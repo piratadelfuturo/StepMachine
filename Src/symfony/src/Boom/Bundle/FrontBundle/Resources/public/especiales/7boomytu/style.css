@@ -1191,6 +1191,7 @@ div.chango-nube.mirror {
   position: absolute;
   left: 5400px;
   opacity: .999;
+  bottom: 120px;
   transform: scale(1);
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
