@@ -42,6 +42,7 @@ class BoomController extends Controller {
         $form = $this->createForm(new BoomType($em), $entity);
         $form->bind($request);
         $sessionToken = $this->get('security.context')->getToken();
+
         if ($sessionToken->getUser() instanceof BoomEntity\User) {
             $sessionUser = $sessionToken->getUser();
             $entity['user'] = $sessionUser;
@@ -55,7 +56,8 @@ class BoomController extends Controller {
         return $this->render(
                         'BoomFrontBundle:Boom:show.html.php', array(
                     'entity' => $entity,
-                    'category' => $entity['category']
+                    'category' => $entity['category'],
+                    'user_reordered' => null
                         )
         );
     }
