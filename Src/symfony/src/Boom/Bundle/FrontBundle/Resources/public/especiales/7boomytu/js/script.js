@@ -29,7 +29,7 @@ $(document).ready(function(){
       [6000, 6500],
       [7000, 7500, 8000, 8500],
       [9000, 9300, 9600],
-      [10400, 10600, 10800]
+      [10500, 10800, 11200]
     ],
     current = function( direction, dimension ){
 
@@ -283,7 +283,7 @@ $(document).ready(function(){
       $('#txt6 .numero, #txt6 .cuatro, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
     };
 
-    if ( pageX() >= 10400 ){
+    if ( pageX() >= 10500 ){
       $('#txt7 .numero, #txt7 .uno').addClass('is-showing');
       $('#social').removeClass('hidden').addClass('appear');
       if(gvballoon == 2){
@@ -292,12 +292,12 @@ $(document).ready(function(){
       }
     };
 
-    if ( pageX() >= 10600 ){
+    if ( pageX() >= 10800 ){
       $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
       $('#txt7 .uno').removeClass('is-showing');
     };
 
-    if ( pageX() >= 10800 ){
+    if ( pageX() >= 11200 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {
