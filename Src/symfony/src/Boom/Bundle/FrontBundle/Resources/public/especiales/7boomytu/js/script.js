@@ -1,15 +1,25 @@
 $(document).ready(function(){
   //Lleva la página al inicio al cargar
-  location.hash = '';
+  $('body, html').scrollTop(0);
 
   //Recarga la página con el botón "Volver al inicio"
   $('nav a.start-again').click(function(){
     location.reload();
+    event.preventDefault();
   });
   //Side scrolling
   $(function pageMove() {
     $("html, body").mousewheel(function(event, delta) {
       this.scrollLeft -= (delta * 5);
+
+      if (delta > 0 ) {
+        $('#dude, #dude2').addClass('mirror');
+        $('#social').css('left', 395);
+      } else {
+        $('#dude, #dude2').removeClass('mirror');
+        $('#social').css('left', 450);
+      }
+
       event.preventDefault();
     });
   });
@@ -40,7 +50,7 @@ $(document).ready(function(){
       if ( direction == 'right' ) {
 
         $('#dude, #dude2').removeClass('mirror');
-        $('#social').removeClass('is-going-left');
+        $('#social').removeClass('is-going-left').css('left', 450);
 
         for (var s = 0; s < slidesPos2.length; s++) {
           for (var p = 0; p < slidesPos2[s].length; p++) {
@@ -304,7 +314,7 @@ $(document).ready(function(){
       $('#share').addClass('hide');
     };
 
-    if ( pageX() >= 11200 ){
+    if ( pageX() >= 10915 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {

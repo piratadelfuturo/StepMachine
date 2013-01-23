@@ -2163,6 +2163,11 @@ div.feliz .p-right {
 
 #escena-7 #social.is-going-left {
   left: 395px;
+  transition-duration: 0;
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  -ms-transition-duration: 0;
+  -o-transition-duration: 0;
 }
 
 #escena-7 #social a {
