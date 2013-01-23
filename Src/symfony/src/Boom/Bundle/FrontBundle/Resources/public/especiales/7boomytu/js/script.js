@@ -295,6 +295,7 @@ $(document).ready(function(){
     if ( pageX() >= 10800 ){
       $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
       $('#txt7 .uno').removeClass('is-showing');
+      $('#share').addClass('hide');
     };
 
     if ( pageX() >= 11200 ){
