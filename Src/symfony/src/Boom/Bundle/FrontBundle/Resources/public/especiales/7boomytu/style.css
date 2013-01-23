@@ -348,8 +348,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 
 #nube #ruido div.text-resize {
   background-size: contain;
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
 }
 /*THE DUUUUUUUUUDEEE*/
 
@@ -449,6 +449,21 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   z-index: 15;
   bottom: 1600px;
   left: 9400px;
+}
+
+#dude2.fall .dude-gorra {
+  bottom: 800px;
+  -webkit-transform: rotate(-130deg);
+}
+
+#dude2  .dude-gorra{
+  bottom: 190px;
+  -webkit-transform: rotate(0deg);
+  transition: all 1000ms ease-in 1800ms;
+  -webkit-transition: all 1000ms ease-in 1800ms;
+  -moz-transition: all 1000ms ease-in 1800ms;
+  -o-transition: all 1000ms ease-in 1800ms;
+  -ms-transition: all 1000ms ease-in 1800ms;
 }
 
 #dude.jump {
@@ -603,7 +618,7 @@ body.is-scrolling .dude-piernas .p-left {
   left: -30px;
 }
 
-#dude .dude-gorra, #dude-banner .dude-gorra {
+#dude .dude-gorra, #dude-banner .dude-gorra, #dude2 .dude-gorra {
   background: url('images/dude-gorra.png') no-repeat left top;
   width: 136px;
   height: 69px;
@@ -1012,11 +1027,11 @@ div.chango-nube.mirror {
 
 #nube #ruido {
   display: block;
-  width: 100%;
+  width: 95%;
   height: 100%;
   margin: auto;
-  position: relative;
-  left: 10%;
+  position: absolute;
+  left: 5%;
 }
 
 #nube #ruido div {
@@ -1029,7 +1044,7 @@ div.chango-nube.mirror {
   max-width: 140px;
   max-height: 140px;
   top: 35%;
-  left: 66%;
+  left: 75%;
   animation: ruido 1000ms ease-in-out 100ms infinite alternate;
   -webkit-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
   -moz-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
@@ -1041,8 +1056,8 @@ div.chango-nube.mirror {
   background: url(images/clickaqui.png) no-repeat 0 0;
   max-width: 156px;
   max-height: 107px;
-  top: 55%;
-  left: 35%;
+  top: 45%;
+  left: 45%;
   z-index: 5;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1081,8 +1096,8 @@ div.chango-nube.mirror {
   background: url(images/freeipad.png) no-repeat 0 0;
   max-width: 104px;
   max-height: 97px;
-  top: 60%;
-  left: 5%;
+  top: 45%;
+  left: -1%;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -moz-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1122,20 +1137,20 @@ div.chango-nube.mirror {
   max-width: 84px;
   max-height: 49px;
   top: 5%;
-  left: 5%;
-  animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -webkit-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -moz-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -o-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -ms-animation: ruido 500ms ease-in-out 0ms infinite alternate;
+  left: 15%;
+  animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -moz-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -o-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -ms-animation: ruido 700ms ease-in-out 0ms infinite alternate;
 }
 
 #nube #ruido .nube3 {
   background: url(images/nube.png) no-repeat 0 0;
   max-width: 84px;
   max-height: 49px;
-  top: 25%;
-  left: 50%;
+  top: 20%;
+  left: 70%;
   animation: ruido 700ms ease-in-out 300ms infinite alternate;
   -webkit-animation: ruido 700ms ease-in-out 300ms infinite alternate;
   -moz-animation: ruido 700ms ease-in-out 300ms infinite alternate;
@@ -1160,7 +1175,7 @@ div.chango-nube.mirror {
   background: url(images/poker.png) no-repeat 0 0;
   max-width: 89px;
   max-height: 92px;
-  top: 55%;
+  top: 45%;
   left: 20%;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1267,7 +1282,7 @@ div.chango-nube.mirror {
 }
 
 #morro.feliz {
-  bottom: 1400px;
+  bottom: 1500px;
   transition: all 1500ms ease-in-out 1500ms;
   -webkit-transition: all 1500ms ease-in-out 1500ms;
   -moz-transition: all 1500ms ease-in-out 1500ms;
@@ -1276,12 +1291,12 @@ div.chango-nube.mirror {
 }
 
 #globo.feliz {
-  bottom: 1600px;
-  transition: bottom 1500ms ease-in-out 1500ms;
-  -webkit-transition: bottom 1500ms ease-in-out 1500ms;
-  -moz-transition: bottom 1500ms ease-in-out 1500ms;
-  -o-transition: bottom 1500ms ease-in-out 1500ms;
-  -ms-transition: bottom 1500ms ease-in-out 1500ms;  
+  bottom: 1500px;
+  transition: bottom 1500ms ease-in-out 800ms;
+  -webkit-transition: bottom 1500ms ease-in-out 800ms;
+  -moz-transition: bottom 1500ms ease-in-out 800ms;
+  -o-transition: bottom 1500ms ease-in-out 800ms;
+  -ms-transition: bottom 1500ms ease-in-out 800ms;  
 }
 
 
@@ -1900,7 +1915,7 @@ div.feliz .p-right {
   width: 2000px;
   position: absolute;
   bottom: 0;
-  z-index: 6 ;
+  z-index: 15;
 }
 
 #escena-6 #slide-fondo,
