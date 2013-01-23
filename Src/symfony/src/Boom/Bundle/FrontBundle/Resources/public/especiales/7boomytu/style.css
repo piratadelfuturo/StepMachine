@@ -58,7 +58,7 @@ nav {
   -o-transition-delay: 1000ms;
 }
 
-body.is-scrolling .nav-btn {
+.is-scrolling .nav-btn, .is-disabled {
   opacity: .5;
   pointer-events: none;
   cursor: default;
@@ -2167,6 +2167,10 @@ div.feliz .p-right {
   bottom: 140px;
 }
 
+#escena-7 #social.is-going-left {
+  left: 395px;
+}
+
 #escena-7 #social a {
   display: block;
   width: 90px;
@@ -2189,7 +2193,7 @@ div.feliz .p-right {
   width: 359px;
   height: 200px;
   right: 120px;
-  z-index: 9;
+  z-index: 15;
   transition: opacity .5s ease-in-out 0s;
   -webkit-transition: opacity .5s ease-in-out 0s;
   -moz-transition: opacity .5s ease-in-out 0s;
