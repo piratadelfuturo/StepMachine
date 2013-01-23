@@ -29,7 +29,7 @@ $(document).ready(function(){
       [6000, 6500],
       [7000, 7500, 8000, 8500],
       [9000, 9300, 9600],
-      [10400, 10600, 10800]
+      [10500, 10800, 11200]
     ],
     current = function( direction, dimension ){
 
@@ -289,7 +289,7 @@ $(document).ready(function(){
       $('.nav-btn:first-child + a').addClass('is-disabled');
     };
 
-    if ( pageX() >= 10400 ){
+    if ( pageX() >= 10500 ){
       $('#txt7 .numero, #txt7 .uno').addClass('is-showing');
       $('#social').removeClass('hidden').addClass('appear');
       if(gvballoon == 2){
@@ -298,12 +298,13 @@ $(document).ready(function(){
       }
     };
 
-    if ( pageX() >= 10600 ){
+    if ( pageX() >= 10800 ){
       $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
       $('#txt7 .uno').removeClass('is-showing');
+      $('#share').addClass('hide');
     };
 
-    if ( pageX() >= 10800 ){
+    if ( pageX() >= 11200 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {
@@ -333,7 +334,7 @@ $(document).ready(function(){
         $('.dude-brazos .b-left').removeClass('feliz');
         $('#morro .face2').removeClass('show').addClass('hide').hide();
         $('#morro .face3').removeClass('hide').addClass('show');
-        $('#globo').removeClass('appear').addClass('static feliz');
+        $('#globo').css('opacity', '0');
         gvballoon = 2;
       }
     }
@@ -378,6 +379,12 @@ $(document).ready(function(){
 	isfirst = 1;
       }
 
+      if ( $('#dude2').hasClass('mirror') ){
+        $('#social').css('left', '395px');
+      } else {
+        $('#social').css('left', '450px');
+      };
+      
     };
 
   });
