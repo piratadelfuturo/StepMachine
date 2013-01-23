@@ -33,9 +33,11 @@ nav {
   width: 41px;
   height: 40px;
   background: url('images/icons.png') no-repeat -85px -10px;
-  opacity: .999;
   color: #fff;
   text-indent: -9999px;
+}
+.nav-btn {
+  opacity: .999;
 }
 
 .nav-btn:first-child + a {
@@ -49,9 +51,14 @@ nav {
   width: 84px;
   height: 60px;
   background-position: 0;
+  transition-delay: 1000ms;
+  -webkit-transition-delay: 1000ms;
+  -moz-transition-delay: 1000ms;
+  -ms-transition-delay: 1000ms;
+  -o-transition-delay: 1000ms;
 }
 
-body.is-scrolling nav a {
+body.is-scrolling .nav-btn {
   opacity: .5;
   pointer-events: none;
   cursor: default;
@@ -193,6 +200,8 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   -o-transition: opacity .5s ease-in-out 0s;
   -ms-transition: opacity .5s ease-in-out 0s;
   opacity: 0;
+  pointer-events: none;
+  cursor: default;
 }
 
 .show {

@@ -1,5 +1,11 @@
 $(document).ready(function(){
+  //Lleva la página al inicio al cargar
+  $(this).scrollLeft(0);
 
+  //Recarga la página con el botón "Volver al inicio"
+  $('nav a.start-again').click(function(){
+    location.reload();
+  });
   //Side scrolling
   $(function pageMove() {
     $("html, body").mousewheel(function(event, delta) {
@@ -297,8 +303,8 @@ $(document).ready(function(){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {
-        $('#share').removeClass('hide');
-      }, 600 );
+        $('#share, nav .start-again').removeClass('hide');
+      }, 800 );
     };
 
     //triggers animaciones escena 3
