@@ -327,7 +327,7 @@ $(document).ready(function(){
         $('.dude-brazos .b-left').removeClass('feliz');
         $('#morro .face2').removeClass('show').addClass('hide').hide();
         $('#morro .face3').removeClass('hide').addClass('show');
-        $('#globo').removeClass('appear').addClass('static feliz');
+        $('#globo').css('opacity', '0');
         gvballoon = 2;
       }
     }
