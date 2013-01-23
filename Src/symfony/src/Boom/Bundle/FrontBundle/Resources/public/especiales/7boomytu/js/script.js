@@ -372,6 +372,12 @@ $(document).ready(function(){
 	isfirst = 1;
       }
 
+      if ( $('#dude2').hasClass('mirror') ){
+        $('#social').css('left', '395px');
+      } else {
+        $('#social').css('left', '450px');
+      };
+      
     };
 
   });
