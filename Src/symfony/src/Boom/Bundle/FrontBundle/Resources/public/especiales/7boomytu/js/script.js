@@ -13,120 +13,8 @@ $(document).ready(function(){
   var pageX = function(){
     return $(window).scrollLeft();
   }
-  /* {{{ NO SE USA AHORA.
-  //función de keypress
-  /*
-  $("html, body").keydown(function(e) {
-    if(e.which == 37) {
 
-      var direction = 'l';
-      event.preventDefault();
-
-      return $.slideMove();
-
-    }
-    else if(e.which == 39) {
-
-      var direction = 'r';
-      event.preventDefault();
-
-      return $.slideMove();
-
-    }
-  });
-  */
-
-  //Animación al teclear
-  /*
-  $.slideMove = function(direction){
-    var slidesPos = {
-      //Slide1
-      slide1:[0, 500],
-      slide2:[500, 1000],
-      slide3:[1000, 1500],
-      slide4:[1500, 2600],
-      slide5:[2600, 3000],
-      //Slide2
-      slide6:[3000, 3500],
-      slide7:[3500, 4700],
-      //Slide3
-      slide8:[4700, 5000],
-      slide9:[5000, 5700],
-      //Slide4
-      slide10:[5700, 6000],
-      slide11:[6000, 6500],
-      //Slide5
-      slide12:[6500, 7000],
-      slide13:[7000, 7500],
-      slide14:[7500, 8000],
-      slide15:[8000, 8500],
-      //Slide6
-      slide16:[8500, 9000],
-      slide17:[9000, 9300],
-      slide19:[9300, 9500],
-      slide20:[9500, 10000],
-      //Slide7
-      slide21:[10000, 10100]
-    };
-    for ( i in slidesPos ) {
-      if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
-        $('html, body').stop(false, false).animate({
-          scrollLeft: slidesPos[i][1]
-        }, 3000);
-      }
-    }
-  }
-  }}} */
   var init = function(){
-
-    /* {{{ lol así no era
-    var slidesPos2 = [
-      0, 500, 1000, 1500, 2600, 3000,
-      3500, 4700, 5000, 5700,
-      6000, 6500, 7000, 7500, 8000, 8500,
-      9000, 9300, 9500, 10000, 11000
-    ];
-
-    var animation = function( order ){
-      $('html, body').stop(true, true).animate({
-        scrollLeft: slidesPos2[order]
-      }, 3000);
-    };
-
-    $('body').keyup(function(e){
-      var position = pageX(),
-          current = 0;
-
-      for (var i = 0; i < slidesPos2.length; i++) {
-
-        if ( e.which == 39 ) {
-          //adelante
-
-          if ( slidesPos2[i] > pageX() ) {
-            animation(i);
-            break;
-          }
-
-        }
-
-      };
-
-      for (var i = slidesPos2.length; i >= 0 ; i--) {
-
-        if ( e.which == 37 ) {
-          //atras
-
-          if ( slidesPos2[i] < pageX() ) {
-            animation(i);
-            break;
-          }
-
-        }
-
-      };
-
-    });
-    }}} */
 
     var slidesPos2 = [
       [0, 500, 1000, 1500, 2600],
@@ -134,7 +22,7 @@ $(document).ready(function(){
       [5000, 5700],
       [6000, 6500],
       [7000, 7500, 8000, 8500],
-      [9000, 9300, 9500, 10000],
+      [9000, 9300, 9600, 10000],
       [10300, 10600, 10900]
     ],
     current = function( direction, dimension ){
@@ -381,7 +269,7 @@ $(document).ready(function(){
       $('#txt6 .cuatro, #txt6 .dos').removeClass('is-showing');
     };
 
-    if ( pageX() >= 9500 ){
+    if ( pageX() >= 9600 ){
       $('#txt6 .tres').removeClass('is-showing').delay(5600).queue(function(next){
         $('#txt6 .cuatro').addClass('is-showing');
       });

@@ -20,14 +20,35 @@ html, body {
 nav {
   display: block;
   position: fixed;
+  width: 87px;
   right: 30px;
   bottom: 20px;
   z-index: 99;
 }
 
-nav a {
+.nav-btn, .start-again {
+  display: block;
+  position: relative;
+  float: left;
+  width: 41px;
+  height: 40px;
+  background: url('images/icons.png') no-repeat -85px -10px;
   opacity: .999;
   color: #fff;
+  text-indent: -9999px;
+}
+
+.nav-btn:first-child + a {
+  background-position: -128px -10px;
+  margin-left: 5px;
+}
+
+.start-again {
+  position: absolute;
+  bottom: 150px;
+  width: 84px;
+  height: 60px;
+  background-position: 0;
 }
 
 body.is-scrolling nav a {
