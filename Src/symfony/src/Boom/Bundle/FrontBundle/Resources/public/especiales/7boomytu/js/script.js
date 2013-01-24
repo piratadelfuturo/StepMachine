@@ -1,15 +1,25 @@
 $(document).ready(function(){
   //Lleva la página al inicio al cargar
-  $(this).scrollLeft(0);
+  $('body, html').scrollTop(0);
 
   //Recarga la página con el botón "Volver al inicio"
   $('nav a.start-again').click(function(){
     location.reload();
+    event.preventDefault();
   });
   //Side scrolling
   $(function pageMove() {
     $("html, body").mousewheel(function(event, delta) {
       this.scrollLeft -= (delta * 5);
+
+      if (delta > 0 ) {
+        $('#dude, #dude2').addClass('mirror');
+        $('#social').css('left', 395);
+      } else {
+        $('#dude, #dude2').removeClass('mirror');
+        $('#social').css('left', 450);
+      }
+
       event.preventDefault();
     });
   });
@@ -40,12 +50,14 @@ $(document).ready(function(){
       if ( direction == 'right' ) {
 
         $('#dude, #dude2').removeClass('mirror');
+        $('#social').removeClass('is-going-left').css('left', 450);
 
         for (var s = 0; s < slidesPos2.length; s++) {
           for (var p = 0; p < slidesPos2[s].length; p++) {
 
             if(slidesPos2[s][p] > pageX()) {
               if ( dimension == 'position' ) {
+                console.log(p);
                 return p;
               }
               if ( dimension == 'slide' ) {
@@ -58,6 +70,7 @@ $(document).ready(function(){
       } else { /* direction == 'left' */
 
         $('#dude, #dude2').addClass('mirror');
+        $('#social').addClass('is-going-left');
 
         for (var s = slidesPos2.length; s-- > 0;) {
           for (var p = slidesPos2[s].length; p-- > 0;) {
@@ -147,7 +160,7 @@ $(document).ready(function(){
 
   function scrollendHandler() {
     $('body').removeClass('is-scrolling');
-  	scrollTimeout = null;
+    scrollTimeout = null;
   }
 
   $(function() {
@@ -274,13 +287,16 @@ $(document).ready(function(){
       $('#txt6 .tres').addClass('is-showing');
       $('#txt6 .cuatro, #txt6 .dos').removeClass('is-showing');
     };
+
     if ( pageX() >= 9600 ){
       $('#txt6 .tres').removeClass('is-showing').delay(4500).queue(function(next){
         $('#txt6 .cuatro').addClass('is-showing');
       });
     };
+
     if ( pageX() >= 9620 ){
       $('#txt6 .numero, #txt6 .cuatro, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
+      $('.nav-btn:first-child + a').addClass('is-disabled');
     };
 
     if ( pageX() >= 10500 ){
