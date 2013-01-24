@@ -6,10 +6,22 @@ $(document).ready(function(){
   $('nav a.start-again').click(function(){
     window.location.href = "http://dev.7boom.mx/bundles/boomfront/especiales/7boomytu/index.html"
   });
+
+  var isfirst = parseInt("0");
+  var gvballoon = parseInt("0");
+  var pageX = function(){
+    return $(window).scrollLeft();
+  }
+
   //Side scrolling
   $(function pageMove() {
+    if( pageX() >= 9500 ){
+      var speed = 0;
+    } else {
+      var speed = 5;
+    }
     $("html, body").mousewheel(function(event, delta) {
-      this.scrollLeft -= (delta * 5);
+      this.scrollLeft -= (delta * speed);
 
       if (delta > 0 ) {
         $('#dude, #dude2').addClass('mirror');
@@ -22,12 +34,6 @@ $(document).ready(function(){
       event.preventDefault();
     });
   });
-
-  var isfirst = parseInt("0");
-  var gvballoon = parseInt("0");
-  var pageX = function(){
-    return $(window).scrollLeft();
-  }
 
   var init = function(){
 
@@ -375,24 +381,41 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 9500){
-      if(isfirst == 0){
+      if ( isfirst == 0 ) {
+
+        /*$("html, body").mousewheel(function(event, delta) {
+          this.scrollLeft -= (delta * 0);
+          event.preventDefault();
+        });*/
+        /*$(function pageMove() {
+          $("html, body").mousewheel(function(event, delta) {
+            this.scrollLeft -= (delta * 0);
+            event.preventDefault();
+          });
+        });*/
+
         $('#cohete').addClass('volar').delay(3000).queue(function(next){
             $(this).hide(0);
             next();
         });
+
         $('#slide-fondo').addClass('alinfinito');
+
         $('#dude2').delay(3800).queue(function(next){
             $(this).removeClass('fall').addClass('feliz');
             next();
         });
+
         $('#dude2').delay(2000).queue(function(next){
             $(this).removeClass('feliz').stop();
             next();
         });
+
         $('#dude2 .dude-parachute').removeClass('hide').addClass('show').delay(5600).queue(function(next){
           $(this).removeClass('show').addClass('hide').stop();
         });
-	isfirst = 1;
+
+        isfirst = 1;
       }
 
       if ( $('#dude2').hasClass('mirror') ){
@@ -400,7 +423,7 @@ $(document).ready(function(){
       } else {
         $('#social').css('left', '450px');
       };
-      
+
     };
 
   });
