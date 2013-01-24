@@ -1248,6 +1248,17 @@ div.chango-nube.mirror {
   -ms-transition: all 500ms ease-in 0ms;
 }
 
+#globo.static {
+  position: absolute;
+  left: 5490px;  
+  bottom: 1500px;
+  transition: bottom 1200ms ease-in-out 950ms;
+  -webkit-transition: bottom 1200ms ease-in-out 950ms;
+  -moz-transition: bottom 1200ms ease-in-out 950ms;
+  -o-transition: bottom 1200ms ease-in-out 950ms;
+  -ms-transition: bottom 1200ms ease-in-out 950ms;
+}
+
 #social.hidden {
   bottom: 0px;
   opacity: 0;
@@ -1280,11 +1291,11 @@ div.chango-nube.mirror {
 
 #morro.feliz {
   bottom: 1500px;
-  transition: all 1000ms ease-in-out 1300ms;
-  -webkit-transition: all 1000ms ease-in-out 1300ms;
-  -moz-transition: all 1000ms ease-in-out 1300ms;
-  -o-transition: all 1000ms ease-in-out 1300ms;
-  -ms-transition: all 1000ms ease-in-out 1300ms;  
+  transition: all 1500ms ease-in-out 2000ms;
+  -webkit-transition: all 1500ms ease-in-out 2000ms;
+  -moz-transition: all 1500ms ease-in-out 2000ms;
+  -o-transition: all 1500ms ease-in-out 2000ms;
+  -ms-transition: all 1500ms ease-in-out 2000ms; 
 }
 
 
@@ -1731,7 +1742,7 @@ div#alien .globo, div#morra1 .globo, div#morra2 .globo {
   opacity: 0;
 }
 
-div#morro .globo {
+/*div#morro .globo {
   bottom: 100px;
   opacity: 0;
   left: 72px;
@@ -1739,12 +1750,13 @@ div#morro .globo {
 
 div#morro.feliz .globo {
   opacity: .999;
-  transition: opacity 500ms ease-in-out 700ms;
-  -webkit-transition: opacity 500ms ease-in-out 700ms;
-  -moz-transition: opacity 500ms ease-in-out 700s;
-  -o-transition: opacity 500ms ease-in-out 700s;
-  -ms-transition: opacity 500ms ease-in-out 700s;  
-}
+  transition: opacity 0ms ease-in-out 1500ms;
+  -webkit-transition: opacity 0ms ease-in-out 1500ms;
+  -moz-transition: opacity 0ms ease-in-out 1500s;
+  -o-transition: opacity 0ms ease-in-out 1500s;
+  -ms-transition: opacity 0ms ease-in-out 1500s;  
+}*/
+
 
 div#alien.feliz .globo, div#morra1.feliz .globo, div#morra2.feliz .globo {
   bottom: 70px;
