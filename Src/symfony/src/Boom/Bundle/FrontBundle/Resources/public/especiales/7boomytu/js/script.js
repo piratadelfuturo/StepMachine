@@ -4,8 +4,7 @@ $(document).ready(function(){
 
   //Recarga la página con el botón "Volver al inicio"
   $('nav a.start-again').click(function(){
-    location.reload();
-    event.preventDefault();
+    window.location.href = "http://dev.7boom.mx/bundles/boomfront/especiales/7boomytu/index.html"
   });
   //Side scrolling
   $(function pageMove() {
@@ -113,7 +112,7 @@ $(document).ready(function(){
               ) {
                 animation( direction );
               }
-            }, 1000
+            }, 2000
           )
         }
       );
