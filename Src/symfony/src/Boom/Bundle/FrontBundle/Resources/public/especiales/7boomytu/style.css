@@ -2521,3 +2521,19 @@ div.feliz .p-right {
 .cf {
   zoom: 1;
 }
+
+@media all and (max-height : 768px) {
+  div.valla-large, div.valla-medium, div.valla-small {
+    background-size: contain;
+  }
+  
+  div.valla-large, div.valla-medium, div.valla-small {
+    height: 300px;
+  }
+  
+  div.valla-large img, div.valla-medium img, div.valla-small img{
+    display: block;
+    margin: 10% 7%;
+    width: 65%;
+  }
+}
