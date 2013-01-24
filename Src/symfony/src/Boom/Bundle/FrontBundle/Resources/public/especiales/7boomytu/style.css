@@ -1250,13 +1250,13 @@ div.chango-nube.mirror {
 
 #globo.static {
   position: absolute;
-  left: 5490px;  
+  left: 5400px;  
   bottom: 1500px;
-  transition: bottom 1200ms ease-in-out 950ms;
-  -webkit-transition: bottom 1200ms ease-in-out 950ms;
-  -moz-transition: bottom 1200ms ease-in-out 950ms;
-  -o-transition: bottom 1200ms ease-in-out 950ms;
-  -ms-transition: bottom 1200ms ease-in-out 950ms;
+  transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -webkit-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -moz-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -o-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -ms-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
 }
 
 #social.hidden {
@@ -1286,11 +1286,11 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 12;
   bottom: -110px;
-  left: 700px;
+  left: 600px;
 }
 
 #morro.feliz {
-  bottom: 1500px;
+  bottom: 1350px;
   transition: all 1500ms ease-in-out 2000ms;
   -webkit-transition: all 1500ms ease-in-out 2000ms;
   -moz-transition: all 1500ms ease-in-out 2000ms;

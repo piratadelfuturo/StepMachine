@@ -339,7 +339,6 @@ $(document).ready(function(){
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
     }
     if ( pageX() >= 4970 ){
-      $('#morro').addClass('feliz');
       $('#ruido, #nube').removeClass('show').addClass('hide');
     };
     if (pageX() >= 5000){
@@ -347,10 +346,8 @@ $(document).ready(function(){
         $('.dude-brazos .b-left').removeClass('feliz');
         $('#morro .face2').removeClass('show').addClass('hide').hide();
         $('#morro .face3').removeClass('hide').addClass('show');
-        $('#globo').css('left', '490px');
-        setTimeout( function() {
-          $('#globo').css('left', '').addClass('static');
-        }, 500 );
+          $('#morro').addClass('feliz');
+          $('#globo').addClass('static');
         gvballoon = 2;
       }
     }
