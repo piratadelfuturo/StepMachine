@@ -25,7 +25,7 @@ $(document).ready(function(){
     var slidesPos2 = [
       [0, 500, 1000, 1500, 2600],
       [3000, 3500, 4700],
-      [5000, 5700],
+      [5000],
       [6000, 6500],
       [7000, 7500, 8000, 8500],
       [9000, 9300, 9600],
@@ -295,9 +295,12 @@ $(document).ready(function(){
     if ( pageX() >= 10800 ){
       $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
       $('#txt7 .uno').removeClass('is-showing');
+    };
+    
+    if ( pageX() <= 11199 ){
       $('#share').addClass('hide');
     };
-
+    
     if ( pageX() >= 11200 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
@@ -328,7 +331,10 @@ $(document).ready(function(){
         $('.dude-brazos .b-left').removeClass('feliz');
         $('#morro .face2').removeClass('show').addClass('hide').hide();
         $('#morro .face3').removeClass('hide').addClass('show');
-        $('#globo').css('opacity', '0');
+        $('#globo').css('left', '490px');
+        setTimeout( function() {
+          $('#globo').css('left', '').addClass('static');
+        }, 500 );
         gvballoon = 2;
       }
     }
