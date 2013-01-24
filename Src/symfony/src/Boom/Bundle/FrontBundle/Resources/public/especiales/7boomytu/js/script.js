@@ -295,12 +295,12 @@ $(document).ready(function(){
 
     if ( pageX() >= 9620 ){
       $('#txt6 .numero, #txt6 .cuatro, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
-      $('.nav-btn:first-child + a').addClass('is-disabled');
     };
 
     if ( pageX() >= 10500 ){
       $('#txt7 .numero, #txt7 .uno').addClass('is-showing');
       $('#social').removeClass('hidden').addClass('appear');
+      $('.nav-btn:first-child + a').removeClass('is-disabled');
       if(gvballoon == 2){
         $('#dude2 .b-left').addClass('feliz');
         gvballoon = 3;
@@ -310,12 +310,13 @@ $(document).ready(function(){
     if ( pageX() >= 10800 ){
       $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
       $('#txt7 .uno').removeClass('is-showing');
+      $('.nav-btn:first-child + a').addClass('is-disabled');
     };
-    
+
     if ( pageX() <= 11199 ){
       $('#share').addClass('hide');
     };
-    
+
     if ( pageX() >= 11200 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
