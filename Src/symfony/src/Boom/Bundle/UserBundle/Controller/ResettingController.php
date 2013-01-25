@@ -12,6 +12,7 @@ use FOS\UserBundle\Controller\ResettingController as BaseController;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\FormEvent;
 
 class ResettingController extends BaseController {
 
