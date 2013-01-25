@@ -20,17 +20,46 @@ html, body {
 nav {
   display: block;
   position: fixed;
+  width: 87px;
   right: 30px;
   bottom: 20px;
   z-index: 99;
 }
 
-nav a {
-  opacity: .999;
+.nav-btn, .start-again {
+  display: block;
+  position: relative;
+  float: left;
+  width: 41px;
+  height: 40px;
+  background: url('images/icons.png') no-repeat -85px -10px;
   color: #fff;
+  text-indent: -9999px;
 }
 
-body.is-scrolling nav a {
+.nav-btn {
+  opacity: .999;
+}
+
+.nav-btn:first-child + a {
+  background-position: -128px -10px;
+  margin-left: 5px;
+}
+
+.start-again {
+  position: absolute;
+  bottom: 150px;
+  width: 84px;
+  height: 60px;
+  background-position: 0;
+  transition-delay: 1000ms;
+  -webkit-transition-delay: 1000ms;
+  -moz-transition-delay: 1000ms;
+  -ms-transition-delay: 1000ms;
+  -o-transition-delay: 1000ms;
+}
+
+.is-scrolling .nav-btn, .is-disabled {
   opacity: .5;
   pointer-events: none;
   cursor: default;
@@ -166,20 +195,22 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
 }
 
 .hide {
-  transition: opacity .5s ease-in-out 0s;
-  -webkit-transition: opacity .5s ease-in-out 0s;
-  -moz-transition: opacity .5s ease-in-out 0s;
-  -o-transition: opacity .5s ease-in-out 0s;
-  -ms-transition: opacity .5s ease-in-out 0s;
+  transition: opacity 500ms ease-in-out 0s;
+  -webkit-transition: opacity 500ms ease-in-out 0s;
+  -moz-transition: opacity 500ms ease-in-out 0s;
+  -o-transition: opacity 500ms ease-in-out 0s;
+  -ms-transition: opacity 500ms ease-in-out 0s;
   opacity: 0;
+  pointer-events: none;
+  cursor: default;
 }
 
 .show {
-  transition: opacity .5s ease-in-out 0s;
-  -webkit-transition: opacity .5s ease-in-out 0s;
-  -moz-transition: opacity .5s ease-in-out 0s;
-  -o-transition: opacity .5s ease-in-out 0s;
-  -ms-transition: opacity .5s ease-in-out 0s;
+  transition: opacity 500ms ease-in-out 0s;
+  -webkit-transition: opacity 500ms ease-in-out 0s;
+  -moz-transition: opacity 500ms ease-in-out 0s;
+  -o-transition: opacity 500ms ease-in-out 0s;
+  -ms-transition: opacity 500ms ease-in-out 0s;
   opacity: .999;
 }
 
@@ -325,6 +356,11 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   background-size: contain;  
 }
 
+#nube #ruido div.text-resize {
+  background-size: contain;
+  width: 25%;
+  height: 25%;
+}
 /*THE DUUUUUUUUUDEEE*/
 
 #dude-banner  {
@@ -423,6 +459,21 @@ div.valla-large img, div.valla-medium img, div.valla-small img{
   z-index: 15;
   bottom: 1600px;
   left: 9400px;
+}
+
+#dude2.fall .dude-gorra {
+  bottom: 800px;
+  -webkit-transform: rotate(-130deg);
+}
+
+#dude2  .dude-gorra{
+  bottom: 190px;
+  -webkit-transform: rotate(0deg);
+  transition: all 1000ms ease-in 1800ms;
+  -webkit-transition: all 1000ms ease-in 1800ms;
+  -moz-transition: all 1000ms ease-in 1800ms;
+  -o-transition: all 1000ms ease-in 1800ms;
+  -ms-transition: all 1000ms ease-in 1800ms;
 }
 
 #dude.jump {
@@ -577,7 +628,7 @@ body.is-scrolling .dude-piernas .p-left {
   left: -30px;
 }
 
-#dude .dude-gorra, #dude-banner .dude-gorra {
+#dude .dude-gorra, #dude-banner .dude-gorra, #dude2 .dude-gorra {
   background: url('images/dude-gorra.png') no-repeat left top;
   width: 136px;
   height: 69px;
@@ -970,38 +1021,40 @@ div.chango-nube.mirror {
   width: 1500px;
 }
 
-#escena-3 #nube {
+#nube {
   background: url('images/nube-ruido.png') no-repeat left top;
   display: block;
-  width: 687px;
-  height: 382px;
+  width: 40%;
+  height: 50%;
+  max-width: 687px;
+  max-height: 382px;
   position: absolute;
-  left: 520px;
-  top: 30px;
+  background-size: contain;
+  left: 5200px;
+  bottom: 23%;
   z-index: 10;
 }
 
-#escena-3 #ruido {
+#nube #ruido {
   display: block;
-  width: 503px;
-  height: 344px;
+  width: 95%;
+  height: 100%;
   margin: auto;
-  position: relative;
-  top: 20px;
-  left: -20px;
+  position: absolute;
+  left: 5%;
 }
 
-#escena-3 #ruido div {
+#nube #ruido div {
   position: absolute;
   display: block;
 }
 
-#escena-3 #ruido .bill {
+#nube #ruido .bill {
   background: url(images/billgates.png) no-repeat 0 0;
-  width: 140px;
-  height: 140px;
-  top: 200px;
-  left: 350px;
+  max-width: 140px;
+  max-height: 140px;
+  top: 35%;
+  left: 75%;
   animation: ruido 1000ms ease-in-out 100ms infinite alternate;
   -webkit-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
   -moz-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
@@ -1009,12 +1062,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
 }
 
-#escena-3 #ruido .click {
+#nube #ruido .click {
   background: url(images/clickaqui.png) no-repeat 0 0;
-  width: 156px;
-  height: 107px;
-  top: 215px;
-  left: 230px;
+  max-width: 156px;
+  max-height: 107px;
+  top: 45%;
+  left: 45%;
   z-index: 5;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1023,11 +1076,11 @@ div.chango-nube.mirror {
   -ms-animation: ruido 800ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .like {
+#nube #ruido .like {
   background: url(images/damelike.png) no-repeat 0 0;
-  width: 180px;
-  height: 180px;
-  top: 60px;
+  max-width: 180px;
+  max-height: 180px;
+  top: 20%;
   z-index: 5;
   animation: ruido 1000ms ease-in-out 100ms infinite alternate;
   -webkit-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
@@ -1036,12 +1089,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 1000ms ease-in-out 100ms infinite alternate;
 }
 
-#escena-3 #ruido .cams {
+#nube #ruido .cams {
   background: url(images/freecams.png) no-repeat 0 0;
-  width: 137px;
-  height: 88px;
-  left: 130px;
-  top: 50px;
+  max-width: 137px;
+  max-height: 88px;
+  left: 15%;
+  top: 15%;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -moz-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1049,12 +1102,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 800ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .freeipad {
+#nube #ruido .freeipad {
   background: url(images/freeipad.png) no-repeat 0 0;
-  width: 104px;
-  height: 97px;
-  top: 215px;
-  left: 95px;
+  max-width: 104px;
+  max-height: 97px;
+  top: 45%;
+  left: -1%;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -moz-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1062,12 +1115,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 800ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .morras {
+#nube #ruido .morras {
   background: url(images/morras.png) no-repeat 0 0;
-  width: 115px;
-  height: 64px;
-  top: 180px;
-  left: 450px;
+  max-width: 115px;
+  max-height: 64px;
+  top: 30%;
+  left: 40%;
   z-index: 5;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1076,12 +1129,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 800ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .nube {
+#nube #ruido .nube {
   background: url(images/nube.png) no-repeat 0 0;
-  width: 84px;
-  height: 49px;
-  top: 40px;
-  left: 250px;
+  max-width: 84px;
+  max-height: 49px;
+  top: 5%;
+  left: 40%;
   animation: ruido 500ms ease-in-out 300ms infinite alternate;
   -webkit-animation: ruido 500ms ease-in-out 300ms infinite alternate;
   -moz-animation: ruido 500ms ease-in-out 300ms infinite alternate;
@@ -1089,25 +1142,25 @@ div.chango-nube.mirror {
   -ms-animation: ruido 500ms ease-in-out 300ms infinite alternate;
 }
 
-#escena-3 #ruido .nube2 {
+#nube #ruido .nube2 {
   background: url(images/nube.png) no-repeat 0 0;
-  width: 84px;
-  height: 49px;
-  top: 50px;
-  left: 50px;
-  animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -webkit-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -moz-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -o-animation: ruido 500ms ease-in-out 0ms infinite alternate;
-  -ms-animation: ruido 500ms ease-in-out 0ms infinite alternate;
+  max-width: 84px;
+  max-height: 49px;
+  top: 5%;
+  left: 15%;
+  animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -webkit-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -moz-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -o-animation: ruido 700ms ease-in-out 0ms infinite alternate;
+  -ms-animation: ruido 700ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .nube3 {
+#nube #ruido .nube3 {
   background: url(images/nube.png) no-repeat 0 0;
-  width: 84px;
-  height: 49px;
-  top: 90px;
-  left: 325px;
+  max-width: 84px;
+  max-height: 49px;
+  top: 20%;
+  left: 70%;
   animation: ruido 700ms ease-in-out 300ms infinite alternate;
   -webkit-animation: ruido 700ms ease-in-out 300ms infinite alternate;
   -moz-animation: ruido 700ms ease-in-out 300ms infinite alternate;
@@ -1115,12 +1168,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 700ms ease-in-out 300ms infinite alternate;
 }
 
-#escena-3 #ruido .nubehash {
+#nube #ruido .nubehash {
   background: url(images/nubehash.png) no-repeat 0 0;
-  width: 53px;
-  height: 54px;
-  top: 102px;
-  left: 200px;
+  max-width: 53px;
+  max-height: 54px;
+  top: 20%;
+  left: 25%;
   animation: ruido 500ms ease-in-out 300ms infinite alternate;
   -webkit-animation: ruido 500ms ease-in-out 300ms infinite alternate;
   -moz-animation: ruido 500ms ease-in-out 300ms infinite alternate;
@@ -1128,12 +1181,12 @@ div.chango-nube.mirror {
   -ms-animation: ruido 500ms ease-in-out 300ms infinite alternate;
 }
 
-#escena-3 #ruido .poker {
+#nube #ruido .poker {
   background: url(images/poker.png) no-repeat 0 0;
-  width: 89px;
-  height: 92px;
-  top: 190px;
-  left: 190px;
+  max-width: 89px;
+  max-height: 92px;
+  top: 45%;
+  left: 20%;
   animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -webkit-animation: ruido 800ms ease-in-out 0ms infinite alternate;
   -moz-animation: ruido 800ms ease-in-out 0ms infinite alternate;
@@ -1141,19 +1194,18 @@ div.chango-nube.mirror {
   -ms-animation: ruido 800ms ease-in-out 0ms infinite alternate;
 }
 
-#escena-3 #ruido .rtplis {
+#nube #ruido .rtplis {
   background: url(images/rtplis.png) no-repeat 0 0;
-  width: 255px;
-  height: 261px;
-  left: 300px;
+  max-width: 255px;
+  max-height: 261px;
+  left: 50%;
   animation: ruido 1000ms ease-in-out 200ms infinite alternate;
   -webkit-animation: ruido 1000ms ease-in-out 200ms infinite alternate;
   -moz-animation: ruido 1000ms ease-in-out 200ms infinite alternate;
   -o-animation: ruido 1000ms ease-in-out 200ms infinite alternate;
   -ms-animation: ruido 1000ms ease-in-out 200ms infinite alternate;
 }
-
-#globo, .globo {
+.globo {
   background: url('images/globo.png') no-repeat left top;
   display: block;
   height: 329px;
@@ -1164,26 +1216,53 @@ div.chango-nube.mirror {
   bottom: 120px;
 }
 
-#globo.static {
-  position: absolute;
-  left: 5400px;
-}
-
-#globo.hidden, #social.hidden {
-  bottom: 0px;
+#globo {
+  background: url('images/globo.png') no-repeat left top;
+  display: block;
+  height: 329px;
+  width: 118px;
+  position: fixed;
+  z-index: 11;
   opacity: 0;
-  transition: all 1000ms ease-in 0ms;
-  -webkit-transition: all 1000ms ease-in 0ms;
-  -moz-transition: all 1000ms ease-in 0ms;
-  -o-transition: all 1000ms ease-in 0ms;
-  -ms-transition: all 1000ms ease-in 0ms;
+  bottom: 0px;
+  left: 350px;
+  transform: scale(.5);
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+  -o-transform: scale(.5);
+  -ms-transform: scale(.5);
 }
 
 #globo.appear {
-  position: fixed;
-  left: 400px;
-  bottom: 120px;
   opacity: .999;
+  bottom: 120px;
+  left: 400px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transition: all 500ms ease-in 0ms;
+  -webkit-transition: all 500ms ease-in 0ms;
+  -moz-transition: all 500ms ease-in 0ms;
+  -o-transition: all 500ms ease-in 0ms;
+  -ms-transition: all 500ms ease-in 0ms;
+}
+
+#globo.static {
+  position: absolute;
+  left: 5400px;  
+  bottom: 1500px;
+  transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -webkit-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -moz-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -o-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+  -ms-transition: bottom 1500ms ease-in-out 2000ms, left 0ms ease 0ms;
+}
+
+#social.hidden {
+  bottom: 0px;
+  opacity: 0;
   transition: all 1000ms ease-in 0ms;
   -webkit-transition: all 1000ms ease-in 0ms;
   -moz-transition: all 1000ms ease-in 0ms;
@@ -1201,15 +1280,6 @@ div.chango-nube.mirror {
   -ms-transition: all 1000ms ease-in 0ms;
 }
 
-#globo.give {
-  left: 5590px;
-  transition: left 1000ms ease 0s;
-  -webkit-transition: left 1000ms ease 0s; 
-  -moz-transition: left 1000ms ease 0s; 
-  -o-transition: left 1000ms ease 0s; 
-  -ms-transition: left 1000ms ease 0s;  
-}
-
 #morro {
   width: 180px;
   height: 400px;
@@ -1217,8 +1287,18 @@ div.chango-nube.mirror {
   position: absolute;
   z-index: 12;
   bottom: -110px;
-  left: 610px;
+  left: 600px;
 }
+
+#morro.feliz {
+  bottom: 1350px;
+  transition: all 1500ms ease-in-out 2000ms;
+  -webkit-transition: all 1500ms ease-in-out 2000ms;
+  -moz-transition: all 1500ms ease-in-out 2000ms;
+  -o-transition: all 1500ms ease-in-out 2000ms;
+  -ms-transition: all 1500ms ease-in-out 2000ms; 
+}
+
 
 #morro .morro-body {
   width: 103px;
@@ -1663,6 +1743,22 @@ div#alien .globo, div#morra1 .globo, div#morra2 .globo {
   opacity: 0;
 }
 
+/*div#morro .globo {
+  bottom: 100px;
+  opacity: 0;
+  left: 72px;
+}
+
+div#morro.feliz .globo {
+  opacity: .999;
+  transition: opacity 0ms ease-in-out 1500ms;
+  -webkit-transition: opacity 0ms ease-in-out 1500ms;
+  -moz-transition: opacity 0ms ease-in-out 1500s;
+  -o-transition: opacity 0ms ease-in-out 1500s;
+  -ms-transition: opacity 0ms ease-in-out 1500s;  
+}*/
+
+
 div#alien.feliz .globo, div#morra1.feliz .globo, div#morra2.feliz .globo {
   bottom: 70px;
   opacity: .999;
@@ -1835,7 +1931,7 @@ div.feliz .p-right {
   width: 2000px;
   position: absolute;
   bottom: 0;
-  z-index: 6 ;
+  z-index: 15;
 }
 
 #escena-6 #slide-fondo,
@@ -1856,13 +1952,13 @@ div.feliz .p-right {
   content: '';
   display: block;
   position: absolute;
-  width: 2000px;
+  width: 2300px;
   height: 100%;
-  left: -100%;
+  left: -2300px;
 }
 
 #escena-6 #slide-fondo:before {
-  left: 100%;
+  left: 2000px;
 }
 
 #escena-6 #slide-fondo.alinfinito {
@@ -1990,11 +2086,17 @@ div.feliz .p-right {
 }
 
 #cohete.volar {
-  animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
-  -webkit-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
-  -moz-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
-  -o-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
-  -ms-animation: volar 3000ms ease-in-out 0ms 1 normal forwards;
+  left: 680px;
+  transition: left 800ms ease-in-out 0ms;
+  -webkit-transition: left 800ms ease-in-out 0ms;
+  -moz-transition: left 800ms ease-in-out 0ms;
+  -o-transition: left 800ms ease-in-out 0ms;
+  -ms-transition: left 800ms ease-in-out 0ms;
+  animation: volar 3000ms ease-in-out 600ms 1 normal forwards;
+  -webkit-animation: volar 3000ms ease-in-out 600ms 1 normal forwards;
+  -moz-animation: volar 3000ms ease-in-out 600ms 1 normal forwards;
+  -o-animation: volar 3000ms ease-in-out 600ms 1 normal forwards;
+  -ms-animation: volar 3000ms ease-in-out 600ms 1 normal forwards;
 }
 
 #cohete div {
@@ -2072,6 +2174,15 @@ div.feliz .p-right {
   bottom: 140px;
 }
 
+#escena-7 #social.is-going-left {
+  left: 395px;
+  transition-duration: 0;
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  -ms-transition-duration: 0;
+  -o-transition-duration: 0;
+}
+
 #escena-7 #social a {
   display: block;
   width: 90px;
@@ -2094,6 +2205,7 @@ div.feliz .p-right {
   width: 359px;
   height: 200px;
   right: 120px;
+  z-index: 15;
   transition: opacity .5s ease-in-out 0s;
   -webkit-transition: opacity .5s ease-in-out 0s;
   -moz-transition: opacity .5s ease-in-out 0s;
@@ -2124,15 +2236,14 @@ div.feliz .p-right {
   text-decoration: none;
 }
 
-#escena-7 #brutalcontent {
+#brutalcontent {
   background: url('images/brutalcontent.png') no-repeat left top;
   width: 252px;
   height: 39px;
   display: block;
   position: absolute;
-  bottom: 30px;
-  z-index: 7;
-  right: 160px;
+  bottom: -150px;
+  right: 50px;
 }
 
 /*ANIMACIONES & FUNSTUFF*/
@@ -2307,33 +2418,33 @@ div.feliz .p-right {
 /*COHETE*/
 
 @keyframes volar {
-  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
-  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
+  0% {transform:rotate(0deg); bottom:-100px; }
+  80% {transform:rotate(-50deg); bottom: 400px; }
+  100% {transform:rotate(-50deg); bottom: 250%; }
 }
 
 @-moz-keyframes volar {
-  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
-  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
+  0% {-moz-transform:rotate(0deg); bottom:-100px; }
+  80% {-moz-transform:rotate(-50deg); bottom: 400px; }
+  100% {-moz-transform:rotate(-50deg); bottom: 250%; }
 }
 
 @-webkit-keyframes volar {
-  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
-  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
+  0% { -webkit-transform:rotate(0deg); bottom:-100px; }
+  60% { -webkit-transform:rotate(-50deg); bottom: 400px; }
+  100% { -webkit-transform:rotate(-50deg); bottom: 250%; }
 }
 
 @-o-keyframes volar {
-  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
-  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
+  0% { -o-transform:rotate(0deg); bottom:-100px; }
+  80% { -o-transform:rotate(-50deg); bottom: 400px; }
+  100% { -o-transform:rotate(-50deg); bottom: 250%; }
 }
 
 @-ms-keyframes volar {
-  0% { left: 350px; -webkit-transform:rotate(0deg); bottom:-100px; }
-  80% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 400px; }
-  100% { left: 680px; -webkit-transform:rotate(-25deg); bottom: 250%; }
+  0% {-ms-transform:rotate(0deg); bottom:-100px; }
+  80% {-ms-transform:rotate(-50deg); bottom: 400px; }
+  100% { -ms-transform:rotate(-50deg); bottom: 250%; }
 }
 
 /*ATMOSFERA*/
@@ -2410,4 +2521,20 @@ div.feliz .p-right {
 
 .cf {
   zoom: 1;
+}
+
+@media all and (max-height : 768px) {
+  div.valla-large, div.valla-medium, div.valla-small {
+    background-size: contain;
+  }
+  
+  div.valla-large, div.valla-medium, div.valla-small {
+    height: 300px;
+  }
+  
+  div.valla-large img, div.valla-medium img, div.valla-small img{
+    display: block;
+    margin: 10% 7%;
+    width: 65%;
+  }
 }

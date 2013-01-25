@@ -1,11 +1,10 @@
 $(document).ready(function(){
+  //Lleva la página al inicio al cargar
+  $('body, html').scrollTop(0);
 
-  //Side scrolling
-  $(function pageMove() {
-    $("html, body").mousewheel(function(event, delta) {
-      this.scrollLeft -= (delta * 5);
-      event.preventDefault();
-    });
+  //Recarga la página con el botón "Volver al inicio"
+  $('nav a.start-again').click(function(){
+    window.location.href = "http://dev.7boom.mx/bundles/boomfront/especiales/7boomytu/index.html"
   });
 
   var isfirst = parseInt("0");
@@ -13,129 +12,40 @@ $(document).ready(function(){
   var pageX = function(){
     return $(window).scrollLeft();
   }
-  /* {{{ NO SE USA AHORA.
-  //función de keypress
-  /*
-  $("html, body").keydown(function(e) {
-    if(e.which == 37) {
 
-      var direction = 'l';
-      event.preventDefault();
-
-      return $.slideMove();
-
+  //Side scrolling
+  // TODO
+  $(function pageMove() {
+    if( pageX() >= 9500 ){
+      var speed = 0;
+    } else {
+      var speed = 5;
     }
-    else if(e.which == 39) {
+    $("html, body").mousewheel(function(event, delta) {
+      this.scrollLeft -= (delta * speed);
 
-      var direction = 'r';
-      event.preventDefault();
-
-      return $.slideMove();
-
-    }
-  });
-  */
-
-  //Animación al teclear
-  /*
-  $.slideMove = function(direction){
-    var slidesPos = {
-      //Slide1
-      slide1:[0, 500],
-      slide2:[500, 1000],
-      slide3:[1000, 1500],
-      slide4:[1500, 2600],
-      slide5:[2600, 3000],
-      //Slide2
-      slide6:[3000, 3500],
-      slide7:[3500, 4700],
-      //Slide3
-      slide8:[4700, 5000],
-      slide9:[5000, 5700],
-      //Slide4
-      slide10:[5700, 6000],
-      slide11:[6000, 6500],
-      //Slide5
-      slide12:[6500, 7000],
-      slide13:[7000, 7500],
-      slide14:[7500, 8000],
-      slide15:[8000, 8500],
-      //Slide6
-      slide16:[8500, 9000],
-      slide17:[9000, 9300],
-      slide19:[9300, 9500],
-      slide20:[9500, 10000],
-      //Slide7
-      slide21:[10000, 10100]
-    };
-    for ( i in slidesPos ) {
-      if ( pageX() >= slidesPos[i][0] && pageX() <= slidesPos[i][1] ) {
-        $('html, body').stop(false, false).animate({
-          scrollLeft: slidesPos[i][1]
-        }, 3000);
+      if (delta > 0 ) {
+        $('#dude, #dude2').addClass('mirror');
+        $('#social').css('left', 395);
+      } else {
+        $('#dude, #dude2').removeClass('mirror');
+        $('#social').css('left', 450);
       }
-    }
-  }
-  }}} */
-  var init = function(){
 
-    /* {{{ lol así no era
-    var slidesPos2 = [
-      0, 500, 1000, 1500, 2600, 3000,
-      3500, 4700, 5000, 5700,
-      6000, 6500, 7000, 7500, 8000, 8500,
-      9000, 9300, 9500, 10000, 11000
-    ];
-
-    var animation = function( order ){
-      $('html, body').stop(true, true).animate({
-        scrollLeft: slidesPos2[order]
-      }, 3000);
-    };
-
-    $('body').keyup(function(e){
-      var position = pageX(),
-          current = 0;
-
-      for (var i = 0; i < slidesPos2.length; i++) {
-
-        if ( e.which == 39 ) {
-          //adelante
-
-          if ( slidesPos2[i] > pageX() ) {
-            animation(i);
-            break;
-          }
-
-        }
-
-      };
-
-      for (var i = slidesPos2.length; i >= 0 ; i--) {
-
-        if ( e.which == 37 ) {
-          //atras
-
-          if ( slidesPos2[i] < pageX() ) {
-            animation(i);
-            break;
-          }
-
-        }
-
-      };
-
+      event.preventDefault();
     });
-    }}} */
+  });
+
+  var init = function(){
 
     var slidesPos2 = [
       [0, 500, 1000, 1500, 2600],
       [3000, 3500, 4700],
-      [5000, 5700],
+      [5000],
       [6000, 6500],
       [7000, 7500, 8000, 8500],
-      [9000, 9300, 9500, 10000],
-      [10300, 10600, 10900]
+      [9000, 9300, 9600],
+      [10500, 10800, 11200]
     ],
     current = function( direction, dimension ){
 
@@ -146,12 +56,14 @@ $(document).ready(function(){
       if ( direction == 'right' ) {
 
         $('#dude, #dude2').removeClass('mirror');
+        $('#social').removeClass('is-going-left').css('left', 450);
 
         for (var s = 0; s < slidesPos2.length; s++) {
           for (var p = 0; p < slidesPos2[s].length; p++) {
 
             if(slidesPos2[s][p] > pageX()) {
               if ( dimension == 'position' ) {
+                console.log(p);
                 return p;
               }
               if ( dimension == 'slide' ) {
@@ -164,6 +76,7 @@ $(document).ready(function(){
       } else { /* direction == 'left' */
 
         $('#dude, #dude2').addClass('mirror');
+        $('#social').addClass('is-going-left');
 
         for (var s = slidesPos2.length; s-- > 0;) {
           for (var p = slidesPos2[s].length; p-- > 0;) {
@@ -206,7 +119,7 @@ $(document).ready(function(){
               ) {
                 animation( direction );
               }
-            }, 1000
+            }, 2000
           )
         }
       );
@@ -253,7 +166,7 @@ $(document).ready(function(){
 
   function scrollendHandler() {
     $('body').removeClass('is-scrolling');
-  	scrollTimeout = null;
+    scrollTimeout = null;
   }
 
   $(function() {
@@ -373,7 +286,7 @@ $(document).ready(function(){
 
     if ( pageX() >= 9000 ){
       $('#txt6 .dos').addClass('is-showing');
-      $('#txt6 .tres, #txt6 .uno, #txt6 .cuatro').removeClass('is-showing');
+      $('#txt6 .tres, #txt6 .uno').removeClass('is-showing');
     };
 
     if ( pageX() >= 9300 ){
@@ -381,36 +294,42 @@ $(document).ready(function(){
       $('#txt6 .cuatro, #txt6 .dos').removeClass('is-showing');
     };
 
-    if ( pageX() >= 9500 ){
-      $('#txt6 .tres').removeClass('is-showing').delay(5600).queue(function(next){
+    if ( pageX() >= 9600 ){
+      $('#txt6 .tres').removeClass('is-showing').delay(4500).queue(function(next){
         $('#txt6 .cuatro').addClass('is-showing');
       });
     };
 
-    if ( pageX() >= 9800 ){
+    if ( pageX() >= 9620 ){
       $('#txt6 .numero, #txt6 .cuatro, #txt7 .numero, #txt7 .uno, #txt7 .dos, #txt7 .tres').removeClass('is-showing');
     };
 
-    if ( pageX() >= 10200 ){
+    if ( pageX() >= 10500 ){
       $('#txt7 .numero, #txt7 .uno').addClass('is-showing');
-    };
-
-    if ( pageX() >= 10600 ){
-      $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
-      $('#txt7 .uno').removeClass('is-showing');
       $('#social').removeClass('hidden').addClass('appear');
+      $('.nav-btn:first-child + a').removeClass('is-disabled');
       if(gvballoon == 2){
         $('#dude2 .b-left').addClass('feliz');
         gvballoon = 3;
       }
     };
 
-    if ( pageX() >= 10700 ){
+    if ( pageX() >= 10800 ){
+      $('#txt7 .numero, #txt7 .dos').addClass('is-showing');
+      $('#txt7 .uno').removeClass('is-showing');
+      $('.nav-btn:first-child + a').addClass('is-disabled');
+    };
+
+    if ( pageX() <= 11199 ){
+      $('#share').addClass('hide');
+    };
+
+    if ( pageX() >= 11200 ){
       $('#txt7 .dos').removeClass('is-showing');
       $('#txt7 .tres').addClass('is-showing');
       setTimeout( function() {
-        $('#share').removeClass('hide');
-      }, 600 );
+        $('#share, nav .start-again').removeClass('hide');
+      }, 800 );
     };
 
     //triggers animaciones escena 3
@@ -421,21 +340,24 @@ $(document).ready(function(){
         $('#globo').removeClass('hidden').addClass('appear');
         gvballoon = 1;
       }
-      $('#morro .face1, #morro .b2-left, #morro .b2-right, #morro .face3').removeClass('show').addClass('hide');
+    }
+    if ( pageX() >= 4800){
+      $('#morro .face1, #morro .b2-left, #morro .b2-right').removeClass('show').addClass('hide');
       $('#morro .face2, #morro .b-left, #morro .b-right').removeClass('hide').addClass('show');
     }
-
-    if ( pageX() >= 5000 ){
-      $('#morro .morro-brazos, #morro .morro-piernas').addClass('feliz');
+    if ( pageX() >= 4970 ){
       $('#ruido, #nube').removeClass('show').addClass('hide');
-      $('#morro .face2').removeClass('show').addClass('hide');
-      $('#morro .face3').removeClass('hide').addClass('show');
+    };
+    if (pageX() >= 5000){
       if(gvballoon == 1) {
         $('.dude-brazos .b-left').removeClass('feliz');
-        $('#globo').removeClass('appear').addClass('static');
+        $('#morro .face2').removeClass('show').addClass('hide').hide();
+        $('#morro .face3').removeClass('hide').addClass('show');
+          $('#morro').addClass('feliz');
+          $('#globo').addClass('static');
         gvballoon = 2;
       }
-    };
+    }
     if ( pageX() >= 6000 ){
       $('#morra1, #morra2, #alien').addClass('feliz');
     };
@@ -457,25 +379,48 @@ $(document).ready(function(){
     };
 
     if ( pageX() >= 9500){
-      if(isfirst == 0){
+      if ( isfirst == 0 ) {
+
+        /*$("html, body").mousewheel(function(event, delta) {
+          this.scrollLeft -= (delta * 0);
+          event.preventDefault();
+        });*/
+        /*$(function pageMove() {
+          $("html, body").mousewheel(function(event, delta) {
+            this.scrollLeft -= (delta * 0);
+            event.preventDefault();
+          });
+        });*/
+
         $('#cohete').addClass('volar').delay(3000).queue(function(next){
             $(this).hide(0);
             next();
         });
+
         $('#slide-fondo').addClass('alinfinito');
+
         $('#dude2').delay(3800).queue(function(next){
             $(this).removeClass('fall').addClass('feliz');
             next();
         });
+
         $('#dude2').delay(2000).queue(function(next){
             $(this).removeClass('feliz').stop();
             next();
         });
+
         $('#dude2 .dude-parachute').removeClass('hide').addClass('show').delay(5600).queue(function(next){
           $(this).removeClass('show').addClass('hide').stop();
         });
-	isfirst = 1;
+
+        isfirst = 1;
       }
+
+      if ( $('#dude2').hasClass('mirror') ){
+        $('#social').css('left', '395px');
+      } else {
+        $('#social').css('left', '450px');
+      };
 
     };
 
