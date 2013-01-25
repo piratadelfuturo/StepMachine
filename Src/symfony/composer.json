@@ -20,7 +20,7 @@
         "friendsofsymfony/facebook-bundle": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
         "friendsofsymfony/twitter-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "*",
+        "friendsofsymfony/user-bundle": "v1.3.1",
         "gedmo/doctrine-extensions": "v2.3.2",
         "jms/di-extra-bundle": "1.1.*",
         "jms/security-extra-bundle": "1.2.*",
