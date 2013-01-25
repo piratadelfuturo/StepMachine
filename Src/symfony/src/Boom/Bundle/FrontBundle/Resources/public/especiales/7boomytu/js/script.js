@@ -14,6 +14,7 @@ $(document).ready(function(){
   }
 
   //Side scrolling
+  // TODO
   $(function pageMove() {
     if( pageX() >= 9500 ){
       var speed = 0;
