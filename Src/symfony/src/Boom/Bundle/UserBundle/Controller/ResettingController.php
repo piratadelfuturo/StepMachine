@@ -91,7 +91,7 @@ class ResettingController extends BaseController {
             return new RedirectResponse($this->container->get('templating')->renderResponse('Boom:BoomUserBundle:Resetting:request.html.php'));
         }
 
-        $form = $this->container->get('fos_user.resetting.form');
+        $form = $this->container->get('fos_user.resetting.form.factory');
         $formHandler = $this->container->get('fos_user.resetting.form.handler');
         $process = $formHandler->process($user);
 
