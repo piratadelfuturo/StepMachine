@@ -44,6 +44,8 @@ if ($view['security']->isGranted('ROLE_USER') == true && $entity['user']['id'] =
 $view['slots']->set('sidebar_top', $sidebar);
 $view['slots']->set('fb_boom_graph_data', $fb_boom_graph_data);
 
+$related_booms = $view['boom_front']->getRelatedBooms($entity);
+
 $next_boom = $view['boom_front']->getNextAvailableBoom($entity);
 $prev_boom = $view['boom_front']->getPrevAvailableBoom($entity);
 
@@ -182,7 +184,7 @@ $response_amount = $entity->countReplies();
                     <a href="<?php echo $editUrl ?>" class="editar-boom-ph">EDITA TU BOOM</a>
             <?php endif; ?>
             </div>
-<?php if (!empty($response_list)): ?>
+            <?php if (count($response_list) > 0): ?>
                 <div class="respuestas-boom cf">
                     <h3 class="reply-flag">Respuestas a este boom</h3>
                     <ul class="cf">
@@ -214,7 +216,6 @@ $response_amount = $entity->countReplies();
                 </div>
             <?php endif; ?>
             <?php
-            $related_booms = $view['boom_front']->getRelatedBooms($entity);
             if (!empty($related_booms)):
                 ?>
                 <div class="boom-related respuestas-boom cf">
