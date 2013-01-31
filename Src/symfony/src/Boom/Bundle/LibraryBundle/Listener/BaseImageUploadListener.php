@@ -235,11 +235,16 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
             $imagick->cropThumbnailImage($width, $height);
             $imagick->setImagePage(0, 0, 0, 0);
         } else {
+            if($backgroundParam !== null){
+                $imagick->setBackgroundColor('#ffffff');
+            }
             $imagick->scaleImage($width, $height, true);
             $imageSize = $imagick->getImageGeometry();
             $x = ($width / 2) - ($imageSize['width'] / 2);
             $y = ($height / 2) - ($imageSize['height'] / 2);
+            /*
             if($backgroundParam !== null){
+
                 $background = clone($backgroundParam);
                 $background->cropImage($width, $height, 0, 0);
                 //$background->flattenImages();
@@ -248,7 +253,7 @@ abstract class BaseImageUploadListener implements ContainerAwareInterface {
                 $imagick->setImage($background);
                 $background->clear();
                 $background->destroy();
-            }
+            } */
         }
         return $imagick;
     }
