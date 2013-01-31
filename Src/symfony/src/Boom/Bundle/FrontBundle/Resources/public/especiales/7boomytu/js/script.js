@@ -14,8 +14,7 @@ $(document).ready(function(){
   }
 
   //Side scrolling
-  // TODO
-  var lol = function pageMove() {
+  function pageMove() {
     if( pageX() >= 9500 ){
       var speed = 0;
     } else {
@@ -35,6 +34,8 @@ $(document).ready(function(){
       event.preventDefault();
     });
   }
+
+  pageMove();
 
   var init = function(){
 
@@ -380,17 +381,6 @@ $(document).ready(function(){
 
     if ( pageX() >= 9500){
       if ( isfirst == 0 ) {
-
-        /*$("html, body").mousewheel(function(event, delta) {
-          this.scrollLeft -= (delta * 0);
-          event.preventDefault();
-        });*/
-        /*$(function pageMove() {
-          $("html, body").mousewheel(function(event, delta) {
-            this.scrollLeft -= (delta * 0);
-            event.preventDefault();
-          });
-        });*/
 
         $('#cohete').addClass('volar').delay(3000).queue(function(next){
             $(this).hide(0);
