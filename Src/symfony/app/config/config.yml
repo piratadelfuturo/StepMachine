@@ -129,6 +129,7 @@ swiftmailer:
     spool:     { type: memory }
 
 boom_library:
+    boom_image_domain_url: "http://cdn.7boom.mx"
     boom_image_sizes:
       - { width: 680, height: 382 , thumbnail: false }
       - { width: 590, height: 380 , thumbnail: false }

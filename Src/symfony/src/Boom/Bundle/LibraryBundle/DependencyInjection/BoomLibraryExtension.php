@@ -26,6 +26,8 @@ class BoomLibraryExtension extends Extension
         $container->setParameter('boom_library.web_path', $config['web_path']);
         $container->setParameter('boom_library.content_upload_path', $config['content_upload_path']);
 
+        $container->setParameter('boom_library.boom_image_domain_url', $config['boom_image_domain_url']);
+
         $container->setParameter('boom_library.boom_image_path', $config['boom_image_path']);
         $container->setParameter('boom_library.boom_image_background', $config['boom_image_background']);
         $container->setParameter('boom_library.boom_image_sizes', $config['boom_image_sizes']);
