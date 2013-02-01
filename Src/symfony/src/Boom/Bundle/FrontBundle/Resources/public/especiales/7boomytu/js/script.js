@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   //Side scrolling
   // TODO
-  $(function pageMove() {
+  var lol = function pageMove() {
     if( pageX() >= 9500 ){
       var speed = 0;
     } else {
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
       event.preventDefault();
     });
-  });
+  }
 
   var init = function(){
 
