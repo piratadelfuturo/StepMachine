@@ -88,7 +88,7 @@ class BoomController extends Controller {
                 )
             ),
             'date_created',
-            'nsfw',
+            'status',
             array(
                 'user' => array(
                     'username'

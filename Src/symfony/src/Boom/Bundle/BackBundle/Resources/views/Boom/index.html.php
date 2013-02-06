@@ -9,7 +9,7 @@
                 <th>URL</th>
                 <th style="width:65px" >Categoría</th>
                 <th style="width:100px" >Fecha</th>
-                <th style="width:45px" > NSFW</th>
+                <th style="width:45px" > Estatus</th>
                 <th style="width:50px" >Usuario</th>
                 <th style="width:120px" >Recomendado</th>
                 <th style="width:50px">Acciones</th>
@@ -72,7 +72,48 @@
                             $(nTd).empty().text(formatDate(new Date(val)));
                         }
                     },
-                    null,
+                    {
+                        "sName": "status",
+                        "bSearchable": false,
+                        "bSortable": true,
+                        "fnCreatedCell": function (nTd,val)
+                        {
+                            /*
+                                const STATUS_DRAFT = 0;
+                                const STATUS_REVIEW = 1;
+                                const STATUS_PUBLIC = 2;
+                                const STATUS_PRIVATE = 3;
+                                const STATUS_DELETE = 4;
+                                const STATUS_BLOCK = 5;
+                             */
+                            var text = '';
+                            switch(val)
+                            {
+                                case 0:
+                                    text = 'DRAFT';
+                                    break;
+                                case 1:
+                                    text = 'REVIEW';
+                                    break;
+                                case 2:
+                                    text = 'PUBLIC';
+                                    break;
+                                case 3:
+                                    text = 'PRIVATE';
+                                    break;
+                                case 4:
+                                    text = 'DELETE';
+                                    break;
+                                case 5:
+                                    text = 'BLOCK';
+                                    break;
+                                default:
+                            }
+
+                            $(nTd).empty().text(text);
+                        }
+
+                    },
                     null,
                     {     // fifth column (Edit link)
                         "sName": "featured",

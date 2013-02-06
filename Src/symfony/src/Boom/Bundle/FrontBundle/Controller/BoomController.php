@@ -285,7 +285,7 @@ class BoomController extends Controller {
             $newOrder = array_values($newOrder);
         }
 
-        if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
+        if (!$foundEntity || !in_array($foundEntity['status'],array(Boom::STATUS_PUBLIC,Boom::STATUS_PRIVATE))) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
