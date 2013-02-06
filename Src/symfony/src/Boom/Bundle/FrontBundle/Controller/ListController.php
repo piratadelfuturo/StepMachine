@@ -106,6 +106,39 @@ class ListController extends Controller {
                 ));
     }
 
+    public function latestFeedAction() {
+        $page = 1;
+        $limit = 70;
+
+        $em = $this->getDoctrine()->getManager();
+        $boomRepo = $em->getRepository('BoomLibraryBundle:Boom');
+
+        $list = $boomRepo->findLatestBooms(
+                array(
+            'boom.date_published' => 'DESC'
+                )
+                , $limit
+                , $limit * ($page - 1)
+                , array(
+            'status' => Boom::STATUS_PUBLIC
+                )
+        );
+
+        $total = $boomRepo->totalLatestBooms(
+                array(
+                    'status' => Boom::STATUS_PUBLIC
+                )
+        );
+
+        return $this->render('BoomFrontBundle:List:booms.rss.php', array(
+                    'total' => $total,
+                    'page' => $page,
+                    'list' => $list,
+                    'limit' => $limit,
+                    'page_title' => 'últimos'
+                ));
+    }
+
     public function latestCategoryAction($slug, $page = 1) {
 
         $limit = 14;

@@ -20,6 +20,14 @@ BoomFrontBundle_list_latest:
       page: \d+
       _method: get
 
+BoomFrontBundle_list_latest_feed:
+    pattern:  /feed.{_format}
+    defaults: { _controller: "BoomFrontBundle:List:latestFeed",_format: rss }
+    requirements:
+      page: \d+
+      _format: rss
+      _method: get
+
 BoomFrontBundle_list_category_latest:
     pattern:  /ultimos/{slug}/{page}
     defaults: { _controller: "BoomFrontBundle:List:latestCategory",page: 1 }
