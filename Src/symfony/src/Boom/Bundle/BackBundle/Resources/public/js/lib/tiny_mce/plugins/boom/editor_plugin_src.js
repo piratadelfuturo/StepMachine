@@ -268,7 +268,6 @@
         // HTML -> BBCode in PunBB dialect
         _html2bbcode : function(s) {
             s = tinymce.trim(s);
-
             function rep(re, str) {
                 s = s.replace(re, str);
             };
