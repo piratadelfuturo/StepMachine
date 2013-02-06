@@ -34,7 +34,6 @@ class BoomStatusSubscriber implements EventSubscriberInterface {
         $choices = array();
         $choices[Boom::STATUS_DRAFT] = 'Draft';
         $choices[Boom::STATUS_PRIVATE] = 'Público';
-
         if(null !== $data && $data['status'] == Boom::STATUS_DRAFT){
         $named = $this->factory->createNamedBuilder(
                 'status',

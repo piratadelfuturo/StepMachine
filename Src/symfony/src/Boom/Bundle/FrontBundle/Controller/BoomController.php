@@ -36,7 +36,6 @@ class BoomController extends Controller {
         $sessionToken = $this->get('security.context')->getToken();
         $sessionUser = $sessionToken->getUser();
         $fav = $boomRepo->isFavoriteUser($entity, $sessionUser);
-        $request = $this->getRequest();
 
         if ($request->isXmlHttpRequest()) {
             $response = array(
@@ -356,7 +355,7 @@ class BoomController extends Controller {
         $foundEntity = $em->getRepository('BoomLibraryBundle:Boom')->findOneBySlug($slug);
         $parent = null;
 
-        if (!$foundEntity || $foundEntity['status'] !== Boom::STATUS_PUBLIC) {
+        if (!$foundEntity || !in_array($foundEntity['status'],array(Boom::STATUS_PUBLIC,Boom::STATUS_PRIVATE)) ) {
             throw $this->createNotFoundException('Unable to find Boom entity.');
         }
 
@@ -375,10 +374,9 @@ class BoomController extends Controller {
         $entity = new Boom();
         $entity['parent'] = $parent;
         $entity['user'] = $sessionUser;
-        $entity['status'] = Boom::STATUS_PRIVATE;
+        $entity['status'] = Boom::STATUS_DRAFT;
         $form = $this->createForm(new BoomType(), $entity);
         $form->bindRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
