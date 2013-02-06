@@ -57,7 +57,8 @@ class BoomController extends Controller {
                         'BoomFrontBundle:Boom:show.html.php', array(
                     'entity' => $entity,
                     'category' => $entity['category'],
-                    'user_reordered' => null
+                    'user_reordered' => null,
+                    'is_visible' => false
                         )
         );
     }
