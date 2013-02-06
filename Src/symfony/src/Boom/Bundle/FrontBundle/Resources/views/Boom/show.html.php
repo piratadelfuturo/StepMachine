@@ -1,10 +1,14 @@
 <?php
 $view->extend('BoomFrontBundle::two_col_sublayout.html.php');
+if($is_visible === true){
 $sidebar = $view->render(
         'BoomFrontBundle:Boom:blocks/user_order.html.php', array(
     'entity' => $entity
         )
 );
+}else{
+    $sidebar = '';
+}
 $fb_boom_graph_data = array();
 $fb_boom_graph_data['title'] = $entity['title'];
 $fb_boom_graph_data['type'] = 'seven_boom_mx:boom';

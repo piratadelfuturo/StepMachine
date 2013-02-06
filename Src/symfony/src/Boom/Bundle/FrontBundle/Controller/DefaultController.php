@@ -118,12 +118,13 @@ class DefaultController extends Controller {
                     'slug' => $slug,
                     'status' => array(
                         Boom::STATUS_PUBLIC,
-                        Boom::STATUS_PRIVATE
+                        Boom::STATUS_PRIVATE,
+                        Boom::STATUS_DRAFT
                     )
                 )
         );
-
-        if (!$entity || $entity['category']['slug'] !== $category_slug) {
+        if (!$entity || $entity['category']['slug'] !== $category_slug
+                || ($this->getUser() !== null && $this->getUser()->getId() !== $entity['user']['id'] && $entity['status'] == Boom::STATUS_DRAFT) ) {
             $error = true;
         }
 
@@ -152,7 +153,8 @@ class DefaultController extends Controller {
                         'BoomFrontBundle:Boom:show.html.php', array(
                     'entity' => $entity,
                     'category' => $thisCategory,
-                    'user_reordered'  => $userReorder
+                    'user_reordered'  => $userReorder,
+                    'is_visible'    => in_array($entity['status'], array(Boom::STATUS_PRIVATE,Boom::STATUS_PUBLIC))
                 ));
 
         //}
