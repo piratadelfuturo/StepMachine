@@ -4018,12 +4018,18 @@ ul.paginador, ul.paginador {
   float: left;
   position: relative;
   margin-left: 0;
+  width: 590px;
   height: 380px;
+}
+
+.gal-car .slide > img {
+  position: relative;
+  display: block;
+  margin: 0 auto;
 }
 
 .gal-car div.slide.active {
   display: block;
-  position: relative;
   z-index: 8;
 }
 
