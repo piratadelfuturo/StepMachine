@@ -17,11 +17,15 @@ function hndlr(response) {
 
     var resultHTML = '<div class="boom">';
     if (typeof( item.pagemap ) == "object" ) {
-      resultHTML += '<a href="http://' + item.formattedUrl + '"><img src="' + item.pagemap.cse_thumbnail[0].src + '"/></a><div class="boom-info"><p class="boom-ti cf"><a href="http://'
-        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+      var image = item.pagemap.cse_thumbnail && item.pagemap.cse_thumbnail[0].src || item.pagemap.cse_image[0].src.replace('http://www.7boom.mxhttp', 'http'); //wtf google?
+
+	image = typeof(image) !== 'undefined' ? "<img src='" + image + "'/>" : '';
+
+      resultHTML += '<a href="' + item.link + '">'+ image +'</a><div class="boom-info"><p class="boom-ti cf"><a href="'
+        + item.link + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     } else {
-      resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="http://'
-        + item.formattedUrl + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
+      resultHTML += '<div class="boom-info"<p class="boom-ti"><a href="'
+        + item.link + '">' + item.title + '</a></p><p class="src-snip">' + item.snippet + '</p></div></div>';
     }
 
     newResultsDiv.innerHTML += resultHTML;
