@@ -366,9 +366,7 @@ class BoomController extends Controller {
             throw new AccessDeniedHttpException('No puedes responder tus propios booms');
         }
 
-        if($foundEntity['parent'] !== null && !empty($foundEntity['parent'])){
-            $parent = $foundEntity['root'];
-        }
+        $parent = $em->getRepository('BoomLibraryBundle:Boom')->findOneById($foundEntity['root']);
 
         $request = $this->getRequest();
         $entity = new Boom();
