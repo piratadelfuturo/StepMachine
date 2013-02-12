@@ -57,11 +57,12 @@
         foreach ($form['elements'] as $element):
             $positionCounter++;
             ?>
-            <li><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
+            <li class="boomie-editor"><fieldset id="<?php echo $element->get('id') ?>" class="boomie boom">
                     <label>
                         <span class="place"><?php echo $positionCounter; ?></span>
                     </label>
-                    <div class="uploader">
+                    <?php /*
+                      <div class="uploader">
                         <p class="instrucciones">Click para subir tu imagen</p>
                         <?php
                         echo $view['form']->widget(
@@ -75,6 +76,7 @@
                         )
                         ?>
                     </div>
+                    */?>
                     <?php
                     echo $view['form']->widget(
                             $element['title'], array(
@@ -142,7 +144,6 @@
                             ?>
                         </div>
                     </div>
-                    <span class="tab"><a href="#"><span>TAB</span></a></span>
                 </fieldset></li>
     <?php endforeach; ?>
     </ul>
