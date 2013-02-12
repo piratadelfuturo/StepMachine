@@ -43,7 +43,7 @@ class BoomController extends Controller {
         $form->bind($request);
         $sessionToken = $this->get('security.context')->getToken();
 
-        if ($sessionToken->getUser() instanceof BoomEntity\User) {
+        if (($entity['user'] === null || empty($entity['user'])) && ($sessionToken->getUser() instanceof BoomEntity\User)) {
             $sessionUser = $sessionToken->getUser();
             $entity['user'] = $sessionUser;
         }
