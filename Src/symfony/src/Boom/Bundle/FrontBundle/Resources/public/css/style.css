@@ -3508,6 +3508,10 @@ span.arrow {
   margin-bottom: 40px;
 }
 
+.boomie-editor .defaultSkin table.mceLayout {
+  width: 580px !important;
+}
+
 #form-boom .boomie-resumen {
   width: 630px;
   height: 120px;
